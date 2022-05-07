@@ -14,7 +14,8 @@ import { AppConfig } from './configs/app.config';
 const logger = new Logger('bootstrap');
 
 function buildSwaggerDoc(app: INestApplication, config: ConfigService) {
-  const { name, description, version } = config.get<AppConfig>('app');
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  const { name, description, version } = config.get<AppConfig>('app')!;
   const options = new DocumentBuilder()
     .setTitle(name)
     .setDescription(description)
@@ -46,7 +47,7 @@ async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
   const configService = app.get(ConfigService);
   const defaultPort = 3000;
-  const PORT = parseInt(configService.get('PORT')) ?? defaultPort;
+  const PORT = parseInt(configService.get('PORT') ?? "5000") ?? defaultPort;
   applySecurityLayer(app, configService);
   applyGlobals(app, configService);
   buildSwaggerDoc(app, configService);

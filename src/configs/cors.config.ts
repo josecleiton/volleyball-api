@@ -2,7 +2,7 @@ import { CorsOptions } from '@nestjs/common/interfaces/external/cors-options.int
 import { ForbiddenException } from '@nestjs/common';
 import { registerAs } from '@nestjs/config';
 
-type Callback = (err: Error, stat?: boolean) => void;
+type Callback = (err: Error|null, stat?: boolean) => void;
 
 const isProd = process.env.NODE_ENV === 'production';
 

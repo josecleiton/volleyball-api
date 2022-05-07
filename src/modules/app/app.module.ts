@@ -5,9 +5,10 @@ import { appConfig } from '../../configs/app.config';
 import { cacheConfig } from '../../configs/cache.config';
 import { corsConfig } from '../../configs/cors.config';
 import { rateLimitConfig } from '../../configs/rate-limit.config';
+import { CoreModule } from '../core/core.module';
+import { EquipeModule } from '../equipe/equipe.module';
+import { PessoaModule } from '../pessoa/pessoa.module';
 
-import { AppController } from './controllers/app.controller';
-import { AppService } from './app.service';
 
 @Module({
   imports: [
@@ -19,9 +20,10 @@ import { AppService } from './app.service';
         rateLimitConfig,
       ],
     }),
+    CoreModule,
+    EquipeModule,
+    PessoaModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule {}
 

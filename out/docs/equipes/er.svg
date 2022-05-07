@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="870px" preserveAspectRatio="none" style="width:892px;height:870px;background:#FFFFFF;" version="1.1" viewBox="0 0 892 870" width="892px" zoomAndPan="magnify"><defs><filter height="300%" id="f1iznjc6yvo157" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><text fill="#000000" font-family="sans-serif" font-size="18" lengthAdjust="spacing" textLength="106" x="386.75" y="18.6855">ER - Equipes</text><!--MD5=[dc233d59e62d3f8990ee27cfbfaa6f65]
+class genero--><rect codeLine="3" fill="#FEFECE" filter="url(#f1iznjc6yvo157)" height="75.6719" id="genero" style="stroke:#A80036;stroke-width:1.5;" width="71" x="13" y="71.1406"/><ellipse cx="28" cy="87.1406" fill="#EB937F" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M26.8594,87.9375 L26.8594,90.4375 L31.1875,90.4375 L31.1875,89.5156 Q31.1875,88.9063 31.4297,88.6406 Q31.6719,88.375 32.0469,88.375 Q32.4219,88.375 32.6563,88.6406 Q32.8906,88.9063 32.8906,89.5156 L32.8906,92.1406 L24.8906,92.1406 Q24.2656,92.1406 24.0078,91.9063 Q23.75,91.6719 23.75,91.2813 Q23.75,90.9063 24.0156,90.6719 Q24.2813,90.4375 24.8906,90.4375 L25.1563,90.4375 L25.1563,83.7813 L24.8906,83.7813 Q24.2656,83.7813 24.0078,83.5469 Q23.75,83.3125 23.75,82.9219 Q23.75,82.5469 24.0078,82.3125 Q24.2656,82.0781 24.8906,82.0781 L32.5156,82.0781 L32.5156,84.6719 Q32.5156,85.2813 32.2891,85.5391 Q32.0625,85.7969 31.6719,85.7969 Q31.2969,85.7969 31.0625,85.5391 Q30.8281,85.2813 30.8281,84.6719 L30.8281,83.7813 L26.8594,83.7813 L26.8594,86.2344 L28.3438,86.2344 Q28.3438,85.5781 28.4688,85.3906 Q28.7344,84.9844 29.2031,84.9844 Q29.5781,84.9844 29.8125,85.2422 Q30.0469,85.5 30.0469,86.1094 L30.0469,88.0781 Q30.0469,88.625 29.9219,88.8125 Q29.6563,89.2031 29.2031,89.2031 Q28.7344,89.2031 28.4688,88.7969 Q28.3438,88.6094 28.3438,87.9375 L26.8594,87.9375 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="39" x="42" y="92.0508">genero</text><line style="stroke:#A80036;stroke-width:1.5;" x1="14" x2="83" y1="103.1406" y2="103.1406"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="48" x="19" y="118.5596">masculino</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="40" x="19" y="132.3955">feminino</text><line style="stroke:#A80036;stroke-width:1.5;" x1="14" x2="83" y1="138.8125" y2="138.8125"/><!--MD5=[83cfebc3c035bca8cb152800980d79fe]
+class competicoes--><rect codeLine="8" fill="#FEFECE" filter="url(#f1iznjc6yvo157)" height="117.1797" id="competicoes" style="stroke:#A80036;stroke-width:1.5;" width="141" x="255" y="50.6406"/><ellipse cx="287.1" cy="66.6406" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M285.9594,67.4375 L285.9594,69.9375 L290.2875,69.9375 L290.2875,69.0156 Q290.2875,68.4063 290.5297,68.1406 Q290.7719,67.875 291.1469,67.875 Q291.5219,67.875 291.7563,68.1406 Q291.9906,68.4063 291.9906,69.0156 L291.9906,71.6406 L283.9906,71.6406 Q283.3656,71.6406 283.1078,71.4063 Q282.85,71.1719 282.85,70.7813 Q282.85,70.4063 283.1156,70.1719 Q283.3813,69.9375 283.9906,69.9375 L284.2563,69.9375 L284.2563,63.2813 L283.9906,63.2813 Q283.3656,63.2813 283.1078,63.0469 Q282.85,62.8125 282.85,62.4219 Q282.85,62.0469 283.1078,61.8125 Q283.3656,61.5781 283.9906,61.5781 L291.6156,61.5781 L291.6156,64.1719 Q291.6156,64.7813 291.3891,65.0391 Q291.1625,65.2969 290.7719,65.2969 Q290.3969,65.2969 290.1625,65.0391 Q289.9281,64.7813 289.9281,64.1719 L289.9281,63.2813 L285.9594,63.2813 L285.9594,65.7344 L287.4438,65.7344 Q287.4438,65.0781 287.5688,64.8906 Q287.8344,64.4844 288.3031,64.4844 Q288.6781,64.4844 288.9125,64.7422 Q289.1469,65 289.1469,65.6094 L289.1469,67.5781 Q289.1469,68.125 289.0219,68.3125 Q288.7563,68.7031 288.3031,68.7031 Q287.8344,68.7031 287.5688,68.2969 Q287.4438,68.1094 287.4438,67.4375 L285.9594,67.4375 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="71" x="304.9" y="71.5508">competicoes</text><line style="stroke:#A80036;stroke-width:1.5;" x1="256" x2="395" y1="82.6406" y2="82.6406"/><ellipse cx="266" cy="93.6406" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="101" x="275" y="98.0596">id : uuid «generated»</text><line style="stroke:#A80036;stroke-width:1.0;" x1="256" x2="395" y1="104.4766" y2="104.4766"/><ellipse cx="266" cy="115.4766" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="77" x="275" y="119.8955">genero : genero</text><ellipse cx="266" cy="129.3125" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="115" x="275" y="133.7314">comeca_em : timestamp</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="53" x="275" y="147.5674">nome : text</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="71" x="275" y="161.4033">serie : text = A</text><!--MD5=[8c96a0ccc357c8d238b00fbcc6caf691]
+class times--><rect codeLine="17" fill="#FEFECE" filter="url(#f1iznjc6yvo157)" height="144.8516" id="times" style="stroke:#A80036;stroke-width:1.5;" width="144" x="303.5" y="266.6406"/><ellipse cx="355.75" cy="282.6406" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M354.6094,283.4375 L354.6094,285.9375 L358.9375,285.9375 L358.9375,285.0156 Q358.9375,284.4063 359.1797,284.1406 Q359.4219,283.875 359.7969,283.875 Q360.1719,283.875 360.4063,284.1406 Q360.6406,284.4063 360.6406,285.0156 L360.6406,287.6406 L352.6406,287.6406 Q352.0156,287.6406 351.7578,287.4063 Q351.5,287.1719 351.5,286.7813 Q351.5,286.4063 351.7656,286.1719 Q352.0313,285.9375 352.6406,285.9375 L352.9063,285.9375 L352.9063,279.2813 L352.6406,279.2813 Q352.0156,279.2813 351.7578,279.0469 Q351.5,278.8125 351.5,278.4219 Q351.5,278.0469 351.7578,277.8125 Q352.0156,277.5781 352.6406,277.5781 L360.2656,277.5781 L360.2656,280.1719 Q360.2656,280.7813 360.0391,281.0391 Q359.8125,281.2969 359.4219,281.2969 Q359.0469,281.2969 358.8125,281.0391 Q358.5781,280.7813 358.5781,280.1719 L358.5781,279.2813 L354.6094,279.2813 L354.6094,281.7344 L356.0938,281.7344 Q356.0938,281.0781 356.2188,280.8906 Q356.4844,280.4844 356.9531,280.4844 Q357.3281,280.4844 357.5625,280.7422 Q357.7969,281 357.7969,281.6094 L357.7969,283.5781 Q357.7969,284.125 357.6719,284.3125 Q357.4063,284.7031 356.9531,284.7031 Q356.4844,284.7031 356.2188,284.2969 Q356.0938,284.1094 356.0938,283.4375 L354.6094,283.4375 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="31" x="376.25" y="287.5508">times</text><line style="stroke:#A80036;stroke-width:1.5;" x1="304.5" x2="446.5" y1="298.6406" y2="298.6406"/><ellipse cx="314.5" cy="309.6406" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="101" x="323.5" y="314.0596">id : uuid «generated»</text><line style="stroke:#A80036;stroke-width:1.0;" x1="304.5" x2="446.5" y1="320.4766" y2="320.4766"/><ellipse cx="314.5" cy="331.4766" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="53" x="323.5" y="335.8955">nome : text</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="79" x="323.5" y="349.7314">url_brasao : text</text><ellipse cx="314.5" cy="359.1484" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="105" x="323.5" y="363.5674">id_ginasio : uuid «FK»</text><ellipse cx="314.5" cy="372.9844" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="104" x="323.5" y="377.4033">apta : boolean = false</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="118" x="323.5" y="391.2393">descricao_aptidao : json</text><ellipse cx="314.5" cy="400.6563" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="106" x="323.5" y="405.0752">id_tecnico : uuid «FK»</text><!--MD5=[e75958d35815a3d093500ad3cdef0499]
+class ginasios--><rect codeLine="30" fill="#FEFECE" filter="url(#f1iznjc6yvo157)" height="103.3438" id="ginasios" style="stroke:#A80036;stroke-width:1.5;" width="127" x="523" y="533.6406"/><ellipse cx="559.15" cy="549.6406" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M558.0094,550.4375 L558.0094,552.9375 L562.3375,552.9375 L562.3375,552.0156 Q562.3375,551.4063 562.5797,551.1406 Q562.8219,550.875 563.1969,550.875 Q563.5719,550.875 563.8063,551.1406 Q564.0406,551.4063 564.0406,552.0156 L564.0406,554.6406 L556.0406,554.6406 Q555.4156,554.6406 555.1578,554.4063 Q554.9,554.1719 554.9,553.7813 Q554.9,553.4063 555.1656,553.1719 Q555.4313,552.9375 556.0406,552.9375 L556.3063,552.9375 L556.3063,546.2813 L556.0406,546.2813 Q555.4156,546.2813 555.1578,546.0469 Q554.9,545.8125 554.9,545.4219 Q554.9,545.0469 555.1578,544.8125 Q555.4156,544.5781 556.0406,544.5781 L563.6656,544.5781 L563.6656,547.1719 Q563.6656,547.7813 563.4391,548.0391 Q563.2125,548.2969 562.8219,548.2969 Q562.4469,548.2969 562.2125,548.0391 Q561.9781,547.7813 561.9781,547.1719 L561.9781,546.2813 L558.0094,546.2813 L558.0094,548.7344 L559.4938,548.7344 Q559.4938,548.0781 559.6188,547.8906 Q559.8844,547.4844 560.3531,547.4844 Q560.7281,547.4844 560.9625,547.7422 Q561.1969,548 561.1969,548.6094 L561.1969,550.5781 Q561.1969,551.125 561.0719,551.3125 Q560.8063,551.7031 560.3531,551.7031 Q559.8844,551.7031 559.6188,551.2969 Q559.4938,551.1094 559.4938,550.4375 L558.0094,550.4375 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="48" x="577.85" y="554.5508">ginasios</text><line style="stroke:#A80036;stroke-width:1.5;" x1="524" x2="649" y1="565.6406" y2="565.6406"/><ellipse cx="534" cy="576.6406" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="101" x="543" y="581.0596">id : uuid «generated»</text><line style="stroke:#A80036;stroke-width:1.0;" x1="524" x2="649" y1="587.4766" y2="587.4766"/><ellipse cx="534" cy="598.4766" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="53" x="543" y="602.8955">nome : text</text><ellipse cx="534" cy="612.3125" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="59" x="543" y="616.7314">cidade : text</text><ellipse cx="534" cy="626.1484" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="60" x="543" y="630.5674">estado : text</text><!--MD5=[aa8cc025d10593a1c197d113d65cc045]
+class tipo_pessoa--><rect codeLine="38" fill="#FEFECE" filter="url(#f1iznjc6yvo157)" height="117.1797" id="tipo_pessoa" style="stroke:#A80036;stroke-width:1.5;" width="101" x="119" y="50.6406"/><ellipse cx="134" cy="66.6406" fill="#EB937F" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M132.8594,67.4375 L132.8594,69.9375 L137.1875,69.9375 L137.1875,69.0156 Q137.1875,68.4063 137.4297,68.1406 Q137.6719,67.875 138.0469,67.875 Q138.4219,67.875 138.6563,68.1406 Q138.8906,68.4063 138.8906,69.0156 L138.8906,71.6406 L130.8906,71.6406 Q130.2656,71.6406 130.0078,71.4063 Q129.75,71.1719 129.75,70.7813 Q129.75,70.4063 130.0156,70.1719 Q130.2813,69.9375 130.8906,69.9375 L131.1563,69.9375 L131.1563,63.2813 L130.8906,63.2813 Q130.2656,63.2813 130.0078,63.0469 Q129.75,62.8125 129.75,62.4219 Q129.75,62.0469 130.0078,61.8125 Q130.2656,61.5781 130.8906,61.5781 L138.5156,61.5781 L138.5156,64.1719 Q138.5156,64.7813 138.2891,65.0391 Q138.0625,65.2969 137.6719,65.2969 Q137.2969,65.2969 137.0625,65.0391 Q136.8281,64.7813 136.8281,64.1719 L136.8281,63.2813 L132.8594,63.2813 L132.8594,65.7344 L134.3438,65.7344 Q134.3438,65.0781 134.4688,64.8906 Q134.7344,64.4844 135.2031,64.4844 Q135.5781,64.4844 135.8125,64.7422 Q136.0469,65 136.0469,65.6094 L136.0469,67.5781 Q136.0469,68.125 135.9219,68.3125 Q135.6563,68.7031 135.2031,68.7031 Q134.7344,68.7031 134.4688,68.2969 Q134.3438,68.1094 134.3438,67.4375 L132.8594,67.4375 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="69" x="148" y="71.5508">tipo_pessoa</text><line style="stroke:#A80036;stroke-width:1.5;" x1="120" x2="219" y1="82.6406" y2="82.6406"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="35" x="125" y="98.0596">tecnico</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="26" x="125" y="111.8955">atleta</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="31" x="125" y="125.7314">arbitro</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="46" x="125" y="139.5674">auxiliares</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="50" x="125" y="153.4033">delegados</text><line style="stroke:#A80036;stroke-width:1.5;" x1="120" x2="219" y1="159.8203" y2="159.8203"/><!--MD5=[e6a178f45013a8558c7cbb6ec61759b5]
+class pessoas--><rect codeLine="46" fill="#FEFECE" filter="url(#f1iznjc6yvo157)" height="158.6875" id="pessoas" style="stroke:#A80036;stroke-width:1.5;" width="136" x="353.5" y="697.6406"/><ellipse cx="393.25" cy="713.6406" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M392.1094,714.4375 L392.1094,716.9375 L396.4375,716.9375 L396.4375,716.0156 Q396.4375,715.4063 396.6797,715.1406 Q396.9219,714.875 397.2969,714.875 Q397.6719,714.875 397.9063,715.1406 Q398.1406,715.4063 398.1406,716.0156 L398.1406,718.6406 L390.1406,718.6406 Q389.5156,718.6406 389.2578,718.4063 Q389,718.1719 389,717.7813 Q389,717.4063 389.2656,717.1719 Q389.5313,716.9375 390.1406,716.9375 L390.4063,716.9375 L390.4063,710.2813 L390.1406,710.2813 Q389.5156,710.2813 389.2578,710.0469 Q389,709.8125 389,709.4219 Q389,709.0469 389.2578,708.8125 Q389.5156,708.5781 390.1406,708.5781 L397.7656,708.5781 L397.7656,711.1719 Q397.7656,711.7813 397.5391,712.0391 Q397.3125,712.2969 396.9219,712.2969 Q396.5469,712.2969 396.3125,712.0391 Q396.0781,711.7813 396.0781,711.1719 L396.0781,710.2813 L392.1094,710.2813 L392.1094,712.7344 L393.5938,712.7344 Q393.5938,712.0781 393.7188,711.8906 Q393.9844,711.4844 394.4531,711.4844 Q394.8281,711.4844 395.0625,711.7422 Q395.2969,712 395.2969,712.6094 L395.2969,714.5781 Q395.2969,715.125 395.1719,715.3125 Q394.9063,715.7031 394.4531,715.7031 Q393.9844,715.7031 393.7188,715.2969 Q393.5938,715.1094 393.5938,714.4375 L392.1094,714.4375 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="49" x="412.75" y="718.5508">pessoas</text><line style="stroke:#A80036;stroke-width:1.5;" x1="354.5" x2="488.5" y1="729.6406" y2="729.6406"/><ellipse cx="364.5" cy="740.6406" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="107" x="373.5" y="745.0596">id : uuid &lt;generated&gt;&gt;</text><line style="stroke:#A80036;stroke-width:1.0;" x1="354.5" x2="488.5" y1="751.4766" y2="751.4766"/><ellipse cx="364.5" cy="762.4766" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="53" x="373.5" y="766.8955">nome : text</text><ellipse cx="364.5" cy="776.3125" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="110" x="373.5" y="780.7314">documento : text «UQ»</text><ellipse cx="364.5" cy="790.1484" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="77" x="373.5" y="794.5674">genero : genero</text><ellipse cx="364.5" cy="803.9844" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="63" x="373.5" y="808.4033">idade : tinyint</text><ellipse cx="364.5" cy="817.8203" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="90" x="373.5" y="822.2393">id_time : uuid «FK»</text><ellipse cx="364.5" cy="831.6563" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="104" x="373.5" y="836.0752">documento_cbv : text</text><ellipse cx="364.5" cy="845.4922" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="85" x="373.5" y="849.9111">tipo : tipo_pessoa</text><!--MD5=[c217c7108b200a11e8d34e0fedc4d793]
+class posicoes--><rect codeLine="58" fill="#FEFECE" filter="url(#f1iznjc6yvo157)" height="117.1797" id="posicoes" style="stroke:#A80036;stroke-width:1.5;" width="83" x="7" y="280.6406"/><ellipse cx="22" cy="296.6406" fill="#EB937F" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M20.8594,297.4375 L20.8594,299.9375 L25.1875,299.9375 L25.1875,299.0156 Q25.1875,298.4063 25.4297,298.1406 Q25.6719,297.875 26.0469,297.875 Q26.4219,297.875 26.6563,298.1406 Q26.8906,298.4063 26.8906,299.0156 L26.8906,301.6406 L18.8906,301.6406 Q18.2656,301.6406 18.0078,301.4063 Q17.75,301.1719 17.75,300.7813 Q17.75,300.4063 18.0156,300.1719 Q18.2813,299.9375 18.8906,299.9375 L19.1563,299.9375 L19.1563,293.2813 L18.8906,293.2813 Q18.2656,293.2813 18.0078,293.0469 Q17.75,292.8125 17.75,292.4219 Q17.75,292.0469 18.0078,291.8125 Q18.2656,291.5781 18.8906,291.5781 L26.5156,291.5781 L26.5156,294.1719 Q26.5156,294.7813 26.2891,295.0391 Q26.0625,295.2969 25.6719,295.2969 Q25.2969,295.2969 25.0625,295.0391 Q24.8281,294.7813 24.8281,294.1719 L24.8281,293.2813 L20.8594,293.2813 L20.8594,295.7344 L22.3438,295.7344 Q22.3438,295.0781 22.4688,294.8906 Q22.7344,294.4844 23.2031,294.4844 Q23.5781,294.4844 23.8125,294.7422 Q24.0469,295 24.0469,295.6094 L24.0469,297.5781 Q24.0469,298.125 23.9219,298.3125 Q23.6563,298.7031 23.2031,298.7031 Q22.7344,298.7031 22.4688,298.2969 Q22.3438,298.1094 22.3438,297.4375 L20.8594,297.4375 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="51" x="36" y="301.5508">posicoes</text><line style="stroke:#A80036;stroke-width:1.5;" x1="8" x2="89" y1="312.6406" y2="312.6406"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="27" x="13" y="328.0596">ponta</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="33" x="13" y="341.8955">oposto</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="33" x="13" y="355.7314">central</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="26" x="13" y="369.5674">libero</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="51" x="13" y="383.4033">levantador</text><line style="stroke:#A80036;stroke-width:1.5;" x1="8" x2="89" y1="389.8203" y2="389.8203"/><!--MD5=[85f3b2c704c94541a8825e15b353cb74]
+class atletas--><rect codeLine="66" fill="#FEFECE" filter="url(#f1iznjc6yvo157)" height="89.5078" id="atletas" style="stroke:#A80036;stroke-width:1.5;" width="133" x="21" y="540.1406"/><ellipse cx="64.8" cy="556.1406" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M63.6594,556.9375 L63.6594,559.4375 L67.9875,559.4375 L67.9875,558.5156 Q67.9875,557.9063 68.2297,557.6406 Q68.4719,557.375 68.8469,557.375 Q69.2219,557.375 69.4563,557.6406 Q69.6906,557.9063 69.6906,558.5156 L69.6906,561.1406 L61.6906,561.1406 Q61.0656,561.1406 60.8078,560.9063 Q60.55,560.6719 60.55,560.2813 Q60.55,559.9063 60.8156,559.6719 Q61.0813,559.4375 61.6906,559.4375 L61.9563,559.4375 L61.9563,552.7813 L61.6906,552.7813 Q61.0656,552.7813 60.8078,552.5469 Q60.55,552.3125 60.55,551.9219 Q60.55,551.5469 60.8078,551.3125 Q61.0656,551.0781 61.6906,551.0781 L69.3156,551.0781 L69.3156,553.6719 Q69.3156,554.2813 69.0891,554.5391 Q68.8625,554.7969 68.4719,554.7969 Q68.0969,554.7969 67.8625,554.5391 Q67.6281,554.2813 67.6281,553.6719 L67.6281,552.7813 L63.6594,552.7813 L63.6594,555.2344 L65.1438,555.2344 Q65.1438,554.5781 65.2688,554.3906 Q65.5344,553.9844 66.0031,553.9844 Q66.3781,553.9844 66.6125,554.2422 Q66.8469,554.5 66.8469,555.1094 L66.8469,557.0781 Q66.8469,557.625 66.7219,557.8125 Q66.4563,558.2031 66.0031,558.2031 Q65.5344,558.2031 65.2688,557.7969 Q65.1438,557.6094 65.1438,556.9375 L63.6594,556.9375 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="37" x="85.2" y="561.0508">atletas</text><line style="stroke:#A80036;stroke-width:1.5;" x1="22" x2="153" y1="572.1406" y2="572.1406"/><ellipse cx="32" cy="583.1406" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="107" x="41" y="587.5596">id_pessoa : uuid «FK»</text><line style="stroke:#A80036;stroke-width:1.0;" x1="22" x2="153" y1="593.9766" y2="593.9766"/><ellipse cx="32" cy="604.9766" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="82" x="41" y="609.3955">posicao: posicao</text><ellipse cx="32" cy="618.8125" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="73" x="41" y="623.2314">numero : tinyint</text><!--MD5=[bebb300f7705b79cc5ede10823594fa3]
+class tecnicos--><rect codeLine="73" fill="#FEFECE" filter="url(#f1iznjc6yvo157)" height="75.6719" id="tecnicos" style="stroke:#A80036;stroke-width:1.5;" width="130" x="189.5" y="547.1406"/><ellipse cx="227.9" cy="563.1406" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M226.7594,563.9375 L226.7594,566.4375 L231.0875,566.4375 L231.0875,565.5156 Q231.0875,564.9063 231.3297,564.6406 Q231.5719,564.375 231.9469,564.375 Q232.3219,564.375 232.5563,564.6406 Q232.7906,564.9063 232.7906,565.5156 L232.7906,568.1406 L224.7906,568.1406 Q224.1656,568.1406 223.9078,567.9063 Q223.65,567.6719 223.65,567.2813 Q223.65,566.9063 223.9156,566.6719 Q224.1813,566.4375 224.7906,566.4375 L225.0563,566.4375 L225.0563,559.7813 L224.7906,559.7813 Q224.1656,559.7813 223.9078,559.5469 Q223.65,559.3125 223.65,558.9219 Q223.65,558.5469 223.9078,558.3125 Q224.1656,558.0781 224.7906,558.0781 L232.4156,558.0781 L232.4156,560.6719 Q232.4156,561.2813 232.1891,561.5391 Q231.9625,561.7969 231.5719,561.7969 Q231.1969,561.7969 230.9625,561.5391 Q230.7281,561.2813 230.7281,560.6719 L230.7281,559.7813 L226.7594,559.7813 L226.7594,562.2344 L228.2438,562.2344 Q228.2438,561.5781 228.3688,561.3906 Q228.6344,560.9844 229.1031,560.9844 Q229.4781,560.9844 229.7125,561.2422 Q229.9469,561.5 229.9469,562.1094 L229.9469,564.0781 Q229.9469,564.625 229.8219,564.8125 Q229.5563,565.2031 229.1031,565.2031 Q228.6344,565.2031 228.3688,564.7969 Q228.2438,564.6094 228.2438,563.9375 L226.7594,563.9375 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="46" x="247.1" y="568.0508">tecnicos</text><line style="stroke:#A80036;stroke-width:1.5;" x1="190.5" x2="318.5" y1="579.1406" y2="579.1406"/><ellipse cx="200.5" cy="590.1406" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="104" x="209.5" y="594.5596">id_pessoa: uuid «FK»</text><line style="stroke:#A80036;stroke-width:1.0;" x1="190.5" x2="318.5" y1="600.9766" y2="600.9766"/><ellipse cx="200.5" cy="611.9766" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="103" x="209.5" y="616.3955">documento_cref: text</text><!--MD5=[4639502732463b23010fad0c76ac0ad9]
+class arbitros--><rect codeLine="79" fill="#FEFECE" filter="url(#f1iznjc6yvo157)" height="61.8359" id="arbitros" style="stroke:#A80036;stroke-width:1.5;" width="133" x="610" y="441.6406"/><ellipse cx="651.55" cy="457.6406" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M650.4094,458.4375 L650.4094,460.9375 L654.7375,460.9375 L654.7375,460.0156 Q654.7375,459.4063 654.9797,459.1406 Q655.2219,458.875 655.5969,458.875 Q655.9719,458.875 656.2063,459.1406 Q656.4406,459.4063 656.4406,460.0156 L656.4406,462.6406 L648.4406,462.6406 Q647.8156,462.6406 647.5578,462.4063 Q647.3,462.1719 647.3,461.7813 Q647.3,461.4063 647.5656,461.1719 Q647.8313,460.9375 648.4406,460.9375 L648.7063,460.9375 L648.7063,454.2813 L648.4406,454.2813 Q647.8156,454.2813 647.5578,454.0469 Q647.3,453.8125 647.3,453.4219 Q647.3,453.0469 647.5578,452.8125 Q647.8156,452.5781 648.4406,452.5781 L656.0656,452.5781 L656.0656,455.1719 Q656.0656,455.7813 655.8391,456.0391 Q655.6125,456.2969 655.2219,456.2969 Q654.8469,456.2969 654.6125,456.0391 Q654.3781,455.7813 654.3781,455.1719 L654.3781,454.2813 L650.4094,454.2813 L650.4094,456.7344 L651.8938,456.7344 Q651.8938,456.0781 652.0188,455.8906 Q652.2844,455.4844 652.7531,455.4844 Q653.1281,455.4844 653.3625,455.7422 Q653.5969,456 653.5969,456.6094 L653.5969,458.5781 Q653.5969,459.125 653.4719,459.3125 Q653.2063,459.7031 652.7531,459.7031 Q652.2844,459.7031 652.0188,459.2969 Q651.8938,459.1094 651.8938,458.4375 L650.4094,458.4375 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="42" x="671.45" y="462.5508">arbitros</text><line style="stroke:#A80036;stroke-width:1.5;" x1="611" x2="742" y1="473.6406" y2="473.6406"/><ellipse cx="621" cy="484.6406" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="107" x="630" y="489.0596">id_pessoa : uuid «FK»</text><line style="stroke:#A80036;stroke-width:1.0;" x1="611" x2="742" y1="495.4766" y2="495.4766"/><!--MD5=[4bc3f05678e75d8182003bb4fc9ae813]
+class tipo_auxiliar--><rect codeLine="84" fill="#FEFECE" filter="url(#f1iznjc6yvo157)" height="131.0156" id="tipo_auxiliar" style="stroke:#A80036;stroke-width:1.5;" width="102" x="125.5" y="273.6406"/><ellipse cx="142.3" cy="289.6406" fill="#EB937F" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M141.1594,290.4375 L141.1594,292.9375 L145.4875,292.9375 L145.4875,292.0156 Q145.4875,291.4063 145.7297,291.1406 Q145.9719,290.875 146.3469,290.875 Q146.7219,290.875 146.9563,291.1406 Q147.1906,291.4063 147.1906,292.0156 L147.1906,294.6406 L139.1906,294.6406 Q138.5656,294.6406 138.3078,294.4063 Q138.05,294.1719 138.05,293.7813 Q138.05,293.4063 138.3156,293.1719 Q138.5813,292.9375 139.1906,292.9375 L139.4563,292.9375 L139.4563,286.2813 L139.1906,286.2813 Q138.5656,286.2813 138.3078,286.0469 Q138.05,285.8125 138.05,285.4219 Q138.05,285.0469 138.3078,284.8125 Q138.5656,284.5781 139.1906,284.5781 L146.8156,284.5781 L146.8156,287.1719 Q146.8156,287.7813 146.5891,288.0391 Q146.3625,288.2969 145.9719,288.2969 Q145.5969,288.2969 145.3625,288.0391 Q145.1281,287.7813 145.1281,287.1719 L145.1281,286.2813 L141.1594,286.2813 L141.1594,288.7344 L142.6438,288.7344 Q142.6438,288.0781 142.7688,287.8906 Q143.0344,287.4844 143.5031,287.4844 Q143.8781,287.4844 144.1125,287.7422 Q144.3469,288 144.3469,288.6094 L144.3469,290.5781 Q144.3469,291.125 144.2219,291.3125 Q143.9563,291.7031 143.5031,291.7031 Q143.0344,291.7031 142.7688,291.2969 Q142.6438,291.1094 142.6438,290.4375 L141.1594,290.4375 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="66" x="156.7" y="294.5508">tipo_auxiliar</text><line style="stroke:#A80036;stroke-width:1.5;" x1="126.5" x2="226.5" y1="305.6406" y2="305.6406"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="90" x="131.5" y="321.0596">assistente_medico</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="75" x="131.5" y="334.8955">auxiliar_tecnico</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="86" x="131.5" y="348.7314">preparador_fisico</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="66" x="131.5" y="362.5674">fisioterapeuta</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="34" x="131.5" y="376.4033">medico</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="55" x="131.5" y="390.2393">massagista</text><line style="stroke:#A80036;stroke-width:1.5;" x1="126.5" x2="226.5" y1="396.6563" y2="396.6563"/><!--MD5=[f3d7988de18a56095dc7a1a9b85653a6]
+class auxiliares--><rect codeLine="93" fill="#FEFECE" filter="url(#f1iznjc6yvo157)" height="75.6719" id="auxiliares" style="stroke:#A80036;stroke-width:1.5;" width="133" x="355" y="547.1406"/><ellipse cx="391.6" cy="563.1406" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M390.4594,563.9375 L390.4594,566.4375 L394.7875,566.4375 L394.7875,565.5156 Q394.7875,564.9063 395.0297,564.6406 Q395.2719,564.375 395.6469,564.375 Q396.0219,564.375 396.2563,564.6406 Q396.4906,564.9063 396.4906,565.5156 L396.4906,568.1406 L388.4906,568.1406 Q387.8656,568.1406 387.6078,567.9063 Q387.35,567.6719 387.35,567.2813 Q387.35,566.9063 387.6156,566.6719 Q387.8813,566.4375 388.4906,566.4375 L388.7563,566.4375 L388.7563,559.7813 L388.4906,559.7813 Q387.8656,559.7813 387.6078,559.5469 Q387.35,559.3125 387.35,558.9219 Q387.35,558.5469 387.6078,558.3125 Q387.8656,558.0781 388.4906,558.0781 L396.1156,558.0781 L396.1156,560.6719 Q396.1156,561.2813 395.8891,561.5391 Q395.6625,561.7969 395.2719,561.7969 Q394.8969,561.7969 394.6625,561.5391 Q394.4281,561.2813 394.4281,560.6719 L394.4281,559.7813 L390.4594,559.7813 L390.4594,562.2344 L391.9438,562.2344 Q391.9438,561.5781 392.0688,561.3906 Q392.3344,560.9844 392.8031,560.9844 Q393.1781,560.9844 393.4125,561.2422 Q393.6469,561.5 393.6469,562.1094 L393.6469,564.0781 Q393.6469,564.625 393.5219,564.8125 Q393.2563,565.2031 392.8031,565.2031 Q392.3344,565.2031 392.0688,564.7969 Q391.9438,564.6094 391.9438,563.9375 L390.4594,563.9375 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="53" x="410.4" y="568.0508">auxiliares</text><line style="stroke:#A80036;stroke-width:1.5;" x1="356" x2="487" y1="579.1406" y2="579.1406"/><ellipse cx="366" cy="590.1406" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="107" x="375" y="594.5596">id_pessoa : uuid «FK»</text><line style="stroke:#A80036;stroke-width:1.0;" x1="356" x2="487" y1="600.9766" y2="600.9766"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="83" x="361" y="616.3955">tipo : tipo_auxiliar</text><!--MD5=[a29c90aaa07b86ac42821910f697760c]
+class delegados--><rect codeLine="99" fill="#FEFECE" filter="url(#f1iznjc6yvo157)" height="61.8359" id="delegados" style="stroke:#A80036;stroke-width:1.5;" width="130" x="748.5" y="441.6406"/><ellipse cx="781.05" cy="457.6406" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M779.9094,458.4375 L779.9094,460.9375 L784.2375,460.9375 L784.2375,460.0156 Q784.2375,459.4063 784.4797,459.1406 Q784.7219,458.875 785.0969,458.875 Q785.4719,458.875 785.7063,459.1406 Q785.9406,459.4063 785.9406,460.0156 L785.9406,462.6406 L777.9406,462.6406 Q777.3156,462.6406 777.0578,462.4063 Q776.8,462.1719 776.8,461.7813 Q776.8,461.4063 777.0656,461.1719 Q777.3313,460.9375 777.9406,460.9375 L778.2063,460.9375 L778.2063,454.2813 L777.9406,454.2813 Q777.3156,454.2813 777.0578,454.0469 Q776.8,453.8125 776.8,453.4219 Q776.8,453.0469 777.0578,452.8125 Q777.3156,452.5781 777.9406,452.5781 L785.5656,452.5781 L785.5656,455.1719 Q785.5656,455.7813 785.3391,456.0391 Q785.1125,456.2969 784.7219,456.2969 Q784.3469,456.2969 784.1125,456.0391 Q783.8781,455.7813 783.8781,455.1719 L783.8781,454.2813 L779.9094,454.2813 L779.9094,456.7344 L781.3938,456.7344 Q781.3938,456.0781 781.5188,455.8906 Q781.7844,455.4844 782.2531,455.4844 Q782.6281,455.4844 782.8625,455.7422 Q783.0969,456 783.0969,456.6094 L783.0969,458.5781 Q783.0969,459.125 782.9719,459.3125 Q782.7063,459.7031 782.2531,459.7031 Q781.7844,459.7031 781.5188,459.2969 Q781.3938,459.1094 781.3938,458.4375 L779.9094,458.4375 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="59" x="798.95" y="462.5508">delegados</text><line style="stroke:#A80036;stroke-width:1.5;" x1="749.5" x2="877.5" y1="473.6406" y2="473.6406"/><ellipse cx="759.5" cy="484.6406" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="104" x="768.5" y="489.0596">id_pessoa: uuid «FK»</text><line style="stroke:#A80036;stroke-width:1.0;" x1="749.5" x2="877.5" y1="495.4766" y2="495.4766"/><!--MD5=[5ff5758d564abc29b77e80269da222e5]
+class partidas--><rect codeLine="104" fill="#FEFECE" filter="url(#f1iznjc6yvo157)" height="158.6875" id="partidas" style="stroke:#A80036;stroke-width:1.5;" width="168" x="542.5" y="29.6406"/><ellipse cx="599.75" cy="45.6406" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M598.6094,46.4375 L598.6094,48.9375 L602.9375,48.9375 L602.9375,48.0156 Q602.9375,47.4063 603.1797,47.1406 Q603.4219,46.875 603.7969,46.875 Q604.1719,46.875 604.4063,47.1406 Q604.6406,47.4063 604.6406,48.0156 L604.6406,50.6406 L596.6406,50.6406 Q596.0156,50.6406 595.7578,50.4063 Q595.5,50.1719 595.5,49.7813 Q595.5,49.4063 595.7656,49.1719 Q596.0313,48.9375 596.6406,48.9375 L596.9063,48.9375 L596.9063,42.2813 L596.6406,42.2813 Q596.0156,42.2813 595.7578,42.0469 Q595.5,41.8125 595.5,41.4219 Q595.5,41.0469 595.7578,40.8125 Q596.0156,40.5781 596.6406,40.5781 L604.2656,40.5781 L604.2656,43.1719 Q604.2656,43.7813 604.0391,44.0391 Q603.8125,44.2969 603.4219,44.2969 Q603.0469,44.2969 602.8125,44.0391 Q602.5781,43.7813 602.5781,43.1719 L602.5781,42.2813 L598.6094,42.2813 L598.6094,44.7344 L600.0938,44.7344 Q600.0938,44.0781 600.2188,43.8906 Q600.4844,43.4844 600.9531,43.4844 Q601.3281,43.4844 601.5625,43.7422 Q601.7969,44 601.7969,44.6094 L601.7969,46.5781 Q601.7969,47.125 601.6719,47.3125 Q601.4063,47.7031 600.9531,47.7031 Q600.4844,47.7031 600.2188,47.2969 Q600.0938,47.1094 600.0938,46.4375 L598.6094,46.4375 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="45" x="620.25" y="50.5508">partidas</text><line style="stroke:#A80036;stroke-width:1.5;" x1="543.5" x2="709.5" y1="61.6406" y2="61.6406"/><ellipse cx="553.5" cy="72.6406" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="101" x="562.5" y="77.0596">id : uuid «generated»</text><line style="stroke:#A80036;stroke-width:1.0;" x1="543.5" x2="709.5" y1="83.4766" y2="83.4766"/><ellipse cx="553.5" cy="94.4766" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="115" x="562.5" y="98.8955">id_delegado : uuid «FK»</text><ellipse cx="553.5" cy="108.3125" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="102" x="562.5" y="112.7314">id_arbitro : uuid «FK»</text><ellipse cx="553.5" cy="122.1484" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="105" x="562.5" y="126.5674">id_ginasio : uuid «FK»</text><ellipse cx="553.5" cy="135.9844" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="121" x="562.5" y="140.4033">comecou_em : timestamp</text><ellipse cx="553.5" cy="149.8203" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="117" x="562.5" y="154.2393">finalizou_em : timestamp</text><ellipse cx="553.5" cy="163.6563" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="142" x="562.5" y="168.0752">id_time_ganhador : uuid «FK»</text><ellipse cx="553.5" cy="177.4922" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="140" x="562.5" y="181.9111">id_time_perdedor : uuid «FK»</text><!--MD5=[add0cf45860a55c4d4d29cb9abd4e34d]
+reverse link competicoes to times--><path codeLine="116" d="M335.66,175.6906 C339.04,195.3706 343.08,216.9506 347.5,236.6406 C349.68,246.3606 352.2,256.5406 354.82,266.5506 " fill="none" id="competicoes-backto-times" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="335.6268" x2="328.3831" y1="175.5698" y2="168.6757"/><line style="stroke:#A80036;stroke-width:1.0;" x1="335.6268" x2="340.2169" y1="175.5698" y2="166.6856"/><line style="stroke:#A80036;stroke-width:1.0;" x1="335.6268" x2="334.3" y1="175.5698" y2="167.6806"/><ellipse cx="336.6218" cy="181.4868" rx="4" ry="4" style="stroke:#A80036;stroke-width:1.0;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="34" x="316.9343" y="255.7607">&lt;= 12</text><!--MD5=[39c042c378c5eff967ad08dd9171e53c]
+reverse link times to atletas--><path codeLine="117" d="M296.34,387.9506 C279.62,396.7206 261.8,405.1506 244.5,411.6406 C186.96,433.2406 151.52,396.7806 109.5,441.6406 C85.2,467.5806 81.09,508.5906 82.25,539.9706 " fill="none" id="times-backto-atletas" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="296.3684" x2="300.6104" y1="387.9301" y2="378.8744"/><line style="stroke:#A80036;stroke-width:1.0;" x1="296.3684" x2="306.2496" y1="387.9301" y2="389.4668"/><line style="stroke:#A80036;stroke-width:1.0;" x1="296.3684" x2="303.43" y1="387.9301" y2="384.1706"/><ellipse cx="291.0722" cy="390.7498" rx="4" ry="4" style="stroke:#A80036;stroke-width:1.0;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="223" x="110.5" y="478.1357">no mínimo 12 para o time estar regular</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="34" x="44.843" y="529.3887">&lt;= 22</text><!--MD5=[7665d4ded99ccdfc80aacaaaed71cdab]
+reverse link times to tecnicos--><path codeLine="118" d="M369.74,419.0306 C365.13,447.1106 356.95,478.0806 342.5,503.6406 C333.33,519.8606 319.73,534.6306 305.95,546.9606 " fill="none" id="times-backto-tecnicos" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="366.269" x2="374.1725" y1="415.2932" y2="416.5316"/><line style="stroke:#A80036;stroke-width:1.0;" x1="365.8045" x2="373.7081" y1="418.257" y2="419.4955"/><line style="stroke:#A80036;stroke-width:1.0;" x1="369.6015" x2="370.84" y1="419.8642" y2="411.9606"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="363.0877" y="432.9294">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="307.4911" y="536.2905">1</text><!--MD5=[541db321f5882041d4dcd6e314ab1229]
+reverse link times to auxiliares--><path codeLine="119" d="M390.48,419.5906 C398.55,462.3806 408.12,513.1606 414.47,546.8706 " fill="none" id="times-backto-auxiliares" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="390.4764" x2="383.0945" y1="419.5613" y2="412.8154"/><line style="stroke:#A80036;stroke-width:1.0;" x1="390.4764" x2="394.8855" y1="419.5613" y2="410.5858"/><line style="stroke:#A80036;stroke-width:1.0;" x1="390.4764" x2="388.99" y1="419.5613" y2="411.7006"/><ellipse cx="391.5912" cy="425.4569" rx="4" ry="4" style="stroke:#A80036;stroke-width:1.0;fill:none;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="5" x="407.7725" y="536.1844">*</text><!--MD5=[5bba68f94536404f8e9771fe869c9307]
+reverse link times to ginasios--><path codeLine="120" d="M442.18,417.2506 C475.01,455.2206 513.67,499.9206 542.71,533.5006 " fill="none" id="times-backto-ginasios" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="436.9799" x2="443.0227" y1="417.3433" y2="412.1008"/><line style="stroke:#A80036;stroke-width:1.0;" x1="438.9458" x2="444.9886" y1="419.6094" y2="414.3668"/><line style="stroke:#A80036;stroke-width:1.0;" x1="442.6226" x2="437.38" y1="417.7434" y2="411.7006"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="435.9443" y="432.8979">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="529.0598" y="522.6094">1</text><!--MD5=[2b4fb163778add7a685fb9ef7e2bb3ca]
+reverse link partidas to arbitros--><path codeLine="121" d="M638.39,196.1006 C649.34,275.2606 664.97,388.2506 672.34,441.5806 " fill="none" id="partidas-backto-arbitros" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="634.0029" x2="641.9257" y1="193.5463" y2="192.4378"/><line style="stroke:#A80036;stroke-width:1.0;" x1="634.4186" x2="642.3414" y1="196.5174" y2="195.4088"/><line style="stroke:#A80036;stroke-width:1.0;" x1="638.5185" x2="637.41" y1="196.9534" y2="189.0306"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="631.0236" y="209.8316">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="663.6644" y="430.5878">1</text><!--MD5=[5d782613613ef1d6f0b04836f9f5b000]
+reverse link partidas to delegados--><path codeLine="122" d="M670.72,195.6206 C711.68,274.8106 770.31,388.1506 797.95,441.5806 " fill="none" id="partidas-backto-delegados" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="665.5948" x2="672.7006" y1="194.4212" y2="190.7458"/><line style="stroke:#A80036;stroke-width:1.0;" x1="666.9731" x2="674.0788" y1="197.0858" y2="193.4105"/><line style="stroke:#A80036;stroke-width:1.0;" x1="670.9854" x2="667.31" y1="196.1364" y2="189.0306"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="663.3997" y="209.8316">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="786.7828" y="430.5878">1</text><!--MD5=[f7b36b3ca10a04de5be0d941d7700365]
+reverse link partidas to ginasios--><path codeLine="123" d="M619.28,195.6706 C610.97,294.2106 597.58,452.9006 590.77,533.5606 " fill="none" id="partidas-backto-ginasios" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="615.5492" x2="623.5211" y1="192.3317" y2="193.0015"/><line style="stroke:#A80036;stroke-width:1.0;" x1="615.298" x2="623.2699" y1="195.3212" y2="195.9909"/><line style="stroke:#A80036;stroke-width:1.0;" x1="619.2002" x2="619.87" y1="196.6525" y2="188.6806"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="611.9995" y="209.7272">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="583.8783" y="522.6779">1</text><!--MD5=[f71160b3671e565786d2591493628dc1]
+link partidas to times--><path codeLine="124" d="M534.62,139.2706 C472.75,160.9006 399.17,191.2706 380.5,218.6406 C372.58,230.2606 368.5,244.0906 366.78,258.1506 " fill="none" id="partidas-times" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="366.744" x2="372.0061" y1="258.4725" y2="266.9761"/><line style="stroke:#A80036;stroke-width:1.0;" x1="366.744" x2="360.0539" y1="258.4725" y2="265.9051"/><line style="stroke:#A80036;stroke-width:1.0;" x1="366.744" x2="366.03" y1="258.4725" y2="266.4406"/><ellipse cx="367.2795" cy="252.4965" rx="4" ry="4" style="stroke:#A80036;stroke-width:1.0;fill:none;"/><line style="stroke:#A80036;stroke-width:1.0;fill:none;" x1="537.4021" x2="540.0175" y1="134.0681" y2="141.6285"/><line style="stroke:#A80036;stroke-width:1.0;fill:none;" x1="534.5669" x2="537.1824" y1="135.0489" y2="142.6093"/><line style="stroke:#A80036;stroke-width:1.0;fill:none;" x1="534.9296" x2="542.49" y1="139.156" y2="136.5406"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="178" x="381.5" y="233.1357">time vencedor e time derrotado</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="527.4227" y="135.8548">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="357.6925" y="255.6393">2</text><!--MD5=[7219f91607be3f5f27fd67a14e97b5a8]
+reverse link atletas to pessoas--><path codeLine="126" d="M160.56,630.2606 C164.25,632.4306 167.92,634.5606 171.5,636.6406 C232.57,672.0206 302.81,711.0706 353.26,738.8406 " fill="none" id="atletas-backto-pessoas" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="155.748" x2="159.8063" y1="632.0569" y2="625.1627"/><line style="stroke:#A80036;stroke-width:1.0;" x1="158.3333" x2="162.3916" y1="633.5787" y2="626.6845"/><line style="stroke:#A80036;stroke-width:1.0;" x1="161.2242" x2="154.33" y1="630.6389" y2="626.5806"/><!--MD5=[f4ea2c3fe9f1a93329328851c575e449]
+reverse link tecnicos to pessoas--><path codeLine="127" d="M291.85,628.6406 C310,649.2806 332.37,674.7406 353.4,698.6606 " fill="none" id="tecnicos-backto-pessoas" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="286.7324" x2="292.7449" y1="628.8655" y2="623.5882"/><line style="stroke:#A80036;stroke-width:1.0;" x1="288.7114" x2="294.7239" y1="631.1202" y2="625.8429"/><line style="stroke:#A80036;stroke-width:1.0;" x1="292.3773" x2="287.1" y1="629.2331" y2="623.2206"/><!--MD5=[1c1db4c379452604db1fa78c94e31d72]
+reverse link auxiliares to pessoas--><path codeLine="128" d="M421.5,630.3806 C421.5,650.3606 421.5,674.5806 421.5,697.4806 " fill="none" id="auxiliares-backto-pessoas" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="417.5" x2="425.5" y1="627.2206" y2="627.2206"/><line style="stroke:#A80036;stroke-width:1.0;" x1="417.5" x2="425.5" y1="630.2206" y2="630.2206"/><line style="stroke:#A80036;stroke-width:1.0;" x1="421.5" x2="421.5" y1="631.2206" y2="623.2206"/><!--MD5=[609556a8c2d89a72693bd093a3017a83]
+reverse link arbitros to pessoas--><path codeLine="129" d="M684.04,511.0606 C689.03,546.1906 690.93,598.8606 667.5,636.6406 C627.91,700.4806 547.78,737.8406 489.7,757.5706 " fill="none" id="arbitros-backto-pessoas" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="679.5905" x2="687.4986" y1="508.3992" y2="507.1901"/><line style="stroke:#A80036;stroke-width:1.0;" x1="680.0439" x2="687.952" y1="511.3648" y2="510.1557"/><line style="stroke:#A80036;stroke-width:1.0;" x1="684.1491" x2="682.94" y1="511.7487" y2="503.8406"/><!--MD5=[2d03a3bb6867830b12c11900d091aee6]
+reverse link delegados to pessoas--><path codeLine="130" d="M792.17,510.0806 C771.43,544.2506 738.08,596.0106 703.5,636.6406 C647.65,702.2606 553.55,739.9806 489.55,759.2606 " fill="none" id="delegados-backto-pessoas" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="790.3982" x2="797.2466" y1="505.2672" y2="509.4024"/><line style="stroke:#A80036;stroke-width:1.0;" x1="788.8475" x2="795.6959" y1="507.8354" y2="511.9705"/><line style="stroke:#A80036;stroke-width:1.0;" x1="791.7548" x2="795.89" y1="510.759" y2="503.9106"/><!--MD5=[5006a44f641bd5a3dc6ad91245e5c614]
+link genero to tipo_pessoa--><!--MD5=[2dd0eae2b431123372dd794c2dc41ee2]
+link genero to posicoes--><!--MD5=[d9ab35757bf73b14463767eb4434aeb2]
+link posicoes to tipo_auxiliar--><!--MD5=[3c1e0448a2691a8e478510968c8e99b0]
+@startuml er
+title ER - Equipes
+
+enum genero{
+	masculino
+	feminino
+}
+
+entity competicoes {
+	* id : uuid <<generated>>
+	- -
+	* genero : genero
+	* comeca_em : timestamp
+	nome : text
+	serie : text = A
+}
+
+entity times {
+	* id : uuid <<generated>>
+	- -
+	* nome : text
+	url_brasao : text
+	* id_ginasio : uuid <<FK>>  
+	* apta : boolean = false
+	descricao_aptidao : json
+	* id_tecnico : uuid <<FK>>
+	'min 12 per tournament'
+	'max 22 per tounament'
+}
+
+entity ginasios {
+	* id : uuid <<generated>>
+	- -
+	* nome : text
+	* cidade : text
+	* estado : text
+}
+
+enum tipo_pessoa {
+	tecnico 
+	atleta
+	arbitro
+	auxiliares
+	delegados
+}
+
+entity pessoas {
+	* id : uuid <generated>>
+	- -
+	* nome : text
+	* documento : text <<UQ>>
+	* genero : genero
+	* idade : tinyint
+	* id_time : uuid <<FK>>
+	* documento_cbv : text
+	* tipo : tipo_pessoa
+}
+
+enum posicoes {
+	ponta
+	oposto
+	central
+	libero
+	levantador
+}
+
+entity atletas{
+	* id_pessoa : uuid <<FK>>
+	- -
+	* posicao: posicao
+	* numero : tinyint
+}
+
+entity tecnicos{
+	* id_pessoa: uuid <<FK>>
+	- -
+	* documento_cref: text
+}
+
+entity arbitros {
+	* id_pessoa : uuid <<FK>>
+	- -
+}
+
+enum tipo_auxiliar {
+	assistente_medico
+	auxiliar_tecnico
+	preparador_fisico
+	fisioterapeuta
+	medico
+	massagista
+}
+
+entity auxiliares {
+	* id_pessoa : uuid <<FK>>
+	- -
+	tipo : tipo_auxiliar
+}
+
+entity delegados {
+	* id_pessoa: uuid <<FK>>
+	- -
+}
+
+entity partidas {
+	* id : uuid <<generated>>
+	- -
+	* id_delegado : uuid <<FK>>
+	* id_arbitro : uuid <<FK>>
+	* id_ginasio : uuid <<FK>>
+	* comecou_em : timestamp
+	* finalizou_em : timestamp
+	* id_time_ganhador : uuid <<FK>>
+	* id_time_perdedor : uuid <<FK>>
+}
+
+competicoes }o- - "<= 12" times
+times }o- - "<= 22" atletas : no mínimo 12 para o time estar regular
+times "1" ||- - "1" tecnicos
+times }o- - "*" auxiliares
+times "1" ||- - "1" ginasios
+partidas "1" ||- - "1" arbitros
+partidas "1" ||- - "1" delegados
+partidas "1" ||- - "1" ginasios
+partidas "1" ||- -o{ "2" times : time vencedor e time derrotado
+
+atletas ||- - pessoas
+tecnicos ||- - pessoas
+auxiliares ||- - pessoas
+arbitros ||- - pessoas
+delegados ||- - pessoas
+
+@enduml
+
+@startuml er
+title ER - Equipes
+
+enum genero{
+	masculino
+	feminino
+}
+
+entity competicoes {
+	* id : uuid <<generated>>
+	- -
+	* genero : genero
+	* comeca_em : timestamp
+	nome : text
+	serie : text = A
+}
+
+entity times {
+	* id : uuid <<generated>>
+	- -
+	* nome : text
+	url_brasao : text
+	* id_ginasio : uuid <<FK>>  
+	* apta : boolean = false
+	descricao_aptidao : json
+	* id_tecnico : uuid <<FK>>
+}
+
+entity ginasios {
+	* id : uuid <<generated>>
+	- -
+	* nome : text
+	* cidade : text
+	* estado : text
+}
+
+enum tipo_pessoa {
+	tecnico 
+	atleta
+	arbitro
+	auxiliares
+	delegados
+}
+
+entity pessoas {
+	* id : uuid <generated>>
+	- -
+	* nome : text
+	* documento : text <<UQ>>
+	* genero : genero
+	* idade : tinyint
+	* id_time : uuid <<FK>>
+	* documento_cbv : text
+	* tipo : tipo_pessoa
+}
+
+enum posicoes {
+	ponta
+	oposto
+	central
+	libero
+	levantador
+}
+
+entity atletas{
+	* id_pessoa : uuid <<FK>>
+	- -
+	* posicao: posicao
+	* numero : tinyint
+}
+
+entity tecnicos{
+	* id_pessoa: uuid <<FK>>
+	- -
+	* documento_cref: text
+}
+
+entity arbitros {
+	* id_pessoa : uuid <<FK>>
+	- -
+}
+
+enum tipo_auxiliar {
+	assistente_medico
+	auxiliar_tecnico
+	preparador_fisico
+	fisioterapeuta
+	medico
+	massagista
+}
+
+entity auxiliares {
+	* id_pessoa : uuid <<FK>>
+	- -
+	tipo : tipo_auxiliar
+}
+
+entity delegados {
+	* id_pessoa: uuid <<FK>>
+	- -
+}
+
+entity partidas {
+	* id : uuid <<generated>>
+	- -
+	* id_delegado : uuid <<FK>>
+	* id_arbitro : uuid <<FK>>
+	* id_ginasio : uuid <<FK>>
+	* comecou_em : timestamp
+	* finalizou_em : timestamp
+	* id_time_ganhador : uuid <<FK>>
+	* id_time_perdedor : uuid <<FK>>
+}
+
+competicoes }o- - "<= 12" times
+times }o- - "<= 22" atletas : no mínimo 12 para o time estar regular
+times "1" ||- - "1" tecnicos
+times }o- - "*" auxiliares
+times "1" ||- - "1" ginasios
+partidas "1" ||- - "1" arbitros
+partidas "1" ||- - "1" delegados
+partidas "1" ||- - "1" ginasios
+partidas "1" ||- -o{ "2" times : time vencedor e time derrotado
+
+atletas ||- - pessoas
+tecnicos ||- - pessoas
+auxiliares ||- - pessoas
+arbitros ||- - pessoas
+delegados ||- - pessoas
+
+@enduml
+
+PlantUML version 1.2022.0(Tue Jan 11 13:16:42 BRT 2022)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: Cp1252
+Language: pt
+Country: BR
+--></g></svg>
