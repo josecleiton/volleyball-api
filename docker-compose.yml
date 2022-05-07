@@ -1,0 +1,62 @@
+version: "3.8"
+
+services:
+  postgres:
+    container_name: voleibol-postgres
+    image: postgres:14-alpine
+    expose:
+      - "${DB_PORT}"
+    volumes:
+      - "voleibol-volume:/var/lib/postgresql/data:rw"
+    environment:
+      POSTGRES_DB: ${DB_DATABASE}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    restart: unless-stopped
+
+  pg-admin:
+    container_name: voleibol-pg-admin
+    image: dpage/pgadmin4:6.8
+    user: root
+    ports:
+      - "${PGADMIN_REVERSE_EXPOSE_PORT}:${PGADMIN_LISTEN_PORT}"
+    volumes:
+      - "voleibol-volume:/var/lib/pgadmin:rw"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+      PGADMIN_LISTEN_PORT: ${PGADMIN_LISTEN_PORT}
+    depends_on:
+      - postgres
+    restart: unless-stopped
+
+  # redis:
+  #   container_name: voleibol-redis-nestjs
+  #   image: redis:alpine
+  #   command: redis-server --requirepass ${REDIS_PASSWORD}
+  #   expose:
+  #     - "${REDIS_PORT}"
+  #   volumes:
+  #     - "voleibol-volume:/var/lib/redis"
+  #   restart: unless-stopped
+
+  voleibol:
+    container_name: voleibol-api-nestjs
+    build:
+      context: .
+      dockerfile: Dockerfile-local
+    ports:
+      - "${PORT_EXPOSED}:${PORT}"
+    volumes:
+      - "./:/voleibol-volume/app"
+      - "/voleibol-volume/app/dist"
+      - "/voleibol-volume/app/node_modules"
+      - /app/dist
+      - /app/node_modules
+    # depends_on:
+    #   - redis
+    restart: unless-stopped
+
+volumes:
+  voleibol-volume:
+    driver: "local"
