@@ -1,0 +1,133 @@
+@startuml er
+title ER - Equipes
+
+enum genero{
+	masculino
+	feminino
+}
+
+entity competicoes {
+	* id : uuid <<generated>>
+	--
+	* genero : genero
+	* comeca_em : timestamp
+	nome : text
+	serie : text = A
+}
+
+entity times {
+	* id : uuid <<generated>>
+	--
+	* nome : text
+	url_brasao : text
+	* id_ginasio : uuid <<FK>>  
+	* apta : boolean = false
+	descricao_aptidao : json
+	* id_tecnico : uuid <<FK>>
+	'min 12 per tournament'
+	'max 22 per tounament'
+}
+
+entity ginasios {
+	* id : uuid <<generated>>
+	--
+	* nome : text
+	* cidade : text
+	* estado : text
+}
+
+enum tipo_pessoa {
+	tecnico 
+	atleta
+	arbitro
+	auxiliares
+	delegados
+}
+
+entity pessoas {
+	* id : uuid <generated>>
+	--
+	* nome : text
+	* documento : text <<UQ>>
+	* genero : genero
+	* idade : tinyint
+	* id_time : uuid <<FK>>
+	* documento_cbv : text
+	* tipo : tipo_pessoa
+}
+
+enum posicoes {
+	ponta
+	oposto
+	central
+	libero
+	levantador
+}
+
+entity atletas{
+	* id_pessoa : uuid <<FK>>
+	--
+	* posicao: posicao
+	* numero : tinyint
+}
+
+entity tecnicos{
+	* id_pessoa: uuid <<FK>>
+	--
+	* documento_cref: text
+}
+
+entity arbitros {
+	* id_pessoa : uuid <<FK>>
+	--
+}
+
+enum tipo_auxiliar {
+	assistente_medico
+	auxiliar_tecnico
+	preparador_fisico
+	fisioterapeuta
+	medico
+	massagista
+}
+
+entity auxiliares {
+	* id_pessoa : uuid <<FK>>
+	--
+	tipo : tipo_auxiliar
+}
+
+entity delegados {
+	* id_pessoa: uuid <<FK>>
+	--
+}
+
+entity partidas {
+	* id : uuid <<generated>>
+	--
+	* id_delegado : uuid <<FK>>
+	* id_arbitro : uuid <<FK>>
+	* id_ginasio : uuid <<FK>>
+	* comecou_em : timestamp
+	* finalizou_em : timestamp
+	* id_time_ganhador : uuid <<FK>>
+	* id_time_perdedor : uuid <<FK>>
+}
+
+competicoes }o-- "<= 12" times
+times }o-- "<= 22" atletas : no mínimo 12 para o time estar regular
+times "1" ||-- "1" tecnicos
+times }o-- "*" auxiliares
+times "1" ||-- "1" ginasios
+partidas "1" ||-- "1" arbitros
+partidas "1" ||-- "1" delegados
+partidas "1" ||-- "1" ginasios
+partidas "1" ||--o{ "2" times : time vencedor e time derrotado
+
+atletas ||-- pessoas
+tecnicos ||-- pessoas
+auxiliares ||-- pessoas
+arbitros ||-- pessoas
+delegados ||-- pessoas
+
+@enduml
