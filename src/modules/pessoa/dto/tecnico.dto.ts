@@ -4,7 +4,7 @@ import { CriaPessoa, PessoaResposta } from './pessoa.dto';
 
 export class CriaTecnico extends CriaPessoa {
   @IsString()
-  @Length(10, 10)
+  @Length(11, 11)
   documentoCref!: string;
 
   @IsUUID()

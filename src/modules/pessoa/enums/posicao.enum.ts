@@ -1,7 +1,7 @@
 export enum Posicao {
-	ponta,
-	oposto,
-	central,
-	libero,
-	levantador
+  ponta = 'ponta',
+  oposto = 'oposto',
+  central = 'central',
+  libero = 'libero',
+  levantador = 'levantador',
 }

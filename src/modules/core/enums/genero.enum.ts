@@ -1,4 +1,4 @@
 export enum Genero {
-	feminino,
-	masculino
+  feminino = 'feminino',
+  masculino = 'masculino',
 }

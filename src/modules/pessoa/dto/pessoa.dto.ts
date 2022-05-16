@@ -1,6 +1,7 @@
 import { IsEnum, IsInt, IsString, Length, Max, Min } from 'class-validator';
 import { Genero } from 'src/modules/core/enums';
 import { Pessoa } from '../entities/pessoa.entity';
+import { TipoPessoa } from '../enums';
 
 export class CriaPessoa {
   @IsString()
@@ -20,11 +21,11 @@ export class CriaPessoa {
   idade!: number;
 
   @IsString()
-  @Length(10, 10)
+  @Length(11, 11)
   documentoCbv!: string;
 
   paraPessoa(): Pessoa {
-    return Object.assign(new Pessoa(), this);
+    return Object.assign(new Pessoa(TipoPessoa.tecnico), this);
   }
 }
 
@@ -38,7 +39,8 @@ export class PessoaResposta {
   constructor(pessoa: Pessoa) {
     this.nome = pessoa.nome;
     this.documento = pessoa.documento;
-    this.genero = pessoa.idade;
+    this.genero = pessoa.genero;
+    this.idade = pessoa.idade;
     this.documentoCbv = pessoa.documentoCbv;
     this.idade = pessoa.idade;
   }

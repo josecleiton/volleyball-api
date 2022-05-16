@@ -1,8 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Scope } from '@nestjs/common';
 import { CreateEquipeDto } from './dto/create-equipe.dto';
 import { UpdateEquipeDto } from './dto/update-equipe.dto';
 
-@Injectable()
+@Injectable({ scope: Scope.REQUEST })
 export class EquipeService {
   create(createEquipeDto: CreateEquipeDto) {
     return 'This action adds a new equipe';

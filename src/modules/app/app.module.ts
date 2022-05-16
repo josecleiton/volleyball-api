@@ -1,24 +1,27 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import {
+  appConfig,
+  corsConfig,
+  rateLimitConfig,
+  databaseConfig,
+} from '../../configs';
 
-import { appConfig } from '../../configs/app.config';
-import { cacheConfig } from '../../configs/cache.config';
-import { corsConfig } from '../../configs/cors.config';
-import { rateLimitConfig } from '../../configs/rate-limit.config';
 import { CoreModule } from '../core/core.module';
 import { EquipeModule } from '../equipe/equipe.module';
 import { PessoaModule } from '../pessoa/pessoa.module';
 
-
 @Module({
   imports: [
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: (configService: ConfigService) =>
+        configService.get('database') ?? {},
+      inject: [ConfigService],
+    }),
     ConfigModule.forRoot({
-      load: [
-        appConfig,
-        cacheConfig,
-        corsConfig,
-        rateLimitConfig,
-      ],
+      load: [appConfig, databaseConfig, corsConfig, rateLimitConfig],
     }),
     CoreModule,
     EquipeModule,
@@ -26,4 +29,3 @@ import { PessoaModule } from '../pessoa/pessoa.module';
   ],
 })
 export class AppModule {}
-

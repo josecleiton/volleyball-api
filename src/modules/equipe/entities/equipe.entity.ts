@@ -1,14 +1,15 @@
 import { EntidadeBase } from 'src/modules/core/entities/base.entity';
-import { Column } from 'typeorm';
+import { Column, Entity } from 'typeorm';
 
+@Entity()
 export class Equipe extends EntidadeBase {
-  @Column('tinytext')
+  @Column({ type: 'varchar', length: 255 })
   nome!: string;
 
   @Column()
   urlBrasao?: string;
 
-  @Column()
+  @Column({ type: 'boolean' })
   apta = false;
 
   @Column('jsonb')

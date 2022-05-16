@@ -1,5 +1,5 @@
 export enum TipoPessoa {
-	tecnico,
-	atleta,
-	auxiliar
+  tecnico = 'tecnico',
+  atleta = 'atleta',
+  auxiliar = 'auxiliar',
 }

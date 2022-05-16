@@ -1,27 +1,35 @@
 import { EntidadeBase } from 'src/modules/core/entities/base.entity';
 import { Genero } from 'src/modules/core/enums';
-import { Column } from 'typeorm';
+import { Column, Entity, JoinColumn, OneToOne } from 'typeorm';
 import { TipoPessoa } from '../enums';
 
+@Entity()
 export class Pessoa extends EntidadeBase {
-  @Column({ type: 'text', length: 300 })
+  @Column({ type: 'varchar', length: 255 })
   nome!: string;
 
-  @Column({ type: 'tinytext' })
+  @Column({ type: 'varchar', length: 50 })
   documento!: string;
 
   @Column({ type: 'enum', enum: Genero })
   genero!: Genero;
 
-  @Column({ type: 'tinyint' })
+  @Column({ type: 'smallint' })
   idade!: number;
 
-  @Column({ unique: true })
+  @Column({ unique: true, type: 'varchar', length: 50 })
   documentoCbv!: string;
 
   @Column({ type: 'enum', enum: TipoPessoa })
   tipo!: TipoPessoa;
 
-  @Column(() => Pessoa)
+  @OneToOne(() => Pessoa)
+  @JoinColumn()
   pessoa!: Pessoa;
+
+  constructor(tipo?: TipoPessoa) {
+    super();
+
+    this.tipo = tipo ?? this.tipo;
+  }
 }
