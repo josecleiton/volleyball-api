@@ -1,6 +1,6 @@
 import { EntidadeBase } from 'src/modules/core/entities/base.entity';
 import { Genero } from 'src/modules/core/enums';
-import { Column, Entity, JoinColumn, OneToOne } from 'typeorm';
+import { Column, Entity } from 'typeorm';
 import { TipoPessoa } from '../enums';
 
 @Entity()
@@ -9,6 +9,7 @@ export class Pessoa extends EntidadeBase {
   nome!: string;
 
   @Column({ type: 'varchar', length: 50 })
+  // TODO: uma pessoa pode ser tecnico/atleta/auxiliar em uma mesma competição?
   documento!: string;
 
   @Column({ type: 'enum', enum: Genero })
@@ -22,10 +23,6 @@ export class Pessoa extends EntidadeBase {
 
   @Column({ type: 'enum', enum: TipoPessoa })
   tipo!: TipoPessoa;
-
-  @OneToOne(() => Pessoa)
-  @JoinColumn()
-  pessoa!: Pessoa;
 
   constructor(tipo?: TipoPessoa) {
     super();

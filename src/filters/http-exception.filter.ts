@@ -46,7 +46,8 @@ export class HttpExceptionFilter implements ExceptionFilter {
 
     // Only emit to Sentry exceptions that dont have code 4xx
     if (status === 400) {
-      const classValidatorEx = exception.getResponse() as IClassValidatorException;
+      const classValidatorEx =
+        exception.getResponse() as IClassValidatorException;
       ex.message = classValidatorEx.message;
       ex.name = classValidatorEx.error;
     }
@@ -54,4 +55,3 @@ export class HttpExceptionFilter implements ExceptionFilter {
     response.status(status).send(ex);
   }
 }
-

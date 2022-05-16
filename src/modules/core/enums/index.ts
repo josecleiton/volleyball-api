@@ -1,1 +1,1 @@
-export * from './genero.enum'
+export * from './genero.enum';

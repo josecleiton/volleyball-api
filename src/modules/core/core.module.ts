@@ -1,6 +1,8 @@
-import { Module } from "@nestjs/common";
+import { Module } from '@nestjs/common';
+import { TypeORMFilterService } from './services/typeorm-filter.service';
 
-@Module({})
-export class CoreModule {
-
-}
+@Module({
+  providers: [TypeORMFilterService],
+  exports: [TypeORMFilterService],
+})
+export class CoreModule {}

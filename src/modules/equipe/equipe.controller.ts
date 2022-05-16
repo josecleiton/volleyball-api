@@ -1,34 +1,41 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Delete,
+  Put,
+} from '@nestjs/common';
+import { AtualizaEquipeDto, CriaEquipeDto } from './dto/equipe.dto';
 import { EquipeService } from './equipe.service';
-import { CreateEquipeDto } from './dto/create-equipe.dto';
-import { UpdateEquipeDto } from './dto/update-equipe.dto';
 
 @Controller('equipe')
 export class EquipeController {
   constructor(private readonly equipeService: EquipeService) {}
 
   @Post()
-  create(@Body() createEquipeDto: CreateEquipeDto) {
-    return this.equipeService.create(createEquipeDto);
+  cria(@Body() request: CriaEquipeDto) {
+    return this.equipeService.criaEquipe(request);
   }
 
   @Get()
-  findAll() {
-    return this.equipeService.findAll();
+  lista() {
+    return this.equipeService.listaEquipes();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.equipeService.findOne(+id);
+  encontraUm(@Param('id') id: string) {
+    return this.equipeService.deveEncontrarUm(id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateEquipeDto: UpdateEquipeDto) {
-    return this.equipeService.update(+id, updateEquipeDto);
+  @Put(':id')
+  atualiza(@Param('id') id: string, @Body() request: AtualizaEquipeDto) {
+    return this.equipeService.atualizaEquipe(id, request);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.equipeService.remove(+id);
+    return this.equipeService.remove(id);
   }
 }

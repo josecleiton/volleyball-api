@@ -1,26 +1,62 @@
-import { Injectable, Scope } from '@nestjs/common';
-import { CreateEquipeDto } from './dto/create-equipe.dto';
-import { UpdateEquipeDto } from './dto/update-equipe.dto';
+import { Injectable, NotFoundException, Scope } from '@nestjs/common';
+import { TypeORMFilterService } from '../core/services/typeorm-filter.service';
+import {
+  AtualizaEquipeDto,
+  CriaEquipeDto,
+  EquipeRespostaDto,
+} from './dto/equipe.dto';
+import { EquipeRepository } from './equipe.repository';
 
 @Injectable({ scope: Scope.REQUEST })
 export class EquipeService {
-  create(createEquipeDto: CreateEquipeDto) {
-    return 'This action adds a new equipe';
+  constructor(
+    private readonly equipeRepository: EquipeRepository,
+    private readonly ormFilterService: TypeORMFilterService,
+  ) {}
+
+  async criaEquipe(request: CriaEquipeDto) {
+    try {
+      return new EquipeRespostaDto(
+        await this.equipeRepository.save(this.equipeRepository.create(request)),
+      );
+    } catch (e) {
+      this.ormFilterService.catch({
+        error: e,
+        entityName: 'Equipe',
+        description: 'nome já utilizado',
+      });
+    }
   }
 
-  findAll() {
-    return `This action returns all equipe`;
+  async listaEquipes() {
+    return this.equipeRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} equipe`;
+  async deveEncontrarUm(id: string) {
+    const equipe = await this.equipeRepository.findOne(id);
+    if (!equipe) {
+      throw new NotFoundException(`Equipe ${id} não encontrada`);
+    }
+
+    return new EquipeRespostaDto(equipe);
   }
 
-  update(id: number, updateEquipeDto: UpdateEquipeDto) {
-    return `This action updates a #${id} equipe`;
+  async atualizaEquipe(id: string, request: AtualizaEquipeDto) {
+    const equipe = await this.deveEncontrarUm(id);
+    if (request.nome) {
+      equipe.nome = request.nome;
+    }
+    if (request.urlBrasao) {
+      equipe.urlBrasao = request.urlBrasao;
+    }
+
+    return new EquipeRespostaDto(await this.equipeRepository.save(equipe));
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} equipe`;
+  async remove(id: string) {
+    const resultado = await this.equipeRepository.delete(id);
+    if (!resultado.affected) {
+      throw new NotFoundException({ id }, `Equipe ${id} não encontrada`);
+    }
   }
 }

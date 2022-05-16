@@ -47,7 +47,7 @@ async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
   const configService = app.get(ConfigService);
   const defaultPort = 3000;
-  const PORT = parseInt(configService.get('PORT') ?? "5000") ?? defaultPort;
+  const PORT = parseInt(configService.get('PORT') ?? '5000') ?? defaultPort;
   applySecurityLayer(app, configService);
   applyGlobals(app, configService);
   buildSwaggerDoc(app, configService);
@@ -60,4 +60,3 @@ async function bootstrap() {
 }
 
 bootstrap();
-
