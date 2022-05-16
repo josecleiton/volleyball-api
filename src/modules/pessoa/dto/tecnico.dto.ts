@@ -1,8 +1,8 @@
 import { IsString, IsUUID, Length } from 'class-validator';
 import { Tecnico } from '../entities/tecnico.entity';
-import { CriaPessoa, PessoaResposta } from './pessoa.dto';
+import { CriaPessoaDto, PessoaRespostaDto } from './pessoa.dto';
 
-export class CriaTecnico extends CriaPessoa {
+export class CriaTecnicoDto extends CriaPessoaDto {
   @IsString()
   @Length(11, 11)
   documentoCref!: string;
@@ -11,7 +11,7 @@ export class CriaTecnico extends CriaPessoa {
   idEquipe!: string;
 }
 
-export class TecnicoResposta extends PessoaResposta {
+export class TecnicoRespostaDto extends PessoaRespostaDto {
   documentoCref: string;
   idEquipe: string;
 

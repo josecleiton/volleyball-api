@@ -3,7 +3,7 @@ import { Genero } from 'src/modules/core/enums';
 import { Pessoa } from '../entities/pessoa.entity';
 import { TipoPessoa } from '../enums';
 
-export class CriaPessoa {
+export class CriaPessoaDto {
   @IsString()
   @Length(3, 255)
   nome!: string;
@@ -29,7 +29,7 @@ export class CriaPessoa {
   }
 }
 
-export class PessoaResposta {
+export class PessoaRespostaDto {
   nome: string;
   documento: string;
   genero: Genero;
