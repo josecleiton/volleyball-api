@@ -22,7 +22,10 @@ export class TecnicoService {
   }
 
   async devePegarTecnico(id: string) {
-    const tecnico = await this.tecnicoRepository.findOne(id);
+    const tecnico = await this.tecnicoRepository.findOne({
+      relations: ['pessoa'],
+      where: { id },
+    });
     if (!tecnico) {
       throw new NotFoundException(`Tecnico ${id} não encontrado`);
     }
