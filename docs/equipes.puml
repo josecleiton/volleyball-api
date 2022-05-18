@@ -23,7 +23,6 @@ entity times {
 	* id_ginasio : uuid <<FK>>  
 	* apta : boolean = false
 	descricao_aptidao : json
-	* id_tecnico : uuid <<FK>>
 	'min 12 per tournament'
 	'max 22 per tounament'
 }
@@ -116,7 +115,7 @@ entity partidas {
 
 competicoes }o-- "<= 12" times
 times }o-- "<= 22" atletas : no mínimo 12 para o time estar regular
-times "1" ||-- "1" tecnicos
+times "1" --|| "1" tecnicos
 times }o-- "*" auxiliares
 times "1" ||-- "1" ginasios
 partidas "1" ||-- "1" arbitros
