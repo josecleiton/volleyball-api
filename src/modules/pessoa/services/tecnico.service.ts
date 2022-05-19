@@ -35,7 +35,6 @@ export class TecnicoService {
 
   async devePegarEntidade(id: string) {
     const tecnico = await this.tecnicoRepository.findOne({
-      relations: ['pessoa'],
       where: { id },
     });
     if (!tecnico) {

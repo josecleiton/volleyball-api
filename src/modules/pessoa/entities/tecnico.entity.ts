@@ -15,7 +15,7 @@ export class Tecnico extends EntidadeBase {
   @JoinColumn({ name: 'id_pessoa' })
   pessoa!: Pessoa;
 
-  @OneToOne(() => Equipe)
+  @OneToOne(() => Equipe, { eager: true, cascade: true })
   @JoinColumn({ name: 'id_equipe' })
   equipe!: Equipe;
 }

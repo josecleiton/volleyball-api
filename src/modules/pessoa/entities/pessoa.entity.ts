@@ -1,3 +1,4 @@
+import { differenceInYears } from 'date-fns';
 import { EntidadeBase } from 'src/modules/core/entities/base.entity';
 import { Genero } from 'src/modules/core/enums';
 import { Column, Entity } from 'typeorm';
@@ -15,14 +16,18 @@ export class Pessoa extends EntidadeBase {
   @Column({ type: 'enum', enum: Genero })
   genero!: Genero;
 
-  @Column({ type: 'smallint' })
-  idade!: number;
+  @Column()
+  dataNascimento!: Date;
 
   @Column({ unique: true, type: 'varchar', length: 50 })
   documentoCbv!: string;
 
   @Column({ type: 'enum', enum: TipoPessoa })
   tipo!: TipoPessoa;
+
+  public get idade(): number {
+    return differenceInYears(new Date(), this.dataNascimento);
+  }
 
   constructor(tipo?: TipoPessoa) {
     super();

@@ -1,8 +1,9 @@
 import { EntidadeBase } from 'src/modules/core/entities/base.entity';
-import { Column, JoinColumn, OneToOne, Unique } from 'typeorm';
+import { Column, Entity, JoinColumn, OneToOne, Unique } from 'typeorm';
 import { Posicao } from '../enums';
 import { Pessoa } from './pessoa.entity';
 
+@Entity()
 @Unique('UQ_atletas_numero_por_equipe', ['numero', 'idEquipe'])
 export class Atleta extends EntidadeBase {
   @Column({ type: 'enum', enum: Posicao })
@@ -14,7 +15,10 @@ export class Atleta extends EntidadeBase {
   @Column()
   idEquipe!: string;
 
-  @OneToOne(() => Pessoa)
-  @JoinColumn()
+  @Column()
+  idPessoa!: string;
+
+  @OneToOne(() => Pessoa, { eager: true, cascade: true })
+  @JoinColumn({ name: 'id_pessoa' })
   pessoa!: Pessoa;
 }
