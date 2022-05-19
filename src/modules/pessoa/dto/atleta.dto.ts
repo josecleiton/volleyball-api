@@ -36,6 +36,11 @@ export class ListaAtletaDto {
   idEquipe!: string;
 }
 
+export interface IValidaNumeroEquipeDto {
+  equipe: { id: string; nome: string };
+  numero: number;
+}
+
 export class AtletaRespostaDto extends PessoaRespostaDto {
   id: string;
   numero: number;

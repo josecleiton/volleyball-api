@@ -4,7 +4,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-export class EntidadeBase {
+export abstract class EntidadeBase {
   @PrimaryGeneratedColumn('uuid')
   id!: string;
 

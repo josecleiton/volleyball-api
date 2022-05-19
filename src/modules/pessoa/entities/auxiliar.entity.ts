@@ -1,16 +1,13 @@
-import { EntidadeBase } from 'src/modules/core/entities/base.entity';
-import { Column, JoinColumn, OneToOne } from 'typeorm';
+import { Equipe } from 'src/modules/equipe/entities/equipe.entity';
+import { Column, JoinColumn, ManyToOne } from 'typeorm';
 import { TipoAuxiliar } from '../enums';
-import { Pessoa } from './pessoa.entity';
+import { PessoaDeEquipe } from './pessoa_de_equipe';
 
-export class Auxiliar extends EntidadeBase {
+export class Auxiliar extends PessoaDeEquipe {
   @Column({ type: 'enum', enum: TipoAuxiliar })
   tipoAuxiliar!: TipoAuxiliar;
 
-  @Column()
-  idEquipe!: string;
-
-  @OneToOne(() => Pessoa)
-  @JoinColumn()
-  pessoa!: Pessoa;
+  @ManyToOne(() => Equipe, (equipe) => equipe.atletas)
+  @JoinColumn({ name: 'id_equipe' })
+  equipe!: Equipe;
 }

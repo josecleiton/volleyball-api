@@ -17,6 +17,7 @@ export const databaseConfig = registerAs(
     migrations: [__dirname + '/../database/migrations/*.{js,ts}'],
     subscribers: [__dirname + '/../**/*.subscriber.{js,ts}'],
     synchronize: false,
+    migrationsRun: process.env.NODE_ENV === 'development',
     logging: process.env.NODE_ENV === 'development',
     cli: {
       migrationsDir: 'src/database/migrations',

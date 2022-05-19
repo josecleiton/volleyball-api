@@ -1,10 +1,16 @@
-import { Injectable, NotFoundException, Scope } from '@nestjs/common';
+import {
+  ConflictException,
+  Injectable,
+  NotFoundException,
+  Scope,
+} from '@nestjs/common';
 import { TypeORMFilterService } from 'src/modules/core/services/typeorm-filter.service';
 import { EquipeService } from 'src/modules/equipe/equipe.service';
 import {
   AtletaRespostaDto,
   AtualizaAtletaDto,
   CriaAtletaDto,
+  IValidaNumeroEquipeDto,
   ListaAtletaDto,
 } from '../dto/atleta.dto';
 import { AtletaRepository } from '../repositories/atleta.repository';
@@ -17,10 +23,23 @@ export class AtletaService {
     private readonly typeormFilterService: TypeORMFilterService,
   ) {}
 
+  private async validaNumeroEquipe({ numero, equipe }: IValidaNumeroEquipeDto) {
+    if (
+      await this.atletaRepository.count({
+        where: { numero, idEquipe: equipe.id },
+      })
+    ) {
+      throw new ConflictException(
+        `Já existe um atleta com numero ${numero} na equipe ${equipe.nome}`,
+      );
+    }
+  }
+
   async criaAtleta(requisicao: CriaAtletaDto) {
     const equipe = await this.equipeService.deveEncontrarUm(
       requisicao.idEquipe,
     );
+    await this.validaNumeroEquipe({ equipe, numero: requisicao.numero });
 
     const atleta = this.atletaRepository.create({
       ...requisicao,
@@ -75,6 +94,10 @@ export class AtletaService {
       }
 
       if (requisicao.numero) {
+        await this.validaNumeroEquipe({
+          numero: requisicao.numero,
+          equipe: atleta.equipe,
+        });
         atleta.numero = requisicao.numero;
       }
 

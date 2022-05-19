@@ -4,7 +4,7 @@ import { Genero } from 'src/modules/core/enums';
 import { Column, Entity } from 'typeorm';
 import { TipoPessoa } from '../enums';
 
-@Entity()
+@Entity('pessoas')
 export class Pessoa extends EntidadeBase {
   @Column({ type: 'varchar', length: 255 })
   nome!: string;
