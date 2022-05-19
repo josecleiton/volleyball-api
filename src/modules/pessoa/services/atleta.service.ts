@@ -116,6 +116,7 @@ export class AtletaService {
   }
 
   async removerAtleta(id: string) {
+    // TODO: checa liga já iniciada
     const resultado = await this.atletaRepository.delete(id);
     if (!resultado.affected) {
       throw new NotFoundException(`Atleta ${id} não encontrado`);

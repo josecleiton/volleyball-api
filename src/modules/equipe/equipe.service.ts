@@ -5,6 +5,7 @@ import {
   CriaEquipeDto,
   EquipeRespostaDto,
 } from './dto/equipe.dto';
+import { Equipe } from './entities/equipe.entity';
 import { EquipeRepository } from './equipe.repository';
 
 @Injectable({ scope: Scope.REQUEST })
@@ -15,6 +16,7 @@ export class EquipeService {
   ) {}
 
   async criaEquipe(request: CriaEquipeDto) {
+    // TODO: checa liga já iniciada
     try {
       return new EquipeRespostaDto(
         await this.equipeRepository.save(this.equipeRepository.create(request)),
@@ -28,7 +30,12 @@ export class EquipeService {
     }
   }
 
+  async atualizaAptidao(equipes: Equipe[]) {
+    await this.equipeRepository.save(equipes);
+  }
+
   async listaEquipes() {
+    // TODO: adiciona ligaId como filtro
     const equipes = await this.equipeRepository.find();
     return equipes.map((x) => new EquipeRespostaDto(x));
   }
@@ -47,6 +54,7 @@ export class EquipeService {
   }
 
   async atualizaEquipe(id: string, request: AtualizaEquipeDto) {
+    // TODO: checa liga já iniciada
     const equipe = await this.deveEncontrarUm(id);
     if (request.nome) {
       equipe.nome = request.nome;
@@ -59,6 +67,7 @@ export class EquipeService {
   }
 
   async remove(id: string) {
+    // TODO: checa liga já iniciada
     const resultado = await this.equipeRepository.delete(id);
     if (!resultado.affected) {
       throw new NotFoundException({ id }, `Equipe ${id} não encontrada`);

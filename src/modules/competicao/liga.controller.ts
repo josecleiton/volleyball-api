@@ -8,7 +8,7 @@ export class LigaController {
 
   @Post()
   criaLiga(@Body() requisicao: CriaLigaDto) {
-    return this.ligaService.cria(requisicao);
+    return this.ligaService.criaLiga(requisicao);
   }
 
   @Post()

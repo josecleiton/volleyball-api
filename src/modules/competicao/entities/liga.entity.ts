@@ -1,9 +1,10 @@
 import { EntidadeBase } from 'src/modules/core/entities/base.entity';
 import { Genero } from 'src/modules/core/enums';
 import { Equipe } from 'src/modules/equipe/entities/equipe.entity';
-import { Column, Entity, OneToMany } from 'typeorm';
+import { Column, Entity, OneToMany, Unique } from 'typeorm';
 
 @Entity('ligas')
+@Unique(['ano', 'genero', 'serie'])
 export class Liga extends EntidadeBase {
   @Column()
   genero!: Genero;
@@ -18,5 +19,8 @@ export class Liga extends EntidadeBase {
   serie?: string;
 
   @OneToMany(() => Equipe, (e) => e.liga)
-  equipe!: Equipe;
+  equipes!: Equipe[];
+
+  @Column()
+  ano!: string;
 }

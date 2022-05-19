@@ -7,6 +7,7 @@ import {
   rateLimitConfig,
   databaseConfig,
 } from '../../configs';
+import { LigaModule } from '../competicao/liga.module';
 
 import { CoreModule } from '../core/core.module';
 import { EquipeModule } from '../equipe/equipe.module';
@@ -26,6 +27,7 @@ import { PessoaModule } from '../pessoa/pessoa.module';
     CoreModule,
     EquipeModule,
     PessoaModule,
+    LigaModule,
   ],
 })
 export class AppModule {}

@@ -1,10 +1,11 @@
 import {
+  ConflictException,
   Injectable,
   NotFoundException,
-  NotImplementedException,
   Scope,
 } from '@nestjs/common';
 import { TypeORMFilterService } from '../core/services/typeorm-filter.service';
+import { EquipeService } from '../equipe/equipe.service';
 import {
   CriaLigaDto,
   InicializaLigaDto,
@@ -16,10 +17,11 @@ import { LigaRepository } from './liga.repository';
 export class LigaService {
   constructor(
     private readonly ligaRepository: LigaRepository,
+    private readonly equipeService: EquipeService,
     private readonly typeormFilterService: TypeORMFilterService,
   ) {}
 
-  async cria(requisicao: CriaLigaDto) {
+  async criaLiga(requisicao: CriaLigaDto) {
     const liga = this.ligaRepository.create(requisicao);
 
     try {
@@ -34,15 +36,32 @@ export class LigaService {
   }
 
   async iniciaLiga(requisicao: InicializaLigaDto) {
-    throw new NotImplementedException(requisicao);
+    const liga = await this.ligaRepository.pegaUmComEquipesCompletas(
+      requisicao.id,
+    );
+
+    if (liga.iniciadaEm) {
+      throw new ConflictException(
+        `Liga ${liga.id} já iniciada na data: ${liga.iniciadaEm}`,
+      );
+    }
+
+    if (!liga.equipes.every((equipe) => equipe.apta)) {
+      await this.equipeService.atualizaAptidao(liga.equipes);
+      throw new ConflictException('Todas as equipes precisam estar aptas');
+    }
+
+    liga.iniciadaEm = new Date();
+
+    return new LigaRespostaDto(await this.ligaRepository.save(liga));
   }
 
   async lista() {
     return this.ligaRepository.find({ order: { dataCriacao: 'DESC' } });
   }
 
-  private async devePegarEntidade(id: string) {
-    const liga = await this.ligaRepository.findOne(id);
+  private async devePegarEntidade(id: string, relations?: string[]) {
+    const liga = await this.ligaRepository.findOne(id, { relations });
     if (!liga) {
       throw new NotFoundException(`Liga ${id} não encontrada`);
     }

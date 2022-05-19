@@ -13,6 +13,8 @@ import {
 
 @Entity('equipes')
 export class Equipe extends EntidadeBase {
+  private static quantidadeAtletasPraAptidao = 10;
+
   @Column({ type: 'varchar', length: 255, unique: true })
   nome!: string;
 
@@ -20,21 +22,37 @@ export class Equipe extends EntidadeBase {
   urlBrasao?: string;
 
   @Column({ type: 'boolean', default: false })
-  apta = false;
+  public get apta(): boolean {
+    const descricaoAptidao = [];
+
+    if (this.atletas.length < 10) {
+      descricaoAptidao.push(
+        `Precisa-se de ${Equipe.quantidadeAtletasPraAptidao} atletas. Atletas cadastrados: ${this.atletas.length}`,
+      );
+    }
+
+    if (!this.tecnico) {
+      descricaoAptidao.push('Necessita de um técnico');
+    }
+
+    this.descricaoAptidao = descricaoAptidao;
+
+    return !descricaoAptidao.length;
+  }
 
   @Column({ type: 'jsonb', nullable: true })
-  descricaoAptidao?: unknown;
+  descricaoAptidao?: string[];
 
   @Column('uuid')
   idLiga!: string;
 
   @OneToOne(() => Tecnico, (t) => t.equipe)
-  tecnico!: Tecnico;
+  tecnico?: Tecnico;
 
   @OneToMany(() => Atleta, (a) => a.equipe)
   atletas!: Atleta[];
 
-  @ManyToOne(() => Liga, (c) => c.equipe)
+  @ManyToOne(() => Liga, (c) => c.equipes)
   @JoinColumn({ name: 'id_liga' })
   liga!: Liga;
 }

@@ -1,10 +1,10 @@
 import {MigrationInterface, QueryRunner} from "typeorm";
 
-export class CriaLiga1652971897037 implements MigrationInterface {
-    name = 'CriaLiga1652971897037'
+export class CriaLiga1652972713631 implements MigrationInterface {
+    name = 'CriaLiga1652972713631'
 
     public async up(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.query(`CREATE TABLE "ligas" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "data_atualizacao" TIMESTAMP NOT NULL DEFAULT now(), "data_criacao" TIMESTAMP NOT NULL DEFAULT now(), "genero" character varying NOT NULL, "iniciada_em" TIMESTAMP WITH TIME ZONE, "nome" character varying, "serie" character varying(40), CONSTRAINT "PK_461f18cdc237818a4d9f2cebc9f" PRIMARY KEY ("id"))`);
+        await queryRunner.query(`CREATE TABLE "ligas" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "data_atualizacao" TIMESTAMP NOT NULL DEFAULT now(), "data_criacao" TIMESTAMP NOT NULL DEFAULT now(), "genero" character varying NOT NULL, "iniciada_em" TIMESTAMP WITH TIME ZONE, "nome" character varying, "serie" character varying(40), "ano" character varying NOT NULL, CONSTRAINT "UQ_f617772a0e0c361dccec6f32bc0" UNIQUE ("ano", "genero", "serie"), CONSTRAINT "PK_461f18cdc237818a4d9f2cebc9f" PRIMARY KEY ("id"))`);
         await queryRunner.query(`CREATE INDEX "IDX_2ddf9d216ffb580e40f3e920f0" ON "ligas" ("data_criacao") `);
         await queryRunner.query(`ALTER TABLE "equipes" ADD "id_liga" uuid NOT NULL`);
         await queryRunner.query(`CREATE INDEX "IDX_2551905023f3f38587bafb7395" ON "pessoas" ("data_criacao") `);
