@@ -13,9 +13,11 @@ entity competicoes {
 	* comeca_em : timestamp
 	nome : text
 	serie : text = A
+	* criado_em : timestamp
+	* atualizado_em : timestamp
 }
 
-entity times {
+entity equipes {
 	* id : uuid <<generated>>
 	--
 	* nome : text
@@ -25,6 +27,8 @@ entity times {
 	descricao_aptidao : json
 	'min 12 per tournament'
 	'max 22 per tounament'
+	* criado_em : timestamp
+	* atualizado_em : timestamp
 }
 
 entity ginasios {
@@ -33,6 +37,8 @@ entity ginasios {
 	* nome : text
 	* cidade : text
 	* estado : text
+	* criado_em : timestamp
+	* atualizado_em : timestamp
 }
 
 enum tipo_pessoa {
@@ -49,10 +55,11 @@ entity pessoas {
 	* nome : text
 	* documento : text <<UQ>>
 	* genero : genero
-	* idade : tinyint
-	* id_time : uuid <<FK>>
+	* data_nascimento : timestamp
 	* documento_cbv : text
 	* tipo : tipo_pessoa
+	* criado_em : timestamp
+	* atualizado_em : timestamp
 }
 
 enum posicoes {
@@ -64,21 +71,32 @@ enum posicoes {
 }
 
 entity atletas{
-	* id_pessoa : uuid <<FK>>
+	* id : uuid <<generated>>
 	--
 	* posicao: posicao
 	* numero : tinyint
+	* id_pessoa : uuid <<FK>>
+	* id_equipe : uuid <<FK>>
+	* criado_em : timestamp
+	* atualizado_em : timestamp
 }
 
 entity tecnicos{
-	* id_pessoa: uuid <<FK>>
+	* id : uuid <<generated>>
 	--
 	* documento_cref: text
+	* id_pessoa: uuid <<FK>>
+	* id_equipe : uuid <<FK>>
+	* criado_em : timestamp
+	* atualizado_em : timestamp
 }
 
 entity arbitros {
-	* id_pessoa : uuid <<FK>>
+	* id : uuid <<generated>>
 	--
+	* id_pessoa : uuid <<FK>>
+	* criado_em : timestamp
+	* atualizado_em : timestamp
 }
 
 enum tipo_auxiliar {
@@ -91,14 +109,21 @@ enum tipo_auxiliar {
 }
 
 entity auxiliares {
-	* id_pessoa : uuid <<FK>>
+	* id : uuid <<generated>>
 	--
 	tipo : tipo_auxiliar
+	* id_pessoa : uuid <<FK>>
+	* id_equipe : uuid <<FK>>
+	* criado_em : timestamp
+	* atualizado_em : timestamp
 }
 
 entity delegados {
-	* id_pessoa: uuid <<FK>>
+	* id : uuid <<generated>>
 	--
+	* id_pessoa: uuid <<FK>>
+	* criado_em : timestamp
+	* atualizado_em : timestamp
 }
 
 entity partidas {
@@ -111,6 +136,8 @@ entity partidas {
 	* finalizou_em : timestamp
 	* id_time_ganhador : uuid <<FK>>
 	* id_time_perdedor : uuid <<FK>>
+	* criado_em : timestamp
+	* atualizado_em : timestamp
 }
 
 competicoes }o-- "<= 12" times
