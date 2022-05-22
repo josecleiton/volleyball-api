@@ -27,6 +27,7 @@ export class EquipeRespostaDto {
   urlBrasao?: string;
   apta: boolean;
   descricaoAptidao?: unknown;
+  idLiga: string;
 
   constructor(equipe: Equipe) {
     this.id = equipe.id;
@@ -34,5 +35,6 @@ export class EquipeRespostaDto {
     this.urlBrasao = equipe.urlBrasao;
     this.apta = equipe.apta;
     this.descricaoAptidao = equipe.descricaoAptidao;
+    this.idLiga = equipe.idLiga;
   }
 }

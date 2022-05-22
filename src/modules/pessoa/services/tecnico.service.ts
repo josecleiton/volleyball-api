@@ -1,4 +1,5 @@
 import { Injectable, NotFoundException, Scope } from '@nestjs/common';
+import { LigaService } from 'src/modules/competicao/liga.service';
 import { TypeORMFilterService } from 'src/modules/core/services/typeorm-filter.service';
 import { EquipeService } from 'src/modules/equipe/equipe.service';
 import { CriaTecnicoDto, TecnicoRespostaDto } from '../dto/tecnico.dto';
@@ -10,12 +11,14 @@ export class TecnicoService {
     private readonly tecnicoRepository: TecnicoRepository,
     private readonly equipeService: EquipeService,
     private readonly typeormFilterService: TypeORMFilterService,
+    private readonly ligaService: LigaService,
   ) {}
 
   async createTecnico(requisicao: CriaTecnicoDto) {
     const equipe = await this.equipeService.deveEncontrarUm(
       requisicao.idEquipe,
     );
+    await this.ligaService.excecaoSeALigaEstaIniciada(equipe.idLiga);
     const tecnico = this.tecnicoRepository.create({
       ...requisicao,
       idEquipe: equipe.id,

@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { LigaModule } from '../competicao/liga.module';
 import { CoreModule } from '../core/core.module';
 import { EquipeModule } from '../equipe/equipe.module';
 import { AtletaController } from './controllers/atleta.controller';
@@ -14,6 +15,7 @@ import { TecnicoService } from './services/tecnico.service';
     TypeOrmModule.forFeature([TecnicoRepository, AtletaRepository]),
     EquipeModule,
     CoreModule,
+    LigaModule,
   ],
   controllers: [TecnicoController, AtletaController],
   providers: [TecnicoService, AtletaService],

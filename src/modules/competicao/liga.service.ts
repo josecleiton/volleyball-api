@@ -57,7 +57,11 @@ export class LigaService {
   }
 
   async excecaoSeALigaEstaIniciada(id: string) {
-    if (await this.ligaRepository.findOne(id)) {
+    const resultado = await this.ligaRepository.findOne({
+      where: { id },
+      select: ['id', 'iniciadaEm'],
+    });
+    if (resultado?.iniciadaEm) {
       return;
     }
 
