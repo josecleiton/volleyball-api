@@ -6,8 +6,13 @@ import {
   Param,
   Delete,
   Put,
+  Query,
 } from '@nestjs/common';
-import { AtualizaEquipeDto, CriaEquipeDto } from './dto/equipe.dto';
+import {
+  AtualizaEquipeDto,
+  CriaEquipeDto,
+  ListaEquipesDto,
+} from './dto/equipe.dto';
 import { EquipeService } from './equipe.service';
 
 @Controller('equipe')
@@ -20,8 +25,8 @@ export class EquipeController {
   }
 
   @Get()
-  lista() {
-    return this.equipeService.listaEquipes();
+  lista(@Query() requisicao: ListaEquipesDto) {
+    return this.equipeService.listaEquipes(requisicao);
   }
 
   @Get(':id')

@@ -14,5 +14,6 @@ import { EquipeModule } from '../equipe/equipe.module';
   ],
   controllers: [LigaController],
   providers: [LigaService],
+  exports: [LigaService],
 })
 export class LigaModule {}

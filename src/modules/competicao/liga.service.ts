@@ -56,8 +56,19 @@ export class LigaService {
     return new LigaRespostaDto(await this.ligaRepository.save(liga));
   }
 
+  async excecaoSeALigaEstaIniciada(id: string) {
+    if (await this.ligaRepository.findOne(id)) {
+      return;
+    }
+
+    throw new ConflictException(`Liga ${id} já está iniciada.`);
+  }
+
   async lista() {
-    return this.ligaRepository.find({ order: { dataCriacao: 'DESC' } });
+    const list = await this.ligaRepository.find({
+      order: { dataCriacao: 'DESC' },
+    });
+    return list.map((x) => new LigaRespostaDto(x));
   }
 
   private async devePegarEntidade(id: string, relations?: string[]) {

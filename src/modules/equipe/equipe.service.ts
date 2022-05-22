@@ -1,9 +1,17 @@
-import { Injectable, NotFoundException, Scope } from '@nestjs/common';
+import {
+  forwardRef,
+  Inject,
+  Injectable,
+  NotFoundException,
+  Scope,
+} from '@nestjs/common';
+import { LigaService } from '../competicao/liga.service';
 import { TypeORMFilterService } from '../core/services/typeorm-filter.service';
 import {
   AtualizaEquipeDto,
   CriaEquipeDto,
   EquipeRespostaDto,
+  ListaEquipesDto,
 } from './dto/equipe.dto';
 import { Equipe } from './entities/equipe.entity';
 import { EquipeRepository } from './equipe.repository';
@@ -12,11 +20,14 @@ import { EquipeRepository } from './equipe.repository';
 export class EquipeService {
   constructor(
     private readonly equipeRepository: EquipeRepository,
+    @Inject(forwardRef(() => LigaService))
+    private readonly ligaService: LigaService,
     private readonly ormFilterService: TypeORMFilterService,
   ) {}
 
   async criaEquipe(request: CriaEquipeDto) {
-    // TODO: checa liga já iniciada
+    await this.ligaService.excecaoSeALigaEstaIniciada(request.idLiga);
+
     try {
       return new EquipeRespostaDto(
         await this.equipeRepository.save(this.equipeRepository.create(request)),
@@ -34,9 +45,8 @@ export class EquipeService {
     await this.equipeRepository.save(equipes);
   }
 
-  async listaEquipes() {
-    // TODO: adiciona ligaId como filtro
-    const equipes = await this.equipeRepository.find();
+  async listaEquipes(request: ListaEquipesDto) {
+    const equipes = await this.equipeRepository.find({ where: { ...request } });
     return equipes.map((x) => new EquipeRespostaDto(x));
   }
 
@@ -54,8 +64,9 @@ export class EquipeService {
   }
 
   async atualizaEquipe(id: string, request: AtualizaEquipeDto) {
-    // TODO: checa liga já iniciada
-    const equipe = await this.deveEncontrarUm(id);
+    const equipe = await this.deveEncontrarEntidade(id);
+    await this.ligaService.excecaoSeALigaEstaIniciada(equipe.idLiga);
+
     if (request.nome) {
       equipe.nome = request.nome;
     }
@@ -67,10 +78,16 @@ export class EquipeService {
   }
 
   async remove(id: string) {
-    // TODO: checa liga já iniciada
-    const resultado = await this.equipeRepository.delete(id);
-    if (!resultado.affected) {
+    const resultado: { id: string; idLiga: string } | undefined =
+      await this.equipeRepository.findOne({
+        where: { id },
+        select: ['id', 'idLiga'],
+      });
+    if (!resultado) {
       throw new NotFoundException({ id }, `Equipe ${id} não encontrada`);
     }
+
+    await this.ligaService.excecaoSeALigaEstaIniciada(resultado.idLiga);
+    await this.equipeRepository.delete(id);
   }
 }

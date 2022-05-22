@@ -1,8 +1,11 @@
 import { PartialType } from '@nestjs/swagger';
-import { IsOptional, IsString, IsUrl, Length } from 'class-validator';
+import { IsOptional, IsString, IsUrl, IsUUID, Length } from 'class-validator';
 import { Equipe } from '../entities/equipe.entity';
 
 export class CriaEquipeDto {
+  @IsUUID()
+  idLiga!: string;
+
   @IsString()
   @Length(2, 200)
   nome!: string;
@@ -13,6 +16,10 @@ export class CriaEquipeDto {
 }
 
 export class AtualizaEquipeDto extends PartialType(CriaEquipeDto) {}
+
+export class ListaEquipesDto {
+  idLiga?: string;
+}
 
 export class EquipeRespostaDto {
   id: string;
