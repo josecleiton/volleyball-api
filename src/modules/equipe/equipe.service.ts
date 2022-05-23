@@ -7,6 +7,7 @@ import {
 } from '@nestjs/common';
 import { LigaService } from '../competicao/liga.service';
 import { TypeORMFilterService } from '../core/services/typeorm-filter.service';
+import { GinasioService } from '../ginasio/ginasio.service';
 import {
   AtualizaEquipeDto,
   CriaEquipeDto,
@@ -22,15 +23,19 @@ export class EquipeService {
     private readonly equipeRepository: EquipeRepository,
     @Inject(forwardRef(() => LigaService))
     private readonly ligaService: LigaService,
+    private readonly ginasioService: GinasioService,
     private readonly ormFilterService: TypeORMFilterService,
   ) {}
 
   async criaEquipe(request: CriaEquipeDto) {
     await this.ligaService.excecaoSeALigaEstaIniciada(request.idLiga);
+    await this.ginasioService.devePegarUm(request.idGinasio);
 
     try {
       return new EquipeRespostaDto(
-        await this.equipeRepository.save(this.equipeRepository.create(request)),
+        await this.equipeRepository.save(
+          this.equipeRepository.create({ ...request }),
+        ),
       );
     } catch (e) {
       this.ormFilterService.catch({
@@ -63,15 +68,18 @@ export class EquipeService {
     return new EquipeRespostaDto(await this.deveEncontrarEntidade(id));
   }
 
-  async atualizaEquipe(id: string, request: AtualizaEquipeDto) {
+  async atualizaEquipe(id: string, requisicao: AtualizaEquipeDto) {
     const equipe = await this.deveEncontrarEntidade(id);
     await this.ligaService.excecaoSeALigaEstaIniciada(equipe.idLiga);
 
-    if (request.nome) {
-      equipe.nome = request.nome;
+    if (requisicao.nome) {
+      equipe.nome = requisicao.nome;
     }
-    if (request.urlBrasao) {
-      equipe.urlBrasao = request.urlBrasao;
+    if (requisicao.urlBrasao) {
+      equipe.urlBrasao = requisicao.urlBrasao;
+    }
+    if (requisicao.idGinasio && requisicao.idGinasio !== equipe.idGinasio) {
+      await this.ginasioService.devePegarUm(requisicao.idGinasio);
     }
 
     return new EquipeRespostaDto(await this.equipeRepository.save(equipe));

@@ -1,5 +1,6 @@
 import { Liga } from 'src/modules/competicao/entities/liga.entity';
 import { EntidadeBase } from 'src/modules/core/entities/base.entity';
+import { Ginasio } from 'src/modules/ginasio/entities/ginasio.entity';
 import { Atleta } from 'src/modules/pessoa/entities/atleta.entity';
 import { Tecnico } from 'src/modules/pessoa/entities/tecnico.entity';
 import {
@@ -46,6 +47,9 @@ export class Equipe extends EntidadeBase {
   @Column('uuid')
   idLiga!: string;
 
+  @Column('uuid')
+  idGinasio!: string;
+
   @OneToOne(() => Tecnico, (t) => t.equipe)
   tecnico?: Tecnico;
 
@@ -55,4 +59,8 @@ export class Equipe extends EntidadeBase {
   @ManyToOne(() => Liga, (c) => c.equipes)
   @JoinColumn({ name: 'id_liga' })
   liga!: Liga;
+
+  @OneToOne(() => Ginasio)
+  @JoinColumn({ name: 'id_ginasio' })
+  ginasio!: Ginasio;
 }

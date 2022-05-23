@@ -6,6 +6,9 @@ export class CriaEquipeDto {
   @IsUUID()
   idLiga!: string;
 
+  @IsUUID()
+  idGinasio!: string;
+
   @IsString()
   @Length(2, 200)
   nome!: string;
@@ -28,6 +31,7 @@ export class EquipeRespostaDto {
   apta: boolean;
   descricaoAptidao?: unknown;
   idLiga: string;
+  idGinasio: string;
 
   constructor(equipe: Equipe) {
     this.id = equipe.id;
@@ -36,5 +40,6 @@ export class EquipeRespostaDto {
     this.apta = equipe.apta;
     this.descricaoAptidao = equipe.descricaoAptidao;
     this.idLiga = equipe.idLiga;
+    this.idGinasio = equipe.idGinasio;
   }
 }
