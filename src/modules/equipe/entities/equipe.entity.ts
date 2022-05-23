@@ -24,7 +24,9 @@ export class Equipe extends EntidadeBase {
   @Column({ nullable: true })
   urlBrasao?: string;
 
-  @Column({ type: 'boolean', default: false })
+  @Column({ name: 'apta', type: 'boolean', default: false })
+  private _apta = false;
+
   public get apta(): boolean {
     const descricaoAptidao = [];
 
@@ -40,7 +42,7 @@ export class Equipe extends EntidadeBase {
 
     this.descricaoAptidao = descricaoAptidao;
 
-    return !descricaoAptidao.length;
+    return (this._apta = !descricaoAptidao.length);
   }
 
   @Column({ type: 'jsonb', nullable: true })

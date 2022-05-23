@@ -32,11 +32,9 @@ export class EquipeService {
     await this.ginasioService.devePegarUm(request.idGinasio);
 
     try {
-      return new EquipeRespostaDto(
-        await this.equipeRepository.save(
-          this.equipeRepository.create({ ...request }),
-        ),
-      );
+      const equipe = this.equipeRepository.create({ ...request });
+      equipe.atletas = [];
+      return new EquipeRespostaDto(await this.equipeRepository.save(equipe));
     } catch (e) {
       this.ormFilterService.catch({
         error: e,

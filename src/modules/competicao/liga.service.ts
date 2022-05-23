@@ -61,7 +61,7 @@ export class LigaService {
       where: { id },
       select: ['id', 'iniciadaEm'],
     });
-    if (resultado?.iniciadaEm) {
+    if (!resultado?.iniciadaEm) {
       return;
     }
 
