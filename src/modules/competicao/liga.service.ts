@@ -84,7 +84,7 @@ export class LigaService {
     return liga;
   }
 
-  async devePegarUm(id: string) {
+  async deveEncontrarUm(id: string) {
     return new LigaRespostaDto(await this.devePegarEntidade(id));
   }
 
