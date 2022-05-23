@@ -7,6 +7,7 @@ import {
   Delete,
   Put,
   Query,
+  ParseUUIDPipe,
 } from '@nestjs/common';
 import {
   AtualizaEquipeDto,
@@ -30,17 +31,20 @@ export class EquipeController {
   }
 
   @Get(':id')
-  encontraUm(@Param('id') id: string) {
+  encontraUm(@Param('id', ParseUUIDPipe) id: string) {
     return this.equipeService.deveEncontrarUm(id);
   }
 
   @Put(':id')
-  atualiza(@Param('id') id: string, @Body() request: AtualizaEquipeDto) {
+  atualiza(
+    @Param('id', ParseUUIDPipe) id: string,
+    @Body() request: AtualizaEquipeDto,
+  ) {
     return this.equipeService.atualizaEquipe(id, request);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  remove(@Param('id', ParseUUIDPipe) id: string) {
     return this.equipeService.remove(id);
   }
 }

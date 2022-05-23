@@ -1,4 +1,11 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  ParseUUIDPipe,
+  Post,
+} from '@nestjs/common';
 import { CriaTecnicoDto } from '../dto/tecnico.dto';
 import { TecnicoService } from '../services/tecnico.service';
 
@@ -13,7 +20,7 @@ export class TecnicoController {
   }
 
   @Get(':id')
-  pegaUm(@Param('id') id: string) {
+  pegaUm(@Param('id', ParseUUIDPipe) id: string) {
     return this.tecnicoService.devePegarUm(id);
   }
 }

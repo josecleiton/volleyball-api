@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Delete,
+  ParseUUIDPipe,
+} from '@nestjs/common';
 import { LigaService } from './liga.service';
 import { CriaLigaDto, InicializaLigaDto } from './dto/liga.dto';
 
@@ -22,12 +30,12 @@ export class LigaController {
   }
 
   @Get(':id')
-  pegaLiga(@Param('id') id: string) {
+  pegaLiga(@Param('id', ParseUUIDPipe) id: string) {
     return this.ligaService.deveEncontrarUm(id);
   }
 
   @Delete(':id')
-  removeLiga(@Param('id') id: string) {
+  removeLiga(@Param('id', ParseUUIDPipe) id: string) {
     return this.ligaService.remove(id);
   }
 }
