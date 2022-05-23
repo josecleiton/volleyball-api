@@ -1,12 +1,4 @@
-import { Type } from 'class-transformer';
-import {
-  IsDate,
-  IsEnum,
-  IsOptional,
-  IsString,
-  IsUUID,
-  Length,
-} from 'class-validator';
+import { IsEnum, IsOptional, IsString, IsUUID, Length } from 'class-validator';
 import { Genero } from 'src/modules/core/enums';
 import { Liga } from '../entities/liga.entity';
 
@@ -14,9 +6,9 @@ export class CriaLigaDto {
   @IsEnum(Genero)
   genero!: Genero;
 
-  @IsDate()
-  @Type(() => Date)
-  comecaEm!: Date;
+  @IsString()
+  @Length(4)
+  ano!: string;
 
   @IsOptional()
   @IsString()
