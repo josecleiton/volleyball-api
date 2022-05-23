@@ -6,7 +6,7 @@ enum genero{
 	feminino
 }
 
-entity competicoes {
+entity ligas {
 	* id : uuid <<generated>>
 	--
 	* genero : genero
@@ -148,9 +148,9 @@ entity partidas {
 	* atualizado_em : timestamp
 }
 
-competicoes ||--o{ "<= 12" equipes
-competicoes ||--o{ arbitros
-competicoes ||--o{ delegados
+ligas ||--o{ "<= 12" equipes
+ligas ||--o{ arbitros
+ligas ||--o{ delegados
 equipes ||--o{ "<= 22" atletas : no mínimo 12 para o time estar regular
 equipes "1" --|| "1" tecnicos
 equipes ||--o{ "*" auxiliares
