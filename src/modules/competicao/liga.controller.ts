@@ -23,7 +23,7 @@ export class LigaController {
 
   @Get(':id')
   pegaLiga(@Param('id') id: string) {
-    return this.ligaService.devePegarUm(id);
+    return this.ligaService.deveEncontrarUm(id);
   }
 
   @Delete(':id')
