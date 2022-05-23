@@ -6,6 +6,7 @@ import { Tecnico } from 'src/modules/pessoa/entities/tecnico.entity';
 import {
   Column,
   Entity,
+  Index,
   JoinColumn,
   ManyToOne,
   OneToMany,
@@ -13,6 +14,7 @@ import {
 } from 'typeorm';
 
 @Entity('equipes')
+@Index('IX_equipes_cidade_estado', ['cidade', 'estado'])
 export class Equipe extends EntidadeBase {
   private static quantidadeAtletasPraAptidao = 10;
 
@@ -43,6 +45,12 @@ export class Equipe extends EntidadeBase {
 
   @Column({ type: 'jsonb', nullable: true })
   descricaoAptidao?: string[];
+
+  @Column({ type: 'varchar', length: 20 })
+  estado!: string;
+
+  @Column()
+  cidade!: string;
 
   @Column('uuid')
   idLiga!: string;

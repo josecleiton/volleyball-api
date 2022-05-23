@@ -16,6 +16,14 @@ export class CriaEquipeDto {
   @IsUrl()
   @IsOptional()
   urlBrasao?: string;
+
+  @IsString()
+  @Length(2, 200)
+  cidade!: string;
+
+  @IsString()
+  @Length(2, 2)
+  estado!: string;
 }
 
 export class AtualizaEquipeDto extends PartialType(CriaEquipeDto) {}
@@ -29,7 +37,9 @@ export class EquipeRespostaDto {
   nome: string;
   urlBrasao?: string;
   apta: boolean;
-  descricaoAptidao?: unknown;
+  descricaoAptidao?: string[];
+  cidade: string;
+  estado: string;
   idLiga: string;
   idGinasio: string;
 
@@ -39,6 +49,8 @@ export class EquipeRespostaDto {
     this.urlBrasao = equipe.urlBrasao;
     this.apta = equipe.apta;
     this.descricaoAptidao = equipe.descricaoAptidao;
+    this.cidade = equipe.cidade;
+    this.estado = equipe.estado;
     this.idLiga = equipe.idLiga;
     this.idGinasio = equipe.idGinasio;
   }
