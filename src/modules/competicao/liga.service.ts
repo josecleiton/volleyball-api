@@ -56,16 +56,29 @@ export class LigaService {
     return new LigaRespostaDto(await this.ligaRepository.save(liga));
   }
 
-  async excecaoSeALigaEstaIniciada(id: string) {
-    const resultado = await this.ligaRepository.findOne({
+  private async getLigaIniciadaEm(id: string) {
+    return this.ligaRepository.findOne({
       where: { id },
       select: ['id', 'iniciadaEm'],
     });
-    if (resultado?.iniciadaEm) {
+  }
+
+  async excecaoSeALigaEstaIniciada(id: string) {
+    const resultado = await this.getLigaIniciadaEm(id);
+    if (!resultado?.iniciadaEm) {
       return;
     }
 
     throw new ConflictException(`Liga ${id} já está iniciada.`);
+  }
+
+  async excecaoSeALigaNaoEstaIniciada(id: string) {
+    const resultado = await this.getLigaIniciadaEm(id);
+    if (resultado?.iniciadaEm) {
+      return;
+    }
+
+    throw new ConflictException(`Liga ${id} não está iniciada.`);
   }
 
   async lista() {

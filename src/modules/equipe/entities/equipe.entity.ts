@@ -1,6 +1,7 @@
 import { Liga } from 'src/modules/competicao/entities/liga.entity';
 import { EntidadeBase } from 'src/modules/core/entities/base.entity';
 import { Ginasio } from 'src/modules/ginasio/entities/ginasio.entity';
+import { Partida } from 'src/modules/partida/entities/partida.entity';
 import { Atleta } from 'src/modules/pessoa/entities/atleta.entity';
 import { Tecnico } from 'src/modules/pessoa/entities/tecnico.entity';
 import {
@@ -71,4 +72,13 @@ export class Equipe extends EntidadeBase {
   @OneToOne(() => Ginasio)
   @JoinColumn({ name: 'id_ginasio' })
   ginasio!: Ginasio;
+
+  @OneToMany(() => Partida, (p) => p.equipeGanhadora)
+  partidasGanhadas!: Partida[];
+
+  @OneToMany(() => Partida, (p) => p.equipeVisitante)
+  partidasVisitantes!: Partida[];
+
+  @OneToMany(() => Partida, (p) => p.equipeMandante)
+  partidasMandantes!: Partida[];
 }
