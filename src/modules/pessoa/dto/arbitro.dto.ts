@@ -1,6 +1,6 @@
 import { IsUUID } from 'class-validator';
 import { Arbitro } from '../entities/arbitro.entity';
-import { CriaPessoaDto } from './pessoa.dto';
+import { CriaPessoaDto, PessoaRespostaDto } from './pessoa.dto';
 
 export class CriaArbitroDto extends CriaPessoaDto {
   @IsUUID()
@@ -12,10 +12,12 @@ export class ListaArbitroDto {
   idLiga!: string;
 }
 
-export class ArbitroRespostaDto {
+export class ArbitroRespostaDto extends PessoaRespostaDto {
   idLiga: string;
 
   constructor(arbitro: Arbitro) {
+    super(arbitro.pessoa);
+
     this.idLiga = arbitro.idLiga;
   }
 }

@@ -30,7 +30,7 @@ export class ArbitroService {
       this.typeormFilterService.catch({
         error,
         description: 'conflito',
-        entityName: 'Tecnico',
+        entityName: 'Arbitro',
       });
     }
   }
