@@ -6,12 +6,8 @@ export const databaseConfig = registerAs(
   'database',
   (): TypeOrmModuleOptions => ({
     type: 'postgres',
-    host: process.env.DB_HOST,
-    username: process.env.DB_USER,
-    database: process.env.DB_DATABASE,
-    password: process.env.DB_PASSWORD,
-    port: parseInt(process.env.DB_PORT ?? '5432'),
-    keepConnectionAlive: process.env.NODE_ENV === 'development',
+    url: process.env.DATABASE_URL,
+    keepConnectionAlive: true,
     maxQueryExecutionTime: parseInt(process.env.DB_QUERY_TIMEOUT ?? '5000'),
     entities: [__dirname + '/../**/*.entity.{js,ts}'],
     migrations: [__dirname + '/../database/migrations/*.{js,ts}'],
@@ -23,5 +19,8 @@ export const databaseConfig = registerAs(
       migrationsDir: 'src/database/migrations',
     },
     namingStrategy: new SnakeNamingStrategy(),
+    ssl: {
+      rejectUnauthorized: false,
+    },
   }),
 );
