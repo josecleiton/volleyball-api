@@ -1,5 +1,5 @@
 import { Injectable, Scope } from '@nestjs/common';
-import { LigaService } from 'src/modules/competicao/liga.service';
+import { LigaService } from 'src/modules/liga/liga.service';
 import { TypeORMFilterService } from 'src/modules/core/services/typeorm-filter.service';
 import {
   ArbitroRespostaDto,

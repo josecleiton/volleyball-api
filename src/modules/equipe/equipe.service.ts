@@ -6,7 +6,7 @@ import {
   Scope,
 } from '@nestjs/common';
 import { In } from 'typeorm';
-import { LigaService } from '../competicao/liga.service';
+import { LigaService } from '../liga/liga.service';
 import { TypeORMFilterService } from '../core/services/typeorm-filter.service';
 import { GinasioService } from '../ginasio/ginasio.service';
 import {

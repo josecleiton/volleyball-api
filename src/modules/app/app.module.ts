@@ -7,7 +7,7 @@ import {
   rateLimitConfig,
   databaseConfig,
 } from '../../configs';
-import { LigaModule } from '../competicao/liga.module';
+import { LigaModule } from '../liga/liga.module';
 
 import { CoreModule } from '../core/core.module';
 import { EquipeModule } from '../equipe/equipe.module';
