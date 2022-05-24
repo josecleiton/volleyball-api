@@ -29,16 +29,21 @@ export class EquipeService {
   }
 
   async listaEquipes() {
-    return this.equipeRepository.find();
+    const equipes = await this.equipeRepository.find();
+    return equipes.map((x) => new EquipeRespostaDto(x));
   }
 
-  async deveEncontrarUm(id: string) {
+  async deveEncontrarEntidade(id: string) {
     const equipe = await this.equipeRepository.findOne(id);
     if (!equipe) {
       throw new NotFoundException(`Equipe ${id} não encontrada`);
     }
 
-    return new EquipeRespostaDto(equipe);
+    return equipe;
+  }
+
+  async deveEncontrarUm(id: string) {
+    return new EquipeRespostaDto(await this.deveEncontrarEntidade(id));
   }
 
   async atualizaEquipe(id: string, request: AtualizaEquipeDto) {

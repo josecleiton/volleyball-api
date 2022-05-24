@@ -1,21 +1,13 @@
-import { EntidadeBase } from 'src/modules/core/entities/base.entity';
 import { Equipe } from 'src/modules/equipe/entities/equipe.entity';
-import { Column, Entity, JoinColumn, OneToOne } from 'typeorm';
-import { Pessoa } from './pessoa.entity';
+import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
+import { PessoaDeEquipe } from './pessoa_de_equipe';
 
-@Entity()
-export class Tecnico extends EntidadeBase {
+@Entity('tecnicos')
+export class Tecnico extends PessoaDeEquipe {
   @Column({ unique: true, type: 'varchar', length: 50 })
   documentoCref!: string; // documento do conselho de educação fisica
 
-  @Column({ type: 'uuid' })
-  idEquipe!: string;
-
-  @OneToOne(() => Pessoa)
-  @JoinColumn({ name: 'id_pessoa' })
-  pessoa!: Pessoa;
-
-  @OneToOne(() => Equipe)
+  @ManyToOne(() => Equipe, (equipe) => equipe.atletas)
   @JoinColumn({ name: 'id_equipe' })
   equipe!: Equipe;
 }

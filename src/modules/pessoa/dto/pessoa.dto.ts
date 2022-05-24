@@ -1,4 +1,7 @@
-import { IsEnum, IsInt, IsString, Length, Max, Min } from 'class-validator';
+import { BadRequestException } from '@nestjs/common';
+import { Type } from 'class-transformer';
+import { IsDate, IsEnum, IsString, Length } from 'class-validator';
+import { differenceInYears } from 'date-fns';
 import { Genero } from 'src/modules/core/enums';
 import { Pessoa } from '../entities/pessoa.entity';
 import { TipoPessoa } from '../enums';
@@ -15,10 +18,9 @@ export class CriaPessoaDto {
   @IsEnum(Genero)
   genero!: Genero;
 
-  @IsInt()
-  @Min(10)
-  @Max(100)
-  idade!: number;
+  @IsDate()
+  @Type(() => Date)
+  dataNascimento!: Date;
 
   @IsString()
   @Length(11, 11)
@@ -26,6 +28,19 @@ export class CriaPessoaDto {
 
   paraPessoa(): Pessoa {
     return Object.assign(new Pessoa(TipoPessoa.tecnico), this);
+  }
+
+  private static idadeLimite = 15;
+
+  validar() {
+    if (
+      differenceInYears(new Date(), this.dataNascimento) <
+      CriaPessoaDto.idadeLimite
+    ) {
+      throw new BadRequestException(
+        `Idade menor que ${CriaPessoaDto.idadeLimite} anos`,
+      );
+    }
   }
 }
 

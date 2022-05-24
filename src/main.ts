@@ -39,7 +39,14 @@ function applySecurityLayer(
 
 function applyGlobals(app: INestApplication, config: ConfigService) {
   app.useGlobalFilters(new HttpExceptionFilter(config));
-  app.useGlobalPipes(new ValidationPipe({ transform: true }));
+  app.useGlobalPipes(
+    new ValidationPipe({
+      transform: true,
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      forbidUnknownValues: true,
+    }),
+  );
   logger.log('Global config applied');
 }
 

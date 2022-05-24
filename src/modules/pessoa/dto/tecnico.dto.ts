@@ -9,6 +9,10 @@ export class CriaTecnicoDto extends CriaPessoaDto {
 
   @IsUUID()
   idEquipe!: string;
+
+  validar() {
+    super.validar();
+  }
 }
 
 export class TecnicoRespostaDto extends PessoaRespostaDto {
