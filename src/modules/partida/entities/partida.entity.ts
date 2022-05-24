@@ -9,13 +9,13 @@ import { PartidaStatus } from '../enums/partida-status.enum';
 
 @Entity()
 export class Partida extends EntidadeBase {
-  @Column('uuid')
+  @Column({ type: 'uuid', nullable: true })
   @Index()
-  idDelegado!: string;
+  idDelegado?: string;
 
-  @Column('uuid')
+  @Column({ type: 'uuid', nullable: true })
   @Index()
-  idArbitro!: string;
+  idArbitro?: string;
 
   @Column('uuid')
   @Index()
@@ -29,11 +29,15 @@ export class Partida extends EntidadeBase {
   @Index()
   idVisitante!: string;
 
-  @Column({ type: 'enum', enum: PartidaStatus })
+  @Column({
+    type: 'enum',
+    enum: PartidaStatus,
+    default: PartidaStatus.AGENDADA,
+  })
   status: PartidaStatus = PartidaStatus.AGENDADA;
 
-  @Column({ nullable: true })
-  dataComeco?: Date;
+  @Column()
+  dataComeco!: Date;
 
   @Column({ nullable: true })
   dataFinalizacao?: Date;
@@ -51,11 +55,11 @@ export class Partida extends EntidadeBase {
 
   @ManyToOne(() => Delegado)
   @JoinColumn({ name: 'id_delegado' })
-  delegado!: Delegado;
+  delegado?: Delegado;
 
   @ManyToOne(() => Arbitro)
   @JoinColumn({ name: 'id_arbitro' })
-  arbitro!: Arbitro;
+  arbitro?: Arbitro;
 
   @ManyToOne(() => Ginasio)
   @JoinColumn({ name: 'id_ginasio' })

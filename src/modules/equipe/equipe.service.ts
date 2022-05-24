@@ -52,12 +52,18 @@ export class EquipeService {
   }
 
   async listaEquipes(request: ListaEquipesDto) {
-    const equipes = await this.equipeRepository.find({ where: { ...request } });
+    const equipes = await this.equipeRepository.find({
+      where: { ...request },
+      order: { dataCriacao: 'ASC' },
+    });
     return equipes.map((x) => new EquipeRespostaDto(x));
   }
 
   async deveEncontrarEntidade(id: string) {
-    const equipe = await this.equipeRepository.findOne(id);
+    const equipe = await this.equipeRepository.findOne({
+      where: { id },
+      relations: ['atletas'],
+    });
     if (!equipe) {
       throw new NotFoundException(`Equipe ${id} não encontrada`);
     }

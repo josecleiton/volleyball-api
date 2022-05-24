@@ -17,7 +17,8 @@ import {
 @Entity('equipes')
 @Index('IX_equipes_cidade_estado', ['cidade', 'estado'])
 export class Equipe extends EntidadeBase {
-  private static quantidadeAtletasPraAptidao = 10;
+  static quantidadeAtletasPraAptidao = 12;
+  static quantidadeMaximaDeAtletas = 22;
 
   @Column({ type: 'varchar', length: 255, unique: true })
   nome!: string;
@@ -29,7 +30,7 @@ export class Equipe extends EntidadeBase {
   public get apta(): boolean {
     const descricaoAptidao = [];
 
-    if (this.atletas.length < 10) {
+    if (this.atletas.length < Equipe.quantidadeAtletasPraAptidao) {
       descricaoAptidao.push(
         `Precisa-se de ${Equipe.quantidadeAtletasPraAptidao} atletas. Atletas cadastrados: ${this.atletas.length}`,
       );

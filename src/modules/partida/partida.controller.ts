@@ -1,22 +1,10 @@
-import {
-  Body,
-  Controller,
-  Param,
-  ParseUUIDPipe,
-  Patch,
-  Post,
-} from '@nestjs/common';
-import { AtualizaPartidaStatusDto, CriaPartidaDto } from './dto/partida.dto';
+import { Body, Controller, Param, ParseUUIDPipe, Patch } from '@nestjs/common';
+import { AtualizaPartidaStatusDto } from './dto/partida.dto';
 import { PartidaService } from './partida.service';
 
 @Controller('partida')
 export class PartidaController {
   constructor(private readonly partidaService: PartidaService) {}
-
-  @Post()
-  async criaPartida(@Body() requisicao: CriaPartidaDto) {
-    return this.partidaService.criaPartida(requisicao);
-  }
 
   @Patch(':id')
   async atualizaStatus(

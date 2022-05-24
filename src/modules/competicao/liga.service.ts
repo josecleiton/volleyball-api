@@ -2,16 +2,22 @@ import {
   ConflictException,
   Injectable,
   NotFoundException,
+  NotImplementedException,
   Scope,
 } from '@nestjs/common';
+import { Connection } from 'typeorm';
 import { TypeORMFilterService } from '../core/services/typeorm-filter.service';
 import { EquipeService } from '../equipe/equipe.service';
+import { Partida } from '../partida/entities/partida.entity';
 import {
   CriaLigaDto,
   InicializaLigaDto,
+  InicializaLigaRespostaDto,
   LigaRespostaDto,
 } from './dto/liga.dto';
+import { Liga } from './entities/liga.entity';
 import { LigaRepository } from './liga.repository';
+import { ClassificacaoGenerator } from './tabela/classificacao.service';
 
 @Injectable({ scope: Scope.REQUEST })
 export class LigaService {
@@ -19,6 +25,7 @@ export class LigaService {
     private readonly ligaRepository: LigaRepository,
     private readonly equipeService: EquipeService,
     private readonly typeormFilterService: TypeORMFilterService,
+    private readonly connection: Connection,
   ) {}
 
   async criaLiga(requisicao: CriaLigaDto) {
@@ -40,9 +47,18 @@ export class LigaService {
       requisicao.id,
     );
 
-    if (liga.iniciadaEm) {
+    if (liga.dataComeco) {
       throw new ConflictException(
-        `Liga ${liga.id} já iniciada na data: ${liga.iniciadaEm}`,
+        `Liga ${liga.id} já iniciada na data: ${liga.dataComeco}`,
+      );
+    }
+
+    if (
+      liga.equipes.length >= Liga.minimoDeEquipesNaLiga &&
+      liga.equipes.length % 2 === 0
+    ) {
+      throw new ConflictException(
+        `Quantidade de equipes na liga ${requisicao.id} não é suficiente ou não é par. Quantidade: ${liga.equipes.length}`,
       );
     }
 
@@ -51,21 +67,59 @@ export class LigaService {
       throw new ConflictException('Todas as equipes precisam estar aptas');
     }
 
-    liga.iniciadaEm = new Date();
+    liga.dataComeco = new Date();
 
-    return new LigaRespostaDto(await this.ligaRepository.save(liga));
+    const classificacaoGenerator = new ClassificacaoGenerator(
+      liga.equipes.length,
+      liga.dataComeco,
+    );
+    const partidas = liga.equipes.reduce((result, equipe, equipeIdx) => {
+      const confrontos = liga.equipes.reduce(
+        (result, equipeAdversaria, equipeAdversariaIdx) => {
+          if (equipe.id === equipeAdversaria.id) {
+            return result;
+          }
+
+          const partidasGeradas = classificacaoGenerator.geraIdaEVolta(
+            {
+              equipe,
+              posicao: equipeIdx,
+            },
+            {
+              equipe: equipeAdversaria,
+              posicao: equipeAdversariaIdx,
+            },
+          );
+
+          return result.concat(partidasGeradas);
+        },
+        [] as Partida[],
+      );
+
+      return result.concat(confrontos);
+    }, [] as Partida[]);
+
+    const [ligaAtualizada, partidasInseridas] =
+      await this.connection.transaction(async (manager) => {
+        const partidasSave = await manager.save(partidas);
+        const ligaSave = await manager.save(liga);
+
+        return [ligaSave, partidasSave];
+      });
+
+    return new InicializaLigaRespostaDto(ligaAtualizada, partidasInseridas);
   }
 
   private async getLigaIniciadaEm(id: string) {
     return this.ligaRepository.findOne({
       where: { id },
-      select: ['id', 'iniciadaEm'],
+      select: ['id', 'dataComeco'],
     });
   }
 
   async excecaoSeALigaEstaIniciada(id: string) {
     const resultado = await this.getLigaIniciadaEm(id);
-    if (!resultado?.iniciadaEm) {
+    if (!resultado?.dataComeco) {
       return;
     }
 
@@ -74,7 +128,7 @@ export class LigaService {
 
   async excecaoSeALigaNaoEstaIniciada(id: string) {
     const resultado = await this.getLigaIniciadaEm(id);
-    if (resultado?.iniciadaEm) {
+    if (resultado?.dataComeco) {
       return;
     }
 

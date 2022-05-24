@@ -42,6 +42,7 @@ export class EquipeRespostaDto {
   estado: string;
   idLiga: string;
   idGinasio: string;
+  quantidadeAtletas: number;
 
   constructor(equipe: Equipe) {
     this.id = equipe.id;
@@ -53,5 +54,6 @@ export class EquipeRespostaDto {
     this.estado = equipe.estado;
     this.idLiga = equipe.idLiga;
     this.idGinasio = equipe.idGinasio;
+    this.quantidadeAtletas = equipe.atletas.length;
   }
 }

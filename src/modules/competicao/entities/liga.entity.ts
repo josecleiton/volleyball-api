@@ -6,11 +6,13 @@ import { Column, Entity, OneToMany, Unique } from 'typeorm';
 @Entity('ligas')
 @Unique(['ano', 'genero', 'serie'])
 export class Liga extends EntidadeBase {
+  static minimoDeEquipesNaLiga = 10;
+
   @Column()
   genero!: Genero;
 
   @Column({ type: 'timestamp with time zone', nullable: true })
-  iniciadaEm?: Date;
+  dataComeco?: Date;
 
   @Column({ nullable: true })
   nome?: string;
@@ -18,9 +20,9 @@ export class Liga extends EntidadeBase {
   @Column({ type: 'varchar', length: 40, nullable: true })
   serie?: string;
 
-  @OneToMany(() => Equipe, (e) => e.liga)
-  equipes!: Equipe[];
-
   @Column()
   ano!: string;
+
+  @OneToMany(() => Equipe, (e) => e.liga)
+  equipes!: Equipe[];
 }

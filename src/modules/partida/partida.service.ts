@@ -5,41 +5,16 @@ import {
   NotImplementedException,
   Scope,
 } from '@nestjs/common';
-import { LigaService } from '../competicao/liga.service';
-import { TypeORMFilterService } from '../core/services/typeorm-filter.service';
-import { EquipeService } from '../equipe/equipe.service';
-import { CriaPartidaDto, PartidaRespostaDto } from './dto/partida.dto';
+import { PartidaRespostaDto } from './dto/partida.dto';
 import { PartidaStatus } from './enums/partida-status.enum';
 import { PartidaRepository } from './repositories/partida.repository';
 
 @Injectable({ scope: Scope.REQUEST })
 export class PartidaService {
-  constructor(
-    private readonly partidaRepository: PartidaRepository,
-    private readonly equipeService: EquipeService,
-    private readonly ligaService: LigaService,
-    private readonly typeormFilterService: TypeORMFilterService,
-  ) {}
+  constructor(private readonly partidaRepository: PartidaRepository) {}
 
-  async criaPartida(requisicao: CriaPartidaDto) {
-    const [equipe] = await this.equipeService.deveEncontrarEquipes(
-      [requisicao.idMandante, requisicao.idVisitante],
-      2,
-      true,
-    );
-
-    await this.ligaService.excecaoSeALigaNaoEstaIniciada(equipe.idLiga);
-
-    const partida = this.partidaRepository.create({ ...requisicao });
-    try {
-      return new PartidaRespostaDto(await this.partidaRepository.save(partida));
-    } catch (error) {
-      this.typeormFilterService.catch({
-        error,
-        description: 'conflito',
-        entityName: 'Partida',
-      });
-    }
+  async listaPartidas() {
+    throw new NotImplementedException();
   }
 
   private async deveEncontrarEntidade(id: string) {
