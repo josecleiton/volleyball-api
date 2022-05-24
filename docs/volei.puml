@@ -6,7 +6,7 @@ enum genero{
 	feminino
 }
 
-entity competicoes {
+entity ligas {
 	* id : uuid <<generated>>
 	--
 	* genero : genero
@@ -68,6 +68,13 @@ enum posicoes {
 	central
 	libero
 	levantador
+}
+
+enum partida_status {
+	agendada
+	em_andamento
+	concluida
+	cancelada
 }
 
 entity atletas{
@@ -132,6 +139,7 @@ entity partidas {
 	* id_delegado : uuid <<FK>>
 	* id_arbitro : uuid <<FK>>
 	* id_ginasio : uuid <<FK>>
+	* status : partida_status
 	* comecou_em : timestamp
 	* finalizou_em : timestamp
 	* id_time_ganhador : uuid <<FK>>
@@ -140,15 +148,17 @@ entity partidas {
 	* atualizado_em : timestamp
 }
 
-competicoes }o-- "<= 12" times
-times }o-- "<= 22" atletas : no mínimo 12 para o time estar regular
-times "1" --|| "1" tecnicos
-times }o-- "*" auxiliares
-times "1" ||-- "1" ginasios
+ligas ||--o{ "<= 12" equipes
+ligas ||--o{ arbitros
+ligas ||--o{ delegados
+equipes ||--o{ "<= 22" atletas : no mínimo 12 para o time estar regular
+equipes "1" --|| "1" tecnicos
+equipes ||--o{ "*" auxiliares
+equipes "1" ||-- "1" ginasios
 partidas "1" ||-- "1" arbitros
 partidas "1" ||-- "1" delegados
 partidas "1" ||-- "1" ginasios
-partidas "1" ||--o{ "2" times : time vencedor e time derrotado
+partidas "1" ||--o{ "2" equipes : time vencedor e time derrotado
 
 atletas ||-- pessoas
 tecnicos ||-- pessoas
