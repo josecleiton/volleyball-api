@@ -1,6 +1,8 @@
 import { EntidadeBase } from 'src/modules/core/entities/base.entity';
 import { Genero } from 'src/modules/core/enums';
 import { Equipe } from 'src/modules/equipe/entities/equipe.entity';
+import { Arbitro } from 'src/modules/pessoa/entities/arbitro.entity';
+import { Delegado } from 'src/modules/pessoa/entities/delegado.entity';
 import { Column, Entity, OneToMany, Unique } from 'typeorm';
 
 @Entity('ligas')
@@ -25,4 +27,10 @@ export class Liga extends EntidadeBase {
 
   @OneToMany(() => Equipe, (e) => e.liga)
   equipes!: Equipe[];
+
+  @OneToMany(() => Arbitro, (a) => a.liga)
+  arbitros!: Arbitro[];
+
+  @OneToMany(() => Delegado, (d) => d.liga)
+  delegados!: Delegado[];
 }

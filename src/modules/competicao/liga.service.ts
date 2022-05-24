@@ -2,7 +2,6 @@ import {
   ConflictException,
   Injectable,
   NotFoundException,
-  NotImplementedException,
   Scope,
 } from '@nestjs/common';
 import { Connection } from 'typeorm';
@@ -60,6 +59,14 @@ export class LigaService {
       throw new ConflictException(
         `Quantidade de equipes na liga ${requisicao.id} não é suficiente ou não é par. Quantidade: ${liga.equipes.length}`,
       );
+    }
+
+    if (!liga.arbitros?.length) {
+      throw new ConflictException(`Tem que ter ao menos um arbitro na liga`);
+    }
+
+    if (!liga.delegados?.length) {
+      throw new ConflictException(`Tem que ter ao menos um delegado na liga`);
     }
 
     if (!liga.equipes.every((equipe) => equipe.apta)) {
