@@ -1,5 +1,6 @@
 import {
   CreateDateColumn,
+  Index,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -12,5 +13,6 @@ export abstract class EntidadeBase {
   dataAtualizacao!: Date;
 
   @CreateDateColumn()
+  @Index()
   dataCriacao!: Date;
 }
