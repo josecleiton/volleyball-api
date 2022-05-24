@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { LigaModule } from '../competicao/liga.module';
+import { LigaModule } from '../liga/liga.module';
 import { CoreModule } from '../core/core.module';
 import { EquipeModule } from '../equipe/equipe.module';
 import { ArbitroController } from './controllers/arbitro.controller';

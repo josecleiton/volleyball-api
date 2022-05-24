@@ -6,9 +6,12 @@ export class LigaRepository extends Repository<Liga> {
   async pegaUmComEquipesCompletas(id: string) {
     const qb = this.createQueryBuilder('ligas');
     qb.leftJoinAndSelect('ligas.equipes', 'equipes')
+      .leftJoinAndSelect('ligas.arbitros', 'arbitros')
+      .leftJoinAndSelect('ligas.delegados', 'delegados')
       .leftJoinAndSelect('equipes.atletas', 'atletas')
       .leftJoinAndSelect('equipes.tecnico', 'tecnico')
-      .where('ligas.id', Equal(id));
+      .where('ligas.id', Equal(id))
+      .orderBy('equipes.dataCriacao', 'ASC');
 
     return qb.getOneOrFail();
   }

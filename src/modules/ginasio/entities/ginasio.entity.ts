@@ -1,5 +1,6 @@
 import { EntidadeBase } from 'src/modules/core/entities/base.entity';
-import { Column, Entity, Index, Unique } from 'typeorm';
+import { Partida } from 'src/modules/partida/entities/partida.entity';
+import { Column, Entity, Index, OneToMany, Unique } from 'typeorm';
 
 @Entity('ginasios')
 @Index('IX_ginasios_cidade_estado', ['cidade', 'estado'])
@@ -15,4 +16,7 @@ export class Ginasio extends EntidadeBase {
   @Column()
   @Index()
   estado!: string;
+
+  @OneToMany(() => Partida, (p) => p.ginasio)
+  partidas!: Partida[];
 }

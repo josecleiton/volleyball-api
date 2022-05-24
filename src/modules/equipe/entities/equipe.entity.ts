@@ -1,6 +1,7 @@
-import { Liga } from 'src/modules/competicao/entities/liga.entity';
+import { Liga } from 'src/modules/liga/entities/liga.entity';
 import { EntidadeBase } from 'src/modules/core/entities/base.entity';
 import { Ginasio } from 'src/modules/ginasio/entities/ginasio.entity';
+import { Partida } from 'src/modules/partida/entities/partida.entity';
 import { Atleta } from 'src/modules/pessoa/entities/atleta.entity';
 import { Tecnico } from 'src/modules/pessoa/entities/tecnico.entity';
 import {
@@ -16,7 +17,8 @@ import {
 @Entity('equipes')
 @Index('IX_equipes_cidade_estado', ['cidade', 'estado'])
 export class Equipe extends EntidadeBase {
-  private static quantidadeAtletasPraAptidao = 10;
+  static quantidadeAtletasPraAptidao = 12;
+  static quantidadeMaximaDeAtletas = 22;
 
   @Column({ type: 'varchar', length: 255, unique: true })
   nome!: string;
@@ -30,7 +32,7 @@ export class Equipe extends EntidadeBase {
   public get apta(): boolean {
     const descricaoAptidao = [];
 
-    if (this.atletas.length < 10) {
+    if (this.atletas.length < Equipe.quantidadeAtletasPraAptidao) {
       descricaoAptidao.push(
         `Precisa-se de ${Equipe.quantidadeAtletasPraAptidao} atletas. Atletas cadastrados: ${this.atletas.length}`,
       );
@@ -73,4 +75,13 @@ export class Equipe extends EntidadeBase {
   @OneToOne(() => Ginasio)
   @JoinColumn({ name: 'id_ginasio' })
   ginasio!: Ginasio;
+
+  @OneToMany(() => Partida, (p) => p.equipeGanhadora)
+  partidasGanhadas!: Partida[];
+
+  @OneToMany(() => Partida, (p) => p.equipeVisitante)
+  partidasVisitantes!: Partida[];
+
+  @OneToMany(() => Partida, (p) => p.equipeMandante)
+  partidasMandantes!: Partida[];
 }

@@ -3,6 +3,7 @@ import {
   Controller,
   Get,
   Param,
+  ParseUUIDPipe,
   Patch,
   Post,
   Query,
@@ -25,7 +26,7 @@ export class AtletaController {
   }
 
   @Get(':id')
-  async pegaUm(@Param('id') id: string) {
+  async pegaUm(@Param('id', ParseUUIDPipe) id: string) {
     return this.atletaService.deveEncontrarUm(id);
   }
 
@@ -36,7 +37,7 @@ export class AtletaController {
 
   @Patch(':id')
   async atualizaAtleta(
-    @Param('id') id: string,
+    @Param('id', ParseUUIDPipe) id: string,
     @Body() requisicao: AtualizaAtletaDto,
   ) {
     requisicao.validar?.();

@@ -5,6 +5,7 @@ import {
   Scope,
 } from '@nestjs/common';
 import { TypeORMFilterService } from 'src/modules/core/services/typeorm-filter.service';
+import { Equipe } from 'src/modules/equipe/entities/equipe.entity';
 import { EquipeService } from 'src/modules/equipe/equipe.service';
 import {
   AtletaRespostaDto,
@@ -39,6 +40,13 @@ export class AtletaService {
     const equipe = await this.equipeService.deveEncontrarUm(
       requisicao.idEquipe,
     );
+
+    if (equipe.quantidadeAtletas + 1 > Equipe.quantidadeMaximaDeAtletas) {
+      throw new ConflictException(
+        `Não é possível adicionar atleta, ele irá exceder o máximo de atletas por equipe que é ${Equipe.quantidadeMaximaDeAtletas}`,
+      );
+    }
+
     await this.validaNumeroEquipe({ equipe, numero: requisicao.numero });
 
     const atleta = this.atletaRepository.create({

@@ -1,4 +1,4 @@
-import { Liga } from 'src/modules/competicao/entities/liga.entity';
+import { Liga } from 'src/modules/liga/entities/liga.entity';
 import { Column, Index, JoinColumn, OneToOne } from 'typeorm';
 import { TemPessoa } from './tem_pessoa.entity';
 

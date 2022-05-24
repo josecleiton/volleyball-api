@@ -5,7 +5,8 @@ import {
   NotFoundException,
   Scope,
 } from '@nestjs/common';
-import { LigaService } from '../competicao/liga.service';
+import { In } from 'typeorm';
+import { LigaService } from '../liga/liga.service';
 import { TypeORMFilterService } from '../core/services/typeorm-filter.service';
 import { GinasioService } from '../ginasio/ginasio.service';
 import {
@@ -49,12 +50,18 @@ export class EquipeService {
   }
 
   async listaEquipes(request: ListaEquipesDto) {
-    const equipes = await this.equipeRepository.find({ where: { ...request } });
+    const equipes = await this.equipeRepository.find({
+      where: { ...request },
+      order: { dataCriacao: 'ASC' },
+    });
     return equipes.map((x) => new EquipeRespostaDto(x));
   }
 
   async deveEncontrarEntidade(id: string) {
-    const equipe = await this.equipeRepository.findOne(id);
+    const equipe = await this.equipeRepository.findOne({
+      where: { id },
+      relations: ['atletas'],
+    });
     if (!equipe) {
       throw new NotFoundException(`Equipe ${id} não encontrada`);
     }
@@ -64,6 +71,27 @@ export class EquipeService {
 
   async deveEncontrarUm(id: string) {
     return new EquipeRespostaDto(await this.deveEncontrarEntidade(id));
+  }
+
+  async deveEncontrarEquipes(ids: string[], take?: number, mesmaLiga = true) {
+    const equipes = await this.equipeRepository.find({
+      where: {
+        id: In(ids),
+      },
+      take,
+    });
+    if (equipes.length != ids.length) {
+      const equipeIdSet = new Set(equipes.map((x) => x.id));
+      const equipesFaltantes = ids.filter((id) => !equipeIdSet.has(id));
+      throw new NotFoundException(
+        `Ids de equipes não encontradas: ${equipesFaltantes}`,
+      );
+    }
+    if (mesmaLiga && equipes.every((x) => x.idLiga == equipes[0].idLiga)) {
+      throw new NotFoundException('Equipes não estão na mesma liga');
+    }
+
+    return equipes.map((x) => new EquipeRespostaDto(x));
   }
 
   async atualizaEquipe(id: string, requisicao: AtualizaEquipeDto) {
