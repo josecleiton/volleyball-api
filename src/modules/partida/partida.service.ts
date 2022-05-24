@@ -33,7 +33,6 @@ export class PartidaService {
 
     switch ([partida.status, status]) {
       case [PartidaStatus.AGENDADA, PartidaStatus.EM_ANDAMENTO]:
-        partida.dataComeco = new Date();
         break;
 
       case [PartidaStatus.EM_ANDAMENTO, PartidaStatus.CONCLUIDA]:
@@ -45,6 +44,8 @@ export class PartidaService {
           `Partida ${id} não pode sair de ${partida.status} -> ${status}`,
         );
     }
+
+    partida.status = status;
 
     return new PartidaRespostaDto(await this.partidaRepository.save(partida));
   }
