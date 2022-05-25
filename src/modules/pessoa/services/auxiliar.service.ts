@@ -1,54 +1,56 @@
 import { Injectable, NotFoundException, Scope } from '@nestjs/common';
-import { LigaService } from 'src/modules/liga/liga.service';
 import { TypeORMFilterService } from 'src/modules/core/services/typeorm-filter.service';
 import { EquipeService } from 'src/modules/equipe/equipe.service';
-import { CriaTecnicoDto, TecnicoRespostaDto } from '../dto/tecnico.dto';
-import { TecnicoRepository } from '../repositories/tecnico.repository';
+import { LigaService } from 'src/modules/liga/liga.service';
+import { AuxiliarRespostaDto, CriaAuxiliarDto } from '../dto/auxiliar.dto';
 import { TipoPessoa } from '../enums';
+import { AuxiliarRepository } from '../repositories/auxiliar.repository';
 
 @Injectable({ scope: Scope.REQUEST })
-export class TecnicoService {
+export class AuxiliarService {
   constructor(
-    private readonly tecnicoRepository: TecnicoRepository,
+    private readonly auxiliarRepository: AuxiliarRepository,
     private readonly equipeService: EquipeService,
     private readonly typeormFilterService: TypeORMFilterService,
     private readonly ligaService: LigaService,
   ) {}
 
-  async createTecnico(requisicao: CriaTecnicoDto) {
+  async criaAuxiliar(requisicao: CriaAuxiliarDto) {
     const equipe = await this.equipeService.deveEncontrarUm(
       requisicao.idEquipe,
     );
     await this.ligaService.excecaoSeALigaEstaIniciada(equipe.idLiga);
-    const tecnico = this.tecnicoRepository.create({
+    const auxiliar = this.auxiliarRepository.create({
       ...requisicao,
       idEquipe: equipe.id,
-      pessoa: requisicao.paraPessoa(TipoPessoa.tecnico),
+      pessoa: requisicao.paraPessoa(TipoPessoa.auxiliar),
     });
 
     try {
-      return new TecnicoRespostaDto(await this.tecnicoRepository.save(tecnico));
+      return new AuxiliarRespostaDto(
+        await this.auxiliarRepository.save(auxiliar),
+      );
     } catch (error) {
       this.typeormFilterService.catch({
         error,
         description: 'conflito',
-        entityName: 'Tecnico',
+        entityName: 'Auxiliar',
       });
     }
   }
 
   async devePegarEntidade(id: string) {
-    const tecnico = await this.tecnicoRepository.findOne({
+    const tecnico = await this.auxiliarRepository.findOne({
       where: { id },
     });
     if (!tecnico) {
-      throw new NotFoundException(`Tecnico ${id} não encontrado`);
+      throw new NotFoundException(`Auxiliar ${id} não encontrado`);
     }
 
     return tecnico;
   }
 
   async devePegarUm(id: string) {
-    return new TecnicoRespostaDto(await this.devePegarEntidade(id));
+    return new AuxiliarRespostaDto(await this.devePegarEntidade(id));
   }
 }

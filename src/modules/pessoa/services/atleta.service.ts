@@ -14,6 +14,7 @@ import {
   IValidaNumeroEquipeDto,
   ListaAtletaDto,
 } from '../dto/atleta.dto';
+import { TipoPessoa } from '../enums';
 import { AtletaRepository } from '../repositories/atleta.repository';
 
 @Injectable({ scope: Scope.REQUEST })
@@ -52,7 +53,7 @@ export class AtletaService {
     const atleta = this.atletaRepository.create({
       ...requisicao,
       idEquipe: equipe.id,
-      pessoa: requisicao.paraPessoa(),
+      pessoa: requisicao.paraPessoa(TipoPessoa.atleta),
     });
 
     try {

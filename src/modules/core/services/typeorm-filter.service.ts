@@ -18,6 +18,10 @@ export class TypeORMFilterService {
       switch (error.driverError.code) {
         case '23505':
           throw new ConflictException(`${entityName}: ${description}`);
+        case '23503':
+          throw new ConflictException(
+            `${entityName} missing some relationship. ${error.driverError.detail}`,
+          );
       }
     }
 

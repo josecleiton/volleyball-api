@@ -13,6 +13,7 @@ import {
   OneToMany,
   OneToOne,
 } from 'typeorm';
+import { Auxiliar } from 'src/modules/pessoa/entities/auxiliar.entity';
 
 @Entity('equipes')
 @Index('IX_equipes_cidade_estado', ['cidade', 'estado'])
@@ -42,6 +43,10 @@ export class Equipe extends EntidadeBase {
       descricaoAptidao.push('Necessita de um técnico');
     }
 
+    if (!this.auxiliares?.length) {
+      descricaoAptidao.push('Necessita de ao menos um auxiliar');
+    }
+
     this.descricaoAptidao = descricaoAptidao;
 
     return (this._apta = !descricaoAptidao.length);
@@ -67,6 +72,9 @@ export class Equipe extends EntidadeBase {
 
   @OneToMany(() => Atleta, (a) => a.equipe)
   atletas!: Atleta[];
+
+  @OneToMany(() => Auxiliar, (a) => a.equipe)
+  auxiliares!: Auxiliar[];
 
   @ManyToOne(() => Liga, (c) => c.equipes)
   @JoinColumn({ name: 'id_liga' })

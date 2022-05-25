@@ -10,6 +10,7 @@ export class LigaRepository extends Repository<Liga> {
       .leftJoinAndSelect('ligas.delegados', 'delegados')
       .leftJoinAndSelect('equipes.atletas', 'atletas')
       .leftJoinAndSelect('equipes.tecnico', 'tecnico')
+      .leftJoinAndSelect('equipes.auxiliares', 'auxiliares')
       .where('ligas.id', Equal(id))
       .orderBy('equipes.dataCriacao', 'ASC');
 

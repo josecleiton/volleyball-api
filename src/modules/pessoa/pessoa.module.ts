@@ -15,6 +15,9 @@ import { ArbitroService } from './services/arbitro.service';
 import { AtletaService } from './services/atleta.service';
 import { DelegadoService } from './services/delegado.service';
 import { TecnicoService } from './services/tecnico.service';
+import { AuxiliarRepository } from './repositories/auxiliar.repository';
+import { AuxiliarController } from './controllers/auxiliar.controller';
+import { AuxiliarService } from './services/auxiliar.service';
 
 @Module({
   imports: [
@@ -23,6 +26,7 @@ import { TecnicoService } from './services/tecnico.service';
       AtletaRepository,
       ArbitroRepository,
       DelegadoRepository,
+      AuxiliarRepository,
     ]),
     EquipeModule,
     CoreModule,
@@ -33,7 +37,14 @@ import { TecnicoService } from './services/tecnico.service';
     AtletaController,
     ArbitroController,
     DelegadoController,
+    AuxiliarController,
   ],
-  providers: [TecnicoService, AtletaService, ArbitroService, DelegadoService],
+  providers: [
+    TecnicoService,
+    AtletaService,
+    ArbitroService,
+    DelegadoService,
+    AuxiliarService,
+  ],
 })
 export class PessoaModule {}
