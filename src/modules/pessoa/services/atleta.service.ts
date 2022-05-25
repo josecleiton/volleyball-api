@@ -7,6 +7,7 @@ import {
 import { TypeORMFilterService } from 'src/modules/core/services/typeorm-filter.service';
 import { Equipe } from 'src/modules/equipe/entities/equipe.entity';
 import { EquipeService } from 'src/modules/equipe/equipe.service';
+import { LigaService } from 'src/modules/liga/liga.service';
 import {
   AtletaRespostaDto,
   AtualizaAtletaDto,
@@ -23,6 +24,7 @@ export class AtletaService {
     private readonly atletaRepository: AtletaRepository,
     private readonly equipeService: EquipeService,
     private readonly typeormFilterService: TypeORMFilterService,
+    private readonly ligaService: LigaService,
   ) {}
 
   private async validaNumeroEquipe({ numero, equipe }: IValidaNumeroEquipeDto) {
@@ -41,6 +43,7 @@ export class AtletaService {
     const equipe = await this.equipeService.deveEncontrarUm(
       requisicao.idEquipe,
     );
+    await this.ligaService.excecaoSeALigaEstaIniciada(equipe.idLiga);
 
     if (equipe.quantidadeAtletas + 1 > Equipe.quantidadeMaximaDeAtletas) {
       throw new ConflictException(
@@ -70,6 +73,7 @@ export class AtletaService {
   private async deveEncontrarEntidade(id: string) {
     const atleta = await this.atletaRepository.findOne({
       where: { id },
+      relations: ['equipe'],
     });
     if (!atleta) {
       throw new NotFoundException(`Atleta ${id} não encontrado`);
@@ -93,6 +97,7 @@ export class AtletaService {
   async atualizaAtleta(id: string, requisicao: AtualizaAtletaDto) {
     try {
       const atleta = await this.deveEncontrarEntidade(id);
+      await this.ligaService.excecaoSeALigaEstaIniciada(atleta.equipe.idLiga);
 
       if (requisicao.dataNascimento) {
         atleta.pessoa.dataNascimento = requisicao.dataNascimento;
@@ -125,10 +130,9 @@ export class AtletaService {
   }
 
   async removerAtleta(id: string) {
-    // TODO: checa liga já iniciada
-    const resultado = await this.atletaRepository.delete(id);
-    if (!resultado.affected) {
-      throw new NotFoundException(`Atleta ${id} não encontrado`);
-    }
+    const atleta = await this.deveEncontrarEntidade(id);
+    await this.ligaService.excecaoSeALigaEstaIniciada(atleta.equipe.idLiga);
+
+    await this.atletaRepository.delete(id);
   }
 }

@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   ParseUUIDPipe,
@@ -42,5 +43,10 @@ export class AtletaController {
   ) {
     requisicao.validar?.();
     return this.atletaService.atualizaAtleta(id, requisicao);
+  }
+
+  @Delete(':id')
+  async removeAtleta(@Param('id', ParseUUIDPipe) id: string) {
+    return this.atletaService.removerAtleta(id);
   }
 }
