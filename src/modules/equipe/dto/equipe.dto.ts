@@ -30,7 +30,8 @@ export class CriaEquipeDto {
 export class AtualizaEquipeDto extends PartialType(CriaEquipeDto) {}
 
 export class ListaEquipesDto {
-  idLiga?: string;
+  @IsUUID()
+  idLiga!: string;
 }
 
 export class EquipeRespostaDto {
