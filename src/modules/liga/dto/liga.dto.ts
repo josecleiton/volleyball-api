@@ -1,10 +1,4 @@
-import {
-  IsEnum,
-  IsOptional,
-  IsString,
-  IsUUID,
-  Length,
-} from 'class-validator';
+import { IsEnum, IsOptional, IsString, IsUUID, Length } from 'class-validator';
 import { compareAsc } from 'date-fns';
 import { Genero } from 'src/modules/core/enums';
 import { PartidaRespostaDto } from 'src/modules/partida/dto/partida.dto';
@@ -26,7 +20,7 @@ export class CriaLigaDto {
 
   @IsOptional()
   @IsString()
-  @Length(2, 20)
+  @Length(1, 20)
   serie?: string;
 }
 
