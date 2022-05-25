@@ -4,7 +4,11 @@ import { registerAs } from '@nestjs/config';
 
 type Callback = (err: Error | null, stat?: boolean) => void;
 
-const whiteList: string[] = ['http://localhost:3000', 'http://localhost:5000'];
+const whiteList: string[] = [
+  'http://localhost:3000',
+  'http://localhost:5000',
+  'https://voleibol-api.herokuapp.com',
+];
 
 function origin(origin: string, callback: Callback) {
   return !origin || whiteList.find((str) => new RegExp(str).test(origin))
