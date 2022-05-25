@@ -53,7 +53,7 @@ export class EquipeService {
     const equipes = await this.equipeRepository.find({
       where: { ...request },
       order: { dataCriacao: 'ASC' },
-      relations: ['atletas', 'tecnico'],
+      relations: ['atletas', 'auxiliares', 'tecnico'],
     });
     return equipes.map((x) => new EquipeRespostaDto(x));
   }
