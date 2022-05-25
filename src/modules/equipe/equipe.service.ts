@@ -53,6 +53,7 @@ export class EquipeService {
     const equipes = await this.equipeRepository.find({
       where: { ...request },
       order: { dataCriacao: 'ASC' },
+      relations: ['atletas', 'tecnico'],
     });
     return equipes.map((x) => new EquipeRespostaDto(x));
   }
@@ -60,7 +61,7 @@ export class EquipeService {
   async deveEncontrarEntidade(id: string) {
     const equipe = await this.equipeRepository.findOne({
       where: { id },
-      relations: ['atletas'],
+      relations: ['atletas', 'tecnico'],
     });
     if (!equipe) {
       throw new NotFoundException(`Equipe ${id} não encontrada`);
