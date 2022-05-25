@@ -1,5 +1,6 @@
 import { PartialType } from '@nestjs/swagger';
 import { IsOptional, IsString, IsUrl, IsUUID, Length } from 'class-validator';
+import { TecnicoRespostaDto } from 'src/modules/pessoa/dto/tecnico.dto';
 import { Equipe } from '../entities/equipe.entity';
 
 export class CriaEquipeDto {
@@ -42,7 +43,9 @@ export class EquipeRespostaDto {
   estado: string;
   idLiga: string;
   idGinasio: string;
+  tecnico?: TecnicoRespostaDto;
   quantidadeAtletas: number;
+  quantidadeAuxiliares: number;
 
   constructor(equipe: Equipe) {
     this.id = equipe.id;
@@ -54,6 +57,10 @@ export class EquipeRespostaDto {
     this.estado = equipe.estado;
     this.idLiga = equipe.idLiga;
     this.idGinasio = equipe.idGinasio;
-    this.quantidadeAtletas = equipe.atletas.length;
+    this.quantidadeAtletas = equipe.atletas?.length ?? 0;
+    this.tecnico = equipe.tecnico
+      ? new TecnicoRespostaDto(equipe.tecnico)
+      : undefined;
+    this.quantidadeAuxiliares = equipe.auxiliares?.length ?? 0;
   }
 }

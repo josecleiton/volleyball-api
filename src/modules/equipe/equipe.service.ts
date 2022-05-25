@@ -60,7 +60,7 @@ export class EquipeService {
   async deveEncontrarEntidade(id: string) {
     const equipe = await this.equipeRepository.findOne({
       where: { id },
-      relations: ['atletas'],
+      relations: ['atletas', 'auxiliares', 'tecnico'],
     });
     if (!equipe) {
       throw new NotFoundException(`Equipe ${id} não encontrada`);

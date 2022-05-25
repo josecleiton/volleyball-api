@@ -7,6 +7,7 @@ import {
   ListaDelegadoDto,
 } from '../dto/delegado.dto';
 import { DelegadoRepository } from '../repositories/delegado.repository';
+import { TipoPessoa } from '../enums';
 
 @Injectable({ scope: Scope.REQUEST })
 export class DelegadoService {
@@ -21,7 +22,7 @@ export class DelegadoService {
     const arbitro = this.delegadoRepository.create({
       ...requisicao,
       idLiga: liga.id,
-      pessoa: requisicao.paraPessoa(),
+      pessoa: requisicao.paraPessoa(TipoPessoa.delegado),
     });
 
     try {

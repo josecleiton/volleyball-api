@@ -7,6 +7,7 @@ import {
   ListaArbitroDto,
 } from '../dto/arbitro.dto';
 import { ArbitroRepository } from '../repositories/arbitro.repository';
+import { TipoPessoa } from '../enums';
 
 @Injectable({ scope: Scope.REQUEST })
 export class ArbitroService {
@@ -21,7 +22,7 @@ export class ArbitroService {
     const arbitro = this.arbitroRepository.create({
       ...requisicao,
       idLiga: liga.id,
-      pessoa: requisicao.paraPessoa(),
+      pessoa: requisicao.paraPessoa(TipoPessoa.arbitro),
     });
 
     try {

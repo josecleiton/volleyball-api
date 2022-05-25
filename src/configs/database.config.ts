@@ -19,8 +19,11 @@ export const databaseConfig = registerAs(
       migrationsDir: 'src/database/migrations',
     },
     namingStrategy: new SnakeNamingStrategy(),
-    ssl: {
-      rejectUnauthorized: false,
-    },
+    ssl:
+      process.env.NODE_ENV === 'production'
+        ? {
+            rejectUnauthorized: false,
+          }
+        : undefined,
   }),
 );

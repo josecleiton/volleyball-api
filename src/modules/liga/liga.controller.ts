@@ -19,7 +19,7 @@ export class LigaController {
     return this.ligaService.criaLiga(requisicao);
   }
 
-  @Post()
+  @Post('inicializa')
   inicializaLiga(@Body() requisicao: InicializaLigaDto) {
     return this.ligaService.iniciaLiga(requisicao);
   }
