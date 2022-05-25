@@ -2,7 +2,11 @@ import { Injectable, NotFoundException, Scope } from '@nestjs/common';
 import { TypeORMFilterService } from 'src/modules/core/services/typeorm-filter.service';
 import { EquipeService } from 'src/modules/equipe/equipe.service';
 import { LigaService } from 'src/modules/liga/liga.service';
-import { AuxiliarRespostaDto, CriaAuxiliarDto } from '../dto/auxiliar.dto';
+import {
+  AuxiliarRespostaDto,
+  CriaAuxiliarDto,
+  ListaAuxiliarDto,
+} from '../dto/auxiliar.dto';
 import { TipoPessoa } from '../enums';
 import { AuxiliarRepository } from '../repositories/auxiliar.repository';
 
@@ -37,6 +41,14 @@ export class AuxiliarService {
         entityName: 'Auxiliar',
       });
     }
+  }
+
+  async listaAuxiliares(requisicao: ListaAuxiliarDto) {
+    const auxiliares = await this.auxiliarRepository.find({
+      where: { ...requisicao },
+    });
+
+    return auxiliares.map((x) => new AuxiliarRespostaDto(x));
   }
 
   async devePegarEntidade(id: string) {

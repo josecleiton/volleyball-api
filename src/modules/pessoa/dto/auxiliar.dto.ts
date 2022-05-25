@@ -15,6 +15,11 @@ export class CriaAuxiliarDto extends CriaPessoaDto {
   tipoAuxiliar!: TipoAuxiliar;
 }
 
+export class ListaAuxiliarDto {
+  @IsUUID()
+  idEquipe!: string;
+}
+
 export class AuxiliarRespostaDto extends PessoaRespostaDto {
   id: string;
   idEquipe: string;

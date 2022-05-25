@@ -5,8 +5,9 @@ import {
   Param,
   ParseUUIDPipe,
   Post,
+  Query,
 } from '@nestjs/common';
-import { CriaAuxiliarDto } from '../dto/auxiliar.dto';
+import { CriaAuxiliarDto, ListaAuxiliarDto } from '../dto/auxiliar.dto';
 import { AuxiliarService } from '../services/auxiliar.service';
 
 @Controller('pessoa/auxiliar')
@@ -14,13 +15,18 @@ export class AuxiliarController {
   constructor(private readonly auxiliarService: AuxiliarService) {}
 
   @Post()
-  criaAuxiliar(@Body() requisicao: CriaAuxiliarDto) {
+  async criaAuxiliar(@Body() requisicao: CriaAuxiliarDto) {
     requisicao.validar();
     return this.auxiliarService.criaAuxiliar(requisicao);
   }
 
+  @Get()
+  async listaAuxiliares(@Query() requisicao: ListaAuxiliarDto) {
+    return this.auxiliarService.listaAuxiliares(requisicao);
+  }
+
   @Get(':id')
-  encontraAuxiliar(@Param('id', ParseUUIDPipe) id: string) {
+  async encontraAuxiliar(@Param('id', ParseUUIDPipe) id: string) {
     return this.auxiliarService.devePegarUm(id);
   }
 }
