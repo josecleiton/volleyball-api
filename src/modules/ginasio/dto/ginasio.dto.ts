@@ -1,4 +1,4 @@
-import { IsOptional, IsString, Length } from 'class-validator';
+import { IsOptional, IsPositive, IsString, Length } from 'class-validator';
 import { Ginasio } from '../entities/ginasio.entity';
 
 export class CriaGinasioDto {
@@ -13,6 +13,9 @@ export class CriaGinasioDto {
   @IsString()
   @Length(2, 2)
   estado!: string;
+
+  @IsPositive()
+  capacidade!: number;
 }
 
 export class ListaGinasiosDto {
@@ -36,6 +39,7 @@ export class GinasioRespostaDto {
   cidade: string;
   estado: string;
   dataCriacao: Date;
+  capacidade: number;
 
   constructor(ginasio: Ginasio) {
     this.id = ginasio.id;
@@ -43,5 +47,6 @@ export class GinasioRespostaDto {
     this.cidade = ginasio.cidade;
     this.estado = ginasio.estado;
     this.dataCriacao = ginasio.dataCriacao;
+    this.capacidade = ginasio.capacidade;
   }
 }

@@ -26,8 +26,8 @@ export class CriaPessoaDto {
   @Length(11, 11)
   documentoCbv!: string;
 
-  paraPessoa(): Pessoa {
-    return Object.assign(new Pessoa(TipoPessoa.tecnico), this);
+  paraPessoa(tipo: TipoPessoa): Pessoa {
+    return Object.assign(new Pessoa(tipo), this);
   }
 
   private static idadeLimite = 15;

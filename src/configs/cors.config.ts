@@ -8,6 +8,7 @@ const whiteList: string[] = [
   'http://localhost:3000',
   'http://localhost:5000',
   'https://voleibol-api.herokuapp.com',
+  'https://volley.vercel.app',
 ];
 
 function origin(origin: string, callback: Callback) {

@@ -17,6 +17,9 @@ export class Ginasio extends EntidadeBase {
   @Index()
   estado!: string;
 
+  @Column({ default: 1000 })
+  capacidade!: number;
+
   @OneToMany(() => Partida, (p) => p.ginasio)
   partidas!: Partida[];
 }
