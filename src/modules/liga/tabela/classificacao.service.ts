@@ -23,7 +23,9 @@ export class ClassificacaoGenerator {
       this.dataInicio = nextMonday(this.dataInicio);
       this.jogosNaRodada = 0;
     }
-    throw new NotImplementedException();
+    throw new NotImplementedException(
+      'Ainda não implementamos a geração de partida',
+    );
   }
 
   private get todosJogosDaRodadaGerados(): boolean {

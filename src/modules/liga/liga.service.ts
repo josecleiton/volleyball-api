@@ -10,7 +10,6 @@ import { EquipeService } from '../equipe/equipe.service';
 import { Partida } from '../partida/entities/partida.entity';
 import {
   CriaLigaDto,
-  InicializaLigaDto,
   InicializaLigaRespostaDto,
   LigaRespostaDto,
 } from './dto/liga.dto';
@@ -41,10 +40,8 @@ export class LigaService {
     }
   }
 
-  async iniciaLiga(requisicao: InicializaLigaDto) {
-    const liga = await this.ligaRepository.pegaUmComEquipesCompletas(
-      requisicao.id,
-    );
+  async iniciaLiga(id: string) {
+    const liga = await this.ligaRepository.pegaUmComEquipesCompletas(id);
 
     if (liga.dataComeco) {
       throw new ConflictException(
@@ -57,7 +54,7 @@ export class LigaService {
       liga.equipes.length % 2 === 0
     ) {
       throw new ConflictException(
-        `Quantidade de equipes na liga ${requisicao.id} não é suficiente ou não é par. Quantidade: ${liga.equipes.length}`,
+        `Quantidade de equipes na liga ${id} não é suficiente ou não é par. Quantidade: ${liga.equipes.length}`,
       );
     }
 

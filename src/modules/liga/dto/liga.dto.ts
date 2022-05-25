@@ -1,4 +1,4 @@
-import { IsEnum, IsOptional, IsString, IsUUID, Length } from 'class-validator';
+import { IsEnum, IsOptional, IsString, Length } from 'class-validator';
 import { compareAsc } from 'date-fns';
 import { Genero } from 'src/modules/core/enums';
 import { PartidaRespostaDto } from 'src/modules/partida/dto/partida.dto';
@@ -22,11 +22,6 @@ export class CriaLigaDto {
   @IsString()
   @Length(1, 20)
   serie?: string;
-}
-
-export class InicializaLigaDto {
-  @IsUUID()
-  id!: string;
 }
 
 export class LigaRespostaDto {
