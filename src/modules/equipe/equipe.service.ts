@@ -17,6 +17,7 @@ import {
 } from './dto/equipe.dto';
 import { Equipe } from './entities/equipe.entity';
 import { EquipeRepository } from './equipe.repository';
+import { VerificaUrlService } from '../core/services/verifica-url.service';
 
 @Injectable({ scope: Scope.REQUEST })
 export class EquipeService {
@@ -26,11 +27,16 @@ export class EquipeService {
     private readonly ligaService: LigaService,
     private readonly ginasioService: GinasioService,
     private readonly ormFilterService: TypeORMFilterService,
+    private readonly verificaUrlService: VerificaUrlService,
   ) {}
 
   async criaEquipe(request: CriaEquipeDto) {
     await this.ligaService.excecaoSeALigaEstaIniciada(request.idLiga);
     await this.ginasioService.devePegarUm(request.idGinasio);
+
+    if (request.urlBrasao) {
+      await this.verificaUrlService.ehImagem(request.urlBrasao);
+    }
 
     try {
       const equipe = this.equipeRepository.create({ ...request });
@@ -103,6 +109,7 @@ export class EquipeService {
       equipe.nome = requisicao.nome;
     }
     if (requisicao.urlBrasao) {
+      await this.verificaUrlService.ehImagem(requisicao.urlBrasao);
       equipe.urlBrasao = requisicao.urlBrasao;
     }
     if (requisicao.idGinasio && requisicao.idGinasio !== equipe.idGinasio) {
