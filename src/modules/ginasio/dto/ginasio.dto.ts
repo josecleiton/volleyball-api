@@ -15,7 +15,8 @@ export class CriaGinasioDto {
   estado!: string;
 
   @IsPositive()
-  capacidade!: number;
+  @IsOptional()
+  capacidade = 1000;
 }
 
 export class ListaGinasiosDto {
