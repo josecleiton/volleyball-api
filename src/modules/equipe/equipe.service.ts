@@ -34,9 +34,9 @@ export class EquipeService {
     await this.ligaService.excecaoSeALigaEstaIniciada(request.idLiga);
     await this.ginasioService.devePegarUm(request.idGinasio);
 
-    if (request.urlBrasao) {
-      await this.verificaUrlService.ehImagem(request.urlBrasao);
-    }
+    // if (request.urlBrasao) {
+    //   await this.verificaUrlService.ehImagem(request.urlBrasao);
+    // }
 
     try {
       const equipe = this.equipeRepository.create({ ...request });
@@ -108,10 +108,10 @@ export class EquipeService {
     if (requisicao.nome) {
       equipe.nome = requisicao.nome;
     }
-    if (requisicao.urlBrasao) {
-      await this.verificaUrlService.ehImagem(requisicao.urlBrasao);
-      equipe.urlBrasao = requisicao.urlBrasao;
-    }
+    // if (requisicao.urlBrasao) {
+    //   await this.verificaUrlService.ehImagem(requisicao.urlBrasao);
+    //   equipe.urlBrasao = requisicao.urlBrasao;
+    // }
     if (requisicao.idGinasio && requisicao.idGinasio !== equipe.idGinasio) {
       await this.ginasioService.devePegarUm(requisicao.idGinasio);
     }
