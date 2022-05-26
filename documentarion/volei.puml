@@ -10,7 +10,7 @@ entity ligas {
 	* id : uuid <<generated>>
 	--
 	* genero : genero
-	* comeca_em : timestamp
+	* data_comeco : timestamp
 	nome : text
 	serie : text = A
 	* criado_em : timestamp
@@ -25,6 +25,8 @@ entity equipes {
 	* id_ginasio : uuid <<FK>>  
 	* apta : boolean = false
 	descricao_aptidao : json
+	* cidade: text
+	* estado: text
 	'min 12 per tournament'
 	'max 22 per tounament'
 	* criado_em : timestamp
@@ -37,6 +39,7 @@ entity ginasios {
 	* nome : text
 	* cidade : text
 	* estado : text
+	* capacidade : integer
 	* criado_em : timestamp
 	* atualizado_em : timestamp
 }
@@ -140,12 +143,11 @@ entity partidas {
 	* id_arbitro : uuid <<FK>>
 	* id_ginasio : uuid <<FK>>
 	* status : partida_status
-	* comecou_em : timestamp
-	* finalizou_em : timestamp
+	* data_comeco : timestamp
+	* data_finalizacao: timestamp
 	* id_time_ganhador : uuid <<FK>>
-	* id_time_perdedor : uuid <<FK>>
-	* criado_em : timestamp
-	* atualizado_em : timestamp
+	* data_criacao: timestamp
+	* data_atualizacao: timestamp
 }
 
 ligas ||--o{ "<= 12" equipes

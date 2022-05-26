@@ -19,7 +19,7 @@ export class Liga extends EntidadeBase {
   @Column({ nullable: true })
   nome?: string;
 
-  @Column({ type: 'varchar', length: 40, nullable: true })
+  @Column({ type: 'varchar', length: 40, nullable: true, default: "A" })
   serie?: string;
 
   public get ano(): number | undefined {
