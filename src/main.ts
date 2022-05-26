@@ -43,8 +43,6 @@ function applyGlobals(app: INestApplication, config: ConfigService) {
     new ValidationPipe({
       transform: true,
       whitelist: true,
-      forbidNonWhitelisted: true,
-      forbidUnknownValues: true,
     }),
   );
   logger.log('Global config applied');

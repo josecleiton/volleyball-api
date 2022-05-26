@@ -1,12 +1,12 @@
+import { Column, Entity, OneToMany } from 'typeorm';
+import { getYear } from 'date-fns';
 import { EntidadeBase } from 'src/modules/core/entities/base.entity';
 import { Genero } from 'src/modules/core/enums';
 import { Equipe } from 'src/modules/equipe/entities/equipe.entity';
 import { Arbitro } from 'src/modules/pessoa/entities/arbitro.entity';
 import { Delegado } from 'src/modules/pessoa/entities/delegado.entity';
-import { Column, Entity, OneToMany, Unique } from 'typeorm';
 
 @Entity('ligas')
-@Unique(['ano', 'genero', 'serie'])
 export class Liga extends EntidadeBase {
   static minimoDeEquipesNaLiga = 10;
 
@@ -22,8 +22,10 @@ export class Liga extends EntidadeBase {
   @Column({ type: 'varchar', length: 40, nullable: true })
   serie?: string;
 
-  @Column()
-  ano!: string;
+  public get ano(): number | undefined {
+    if (!this.dataComeco) return;
+    return getYear(this.dataComeco);
+  }
 
   @OneToMany(() => Equipe, (e) => e.liga)
   equipes!: Equipe[];
