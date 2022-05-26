@@ -23,7 +23,8 @@
     "typeorm:migration:create": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js -f src/configs/database-cli.config.ts migration:create -n",
     "typeorm:migration:generate": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js -f src/configs/database-cli.config.ts migration:generate -n",
     "typeorm:rollback": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js -f src/configs/database-cli.config.ts migration:revert",
-    "typeorm:migrate": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js -f src/configs/database-cli.config.ts migration:run"
+    "typeorm:migrate": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js -f src/configs/database-cli.config.ts migration:run",
+    "doc": "npx compodoc -p tsconfig.json -n 'Voleibol' -o docs"
   },
   "dependencies": {
     "@nestjs/common": "^8.0.0",
@@ -47,6 +48,7 @@
     "typeorm-naming-strategies": "^4.1.0"
   },
   "devDependencies": {
+    "@compodoc/compodoc": "^1.1.19",
     "@nestjs/cli": "^8.0.0",
     "@nestjs/schematics": "^8.0.0",
     "@nestjs/testing": "^8.0.0",

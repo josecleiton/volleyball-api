@@ -14,4 +14,4 @@ Em construçao
 
 ## Arquitetura 
 
-![Arquitetura API](/docs/arch.png "Arquitetura da API")
+![Arquitetura API](/documentation/arch.png "Arquitetura da API")
