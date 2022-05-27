@@ -41,6 +41,7 @@ export class EquipeService {
     try {
       const equipe = this.equipeRepository.create({ ...request });
       equipe.atletas = [];
+      equipe.auxiliares = [];
       return new EquipeRespostaDto(await this.equipeRepository.save(equipe));
     } catch (e) {
       this.ormFilterService.catch({
