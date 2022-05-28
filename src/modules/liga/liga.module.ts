@@ -5,6 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { LigaRepository } from './liga.repository';
 import { CoreModule } from '../core/core.module';
 import { EquipeModule } from '../equipe/equipe.module';
+import { ClassificacaoGeneratorService } from './tabela/classificacao.service';
 
 @Module({
   imports: [
@@ -13,7 +14,7 @@ import { EquipeModule } from '../equipe/equipe.module';
     EquipeModule,
   ],
   controllers: [LigaController],
-  providers: [LigaService],
+  providers: [LigaService, ClassificacaoGeneratorService],
   exports: [LigaService],
 })
 export class LigaModule {}
