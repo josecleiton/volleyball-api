@@ -5,7 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { LigaRepository } from './liga.repository';
 import { CoreModule } from '../core/core.module';
 import { EquipeModule } from '../equipe/equipe.module';
-import { ClassificacaoGeneratorService } from './tabela/classificacao.service';
+import { ClassificacaoGeneratorService } from './tabela/classificacao-generator.service';
 
 @Module({
   imports: [

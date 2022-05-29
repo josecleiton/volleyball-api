@@ -17,9 +17,16 @@ export class Partida extends EntidadeBase {
   @Index()
   idArbitro?: string;
 
-  @Column('uuid')
+  @Column({ name: 'id_ginasio', type: 'uuid' })
   @Index()
-  idGinasio!: string;
+  private _idGinasio!: string;
+
+  public get idGinasio(): string {
+    return (this._idGinasio = this._idGinasio ?? this.equipeMandante.idGinasio);
+  }
+
+  @Column()
+  numeroDaRodada!: number;
 
   @Column('uuid')
   @Index()

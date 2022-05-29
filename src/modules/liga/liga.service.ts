@@ -4,7 +4,6 @@ import {
   NotFoundException,
   Scope,
 } from '@nestjs/common';
-import { addDays } from 'date-fns';
 import { Connection } from 'typeorm';
 import { TypeORMFilterService } from '../core/services/typeorm-filter.service';
 import { EquipeService } from '../equipe/equipe.service';
@@ -16,7 +15,7 @@ import {
 } from './dto/liga.dto';
 import { Liga } from './entities/liga.entity';
 import { LigaRepository } from './liga.repository';
-import { ClassificacaoGeneratorService } from './tabela/classificacao.service';
+import { ClassificacaoGeneratorService } from './tabela/classificacao-generator.service';
 
 @Injectable({ scope: Scope.REQUEST })
 export class LigaService {
@@ -57,15 +56,6 @@ export class LigaService {
       );
     }
 
-    if (
-      requisicao.diasDaSemana.length * requisicao.diasDaSemana.length <
-      liga.equipes.length / 2
-    ) {
-      throw new ConflictException(
-        'Não é possível agendar as partidas fazendo com que todas as equipes joguem apenas uma vez por semana (rodada).',
-      );
-    }
-
     if (!liga.arbitros?.length) {
       throw new ConflictException(`Tem que ter ao menos um arbitro na liga`);
     }
@@ -83,37 +73,25 @@ export class LigaService {
     liga.configuracaoInicializacaoLiga = {
       diasDaSemana: requisicao.diasDaSemana,
       horarios: requisicao.horarios,
+      intervaloDeDiasEntreTurnos: Liga.intervaloDeDiasEntreTurnos,
     };
 
-    const partidasPrimeiroTurno = this.classificacaoService.geraPartidas({
+    const partidas = this.classificacaoService.geraPartidas({
       equipes: liga.equipes,
       dataComeco: liga.dataComeco,
-      ordemReversa: false,
-      ...liga.configuracaoInicializacaoLiga,
-    });
-    const partidasSegundoTurno = this.classificacaoService.geraPartidas({
-      equipes: liga.equipes,
-      dataComeco: addDays(
-        partidasPrimeiroTurno[partidasPrimeiroTurno.length - 1].dataComeco,
-        Liga.intervaloDeDiasEntreTurnos,
-      ),
-      ordemReversa: true,
       ...liga.configuracaoInicializacaoLiga,
     });
 
-    const [ligaAtualizada, partidas] = await this.connection.transaction(
+    const [ligaAtualizada, partidasSalvas] = await this.connection.transaction(
       async (manager) => {
-        const partidasSalvas = await manager.save([
-          ...partidasPrimeiroTurno,
-          ...partidasSegundoTurno,
-        ]);
+        const partidasSalvas = await manager.save(partidas);
         const ligaSalva = await manager.save(liga);
 
         return [ligaSalva, partidasSalvas];
       },
     );
 
-    return new InicializaLigaRespostaDto(ligaAtualizada, partidas);
+    return new InicializaLigaRespostaDto(ligaAtualizada, partidasSalvas);
   }
 
   private async getLigaIniciadaEm(id: string) {
