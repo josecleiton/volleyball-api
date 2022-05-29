@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Voleibol</title>
+        <title>Voleibol API</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -14,7 +14,7 @@
     <body>
 
         <div class="navbar navbar-default navbar-fixed-top visible-xs">
-            <a href="../" class="navbar-brand">Voleibol</a>
+            <a href="../" class="navbar-brand">Voleibol API</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
 
@@ -134,7 +134,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(ligaRepository: <a href="../classes/LigaRepository.html" target="_self">LigaRepository</a>, equipeService: <a href="../injectables/EquipeService.html" target="_self">EquipeService</a>, typeormFilterService: <a href="../injectables/TypeORMFilterService.html" target="_self">TypeORMFilterService</a>, connection: Connection)</code>
+<code>constructor(ligaRepository: <a href="../classes/LigaRepository.html" target="_self">LigaRepository</a>, equipeService: <a href="../injectables/EquipeService.html" target="_self">EquipeService</a>, classificacaoService: <a href="../injectables/ClassificacaoGeneratorService.html" target="_self">ClassificacaoGeneratorService</a>, typeormFilterService: <a href="../injectables/TypeORMFilterService.html" target="_self">TypeORMFilterService</a>, connection: Connection)</code>
                     </td>
                 </tr>
                         <tr>
@@ -173,6 +173,18 @@
                                                   
                                                         <td>
                                                                         <code><a href="../injectables/EquipeService.html" target="_self" >EquipeService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>classificacaoService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ClassificacaoGeneratorService.html" target="_self" >ClassificacaoGeneratorService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -240,8 +252,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="29"
-                            class="link-to-prism">src/modules/liga/liga.service.ts:29</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="30"
+                            class="link-to-prism">src/modules/liga/liga.service.ts:30</a></div>
                 </td>
             </tr>
 
@@ -311,8 +323,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="158"
-                            class="link-to-prism">src/modules/liga/liga.service.ts:158</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="138"
+                            class="link-to-prism">src/modules/liga/liga.service.ts:138</a></div>
                 </td>
             </tr>
 
@@ -383,8 +395,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="149"
-                            class="link-to-prism">src/modules/liga/liga.service.ts:149</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="129"
+                            class="link-to-prism">src/modules/liga/liga.service.ts:129</a></div>
                 </td>
             </tr>
 
@@ -466,8 +478,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="124"
-                            class="link-to-prism">src/modules/liga/liga.service.ts:124</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="104"
+                            class="link-to-prism">src/modules/liga/liga.service.ts:104</a></div>
                 </td>
             </tr>
 
@@ -537,8 +549,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="133"
-                            class="link-to-prism">src/modules/liga/liga.service.ts:133</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="113"
+                            class="link-to-prism">src/modules/liga/liga.service.ts:113</a></div>
                 </td>
             </tr>
 
@@ -609,8 +621,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="117"
-                            class="link-to-prism">src/modules/liga/liga.service.ts:117</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="97"
+                            class="link-to-prism">src/modules/liga/liga.service.ts:97</a></div>
                 </td>
             </tr>
 
@@ -673,15 +685,15 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>iniciaLiga(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>iniciaLiga(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, requisicao: <a href="../classes/InicializaLigaDto.html" target="_self">InicializaLigaDto</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="43"
-                            class="link-to-prism">src/modules/liga/liga.service.ts:43</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="44"
+                            class="link-to-prism">src/modules/liga/liga.service.ts:44</a></div>
                 </td>
             </tr>
 
@@ -705,6 +717,18 @@
                                     <td>id</td>
                                     <td>
                                                 <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>requisicao</td>
+                                    <td>
+                                                <code><a href="../classes/InicializaLigaDto.html" target="_self" >InicializaLigaDto</a></code>
                                     </td>
 
                                     <td>
@@ -751,8 +775,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="142"
-                            class="link-to-prism">src/modules/liga/liga.service.ts:142</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="122"
+                            class="link-to-prism">src/modules/liga/liga.service.ts:122</a></div>
                 </td>
             </tr>
 
@@ -790,8 +814,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="162"
-                            class="link-to-prism">src/modules/liga/liga.service.ts:162</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="142"
+                            class="link-to-prism">src/modules/liga/liga.service.ts:142</a></div>
                 </td>
             </tr>
 
@@ -854,21 +878,22 @@
 import { Connection } from &#x27;typeorm&#x27;;
 import { TypeORMFilterService } from &#x27;../core/services/typeorm-filter.service&#x27;;
 import { EquipeService } from &#x27;../equipe/equipe.service&#x27;;
-import { Partida } from &#x27;../partida/entities/partida.entity&#x27;;
 import {
   CriaLigaDto,
+  InicializaLigaDto,
   InicializaLigaRespostaDto,
   LigaRespostaDto,
 } from &#x27;./dto/liga.dto&#x27;;
 import { Liga } from &#x27;./entities/liga.entity&#x27;;
 import { LigaRepository } from &#x27;./liga.repository&#x27;;
-import { ClassificacaoGenerator } from &#x27;./tabela/classificacao.service&#x27;;
+import { ClassificacaoGeneratorService } from &#x27;./tabela/classificacao-generator.service&#x27;;
 
 @Injectable({ scope: Scope.REQUEST })
 export class LigaService {
   constructor(
     private readonly ligaRepository: LigaRepository,
     private readonly equipeService: EquipeService,
+    private readonly classificacaoService: ClassificacaoGeneratorService,
     private readonly typeormFilterService: TypeORMFilterService,
     private readonly connection: Connection,
   ) {}
@@ -887,21 +912,18 @@ export class LigaService {
     }
   }
 
-  async iniciaLiga(id: string) {
-    const liga &#x3D; await this.ligaRepository.pegaUmComEquipesCompletas(id);
+  async iniciaLiga(id: string, requisicao: InicializaLigaDto) {
+    const liga &#x3D; await this.ligaRepository.encontraUmComEquipesCompletas(id);
 
     if (liga.dataComeco) {
       throw new ConflictException(
-        &#x60;Liga ${liga.id} já iniciada na data: ${liga.dataComeco}&#x60;,
+        &#x60;Liga ${liga.id} já iniciada. Data de início: ${liga.dataComeco}&#x60;,
       );
     }
 
-    if (
-      liga.equipes.length &gt;&#x3D; Liga.minimoDeEquipesNaLiga &amp;&amp;
-      liga.equipes.length % 2 &#x3D;&#x3D;&#x3D; 0
-    ) {
+    if (liga.equipes?.length !&#x3D;&#x3D; Liga.minimoDeEquipesNaLiga) {
       throw new ConflictException(
-        &#x60;Quantidade de equipes na liga ${id} não é suficiente ou não é par. Quantidade: ${liga.equipes.length}&#x60;,
+        &#x60;Quantidade de equipes na liga ${id} não é ${Liga.minimoDeEquipesNaLiga}&#x60;,
       );
     }
 
@@ -918,47 +940,29 @@ export class LigaService {
       throw new ConflictException(&#x27;Todas as equipes precisam estar aptas&#x27;);
     }
 
-    liga.dataComeco &#x3D; new Date();
+    liga.dataComeco &#x3D; requisicao.data ?? new Date();
+    liga.configuracaoInicializacaoLiga &#x3D; {
+      diasDaSemana: requisicao.diasDaSemana,
+      horarios: requisicao.horarios,
+      intervaloDeDiasEntreTurnos: Liga.intervaloDeDiasEntreTurnos,
+    };
 
-    const classificacaoGenerator &#x3D; new ClassificacaoGenerator(
-      liga.equipes.length,
-      liga.dataComeco,
+    const partidas &#x3D; this.classificacaoService.geraPartidas({
+      equipes: liga.equipes,
+      dataComeco: liga.dataComeco,
+      ...liga.configuracaoInicializacaoLiga,
+    });
+
+    const [ligaAtualizada, partidasSalvas] &#x3D; await this.connection.transaction(
+      async (manager) &#x3D;&gt; {
+        const partidasSalvas &#x3D; await manager.save(partidas);
+        const ligaSalva &#x3D; await manager.save(liga);
+
+        return [ligaSalva, partidasSalvas];
+      },
     );
-    const partidas &#x3D; liga.equipes.reduce((result, equipe, equipeIdx) &#x3D;&gt; {
-      const confrontos &#x3D; liga.equipes.reduce(
-        (result, equipeAdversaria, equipeAdversariaIdx) &#x3D;&gt; {
-          if (equipe.id &#x3D;&#x3D;&#x3D; equipeAdversaria.id) {
-            return result;
-          }
 
-          const partidasGeradas &#x3D; classificacaoGenerator.geraIdaEVolta(
-            {
-              equipe,
-              posicao: equipeIdx,
-            },
-            {
-              equipe: equipeAdversaria,
-              posicao: equipeAdversariaIdx,
-            },
-          );
-
-          return result.concat(partidasGeradas);
-        },
-        [] as Partida[],
-      );
-
-      return result.concat(confrontos);
-    }, [] as Partida[]);
-
-    const [ligaAtualizada, partidasInseridas] &#x3D;
-      await this.connection.transaction(async (manager) &#x3D;&gt; {
-        const partidasSave &#x3D; await manager.save(partidas);
-        const ligaSave &#x3D; await manager.save(liga);
-
-        return [ligaSave, partidasSave];
-      });
-
-    return new InicializaLigaRespostaDto(ligaAtualizada, partidasInseridas);
+    return new InicializaLigaRespostaDto(ligaAtualizada, partidasSalvas);
   }
 
   private async getLigaIniciadaEm(id: string) {

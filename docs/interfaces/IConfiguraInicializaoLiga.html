@@ -47,7 +47,7 @@
   <li>Interfaces</li>
   <li
   >
-  IClassValidatorException</li>
+  IConfiguraInicializaoLiga</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -65,7 +65,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/filters/http-exception.filter.ts</code>
+            <code>src/modules/liga/interfaces/configura-inicializacao-liga.interface.ts</code>
         </p>
 
 
@@ -84,21 +84,21 @@
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
-                                        <a href="#error" 
+                                        <a href="#diasDaSemana" 
 >
-                                            error
+                                            diasDaSemana
                                         </a>
                                 </li>
                                 <li>
-                                        <a href="#message" 
+                                        <a href="#horarios" 
 >
-                                            message
+                                            horarios
                                         </a>
                                 </li>
                                 <li>
-                                        <a href="#statusCode" 
+                                        <a href="#intervaloDeDiasEntreTurnos" 
 >
-                                            statusCode
+                                            intervaloDeDiasEntreTurnos
                                         </a>
                                 </li>
                             </ul>
@@ -116,9 +116,9 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="error"></a>
-                                        <span class="name "><b>error</b>
-                                            <a href="#error">
+                                        <a name="diasDaSemana"></a>
+                                        <span class="name "><b>diasDaSemana</b>
+                                            <a href="#diasDaSemana">
                                                 <span class="icon ion-ios-link"></span>
                                             </a>
                                         </span>
@@ -126,7 +126,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>error:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                        <code>diasDaSemana:         <code><a href="../miscellaneous/enumerations.html#DiaDaSemana" target="_self" >DiaDaSemana[]</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -134,7 +134,7 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            <i>Type : </i>        <code><a href="../miscellaneous/enumerations.html#DiaDaSemana" target="_self" >DiaDaSemana[]</a></code>
 
                                         </td>
                                     </tr>
@@ -149,9 +149,9 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="message"></a>
-                                        <span class="name "><b>message</b>
-                                            <a href="#message">
+                                        <a name="horarios"></a>
+                                        <span class="name "><b>horarios</b>
+                                            <a href="#horarios">
                                                 <span class="icon ion-ios-link"></span>
                                             </a>
                                         </span>
@@ -159,7 +159,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>message:     <code>string[]</code>
+                                        <code>horarios:     <code>number[]</code>
 </code>
                                     </td>
                                 </tr>
@@ -167,7 +167,7 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>    <code>string[]</code>
+                                            <i>Type : </i>    <code>number[]</code>
 
                                         </td>
                                     </tr>
@@ -182,9 +182,9 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="statusCode"></a>
-                                        <span class="name "><b>statusCode</b>
-                                            <a href="#statusCode">
+                                        <a name="intervaloDeDiasEntreTurnos"></a>
+                                        <span class="name "><b>intervaloDeDiasEntreTurnos</b>
+                                            <a href="#intervaloDeDiasEntreTurnos">
                                                 <span class="icon ion-ios-link"></span>
                                             </a>
                                         </span>
@@ -192,7 +192,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>statusCode:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                        <code>intervaloDeDiasEntreTurnos:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -216,62 +216,12 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
-  ExceptionFilter,
-  Catch,
-  ArgumentsHost,
-  HttpException,
-} from &#x27;@nestjs/common&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { DiaDaSemana } from &#x27;src/modules/core/enums/dia-da-semana.enum&#x27;;
 
-import { ConfigService } from &#x27;@nestjs/config&#x27;;
-
-interface IException {
-  statusCode: number;
-  timestamp: string;
-  path: string;
-  stack?: unknown;
-  message: unknown;
-  name?: string;
-}
-
-interface IClassValidatorException {
-  statusCode: number;
-  error: string;
-  message: string[];
-}
-
-@Catch(HttpException)
-export class HttpExceptionFilter implements ExceptionFilter {
-  constructor(private readonly configService: ConfigService) {}
-
-  catch(exception: HttpException, host: ArgumentsHost) {
-    const ctx &#x3D; host.switchToHttp();
-    const response &#x3D; ctx.getResponse();
-    const request &#x3D; ctx.getRequest();
-    const status &#x3D; exception.getStatus();
-    exception.initMessage();
-    const ex: IException &#x3D; {
-      statusCode: status,
-      timestamp: new Date().toISOString(),
-      path: request.url,
-      message: exception.message,
-    };
-    const NODE_ENV &#x3D; this.configService.get(&#x27;NODE_ENV&#x27;);
-    if (NODE_ENV !&#x3D;&#x3D; &#x27;production&#x27;) {
-      ex.stack &#x3D; exception.stack;
-      ex.name &#x3D; exception.name;
-    }
-
-    // Only emit to Sentry exceptions that dont have code 4xx
-    if (status &#x3D;&#x3D;&#x3D; 400) {
-      const classValidatorEx &#x3D;
-        exception.getResponse() as IClassValidatorException;
-      ex.message &#x3D; classValidatorEx.message;
-      ex.name &#x3D; classValidatorEx.error;
-    }
-
-    response.status(status).send(ex);
-  }
+export interface IConfiguraInicializaoLiga {
+  horarios: number[];
+  diasDaSemana: DiaDaSemana[];
+  intervaloDeDiasEntreTurnos: number;
 }
 </code></pre>
     </div>
@@ -310,7 +260,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
-            var COMPODOC_CURRENT_PAGE_URL = 'IClassValidatorException.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'IConfiguraInicializaoLiga.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

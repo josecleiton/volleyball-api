@@ -47,7 +47,7 @@
   <li>Interfaces</li>
   <li
   >
-  IException</li>
+  IClassificacaoGeneratorRequest</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -65,7 +65,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/filters/http-exception.filter.ts</code>
+            <code>src/modules/liga/tabela/classificacao-generator.service.ts</code>
         </p>
 
 
@@ -84,41 +84,34 @@
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
-                                        <a href="#message" 
+                                        <a href="#dataComeco" 
 >
-                                            message
+                                            dataComeco
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#diasDaSemana" 
+>
+                                            diasDaSemana
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#equipes" 
+>
+                                            equipes
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#horarios" 
+>
+                                            horarios
                                         </a>
                                 </li>
                                 <li>
                                             <span class="modifier">Optional</span>
-                                        <a href="#name" 
+                                        <a href="#intervaloDeDiasEntreTurnos" 
 >
-                                            name
-                                        </a>
-                                </li>
-                                <li>
-                                        <a href="#path" 
->
-                                            path
-                                        </a>
-                                </li>
-                                <li>
-                                            <span class="modifier">Optional</span>
-                                        <a href="#stack" 
->
-                                            stack
-                                        </a>
-                                </li>
-                                <li>
-                                        <a href="#statusCode" 
->
-                                            statusCode
-                                        </a>
-                                </li>
-                                <li>
-                                        <a href="#timestamp" 
->
-                                            timestamp
+                                            intervaloDeDiasEntreTurnos
                                         </a>
                                 </li>
                             </ul>
@@ -136,9 +129,9 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="message"></a>
-                                        <span class="name "><b>message</b>
-                                            <a href="#message">
+                                        <a name="dataComeco"></a>
+                                        <span class="name "><b>dataComeco</b>
+                                            <a href="#dataComeco">
                                                 <span class="icon ion-ios-link"></span>
                                             </a>
                                         </span>
@@ -146,34 +139,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>message:     <code></code>
-</code>
-                                    </td>
-                                </tr>
-
-
-
-
-
-
-
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="name"></a>
-                                        <span class="name "><b>name</b>
-                                            <a href="#name">
-                                                <span class="icon ion-ios-link"></span>
-                                            </a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>name:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                        <code>dataComeco:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -181,45 +147,7 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Optional</i>
-                                        </td>
-                                    </tr>
-
-
-
-
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="path"></a>
-                                        <span class="name "><b>path</b>
-                                            <a href="#path">
-                                                <span class="icon ion-ios-link"></span>
-                                            </a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>path:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-</code>
-                                    </td>
-                                </tr>
-
-
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
 
                                         </td>
                                     </tr>
@@ -234,9 +162,9 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="stack"></a>
-                                        <span class="name "><b>stack</b>
-                                            <a href="#stack">
+                                        <a name="diasDaSemana"></a>
+                                        <span class="name "><b>diasDaSemana</b>
+                                            <a href="#diasDaSemana">
                                                 <span class="icon ion-ios-link"></span>
                                             </a>
                                         </span>
@@ -244,18 +172,19 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>stack:     <code></code>
+                                        <code>diasDaSemana:         <code><a href="../miscellaneous/enumerations.html#DiaDaSemana" target="_self" >DiaDaSemana[]</a></code>
 </code>
                                     </td>
                                 </tr>
 
 
-
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Optional</i>
+                                            <i>Type : </i>        <code><a href="../miscellaneous/enumerations.html#DiaDaSemana" target="_self" >DiaDaSemana[]</a></code>
+
                                         </td>
                                     </tr>
+
 
 
 
@@ -266,9 +195,9 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="statusCode"></a>
-                                        <span class="name "><b>statusCode</b>
-                                            <a href="#statusCode">
+                                        <a name="equipes"></a>
+                                        <span class="name "><b>equipes</b>
+                                            <a href="#equipes">
                                                 <span class="icon ion-ios-link"></span>
                                             </a>
                                         </span>
@@ -276,7 +205,73 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>statusCode:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                        <code>equipes:         <code><a href="../classes/Equipe.html" target="_self" >Equipe[]</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="../classes/Equipe.html" target="_self" >Equipe[]</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="horarios"></a>
+                                        <span class="name "><b>horarios</b>
+                                            <a href="#horarios">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>horarios:     <code>number[]</code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code>number[]</code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="intervaloDeDiasEntreTurnos"></a>
+                                        <span class="name "><b>intervaloDeDiasEntreTurnos</b>
+                                            <a href="#intervaloDeDiasEntreTurnos">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>intervaloDeDiasEntreTurnos:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -289,39 +284,11 @@
                                         </td>
                                     </tr>
 
-
-
-
-
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="timestamp"></a>
-                                        <span class="name "><b>timestamp</b>
-                                            <a href="#timestamp">
-                                                <span class="icon ion-ios-link"></span>
-                                            </a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>timestamp:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-</code>
-                                    </td>
-                                </tr>
-
-
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
+                                            <i>Optional</i>
                                         </td>
                                     </tr>
-
 
 
 
@@ -333,61 +300,137 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
-  ExceptionFilter,
-  Catch,
-  ArgumentsHost,
-  HttpException,
-} from &#x27;@nestjs/common&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { BadRequestException, Injectable, Scope } from &#x27;@nestjs/common&#x27;;
+import { addDays, nextDay, setMinutes } from &#x27;date-fns&#x27;;
+import { DiaDaSemana } from &#x27;src/modules/core/enums/dia-da-semana.enum&#x27;;
+import { Equipe } from &#x27;src/modules/equipe/entities/equipe.entity&#x27;;
+import { Partida } from &#x27;src/modules/partida/entities/partida.entity&#x27;;
+import { DoublyLinkedList } from &#x27;datastructures-js&#x27;;
+import { createGroup } from &#x27;tournament_creator&#x27;;
+import { Liga } from &#x27;../entities/liga.entity&#x27;;
 
-import { ConfigService } from &#x27;@nestjs/config&#x27;;
-
-interface IException {
-  statusCode: number;
-  timestamp: string;
-  path: string;
-  stack?: unknown;
-  message: unknown;
-  name?: string;
+interface IClassificacaoGeneratorRequest {
+  equipes: Equipe[];
+  dataComeco: Date;
+  diasDaSemana: DiaDaSemana[];
+  horarios: number[];
+  intervaloDeDiasEntreTurnos?: number;
 }
 
-interface IClassValidatorException {
-  statusCode: number;
-  error: string;
-  message: string[];
-}
+@Injectable({ scope: Scope.TRANSIENT })
+export class ClassificacaoGeneratorService {
+  private static readonly diaDaSemanaIndiceMap: ReadonlyMap&lt;DiaDaSemana, Day&gt; &#x3D;
+    new Map([
+      [DiaDaSemana.Domingo, 0],
+      [DiaDaSemana.Segunda, 1],
+      [DiaDaSemana.Terça, 2],
+      [DiaDaSemana.Quarta, 3],
+      [DiaDaSemana.Quinta, 4],
+      [DiaDaSemana.Sexta, 5],
+      [DiaDaSemana.Sábado, 6],
+    ]);
 
-@Catch(HttpException)
-export class HttpExceptionFilter implements ExceptionFilter {
-  constructor(private readonly configService: ConfigService) {}
+  private geraDatas(
+    quantidadeEquipes: number,
+    dataComeco: Date,
+    diasDaSemana: Day[],
+    horarios: number[],
+  ) {
+    const listaHorarios &#x3D; new DoublyLinkedList&lt;number&gt;();
+    horarios.forEach((x) &#x3D;&gt; listaHorarios.insertLast(x));
 
-  catch(exception: HttpException, host: ArgumentsHost) {
-    const ctx &#x3D; host.switchToHttp();
-    const response &#x3D; ctx.getResponse();
-    const request &#x3D; ctx.getRequest();
-    const status &#x3D; exception.getStatus();
-    exception.initMessage();
-    const ex: IException &#x3D; {
-      statusCode: status,
-      timestamp: new Date().toISOString(),
-      path: request.url,
-      message: exception.message,
-    };
-    const NODE_ENV &#x3D; this.configService.get(&#x27;NODE_ENV&#x27;);
-    if (NODE_ENV !&#x3D;&#x3D; &#x27;production&#x27;) {
-      ex.stack &#x3D; exception.stack;
-      ex.name &#x3D; exception.name;
+    const listaDiasDaSemanaIndices &#x3D; new DoublyLinkedList&lt;Day&gt;();
+    diasDaSemana.forEach((x) &#x3D;&gt; listaDiasDaSemanaIndices.insertLast(x));
+
+    let horarioAtual &#x3D; listaHorarios.head();
+    let diaDaSemanaAtual &#x3D; listaDiasDaSemanaIndices.head();
+    let dataAtual &#x3D; dataComeco;
+
+    const datas: Date[] &#x3D; [];
+    const max &#x3D; (quantidadeEquipes * (quantidadeEquipes - 1)) / 2;
+    for (let index &#x3D; 0; index &lt; max; index++) {
+      if (!diasDaSemana.some((day) &#x3D;&gt; day &#x3D;&#x3D;&#x3D; dataAtual.getDay())) {
+        dataAtual &#x3D; nextDay(dataAtual, diaDaSemanaAtual.getValue());
+      }
+      dataAtual &#x3D; setMinutes(dataAtual, horarioAtual.getValue());
+      if (listaHorarios.tail() &#x3D;&#x3D;&#x3D; horarioAtual) {
+        horarioAtual &#x3D; listaHorarios.head();
+
+        diaDaSemanaAtual &#x3D;
+          diaDaSemanaAtual &#x3D;&#x3D;&#x3D; listaDiasDaSemanaIndices.tail()
+            ? listaDiasDaSemanaIndices.head()
+            : diaDaSemanaAtual.getNext();
+      } else {
+        horarioAtual &#x3D; horarioAtual.getNext();
+      }
+
+      datas.push(dataAtual);
     }
 
-    // Only emit to Sentry exceptions that dont have code 4xx
-    if (status &#x3D;&#x3D;&#x3D; 400) {
-      const classValidatorEx &#x3D;
-        exception.getResponse() as IClassValidatorException;
-      ex.message &#x3D; classValidatorEx.message;
-      ex.name &#x3D; classValidatorEx.error;
+    return datas;
+  }
+
+  geraPartidas({
+    equipes,
+    dataComeco,
+    diasDaSemana,
+    horarios,
+    intervaloDeDiasEntreTurnos &#x3D; Liga.intervaloDeDiasEntreTurnos,
+  }: IClassificacaoGeneratorRequest): Partida[] {
+    if (equipes.length &amp; 1) {
+      throw new BadRequestException(&#x27;Quantidade de equipe é ímpar&#x27;);
     }
 
-    response.status(status).send(ex);
+    if (diasDaSemana.length * horarios.length !&#x3D;&#x3D; equipes.length / 2) {
+      throw new BadRequestException(
+        &#x27;Não é possível agendar um jogo por semana (rodada) para cada equipe. O produto entre o tamanho da lista de dias da semana e horarios tem que ser igual a metade do número de equipes&#x27;,
+      );
+    }
+
+    const diasDaSemanaIndices &#x3D; diasDaSemana
+      .map(
+        (x) &#x3D;&gt; ClassificacaoGeneratorService.diaDaSemanaIndiceMap.get(x) as Day,
+      )
+      .sort();
+    const horariosOrdenados &#x3D; horarios.sort();
+    const datasPrimeiroTurno &#x3D; this.geraDatas(
+      equipes.length,
+      dataComeco,
+      diasDaSemanaIndices,
+      horariosOrdenados,
+    );
+    const datasSegundoTurno &#x3D; this.geraDatas(
+      equipes.length,
+      addDays(
+        datasPrimeiroTurno[datasPrimeiroTurno.length - 1],
+        intervaloDeDiasEntreTurnos,
+      ),
+      diasDaSemanaIndices,
+      horariosOrdenados,
+    );
+
+    const datasDasPartidas &#x3D; [...datasPrimeiroTurno, ...datasSegundoTurno];
+    const idEquipeMap: ReadonlyMap&lt;string, Equipe&gt; &#x3D; new Map(
+      equipes.map((equipe) &#x3D;&gt; [equipe.id, equipe]),
+    );
+
+    return createGroup({
+      name: &#x27;voleibol&#x27;,
+      teams: equipes.map((x) &#x3D;&gt; x.id),
+      rematch: true,
+    }).matches.map((match, index) &#x3D;&gt; {
+      const partida &#x3D; new Partida();
+      partida.equipeMandante &#x3D; idEquipeMap.get(
+        match.homeTeam as string,
+      ) as Equipe;
+      partida.equipeVisitante &#x3D; idEquipeMap.get(
+        match.awayTeam as string,
+      ) as Equipe;
+      partida.dataComeco &#x3D; datasDasPartidas[index];
+      partida.numeroDaRodada &#x3D; match.roundNumber as number;
+
+      return partida;
+    });
   }
 }
 </code></pre>
@@ -427,7 +470,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
-            var COMPODOC_CURRENT_PAGE_URL = 'IException.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'IClassificacaoGeneratorRequest.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

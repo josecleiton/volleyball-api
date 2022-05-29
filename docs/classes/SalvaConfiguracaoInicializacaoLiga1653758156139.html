@@ -28,7 +28,7 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content injectable">
+               <div class="content class">
                    <div class="content-data">
 
 
@@ -38,9 +38,13 @@
 
 
 
+
+
+
+
 <ol class="breadcrumb">
-  <li>Injectables</li>
-  <li >PartidaService</li>
+  <li>Classes</li>
+  <li >SalvaConfiguracaoInicializacaoLiga1653758156139</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -58,17 +62,38 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/modules/partida/partida.service.ts</code>
+            <code>src/database/migrations/1653758156139-SalvaConfiguracaoInicializacaoLiga.ts</code>
         </p>
 
 
 
+
+            <p class="comment">
+                <h3>Implements</h3>
+            </p>
+            <p class="comment">
+                        <code>MigrationInterface</code>
+            </p>
 
 
             <section>
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#name" >name</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -79,17 +104,14 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Public</span>
                                     <span class="modifier">Async</span>
-                                <a href="#deveEncontrarEntidade" >deveEncontrarEntidade</a>
+                                <a href="#down" >down</a>
                             </li>
                             <li>
+                                    <span class="modifier">Public</span>
                                     <span class="modifier">Async</span>
-                                <a href="#listaPartidas" >listaPartidas</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Async</span>
-                                <a href="#trocaStatus" >trocaStatus</a>
+                                <a href="#up" >up</a>
                             </li>
                         </ul>
                     </td>
@@ -103,53 +125,43 @@
     </table>
 </section>
 
-            <section>
-    <h3 id="constructor">Constructor</h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-<code>constructor(partidaRepository: <a href="../classes/PartidaRepository.html" target="_self">PartidaRepository</a>)</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/modules/partida/partida.service.ts:13</a></div>
-                            </td>
-                        </tr>
 
+            <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="name"></a>
+                    <span class="name">
+                        <span ><b>name</b></span>
+                        <a href="#name"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>partidaRepository</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../classes/PartidaRepository.html" target="_self" >PartidaRepository</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
                     </td>
                 </tr>
-            </tbody>
-        </table>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;SalvaConfiguracaoInicializacaoLiga1653758156139&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="4" class="link-to-prism">src/database/migrations/1653758156139-SalvaConfiguracaoInicializacaoLiga.ts:4</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
 </section>
 
             <section>
@@ -161,27 +173,27 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="deveEncontrarEntidade"></a>
+                    <a name="down"></a>
                     <span class="name">
-                        <span class="modifier">Private</span>
+                        <span class="modifier">Public</span>
                         <span class="modifier">Async</span>
-                        <span ><b>deveEncontrarEntidade</b></span>
-                        <a href="#deveEncontrarEntidade"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>down</b></span>
+                        <a href="#down"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>deveEncontrarEntidade(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>down(queryRunner: QueryRunner)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="20"
-                            class="link-to-prism">src/modules/partida/partida.service.ts:20</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="11"
+                            class="link-to-prism">src/database/migrations/1653758156139-SalvaConfiguracaoInicializacaoLiga.ts:11</a></div>
                 </td>
             </tr>
 
@@ -202,9 +214,9 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>id</td>
+                                    <td>queryRunner</td>
                                     <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            <code>QueryRunner</code>
                                     </td>
 
                                     <td>
@@ -219,7 +231,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>unknown</code>
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -233,65 +245,27 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="listaPartidas"></a>
+                    <a name="up"></a>
                     <span class="name">
+                        <span class="modifier">Public</span>
                         <span class="modifier">Async</span>
-                        <span ><b>listaPartidas</b></span>
-                        <a href="#listaPartidas"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>up</b></span>
+                        <a href="#up"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>listaPartidas()</code>
+                    <code>up(queryRunner: QueryRunner)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="16"
-                            class="link-to-prism">src/modules/partida/partida.service.ts:16</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="trocaStatus"></a>
-                    <span class="name">
-                        <span class="modifier">Async</span>
-                        <span ><b>trocaStatus</b></span>
-                        <a href="#trocaStatus"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>trocaStatus(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, status: <a href="../entitys/Partida.html" target="_self">PartidaStatus</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="31"
-                            class="link-to-prism">src/modules/partida/partida.service.ts:31</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="6"
+                            class="link-to-prism">src/database/migrations/1653758156139-SalvaConfiguracaoInicializacaoLiga.ts:6</a></div>
                 </td>
             </tr>
 
@@ -312,21 +286,9 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>id</td>
+                                    <td>queryRunner</td>
                                     <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                                <tr>
-                                    <td>status</td>
-                                    <td>
-                                                <code><a href="../entitys/Partida.html" target="_self" >PartidaStatus</a></code>
+                                            <code>QueryRunner</code>
                                     </td>
 
                                     <td>
@@ -341,7 +303,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>unknown</code>
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -353,70 +315,33 @@
     </table>
 </section>
 
+
+
+
+
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
-  ConflictException,
-  Injectable,
-  NotFoundException,
-  NotImplementedException,
-  Scope,
-} from &#x27;@nestjs/common&#x27;;
-import { PartidaRespostaDto } from &#x27;./dto/partida.dto&#x27;;
-import { PartidaStatus } from &#x27;./enums/partida-status.enum&#x27;;
-import { PartidaRepository } from &#x27;./repositories/partida.repository&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {MigrationInterface, QueryRunner} from &quot;typeorm&quot;;
 
-@Injectable({ scope: Scope.REQUEST })
-export class PartidaService {
-  constructor(private readonly partidaRepository: PartidaRepository) {}
+export class SalvaConfiguracaoInicializacaoLiga1653758156139 implements MigrationInterface {
+    name &#x3D; &#x27;SalvaConfiguracaoInicializacaoLiga1653758156139&#x27;
 
-  async listaPartidas() {
-    throw new NotImplementedException();
-  }
-
-  private async deveEncontrarEntidade(id: string) {
-    const partida &#x3D; await this.partidaRepository.findOne({
-      where: { id },
-    });
-    if (!partida) {
-      throw new NotFoundException(&#x60;Partida ${id} não encontrada&#x60;);
+    public async up(queryRunner: QueryRunner): Promise&lt;void&gt; {
+        await queryRunner.query(&#x60;ALTER TABLE &quot;ligas&quot; ADD &quot;configuracao_inicializacao_liga&quot; jsonb&#x60;);
+        await queryRunner.query(&#x60;ALTER TABLE &quot;ligas&quot; ALTER COLUMN &quot;serie&quot; SET DEFAULT &#x27;A&#x27;&#x60;);
     }
 
-    return partida;
-  }
-
-  async trocaStatus(id: string, status: PartidaStatus) {
-    const partida &#x3D; await this.deveEncontrarEntidade(id);
-
-    switch ([partida.status, status]) {
-      case [PartidaStatus.AGENDADA, PartidaStatus.EM_ANDAMENTO]:
-        break;
-
-      case [PartidaStatus.EM_ANDAMENTO, PartidaStatus.CONCLUIDA]:
-        partida.dataFinalizacao &#x3D; new Date();
-        throw new NotImplementedException();
-
-      default:
-        throw new ConflictException(
-          &#x60;Partida ${id} não pode sair de ${partida.status} -&gt; ${status}&#x60;,
-        );
+    public async down(queryRunner: QueryRunner): Promise&lt;void&gt; {
+        await queryRunner.query(&#x60;ALTER TABLE &quot;ligas&quot; ALTER COLUMN &quot;serie&quot; DROP DEFAULT&#x60;);
+        await queryRunner.query(&#x60;ALTER TABLE &quot;ligas&quot; DROP COLUMN &quot;configuracao_inicializacao_liga&quot;&#x60;);
     }
 
-    partida.status &#x3D; status;
-
-    return new PartidaRespostaDto(await this.partidaRepository.save(partida));
-  }
 }
 </code></pre>
     </div>
-
 </div>
-
-
-
-
 
 
 
@@ -451,8 +376,8 @@ export class PartidaService {
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
-            var COMPODOC_CURRENT_PAGE_URL = 'PartidaService.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
+            var COMPODOC_CURRENT_PAGE_URL = 'SalvaConfiguracaoInicializacaoLiga1653758156139.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

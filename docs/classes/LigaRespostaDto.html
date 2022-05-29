@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Voleibol</title>
+        <title>Voleibol API</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -14,7 +14,7 @@
     <body>
 
         <div class="navbar navbar-default navbar-fixed-top visible-xs">
-            <a href="../" class="navbar-brand">Voleibol</a>
+            <a href="../" class="navbar-brand">Voleibol API</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
 
@@ -136,7 +136,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/modules/liga/dto/liga.dto.ts:33</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/modules/liga/dto/liga.dto.ts:75</a></div>
                             </td>
                         </tr>
 
@@ -199,7 +199,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/modules/liga/dto/liga.dto.ts:31</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/modules/liga/dto/liga.dto.ts:73</a></div>
                         </td>
                     </tr>
 
@@ -226,7 +226,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/modules/liga/dto/liga.dto.ts:32</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/modules/liga/dto/liga.dto.ts:74</a></div>
                         </td>
                     </tr>
 
@@ -253,7 +253,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/modules/liga/dto/liga.dto.ts:28</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/modules/liga/dto/liga.dto.ts:70</a></div>
                         </td>
                     </tr>
 
@@ -280,7 +280,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/modules/liga/dto/liga.dto.ts:33</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/modules/liga/dto/liga.dto.ts:75</a></div>
                         </td>
                     </tr>
 
@@ -306,7 +306,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/modules/liga/dto/liga.dto.ts:27</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/modules/liga/dto/liga.dto.ts:69</a></div>
                         </td>
                     </tr>
 
@@ -332,7 +332,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/modules/liga/dto/liga.dto.ts:26</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/modules/liga/dto/liga.dto.ts:68</a></div>
                         </td>
                     </tr>
 
@@ -359,7 +359,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/modules/liga/dto/liga.dto.ts:29</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/modules/liga/dto/liga.dto.ts:71</a></div>
                         </td>
                     </tr>
 
@@ -386,7 +386,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/modules/liga/dto/liga.dto.ts:30</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/modules/liga/dto/liga.dto.ts:72</a></div>
                         </td>
                     </tr>
 
@@ -405,9 +405,24 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { IsEnum, IsOptional, IsString, Length } from &#x27;class-validator&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { BadRequestException } from &#x27;@nestjs/common&#x27;;
+import { Type } from &#x27;class-transformer&#x27;;
+import {
+  ArrayMaxSize,
+  ArrayMinSize,
+  ArrayUnique,
+  IsArray,
+  IsDate,
+  IsEnum,
+  IsOptional,
+  IsString,
+  Length,
+  Max,
+  Min,
+} from &#x27;class-validator&#x27;;
 import { compareAsc } from &#x27;date-fns&#x27;;
 import { Genero } from &#x27;src/modules/core/enums&#x27;;
+import { DiaDaSemana } from &#x27;src/modules/core/enums/dia-da-semana.enum&#x27;;
 import { PartidaRespostaDto } from &#x27;src/modules/partida/dto/partida.dto&#x27;;
 import { Partida } from &#x27;src/modules/partida/entities/partida.entity&#x27;;
 import { ArbitroRespostaDto } from &#x27;src/modules/pessoa/dto/arbitro.dto&#x27;;
@@ -427,6 +442,33 @@ export class CriaLigaDto {
   @IsString()
   @Length(1, 20)
   serie?: string;
+}
+
+export class InicializaLigaDto {
+  @IsDate()
+  @Type(() &#x3D;&gt; Date)
+  data?: Date;
+
+  @IsArray()
+  @ArrayMinSize(1)
+  @ArrayMaxSize(6)
+  @ArrayUnique()
+  @IsEnum(DiaDaSemana, { each: true })
+  diasDaSemana!: DiaDaSemana[];
+
+  @IsArray()
+  @ArrayMinSize(1)
+  @ArrayMaxSize(12)
+  @ArrayUnique()
+  @Min(6 * 60, { each: true })
+  @Max(22 * 60, { each: true })
+  horarios!: number[];
+
+  valida() {
+    if (this.data instanceof Date &amp;&amp; !isFinite(this.data.getTime())) {
+      throw new BadRequestException(&quot;&#x27;data&#x27; não fornecida&quot;);
+    }
+  }
 }
 
 export class LigaRespostaDto {
