@@ -308,6 +308,7 @@ import { Partida } from &#x27;src/modules/partida/entities/partida.entity&#x27;;
 import { DoublyLinkedList } from &#x27;datastructures-js&#x27;;
 import { createGroup } from &#x27;tournament_creator&#x27;;
 import { Liga } from &#x27;../entities/liga.entity&#x27;;
+import { diaDaSemanaIndiceMap } from &#x27;./helpers&#x27;;
 
 interface IClassificacaoGeneratorRequest {
   equipes: Equipe[];
@@ -319,28 +320,14 @@ interface IClassificacaoGeneratorRequest {
 
 @Injectable({ scope: Scope.TRANSIENT })
 export class ClassificacaoGeneratorService {
-  private static readonly diaDaSemanaIndiceMap: ReadonlyMap&lt;DiaDaSemana, Day&gt; &#x3D;
-    new Map([
-      [DiaDaSemana.Domingo, 0],
-      [DiaDaSemana.Segunda, 1],
-      [DiaDaSemana.Terça, 2],
-      [DiaDaSemana.Quarta, 3],
-      [DiaDaSemana.Quinta, 4],
-      [DiaDaSemana.Sexta, 5],
-      [DiaDaSemana.Sábado, 6],
-    ]);
-
   private geraDatas(
     quantidadeEquipes: number,
     dataComeco: Date,
     diasDaSemana: Day[],
     horarios: number[],
   ) {
-    const listaHorarios &#x3D; new DoublyLinkedList&lt;number&gt;();
-    horarios.forEach((x) &#x3D;&gt; listaHorarios.insertLast(x));
-
-    const listaDiasDaSemanaIndices &#x3D; new DoublyLinkedList&lt;Day&gt;();
-    diasDaSemana.forEach((x) &#x3D;&gt; listaDiasDaSemanaIndices.insertLast(x));
+    const listaHorarios &#x3D; DoublyLinkedList.fromArray(horarios);
+    const listaDiasDaSemanaIndices &#x3D; DoublyLinkedList.fromArray(diasDaSemana);
 
     let horarioAtual &#x3D; listaHorarios.head();
     let diaDaSemanaAtual &#x3D; listaDiasDaSemanaIndices.head();
@@ -388,9 +375,7 @@ export class ClassificacaoGeneratorService {
     }
 
     const diasDaSemanaIndices &#x3D; diasDaSemana
-      .map(
-        (x) &#x3D;&gt; ClassificacaoGeneratorService.diaDaSemanaIndiceMap.get(x) as Day,
-      )
+      .map((x) &#x3D;&gt; diaDaSemanaIndiceMap.get(x) as Day)
       .sort();
     const horariosOrdenados &#x3D; horarios.sort();
     const datasPrimeiroTurno &#x3D; this.geraDatas(
