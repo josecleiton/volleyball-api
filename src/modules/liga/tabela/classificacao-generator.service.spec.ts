@@ -5,6 +5,7 @@ import faker = require('faker');
 import { DiaDaSemana } from 'src/modules/core/enums/dia-da-semana.enum';
 import { BadRequestException } from '@nestjs/common';
 import { differenceInBusinessDays } from 'date-fns';
+import { Liga } from '../entities/liga.entity';
 
 describe('ClassificacaoGeneratorService', () => {
   let sut: ClassificacaoGeneratorService;
@@ -34,6 +35,7 @@ describe('ClassificacaoGeneratorService', () => {
           diasDaSemana: [],
           horarios: [],
           dataComeco: new Date(),
+          intervaloDeDiasUteisEntreTurnos: Liga.intervaloDeUteisDiasEntreTurnos,
         }),
       ).toThrowError(new BadRequestException('Quantidade de equipe é ímpar'));
     });
@@ -51,6 +53,7 @@ describe('ClassificacaoGeneratorService', () => {
           diasDaSemana,
           horarios,
           dataComeco: new Date(),
+          intervaloDeDiasUteisEntreTurnos: Liga.intervaloDeUteisDiasEntreTurnos,
         }),
       ).toThrowError(
         new BadRequestException(
@@ -71,12 +74,14 @@ describe('ClassificacaoGeneratorService', () => {
       );
 
       const dataComeco = new Date();
+      const intervaloDeDiasUteisEntreTurnos = 3;
 
       const partidas = sut.geraPartidas({
         equipes,
         diasDaSemana,
         horarios,
         dataComeco,
+        intervaloDeDiasUteisEntreTurnos,
       });
 
       expect(partidas).toHaveLength(equipes.length * (equipes.length - 1));
@@ -86,7 +91,7 @@ describe('ClassificacaoGeneratorService', () => {
           partidas[partidas.length / 2].dataComeco,
           partidas[partidas.length / 2 - 1].dataComeco,
         ),
-      ).toBeGreaterThan(3);
+      ).toBeGreaterThanOrEqual(intervaloDeDiasUteisEntreTurnos);
     });
   });
 });

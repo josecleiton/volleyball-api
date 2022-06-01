@@ -73,7 +73,8 @@ export class LigaService {
     liga.configuracaoInicializacaoLiga = {
       diasDaSemana: requisicao.diasDaSemana,
       horarios: requisicao.horarios,
-      intervaloDeDiasEntreTurnos: Liga.intervaloDeDiasEntreTurnos,
+      intervaloDeDiasUteisEntreTurnos:
+        requisicao.intervaloDeDiasUteisEntreTurnos,
     };
 
     const partidas = this.classificacaoService.geraPartidas({

@@ -10,7 +10,7 @@ import { IConfiguraInicializaoLiga } from '../interfaces/configura-inicializacao
 @Entity('ligas')
 export class Liga extends EntidadeBase {
   static readonly minimoDeEquipesNaLiga = 12;
-  static readonly intervaloDeDiasEntreTurnos = 14;
+  static readonly intervaloDeUteisDiasEntreTurnos = 5;
 
   @Column()
   genero!: Genero;

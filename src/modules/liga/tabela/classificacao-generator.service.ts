@@ -1,11 +1,10 @@
 import { BadRequestException, Injectable, Scope } from '@nestjs/common';
-import { addDays, nextDay, setMinutes } from 'date-fns';
+import { addBusinessDays, nextDay, setMinutes } from 'date-fns';
 import { DiaDaSemana } from 'src/modules/core/enums/dia-da-semana.enum';
 import { Equipe } from 'src/modules/equipe/entities/equipe.entity';
 import { Partida } from 'src/modules/partida/entities/partida.entity';
 import { DoublyLinkedList } from 'datastructures-js';
 import { createGroup } from 'tournament_creator';
-import { Liga } from '../entities/liga.entity';
 import { diaDaSemanaIndiceMap } from './helpers';
 
 interface IClassificacaoGeneratorRequest {
@@ -13,7 +12,7 @@ interface IClassificacaoGeneratorRequest {
   dataComeco: Date;
   diasDaSemana: DiaDaSemana[];
   horarios: number[];
-  intervaloDeDiasEntreTurnos?: number;
+  intervaloDeDiasUteisEntreTurnos: number;
 }
 
 @Injectable({ scope: Scope.TRANSIENT })
@@ -60,7 +59,7 @@ export class ClassificacaoGeneratorService {
     dataComeco,
     diasDaSemana,
     horarios,
-    intervaloDeDiasEntreTurnos = Liga.intervaloDeDiasEntreTurnos,
+    intervaloDeDiasUteisEntreTurnos,
   }: IClassificacaoGeneratorRequest): Partida[] {
     if (equipes.length & 1) {
       throw new BadRequestException('Quantidade de equipe é ímpar');
@@ -84,9 +83,9 @@ export class ClassificacaoGeneratorService {
     );
     const datasSegundoTurno = this.geraDatas(
       equipes.length,
-      addDays(
+      addBusinessDays(
         datasPrimeiroTurno[datasPrimeiroTurno.length - 1],
-        intervaloDeDiasEntreTurnos,
+        intervaloDeDiasUteisEntreTurnos,
       ),
       diasDaSemanaIndices,
       horariosOrdenados,

@@ -8,6 +8,7 @@ import {
   IsDate,
   IsEnum,
   IsOptional,
+  IsPositive,
   IsString,
   Length,
   Max,
@@ -56,6 +57,11 @@ export class InicializaLigaDto {
   @Min(6 * 60, { each: true })
   @Max(22 * 60, { each: true })
   horarios!: number[];
+
+  @IsPositive()
+  @Max(Liga.intervaloDeUteisDiasEntreTurnos)
+  @IsOptional()
+  intervaloDeDiasUteisEntreTurnos = Liga.intervaloDeUteisDiasEntreTurnos;
 
   valida() {
     if (this.data instanceof Date && !isFinite(this.data.getTime())) {
