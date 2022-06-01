@@ -1,5 +1,6 @@
 export enum PartidaStatus {
   AGENDADA = 'agendada',
-  EM_ANDAMENTO = 'em_andamento',
+  PARTICIPANTES_CADASTRADOS = 'participantes_cadastrados',
+  WO = 'wo',
   CONCLUIDA = 'concluida',
 }

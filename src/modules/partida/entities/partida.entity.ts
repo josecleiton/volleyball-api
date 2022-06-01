@@ -2,27 +2,40 @@ import { differenceInMinutes } from 'date-fns';
 import { EntidadeBase } from 'src/modules/core/entities/base.entity';
 import { Equipe } from 'src/modules/equipe/entities/equipe.entity';
 import { Ginasio } from 'src/modules/ginasio/entities/ginasio.entity';
-import { Arbitro } from 'src/modules/pessoa/entities/arbitro.entity';
 import { Delegado } from 'src/modules/pessoa/entities/delegado.entity';
-import { Column, Entity, Index, JoinColumn, ManyToOne } from 'typeorm';
+import {
+  Column,
+  Entity,
+  Index,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+  OneToOne,
+} from 'typeorm';
 import { PartidaStatus } from '../enums/partida-status.enum';
+import { ArbitroPartida } from './arbitro-partida.entity';
+import { AtletaPartida } from './atleta-partida.entity';
+import { PontuacaoPartida } from './partida-pontuacao.entity';
 
-@Entity()
+@Entity('partidas')
 export class Partida extends EntidadeBase {
+  static readonly minimoDeAtletasNaPartida = 12;
+  static readonly maximoDeLiberos = 2;
   @Column({ type: 'uuid', nullable: true })
   @Index()
   idDelegado?: string;
 
-  @Column({ type: 'uuid', nullable: true })
-  @Index()
-  idArbitro?: string;
-
   @Column({ name: 'id_ginasio', type: 'uuid' })
   @Index()
-  private _idGinasio!: string;
+  idGinasio!: string;
 
-  public get idGinasio(): string {
-    return (this._idGinasio = this._idGinasio ?? this.equipeMandante.idGinasio);
+  public set equipeMandante(e: Equipe) {
+    this._equipeMandante = e;
+    this.idGinasio = e.idGinasio;
+  }
+
+  public get equipeMandante(): Equipe {
+    return this._equipeMandante;
   }
 
   @Column()
@@ -64,10 +77,6 @@ export class Partida extends EntidadeBase {
   @JoinColumn({ name: 'id_delegado' })
   delegado?: Delegado;
 
-  @ManyToOne(() => Arbitro)
-  @JoinColumn({ name: 'id_arbitro' })
-  arbitro?: Arbitro;
-
   @ManyToOne(() => Ginasio)
   @JoinColumn({ name: 'id_ginasio' })
   ginasio!: Ginasio;
@@ -82,5 +91,15 @@ export class Partida extends EntidadeBase {
 
   @ManyToOne(() => Equipe)
   @JoinColumn({ name: 'id_equipe_mandante' })
-  equipeMandante!: Equipe;
+  private _equipeMandante!: Equipe;
+
+  atletasMandante?: AtletaPartida[];
+  atletasVisitante?: AtletaPartida[];
+
+  @OneToMany(() => ArbitroPartida, (ap) => ap.partida)
+  arbitros?: ArbitroPartida[];
+
+  @OneToOne(() => PontuacaoPartida)
+  @JoinColumn({ name: 'id' })
+  pontuacao!: PontuacaoPartida;
 }

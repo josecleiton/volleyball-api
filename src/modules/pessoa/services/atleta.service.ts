@@ -115,10 +115,6 @@ export class AtletaService {
         atleta.numero = requisicao.numero;
       }
 
-      if (requisicao.posicao) {
-        atleta.posicao = requisicao.posicao;
-      }
-
       return new AtletaRespostaDto(await this.atletaRepository.save(atleta));
     } catch (error) {
       this.typeormFilterService.catch({
