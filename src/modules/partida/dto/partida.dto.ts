@@ -34,6 +34,9 @@ class ArbitroPartidaDto {
 }
 
 export class CadastrarParticipantesPartidaDto {
+  @IsUUID()
+  idDelegado!: string;
+
   @IsArray()
   @ArrayMinSize(1)
   @ArrayMaxSize(4)

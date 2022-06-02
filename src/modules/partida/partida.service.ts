@@ -10,6 +10,7 @@ import { groupBy } from 'lodash';
 import { Connection } from 'typeorm';
 import { Equipe } from '../equipe/entities/equipe.entity';
 import { Posicao, TipoArbitro } from '../pessoa/enums';
+import { DelegadoService } from '../pessoa/services/delegado.service';
 import {
   AtletaPartidaDto,
   CadastrarParticipantesPartidaDto,
@@ -30,6 +31,7 @@ export class PartidaService {
     private readonly atletaPartidaRepository: AtletaPartidaRepository,
     private readonly arbitroPartidaRepository: ArbitroPartidaRepository,
     private readonly pontuacaoPartidaRepository: PontuacaoPartidaRepository,
+    private readonly delegadoService: DelegadoService,
     private readonly connection: Connection,
   ) {}
 
@@ -105,6 +107,10 @@ export class PartidaService {
       );
     }
 
+    const delegado = await this.delegadoService.deveEncontrarUm(
+      requisicao.idDelegado,
+    );
+
     if (requisicao.desistente) {
       partida.status = PartidaStatus.WO;
       partida.idEquipeGanhador =
@@ -140,14 +146,15 @@ export class PartidaService {
     );
 
     partida.status = PartidaStatus.PARTICIPANTES_CADASTRADOS;
+    partida.idDelegado = delegado.id;
 
     const partidaAtualizada = await this.connection.transaction(
       async (manager) => {
+        const partidaSalva = await manager.save(partida);
+
         await manager.save(atletasMandantePartida);
         await manager.save(atletasVisitantePartida);
         await manager.save(arbitrosPartida);
-
-        const partidaSalva = await manager.save(partida);
 
         partidaSalva.arbitros = arbitrosPartida;
         partidaSalva.atletasMandante = atletasMandantePartida;
