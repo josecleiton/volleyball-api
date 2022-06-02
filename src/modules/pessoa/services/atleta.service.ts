@@ -8,6 +8,7 @@ import { TypeORMFilterService } from 'src/modules/core/services/typeorm-filter.s
 import { Equipe } from 'src/modules/equipe/entities/equipe.entity';
 import { EquipeService } from 'src/modules/equipe/equipe.service';
 import { LigaService } from 'src/modules/liga/liga.service';
+import { In } from 'typeorm';
 import {
   AtletaRespostaDto,
   AtualizaAtletaDto,
@@ -92,6 +93,19 @@ export class AtletaService {
     });
 
     return list.map((x) => new AtletaRespostaDto(x));
+  }
+
+  async deveListarPorId(ids: string[]) {
+    const atletas = await this.atletaRepository.find({
+      where: { id: In(ids) },
+    });
+    const setId = new Set(ids);
+
+    const naoEncontrados = atletas.filter((x) => !setId.has(x.id));
+    if (naoEncontrados?.length) {
+      throw new NotFoundException(naoEncontrados);
+    }
+    return atletas.map((x) => new AtletaRespostaDto(x));
   }
 
   async atualizaAtleta(id: string, requisicao: AtualizaAtletaDto) {

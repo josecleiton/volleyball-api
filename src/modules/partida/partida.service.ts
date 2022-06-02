@@ -10,6 +10,8 @@ import { groupBy } from 'lodash';
 import { Connection } from 'typeorm';
 import { Equipe } from '../equipe/entities/equipe.entity';
 import { Posicao, TipoArbitro } from '../pessoa/enums';
+import { ArbitroService } from '../pessoa/services/arbitro.service';
+import { AtletaService } from '../pessoa/services/atleta.service';
 import { DelegadoService } from '../pessoa/services/delegado.service';
 import {
   AtletaPartidaDto,
@@ -32,6 +34,8 @@ export class PartidaService {
     private readonly arbitroPartidaRepository: ArbitroPartidaRepository,
     private readonly pontuacaoPartidaRepository: PontuacaoPartidaRepository,
     private readonly delegadoService: DelegadoService,
+    private readonly atletaService: AtletaService,
+    private readonly arbitroService: ArbitroService,
     private readonly connection: Connection,
   ) {}
 
@@ -132,8 +136,18 @@ export class PartidaService {
       );
     }
 
+    await this.arbitroService.deveListarPorId(
+      requisicao.arbitros.map((x) => x.idArbitro),
+    );
+
     this.validaAtletas(partida.idMandante, requisicao.atletasMandante);
     this.validaAtletas(partida.idVisitante, requisicao.atletasVisitante);
+
+    await this.atletaService.deveListarPorId(
+      [...requisicao.atletasMandante, ...requisicao.atletasVisitante].map(
+        (x) => x.idAtleta,
+      ),
+    );
 
     const atletasMandantePartida = requisicao.atletasMandante.map((atletaDto) =>
       this.atletaPartidaRepository.create({ ...atletaDto }),

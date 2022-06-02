@@ -1,4 +1,4 @@
-import { Injectable, Scope } from '@nestjs/common';
+import { Injectable, NotFoundException, Scope } from '@nestjs/common';
 import { LigaService } from 'src/modules/liga/liga.service';
 import { TypeORMFilterService } from 'src/modules/core/services/typeorm-filter.service';
 import {
@@ -8,6 +8,7 @@ import {
 } from '../dto/arbitro.dto';
 import { ArbitroRepository } from '../repositories/arbitro.repository';
 import { TipoPessoa } from '../enums';
+import { In } from 'typeorm';
 
 @Injectable({ scope: Scope.REQUEST })
 export class ArbitroService {
@@ -41,6 +42,19 @@ export class ArbitroService {
       where: { ...requisicao },
     });
 
+    return arbitros.map((x) => new ArbitroRespostaDto(x));
+  }
+
+  async deveListarPorId(ids: string[]) {
+    const arbitros = await this.arbitroRepository.find({
+      where: { id: In(ids) },
+    });
+    const setId = new Set(ids);
+
+    const naoEncontrados = arbitros.filter((x) => !setId.has(x.id));
+    if (naoEncontrados?.length) {
+      throw new NotFoundException(naoEncontrados);
+    }
     return arbitros.map((x) => new ArbitroRespostaDto(x));
   }
 }

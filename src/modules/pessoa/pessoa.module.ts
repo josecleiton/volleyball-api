@@ -46,6 +46,6 @@ import { AuxiliarService } from './services/auxiliar.service';
     DelegadoService,
     AuxiliarService,
   ],
-  exports: [DelegadoService],
+  exports: [DelegadoService, ArbitroService, AtletaService],
 })
 export class PessoaModule {}
