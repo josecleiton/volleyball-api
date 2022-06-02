@@ -28,7 +28,7 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content entity">
+               <div class="content class">
                    <div class="content-data">
 
 
@@ -36,9 +36,15 @@
 
 
 
+
+
+
+
+
+
 <ol class="breadcrumb">
-  <li>Entities</li>
-  <li >Arbitro</li>
+  <li>Classes</li>
+  <li >PontuacaoPartidaRepository</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -56,103 +62,41 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/modules/pessoa/entities/arbitro.entity.ts</code>
+            <code>src/modules/partida/repositories/pontuacao-partida.repository.ts</code>
         </p>
 
 
 
-
-            <section>
-    <h3 id="index">Index</h3>
-    <table class="table table-sm table-bordered index-table">
-        <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Properties</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
-                            <li>
-                                <a href="#participacoesEmPartida" >participacoesEmPartida</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
+            <p class="comment">
+                <h3>Extends</h3>
+            </p>
+            <p class="comment">
+                    <code>Repository</code>
+            </p>
 
 
 
 
 
 
-        </tbody>
-    </table>
-</section>
-
-            <section>
-    
-    <h3 id="inputs">
-        Properties
-    </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="participacoesEmPartida"></a>
-                    <span class="name">
-                        <span ><b>participacoesEmPartida</b></span>
-                        <a href="#participacoesEmPartida"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../classes/ArbitroPartida.html" target="_self" >ArbitroPartida[]</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @OneToMany(undefined, p &#x3D;&gt; p.arbitro)<br />
-                        </code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/modules/pessoa/entities/arbitro.entity.ts:8</a></div>
-                        </td>
-                    </tr>
 
 
-        </tbody>
-    </table>
-</section>
+
+
+
+
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ArbitroPartida } from &#x27;src/modules/partida/entities/arbitro-partida.entity&#x27;;
-import { Entity, OneToMany } from &#x27;typeorm&#x27;;
-import { PessoaDeLiga } from &#x27;./pessoa_de_liga&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { EntityRepository, Repository } from &#x27;typeorm&#x27;;
+import { PontuacaoPartida } from &#x27;../entities/partida-pontuacao.entity&#x27;;
 
-@Entity(&#x27;arbitros&#x27;)
-export class Arbitro extends PessoaDeLiga {
-  @OneToMany(() &#x3D;&gt; ArbitroPartida, (p) &#x3D;&gt; p.arbitro)
-  participacoesEmPartida!: ArbitroPartida[];
-}
+@EntityRepository(PontuacaoPartida)
+export class PontuacaoPartidaRepository extends Repository&lt;PontuacaoPartida&gt; {}
 </code></pre>
     </div>
 </div>
-
-
-
-
-
-
 
 
 
@@ -187,8 +131,8 @@ export class Arbitro extends PessoaDeLiga {
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'entity';
-            var COMPODOC_CURRENT_PAGE_URL = 'Arbitro.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
+            var COMPODOC_CURRENT_PAGE_URL = 'PontuacaoPartidaRepository.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

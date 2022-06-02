@@ -178,18 +178,14 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { OmitType, PartialType } from &#x27;@nestjs/swagger&#x27;;
-import { IsEnum, IsNotEmpty, IsPositive, IsUUID, Max } from &#x27;class-validator&#x27;;
+import { IsNotEmpty, IsPositive, IsUUID, Max } from &#x27;class-validator&#x27;;
 import { Atleta } from &#x27;../entities/atleta.entity&#x27;;
-import { Posicao } from &#x27;../enums&#x27;;
 import { CriaPessoaDto, PessoaRespostaDto } from &#x27;./pessoa.dto&#x27;;
 
 export class CriaAtletaDto extends CriaPessoaDto {
   @IsPositive()
   @Max(100)
   numero!: number;
-
-  @IsEnum(Posicao)
-  posicao!: Posicao;
 
   @IsUUID()
   idEquipe!: string;
@@ -224,7 +220,6 @@ export class AtletaRespostaDto extends PessoaRespostaDto {
   id: string;
   numero: number;
   idEquipe: string;
-  posicao: Posicao;
 
   constructor(atleta: Atleta) {
     super(atleta.pessoa);
@@ -232,7 +227,6 @@ export class AtletaRespostaDto extends PessoaRespostaDto {
     this.id &#x3D; atleta.id;
     this.numero &#x3D; atleta.numero;
     this.idEquipe &#x3D; atleta.idEquipe;
-    this.posicao &#x3D; atleta.posicao;
   }
 }
 </code></pre>

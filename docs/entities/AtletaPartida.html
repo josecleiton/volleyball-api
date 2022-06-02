@@ -28,7 +28,7 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content class">
+               <div class="content entity">
                    <div class="content-data">
 
 
@@ -36,15 +36,9 @@
 
 
 
-
-
-
-
-
-
 <ol class="breadcrumb">
-  <li>Classes</li>
-  <li >CriaLigaDto</li>
+  <li>Entities</li>
+  <li >AtletaPartida</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -62,10 +56,8 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/modules/liga/dto/liga.dto.ts</code>
+            <code>src/modules/partida/entities/atleta-partida.entity.ts</code>
         </p>
-
-
 
 
 
@@ -83,15 +75,19 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#genero" >genero</a>
+                                <a href="#atleta" >atleta</a>
                             </li>
                             <li>
-                                    <span class="modifier">Optional</span>
-                                <a href="#nome" >nome</a>
+                                <a href="#idAtleta" >idAtleta</a>
                             </li>
                             <li>
-                                    <span class="modifier">Optional</span>
-                                <a href="#serie" >serie</a>
+                                <a href="#idPartida" >idPartida</a>
+                            </li>
+                            <li>
+                                <a href="#partida" >partida</a>
+                            </li>
+                            <li>
+                                <a href="#posicao" >posicao</a>
                             </li>
                         </ul>
                     </td>
@@ -106,7 +102,6 @@
     </table>
 </section>
 
-
             <section>
     
     <h3 id="inputs">
@@ -116,16 +111,16 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="genero"></a>
+                    <a name="atleta"></a>
                     <span class="name">
-                        <span ><b>genero</b></span>
-                        <a href="#genero"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>atleta</b></span>
+                        <a href="#atleta"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../miscellaneous/enumerations.html#Genero" target="_self" >Genero</a></code>
+                        <i>Type : </i>        <code><a href="../classes/Atleta.html" target="_self" >Atleta</a></code>
 
                     </td>
                 </tr>
@@ -134,13 +129,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @IsEnum(Genero)<br />
+                            @ManyToOne(undefined)<br />@JoinColumn({name: &#x27;id_atleta&#x27;})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/modules/liga/dto/liga.dto.ts:28</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/modules/partida/entities/atleta-partida.entity.ts:27</a></div>
                         </td>
                     </tr>
 
@@ -151,11 +146,10 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="nome"></a>
+                    <a name="idAtleta"></a>
                     <span class="name">
-                            <span class="modifier">Optional</span>
-                        <span ><b>nome</b></span>
-                        <a href="#nome"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>idAtleta</b></span>
+                        <a href="#idAtleta"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -170,13 +164,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @IsOptional()<br />@IsString()<br />@Length(2, 200)<br />
+                            @Column(&#x27;uuid&#x27;)<br />@Index()<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/modules/liga/dto/liga.dto.ts:33</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/modules/partida/entities/atleta-partida.entity.ts:16</a></div>
                         </td>
                     </tr>
 
@@ -187,11 +181,10 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="serie"></a>
+                    <a name="idPartida"></a>
                     <span class="name">
-                            <span class="modifier">Optional</span>
-                        <span ><b>serie</b></span>
-                        <a href="#serie"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>idPartida</b></span>
+                        <a href="#idPartida"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -206,13 +199,83 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @IsOptional()<br />@IsString()<br />@Length(1, 20)<br />
+                            @Column(&#x27;uuid&#x27;)<br />@Index()<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/modules/liga/dto/liga.dto.ts:38</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/modules/partida/entities/atleta-partida.entity.ts:12</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="partida"></a>
+                    <span class="name">
+                        <span ><b>partida</b></span>
+                        <a href="#partida"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../entitys/Partida.html" target="_self" >Partida</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ManyToOne(undefined)<br />@JoinColumn({name: &#x27;id_partida&#x27;})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/modules/partida/entities/atleta-partida.entity.ts:23</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="posicao"></a>
+                    <span class="name">
+                        <span ><b>posicao</b></span>
+                        <a href="#posicao"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/enumerations.html#Posicao" target="_self" >Posicao</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Column({type: &#x27;enum&#x27;, enum: Posicao})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/modules/partida/entities/atleta-partida.entity.ts:19</a></div>
                         </td>
                     </tr>
 
@@ -220,125 +283,47 @@
         </tbody>
     </table>
 </section>
-
-
-
-
-
-
-
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { BadRequestException } from &#x27;@nestjs/common&#x27;;
-import { Type } from &#x27;class-transformer&#x27;;
-import {
-  ArrayMaxSize,
-  ArrayMinSize,
-  ArrayUnique,
-  IsArray,
-  IsDate,
-  IsEnum,
-  IsOptional,
-  IsPositive,
-  IsString,
-  Length,
-  Max,
-  Min,
-} from &#x27;class-validator&#x27;;
-import { compareAsc } from &#x27;date-fns&#x27;;
-import { Genero } from &#x27;src/modules/core/enums&#x27;;
-import { DiaDaSemana } from &#x27;src/modules/core/enums/dia-da-semana.enum&#x27;;
-import { PartidaRespostaDto } from &#x27;src/modules/partida/dto/partida.dto&#x27;;
-import { Partida } from &#x27;src/modules/partida/entities/partida.entity&#x27;;
-import { ArbitroRespostaDto } from &#x27;src/modules/pessoa/dto/arbitro.dto&#x27;;
-import { DelegadoRespostaDto } from &#x27;src/modules/pessoa/dto/delegado.dto&#x27;;
-import { Liga } from &#x27;../entities/liga.entity&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { EntidadeBase } from &#x27;src/modules/core/entities/base.entity&#x27;;
+import { Atleta } from &#x27;src/modules/pessoa/entities/atleta.entity&#x27;;
+import { Posicao } from &#x27;src/modules/pessoa/enums&#x27;;
+import { Column, Entity, Index, JoinColumn, ManyToOne, Unique } from &#x27;typeorm&#x27;;
+import { Partida } from &#x27;./partida.entity&#x27;;
 
-export class CriaLigaDto {
-  @IsEnum(Genero)
-  genero!: Genero;
+@Entity(&#x27;atletas_partida&#x27;)
+@Unique([&#x27;idAtleta&#x27;, &#x27;idPartida&#x27;])
+export class AtletaPartida extends EntidadeBase {
+  @Column(&#x27;uuid&#x27;)
+  @Index()
+  idPartida!: string;
 
-  @IsOptional()
-  @IsString()
-  @Length(2, 200)
-  nome?: string;
+  @Column(&#x27;uuid&#x27;)
+  @Index()
+  idAtleta!: string;
 
-  @IsOptional()
-  @IsString()
-  @Length(1, 20)
-  serie?: string;
-}
+  @Column({ type: &#x27;enum&#x27;, enum: Posicao })
+  posicao!: Posicao;
 
-export class InicializaLigaDto {
-  @IsDate()
-  @Type(() &#x3D;&gt; Date)
-  data?: Date;
+  @ManyToOne(() &#x3D;&gt; Partida)
+  @JoinColumn({ name: &#x27;id_partida&#x27; })
+  partida!: Partida;
 
-  @IsArray()
-  @ArrayMinSize(1)
-  @ArrayMaxSize(6)
-  @ArrayUnique()
-  @IsEnum(DiaDaSemana, { each: true })
-  diasDaSemana!: DiaDaSemana[];
-
-  @IsArray()
-  @ArrayMinSize(1)
-  @ArrayMaxSize(12)
-  @ArrayUnique()
-  @Min(6 * 60, { each: true })
-  @Max(22 * 60, { each: true })
-  horarios!: number[];
-
-  @IsPositive()
-  @Max(Liga.intervaloDeUteisDiasEntreTurnos)
-  @IsOptional()
-  intervaloDeDiasUteisEntreTurnos &#x3D; Liga.intervaloDeUteisDiasEntreTurnos;
-
-  valida() {
-    if (this.data instanceof Date &amp;&amp; !isFinite(this.data.getTime())) {
-      throw new BadRequestException(&quot;&#x27;data&#x27; não fornecida&quot;);
-    }
-  }
-}
-
-export class LigaRespostaDto {
-  id: string;
-  genero: string;
-  dataComeco?: Date;
-  nome?: string;
-  serie?: string;
-  ano?: number;
-  arbitros?: ArbitroRespostaDto[];
-  delegados?: DelegadoRespostaDto[];
-
-  constructor(liga: Liga) {
-    this.id &#x3D; liga.id;
-    this.genero &#x3D; liga.genero;
-    this.dataComeco &#x3D; liga.dataComeco;
-    this.nome &#x3D; liga.nome;
-    this.serie &#x3D; liga.serie;
-    this.ano &#x3D; liga.ano;
-    this.arbitros &#x3D; liga.arbitros?.map((x) &#x3D;&gt; new ArbitroRespostaDto(x));
-    this.delegados &#x3D; liga.delegados?.map((x) &#x3D;&gt; new DelegadoRespostaDto(x));
-  }
-}
-
-export class InicializaLigaRespostaDto {
-  liga: LigaRespostaDto;
-  partidas: PartidaRespostaDto[];
-
-  constructor(liga: Liga, partidas: Partida[]) {
-    this.liga &#x3D; new LigaRespostaDto(liga);
-    this.partidas &#x3D; partidas
-      .sort((a, b) &#x3D;&gt; compareAsc(a.dataComeco, b.dataComeco))
-      .map((x) &#x3D;&gt; new PartidaRespostaDto(x));
-  }
+  @ManyToOne(() &#x3D;&gt; Atleta)
+  @JoinColumn({ name: &#x27;id_atleta&#x27; })
+  atleta!: Atleta;
 }
 </code></pre>
     </div>
 </div>
+
+
+
+
+
+
 
 
 
@@ -373,8 +358,8 @@ export class InicializaLigaRespostaDto {
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
-            var COMPODOC_CURRENT_PAGE_URL = 'CriaLigaDto.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'entity';
+            var COMPODOC_CURRENT_PAGE_URL = 'AtletaPartida.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

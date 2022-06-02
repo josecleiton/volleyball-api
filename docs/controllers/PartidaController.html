@@ -85,7 +85,11 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#atualizaStatus" >atualizaStatus</a>
+                                <a href="#iniciaPartida" >iniciaPartida</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#listaPartidas" >listaPartidas</a>
                             </li>
                         </ul>
                     </td>
@@ -108,18 +112,18 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="atualizaStatus"></a>
+                    <a name="iniciaPartida"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
-                        <span ><b>atualizaStatus</b></span>
-                        <a href="#atualizaStatus"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>iniciaPartida</b></span>
+                        <a href="#iniciaPartida"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>atualizaStatus(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, requisicao: <a href="../classes/AtualizaPartidaStatusDto.html" target="_self">AtualizaPartidaStatusDto</a>)</code>
+                    <code>iniciaPartida(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, requisicao: <a href="../classes/CadastrarParticipantesPartidaDto.html" target="_self">CadastrarParticipantesPartidaDto</a>)</code>
                 </td>
             </tr>
 
@@ -127,14 +131,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Patch(&#x27;:id&#x27;)<br /></code>
+                    <code>@Post(&#x27;:id/cadastra-participantes&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="10"
-                            class="link-to-prism">src/modules/partida/partida.controller.ts:10</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="23"
+                            class="link-to-prism">src/modules/partida/partida.controller.ts:23</a></div>
                 </td>
             </tr>
 
@@ -169,7 +173,85 @@
                                 <tr>
                                     <td>requisicao</td>
                                     <td>
-                                                <code><a href="../classes/AtualizaPartidaStatusDto.html" target="_self" >AtualizaPartidaStatusDto</a></code>
+                                                <code><a href="../classes/CadastrarParticipantesPartidaDto.html" target="_self" >CadastrarParticipantesPartidaDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>unknown</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="listaPartidas"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>listaPartidas</b></span>
+                        <a href="#listaPartidas"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>listaPartidas(idLiga: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get()<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="18"
+                            class="link-to-prism">src/modules/partida/partida.controller.ts:18</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>idLiga</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                     </td>
 
                                     <td>
@@ -198,20 +280,33 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Body, Controller, Param, ParseUUIDPipe, Patch } from &#x27;@nestjs/common&#x27;;
-import { AtualizaPartidaStatusDto } from &#x27;./dto/partida.dto&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  ParseUUIDPipe,
+  Post,
+  Query,
+} from &#x27;@nestjs/common&#x27;;
+import { CadastrarParticipantesPartidaDto } from &#x27;./dto/partida.dto&#x27;;
 import { PartidaService } from &#x27;./partida.service&#x27;;
 
 @Controller(&#x27;partida&#x27;)
 export class PartidaController {
   constructor(private readonly partidaService: PartidaService) {}
 
-  @Patch(&#x27;:id&#x27;)
-  async atualizaStatus(
+  @Get()
+  async listaPartidas(@Query(&#x27;idLiga&#x27;, ParseUUIDPipe) idLiga: string) {
+    return this.partidaService.listaPartidas(idLiga);
+  }
+
+  @Post(&#x27;:id/cadastra-participantes&#x27;)
+  async iniciaPartida(
     @Param(&#x27;id&#x27;, ParseUUIDPipe) id: string,
-    @Body() requisicao: AtualizaPartidaStatusDto,
+    @Body() requisicao: CadastrarParticipantesPartidaDto,
   ) {
-    return this.partidaService.trocaStatus(id, requisicao.status);
+    return this.partidaService.cadastrarParticipantes(id, requisicao);
   }
 }
 </code></pre>

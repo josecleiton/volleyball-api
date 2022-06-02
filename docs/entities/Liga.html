@@ -97,7 +97,7 @@
                             <li>
                                     <span class="modifier">Static</span>
                                     <span class="modifier">Readonly</span>
-                                <a href="#intervaloDeDiasEntreTurnos" >intervaloDeDiasEntreTurnos</a>
+                                <a href="#intervaloDeUteisDiasEntreTurnos" >intervaloDeUteisDiasEntreTurnos</a>
                             </li>
                             <li>
                                     <span class="modifier">Static</span>
@@ -346,12 +346,12 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="intervaloDeDiasEntreTurnos"></a>
+                    <a name="intervaloDeUteisDiasEntreTurnos"></a>
                     <span class="name">
                             <span class="modifier">Static</span>
                             <span class="modifier">Readonly</span>
-                        <span ><b>intervaloDeDiasEntreTurnos</b></span>
-                        <a href="#intervaloDeDiasEntreTurnos"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>intervaloDeUteisDiasEntreTurnos</b></span>
+                        <a href="#intervaloDeUteisDiasEntreTurnos"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -363,7 +363,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>14</code>
+                        <i>Default value : </i><code>5</code>
                     </td>
                 </tr>
                     <tr>
@@ -497,7 +497,7 @@ import { IConfiguraInicializaoLiga } from &#x27;../interfaces/configura-iniciali
 @Entity(&#x27;ligas&#x27;)
 export class Liga extends EntidadeBase {
   static readonly minimoDeEquipesNaLiga &#x3D; 12;
-  static readonly intervaloDeDiasEntreTurnos &#x3D; 14;
+  static readonly intervaloDeUteisDiasEntreTurnos &#x3D; 5;
 
   @Column()
   genero!: Genero;

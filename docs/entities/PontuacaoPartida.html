@@ -28,7 +28,7 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content class">
+               <div class="content entity">
                    <div class="content-data">
 
 
@@ -36,15 +36,9 @@
 
 
 
-
-
-
-
-
-
 <ol class="breadcrumb">
-  <li>Classes</li>
-  <li >AtualizaPartidaStatusDto</li>
+  <li>Entities</li>
+  <li >PontuacaoPartida</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -62,10 +56,8 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/modules/partida/dto/partida.dto.ts</code>
+            <code>src/modules/partida/entities/partida-pontuacao.entity.ts</code>
         </p>
-
-
 
 
 
@@ -83,7 +75,10 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#status" >status</a>
+                                <a href="#mandante" >mandante</a>
+                            </li>
+                            <li>
+                                <a href="#visitante" >visitante</a>
                             </li>
                         </ul>
                     </td>
@@ -98,7 +93,6 @@
     </table>
 </section>
 
-
             <section>
     
     <h3 id="inputs">
@@ -108,16 +102,16 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="status"></a>
+                    <a name="mandante"></a>
                     <span class="name">
-                        <span ><b>status</b></span>
-                        <a href="#status"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>mandante</b></span>
+                        <a href="#mandante"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../entitys/Partida.html" target="_self" >PartidaStatus</a></code>
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
 
                     </td>
                 </tr>
@@ -126,13 +120,48 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @IsEnum(PartidaStatus)<br />
+                            @Column({type: &#x27;int&#x27;, default: 0})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/modules/partida/dto/partida.dto.ts:17</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/modules/partida/entities/partida-pontuacao.entity.ts:7</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="visitante"></a>
+                    <span class="name">
+                        <span ><b>visitante</b></span>
+                        <a href="#visitante"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Column({type: &#x27;int&#x27;, default: 0})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/modules/partida/entities/partida-pontuacao.entity.ts:10</a></div>
                         </td>
                     </tr>
 
@@ -140,111 +169,30 @@
         </tbody>
     </table>
 </section>
-
-
-
-
-
-
-
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
-  ArrayMaxSize,
-  ArrayMinSize,
-  IsArray,
-  IsEnum,
-  IsIn,
-  IsOptional,
-  IsUUID,
-  ValidateNested,
-} from &#x27;class-validator&#x27;;
-import { Posicao, TipoArbitro } from &#x27;src/modules/pessoa/enums&#x27;;
-import { Partida } from &#x27;../entities/partida.entity&#x27;;
-import { PartidaStatus } from &#x27;../enums/partida-status.enum&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { EntidadeBase } from &#x27;src/modules/core/entities/base.entity&#x27;;
+import { Column, Entity } from &#x27;typeorm&#x27;;
 
-export class AtualizaPartidaStatusDto {
-  @IsEnum(PartidaStatus)
-  status!: PartidaStatus;
-}
+@Entity(&#x27;pontuacoes_partida&#x27;)
+export class PontuacaoPartida extends EntidadeBase {
+  @Column({ type: &#x27;int&#x27;, default: 0 })
+  mandante!: number;
 
-export class AtletaPartidaDto {
-  @IsUUID()
-  idAtleta!: string;
-
-  @IsEnum(Posicao)
-  posicao!: Posicao;
-}
-
-class ArbitroPartidaDto {
-  @IsUUID()
-  idArbitro!: string;
-
-  @IsEnum(TipoArbitro)
-  tipo!: TipoArbitro;
-}
-
-export class CadastrarParticipantesPartidaDto {
-  @IsUUID()
-  idDelegado!: string;
-
-  @IsArray()
-  @ArrayMinSize(1)
-  @ArrayMaxSize(4)
-  @ValidateNested({ each: true })
-  arbitros!: ArbitroPartidaDto[];
-
-  @IsArray()
-  @ArrayMinSize(12)
-  @ArrayMaxSize(14)
-  @ValidateNested({ each: true })
-  atletasMandante!: AtletaPartidaDto[];
-
-  @IsArray()
-  @ArrayMinSize(12)
-  @ArrayMaxSize(14)
-  @ValidateNested({ each: true })
-  atletasVisitante!: AtletaPartidaDto[];
-
-  @IsIn([&#x27;mandante&#x27;, &#x27;visitante&#x27;])
-  @IsOptional()
-  desistente?: &#x27;mandante&#x27; | &#x27;visitante&#x27;;
-}
-
-export class PartidaRespostaDto {
-  id: string;
-  idDelegado?: string;
-  idGinasio: string;
-  idEquipeMandante: string;
-  idEquipeVisitante: string;
-  status: PartidaStatus;
-  dataComeco: Date;
-  dataFinalizacao?: Date;
-  idEquipeGanhador?: string;
-  dataCriacao: Date;
-  dataAtualizacao: Date;
-  duracaoBruta?: number;
-
-  constructor(partida: Partida) {
-    this.id &#x3D; partida.id;
-    this.idDelegado &#x3D; partida.idDelegado;
-    this.idGinasio &#x3D; partida.idGinasio;
-    this.status &#x3D; partida.status;
-    this.dataComeco &#x3D; partida.dataComeco;
-    this.dataFinalizacao &#x3D; partida.dataFinalizacao;
-    this.idEquipeGanhador &#x3D; partida.idEquipeGanhador;
-    this.dataCriacao &#x3D; partida.dataCriacao;
-    this.dataAtualizacao &#x3D; partida.dataAtualizacao;
-    this.duracaoBruta &#x3D; partida.duracaoBruta;
-    this.idEquipeMandante &#x3D; partida.idMandante;
-    this.idEquipeVisitante &#x3D; partida.idVisitante;
-  }
+  @Column({ type: &#x27;int&#x27;, default: 0 })
+  visitante!: number;
 }
 </code></pre>
     </div>
 </div>
+
+
+
+
+
+
 
 
 
@@ -279,8 +227,8 @@ export class PartidaRespostaDto {
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
-            var COMPODOC_CURRENT_PAGE_URL = 'AtualizaPartidaStatusDto.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'entity';
+            var COMPODOC_CURRENT_PAGE_URL = 'PontuacaoPartida.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

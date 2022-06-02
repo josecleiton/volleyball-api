@@ -47,7 +47,7 @@
   <li>Interfaces</li>
   <li
   >
-  IConfiguraInicializaoLiga</li>
+  IPontuacaoPartidaDto</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -65,7 +65,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/modules/liga/interfaces/configura-inicializacao-liga.interface.ts</code>
+            <code>src/modules/partida/dto/pontuacao-partida.dto.ts</code>
         </p>
 
 
@@ -84,21 +84,15 @@
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
-                                        <a href="#diasDaSemana" 
+                                        <a href="#ganhador" 
 >
-                                            diasDaSemana
+                                            ganhador
                                         </a>
                                 </li>
                                 <li>
-                                        <a href="#horarios" 
+                                        <a href="#perdedor" 
 >
-                                            horarios
-                                        </a>
-                                </li>
-                                <li>
-                                        <a href="#intervaloDeDiasUteisEntreTurnos" 
->
-                                            intervaloDeDiasUteisEntreTurnos
+                                            perdedor
                                         </a>
                                 </li>
                             </ul>
@@ -116,9 +110,9 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="diasDaSemana"></a>
-                                        <span class="name "><b>diasDaSemana</b>
-                                            <a href="#diasDaSemana">
+                                        <a name="ganhador"></a>
+                                        <span class="name "><b>ganhador</b>
+                                            <a href="#ganhador">
                                                 <span class="icon ion-ios-link"></span>
                                             </a>
                                         </span>
@@ -126,7 +120,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>diasDaSemana:         <code><a href="../miscellaneous/enumerations.html#DiaDaSemana" target="_self" >DiaDaSemana[]</a></code>
+                                        <code>ganhador:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -134,7 +128,7 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="../miscellaneous/enumerations.html#DiaDaSemana" target="_self" >DiaDaSemana[]</a></code>
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
 
                                         </td>
                                     </tr>
@@ -149,9 +143,9 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="horarios"></a>
-                                        <span class="name "><b>horarios</b>
-                                            <a href="#horarios">
+                                        <a name="perdedor"></a>
+                                        <span class="name "><b>perdedor</b>
+                                            <a href="#perdedor">
                                                 <span class="icon ion-ios-link"></span>
                                             </a>
                                         </span>
@@ -159,40 +153,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>horarios:     <code>number[]</code>
-</code>
-                                    </td>
-                                </tr>
-
-
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>    <code>number[]</code>
-
-                                        </td>
-                                    </tr>
-
-
-
-
-
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="intervaloDeDiasUteisEntreTurnos"></a>
-                                        <span class="name "><b>intervaloDeDiasUteisEntreTurnos</b>
-                                            <a href="#intervaloDeDiasUteisEntreTurnos">
-                                                <span class="icon ion-ios-link"></span>
-                                            </a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>intervaloDeDiasUteisEntreTurnos:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                        <code>perdedor:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -216,12 +177,9 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { DiaDaSemana } from &#x27;src/modules/core/enums/dia-da-semana.enum&#x27;;
-
-export interface IConfiguraInicializaoLiga {
-  horarios: number[];
-  diasDaSemana: DiaDaSemana[];
-  intervaloDeDiasUteisEntreTurnos: number;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export interface IPontuacaoPartidaDto {
+  ganhador: number;
+  perdedor: number;
 }
 </code></pre>
     </div>
@@ -260,7 +218,7 @@ export interface IConfiguraInicializaoLiga {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
-            var COMPODOC_CURRENT_PAGE_URL = 'IConfiguraInicializaoLiga.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'IPontuacaoPartidaDto.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 
