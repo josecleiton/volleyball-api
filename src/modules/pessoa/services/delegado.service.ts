@@ -1,4 +1,4 @@
-import { Injectable, Scope } from '@nestjs/common';
+import { Injectable, NotFoundException, Scope } from '@nestjs/common';
 import { LigaService } from 'src/modules/liga/liga.service';
 import { TypeORMFilterService } from 'src/modules/core/services/typeorm-filter.service';
 import {
@@ -19,7 +19,7 @@ export class DelegadoService {
 
   async criaDelegado(requisicao: CriaDelegadoDto) {
     const liga = await this.ligaService.deveEncontrarUm(requisicao.idLiga);
-    const arbitro = this.delegadoRepository.create({
+    const delegado = this.delegadoRepository.create({
       ...requisicao,
       idLiga: liga.id,
       pessoa: requisicao.paraPessoa(TipoPessoa.delegado),
@@ -27,7 +27,7 @@ export class DelegadoService {
 
     try {
       return new DelegadoRespostaDto(
-        await this.delegadoRepository.save(arbitro),
+        await this.delegadoRepository.save(delegado),
       );
     } catch (error) {
       this.typeormFilterService.catch({
@@ -39,10 +39,19 @@ export class DelegadoService {
   }
 
   async listaDelegados(requisicao: ListaDelegadoDto) {
-    const arbitros = await this.delegadoRepository.find({
+    const delegados = await this.delegadoRepository.find({
       where: { ...requisicao },
     });
 
-    return arbitros.map((x) => new DelegadoRespostaDto(x));
+    return delegados.map((x) => new DelegadoRespostaDto(x));
+  }
+
+  async deveEncontrarUm(id: string) {
+    const delegado = await this.delegadoRepository.findOne(id);
+    if (!delegado) {
+      throw new NotFoundException(`Delegado ${id} não encontrado`);
+    }
+
+    return new DelegadoRespostaDto(delegado);
   }
 }

@@ -84,6 +84,10 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#deveEncontrarUm" >deveEncontrarUm</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#listaDelegados" >listaDelegados</a>
                             </li>
                         </ul>
@@ -251,6 +255,77 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="deveEncontrarUm"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>deveEncontrarUm</b></span>
+                        <a href="#deveEncontrarUm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>deveEncontrarUm(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="49"
+                            class="link-to-prism">src/modules/pessoa/services/delegado.service.ts:49</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>unknown</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="listaDelegados"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -324,7 +399,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, Scope } from &#x27;@nestjs/common&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, NotFoundException, Scope } from &#x27;@nestjs/common&#x27;;
 import { LigaService } from &#x27;src/modules/liga/liga.service&#x27;;
 import { TypeORMFilterService } from &#x27;src/modules/core/services/typeorm-filter.service&#x27;;
 import {
@@ -345,7 +420,7 @@ export class DelegadoService {
 
   async criaDelegado(requisicao: CriaDelegadoDto) {
     const liga &#x3D; await this.ligaService.deveEncontrarUm(requisicao.idLiga);
-    const arbitro &#x3D; this.delegadoRepository.create({
+    const delegado &#x3D; this.delegadoRepository.create({
       ...requisicao,
       idLiga: liga.id,
       pessoa: requisicao.paraPessoa(TipoPessoa.delegado),
@@ -353,7 +428,7 @@ export class DelegadoService {
 
     try {
       return new DelegadoRespostaDto(
-        await this.delegadoRepository.save(arbitro),
+        await this.delegadoRepository.save(delegado),
       );
     } catch (error) {
       this.typeormFilterService.catch({
@@ -365,13 +440,23 @@ export class DelegadoService {
   }
 
   async listaDelegados(requisicao: ListaDelegadoDto) {
-    const arbitros &#x3D; await this.delegadoRepository.find({
+    const delegados &#x3D; await this.delegadoRepository.find({
       where: { ...requisicao },
     });
 
-    return arbitros.map((x) &#x3D;&gt; new DelegadoRespostaDto(x));
+    return delegados.map((x) &#x3D;&gt; new DelegadoRespostaDto(x));
   }
-}</code></pre>
+
+  async deveEncontrarUm(id: string) {
+    const delegado &#x3D; await this.delegadoRepository.findOne(id);
+    if (!delegado) {
+      throw new NotFoundException(&#x60;Delegado ${id} não encontrado&#x60;);
+    }
+
+    return new DelegadoRespostaDto(delegado);
+  }
+}
+</code></pre>
     </div>
 
 </div>

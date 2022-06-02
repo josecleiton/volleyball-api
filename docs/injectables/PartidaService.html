@@ -79,17 +79,29 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#cadastrarParticipantes" >cadastrarParticipantes</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Private</span>
                                     <span class="modifier">Async</span>
                                 <a href="#deveEncontrarEntidade" >deveEncontrarEntidade</a>
+                            </li>
+                            <li>
+                                <a href="#finalizaPartida" >finalizaPartida</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
                                 <a href="#listaPartidas" >listaPartidas</a>
                             </li>
                             <li>
+                                    <span class="modifier">Private</span>
                                     <span class="modifier">Async</span>
-                                <a href="#trocaStatus" >trocaStatus</a>
+                                <a href="#registraDesistencia" >registraDesistencia</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#validaAtletas" >validaAtletas</a>
                             </li>
                         </ul>
                     </td>
@@ -109,12 +121,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(partidaRepository: <a href="../classes/PartidaRepository.html" target="_self">PartidaRepository</a>)</code>
+<code>constructor(partidaRepository: <a href="../classes/PartidaRepository.html" target="_self">PartidaRepository</a>, atletaPartidaRepository: <a href="../classes/AtletaPartidaRepository.html" target="_self">AtletaPartidaRepository</a>, arbitroPartidaRepository: <a href="../classes/ArbitroPartidaRepository.html" target="_self">ArbitroPartidaRepository</a>, pontuacaoPartidaRepository: <a href="../classes/PontuacaoPartidaRepository.html" target="_self">PontuacaoPartidaRepository</a>, delegadoService: <a href="../injectables/DelegadoService.html" target="_self">DelegadoService</a>, atletaService: <a href="../injectables/AtletaService.html" target="_self">AtletaService</a>, arbitroService: <a href="../injectables/ArbitroService.html" target="_self">ArbitroService</a>, connection: Connection)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/modules/partida/partida.service.ts:13</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/modules/partida/partida.service.ts:30</a></div>
                             </td>
                         </tr>
 
@@ -143,6 +155,90 @@
                                                     </td>
                                                     
                                                 </tr>
+                                                <tr>
+                                                        <td>atletaPartidaRepository</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../classes/AtletaPartidaRepository.html" target="_self" >AtletaPartidaRepository</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>arbitroPartidaRepository</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../classes/ArbitroPartidaRepository.html" target="_self" >ArbitroPartidaRepository</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>pontuacaoPartidaRepository</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../classes/PontuacaoPartidaRepository.html" target="_self" >PontuacaoPartidaRepository</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>delegadoService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/DelegadoService.html" target="_self" >DelegadoService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>atletaService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/AtletaService.html" target="_self" >AtletaService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>arbitroService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ArbitroService.html" target="_self" >ArbitroService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>connection</td>
+                                                  
+                                                        <td>
+                                                                    <code>Connection</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                         </tbody>
                                     </table>
                             </div>
@@ -157,6 +253,89 @@
     <h3 id="methods">
         Methods
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cadastrarParticipantes"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>cadastrarParticipantes</b></span>
+                        <a href="#cadastrarParticipantes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>cadastrarParticipantes(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, requisicao: <a href="../classes/CadastrarParticipantesPartidaDto.html" target="_self">CadastrarParticipantesPartidaDto</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="103"
+                            class="link-to-prism">src/modules/partida/partida.service.ts:103</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>requisicao</td>
+                                    <td>
+                                                <code><a href="../classes/CadastrarParticipantesPartidaDto.html" target="_self" >CadastrarParticipantesPartidaDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>unknown</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -180,8 +359,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="20"
-                            class="link-to-prism">src/modules/partida/partida.service.ts:20</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="46"
+                            class="link-to-prism">src/modules/partida/partida.service.ts:46</a></div>
                 </td>
             </tr>
 
@@ -220,6 +399,99 @@
                     </div>
                     <div class="io-description">
                         <b>Returns : </b>    <code>unknown</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="finalizaPartida"></a>
+                    <span class="name">
+                        <span ><b>finalizaPartida</b></span>
+                        <a href="#finalizaPartida"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>finalizaPartida(partida: <a href="../entitys/Partida.html" target="_self">Partida</a>, equipeGanhadora: <a href="../classes/Equipe.html" target="_self">Equipe</a>, pontuacaoDto: <a href="../interfaces/IPontuacaoPartidaDto.html" target="_self">IPontuacaoPartidaDto</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="184"
+                            class="link-to-prism">src/modules/partida/partida.service.ts:184</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>partida</td>
+                                    <td>
+                                                <code><a href="../entitys/Partida.html" target="_self" >Partida</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>equipeGanhadora</td>
+                                    <td>
+                                                <code><a href="../classes/Equipe.html" target="_self" >Equipe</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>pontuacaoDto</td>
+                                    <td>
+                                                <code><a href="../interfaces/IPontuacaoPartidaDto.html" target="_self" >IPontuacaoPartidaDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                     </div>
                     <div class="io-description">
@@ -244,54 +516,15 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>listaPartidas()</code>
+                    <code>listaPartidas(idLiga: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="16"
-                            class="link-to-prism">src/modules/partida/partida.service.ts:16</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="trocaStatus"></a>
-                    <span class="name">
-                        <span class="modifier">Async</span>
-                        <span ><b>trocaStatus</b></span>
-                        <a href="#trocaStatus"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>trocaStatus(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, status: <a href="../entitys/Partida.html" target="_self">PartidaStatus</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="31"
-                            class="link-to-prism">src/modules/partida/partida.service.ts:31</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="42"
+                            class="link-to-prism">src/modules/partida/partida.service.ts:42</a></div>
                 </td>
             </tr>
 
@@ -312,7 +545,7 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>id</td>
+                                    <td>idLiga</td>
                                     <td>
                                                 <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                     </td>
@@ -323,10 +556,70 @@
 
 
                                 </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="registraDesistencia"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>registraDesistencia</b></span>
+                        <a href="#registraDesistencia"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>registraDesistencia(partida: <a href="../entitys/Partida.html" target="_self">Partida</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="82"
+                            class="link-to-prism">src/modules/partida/partida.service.ts:82</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
                                 <tr>
-                                    <td>status</td>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>partida</td>
                                     <td>
-                                                <code><a href="../entitys/Partida.html" target="_self" >PartidaStatus</a></code>
+                                                <code><a href="../entitys/Partida.html" target="_self" >Partida</a></code>
                                     </td>
 
                                     <td>
@@ -351,6 +644,89 @@
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="validaAtletas"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>validaAtletas</b></span>
+                        <a href="#validaAtletas"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>validaAtletas(idEquipe: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, atletas: AtletaPartidaDto[])</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="57"
+                            class="link-to-prism">src/modules/partida/partida.service.ts:57</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>idEquipe</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>atletas</td>
+                                    <td>
+                                            <code>AtletaPartidaDto[]</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>void | never</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>
 
     </div>
@@ -358,22 +734,48 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  BadRequestException,
   ConflictException,
   Injectable,
   NotFoundException,
   NotImplementedException,
   Scope,
 } from &#x27;@nestjs/common&#x27;;
-import { PartidaRespostaDto } from &#x27;./dto/partida.dto&#x27;;
+import { groupBy } from &#x27;lodash&#x27;;
+import { Connection } from &#x27;typeorm&#x27;;
+import { Equipe } from &#x27;../equipe/entities/equipe.entity&#x27;;
+import { Posicao, TipoArbitro } from &#x27;../pessoa/enums&#x27;;
+import { ArbitroService } from &#x27;../pessoa/services/arbitro.service&#x27;;
+import { AtletaService } from &#x27;../pessoa/services/atleta.service&#x27;;
+import { DelegadoService } from &#x27;../pessoa/services/delegado.service&#x27;;
+import {
+  AtletaPartidaDto,
+  CadastrarParticipantesPartidaDto,
+  PartidaRespostaDto,
+} from &#x27;./dto/partida.dto&#x27;;
+import { IPontuacaoPartidaDto } from &#x27;./dto/pontuacao-partida.dto&#x27;;
+import { Partida } from &#x27;./entities/partida.entity&#x27;;
 import { PartidaStatus } from &#x27;./enums/partida-status.enum&#x27;;
+import { ArbitroPartidaRepository } from &#x27;./repositories/arbitro-partida.repository&#x27;;
+import { AtletaPartidaRepository } from &#x27;./repositories/atleta-partida.repository&#x27;;
 import { PartidaRepository } from &#x27;./repositories/partida.repository&#x27;;
+import { PontuacaoPartidaRepository } from &#x27;./repositories/pontuacao-partida.repository&#x27;;
 
 @Injectable({ scope: Scope.REQUEST })
 export class PartidaService {
-  constructor(private readonly partidaRepository: PartidaRepository) {}
+  constructor(
+    private readonly partidaRepository: PartidaRepository,
+    private readonly atletaPartidaRepository: AtletaPartidaRepository,
+    private readonly arbitroPartidaRepository: ArbitroPartidaRepository,
+    private readonly pontuacaoPartidaRepository: PontuacaoPartidaRepository,
+    private readonly delegadoService: DelegadoService,
+    private readonly atletaService: AtletaService,
+    private readonly arbitroService: ArbitroService,
+    private readonly connection: Connection,
+  ) {}
 
-  async listaPartidas() {
-    throw new NotImplementedException();
+  async listaPartidas(idLiga: string) {
+    throw new NotImplementedException(idLiga);
   }
 
   private async deveEncontrarEntidade(id: string) {
@@ -387,26 +789,163 @@ export class PartidaService {
     return partida;
   }
 
-  async trocaStatus(id: string, status: PartidaStatus) {
-    const partida &#x3D; await this.deveEncontrarEntidade(id);
-
-    switch ([partida.status, status]) {
-      case [PartidaStatus.AGENDADA, PartidaStatus.EM_ANDAMENTO]:
-        break;
-
-      case [PartidaStatus.EM_ANDAMENTO, PartidaStatus.CONCLUIDA]:
-        partida.dataFinalizacao &#x3D; new Date();
-        throw new NotImplementedException();
-
-      default:
-        throw new ConflictException(
-          &#x60;Partida ${id} não pode sair de ${partida.status} -&gt; ${status}&#x60;,
-        );
+  private validaAtletas(
+    idEquipe: string,
+    atletas: AtletaPartidaDto[],
+  ): void | never {
+    const atletasPorPosicao &#x3D; groupBy(atletas, (a) &#x3D;&gt; a.posicao);
+    if (
+      atletas.length &#x3D;&#x3D;&#x3D; Partida.minimoDeAtletasNaPartida &amp;&amp;
+      atletasPorPosicao[Posicao.LIBERO]?.length
+    ) {
+      throw new BadRequestException(
+        &#x60;Equipe ${idEquipe} com o mínimo de atletas relacionados, um líbero não pode ser relacionado&#x60;,
+      );
     }
 
-    partida.status &#x3D; status;
+    if (
+      atletas.length &gt; Partida.minimoDeAtletasNaPartida &amp;&amp;
+      atletasPorPosicao[Posicao.LIBERO]?.length &amp;&amp;
+      atletasPorPosicao[Posicao.LIBERO].length &gt; Partida.maximoDeLiberos
+    ) {
+      throw new BadRequestException(
+        &#x60;Em uma equipe ${idEquipe} com ${atletas.length} não pode ter mais do que ${Partida.maximoDeLiberos} líberos&#x60;,
+      );
+    }
+  }
 
-    return new PartidaRespostaDto(await this.partidaRepository.save(partida));
+  private async registraDesistencia(partida: Partida) {
+    const pontuacaoMandante &#x3D;
+      partida.idEquipeGanhador &#x3D;&#x3D;&#x3D; partida.idMandante ? 2 : -2;
+    const pontuacaoPartida &#x3D; this.pontuacaoPartidaRepository.create({
+      id: partida.id,
+      visitante: -pontuacaoMandante,
+      mandante: pontuacaoMandante,
+    });
+
+    const partidaAtualizada &#x3D; await this.connection.transaction(
+      async (manager) &#x3D;&gt; {
+        await manager.save(pontuacaoPartida);
+        return manager.save(partida);
+      },
+    );
+
+    partidaAtualizada.pontuacao &#x3D; pontuacaoPartida;
+
+    return partidaAtualizada;
+  }
+
+  async cadastrarParticipantes(
+    id: string,
+    requisicao: CadastrarParticipantesPartidaDto,
+  ) {
+    const partida &#x3D; await this.deveEncontrarEntidade(id);
+    if (partida.status !&#x3D;&#x3D; PartidaStatus.AGENDADA) {
+      throw new ConflictException(
+        &#x60;Partida ${id} não está no status ${PartidaStatus.AGENDADA}&#x60;,
+      );
+    }
+
+    const delegado &#x3D; await this.delegadoService.deveEncontrarUm(
+      requisicao.idDelegado,
+    );
+
+    if (requisicao.desistente) {
+      partida.status &#x3D; PartidaStatus.WO;
+      partida.idEquipeGanhador &#x3D;
+        requisicao.desistente &#x3D;&#x3D;&#x3D; &#x27;mandante&#x27;
+          ? partida.idVisitante
+          : partida.idMandante;
+
+      return new PartidaRespostaDto(await this.registraDesistencia(partida));
+    }
+
+    const arbitrosPorTipo &#x3D; groupBy(
+      requisicao.arbitros,
+      (arbitro) &#x3D;&gt; arbitro.tipo,
+    );
+
+    if (!arbitrosPorTipo[TipoArbitro.PRINCIPAL]?.length) {
+      throw new BadRequestException(
+        &#x27;É necessário ao menos um árbitro principal&#x27;,
+      );
+    }
+
+    await this.arbitroService.deveListarPorId(
+      requisicao.arbitros.map((x) &#x3D;&gt; x.idArbitro),
+    );
+
+    this.validaAtletas(partida.idMandante, requisicao.atletasMandante);
+    this.validaAtletas(partida.idVisitante, requisicao.atletasVisitante);
+
+    await this.atletaService.deveListarPorId(
+      [...requisicao.atletasMandante, ...requisicao.atletasVisitante].map(
+        (x) &#x3D;&gt; x.idAtleta,
+      ),
+    );
+
+    const atletasMandantePartida &#x3D; requisicao.atletasMandante.map((atletaDto) &#x3D;&gt;
+      this.atletaPartidaRepository.create({ ...atletaDto }),
+    );
+    const atletasVisitantePartida &#x3D; requisicao.atletasVisitante.map(
+      (atletaDto) &#x3D;&gt; this.atletaPartidaRepository.create({ ...atletaDto }),
+    );
+    const arbitrosPartida &#x3D; requisicao.arbitros.map((arbitroDto) &#x3D;&gt;
+      this.arbitroPartidaRepository.create({ ...arbitroDto }),
+    );
+
+    partida.status &#x3D; PartidaStatus.PARTICIPANTES_CADASTRADOS;
+    partida.idDelegado &#x3D; delegado.id;
+
+    const partidaAtualizada &#x3D; await this.connection.transaction(
+      async (manager) &#x3D;&gt; {
+        const partidaSalva &#x3D; await manager.save(partida);
+
+        await manager.save(atletasMandantePartida);
+        await manager.save(atletasVisitantePartida);
+        await manager.save(arbitrosPartida);
+
+        partidaSalva.arbitros &#x3D; arbitrosPartida;
+        partidaSalva.atletasMandante &#x3D; atletasMandantePartida;
+        partidaSalva.atletasVisitante &#x3D; atletasVisitantePartida;
+
+        return partidaSalva;
+      },
+    );
+
+    return new PartidaRespostaDto(partidaAtualizada);
+  }
+
+  finalizaPartida(
+    partida: Partida,
+    equipeGanhadora: Equipe,
+    pontuacaoDto: IPontuacaoPartidaDto,
+  ) {
+    if (partida.status !&#x3D;&#x3D; PartidaStatus.PARTICIPANTES_CADASTRADOS) {
+      throw new ConflictException(
+        &#x60;Partida ${partida.id} não está no status ${PartidaStatus.PARTICIPANTES_CADASTRADOS}&#x60;,
+      );
+    }
+
+    partida.idEquipeGanhador &#x3D; equipeGanhadora.id;
+    partida.status &#x3D; PartidaStatus.CONCLUIDA;
+
+    const pontuacaoMandante &#x3D;
+      partida.idEquipeGanhador &#x3D;&#x3D;&#x3D; partida.idMandante
+        ? pontuacaoDto.ganhador
+        : pontuacaoDto.perdedor;
+    const pontuacaoVisitante &#x3D;
+      pontuacaoMandante &#x3D;&#x3D;&#x3D; pontuacaoDto.ganhador
+        ? pontuacaoDto.perdedor
+        : pontuacaoDto.ganhador;
+
+    partida.pontuacao &#x3D; this.pontuacaoPartidaRepository.create({
+      id: partida.id,
+      mandante: pontuacaoMandante,
+      visitante: pontuacaoVisitante,
+    });
+
+    throw new NotImplementedException();
   }
 }
 </code></pre>

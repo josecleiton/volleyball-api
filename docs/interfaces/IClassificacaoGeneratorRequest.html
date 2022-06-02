@@ -108,10 +108,9 @@
                                         </a>
                                 </li>
                                 <li>
-                                            <span class="modifier">Optional</span>
-                                        <a href="#intervaloDeDiasEntreTurnos" 
+                                        <a href="#intervaloDeDiasUteisEntreTurnos" 
 >
-                                            intervaloDeDiasEntreTurnos
+                                            intervaloDeDiasUteisEntreTurnos
                                         </a>
                                 </li>
                             </ul>
@@ -261,9 +260,9 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="intervaloDeDiasEntreTurnos"></a>
-                                        <span class="name "><b>intervaloDeDiasEntreTurnos</b>
-                                            <a href="#intervaloDeDiasEntreTurnos">
+                                        <a name="intervaloDeDiasUteisEntreTurnos"></a>
+                                        <span class="name "><b>intervaloDeDiasUteisEntreTurnos</b>
+                                            <a href="#intervaloDeDiasUteisEntreTurnos">
                                                 <span class="icon ion-ios-link"></span>
                                             </a>
                                         </span>
@@ -271,7 +270,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>intervaloDeDiasEntreTurnos:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                        <code>intervaloDeDiasUteisEntreTurnos:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -284,11 +283,6 @@
                                         </td>
                                     </tr>
 
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Optional</i>
-                                        </td>
-                                    </tr>
 
 
 
@@ -301,13 +295,12 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { BadRequestException, Injectable, Scope } from &#x27;@nestjs/common&#x27;;
-import { addDays, nextDay, setMinutes } from &#x27;date-fns&#x27;;
+import { addBusinessDays, nextDay, setMinutes } from &#x27;date-fns&#x27;;
 import { DiaDaSemana } from &#x27;src/modules/core/enums/dia-da-semana.enum&#x27;;
 import { Equipe } from &#x27;src/modules/equipe/entities/equipe.entity&#x27;;
 import { Partida } from &#x27;src/modules/partida/entities/partida.entity&#x27;;
 import { DoublyLinkedList } from &#x27;datastructures-js&#x27;;
 import { createGroup } from &#x27;tournament_creator&#x27;;
-import { Liga } from &#x27;../entities/liga.entity&#x27;;
 import { diaDaSemanaIndiceMap } from &#x27;./helpers&#x27;;
 
 interface IClassificacaoGeneratorRequest {
@@ -315,7 +308,7 @@ interface IClassificacaoGeneratorRequest {
   dataComeco: Date;
   diasDaSemana: DiaDaSemana[];
   horarios: number[];
-  intervaloDeDiasEntreTurnos?: number;
+  intervaloDeDiasUteisEntreTurnos: number;
 }
 
 @Injectable({ scope: Scope.TRANSIENT })
@@ -362,7 +355,7 @@ export class ClassificacaoGeneratorService {
     dataComeco,
     diasDaSemana,
     horarios,
-    intervaloDeDiasEntreTurnos &#x3D; Liga.intervaloDeDiasEntreTurnos,
+    intervaloDeDiasUteisEntreTurnos,
   }: IClassificacaoGeneratorRequest): Partida[] {
     if (equipes.length &amp; 1) {
       throw new BadRequestException(&#x27;Quantidade de equipe é ímpar&#x27;);
@@ -386,9 +379,9 @@ export class ClassificacaoGeneratorService {
     );
     const datasSegundoTurno &#x3D; this.geraDatas(
       equipes.length,
-      addDays(
+      addBusinessDays(
         datasPrimeiroTurno[datasPrimeiroTurno.length - 1],
-        intervaloDeDiasEntreTurnos,
+        intervaloDeDiasUteisEntreTurnos,
       ),
       diasDaSemanaIndices,
       horariosOrdenados,

@@ -132,7 +132,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/modules/partida/dto/partida.dto.ts:7</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/modules/partida/dto/partida.dto.ts:17</a></div>
                         </td>
                     </tr>
 
@@ -151,7 +151,17 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { IsEnum } from &#x27;class-validator&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  ArrayMaxSize,
+  ArrayMinSize,
+  IsArray,
+  IsEnum,
+  IsIn,
+  IsOptional,
+  IsUUID,
+  ValidateNested,
+} from &#x27;class-validator&#x27;;
+import { Posicao, TipoArbitro } from &#x27;src/modules/pessoa/enums&#x27;;
 import { Partida } from &#x27;../entities/partida.entity&#x27;;
 import { PartidaStatus } from &#x27;../enums/partida-status.enum&#x27;;
 
@@ -160,10 +170,52 @@ export class AtualizaPartidaStatusDto {
   status!: PartidaStatus;
 }
 
+export class AtletaPartidaDto {
+  @IsUUID()
+  idAtleta!: string;
+
+  @IsEnum(Posicao)
+  posicao!: Posicao;
+}
+
+class ArbitroPartidaDto {
+  @IsUUID()
+  idArbitro!: string;
+
+  @IsEnum(TipoArbitro)
+  tipo!: TipoArbitro;
+}
+
+export class CadastrarParticipantesPartidaDto {
+  @IsUUID()
+  idDelegado!: string;
+
+  @IsArray()
+  @ArrayMinSize(1)
+  @ArrayMaxSize(4)
+  @ValidateNested({ each: true })
+  arbitros!: ArbitroPartidaDto[];
+
+  @IsArray()
+  @ArrayMinSize(12)
+  @ArrayMaxSize(14)
+  @ValidateNested({ each: true })
+  atletasMandante!: AtletaPartidaDto[];
+
+  @IsArray()
+  @ArrayMinSize(12)
+  @ArrayMaxSize(14)
+  @ValidateNested({ each: true })
+  atletasVisitante!: AtletaPartidaDto[];
+
+  @IsIn([&#x27;mandante&#x27;, &#x27;visitante&#x27;])
+  @IsOptional()
+  desistente?: &#x27;mandante&#x27; | &#x27;visitante&#x27;;
+}
+
 export class PartidaRespostaDto {
   id: string;
   idDelegado?: string;
-  idArbitro?: string;
   idGinasio: string;
   idEquipeMandante: string;
   idEquipeVisitante: string;
@@ -178,7 +230,6 @@ export class PartidaRespostaDto {
   constructor(partida: Partida) {
     this.id &#x3D; partida.id;
     this.idDelegado &#x3D; partida.idDelegado;
-    this.idArbitro &#x3D; partida.idArbitro;
     this.idGinasio &#x3D; partida.idGinasio;
     this.status &#x3D; partida.status;
     this.dataComeco &#x3D; partida.dataComeco;
