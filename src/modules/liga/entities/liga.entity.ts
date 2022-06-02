@@ -5,10 +5,12 @@ import { Genero } from 'src/modules/core/enums';
 import { Equipe } from 'src/modules/equipe/entities/equipe.entity';
 import { Arbitro } from 'src/modules/pessoa/entities/arbitro.entity';
 import { Delegado } from 'src/modules/pessoa/entities/delegado.entity';
+import { IConfiguraInicializaoLiga } from '../interfaces/configura-inicializacao-liga.interface';
 
 @Entity('ligas')
 export class Liga extends EntidadeBase {
-  static minimoDeEquipesNaLiga = 10;
+  static readonly minimoDeEquipesNaLiga = 12;
+  static readonly intervaloDeUteisDiasEntreTurnos = 5;
 
   @Column()
   genero!: Genero;
@@ -16,10 +18,13 @@ export class Liga extends EntidadeBase {
   @Column({ type: 'timestamp with time zone', nullable: true })
   dataComeco?: Date;
 
+  @Column({ type: 'jsonb', nullable: true, select: false })
+  configuracaoInicializacaoLiga?: IConfiguraInicializaoLiga;
+
   @Column({ nullable: true })
   nome?: string;
 
-  @Column({ type: 'varchar', length: 40, nullable: true, default: "A" })
+  @Column({ type: 'varchar', length: 40, nullable: true, default: 'A' })
   serie?: string;
 
   public get ano(): number | undefined {

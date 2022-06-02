@@ -7,21 +7,22 @@ import {
 import { Connection } from 'typeorm';
 import { TypeORMFilterService } from '../core/services/typeorm-filter.service';
 import { EquipeService } from '../equipe/equipe.service';
-import { Partida } from '../partida/entities/partida.entity';
 import {
   CriaLigaDto,
+  InicializaLigaDto,
   InicializaLigaRespostaDto,
   LigaRespostaDto,
 } from './dto/liga.dto';
 import { Liga } from './entities/liga.entity';
 import { LigaRepository } from './liga.repository';
-import { ClassificacaoGenerator } from './tabela/classificacao.service';
+import { ClassificacaoGeneratorService } from './tabela/classificacao-generator.service';
 
 @Injectable({ scope: Scope.REQUEST })
 export class LigaService {
   constructor(
     private readonly ligaRepository: LigaRepository,
     private readonly equipeService: EquipeService,
+    private readonly classificacaoService: ClassificacaoGeneratorService,
     private readonly typeormFilterService: TypeORMFilterService,
     private readonly connection: Connection,
   ) {}
@@ -40,21 +41,18 @@ export class LigaService {
     }
   }
 
-  async iniciaLiga(id: string) {
-    const liga = await this.ligaRepository.pegaUmComEquipesCompletas(id);
+  async iniciaLiga(id: string, requisicao: InicializaLigaDto) {
+    const liga = await this.ligaRepository.encontraUmComEquipesCompletas(id);
 
     if (liga.dataComeco) {
       throw new ConflictException(
-        `Liga ${liga.id} já iniciada na data: ${liga.dataComeco}`,
+        `Liga ${liga.id} já iniciada. Data de início: ${liga.dataComeco}`,
       );
     }
 
-    if (
-      liga.equipes.length >= Liga.minimoDeEquipesNaLiga &&
-      liga.equipes.length % 2 === 0
-    ) {
+    if (liga.equipes?.length !== Liga.minimoDeEquipesNaLiga) {
       throw new ConflictException(
-        `Quantidade de equipes na liga ${id} não é suficiente ou não é par. Quantidade: ${liga.equipes.length}`,
+        `Quantidade de equipes na liga ${id} não é ${Liga.minimoDeEquipesNaLiga}`,
       );
     }
 
@@ -71,47 +69,30 @@ export class LigaService {
       throw new ConflictException('Todas as equipes precisam estar aptas');
     }
 
-    liga.dataComeco = new Date();
+    liga.dataComeco = requisicao.data ?? new Date();
+    liga.configuracaoInicializacaoLiga = {
+      diasDaSemana: requisicao.diasDaSemana,
+      horarios: requisicao.horarios,
+      intervaloDeDiasUteisEntreTurnos:
+        requisicao.intervaloDeDiasUteisEntreTurnos,
+    };
 
-    const classificacaoGenerator = new ClassificacaoGenerator(
-      liga.equipes.length,
-      liga.dataComeco,
+    const partidas = this.classificacaoService.geraPartidas({
+      equipes: liga.equipes,
+      dataComeco: liga.dataComeco,
+      ...liga.configuracaoInicializacaoLiga,
+    });
+
+    const [ligaAtualizada, partidasSalvas] = await this.connection.transaction(
+      async (manager) => {
+        const partidasSalvas = await manager.save(partidas);
+        const ligaSalva = await manager.save(liga);
+
+        return [ligaSalva, partidasSalvas];
+      },
     );
-    const partidas = liga.equipes.reduce((result, equipe, equipeIdx) => {
-      const confrontos = liga.equipes.reduce(
-        (result, equipeAdversaria, equipeAdversariaIdx) => {
-          if (equipe.id === equipeAdversaria.id) {
-            return result;
-          }
 
-          const partidasGeradas = classificacaoGenerator.geraIdaEVolta(
-            {
-              equipe,
-              posicao: equipeIdx,
-            },
-            {
-              equipe: equipeAdversaria,
-              posicao: equipeAdversariaIdx,
-            },
-          );
-
-          return result.concat(partidasGeradas);
-        },
-        [] as Partida[],
-      );
-
-      return result.concat(confrontos);
-    }, [] as Partida[]);
-
-    const [ligaAtualizada, partidasInseridas] =
-      await this.connection.transaction(async (manager) => {
-        const partidasSave = await manager.save(partidas);
-        const ligaSave = await manager.save(liga);
-
-        return [ligaSave, partidasSave];
-      });
-
-    return new InicializaLigaRespostaDto(ligaAtualizada, partidasInseridas);
+    return new InicializaLigaRespostaDto(ligaAtualizada, partidasSalvas);
   }
 
   private async getLigaIniciadaEm(id: string) {

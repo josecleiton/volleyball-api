@@ -1,6 +1,22 @@
-import { IsEnum, IsOptional, IsString, Length } from 'class-validator';
+import { BadRequestException } from '@nestjs/common';
+import { Type } from 'class-transformer';
+import {
+  ArrayMaxSize,
+  ArrayMinSize,
+  ArrayUnique,
+  IsArray,
+  IsDate,
+  IsEnum,
+  IsOptional,
+  IsPositive,
+  IsString,
+  Length,
+  Max,
+  Min,
+} from 'class-validator';
 import { compareAsc } from 'date-fns';
 import { Genero } from 'src/modules/core/enums';
+import { DiaDaSemana } from 'src/modules/core/enums/dia-da-semana.enum';
 import { PartidaRespostaDto } from 'src/modules/partida/dto/partida.dto';
 import { Partida } from 'src/modules/partida/entities/partida.entity';
 import { ArbitroRespostaDto } from 'src/modules/pessoa/dto/arbitro.dto';
@@ -20,6 +36,38 @@ export class CriaLigaDto {
   @IsString()
   @Length(1, 20)
   serie?: string;
+}
+
+export class InicializaLigaDto {
+  @IsDate()
+  @Type(() => Date)
+  data?: Date;
+
+  @IsArray()
+  @ArrayMinSize(1)
+  @ArrayMaxSize(6)
+  @ArrayUnique()
+  @IsEnum(DiaDaSemana, { each: true })
+  diasDaSemana!: DiaDaSemana[];
+
+  @IsArray()
+  @ArrayMinSize(1)
+  @ArrayMaxSize(12)
+  @ArrayUnique()
+  @Min(6 * 60, { each: true })
+  @Max(22 * 60, { each: true })
+  horarios!: number[];
+
+  @IsPositive()
+  @Max(Liga.intervaloDeUteisDiasEntreTurnos)
+  @IsOptional()
+  intervaloDeDiasUteisEntreTurnos = Liga.intervaloDeUteisDiasEntreTurnos;
+
+  valida() {
+    if (this.data instanceof Date && !isFinite(this.data.getTime())) {
+      throw new BadRequestException("'data' não fornecida");
+    }
+  }
 }
 
 export class LigaRespostaDto {

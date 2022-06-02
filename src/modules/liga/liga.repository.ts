@@ -3,7 +3,7 @@ import { Liga } from './entities/liga.entity';
 
 @EntityRepository(Liga)
 export class LigaRepository extends Repository<Liga> {
-  async pegaUmComEquipesCompletas(id: string) {
+  async encontraUmComEquipesCompletas(id: string) {
     const qb = this.createQueryBuilder('ligas');
     qb.leftJoinAndSelect('ligas.equipes', 'equipes')
       .leftJoinAndSelect('ligas.arbitros', 'arbitros')

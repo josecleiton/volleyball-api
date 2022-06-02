@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Voleibol</title>
+        <title>Voleibol API</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -14,7 +14,7 @@
     <body>
 
         <div class="navbar navbar-default navbar-fixed-top visible-xs">
-            <a href="../" class="navbar-brand">Voleibol</a>
+            <a href="../" class="navbar-brand">Voleibol API</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
 
@@ -132,16 +132,21 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
+                        <i>Default value : </i><code>1000</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @IsPositive()<br />
+                            @IsPositive()<br />@IsOptional()<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/modules/ginasio/dto/ginasio.dto.ts:18</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/modules/ginasio/dto/ginasio.dto.ts:19</a></div>
                         </td>
                     </tr>
 
@@ -282,7 +287,8 @@ export class CriaGinasioDto {
   estado!: string;
 
   @IsPositive()
-  capacidade!: number;
+  @IsOptional()
+  capacidade &#x3D; 1000;
 }
 
 export class ListaGinasiosDto {

@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Voleibol</title>
+        <title>Voleibol API</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -14,7 +14,7 @@
     <body>
 
         <div class="navbar navbar-default navbar-fixed-top visible-xs">
-            <a href="../" class="navbar-brand">Voleibol</a>
+            <a href="../" class="navbar-brand">Voleibol API</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
 
@@ -204,7 +204,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>inicializaLiga(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>inicializaLiga(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, requisicao: <a href="../classes/InicializaLigaDto.html" target="_self">InicializaLigaDto</a>)</code>
                 </td>
             </tr>
 
@@ -243,6 +243,18 @@
                                     <td>id</td>
                                     <td>
                                                 <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>requisicao</td>
+                                    <td>
+                                                <code><a href="../classes/InicializaLigaDto.html" target="_self" >InicializaLigaDto</a></code>
                                     </td>
 
                                     <td>
@@ -294,8 +306,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="28"
-                            class="link-to-prism">src/modules/liga/liga.controller.ts:28</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="30"
+                            class="link-to-prism">src/modules/liga/liga.controller.ts:30</a></div>
                 </td>
             </tr>
 
@@ -338,8 +350,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="33"
-                            class="link-to-prism">src/modules/liga/liga.controller.ts:33</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="35"
+                            class="link-to-prism">src/modules/liga/liga.controller.ts:35</a></div>
                 </td>
             </tr>
 
@@ -414,8 +426,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="38"
-                            class="link-to-prism">src/modules/liga/liga.controller.ts:38</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="40"
+                            class="link-to-prism">src/modules/liga/liga.controller.ts:40</a></div>
                 </td>
             </tr>
 
@@ -477,7 +489,7 @@
   ParseUUIDPipe,
 } from &#x27;@nestjs/common&#x27;;
 import { LigaService } from &#x27;./liga.service&#x27;;
-import { CriaLigaDto } from &#x27;./dto/liga.dto&#x27;;
+import { CriaLigaDto, InicializaLigaDto } from &#x27;./dto/liga.dto&#x27;;
 
 @Controller(&#x27;liga&#x27;)
 export class LigaController {
@@ -489,8 +501,10 @@ export class LigaController {
   }
 
   @Post(&#x27;:id/inicializa&#x27;)
-  inicializaLiga(@Param(&#x27;id&#x27;, ParseUUIDPipe) id: string) {
-    return this.ligaService.iniciaLiga(id);
+  inicializaLiga(@Param(&#x27;id&#x27;, ParseUUIDPipe) id: string, @Body() requisicao: InicializaLigaDto) {
+    requisicao.valida();
+
+    return this.ligaService.iniciaLiga(id, requisicao);
   }
 
   @Get()
