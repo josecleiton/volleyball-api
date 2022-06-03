@@ -5,18 +5,18 @@ import {
   Scope,
 } from '@nestjs/common';
 import { Connection } from 'typeorm';
-import { TypeORMFilterService } from '../core/services/typeorm-filter.service';
-import { EquipeService } from '../equipe/equipe.service';
+import { TypeORMFilterService } from '../../core/services/typeorm-filter.service';
+import { EquipeService } from '../../equipe/equipe.service';
 import {
   CriaLigaDto,
   InicializaLigaDto,
   InicializaLigaRespostaDto,
   LigaRespostaDto,
-} from './dto/liga.dto';
-import { Liga } from './entities/liga.entity';
-import { LigaRepository } from './repositories/liga.repository';
-import { TabelaRepository } from './repositories/tabela.repository';
-import { ClassificacaoGeneratorService } from './tabela/classificacao-generator.service';
+} from '../dto/liga.dto';
+import { Liga } from '../entities/liga.entity';
+import { LigaRepository } from '../repositories/liga.repository';
+import { TabelaRepository } from '../repositories/tabela.repository';
+import { ClassificacaoGeneratorService } from '../tabela/classificacao-generator.service';
 
 @Injectable({ scope: Scope.REQUEST })
 export class LigaService {

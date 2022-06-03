@@ -109,7 +109,7 @@ export class ClassificacaoGeneratorService {
         match.awayTeam as string,
       ) as Equipe;
       partida.dataComeco = datasDasPartidas[index];
-      partida.numeroDaRodada = match.roundNumber as number;
+      partida.tipoDaRodada = match.matchNumber.toString();
 
       return partida;
     });

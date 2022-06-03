@@ -1,6 +1,13 @@
 import { EntidadeBase } from 'src/modules/core/entities/base.entity';
 import { Equipe } from 'src/modules/equipe/entities/equipe.entity';
-import { Column, Entity, JoinColumn, OneToOne, PrimaryColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  Index,
+  JoinColumn,
+  OneToOne,
+  PrimaryColumn,
+} from 'typeorm';
 
 @Entity()
 export class Tabela extends EntidadeBase {
@@ -8,6 +15,7 @@ export class Tabela extends EntidadeBase {
   id!: string;
 
   @Column({ type: 'int', default: 0 })
+  @Index()
   pontuacao!: number;
 
   @OneToOne(() => Equipe)

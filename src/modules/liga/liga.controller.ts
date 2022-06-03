@@ -7,7 +7,7 @@ import {
   Delete,
   ParseUUIDPipe,
 } from '@nestjs/common';
-import { LigaService } from './liga.service';
+import { LigaService } from './services/liga.service';
 import { CriaLigaDto, InicializaLigaDto } from './dto/liga.dto';
 
 @Controller('liga')
@@ -20,7 +20,10 @@ export class LigaController {
   }
 
   @Post(':id/inicializa')
-  inicializaLiga(@Param('id', ParseUUIDPipe) id: string, @Body() requisicao: InicializaLigaDto) {
+  inicializaLiga(
+    @Param('id', ParseUUIDPipe) id: string,
+    @Body() requisicao: InicializaLigaDto,
+  ) {
     requisicao.valida();
 
     return this.ligaService.iniciaLiga(id, requisicao);

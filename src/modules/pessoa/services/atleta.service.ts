@@ -7,7 +7,7 @@ import {
 import { TypeORMFilterService } from 'src/modules/core/services/typeorm-filter.service';
 import { Equipe } from 'src/modules/equipe/entities/equipe.entity';
 import { EquipeService } from 'src/modules/equipe/equipe.service';
-import { LigaService } from 'src/modules/liga/liga.service';
+import { LigaService } from 'src/modules/liga/services/liga.service';
 import { In } from 'typeorm';
 import {
   AtletaRespostaDto,
