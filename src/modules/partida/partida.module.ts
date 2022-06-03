@@ -8,6 +8,7 @@ import { ArbitroPartidaRepository } from './repositories/arbitro-partida.reposit
 import { AtletaPartidaRepository } from './repositories/atleta-partida.repository';
 import { PontuacaoPartidaRepository } from './repositories/pontuacao-partida.repository';
 import { PessoaModule } from '../pessoa/pessoa.module';
+import { LigaModule } from '../liga/liga.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { PessoaModule } from '../pessoa/pessoa.module';
       PontuacaoPartidaRepository,
     ]),
     PessoaModule,
+    LigaModule,
   ],
   controllers: [PartidaController],
   providers: [PartidaService],

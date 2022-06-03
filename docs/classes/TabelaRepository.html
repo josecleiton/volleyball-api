@@ -44,7 +44,7 @@
 
 <ol class="breadcrumb">
   <li>Classes</li>
-  <li >LigaRepository</li>
+  <li >TabelaRepository</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -62,7 +62,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/modules/liga/repositories/liga.repository.ts</code>
+            <code>src/modules/liga/repositories/tabela.repository.ts</code>
         </p>
 
 
@@ -91,7 +91,7 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#encontraUmComEquipesCompletas" >encontraUmComEquipesCompletas</a>
+                                <a href="#atualizaTabela" >atualizaTabela</a>
                             </li>
                         </ul>
                     </td>
@@ -116,26 +116,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="encontraUmComEquipesCompletas"></a>
+                    <a name="atualizaTabela"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
-                        <span ><b>encontraUmComEquipesCompletas</b></span>
-                        <a href="#encontraUmComEquipesCompletas"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>atualizaTabela</b></span>
+                        <a href="#atualizaTabela"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>encontraUmComEquipesCompletas(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>atualizaTabela(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, pontos: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, manager: EntityManager)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="6"
-                            class="link-to-prism">src/modules/liga/repositories/liga.repository.ts:6</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="7"
+                            class="link-to-prism">src/modules/liga/repositories/tabela.repository.ts:7</a></div>
                 </td>
             </tr>
 
@@ -167,13 +167,37 @@
 
 
                                 </tr>
+                                <tr>
+                                    <td>pontos</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>manager</td>
+                                    <td>
+                                            <code>EntityManager</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
                             </tbody>
                         </table>
                     </div>
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>unknown</code>
+                        <b>Returns : </b>        <code><a href="../interfaces/ITabelaDto.html" target="_self" >Promise&lt;ITabelaDto&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -193,23 +217,34 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { EntityRepository, Repository } from &#x27;typeorm&#x27;;
-import { Liga } from &#x27;../entities/liga.entity&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { EntityManager, EntityRepository, Repository } from &#x27;typeorm&#x27;;
+import { ITabelaDto } from &#x27;../dto/tabela.dto&#x27;;
+import { Tabela } from &#x27;../entities/tabela.entity&#x27;;
 
-@EntityRepository(Liga)
-export class LigaRepository extends Repository&lt;Liga&gt; {
-  async encontraUmComEquipesCompletas(id: string) {
-    const qb &#x3D; this.createQueryBuilder(&#x27;ligas&#x27;);
-    qb.leftJoinAndSelect(&#x27;ligas.equipes&#x27;, &#x27;equipes&#x27;)
-      .leftJoinAndSelect(&#x27;ligas.arbitros&#x27;, &#x27;arbitros&#x27;)
-      .leftJoinAndSelect(&#x27;ligas.delegados&#x27;, &#x27;delegados&#x27;)
-      .leftJoinAndSelect(&#x27;equipes.atletas&#x27;, &#x27;atletas&#x27;)
-      .leftJoinAndSelect(&#x27;equipes.tecnico&#x27;, &#x27;tecnico&#x27;)
-      .leftJoinAndSelect(&#x27;equipes.auxiliares&#x27;, &#x27;auxiliares&#x27;)
-      .where(&#x27;ligas.id &#x3D; :id&#x27;, { id })
-      .orderBy(&#x27;equipes.dataCriacao&#x27;, &#x27;ASC&#x27;);
+@EntityRepository(Tabela)
+export class TabelaRepository extends Repository&lt;Tabela&gt; {
+  async atualizaTabela(
+    id: string,
+    pontos: number,
+    manager: EntityManager,
+  ): Promise&lt;ITabelaDto&gt; {
+    const result: ITabelaDto[] &#x3D; await manager.query(
+      &#x60;
+      UPDATE tabelas
+      SET
+        pontuacao &#x3D; pontuacao + ?
+      WHERE
+        id &#x3D; ?
+      RETURNING *
+      &#x60;,
+      [pontos, id],
+    );
 
-    return qb.getOneOrFail();
+    if (!result?.length) {
+      throw new Error(&#x60;Tabela ${id} não encontrada&#x60;);
+    }
+
+    return result[0];
   }
 }
 </code></pre>
@@ -250,7 +285,7 @@ export class LigaRepository extends Repository&lt;Liga&gt; {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
-            var COMPODOC_CURRENT_PAGE_URL = 'LigaRepository.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'TabelaRepository.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

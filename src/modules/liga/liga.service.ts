@@ -14,13 +14,15 @@ import {
   LigaRespostaDto,
 } from './dto/liga.dto';
 import { Liga } from './entities/liga.entity';
-import { LigaRepository } from './liga.repository';
+import { LigaRepository } from './repositories/liga.repository';
+import { TabelaRepository } from './repositories/tabela.repository';
 import { ClassificacaoGeneratorService } from './tabela/classificacao-generator.service';
 
 @Injectable({ scope: Scope.REQUEST })
 export class LigaService {
   constructor(
     private readonly ligaRepository: LigaRepository,
+    private readonly tabelaRepository: TabelaRepository,
     private readonly equipeService: EquipeService,
     private readonly classificacaoService: ClassificacaoGeneratorService,
     private readonly typeormFilterService: TypeORMFilterService,
@@ -87,6 +89,9 @@ export class LigaService {
       async (manager) => {
         const partidasSalvas = await manager.save(partidas);
         const ligaSalva = await manager.save(liga);
+        await manager.save(
+          liga.equipes.map(({ id }) => this.tabelaRepository.create({ id })),
+        );
 
         return [ligaSalva, partidasSalvas];
       },
