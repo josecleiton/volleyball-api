@@ -9,19 +9,22 @@ import {
 } from '@nestjs/common';
 import { LigaService } from './services/liga.service';
 import { CriaLigaDto, InicializaLigaDto } from './dto/liga.dto';
-import { InicializaQuartaDeFinalDto } from './dto/tabela.dto';
+import {
+  InicializaQuartaDeFinalDto,
+  InicializaSemifinalDto,
+} from './dto/tabela.dto';
 
 @Controller('liga')
 export class LigaController {
   constructor(private readonly ligaService: LigaService) {}
 
   @Post()
-  criaLiga(@Body() requisicao: CriaLigaDto) {
+  async criaLiga(@Body() requisicao: CriaLigaDto) {
     return this.ligaService.criaLiga(requisicao);
   }
 
   @Post(':id/inicializa')
-  inicializaLiga(
+  async inicializaLiga(
     @Param('id', ParseUUIDPipe) id: string,
     @Body() requisicao: InicializaLigaDto,
   ) {
@@ -31,7 +34,7 @@ export class LigaController {
   }
 
   @Post(':id/inicializa-quartas')
-  agendaQuartas(
+  async agendaQuartas(
     @Param('id', ParseUUIDPipe) id: string,
     @Body() requisicao: InicializaQuartaDeFinalDto,
   ) {
@@ -40,18 +43,28 @@ export class LigaController {
     return this.ligaService.inicializaQuartas(id, requisicao);
   }
 
+  @Post(':id/inicializa-semis')
+  async inicializaSemis(
+    @Param('id', ParseUUIDPipe) id: string,
+    @Body() requisicao: InicializaSemifinalDto,
+  ) {
+    requisicao.valida();
+
+    return this.ligaService.inicializaSemis(id, requisicao);
+  }
+
   @Get()
-  listaLigas() {
+  async listaLigas() {
     return this.ligaService.lista();
   }
 
   @Get(':id')
-  pegaLiga(@Param('id', ParseUUIDPipe) id: string) {
+  async pegaLiga(@Param('id', ParseUUIDPipe) id: string) {
     return this.ligaService.deveEncontrarUm(id);
   }
 
   @Delete(':id')
-  removeLiga(@Param('id', ParseUUIDPipe) id: string) {
+  async removeLiga(@Param('id', ParseUUIDPipe) id: string) {
     return this.ligaService.remove(id);
   }
 }

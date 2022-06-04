@@ -1,4 +1,4 @@
-export enum EstadoLiga {
+export enum StatusLiga {
   CRIADA = 'criada',
   CLASSIFICATORIA = 'classificatória',
   QUARTAS = 'quartas',

@@ -1,4 +1,10 @@
-import { Injectable, NotFoundException, Scope } from '@nestjs/common';
+import {
+  forwardRef,
+  Inject,
+  Injectable,
+  NotFoundException,
+  Scope,
+} from '@nestjs/common';
 import { LigaService } from 'src/modules/liga/services/liga.service';
 import { TypeORMFilterService } from 'src/modules/core/services/typeorm-filter.service';
 import {
@@ -13,6 +19,7 @@ import { TipoPessoa } from '../enums';
 export class DelegadoService {
   constructor(
     private readonly delegadoRepository: DelegadoRepository,
+    @Inject(forwardRef(() => LigaService))
     private readonly ligaService: LigaService,
     private readonly typeormFilterService: TypeORMFilterService,
   ) {}

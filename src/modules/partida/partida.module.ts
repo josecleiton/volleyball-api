@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { forwardRef, Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { PartidaService } from './partida.service';
@@ -19,9 +19,10 @@ import { LigaModule } from '../liga/liga.module';
       PontuacaoPartidaRepository,
     ]),
     PessoaModule,
-    LigaModule,
+    forwardRef(() => LigaModule),
   ],
   controllers: [PartidaController],
   providers: [PartidaService],
+  exports: [TypeOrmModule, PartidaService],
 })
 export class PartidaModule {}

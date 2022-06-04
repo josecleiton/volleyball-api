@@ -7,7 +7,10 @@ import {
   Post,
   Query,
 } from '@nestjs/common';
-import { CadastrarParticipantesPartidaDto } from './dto/partida.dto';
+import {
+  CadastrarParticipantesPartidaDto,
+  ListaPartidasDto,
+} from './dto/partida.dto';
 import { PartidaService } from './partida.service';
 
 @Controller('partida')
@@ -15,8 +18,8 @@ export class PartidaController {
   constructor(private readonly partidaService: PartidaService) {}
 
   @Get()
-  async listaPartidas(@Query('idLiga', ParseUUIDPipe) idLiga: string) {
-    return this.partidaService.listaPartidas(idLiga);
+  async listaPartidas(@Query() requisicao: ListaPartidasDto) {
+    return this.partidaService.listaPartidasOrdenadas(requisicao);
   }
 
   @Post(':id/cadastra-participantes')

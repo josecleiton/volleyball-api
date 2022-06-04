@@ -1,4 +1,10 @@
-import { Injectable, NotFoundException, Scope } from '@nestjs/common';
+import {
+  forwardRef,
+  Inject,
+  Injectable,
+  NotFoundException,
+  Scope,
+} from '@nestjs/common';
 import { LigaService } from 'src/modules/liga/services/liga.service';
 import { TypeORMFilterService } from 'src/modules/core/services/typeorm-filter.service';
 import {
@@ -15,6 +21,7 @@ export class ArbitroService {
   constructor(
     private readonly arbitroRepository: ArbitroRepository,
     private readonly typeormFilterService: TypeORMFilterService,
+    @Inject(forwardRef(() => LigaService))
     private readonly ligaService: LigaService,
   ) {}
 

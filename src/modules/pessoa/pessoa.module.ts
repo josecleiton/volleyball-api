@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { forwardRef, Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { LigaModule } from '../liga/liga.module';
 import { CoreModule } from '../core/core.module';
@@ -30,7 +30,7 @@ import { AuxiliarService } from './services/auxiliar.service';
     ]),
     EquipeModule,
     CoreModule,
-    LigaModule,
+    forwardRef(() => LigaModule),
   ],
   controllers: [
     TecnicoController,

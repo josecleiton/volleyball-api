@@ -65,7 +65,7 @@ export class Partida extends EntidadeBase {
 
   @Column({ type: 'uuid', nullable: true })
   @Index()
-  idEquipeGanhador?: string;
+  idEquipeGanhadora?: string;
 
   public get duracaoBruta(): number | undefined {
     if (!this.dataFinalizacao) return undefined;
@@ -83,7 +83,7 @@ export class Partida extends EntidadeBase {
   ginasio!: Ginasio;
 
   @ManyToOne(() => Equipe)
-  @JoinColumn({ name: 'id_equipe_ganhador' })
+  @JoinColumn({ name: 'id_equipe_ganhadora' })
   equipeGanhadora?: Equipe;
 
   @ManyToOne(() => Equipe)

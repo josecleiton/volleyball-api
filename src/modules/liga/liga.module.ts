@@ -9,12 +9,15 @@ import { ClassificacaoGeneratorService } from './tabela/classificacao-generator.
 import { PontuacaoEquipeRepository } from './repositories/pontuacao_equipe.repository';
 import { QuartaDeFinalGeneratorService } from './tabela/quarta-de-final-generator.service';
 import { PontuacaoEquipeService } from './services/pontuacao-equipe.service';
+import { PartidaModule } from '../partida/partida.module';
+import { SemifinalGeneratorService } from './tabela/semifinal-generator.service';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([LigaRepository, PontuacaoEquipeRepository]),
     CoreModule,
     EquipeModule,
+    PartidaModule,
   ],
   controllers: [LigaController],
   providers: [
@@ -22,6 +25,7 @@ import { PontuacaoEquipeService } from './services/pontuacao-equipe.service';
     PontuacaoEquipeService,
     ClassificacaoGeneratorService,
     QuartaDeFinalGeneratorService,
+    SemifinalGeneratorService,
   ],
   exports: [TypeOrmModule, LigaService],
 })

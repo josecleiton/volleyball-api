@@ -1,5 +1,7 @@
 import {
   ConflictException,
+  forwardRef,
+  Inject,
   Injectable,
   NotFoundException,
   Scope,
@@ -25,6 +27,7 @@ export class AtletaService {
     private readonly atletaRepository: AtletaRepository,
     private readonly equipeService: EquipeService,
     private readonly typeormFilterService: TypeORMFilterService,
+    @Inject(forwardRef(() => LigaService))
     private readonly ligaService: LigaService,
   ) {}
 

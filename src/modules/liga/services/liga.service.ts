@@ -4,6 +4,7 @@ import {
   NotFoundException,
   Scope,
 } from '@nestjs/common';
+import { PartidaRepository } from 'src/modules/partida/repositories/partida.repository';
 import { Connection } from 'typeorm';
 import { TypeORMFilterService } from '../../core/services/typeorm-filter.service';
 import { EquipeService } from '../../equipe/equipe.service';
@@ -13,23 +14,30 @@ import {
   InicializaLigaRespostaDto,
   LigaRespostaDto,
   QuartasLigaRespostaDto,
+  SemisLigaRespostaDto,
 } from '../dto/liga.dto';
-import { InicializaQuartaDeFinalDto } from '../dto/tabela.dto';
+import {
+  InicializaQuartaDeFinalDto,
+  InicializaSemifinalDto,
+} from '../dto/tabela.dto';
 import { Liga } from '../entities/liga.entity';
-import { EstadoLiga } from '../enums/estado-liga.enum';
+import { StatusLiga } from '../enums/estado-liga.enum';
 import { LigaRepository } from '../repositories/liga.repository';
 import { PontuacaoEquipeRepository } from '../repositories/pontuacao_equipe.repository';
 import { ClassificacaoGeneratorService } from '../tabela/classificacao-generator.service';
 import { QuartaDeFinalGeneratorService } from '../tabela/quarta-de-final-generator.service';
+import { SemifinalGeneratorService } from '../tabela/semifinal-generator.service';
 
 @Injectable({ scope: Scope.REQUEST })
 export class LigaService {
   constructor(
     private readonly ligaRepository: LigaRepository,
     private readonly pontuacaoEquipeRepository: PontuacaoEquipeRepository,
+    private readonly partidaRepository: PartidaRepository,
     private readonly equipeService: EquipeService,
     private readonly classificacaoService: ClassificacaoGeneratorService,
     private readonly quartasService: QuartaDeFinalGeneratorService,
+    private readonly semisService: SemifinalGeneratorService,
     private readonly typeormFilterService: TypeORMFilterService,
     private readonly connection: Connection,
   ) {}
@@ -90,7 +98,7 @@ export class LigaService {
       ...liga.configuracaoInicializacaoLiga,
     });
 
-    liga.estado = EstadoLiga.CLASSIFICATORIA;
+    liga.status = StatusLiga.CLASSIFICATORIA;
 
     const [ligaAtualizada, partidasSalvas] = await this.connection.transaction(
       async (manager) => {
@@ -111,9 +119,9 @@ export class LigaService {
 
   async inicializaQuartas(id: string, requisicao: InicializaQuartaDeFinalDto) {
     const liga = await this.devePegarEntidade(id);
-    if (liga.estado !== EstadoLiga.CLASSIFICATORIA) {
+    if (liga.status !== StatusLiga.CLASSIFICATORIA) {
       throw new ConflictException(
-        `Liga ${liga.id} não está no estado ${EstadoLiga.CLASSIFICATORIA} e sim ${liga.estado}`,
+        `Liga ${liga.id} não está no estado ${StatusLiga.CLASSIFICATORIA} e sim ${liga.status}`,
       );
     }
 
@@ -122,7 +130,7 @@ export class LigaService {
       idLiga: id,
     });
 
-    liga.estado = EstadoLiga.QUARTAS;
+    liga.status = StatusLiga.QUARTAS;
 
     const [ligaAtualizada, partidasAgendadas] =
       await this.connection.transaction(async (manager) => [
@@ -131,6 +139,33 @@ export class LigaService {
       ]);
 
     return new QuartasLigaRespostaDto(ligaAtualizada, partidasAgendadas);
+  }
+
+  async inicializaSemis(id: string, requisicao: InicializaSemifinalDto) {
+    const liga = await this.devePegarEntidade(id);
+    if (liga.status !== StatusLiga.SEMIS) {
+      throw new ConflictException(
+        `Liga ${liga.id} não está ${StatusLiga.QUARTAS}`,
+      );
+    }
+
+    const partidas = await this.semisService.geraPartidas({
+      ...requisicao,
+      idLiga: id,
+    });
+
+    const [ligaAtualizada, partidasAgendadas] =
+      await this.connection.transaction(async (manager) => {
+        await this.partidaRepository.removePartidasSemGanhadores(
+          id,
+          'semis',
+          manager,
+        );
+
+        return [await manager.save(liga), await manager.save(partidas)];
+      });
+
+    return new SemisLigaRespostaDto(ligaAtualizada, partidasAgendadas);
   }
 
   private async getLigaIniciadaEm(id: string) {
