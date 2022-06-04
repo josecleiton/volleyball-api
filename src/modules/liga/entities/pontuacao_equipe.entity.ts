@@ -18,6 +18,18 @@ export class PontuacaoEquipe extends EntidadeBase {
   @Index()
   pontuacao!: number;
 
+  @Column({ type: 'int', default: 0 })
+  vitorias!: number;
+
+  @Column({ type: 'int', default: 0 })
+  derrotas!: number;
+
+  @Column({ type: 'int', default: 0 })
+  setsGanhos!: number;
+
+  @Column({ type: 'int', default: 0 })
+  setsPerdidos!: number;
+
   @OneToOne(() => Equipe)
   @JoinColumn({ name: 'id' })
   equipe!: Equipe;
