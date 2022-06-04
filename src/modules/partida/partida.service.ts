@@ -9,7 +9,7 @@ import {
 import { groupBy } from 'lodash';
 import { Connection } from 'typeorm';
 import { Equipe } from '../equipe/entities/equipe.entity';
-import { TabelaRepository } from '../liga/repositories/tabela.repository';
+import { PontuacaoEquipeRepository } from '../liga/repositories/pontuacao_equipe.repository';
 import { Posicao, TipoArbitro } from '../pessoa/enums';
 import { ArbitroService } from '../pessoa/services/arbitro.service';
 import { AtletaService } from '../pessoa/services/atleta.service';
@@ -34,7 +34,7 @@ export class PartidaService {
     private readonly atletaPartidaRepository: AtletaPartidaRepository,
     private readonly arbitroPartidaRepository: ArbitroPartidaRepository,
     private readonly pontuacaoPartidaRepository: PontuacaoPartidaRepository,
-    private readonly tabelaRepository: TabelaRepository,
+    private readonly pontuacaoEquipeRepository: PontuacaoEquipeRepository,
     private readonly delegadoService: DelegadoService,
     private readonly atletaService: AtletaService,
     private readonly arbitroService: ArbitroService,
@@ -93,21 +93,23 @@ export class PartidaService {
     const { partida: partidaAtualizada } = await this.connection.transaction(
       async (manager) => {
         await manager.save(pontuacaoPartida);
-        const tabelaMandante = await this.tabelaRepository.atualizaTabela(
-          partida.idMandante,
-          pontuacaoPartida.mandante,
-          manager,
-        );
-        const tabelaVisitante = await this.tabelaRepository.atualizaTabela(
-          partida.idVisitante,
-          pontuacaoPartida.visitante,
-          manager,
-        );
+        const pontuacaoMandante =
+          await this.pontuacaoEquipeRepository.atualizaPontuacao(
+            partida.idMandante,
+            pontuacaoPartida.mandante,
+            manager,
+          );
+        const pontuacaoVisitante =
+          await this.pontuacaoEquipeRepository.atualizaPontuacao(
+            partida.idVisitante,
+            pontuacaoPartida.visitante,
+            manager,
+          );
 
         return {
           partida: await manager.save(partida),
-          tabelaMandante,
-          tabelaVisitante,
+          pontuacaoMandante,
+          pontuacaoVisitante,
         };
       },
     );

@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException, Scope } from '@nestjs/common';
 import { TypeORMFilterService } from 'src/modules/core/services/typeorm-filter.service';
 import { EquipeService } from 'src/modules/equipe/equipe.service';
-import { LigaService } from 'src/modules/liga/liga.service';
+import { LigaService } from 'src/modules/liga/services/liga.service';
 import {
   AuxiliarRespostaDto,
   CriaAuxiliarDto,

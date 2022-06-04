@@ -39,7 +39,8 @@ export class Partida extends EntidadeBase {
   }
 
   @Column()
-  numeroDaRodada!: number;
+  @Index()
+  tipoDaRodada!: string;
 
   @Column('uuid')
   @Index()

@@ -6,6 +6,7 @@ import { Equipe } from 'src/modules/equipe/entities/equipe.entity';
 import { Arbitro } from 'src/modules/pessoa/entities/arbitro.entity';
 import { Delegado } from 'src/modules/pessoa/entities/delegado.entity';
 import { IConfiguraInicializaoLiga } from '../interfaces/configura-inicializacao-liga.interface';
+import { EstadoLiga } from '../enums/estado-liga.enum';
 
 @Entity('ligas')
 export class Liga extends EntidadeBase {
@@ -26,6 +27,9 @@ export class Liga extends EntidadeBase {
 
   @Column({ type: 'varchar', length: 40, nullable: true, default: 'A' })
   serie?: string;
+
+  @Column({ type: 'enum', enum: EstadoLiga, default: EstadoLiga.CRIADA })
+  estado!: EstadoLiga;
 
   public get ano(): number | undefined {
     if (!this.dataComeco) return;
