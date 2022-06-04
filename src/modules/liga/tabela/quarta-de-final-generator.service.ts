@@ -21,7 +21,7 @@ export class QuartaDeFinalGeneratorService extends MataMataGeneratorService {
       pontuacoes.length !== QuartaDeFinalGeneratorService.quantidadeDePontuacoes
     ) {
       throw new ConflictException(
-        `É preciso ${QuartaDeFinalGeneratorService.quantidadeDePontuacoes} para gerar quartas`,
+        `É preciso ${QuartaDeFinalGeneratorService.quantidadeDePontuacoes} equipes com pontuações para gerar quartas`,
       );
     }
     return {
