@@ -1,19 +1,31 @@
-import { Injectable, Scope } from '@nestjs/common';
-import { TabelaService } from '../services/tabela.service';
+import { ConflictException, Injectable, Scope } from '@nestjs/common';
+import { PontuacaoEquipeService } from '../services/pontuacao-equipe.service';
 import { MataMataGeneratorService } from './mata-mata-generator.service';
 import { IClassificados } from '../dto/mata-mata.dto';
 
 @Injectable({ scope: Scope.TRANSIENT })
 export class QuartaDeFinalGeneratorService extends MataMataGeneratorService {
-  constructor(private readonly tabelaService: TabelaService) {
+  private static readonly quantidadeDePontuacoes = 8;
+  constructor(private readonly pontuacaoEquipeService: PontuacaoEquipeService) {
     super();
   }
 
   protected readonly tipoRodada = 'quartas';
   protected async listaClassificados(idLiga: string): Promise<IClassificados> {
-    const tabelas = await this.tabelaService.encontraTabelaOrdenada(idLiga, 8);
+    const pontuacoes =
+      await this.pontuacaoEquipeService.listaPontuacoesOrdenadas(
+        idLiga,
+        QuartaDeFinalGeneratorService.quantidadeDePontuacoes,
+      );
+    if (
+      pontuacoes.length !== QuartaDeFinalGeneratorService.quantidadeDePontuacoes
+    ) {
+      throw new ConflictException(
+        `É preciso ${QuartaDeFinalGeneratorService.quantidadeDePontuacoes} para gerar quartas`,
+      );
+    }
     return {
-      equipes: tabelas.map(({ equipe: { id, idGinasio } }) => ({
+      equipes: pontuacoes.map(({ equipe: { id, idGinasio } }) => ({
         id,
         idGinasio,
       })),

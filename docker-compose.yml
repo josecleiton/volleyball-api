@@ -4,8 +4,8 @@ services:
   postgres:
     container_name: voleibol-postgres
     image: postgres:14-alpine
-    ports:
-      - "${DB_PORT}:${DB_PORT}"
+    expose:
+      - "${DB_PORT}"
     volumes:
       - "voleibol-volume:/var/lib/postgresql/data:rw"
     environment:
@@ -40,22 +40,22 @@ services:
   #     - "voleibol-volume:/var/lib/redis"
   #   restart: unless-stopped
 
-  # voleibol:
-  #   container_name: voleibol-api-nestjs
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile-local
-  #   ports:
-  #     - "${PORT_EXPOSED}:${PORT}"
-  #   volumes:
-  #     - "./:/voleibol-volume/app"
-  #     - "/voleibol-volume/app/dist"
-  #     - "/voleibol-volume/app/node_modules"
-  #     - /app/dist
-  #     - /app/node_modules
-  #   # depends_on:
-  #   #   - redis
-  #   restart: unless-stopped
+  voleibol:
+    container_name: voleibol-api-nestjs
+    build:
+      context: .
+      dockerfile: Dockerfile-local
+    ports:
+      - "${PORT_EXPOSED}:${PORT}"
+    volumes:
+      - "./:/voleibol-volume/app"
+      - "/voleibol-volume/app/dist"
+      - "/voleibol-volume/app/node_modules"
+      - /app/dist
+      - /app/node_modules
+    # depends_on:
+    #   - redis
+    restart: unless-stopped
 
 volumes:
   voleibol-volume:

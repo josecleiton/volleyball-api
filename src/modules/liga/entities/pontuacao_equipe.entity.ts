@@ -9,8 +9,8 @@ import {
   PrimaryColumn,
 } from 'typeorm';
 
-@Entity()
-export class Tabela extends EntidadeBase {
+@Entity('pontuacoes_equipe')
+export class PontuacaoEquipe extends EntidadeBase {
   @PrimaryColumn('uuid')
   id!: string;
 

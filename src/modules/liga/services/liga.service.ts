@@ -12,19 +12,24 @@ import {
   InicializaLigaDto,
   InicializaLigaRespostaDto,
   LigaRespostaDto,
+  QuartasLigaRespostaDto,
 } from '../dto/liga.dto';
+import { InicializaQuartaDeFinalDto } from '../dto/pontuacao_equipe.dto';
 import { Liga } from '../entities/liga.entity';
+import { EstadoLiga } from '../enums/estado-liga.enum';
 import { LigaRepository } from '../repositories/liga.repository';
-import { TabelaRepository } from '../repositories/tabela.repository';
+import { PontuacaoEquipeRepository } from '../repositories/pontuacao_equipe.repository';
 import { ClassificacaoGeneratorService } from '../tabela/classificacao-generator.service';
+import { QuartaDeFinalGeneratorService } from '../tabela/quarta-de-final-generator.service';
 
 @Injectable({ scope: Scope.REQUEST })
 export class LigaService {
   constructor(
     private readonly ligaRepository: LigaRepository,
-    private readonly tabelaRepository: TabelaRepository,
+    private readonly pontuacaoEquipeRepository: PontuacaoEquipeRepository,
     private readonly equipeService: EquipeService,
     private readonly classificacaoService: ClassificacaoGeneratorService,
+    private readonly quartasService: QuartaDeFinalGeneratorService,
     private readonly typeormFilterService: TypeORMFilterService,
     private readonly connection: Connection,
   ) {}
@@ -85,12 +90,16 @@ export class LigaService {
       ...liga.configuracaoInicializacaoLiga,
     });
 
+    liga.estado = EstadoLiga.CLASSIFICATORIA;
+
     const [ligaAtualizada, partidasSalvas] = await this.connection.transaction(
       async (manager) => {
         const partidasSalvas = await manager.save(partidas);
         const ligaSalva = await manager.save(liga);
         await manager.save(
-          liga.equipes.map(({ id }) => this.tabelaRepository.create({ id })),
+          liga.equipes.map(({ id }) =>
+            this.pontuacaoEquipeRepository.create({ id }),
+          ),
         );
 
         return [ligaSalva, partidasSalvas];
@@ -98,6 +107,30 @@ export class LigaService {
     );
 
     return new InicializaLigaRespostaDto(ligaAtualizada, partidasSalvas);
+  }
+
+  async inicializaQuartas(id: string, requisicao: InicializaQuartaDeFinalDto) {
+    const liga = await this.devePegarEntidade(id);
+    if (liga.estado !== EstadoLiga.CLASSIFICATORIA) {
+      throw new ConflictException(
+        `Liga ${liga.id} não está no estado ${EstadoLiga.CLASSIFICATORIA} e sim ${liga.estado}`,
+      );
+    }
+
+    const partidas = await this.quartasService.geraPartidas({
+      ...requisicao,
+      idLiga: id,
+    });
+
+    liga.estado = EstadoLiga.QUARTAS;
+
+    const [ligaAtualizada, partidasAgendadas] =
+      await this.connection.transaction(async (manager) => [
+        await manager.save(liga),
+        await manager.save(partidas),
+      ]);
+
+    return new QuartasLigaRespostaDto(ligaAtualizada, partidasAgendadas);
   }
 
   private async getLigaIniciadaEm(id: string) {

@@ -6,20 +6,20 @@ import { LigaRepository } from './repositories/liga.repository';
 import { CoreModule } from '../core/core.module';
 import { EquipeModule } from '../equipe/equipe.module';
 import { ClassificacaoGeneratorService } from './tabela/classificacao-generator.service';
-import { TabelaRepository } from './repositories/tabela.repository';
+import { PontuacaoEquipeRepository } from './repositories/pontuacao_equipe.repository';
 import { QuartaDeFinalGeneratorService } from './tabela/quarta-de-final-generator.service';
-import { TabelaService } from './services/tabela.service';
+import { PontuacaoEquipeService } from './services/pontuacao-equipe.service';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([LigaRepository, TabelaRepository]),
+    TypeOrmModule.forFeature([LigaRepository, PontuacaoEquipeRepository]),
     CoreModule,
     EquipeModule,
   ],
   controllers: [LigaController],
   providers: [
     LigaService,
-    TabelaService,
+    PontuacaoEquipeService,
     ClassificacaoGeneratorService,
     QuartaDeFinalGeneratorService,
   ],

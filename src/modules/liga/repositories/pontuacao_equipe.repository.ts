@@ -1,21 +1,21 @@
 import { Equipe } from 'src/modules/equipe/entities/equipe.entity';
 import { EntityManager, EntityRepository, Repository } from 'typeorm';
 import {
-  IListaTabelaOrdenadaPorEquipeResposta,
-  ITabelaDto,
-} from '../dto/tabela.dto';
-import { Tabela } from '../entities/tabela.entity';
+  IListaPontuacaoDaLigaOrdenadaResposta,
+  IPontuacaoDto,
+} from '../dto/pontuacao_equipe.dto';
+import { PontuacaoEquipe } from '../entities/pontuacao_equipe.entity';
 
-@EntityRepository(Tabela)
-export class TabelaRepository extends Repository<Tabela> {
-  async atualizaTabela(
+@EntityRepository(PontuacaoEquipe)
+export class PontuacaoEquipeRepository extends Repository<PontuacaoEquipe> {
+  async atualizaPontuacao(
     id: string,
     pontos: number,
     manager: EntityManager,
-  ): Promise<ITabelaDto> {
-    const result: ITabelaDto[] = await manager.query(
+  ): Promise<IPontuacaoDto> {
+    const result: IPontuacaoDto[] = await manager.query(
       `
-      UPDATE tabelas
+      UPDATE pontuacoes_equipe
       SET
         pontuacao = pontuacao + ?
       WHERE
@@ -32,19 +32,19 @@ export class TabelaRepository extends Repository<Tabela> {
     return result[0];
   }
 
-  async listaTabelaOrdenadaPorLiga(idLiga: string, limite = 12) {
-    const qb = this.createQueryBuilder('tabelas');
+  async listaPontuacaoOrdenadaPorLiga(idLiga: string, limite = 12) {
+    const qb = this.createQueryBuilder('pontuacoes');
 
     return qb
-      .select('tabelas.pontuacao', 'pontuacao')
+      .select('pontuacoes.pontuacao', 'pontuacao')
       .addSelect('equipes.id', 'equipeId')
       .addSelect('equipes.nome', 'equipeNome')
       .addSelect('equipes.idGinasio', 'equipeIdGinasio')
       .addSelect('equipes.idLiga', 'ligaId')
-      .innerJoin(Equipe, 'equipes', 'equipes.id = tabelas.id')
+      .innerJoin(Equipe, 'equipes', 'equipes.id = pontuacoes.id')
       .where('equipes.id_liga = :idLiga', { idLiga })
       .limit(limite)
       .orderBy({ pontuacao: 'DESC' })
-      .getRawMany<IListaTabelaOrdenadaPorEquipeResposta>();
+      .getRawMany<IListaPontuacaoDaLigaOrdenadaResposta>();
   }
 }

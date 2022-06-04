@@ -9,6 +9,7 @@ import {
 } from '@nestjs/common';
 import { LigaService } from './services/liga.service';
 import { CriaLigaDto, InicializaLigaDto } from './dto/liga.dto';
+import { InicializaQuartaDeFinalDto } from './dto/pontuacao_equipe.dto';
 
 @Controller('liga')
 export class LigaController {
@@ -27,6 +28,16 @@ export class LigaController {
     requisicao.valida();
 
     return this.ligaService.iniciaLiga(id, requisicao);
+  }
+
+  @Post(':id/inicializa-quartas')
+  agendaQuartas(
+    @Param('id', ParseUUIDPipe) id: string,
+    @Body() requisicao: InicializaQuartaDeFinalDto,
+  ) {
+    requisicao.valida();
+
+    return this.ligaService.inicializaQuartas(id, requisicao);
   }
 
   @Get()
