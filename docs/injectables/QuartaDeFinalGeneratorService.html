@@ -63,8 +63,81 @@
 
 
 
+            <p class="comment">
+                <h3>Extends</h3>
+            </p>
+            <p class="comment">
+                        <code><a href="../classes/MataMataGeneratorService.html" target="_self" >MataMataGeneratorService</a></code>
+            </p>
 
 
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Static</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#quantidadeDePontuacoes" >quantidadeDePontuacoes</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#tipoRodada" >tipoRodada</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Static</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#escolhaDeMando" >escolhaDeMando</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Static</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#mandoFixoIndice" >mandoFixoIndice</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#listaClassificados" >listaClassificados</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#geraPartidas" >geraPartidas</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
 
             <section>
     <h3 id="constructor">Constructor</h3>
@@ -72,12 +145,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(tabelaService: <a href="../injectables/TabelaService.html" target="_self">TabelaService</a>)</code>
+<code>constructor(pontuacaoEquipeService: <a href="../injectables/PontuacaoEquipeService.html" target="_self">PontuacaoEquipeService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="4" class="link-to-prism">src/modules/liga/tabela/quarta-de-final-generator.service.ts:4</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/modules/liga/tabela/quarta-de-final-generator.service.ts:8</a></div>
                             </td>
                         </tr>
 
@@ -95,10 +168,10 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>tabelaService</td>
+                                                        <td>pontuacaoEquipeService</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../injectables/TabelaService.html" target="_self" >TabelaService</a></code>
+                                                                        <code><a href="../injectables/PontuacaoEquipeService.html" target="_self" >PontuacaoEquipeService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -115,17 +188,369 @@
         </table>
 </section>
 
+            <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="listaClassificados"></a>
+                    <span class="name">
+                        <span class="modifier">Protected</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>listaClassificados</b></span>
+                        <a href="#listaClassificados"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>listaClassificados(idLiga: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
 
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Inherited from         <code><a href="../classes/MataMataGeneratorService.html" target="_self" >MataMataGeneratorService</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../classes/MataMataGeneratorService.html#source" target="_self" >MataMataGeneratorService:14</a></code>
+</div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>idLiga</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../interfaces/IClassificados.html" target="_self" >Promise&lt;IClassificados&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="geraPartidas"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>geraPartidas</b></span>
+                        <a href="#geraPartidas"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>geraPartidas(undefined: <a href="../interfaces/IMataMataDto.html" target="_self">IMataMataDto</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Inherited from         <code><a href="../classes/MataMataGeneratorService.html" target="_self" >MataMataGeneratorService</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../classes/MataMataGeneratorService.html#source" target="_self" >MataMataGeneratorService:19</a></code>
+</div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                                <code><a href="../interfaces/IMataMataDto.html" target="_self" >IMataMataDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>unknown</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+            <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="quantidadeDePontuacoes"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Static</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>quantidadeDePontuacoes</b></span>
+                        <a href="#quantidadeDePontuacoes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>8</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/modules/liga/tabela/quarta-de-final-generator.service.ts:8</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tipoRodada"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>tipoRodada</b></span>
+                        <a href="#tipoRodada"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;quartas&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../classes/MataMataGeneratorService.html" target="_self" >MataMataGeneratorService</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../classes/MataMataGeneratorService.html#source" target="_self" >MataMataGeneratorService:13</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="escolhaDeMando"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Static</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>escolhaDeMando</b></span>
+                        <a href="#escolhaDeMando"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/enumerations.html#EscolhaDeMando" target="_self" >ReadonlyMap&lt;EscolhaDeMando | number&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Map([
+      [EscolhaDeMando.PRIMEIRO_JOGO, 0],
+      [EscolhaDeMando.SEGUNDO_JOGO, 1],
+    ])</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../classes/MataMataGeneratorService.html" target="_self" >MataMataGeneratorService</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../classes/MataMataGeneratorService.html#source" target="_self" >MataMataGeneratorService:7</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mandoFixoIndice"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Static</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>mandoFixoIndice</b></span>
+                        <a href="#mandoFixoIndice"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>2</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../classes/MataMataGeneratorService.html" target="_self" >MataMataGeneratorService</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../classes/MataMataGeneratorService.html#source" target="_self" >MataMataGeneratorService:12</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
 
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, Scope } from &#x27;@nestjs/common&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ConflictException, Injectable, Scope } from &#x27;@nestjs/common&#x27;;
+import { PontuacaoEquipeService } from &#x27;../services/pontuacao-equipe.service&#x27;;
+import { MataMataGeneratorService } from &#x27;./mata-mata-generator.service&#x27;;
+import { IClassificados } from &#x27;../dto/mata-mata.dto&#x27;;
 
 @Injectable({ scope: Scope.TRANSIENT })
-export class QuartaDeFinalGeneratorService {
-  constructor(private readonly tabelaService: TabelaService) {}
+export class QuartaDeFinalGeneratorService extends MataMataGeneratorService {
+  private static readonly quantidadeDePontuacoes &#x3D; 8;
+  constructor(private readonly pontuacaoEquipeService: PontuacaoEquipeService) {
+    super();
+  }
+
+  protected readonly tipoRodada &#x3D; &#x27;quartas&#x27;;
+  protected async listaClassificados(idLiga: string): Promise&lt;IClassificados&gt; {
+    const pontuacoes &#x3D;
+      await this.pontuacaoEquipeService.listaPontuacoesOrdenadas(
+        idLiga,
+        QuartaDeFinalGeneratorService.quantidadeDePontuacoes,
+      );
+    if (
+      pontuacoes.length !&#x3D;&#x3D; QuartaDeFinalGeneratorService.quantidadeDePontuacoes
+    ) {
+      throw new ConflictException(
+        &#x60;É preciso ${QuartaDeFinalGeneratorService.quantidadeDePontuacoes} equipes com pontuações para gerar quartas&#x60;,
+      );
+    }
+    return {
+      equipes: pontuacoes.map(({ equipe: { id, idGinasio } }) &#x3D;&gt; ({
+        id,
+        idGinasio,
+      })),
+    };
+  }
 }
 </code></pre>
     </div>

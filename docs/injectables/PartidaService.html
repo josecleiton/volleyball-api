@@ -121,7 +121,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(partidaRepository: <a href="../classes/PartidaRepository.html" target="_self">PartidaRepository</a>, atletaPartidaRepository: <a href="../classes/AtletaPartidaRepository.html" target="_self">AtletaPartidaRepository</a>, arbitroPartidaRepository: <a href="../classes/ArbitroPartidaRepository.html" target="_self">ArbitroPartidaRepository</a>, pontuacaoPartidaRepository: <a href="../classes/PontuacaoPartidaRepository.html" target="_self">PontuacaoPartidaRepository</a>, tabelaRepository: <a href="../classes/TabelaRepository.html" target="_self">TabelaRepository</a>, delegadoService: <a href="../injectables/DelegadoService.html" target="_self">DelegadoService</a>, atletaService: <a href="../injectables/AtletaService.html" target="_self">AtletaService</a>, arbitroService: <a href="../injectables/ArbitroService.html" target="_self">ArbitroService</a>, connection: Connection)</code>
+<code>constructor(partidaRepository: <a href="../classes/PartidaRepository.html" target="_self">PartidaRepository</a>, atletaPartidaRepository: <a href="../classes/AtletaPartidaRepository.html" target="_self">AtletaPartidaRepository</a>, arbitroPartidaRepository: <a href="../classes/ArbitroPartidaRepository.html" target="_self">ArbitroPartidaRepository</a>, pontuacaoPartidaRepository: <a href="../classes/PontuacaoPartidaRepository.html" target="_self">PontuacaoPartidaRepository</a>, pontuacaoEquipeRepository: <a href="../classes/PontuacaoEquipeRepository.html" target="_self">PontuacaoEquipeRepository</a>, delegadoService: <a href="../injectables/DelegadoService.html" target="_self">DelegadoService</a>, atletaService: <a href="../injectables/AtletaService.html" target="_self">AtletaService</a>, arbitroService: <a href="../injectables/ArbitroService.html" target="_self">ArbitroService</a>, connection: Connection)</code>
                     </td>
                 </tr>
                         <tr>
@@ -192,10 +192,10 @@
                                                     
                                                 </tr>
                                                 <tr>
-                                                        <td>tabelaRepository</td>
+                                                        <td>pontuacaoEquipeRepository</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../classes/TabelaRepository.html" target="_self" >TabelaRepository</a></code>
+                                                                        <code><a href="../classes/PontuacaoEquipeRepository.html" target="_self" >PontuacaoEquipeRepository</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -287,8 +287,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="120"
-                            class="link-to-prism">src/modules/partida/partida.service.ts:120</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="122"
+                            class="link-to-prism">src/modules/partida/partida.service.ts:122</a></div>
                 </td>
             </tr>
 
@@ -440,8 +440,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="201"
-                            class="link-to-prism">src/modules/partida/partida.service.ts:201</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="203"
+                            class="link-to-prism">src/modules/partida/partida.service.ts:203</a></div>
                 </td>
             </tr>
 
@@ -756,7 +756,7 @@
 import { groupBy } from &#x27;lodash&#x27;;
 import { Connection } from &#x27;typeorm&#x27;;
 import { Equipe } from &#x27;../equipe/entities/equipe.entity&#x27;;
-import { TabelaRepository } from &#x27;../liga/repositories/tabela.repository&#x27;;
+import { PontuacaoEquipeRepository } from &#x27;../liga/repositories/pontuacao_equipe.repository&#x27;;
 import { Posicao, TipoArbitro } from &#x27;../pessoa/enums&#x27;;
 import { ArbitroService } from &#x27;../pessoa/services/arbitro.service&#x27;;
 import { AtletaService } from &#x27;../pessoa/services/atleta.service&#x27;;
@@ -781,7 +781,7 @@ export class PartidaService {
     private readonly atletaPartidaRepository: AtletaPartidaRepository,
     private readonly arbitroPartidaRepository: ArbitroPartidaRepository,
     private readonly pontuacaoPartidaRepository: PontuacaoPartidaRepository,
-    private readonly tabelaRepository: TabelaRepository,
+    private readonly pontuacaoEquipeRepository: PontuacaoEquipeRepository,
     private readonly delegadoService: DelegadoService,
     private readonly atletaService: AtletaService,
     private readonly arbitroService: ArbitroService,
@@ -840,21 +840,23 @@ export class PartidaService {
     const { partida: partidaAtualizada } &#x3D; await this.connection.transaction(
       async (manager) &#x3D;&gt; {
         await manager.save(pontuacaoPartida);
-        const tabelaMandante &#x3D; await this.tabelaRepository.atualizaTabela(
-          partida.idMandante,
-          pontuacaoPartida.mandante,
-          manager,
-        );
-        const tabelaVisitante &#x3D; await this.tabelaRepository.atualizaTabela(
-          partida.idVisitante,
-          pontuacaoPartida.visitante,
-          manager,
-        );
+        const pontuacaoMandante &#x3D;
+          await this.pontuacaoEquipeRepository.atualizaPontuacao(
+            partida.idMandante,
+            pontuacaoPartida.mandante,
+            manager,
+          );
+        const pontuacaoVisitante &#x3D;
+          await this.pontuacaoEquipeRepository.atualizaPontuacao(
+            partida.idVisitante,
+            pontuacaoPartida.visitante,
+            manager,
+          );
 
         return {
           partida: await manager.save(partida),
-          tabelaMandante,
-          tabelaVisitante,
+          pontuacaoMandante,
+          pontuacaoVisitante,
         };
       },
     );

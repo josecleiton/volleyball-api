@@ -28,7 +28,7 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content class">
+               <div class="content entity">
                    <div class="content-data">
 
 
@@ -36,15 +36,9 @@
 
 
 
-
-
-
-
-
-
 <ol class="breadcrumb">
-  <li>Classes</li>
-  <li >InicializaLigaDto</li>
+  <li>Entities</li>
+  <li >PontuacaoEquipe</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -62,10 +56,8 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/modules/liga/dto/liga.dto.ts</code>
+            <code>src/modules/liga/entities/pontuacao_equipe.entity.ts</code>
         </p>
-
-
 
 
 
@@ -83,36 +75,30 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier">Optional</span>
-                                <a href="#data" >data</a>
+                                <a href="#derrotas" >derrotas</a>
                             </li>
                             <li>
-                                <a href="#diasDaSemana" >diasDaSemana</a>
+                                <a href="#equipe" >equipe</a>
                             </li>
                             <li>
-                                <a href="#horarios" >horarios</a>
+                                <a href="#id" >id</a>
                             </li>
                             <li>
-                                <a href="#intervaloDeDiasUteisEntreTurnos" >intervaloDeDiasUteisEntreTurnos</a>
+                                <a href="#pontuacao" >pontuacao</a>
+                            </li>
+                            <li>
+                                <a href="#setsGanhos" >setsGanhos</a>
+                            </li>
+                            <li>
+                                <a href="#setsPerdidos" >setsPerdidos</a>
+                            </li>
+                            <li>
+                                <a href="#vitorias" >vitorias</a>
                             </li>
                         </ul>
                     </td>
                 </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Methods</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
-                            <li>
-                                <a href="#valida" >valida</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
 
 
 
@@ -121,7 +107,6 @@
         </tbody>
     </table>
 </section>
-
 
             <section>
     
@@ -132,17 +117,16 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="data"></a>
+                    <a name="derrotas"></a>
                     <span class="name">
-                            <span class="modifier">Optional</span>
-                        <span ><b>data</b></span>
-                        <a href="#data"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>derrotas</b></span>
+                        <a href="#derrotas"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
 
                     </td>
                 </tr>
@@ -151,13 +135,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @IsDate()<br />@Type(undefined)<br />
+                            @Column({type: &#x27;int&#x27;, default: 0})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/modules/liga/dto/liga.dto.ts:45</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/modules/liga/entities/pontuacao_equipe.entity.ts:25</a></div>
                         </td>
                     </tr>
 
@@ -168,16 +152,16 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="diasDaSemana"></a>
+                    <a name="equipe"></a>
                     <span class="name">
-                        <span ><b>diasDaSemana</b></span>
-                        <a href="#diasDaSemana"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>equipe</b></span>
+                        <a href="#equipe"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../miscellaneous/enumerations.html#DiaDaSemana" target="_self" >DiaDaSemana[]</a></code>
+                        <i>Type : </i>        <code><a href="../classes/Equipe.html" target="_self" >Equipe</a></code>
 
                     </td>
                 </tr>
@@ -186,13 +170,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @IsArray()<br />@ArrayMinSize(1)<br />@ArrayMaxSize(6)<br />@ArrayUnique()<br />@IsEnum(DiaDaSemana, {each: true})<br />
+                            @OneToOne(undefined)<br />@JoinColumn({name: &#x27;id&#x27;})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/modules/liga/dto/liga.dto.ts:52</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/modules/liga/entities/pontuacao_equipe.entity.ts:35</a></div>
                         </td>
                     </tr>
 
@@ -203,16 +187,16 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="horarios"></a>
+                    <a name="id"></a>
                     <span class="name">
-                        <span ><b>horarios</b></span>
-                        <a href="#horarios"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>id</b></span>
+                        <a href="#id"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>    <code>number[]</code>
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
                     </td>
                 </tr>
@@ -221,13 +205,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @IsArray()<br />@ArrayMinSize(1)<br />@ArrayMaxSize(12)<br />@ArrayUnique()<br />@Min(undefined, {each: true})<br />@Max(undefined, {each: true})<br />
+                            @PrimaryColumn(&#x27;uuid&#x27;)<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/modules/liga/dto/liga.dto.ts:60</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/modules/liga/entities/pontuacao_equipe.entity.ts:15</a></div>
                         </td>
                     </tr>
 
@@ -238,16 +222,17 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="intervaloDeDiasUteisEntreTurnos"></a>
+                    <a name="pontuacao"></a>
                     <span class="name">
-                        <span ><b>intervaloDeDiasUteisEntreTurnos</b></span>
-                        <a href="#intervaloDeDiasUteisEntreTurnos"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>pontuacao</b></span>
+                        <a href="#pontuacao"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>Liga.intervaloDeUteisDiasEntreTurnos</code>
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
                     </td>
                 </tr>
                 <tr>
@@ -255,13 +240,118 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @IsPositive()<br />@Max(Liga.intervaloDeUteisDiasEntreTurnos)<br />@IsOptional()<br />
+                            @Column({type: &#x27;int&#x27;, default: 0})<br />@Index()<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/modules/liga/dto/liga.dto.ts:65</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/modules/liga/entities/pontuacao_equipe.entity.ts:19</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setsGanhos"></a>
+                    <span class="name">
+                        <span ><b>setsGanhos</b></span>
+                        <a href="#setsGanhos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Column({type: &#x27;int&#x27;, default: 0})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/modules/liga/entities/pontuacao_equipe.entity.ts:28</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setsPerdidos"></a>
+                    <span class="name">
+                        <span ><b>setsPerdidos</b></span>
+                        <a href="#setsPerdidos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Column({type: &#x27;int&#x27;, default: 0})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/modules/liga/entities/pontuacao_equipe.entity.ts:31</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="vitorias"></a>
+                    <span class="name">
+                        <span ><b>vitorias</b></span>
+                        <a href="#vitorias"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Column({type: &#x27;int&#x27;, default: 0})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/modules/liga/entities/pontuacao_equipe.entity.ts:22</a></div>
                         </td>
                     </tr>
 
@@ -269,181 +359,55 @@
         </tbody>
     </table>
 </section>
-
-            <section>
-    
-    <h3 id="methods">
-        Methods
-    </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="valida"></a>
-                    <span class="name">
-                        <span ><b>valida</b></span>
-                        <a href="#valida"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>valida()</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="67"
-                            class="link-to-prism">src/modules/liga/dto/liga.dto.ts:67</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</section>
-
-
-
-
-
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { BadRequestException } from &#x27;@nestjs/common&#x27;;
-import { Type } from &#x27;class-transformer&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { EntidadeBase } from &#x27;src/modules/core/entities/base.entity&#x27;;
+import { Equipe } from &#x27;src/modules/equipe/entities/equipe.entity&#x27;;
 import {
-  ArrayMaxSize,
-  ArrayMinSize,
-  ArrayUnique,
-  IsArray,
-  IsDate,
-  IsEnum,
-  IsOptional,
-  IsPositive,
-  IsString,
-  Length,
-  Max,
-  Min,
-} from &#x27;class-validator&#x27;;
-import { compareAsc } from &#x27;date-fns&#x27;;
-import { Genero } from &#x27;src/modules/core/enums&#x27;;
-import { DiaDaSemana } from &#x27;src/modules/core/enums/dia-da-semana.enum&#x27;;
-import { PartidaRespostaDto } from &#x27;src/modules/partida/dto/partida.dto&#x27;;
-import { Partida } from &#x27;src/modules/partida/entities/partida.entity&#x27;;
-import { ArbitroRespostaDto } from &#x27;src/modules/pessoa/dto/arbitro.dto&#x27;;
-import { DelegadoRespostaDto } from &#x27;src/modules/pessoa/dto/delegado.dto&#x27;;
-import { Liga } from &#x27;../entities/liga.entity&#x27;;
-import { EstadoLiga } from &#x27;../enums/estado-liga.enum&#x27;;
+  Column,
+  Entity,
+  Index,
+  JoinColumn,
+  OneToOne,
+  PrimaryColumn,
+} from &#x27;typeorm&#x27;;
 
-export class CriaLigaDto {
-  @IsEnum(Genero)
-  genero!: Genero;
+@Entity(&#x27;pontuacoes_equipe&#x27;)
+export class PontuacaoEquipe extends EntidadeBase {
+  @PrimaryColumn(&#x27;uuid&#x27;)
+  id!: string;
 
-  @IsOptional()
-  @IsString()
-  @Length(2, 200)
-  nome?: string;
+  @Column({ type: &#x27;int&#x27;, default: 0 })
+  @Index()
+  pontuacao!: number;
 
-  @IsOptional()
-  @IsString()
-  @Length(1, 20)
-  serie?: string;
-}
+  @Column({ type: &#x27;int&#x27;, default: 0 })
+  vitorias!: number;
 
-export class InicializaLigaDto {
-  @IsDate()
-  @Type(() &#x3D;&gt; Date)
-  data?: Date;
+  @Column({ type: &#x27;int&#x27;, default: 0 })
+  derrotas!: number;
 
-  @IsArray()
-  @ArrayMinSize(1)
-  @ArrayMaxSize(6)
-  @ArrayUnique()
-  @IsEnum(DiaDaSemana, { each: true })
-  diasDaSemana!: DiaDaSemana[];
+  @Column({ type: &#x27;int&#x27;, default: 0 })
+  setsGanhos!: number;
 
-  @IsArray()
-  @ArrayMinSize(1)
-  @ArrayMaxSize(12)
-  @ArrayUnique()
-  @Min(6 * 60, { each: true })
-  @Max(22 * 60, { each: true })
-  horarios!: number[];
+  @Column({ type: &#x27;int&#x27;, default: 0 })
+  setsPerdidos!: number;
 
-  @IsPositive()
-  @Max(Liga.intervaloDeUteisDiasEntreTurnos)
-  @IsOptional()
-  intervaloDeDiasUteisEntreTurnos &#x3D; Liga.intervaloDeUteisDiasEntreTurnos;
-
-  valida() {
-    if (this.data instanceof Date &amp;&amp; !isFinite(this.data.getTime())) {
-      throw new BadRequestException(&quot;&#x27;data&#x27; não fornecida&quot;);
-    }
-  }
-}
-
-export class LigaRespostaDto {
-  id: string;
-  genero: string;
-  estado: EstadoLiga;
-  dataComeco?: Date;
-  nome?: string;
-  serie?: string;
-  ano?: number;
-  arbitros?: ArbitroRespostaDto[];
-  delegados?: DelegadoRespostaDto[];
-
-  constructor(liga: Liga) {
-    this.id &#x3D; liga.id;
-    this.genero &#x3D; liga.genero;
-    this.dataComeco &#x3D; liga.dataComeco;
-    this.estado &#x3D; liga.estado;
-    this.nome &#x3D; liga.nome;
-    this.serie &#x3D; liga.serie;
-    this.ano &#x3D; liga.ano;
-    this.arbitros &#x3D; liga.arbitros?.map((x) &#x3D;&gt; new ArbitroRespostaDto(x));
-    this.delegados &#x3D; liga.delegados?.map((x) &#x3D;&gt; new DelegadoRespostaDto(x));
-  }
-}
-
-export abstract class GeraPartidasLigaRespostaDto {
-  liga: LigaRespostaDto;
-  partidas: PartidaRespostaDto[];
-
-  constructor(liga: Liga, partidas: Partida[]) {
-    this.liga &#x3D; new LigaRespostaDto(liga);
-    this.partidas &#x3D; partidas
-      .sort((a, b) &#x3D;&gt; compareAsc(a.dataComeco, b.dataComeco))
-      .map((x) &#x3D;&gt; new PartidaRespostaDto(x));
-  }
-}
-export class InicializaLigaRespostaDto extends GeraPartidasLigaRespostaDto {
-  constructor(liga: Liga, partidas: Partida[]) {
-    super(liga, partidas);
-  }
-}
-
-export class QuartasLigaRespostaDto extends GeraPartidasLigaRespostaDto {
-  constructor(liga: Liga, partidas: Partida[]) {
-    super(liga, partidas);
-  }
+  @OneToOne(() &#x3D;&gt; Equipe)
+  @JoinColumn({ name: &#x27;id&#x27; })
+  equipe!: Equipe;
 }
 </code></pre>
     </div>
 </div>
+
+
+
+
+
+
 
 
 
@@ -478,8 +442,8 @@ export class QuartasLigaRespostaDto extends GeraPartidasLigaRespostaDto {
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
-            var COMPODOC_CURRENT_PAGE_URL = 'InicializaLigaDto.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'entity';
+            var COMPODOC_CURRENT_PAGE_URL = 'PontuacaoEquipe.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

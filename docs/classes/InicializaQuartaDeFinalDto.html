@@ -44,7 +44,7 @@
 
 <ol class="breadcrumb">
   <li>Classes</li>
-  <li >CriaLigaDto</li>
+  <li >InicializaQuartaDeFinalDto</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -62,7 +62,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/modules/liga/dto/liga.dto.ts</code>
+            <code>src/modules/liga/dto/pontuacao_equipe.dto.ts</code>
         </p>
 
 
@@ -83,20 +83,29 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#genero" >genero</a>
+                                <a href="#datas" >datas</a>
                             </li>
                             <li>
-                                    <span class="modifier">Optional</span>
-                                <a href="#nome" >nome</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Optional</span>
-                                <a href="#serie" >serie</a>
+                                <a href="#mandos" >mandos</a>
                             </li>
                         </ul>
                     </td>
                 </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#valida" >valida</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
 
 
@@ -116,16 +125,16 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="genero"></a>
+                    <a name="datas"></a>
                     <span class="name">
-                        <span ><b>genero</b></span>
-                        <a href="#genero"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>datas</b></span>
+                        <a href="#datas"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../miscellaneous/enumerations.html#Genero" target="_self" >Genero</a></code>
+                        <i>Type : </i>    <code>Date[]</code>
 
                     </td>
                 </tr>
@@ -134,13 +143,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @IsEnum(Genero)<br />
+                            @IsArray()<br />@ArrayMinSize(12)<br />@ArrayMaxSize(12)<br />@IsDate({each: true})<br />@Type(undefined)<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/modules/liga/dto/liga.dto.ts:29</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/modules/liga/dto/pontuacao_equipe.dto.ts:49</a></div>
                         </td>
                     </tr>
 
@@ -151,17 +160,16 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="nome"></a>
+                    <a name="mandos"></a>
                     <span class="name">
-                            <span class="modifier">Optional</span>
-                        <span ><b>nome</b></span>
-                        <a href="#nome"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>mandos</b></span>
+                        <a href="#mandos"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                        <i>Type : </i>        <code><a href="../miscellaneous/enumerations.html#EscolhaDeMando" target="_self" >EscolhaDeMando[]</a></code>
 
                     </td>
                 </tr>
@@ -170,49 +178,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @IsOptional()<br />@IsString()<br />@Length(2, 200)<br />
+                            @IsArray()<br />@IsEnum(EscolhaDeMando)<br />@ArrayMinSize(4)<br />@ArrayMaxSize(4)<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/modules/liga/dto/liga.dto.ts:34</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="serie"></a>
-                    <span class="name">
-                            <span class="modifier">Optional</span>
-                        <span ><b>serie</b></span>
-                        <a href="#serie"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @IsOptional()<br />@IsString()<br />@Length(1, 20)<br />
-                        </code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/modules/liga/dto/liga.dto.ts:39</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/modules/liga/dto/pontuacao_equipe.dto.ts:55</a></div>
                         </td>
                     </tr>
 
@@ -221,7 +193,49 @@
     </table>
 </section>
 
+            <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="valida"></a>
+                    <span class="name">
+                        <span ><b>valida</b></span>
+                        <a href="#valida"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>valida()</code>
+                </td>
+            </tr>
 
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="57"
+                            class="link-to-prism">src/modules/liga/dto/pontuacao_equipe.dto.ts:57</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
 
 
 
@@ -236,118 +250,88 @@ import { Type } from &#x27;class-transformer&#x27;;
 import {
   ArrayMaxSize,
   ArrayMinSize,
-  ArrayUnique,
   IsArray,
   IsDate,
   IsEnum,
-  IsOptional,
-  IsPositive,
-  IsString,
-  Length,
-  Max,
-  Min,
+  IsUUID,
 } from &#x27;class-validator&#x27;;
-import { compareAsc } from &#x27;date-fns&#x27;;
-import { Genero } from &#x27;src/modules/core/enums&#x27;;
-import { DiaDaSemana } from &#x27;src/modules/core/enums/dia-da-semana.enum&#x27;;
-import { PartidaRespostaDto } from &#x27;src/modules/partida/dto/partida.dto&#x27;;
-import { Partida } from &#x27;src/modules/partida/entities/partida.entity&#x27;;
-import { ArbitroRespostaDto } from &#x27;src/modules/pessoa/dto/arbitro.dto&#x27;;
-import { DelegadoRespostaDto } from &#x27;src/modules/pessoa/dto/delegado.dto&#x27;;
-import { Liga } from &#x27;../entities/liga.entity&#x27;;
-import { EstadoLiga } from &#x27;../enums/estado-liga.enum&#x27;;
 
-export class CriaLigaDto {
-  @IsEnum(Genero)
-  genero!: Genero;
-
-  @IsOptional()
-  @IsString()
-  @Length(2, 200)
-  nome?: string;
-
-  @IsOptional()
-  @IsString()
-  @Length(1, 20)
-  serie?: string;
+export interface IPontuacaoDto {
+  pontuacao: number;
+  id: string;
 }
 
-export class InicializaLigaDto {
-  @IsDate()
-  @Type(() &#x3D;&gt; Date)
-  data?: Date;
+export interface IEquipePontuacaoDto {
+  id: string;
+  nome: string;
+  idLiga: string;
+  idGinasio: string;
+}
 
-  @IsArray()
-  @ArrayMinSize(1)
-  @ArrayMaxSize(6)
-  @ArrayUnique()
-  @IsEnum(DiaDaSemana, { each: true })
-  diasDaSemana!: DiaDaSemana[];
+export interface IListaPontuacaoDaLigaOrdenadaResposta {
+  equipeId: string;
+  equipeNome: string;
+  equipeIdGinasio: string;
+  ligaId: string;
+  pontuacao: number;
+}
 
+export enum EscolhaDeMando {
+  PRIMEIRO_JOGO &#x3D; &#x27;primeiro&#x27;,
+  SEGUNDO_JOGO &#x3D; &#x27;segundo&#x27;,
+}
+
+export interface IMataMataDto {
+  datas: Date[];
+  mandos: EscolhaDeMando[];
+  idLiga: string;
+}
+
+export class InicializaQuartaDeFinalDto {
   @IsArray()
-  @ArrayMinSize(1)
+  @ArrayMinSize(12)
   @ArrayMaxSize(12)
-  @ArrayUnique()
-  @Min(6 * 60, { each: true })
-  @Max(22 * 60, { each: true })
-  horarios!: number[];
+  @IsDate({ each: true })
+  @Type(() &#x3D;&gt; Date)
+  datas!: Date[];
 
-  @IsPositive()
-  @Max(Liga.intervaloDeUteisDiasEntreTurnos)
-  @IsOptional()
-  intervaloDeDiasUteisEntreTurnos &#x3D; Liga.intervaloDeUteisDiasEntreTurnos;
+  @IsArray()
+  @IsEnum(EscolhaDeMando)
+  @ArrayMinSize(4)
+  @ArrayMaxSize(4)
+  mandos!: EscolhaDeMando[];
 
   valida() {
-    if (this.data instanceof Date &amp;&amp; !isFinite(this.data.getTime())) {
-      throw new BadRequestException(&quot;&#x27;data&#x27; não fornecida&quot;);
-    }
+    this.datas.forEach((data, index) &#x3D;&gt; {
+      if (data instanceof Date &amp;&amp; !isFinite(data.getTime())) {
+        throw new BadRequestException(&#x60;&#x27;datas[${index}]&#x27; não fornecida&#x60;);
+      }
+    });
   }
 }
 
-export class LigaRespostaDto {
-  id: string;
-  genero: string;
-  estado: EstadoLiga;
-  dataComeco?: Date;
-  nome?: string;
-  serie?: string;
-  ano?: number;
-  arbitros?: ArbitroRespostaDto[];
-  delegados?: DelegadoRespostaDto[];
-
-  constructor(liga: Liga) {
-    this.id &#x3D; liga.id;
-    this.genero &#x3D; liga.genero;
-    this.dataComeco &#x3D; liga.dataComeco;
-    this.estado &#x3D; liga.estado;
-    this.nome &#x3D; liga.nome;
-    this.serie &#x3D; liga.serie;
-    this.ano &#x3D; liga.ano;
-    this.arbitros &#x3D; liga.arbitros?.map((x) &#x3D;&gt; new ArbitroRespostaDto(x));
-    this.delegados &#x3D; liga.delegados?.map((x) &#x3D;&gt; new DelegadoRespostaDto(x));
-  }
+export class QuartaDeFinalDto
+  extends InicializaQuartaDeFinalDto
+  implements IMataMataDto
+{
+  @IsUUID()
+  idLiga!: string;
 }
 
-export abstract class GeraPartidasLigaRespostaDto {
-  liga: LigaRespostaDto;
-  partidas: PartidaRespostaDto[];
+export class PontuacaoEquipeRespostaDto {
+  pontuacao: number;
+  equipe: IEquipePontuacaoDto;
 
-  constructor(liga: Liga, partidas: Partida[]) {
-    this.liga &#x3D; new LigaRespostaDto(liga);
-    this.partidas &#x3D; partidas
-      .sort((a, b) &#x3D;&gt; compareAsc(a.dataComeco, b.dataComeco))
-      .map((x) &#x3D;&gt; new PartidaRespostaDto(x));
-  }
-}
-export class InicializaLigaRespostaDto extends GeraPartidasLigaRespostaDto {
-  constructor(liga: Liga, partidas: Partida[]) {
-    super(liga, partidas);
-  }
-}
-
-export class QuartasLigaRespostaDto extends GeraPartidasLigaRespostaDto {
-  constructor(liga: Liga, partidas: Partida[]) {
-    super(liga, partidas);
+  constructor(
+    pontuacaoOrdenadaResposta: IListaPontuacaoDaLigaOrdenadaResposta,
+  ) {
+    this.pontuacao &#x3D; pontuacaoOrdenadaResposta.pontuacao;
+    this.equipe &#x3D; {
+      id: pontuacaoOrdenadaResposta.equipeId,
+      idLiga: pontuacaoOrdenadaResposta.ligaId,
+      nome: pontuacaoOrdenadaResposta.equipeNome,
+      idGinasio: pontuacaoOrdenadaResposta.equipeIdGinasio,
+    };
   }
 }
 </code></pre>
@@ -388,7 +372,7 @@ export class QuartasLigaRespostaDto extends GeraPartidasLigaRespostaDto {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
-            var COMPODOC_CURRENT_PAGE_URL = 'CriaLigaDto.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'InicializaQuartaDeFinalDto.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 
