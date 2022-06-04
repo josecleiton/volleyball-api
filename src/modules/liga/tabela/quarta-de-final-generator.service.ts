@@ -2,10 +2,10 @@ import { ConflictException, Injectable, Scope } from '@nestjs/common';
 import { PontuacaoEquipeService } from '../services/pontuacao-equipe.service';
 import { MataMataGeneratorService } from './mata-mata-generator.service';
 import { IClassificados } from '../dto/mata-mata.dto';
+import { Liga } from '../entities/liga.entity';
 
 @Injectable({ scope: Scope.TRANSIENT })
 export class QuartaDeFinalGeneratorService extends MataMataGeneratorService {
-  private static readonly quantidadeDePontuacoes = 8;
   constructor(private readonly pontuacaoEquipeService: PontuacaoEquipeService) {
     super();
   }
@@ -15,13 +15,11 @@ export class QuartaDeFinalGeneratorService extends MataMataGeneratorService {
     const pontuacoes =
       await this.pontuacaoEquipeService.listaPontuacoesOrdenadas(
         idLiga,
-        QuartaDeFinalGeneratorService.quantidadeDePontuacoes,
+        Liga.quantidadeDeEquipesClassificadas,
       );
-    if (
-      pontuacoes.length !== QuartaDeFinalGeneratorService.quantidadeDePontuacoes
-    ) {
+    if (pontuacoes.length !== Liga.quantidadeDeEquipesClassificadas) {
       throw new ConflictException(
-        `É preciso ${QuartaDeFinalGeneratorService.quantidadeDePontuacoes} para gerar quartas`,
+        `É preciso ${Liga.quantidadeDeEquipesClassificadas} para gerar quartas`,
       );
     }
     return {

@@ -33,13 +33,28 @@ export class PartidaRepository extends Repository<Partida> {
     tipo: 'semis' | 'quartas' | 'final',
     manager: EntityManager,
   ) {
-    const qb = manager.createQueryBuilder().delete().from(Partida);
-
-    return qb
-      .where('partidas.status = :status', { status: PartidaStatus.AGENDADA })
-      .andWhere('partidas.tipoDaRodada = :tipo', { tipo })
-      .andWhere('partidas.idEquipeGanhadora IS NULL');
-
-    return qb.execute();
+    return manager.query(
+      `
+      DELETE
+      FROM partidas
+      WHERE partidas.id = IN (
+        SELECT p.id AS id
+        FROM p
+        INNER JOIN equipes AS mandantes
+        ON
+          mandantes.id = p.id_mandante
+          AND mandantes.id_liga = ?
+        INNER JOIN equipes AS visitantes
+        ON
+          visitantes.id = p.id_visitante
+          AND visitantes.id_liga = ?
+        WHERE
+          p.status = ?
+          AND p.tipoRodada = ?
+          AND p.id_equipe_ganhadora IS NULL
+      )
+    `,
+      [id, id, PartidaStatus.AGENDADA, tipo],
+    );
   }
 }

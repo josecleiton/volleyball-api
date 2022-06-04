@@ -12,6 +12,7 @@ import { StatusLiga } from '../enums/estado-liga.enum';
 export class Liga extends EntidadeBase {
   static readonly minimoDeEquipesNaLiga = 12;
   static readonly intervaloDeUteisDiasEntreTurnos = 5;
+  static readonly quantidadeDeEquipesClassificadas = 8;
 
   @Column()
   genero!: Genero;

@@ -8,13 +8,18 @@ import { chunk, countBy } from 'lodash';
 import { EquipeRespostaDto } from 'src/modules/equipe/dto/equipe.dto';
 import { PartidaService } from 'src/modules/partida/partida.service';
 import { IClassificados } from '../dto/mata-mata.dto';
+import { Liga } from '../entities/liga.entity';
+import { PontuacaoEquipeService } from '../services/pontuacao-equipe.service';
 import { MataMataGeneratorService } from './mata-mata-generator.service';
 
 @Injectable({ scope: Scope.TRANSIENT })
 export class SemifinalGeneratorService extends MataMataGeneratorService {
   protected readonly tipoRodada = 'semis';
 
-  constructor(private readonly partidaService: PartidaService) {
+  constructor(
+    private readonly partidaService: PartidaService,
+    private readonly pontuacaoEquipeService: PontuacaoEquipeService,
+  ) {
     super();
   }
 
@@ -33,6 +38,15 @@ export class SemifinalGeneratorService extends MataMataGeneratorService {
         `Não foram agendadas 12 partidas para as quartas de final da liga ${idLiga}`,
       );
     }
+
+    const pontuacoes =
+      await this.pontuacaoEquipeService.listaPontuacoesOrdenadas(
+        idLiga,
+        Liga.quantidadeDeEquipesClassificadas,
+      );
+    const equipeIdColocacaoMap: ReadonlyMap<string, number> = new Map(
+      pontuacoes.map(({ equipe }, index) => [equipe.id, index]),
+    );
 
     const confrontos = chunk(partidas, 3);
 
@@ -68,6 +82,23 @@ export class SemifinalGeneratorService extends MataMataGeneratorService {
           return [equipe.id, equipe];
         }),
     );
+
+    // Caso a colocação do vencedor da chave a direita seja maior,
+    // invertemos a posição com a outra equipe para manter a escolha de mando
+    // consistente com as regras
+    for (let index = 0; index < vencedores.length / 2 - 1; index++) {
+      const voltaIndex = vencedores.length - index - 1;
+      const vencedorEsquerda = vencedores[index];
+      const vencedorDireita = vencedores[voltaIndex];
+
+      if (
+        (equipeIdColocacaoMap.get(vencedorEsquerda) ?? 0) <
+        (equipeIdColocacaoMap.get(vencedorDireita) ?? 0)
+      ) {
+        vencedores[index] = vencedorDireita;
+        vencedores[voltaIndex] = vencedorEsquerda;
+      }
+    }
 
     return {
       equipes: vencedores.map(

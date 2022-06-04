@@ -9,14 +9,22 @@ import { MataMataGeneratorService } from './mata-mata-generator.service';
 import { EquipeRespostaDto } from 'src/modules/equipe/dto/equipe.dto';
 import { PartidaRespostaDto } from 'src/modules/partida/dto/partida.dto';
 import { PartidaStatus } from 'src/modules/partida/enums/partida-status.enum';
+import { PontuacaoEquipeService } from '../services/pontuacao-equipe.service';
+
+faker.locale = 'pt_BR';
 
 const mockPartidaService = () => ({
   listaPartidasOrdenadas: jest.fn(),
 });
 
+const mockPontuacaoEquipeService = () => ({
+  listaPontuacoesOrdenadas: jest.fn(),
+});
+
 describe('SemifinalGeneratorService', () => {
   let sut: SemifinalGeneratorService;
   let partidaService: jest.Mocked<PartidaService>;
+  let pontuacaoEquipeService: jest.Mocked<PontuacaoEquipeService>;
 
   beforeEach(async () => {
     const module = await Test.createTestingModule({
@@ -26,6 +34,10 @@ describe('SemifinalGeneratorService', () => {
           provide: PartidaService,
           useFactory: mockPartidaService,
         },
+        {
+          provide: PontuacaoEquipeService,
+          useFactory: mockPontuacaoEquipeService,
+        },
       ],
     }).compile();
 
@@ -33,11 +45,13 @@ describe('SemifinalGeneratorService', () => {
       SemifinalGeneratorService,
     );
     partidaService = module.get(PartidaService);
+    pontuacaoEquipeService = module.get(PontuacaoEquipeService);
   });
 
   it('should be defined', () => {
     expect(sut).toBeDefined();
     expect(partidaService).toBeDefined();
+    expect(pontuacaoEquipeService).toBeDefined();
   });
 
   describe('geraPartidas', () => {
@@ -66,23 +80,21 @@ describe('SemifinalGeneratorService', () => {
         EscolhaDeMando.PRIMEIRO_JOGO,
         EscolhaDeMando.SEGUNDO_JOGO,
       ];
-      const equipes: EquipeRespostaDto[] = [...Array(8).keys()]
-        .reverse()
-        .map(() => ({
-          id: faker.datatype.uuid(),
-          nome: faker.company.companyName(),
-          urlBrasao: faker.internet.url(),
-          apta: true,
-          descricaoAptidao: [],
-          cidade: faker.address.city(),
-          estado: faker.address.state(),
-          idLiga: faker.datatype.uuid(),
-          idGinasio: faker.datatype.uuid(),
-          quantidadeAtletas: faker.datatype.number({ min: 15, max: 22 }),
-          atletas: [],
-          auxiliares: [],
-          quantidadeAuxiliares: faker.datatype.number({ min: 1, max: 10 }),
-        }));
+      const equipes: EquipeRespostaDto[] = [...Array(8).keys()].map(() => ({
+        id: faker.datatype.uuid(),
+        nome: faker.company.companyName(),
+        urlBrasao: faker.internet.url(),
+        apta: true,
+        descricaoAptidao: [],
+        cidade: faker.address.city(),
+        estado: faker.address.state(),
+        idLiga: faker.datatype.uuid(),
+        idGinasio: faker.datatype.uuid(),
+        quantidadeAtletas: faker.datatype.number({ min: 15, max: 22 }),
+        atletas: [],
+        auxiliares: [],
+        quantidadeAuxiliares: faker.datatype.number({ min: 1, max: 10 }),
+      }));
 
       type IPartidaParcial = Pick<PartidaRespostaDto, 'dataComeco'> &
         Pick<PartidaRespostaDto, 'dataCriacao'> &
@@ -131,6 +143,21 @@ describe('SemifinalGeneratorService', () => {
         expect(partidas).toHaveLength(12);
 
         partidaService.listaPartidasOrdenadas.mockResolvedValue(partidas);
+        const pontuacoes = [...Array(8).keys()]
+          .map((x, index) => ({
+            equipe: {
+              id: equipes[index].id,
+              idGinasio: equipes[index].idGinasio,
+              idLiga: equipes[index].idLiga,
+              nome: equipes[index].nome,
+            },
+            pontuacao: 7 * (x + 1) - index,
+          }))
+          .sort((a, b) => b.pontuacao - a.pontuacao);
+
+        pontuacaoEquipeService.listaPontuacoesOrdenadas.mockResolvedValue(
+          pontuacoes,
+        );
 
         const resultado = await sut.geraPartidas({ datas, mandos, idLiga });
         expect(resultado).toHaveLength(datas.length);
