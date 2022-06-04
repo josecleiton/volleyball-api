@@ -9,7 +9,7 @@ import {
 } from '@nestjs/common';
 import { LigaService } from './services/liga.service';
 import { CriaLigaDto, InicializaLigaDto } from './dto/liga.dto';
-import { InicializaQuartaDeFinalDto } from './dto/pontuacao_equipe.dto';
+import { InicializaQuartaDeFinalDto } from './dto/tabela.dto';
 
 @Controller('liga')
 export class LigaController {

@@ -1,7 +1,7 @@
 import { chunk } from 'lodash';
 import { Partida } from 'src/modules/partida/entities/partida.entity';
 import { IClassificados } from '../dto/mata-mata.dto';
-import { EscolhaDeMando, IMataMataDto } from '../dto/pontuacao_equipe.dto';
+import { EscolhaDeMando, IMataMataDto } from '../dto/tabela.dto';
 
 export abstract class MataMataGeneratorService {
   private static readonly escolhaDeMando: ReadonlyMap<EscolhaDeMando, number> =

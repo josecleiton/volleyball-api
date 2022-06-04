@@ -14,7 +14,7 @@ import {
   LigaRespostaDto,
   QuartasLigaRespostaDto,
 } from '../dto/liga.dto';
-import { InicializaQuartaDeFinalDto } from '../dto/pontuacao_equipe.dto';
+import { InicializaQuartaDeFinalDto } from '../dto/tabela.dto';
 import { Liga } from '../entities/liga.entity';
 import { EstadoLiga } from '../enums/estado-liga.enum';
 import { LigaRepository } from '../repositories/liga.repository';
