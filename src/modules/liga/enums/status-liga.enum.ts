@@ -3,7 +3,7 @@ export enum StatusLiga {
   CLASSIFICATORIA = 'classificatória',
   QUARTAS = 'quartas',
   SEMIS = 'semis',
-  FINAIS = 'finais',
+  FINAL = 'final',
   PREMIACAO = 'premiacao',
   CONCLUIDA = 'concluida',
 }

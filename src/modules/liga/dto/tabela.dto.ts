@@ -62,6 +62,17 @@ export class InicializaSemifinalDto extends InicializaMataMataDto {
   mandos!: EscolhaDeMando[];
 }
 
+export class InicializaFinalDto extends InicializaMataMataDto {
+  @IsArray()
+  @ArrayMinSize(3)
+  @ArrayMaxSize(3)
+  @IsDate({ each: true })
+  @Type(() => Date)
+  datas!: Date[];
+
+  mando!: EscolhaDeMando;
+}
+
 export class QuartaDeFinalDto
   extends InicializaQuartaDeFinalDto
   implements IMataMataDto
