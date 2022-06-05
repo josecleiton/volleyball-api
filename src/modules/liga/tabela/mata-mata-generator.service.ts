@@ -14,7 +14,7 @@ export abstract class MataMataGeneratorService {
   static readonly quantidadeDePartidasNasQuartas = 12;
   static readonly quantidadeDePartidasNasSemis = 6;
 
-  protected abstract readonly tipoRodada: 'quartas' | 'semis';
+  protected abstract readonly tipoRodada: 'quartas' | 'semis' | 'final';
   protected abstract listaClassificados(
     idLiga: string,
   ): Promise<IClassificados>;
@@ -22,7 +22,7 @@ export abstract class MataMataGeneratorService {
   async geraPartidas({ datas, mandos, idLiga }: IMataMataDto) {
     const classificados = await this.listaClassificados(idLiga);
 
-    const chunksData = chunk(datas, 3);
+    const datasPorConfronto = chunk(datas, 3);
 
     const partidasAgendadas: Partida[] = [];
 
@@ -40,7 +40,7 @@ export abstract class MataMataGeneratorService {
         ]);
 
         partidasAgendadas.push(
-          ...chunksData[classificadoIndex].map((data, dataIndex) => {
+          ...datasPorConfronto[classificadoIndex].map((data, dataIndex) => {
             const partida = new Partida();
 
             partida.dataComeco = data;
