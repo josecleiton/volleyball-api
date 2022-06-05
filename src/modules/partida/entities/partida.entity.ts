@@ -13,6 +13,7 @@ import {
   OneToOne,
 } from 'typeorm';
 import { PartidaStatus } from '../enums/partida-status.enum';
+import { TipoRodada, tiposDeRodada } from '../types/tipo-rodada.type';
 import { ArbitroPartida } from './arbitro-partida.entity';
 import { AtletaPartida } from './atleta-partida.entity';
 import { PontuacaoPartida } from './partida-pontuacao.entity';
@@ -41,9 +42,9 @@ export class Partida extends EntidadeBase {
     return this._equipeMandante;
   }
 
-  @Column()
+  @Column({ type: 'enum', enum: tiposDeRodada })
   @Index()
-  tipoDaRodada!: string;
+  tipoDaRodada!: TipoRodada;
 
   @Column('uuid')
   @Index()

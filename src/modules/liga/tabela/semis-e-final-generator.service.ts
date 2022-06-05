@@ -6,6 +6,7 @@ import { chunk, countBy } from 'lodash';
 import { EquipeRespostaDto } from 'src/modules/equipe/dto/equipe.dto';
 import { PartidaRespostaDto } from 'src/modules/partida/dto/partida.dto';
 import { PartidaService } from 'src/modules/partida/partida.service';
+import { TipoRodadaMataMata } from 'src/modules/partida/types/tipo-rodada.type';
 import { IClassificados } from '../dto/mata-mata.dto';
 import { PontuacaoEquipeRespostaDto } from '../dto/pontuacao_equipe.dto';
 import { Liga } from '../entities/liga.entity';
@@ -13,7 +14,7 @@ import { PontuacaoEquipeService } from '../services/pontuacao-equipe.service';
 import { MataMataGeneratorService } from './mata-mata-generator.service';
 
 interface IInfoRodada {
-  tipo: string;
+  tipo: TipoRodadaMataMata;
   quantidadePartidasAgendadas: number;
 }
 

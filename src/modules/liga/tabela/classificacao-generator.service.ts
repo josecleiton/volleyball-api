@@ -5,6 +5,7 @@ import { Equipe } from 'src/modules/equipe/entities/equipe.entity';
 import { Partida } from 'src/modules/partida/entities/partida.entity';
 import { DoublyLinkedList } from 'datastructures-js';
 import { createGroup } from 'tournament_creator';
+import { TipoRodada } from 'src/modules/partida/types/tipo-rodada.type';
 
 interface IClassificacaoGeneratorRequest {
   equipes: Equipe[];
@@ -121,7 +122,7 @@ export class ClassificacaoGeneratorService {
         match.awayTeam as string,
       ) as Equipe;
       partida.dataComeco = datasDasPartidas[index];
-      partida.tipoDaRodada = match.matchNumber.toString();
+      partida.tipoDaRodada = match.matchNumber.toString() as TipoRodada;
 
       return partida;
     });

@@ -1,5 +1,6 @@
 import { chunk } from 'lodash';
 import { Partida } from 'src/modules/partida/entities/partida.entity';
+import type { TipoRodadaMataMata } from 'src/modules/partida/types/tipo-rodada.type';
 import { IClassificados } from '../dto/mata-mata.dto';
 import { EscolhaDeMando, IMataMataDto } from '../dto/tabela.dto';
 
@@ -18,7 +19,7 @@ export abstract class MataMataGeneratorService {
   static readonly quantidadeDePartidasNaFinal =
     this.quantidadeDePartidasNasSemis / 2;
 
-  protected abstract readonly tipoRodada: 'quartas' | 'semis' | 'final';
+  protected abstract readonly tipoRodada: TipoRodadaMataMata;
   protected abstract listaClassificados(
     idLiga: string,
   ): Promise<IClassificados>;
