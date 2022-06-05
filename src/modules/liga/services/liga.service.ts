@@ -26,10 +26,12 @@ import { Liga } from '../entities/liga.entity';
 import { StatusLiga } from '../enums/status-liga.enum';
 import { LigaRepository } from '../repositories/liga.repository';
 import { PontuacaoEquipeRepository } from '../repositories/pontuacao_equipe.repository';
-import { ClassificacaoGeneratorService } from '../tabela/classificacao-generator.service';
-import { FinalGeneratorService } from '../tabela/final-generator.service';
-import { QuartaDeFinalGeneratorService } from '../tabela/quarta-de-final-generator.service';
-import { SemifinalGeneratorService } from '../tabela/semifinal-generator.service';
+import {
+  ClassificacaoGeneratorService,
+  FinalGeneratorService,
+  QuartaDeFinalGeneratorService,
+  SemifinalGeneratorService,
+} from '../tabela';
 
 @Injectable({ scope: Scope.REQUEST })
 export class LigaService {
@@ -137,10 +139,11 @@ export class LigaService {
     liga.status = StatusLiga.QUARTAS;
 
     const [ligaAtualizada, partidasAgendadas] =
-      await this.connection.transaction(async (manager) => [
-        await manager.save(liga),
-        await manager.save(partidas),
-      ]);
+      await this.connection.transaction(async (manager) => {
+        await this.partidaRepository.removePartidasSemGanhadores(id, manager);
+
+        return [await manager.save(liga), await manager.save(partidas)];
+      });
 
     return new QuartasLigaRespostaDto(ligaAtualizada, partidasAgendadas);
   }
@@ -161,11 +164,7 @@ export class LigaService {
     liga.status = StatusLiga.SEMIS;
     const [ligaAtualizada, partidasAgendadas] =
       await this.connection.transaction(async (manager) => {
-        await this.partidaRepository.removePartidasSemGanhadores(
-          id,
-          'quartas',
-          manager,
-        );
+        await this.partidaRepository.removePartidasSemGanhadores(id, manager);
 
         return [await manager.save(liga), await manager.save(partidas)];
       });
@@ -191,11 +190,7 @@ export class LigaService {
 
     const [ligaAtualizada, partidasAgendadas] =
       await this.connection.transaction(async (manager) => {
-        await this.partidaRepository.removePartidasSemGanhadores(
-          id,
-          'semis',
-          manager,
-        );
+        await this.partidaRepository.removePartidasSemGanhadores(id, manager);
 
         return [await manager.save(liga), await manager.save(partidas)];
       });

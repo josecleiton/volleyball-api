@@ -46,7 +46,10 @@ export abstract class SemisEFinalGeneratorService extends MataMataGeneratorServi
   }
 
   private listarVencedores(partidas: PartidaRespostaDto[]) {
-    return chunk(partidas, 3).map((confronto, index) => {
+    return chunk(
+      partidas,
+      MataMataGeneratorService.quantidadeDePartidasPorConfronto,
+    ).map((confronto, index) => {
       const grupoVencedores = countBy(
         confronto,
         (partida) => partida.idEquipeGanhador,
@@ -77,7 +80,7 @@ export abstract class SemisEFinalGeneratorService extends MataMataGeneratorServi
     vencedores: string[],
     pontuacoes: PontuacaoEquipeRespostaDto[],
   ) {
-    const equipeIdClassificacaoMap: ReadonlyMap<string, number> = new Map(
+    const idEquipeClassificacaoMap: ReadonlyMap<string, number> = new Map(
       pontuacoes.map((pontuacao, index) => [pontuacao.equipe.id, index + 1]),
     );
 
@@ -88,8 +91,8 @@ export abstract class SemisEFinalGeneratorService extends MataMataGeneratorServi
       const vencedorDireita = vencedorEsquerda[direitaIndex];
 
       if (
-        (equipeIdClassificacaoMap.get(vencedorEsquerda) ?? 0) <
-        (equipeIdClassificacaoMap.get(vencedorDireita) ?? 0)
+        (idEquipeClassificacaoMap.get(vencedorEsquerda) ?? 0) <
+        (idEquipeClassificacaoMap.get(vencedorDireita) ?? 0)
       ) {
         array[index] = vencedorDireita;
         array[direitaIndex] = vencedorEsquerda;

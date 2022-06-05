@@ -18,6 +18,9 @@ import { AtletaPartida } from './atleta-partida.entity';
 import { PontuacaoPartida } from './partida-pontuacao.entity';
 
 @Entity('partidas')
+@Index('IX_partidas_RemovePartidasSemVencedores', ['status'], {
+  where: 'id_equipe_ganhadora IS NULL',
+})
 export class Partida extends EntidadeBase {
   static readonly minimoDeAtletasNaPartida = 12;
   static readonly maximoDeLiberos = 2;

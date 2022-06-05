@@ -10,9 +10,13 @@ export abstract class MataMataGeneratorService {
       [EscolhaDeMando.SEGUNDO_JOGO, 1],
     ]);
   private static readonly mandoFixoIndice = 2;
-  protected static readonly quantidadesDePartidasParaVencerMelhorDe3 = 2;
+  protected static readonly quantidadesDePartidasParaVencerConfronto = 2;
+  static readonly quantidadeDePartidasPorConfronto = 3;
   static readonly quantidadeDePartidasNasQuartas = 12;
-  static readonly quantidadeDePartidasNasSemis = 6;
+  static readonly quantidadeDePartidasNasSemis =
+    this.quantidadeDePartidasNasQuartas / 2;
+  static readonly quantidadeDePartidasNaFinal =
+    this.quantidadeDePartidasNasSemis / 2;
 
   protected abstract readonly tipoRodada: 'quartas' | 'semis' | 'final';
   protected abstract listaClassificados(
@@ -22,7 +26,10 @@ export abstract class MataMataGeneratorService {
   async geraPartidas({ datas, mandos, idLiga }: IMataMataDto) {
     const classificados = await this.listaClassificados(idLiga);
 
-    const datasPorConfronto = chunk(datas, 3);
+    const datasPorConfronto = chunk(
+      datas,
+      MataMataGeneratorService.quantidadeDePartidasPorConfronto,
+    );
 
     const partidasAgendadas: Partida[] = [];
 
@@ -39,8 +46,8 @@ export abstract class MataMataGeneratorService {
           MataMataGeneratorService.mandoFixoIndice,
         ]);
 
-        partidasAgendadas.push(
-          ...datasPorConfronto[classificadoIndex].map((data, dataIndex) => {
+        const partidasDoConfronto = datasPorConfronto[classificadoIndex].map(
+          (data, dataIndex) => {
             const partida = new Partida();
 
             partida.dataComeco = data;
@@ -58,8 +65,10 @@ export abstract class MataMataGeneratorService {
             partida.tipoDaRodada = this.tipoRodada;
 
             return partida;
-          }),
+          },
         );
+
+        partidasAgendadas.push(...partidasDoConfronto);
 
         return classificadoIndex === length / 2 - 1;
       },
