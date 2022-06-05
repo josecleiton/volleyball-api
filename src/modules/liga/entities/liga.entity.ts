@@ -6,7 +6,7 @@ import { Equipe } from 'src/modules/equipe/entities/equipe.entity';
 import { Arbitro } from 'src/modules/pessoa/entities/arbitro.entity';
 import { Delegado } from 'src/modules/pessoa/entities/delegado.entity';
 import { IConfiguraInicializaoLiga } from '../interfaces/configura-inicializacao-liga.interface';
-import { StatusLiga } from '../enums/estado-liga.enum';
+import { StatusLiga } from '../enums/status-liga.enum';
 
 @Entity('ligas')
 export class Liga extends EntidadeBase {

@@ -11,6 +11,7 @@ import { QuartaDeFinalGeneratorService } from './tabela/quarta-de-final-generato
 import { PontuacaoEquipeService } from './services/pontuacao-equipe.service';
 import { PartidaModule } from '../partida/partida.module';
 import { SemifinalGeneratorService } from './tabela/semifinal-generator.service';
+import { FinalGeneratorService } from './tabela/final-generator.service';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { SemifinalGeneratorService } from './tabela/semifinal-generator.service'
     ClassificacaoGeneratorService,
     QuartaDeFinalGeneratorService,
     SemifinalGeneratorService,
+    FinalGeneratorService,
   ],
   exports: [TypeOrmModule, LigaService],
 })
