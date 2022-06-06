@@ -2,6 +2,7 @@ import { EquipeRespostaDto } from 'src/modules/equipe/dto/equipe.dto';
 import { Equipe } from 'src/modules/equipe/entities/equipe.entity';
 import { Posicao } from 'src/modules/pessoa/enums';
 import { AtletaPartida } from '../entities/atleta-partida.entity';
+import { PartidaRespostaDto } from './partida.dto';
 
 export interface IBuscaAtletaPartida {
   idAtleta: string;
@@ -14,6 +15,7 @@ export class AtletaPartidaRespostaDto {
   idPartida: string;
   posicao: Posicao;
   dataCriacao: Date;
+  partida: PartidaRespostaDto;
 
   constructor(atleta: AtletaPartida) {
     this.id = atleta.id;
@@ -21,6 +23,7 @@ export class AtletaPartidaRespostaDto {
     this.idPartida = atleta.idPartida;
     this.posicao = atleta.posicao;
     this.dataCriacao = atleta.dataCriacao;
+    this.partida = new PartidaRespostaDto(atleta.partida);
   }
 }
 

@@ -32,6 +32,7 @@ import {
   QuartaDeFinalGeneratorService,
   SemifinalGeneratorService,
 } from '../tabela';
+import { LigaIdStatus } from '../types/liga-id-status.type';
 
 @Injectable({ scope: Scope.REQUEST })
 export class LigaService {
@@ -221,6 +222,20 @@ export class LigaService {
     }
 
     throw new ConflictException(`Liga ${id} não está iniciada.`);
+  }
+
+  async excecaoSeALigaStatus(id: string, status: StatusLiga) {
+    const resultado: LigaIdStatus | undefined =
+      await this.ligaRepository.findOne({
+        where: { id },
+        select: ['id', 'status'],
+      });
+
+    if (resultado?.status === status) {
+      throw new NotFoundException(
+        `Liga ${id} não encontrada com status ${status}`,
+      );
+    }
   }
 
   async lista() {

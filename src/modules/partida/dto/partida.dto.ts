@@ -88,6 +88,7 @@ export class PartidaRespostaDto {
   dataAtualizacao: Date;
   duracaoBruta?: number;
   equipeGanhadora?: EquipeRespostaDto;
+  tipoRodada: TipoRodada;
 
   constructor(partida: Partida) {
     this.id = partida.id;
@@ -105,5 +106,6 @@ export class PartidaRespostaDto {
     this.equipeGanhadora = partida.equipeGanhadora
       ? new EquipeRespostaDto(partida.equipeGanhadora)
       : undefined;
+    this.tipoRodada = partida.tipoDaRodada;
   }
 }
