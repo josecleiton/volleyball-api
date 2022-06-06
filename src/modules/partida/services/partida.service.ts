@@ -8,25 +8,25 @@ import {
 } from '@nestjs/common';
 import { groupBy } from 'lodash';
 import { Connection } from 'typeorm';
-import { Equipe } from '../equipe/entities/equipe.entity';
-import { PontuacaoEquipeRepository } from '../liga/repositories/pontuacao_equipe.repository';
-import { Posicao, TipoArbitro } from '../pessoa/enums';
-import { ArbitroService } from '../pessoa/services/arbitro.service';
-import { AtletaService } from '../pessoa/services/atleta.service';
-import { DelegadoService } from '../pessoa/services/delegado.service';
+import { Equipe } from '../../equipe/entities/equipe.entity';
+import { PontuacaoEquipeRepository } from '../../liga/repositories/pontuacao_equipe.repository';
+import { Posicao, TipoArbitro } from '../../pessoa/enums';
+import { ArbitroService } from '../../pessoa/services/arbitro.service';
+import { AtletaService } from '../../pessoa/services/atleta.service';
+import { DelegadoService } from '../../pessoa/services/delegado.service';
 import {
   AtletaPartidaDto,
   CadastrarParticipantesPartidaDto,
   ListaPartidasDto,
   PartidaRespostaDto,
-} from './dto/partida.dto';
-import { IPontuacaoPartidaDto } from './dto/pontuacao-partida.dto';
-import { Partida } from './entities/partida.entity';
-import { PartidaStatus } from './enums/partida-status.enum';
-import { ArbitroPartidaRepository } from './repositories/arbitro-partida.repository';
-import { AtletaPartidaRepository } from './repositories/atleta-partida.repository';
-import { PartidaRepository } from './repositories/partida.repository';
-import { PontuacaoPartidaRepository } from './repositories/pontuacao-partida.repository';
+} from '../dto/partida.dto';
+import { IPontuacaoPartidaDto } from '../dto/pontuacao-partida.dto';
+import { Partida } from '../entities/partida.entity';
+import { PartidaStatus } from '../enums/partida-status.enum';
+import { ArbitroPartidaRepository } from '../repositories/arbitro-partida.repository';
+import { AtletaPartidaRepository } from '../repositories/atleta-partida.repository';
+import { PartidaRepository } from '../repositories/partida.repository';
+import { PontuacaoPartidaRepository } from '../repositories/pontuacao-partida.repository';
 
 @Injectable({ scope: Scope.REQUEST })
 export class PartidaService {

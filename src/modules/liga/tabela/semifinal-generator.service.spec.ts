@@ -4,7 +4,7 @@ import { InternalServerErrorException } from '@nestjs/common';
 import { eachHourOfInterval, setHours } from 'date-fns';
 import { EscolhaDeMando } from '../dto/tabela.dto';
 import { SemifinalGeneratorService } from './semifinal-generator.service';
-import { PartidaService } from 'src/modules/partida/partida.service';
+import { PartidaService } from 'src/modules/partida/services/partida.service';
 import { MataMataGeneratorService } from './mata-mata-generator.service';
 import { EquipeRespostaDto } from 'src/modules/equipe/dto/equipe.dto';
 import { PartidaRespostaDto } from 'src/modules/partida/dto/partida.dto';
