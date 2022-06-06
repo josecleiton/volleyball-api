@@ -36,7 +36,7 @@ export class ArbitroService {
     try {
       return new ArbitroRespostaDto(await this.arbitroRepository.save(arbitro));
     } catch (error) {
-      this.typeormFilterService.catch({
+      throw this.typeormFilterService.catch({
         error,
         description: 'conflito',
         entityName: 'Arbitro',

@@ -54,7 +54,7 @@ export class LigaService {
     try {
       return new LigaRespostaDto(await this.ligaRepository.save(liga));
     } catch (error) {
-      this.typeormFilterService.catch({
+      throw this.typeormFilterService.catch({
         error,
         description: 'conflito',
         entityName: 'Competição',
