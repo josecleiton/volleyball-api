@@ -4,7 +4,9 @@ import {
   NotFoundException,
   Scope,
 } from '@nestjs/common';
+import { StatusPartida } from 'src/modules/partida/enums/status-partida.enum';
 import { PartidaRepository } from 'src/modules/partida/repositories/partida.repository';
+import { tiposDeRodadaClassificatoria } from 'src/modules/partida/types/tipo-rodada.type';
 import { Connection } from 'typeorm';
 import { TypeORMFilterService } from '../../core/services/typeorm-filter.service';
 import { EquipeService } from '../../equipe/equipe.service';
@@ -129,6 +131,22 @@ export class LigaService {
     if (liga.status !== StatusLiga.CLASSIFICATORIA) {
       throw new ConflictException(
         `Liga ${liga.id} não está no estado ${StatusLiga.CLASSIFICATORIA} e sim ${liga.status}`,
+      );
+    }
+
+    const quantidadeDePartidasPorTipoRodada =
+      await this.partidaRepository.quantidadeDePartidasPorTipoRodadaEStatus({
+        idLiga: liga.id,
+        tiposDeRodada: [...tiposDeRodadaClassificatoria],
+        statusAceitos: [StatusPartida.CONCLUIDA, StatusPartida.WO],
+      });
+
+    if (
+      quantidadeDePartidasPorTipoRodada !==
+      Liga.quantidadeDePartidasEmClassificatorias
+    ) {
+      throw new ConflictException(
+        `Quantidades de partidas concluídas na liga ${liga.id} não é igual a ${Liga.quantidadeDePartidasEmClassificatorias}`,
       );
     }
 

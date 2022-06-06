@@ -1,7 +1,11 @@
+import { Equipe } from 'src/modules/equipe/entities/equipe.entity';
 import { EntityManager, EntityRepository, Repository } from 'typeorm';
-import { ListaPartidasDto } from '../dto/partida.dto';
+import {
+  IBuscaQuantidadePartidasPorTipoEStatus,
+  ListaPartidasDto,
+} from '../dto/partida.dto';
 import { Partida } from '../entities/partida.entity';
-import { PartidaStatus } from '../enums/partida-status.enum';
+import { StatusPartida } from '../enums/status-partida.enum';
 
 @EntityRepository(Partida)
 export class PartidaRepository extends Repository<Partida> {
@@ -49,7 +53,27 @@ export class PartidaRepository extends Repository<Partida> {
           AND p.id_equipe_ganhadora IS NULL
       )
     `,
-      [idLiga, idLiga, PartidaStatus.AGENDADA],
+      [idLiga, idLiga, StatusPartida.AGENDADA],
     );
+  }
+
+  async quantidadeDePartidasPorTipoRodadaEStatus({
+    idLiga,
+    tiposDeRodada,
+    statusAceitos,
+  }: IBuscaQuantidadePartidasPorTipoEStatus) {
+    const qb = this.createQueryBuilder('p');
+
+    qb.select('p.id')
+      .innerJoin(
+        Equipe,
+        'v',
+        'v.id = p.equipeVisitante AND v.idLiga = :idLiga',
+        { idLiga },
+      )
+      .where('p.status IN (:...statusAceitos)', { statusAceitos })
+      .andWhere('p.tipoDaRodada IN (:...tiposDeRodada)', { tiposDeRodada });
+
+    return qb.getCount();
   }
 }

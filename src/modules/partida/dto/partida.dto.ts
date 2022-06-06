@@ -12,12 +12,12 @@ import {
 import { EquipeRespostaDto } from 'src/modules/equipe/dto/equipe.dto';
 import { Posicao, TipoArbitro } from 'src/modules/pessoa/enums';
 import { Partida } from '../entities/partida.entity';
-import { PartidaStatus } from '../enums/partida-status.enum';
+import { StatusPartida } from '../enums/status-partida.enum';
 import { TipoRodada, tiposDeRodada } from '../types/tipo-rodada.type';
 
 export class AtualizaPartidaStatusDto {
-  @IsEnum(PartidaStatus)
-  status!: PartidaStatus;
+  @IsEnum(StatusPartida)
+  status!: StatusPartida;
 }
 
 export class AtletaPartidaDto {
@@ -74,13 +74,19 @@ export class ListaPartidasDto {
   limite? = 51;
 }
 
+export interface IBuscaQuantidadePartidasPorTipoEStatus {
+  idLiga: string;
+  tiposDeRodada: TipoRodada[];
+  statusAceitos: StatusPartida[];
+}
+
 export class PartidaRespostaDto {
   id: string;
   idDelegado?: string;
   idGinasio: string;
   idEquipeMandante: string;
   idEquipeVisitante: string;
-  status: PartidaStatus;
+  status: StatusPartida;
   dataComeco: Date;
   dataFinalizacao?: Date;
   idEquipeGanhador?: string;
