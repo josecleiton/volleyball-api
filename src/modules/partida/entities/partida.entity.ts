@@ -18,7 +18,7 @@ import { EquipePartida } from './equipe-partida.entity';
 
 @Entity('partidas')
 @Index('IX_partidas_RemovePartidasSemVencedores', ['status'], {
-  where: 'id_equipe_ganhadora IS NULL',
+  where: 'id_ganhadora IS NULL',
 })
 @Index('IX_partidas_status_tipoDaRodada', ['status', 'tipoDaRodada'])
 export class Partida extends EntidadeBase {
