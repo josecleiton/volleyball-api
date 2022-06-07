@@ -271,8 +271,9 @@ export class EquipeRespostaDto {
       ? new TecnicoRespostaDto(equipe.tecnico)
       : undefined;
     this.quantidadeAuxiliares &#x3D; equipe.auxiliares?.length ?? 0;
-    this.atletas &#x3D; equipe.atletas.map((x) &#x3D;&gt; new AtletaRespostaDto(x));
-    this.auxiliares &#x3D; equipe.auxiliares.map((x) &#x3D;&gt; new AuxiliarRespostaDto(x));
+    this.atletas &#x3D; equipe.atletas?.map((x) &#x3D;&gt; new AtletaRespostaDto(x)) ?? [];
+    this.auxiliares &#x3D;
+      equipe.auxiliares?.map((x) &#x3D;&gt; new AuxiliarRespostaDto(x)) ?? [];
   }
 }
 </code></pre>

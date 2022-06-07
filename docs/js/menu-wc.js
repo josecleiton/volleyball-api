@@ -82,13 +82,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/EquipeModule.html" data-type="entity-link" >EquipeModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                            'data-target="#controllers-links-module-EquipeModule-e62403707e75167a771071a13eff857493217f7897eb528c8e496d656ef323abc89023bc0f647a93284d9deee29e3d42f7daff83e48307f4495dcc815a64b6ee"' : 'data-target="#xs-controllers-links-module-EquipeModule-e62403707e75167a771071a13eff857493217f7897eb528c8e496d656ef323abc89023bc0f647a93284d9deee29e3d42f7daff83e48307f4495dcc815a64b6ee"' }>
+                                            'data-target="#controllers-links-module-EquipeModule-6a94f2ae9300ce85e918a8e0ab6ddd74cd28f77c25121e1e68818cbc5abed8838443890e1ac7bfbf4d1fa684d1c92123ec421e5dbeb23f2bd364b675699bf6cf"' : 'data-target="#xs-controllers-links-module-EquipeModule-6a94f2ae9300ce85e918a8e0ab6ddd74cd28f77c25121e1e68818cbc5abed8838443890e1ac7bfbf4d1fa684d1c92123ec421e5dbeb23f2bd364b675699bf6cf"' }>
                                             <span class="icon ion-md-swap"></span>
                                             <span>Controllers</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-EquipeModule-e62403707e75167a771071a13eff857493217f7897eb528c8e496d656ef323abc89023bc0f647a93284d9deee29e3d42f7daff83e48307f4495dcc815a64b6ee"' :
-                                            'id="xs-controllers-links-module-EquipeModule-e62403707e75167a771071a13eff857493217f7897eb528c8e496d656ef323abc89023bc0f647a93284d9deee29e3d42f7daff83e48307f4495dcc815a64b6ee"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-EquipeModule-6a94f2ae9300ce85e918a8e0ab6ddd74cd28f77c25121e1e68818cbc5abed8838443890e1ac7bfbf4d1fa684d1c92123ec421e5dbeb23f2bd364b675699bf6cf"' :
+                                            'id="xs-controllers-links-module-EquipeModule-6a94f2ae9300ce85e918a8e0ab6ddd74cd28f77c25121e1e68818cbc5abed8838443890e1ac7bfbf4d1fa684d1c92123ec421e5dbeb23f2bd364b675699bf6cf"' }>
                                             <li class="link">
                                                 <a href="controllers/EquipeController.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EquipeController</a>
                                             </li>
@@ -96,13 +96,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     </li>
                                 <li class="chapter inner">
                                     <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                        'data-target="#injectables-links-module-EquipeModule-e62403707e75167a771071a13eff857493217f7897eb528c8e496d656ef323abc89023bc0f647a93284d9deee29e3d42f7daff83e48307f4495dcc815a64b6ee"' : 'data-target="#xs-injectables-links-module-EquipeModule-e62403707e75167a771071a13eff857493217f7897eb528c8e496d656ef323abc89023bc0f647a93284d9deee29e3d42f7daff83e48307f4495dcc815a64b6ee"' }>
+                                        'data-target="#injectables-links-module-EquipeModule-6a94f2ae9300ce85e918a8e0ab6ddd74cd28f77c25121e1e68818cbc5abed8838443890e1ac7bfbf4d1fa684d1c92123ec421e5dbeb23f2bd364b675699bf6cf"' : 'data-target="#xs-injectables-links-module-EquipeModule-6a94f2ae9300ce85e918a8e0ab6ddd74cd28f77c25121e1e68818cbc5abed8838443890e1ac7bfbf4d1fa684d1c92123ec421e5dbeb23f2bd364b675699bf6cf"' }>
                                         <span class="icon ion-md-arrow-round-down"></span>
                                         <span>Injectables</span>
                                         <span class="icon ion-ios-arrow-down"></span>
                                     </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-EquipeModule-e62403707e75167a771071a13eff857493217f7897eb528c8e496d656ef323abc89023bc0f647a93284d9deee29e3d42f7daff83e48307f4495dcc815a64b6ee"' :
-                                        'id="xs-injectables-links-module-EquipeModule-e62403707e75167a771071a13eff857493217f7897eb528c8e496d656ef323abc89023bc0f647a93284d9deee29e3d42f7daff83e48307f4495dcc815a64b6ee"' }>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-EquipeModule-6a94f2ae9300ce85e918a8e0ab6ddd74cd28f77c25121e1e68818cbc5abed8838443890e1ac7bfbf4d1fa684d1c92123ec421e5dbeb23f2bd364b675699bf6cf"' :
+                                        'id="xs-injectables-links-module-EquipeModule-6a94f2ae9300ce85e918a8e0ab6ddd74cd28f77c25121e1e68818cbc5abed8838443890e1ac7bfbf4d1fa684d1c92123ec421e5dbeb23f2bd364b675699bf6cf"' }>
                                         <li class="link">
                                             <a href="injectables/EquipeService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EquipeService</a>
                                         </li>
@@ -113,13 +113,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/EstatisticaModule.html" data-type="entity-link" >EstatisticaModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                            'data-target="#controllers-links-module-EstatisticaModule-3f04bc3bd9e01c07d33471b2a052a80888039ac2514d833f3a5ca4ea1e38c8e05074a2dcdf025927e0a86d6607f51d0fb993de6c8cf9aeec366a927108678c96"' : 'data-target="#xs-controllers-links-module-EstatisticaModule-3f04bc3bd9e01c07d33471b2a052a80888039ac2514d833f3a5ca4ea1e38c8e05074a2dcdf025927e0a86d6607f51d0fb993de6c8cf9aeec366a927108678c96"' }>
+                                            'data-target="#controllers-links-module-EstatisticaModule-ec7ba05857fbe03af12970cd6e50371367271e32e0e9b8e99764b596f175a9c40344f537b2214bda7649df9d6fb7ee63c2be8610c4972490ffbbf4e430265dcb"' : 'data-target="#xs-controllers-links-module-EstatisticaModule-ec7ba05857fbe03af12970cd6e50371367271e32e0e9b8e99764b596f175a9c40344f537b2214bda7649df9d6fb7ee63c2be8610c4972490ffbbf4e430265dcb"' }>
                                             <span class="icon ion-md-swap"></span>
                                             <span>Controllers</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-EstatisticaModule-3f04bc3bd9e01c07d33471b2a052a80888039ac2514d833f3a5ca4ea1e38c8e05074a2dcdf025927e0a86d6607f51d0fb993de6c8cf9aeec366a927108678c96"' :
-                                            'id="xs-controllers-links-module-EstatisticaModule-3f04bc3bd9e01c07d33471b2a052a80888039ac2514d833f3a5ca4ea1e38c8e05074a2dcdf025927e0a86d6607f51d0fb993de6c8cf9aeec366a927108678c96"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-EstatisticaModule-ec7ba05857fbe03af12970cd6e50371367271e32e0e9b8e99764b596f175a9c40344f537b2214bda7649df9d6fb7ee63c2be8610c4972490ffbbf4e430265dcb"' :
+                                            'id="xs-controllers-links-module-EstatisticaModule-ec7ba05857fbe03af12970cd6e50371367271e32e0e9b8e99764b596f175a9c40344f537b2214bda7649df9d6fb7ee63c2be8610c4972490ffbbf4e430265dcb"' }>
                                             <li class="link">
                                                 <a href="controllers/FundamentoAtletaController.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >FundamentoAtletaController</a>
                                             </li>
@@ -127,13 +127,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     </li>
                                 <li class="chapter inner">
                                     <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                        'data-target="#injectables-links-module-EstatisticaModule-3f04bc3bd9e01c07d33471b2a052a80888039ac2514d833f3a5ca4ea1e38c8e05074a2dcdf025927e0a86d6607f51d0fb993de6c8cf9aeec366a927108678c96"' : 'data-target="#xs-injectables-links-module-EstatisticaModule-3f04bc3bd9e01c07d33471b2a052a80888039ac2514d833f3a5ca4ea1e38c8e05074a2dcdf025927e0a86d6607f51d0fb993de6c8cf9aeec366a927108678c96"' }>
+                                        'data-target="#injectables-links-module-EstatisticaModule-ec7ba05857fbe03af12970cd6e50371367271e32e0e9b8e99764b596f175a9c40344f537b2214bda7649df9d6fb7ee63c2be8610c4972490ffbbf4e430265dcb"' : 'data-target="#xs-injectables-links-module-EstatisticaModule-ec7ba05857fbe03af12970cd6e50371367271e32e0e9b8e99764b596f175a9c40344f537b2214bda7649df9d6fb7ee63c2be8610c4972490ffbbf4e430265dcb"' }>
                                         <span class="icon ion-md-arrow-round-down"></span>
                                         <span>Injectables</span>
                                         <span class="icon ion-ios-arrow-down"></span>
                                     </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-EstatisticaModule-3f04bc3bd9e01c07d33471b2a052a80888039ac2514d833f3a5ca4ea1e38c8e05074a2dcdf025927e0a86d6607f51d0fb993de6c8cf9aeec366a927108678c96"' :
-                                        'id="xs-injectables-links-module-EstatisticaModule-3f04bc3bd9e01c07d33471b2a052a80888039ac2514d833f3a5ca4ea1e38c8e05074a2dcdf025927e0a86d6607f51d0fb993de6c8cf9aeec366a927108678c96"' }>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-EstatisticaModule-ec7ba05857fbe03af12970cd6e50371367271e32e0e9b8e99764b596f175a9c40344f537b2214bda7649df9d6fb7ee63c2be8610c4972490ffbbf4e430265dcb"' :
+                                        'id="xs-injectables-links-module-EstatisticaModule-ec7ba05857fbe03af12970cd6e50371367271e32e0e9b8e99764b596f175a9c40344f537b2214bda7649df9d6fb7ee63c2be8610c4972490ffbbf4e430265dcb"' }>
                                         <li class="link">
                                             <a href="injectables/FundamentoAtletaService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >FundamentoAtletaService</a>
                                         </li>
@@ -175,13 +175,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/LigaModule.html" data-type="entity-link" >LigaModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                            'data-target="#controllers-links-module-LigaModule-b7109c212c361b0f77a552e2c6979e5ad89c6047f0a067ad903408b56607963a3d4b93bf9d8ea48a58da951b3e1d6891f4fbc50b36aba3aa1033c237a2eac550"' : 'data-target="#xs-controllers-links-module-LigaModule-b7109c212c361b0f77a552e2c6979e5ad89c6047f0a067ad903408b56607963a3d4b93bf9d8ea48a58da951b3e1d6891f4fbc50b36aba3aa1033c237a2eac550"' }>
+                                            'data-target="#controllers-links-module-LigaModule-c705bafd391469ed960e41eb4034a90998194df47e4a35b8ce801e00561e963c350a3fe4e22d0e1206cd82a0a1230e6d14eba40c8860d93a092695a8673a6686"' : 'data-target="#xs-controllers-links-module-LigaModule-c705bafd391469ed960e41eb4034a90998194df47e4a35b8ce801e00561e963c350a3fe4e22d0e1206cd82a0a1230e6d14eba40c8860d93a092695a8673a6686"' }>
                                             <span class="icon ion-md-swap"></span>
                                             <span>Controllers</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-LigaModule-b7109c212c361b0f77a552e2c6979e5ad89c6047f0a067ad903408b56607963a3d4b93bf9d8ea48a58da951b3e1d6891f4fbc50b36aba3aa1033c237a2eac550"' :
-                                            'id="xs-controllers-links-module-LigaModule-b7109c212c361b0f77a552e2c6979e5ad89c6047f0a067ad903408b56607963a3d4b93bf9d8ea48a58da951b3e1d6891f4fbc50b36aba3aa1033c237a2eac550"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-LigaModule-c705bafd391469ed960e41eb4034a90998194df47e4a35b8ce801e00561e963c350a3fe4e22d0e1206cd82a0a1230e6d14eba40c8860d93a092695a8673a6686"' :
+                                            'id="xs-controllers-links-module-LigaModule-c705bafd391469ed960e41eb4034a90998194df47e4a35b8ce801e00561e963c350a3fe4e22d0e1206cd82a0a1230e6d14eba40c8860d93a092695a8673a6686"' }>
                                             <li class="link">
                                                 <a href="controllers/LigaController.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >LigaController</a>
                                             </li>
@@ -189,13 +189,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     </li>
                                 <li class="chapter inner">
                                     <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                        'data-target="#injectables-links-module-LigaModule-b7109c212c361b0f77a552e2c6979e5ad89c6047f0a067ad903408b56607963a3d4b93bf9d8ea48a58da951b3e1d6891f4fbc50b36aba3aa1033c237a2eac550"' : 'data-target="#xs-injectables-links-module-LigaModule-b7109c212c361b0f77a552e2c6979e5ad89c6047f0a067ad903408b56607963a3d4b93bf9d8ea48a58da951b3e1d6891f4fbc50b36aba3aa1033c237a2eac550"' }>
+                                        'data-target="#injectables-links-module-LigaModule-c705bafd391469ed960e41eb4034a90998194df47e4a35b8ce801e00561e963c350a3fe4e22d0e1206cd82a0a1230e6d14eba40c8860d93a092695a8673a6686"' : 'data-target="#xs-injectables-links-module-LigaModule-c705bafd391469ed960e41eb4034a90998194df47e4a35b8ce801e00561e963c350a3fe4e22d0e1206cd82a0a1230e6d14eba40c8860d93a092695a8673a6686"' }>
                                         <span class="icon ion-md-arrow-round-down"></span>
                                         <span>Injectables</span>
                                         <span class="icon ion-ios-arrow-down"></span>
                                     </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-LigaModule-b7109c212c361b0f77a552e2c6979e5ad89c6047f0a067ad903408b56607963a3d4b93bf9d8ea48a58da951b3e1d6891f4fbc50b36aba3aa1033c237a2eac550"' :
-                                        'id="xs-injectables-links-module-LigaModule-b7109c212c361b0f77a552e2c6979e5ad89c6047f0a067ad903408b56607963a3d4b93bf9d8ea48a58da951b3e1d6891f4fbc50b36aba3aa1033c237a2eac550"' }>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-LigaModule-c705bafd391469ed960e41eb4034a90998194df47e4a35b8ce801e00561e963c350a3fe4e22d0e1206cd82a0a1230e6d14eba40c8860d93a092695a8673a6686"' :
+                                        'id="xs-injectables-links-module-LigaModule-c705bafd391469ed960e41eb4034a90998194df47e4a35b8ce801e00561e963c350a3fe4e22d0e1206cd82a0a1230e6d14eba40c8860d93a092695a8673a6686"' }>
                                         <li class="link">
                                             <a href="injectables/ClassificacaoGeneratorService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ClassificacaoGeneratorService</a>
                                         </li>
@@ -204,9 +204,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                         </li>
                                         <li class="link">
                                             <a href="injectables/LigaService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >LigaService</a>
-                                        </li>
-                                        <li class="link">
-                                            <a href="injectables/PontuacaoEquipeService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >PontuacaoEquipeService</a>
                                         </li>
                                         <li class="link">
                                             <a href="injectables/QuartaDeFinalGeneratorService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >QuartaDeFinalGeneratorService</a>
@@ -221,13 +218,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/PartidaModule.html" data-type="entity-link" >PartidaModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                            'data-target="#controllers-links-module-PartidaModule-a6857c40308f80da816e782043f152ddbee3944be25c6af53a5f41a2f2193ac3f052ebc520093cf52b4c5d5520db2b7d1e925c0f5efb2b8b0b4b705c759e53cd"' : 'data-target="#xs-controllers-links-module-PartidaModule-a6857c40308f80da816e782043f152ddbee3944be25c6af53a5f41a2f2193ac3f052ebc520093cf52b4c5d5520db2b7d1e925c0f5efb2b8b0b4b705c759e53cd"' }>
+                                            'data-target="#controllers-links-module-PartidaModule-b13724f8ec9b70b6de8a3f318985b7eb534e6e6cf7293d00c71104f8c92f3ad1596ca6a80c3258166c20745f3a1c4d4455b7d567aa041dc92aab3f4656491d3c"' : 'data-target="#xs-controllers-links-module-PartidaModule-b13724f8ec9b70b6de8a3f318985b7eb534e6e6cf7293d00c71104f8c92f3ad1596ca6a80c3258166c20745f3a1c4d4455b7d567aa041dc92aab3f4656491d3c"' }>
                                             <span class="icon ion-md-swap"></span>
                                             <span>Controllers</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-PartidaModule-a6857c40308f80da816e782043f152ddbee3944be25c6af53a5f41a2f2193ac3f052ebc520093cf52b4c5d5520db2b7d1e925c0f5efb2b8b0b4b705c759e53cd"' :
-                                            'id="xs-controllers-links-module-PartidaModule-a6857c40308f80da816e782043f152ddbee3944be25c6af53a5f41a2f2193ac3f052ebc520093cf52b4c5d5520db2b7d1e925c0f5efb2b8b0b4b705c759e53cd"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-PartidaModule-b13724f8ec9b70b6de8a3f318985b7eb534e6e6cf7293d00c71104f8c92f3ad1596ca6a80c3258166c20745f3a1c4d4455b7d567aa041dc92aab3f4656491d3c"' :
+                                            'id="xs-controllers-links-module-PartidaModule-b13724f8ec9b70b6de8a3f318985b7eb534e6e6cf7293d00c71104f8c92f3ad1596ca6a80c3258166c20745f3a1c4d4455b7d567aa041dc92aab3f4656491d3c"' }>
                                             <li class="link">
                                                 <a href="controllers/PartidaController.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >PartidaController</a>
                                             </li>
@@ -235,15 +232,15 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     </li>
                                 <li class="chapter inner">
                                     <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                        'data-target="#injectables-links-module-PartidaModule-a6857c40308f80da816e782043f152ddbee3944be25c6af53a5f41a2f2193ac3f052ebc520093cf52b4c5d5520db2b7d1e925c0f5efb2b8b0b4b705c759e53cd"' : 'data-target="#xs-injectables-links-module-PartidaModule-a6857c40308f80da816e782043f152ddbee3944be25c6af53a5f41a2f2193ac3f052ebc520093cf52b4c5d5520db2b7d1e925c0f5efb2b8b0b4b705c759e53cd"' }>
+                                        'data-target="#injectables-links-module-PartidaModule-b13724f8ec9b70b6de8a3f318985b7eb534e6e6cf7293d00c71104f8c92f3ad1596ca6a80c3258166c20745f3a1c4d4455b7d567aa041dc92aab3f4656491d3c"' : 'data-target="#xs-injectables-links-module-PartidaModule-b13724f8ec9b70b6de8a3f318985b7eb534e6e6cf7293d00c71104f8c92f3ad1596ca6a80c3258166c20745f3a1c4d4455b7d567aa041dc92aab3f4656491d3c"' }>
                                         <span class="icon ion-md-arrow-round-down"></span>
                                         <span>Injectables</span>
                                         <span class="icon ion-ios-arrow-down"></span>
                                     </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-PartidaModule-a6857c40308f80da816e782043f152ddbee3944be25c6af53a5f41a2f2193ac3f052ebc520093cf52b4c5d5520db2b7d1e925c0f5efb2b8b0b4b705c759e53cd"' :
-                                        'id="xs-injectables-links-module-PartidaModule-a6857c40308f80da816e782043f152ddbee3944be25c6af53a5f41a2f2193ac3f052ebc520093cf52b4c5d5520db2b7d1e925c0f5efb2b8b0b4b705c759e53cd"' }>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-PartidaModule-b13724f8ec9b70b6de8a3f318985b7eb534e6e6cf7293d00c71104f8c92f3ad1596ca6a80c3258166c20745f3a1c4d4455b7d567aa041dc92aab3f4656491d3c"' :
+                                        'id="xs-injectables-links-module-PartidaModule-b13724f8ec9b70b6de8a3f318985b7eb534e6e6cf7293d00c71104f8c92f3ad1596ca6a80c3258166c20745f3a1c4d4455b7d567aa041dc92aab3f4656491d3c"' }>
                                         <li class="link">
-                                            <a href="injectables/AtletaPartidaService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >AtletaPartidaService</a>
+                                            <a href="injectables/AtletaEscaladoService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >AtletaEscaladoService</a>
                                         </li>
                                         <li class="link">
                                             <a href="injectables/PartidaService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >PartidaService</a>
@@ -306,6 +303,37 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     </ul>
                                 </li>
                             </li>
+                            <li class="link">
+                                <a href="modules/PontuacaoModule.html" data-type="entity-link" >PontuacaoModule</a>
+                                    <li class="chapter inner">
+                                        <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
+                                            'data-target="#controllers-links-module-PontuacaoModule-9b1b2748c6d6730c710132b53d7ed8912f24aae02579daf8f4fec93da515f75cfdae300a24178acd3104f2062d7d1792afd78dea8787be531139addb4438fa9b"' : 'data-target="#xs-controllers-links-module-PontuacaoModule-9b1b2748c6d6730c710132b53d7ed8912f24aae02579daf8f4fec93da515f75cfdae300a24178acd3104f2062d7d1792afd78dea8787be531139addb4438fa9b"' }>
+                                            <span class="icon ion-md-swap"></span>
+                                            <span>Controllers</span>
+                                            <span class="icon ion-ios-arrow-down"></span>
+                                        </div>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-PontuacaoModule-9b1b2748c6d6730c710132b53d7ed8912f24aae02579daf8f4fec93da515f75cfdae300a24178acd3104f2062d7d1792afd78dea8787be531139addb4438fa9b"' :
+                                            'id="xs-controllers-links-module-PontuacaoModule-9b1b2748c6d6730c710132b53d7ed8912f24aae02579daf8f4fec93da515f75cfdae300a24178acd3104f2062d7d1792afd78dea8787be531139addb4438fa9b"' }>
+                                            <li class="link">
+                                                <a href="controllers/PontuacaoController.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >PontuacaoController</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                <li class="chapter inner">
+                                    <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
+                                        'data-target="#injectables-links-module-PontuacaoModule-9b1b2748c6d6730c710132b53d7ed8912f24aae02579daf8f4fec93da515f75cfdae300a24178acd3104f2062d7d1792afd78dea8787be531139addb4438fa9b"' : 'data-target="#xs-injectables-links-module-PontuacaoModule-9b1b2748c6d6730c710132b53d7ed8912f24aae02579daf8f4fec93da515f75cfdae300a24178acd3104f2062d7d1792afd78dea8787be531139addb4438fa9b"' }>
+                                        <span class="icon ion-md-arrow-round-down"></span>
+                                        <span>Injectables</span>
+                                        <span class="icon ion-ios-arrow-down"></span>
+                                    </div>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-PontuacaoModule-9b1b2748c6d6730c710132b53d7ed8912f24aae02579daf8f4fec93da515f75cfdae300a24178acd3104f2062d7d1792afd78dea8787be531139addb4438fa9b"' :
+                                        'id="xs-injectables-links-module-PontuacaoModule-9b1b2748c6d6730c710132b53d7ed8912f24aae02579daf8f4fec93da515f75cfdae300a24178acd3104f2062d7d1792afd78dea8787be531139addb4438fa9b"' }>
+                                        <li class="link">
+                                            <a href="injectables/PontuacaoService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >PontuacaoService</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </li>
                 </ul>
                 </li>
                         <li class="chapter">
@@ -344,6 +372,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="controllers/PartidaController.html" data-type="entity-link" >PartidaController</a>
                                 </li>
                                 <li class="link">
+                                    <a href="controllers/PontuacaoController.html" data-type="entity-link" >PontuacaoController</a>
+                                </li>
+                                <li class="link">
                                     <a href="controllers/TecnicoController.html" data-type="entity-link" >TecnicoController</a>
                                 </li>
                             </ul>
@@ -366,7 +397,7 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="entities/Atleta.html" data-type="entity-link" >Atleta</a>
                                 </li>
                                 <li class="link">
-                                    <a href="entities/AtletaPartida.html" data-type="entity-link" >AtletaPartida</a>
+                                    <a href="entities/AtletaEscalado.html" data-type="entity-link" >AtletaEscalado</a>
                                 </li>
                                 <li class="link">
                                     <a href="entities/Auxiliar.html" data-type="entity-link" >Auxiliar</a>
@@ -376,6 +407,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 </li>
                                 <li class="link">
                                     <a href="entities/Equipe.html" data-type="entity-link" >Equipe</a>
+                                </li>
+                                <li class="link">
+                                    <a href="entities/EquipePartida.html" data-type="entity-link" >EquipePartida</a>
                                 </li>
                                 <li class="link">
                                     <a href="entities/FundamentoAtleta.html" data-type="entity-link" >FundamentoAtleta</a>
@@ -391,12 +425,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 </li>
                                 <li class="link">
                                     <a href="entities/Pessoa.html" data-type="entity-link" >Pessoa</a>
-                                </li>
-                                <li class="link">
-                                    <a href="entities/PontuacaoEquipe.html" data-type="entity-link" >PontuacaoEquipe</a>
-                                </li>
-                                <li class="link">
-                                    <a href="entities/PontuacaoPartida.html" data-type="entity-link" >PontuacaoPartida</a>
                                 </li>
                                 <li class="link">
                                     <a href="entities/Tecnico.html" data-type="entity-link" >Tecnico</a>
@@ -454,19 +482,19 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/Atleta.html" data-type="entity-link" >Atleta</a>
                             </li>
                             <li class="link">
-                                <a href="classes/AtletaPartida.html" data-type="entity-link" >AtletaPartida</a>
+                                <a href="classes/AtletaEscalado.html" data-type="entity-link" >AtletaEscalado</a>
                             </li>
                             <li class="link">
-                                <a href="classes/AtletaPartidaComGanhadoraRespostaDto.html" data-type="entity-link" >AtletaPartidaComGanhadoraRespostaDto</a>
+                                <a href="classes/AtletaEscaladoComGanhadoraRespostaDto.html" data-type="entity-link" >AtletaEscaladoComGanhadoraRespostaDto</a>
                             </li>
                             <li class="link">
-                                <a href="classes/AtletaPartidaDto.html" data-type="entity-link" >AtletaPartidaDto</a>
+                                <a href="classes/AtletaEscaladoRepository.html" data-type="entity-link" >AtletaEscaladoRepository</a>
                             </li>
                             <li class="link">
-                                <a href="classes/AtletaPartidaRepository.html" data-type="entity-link" >AtletaPartidaRepository</a>
+                                <a href="classes/AtletaEscaladoRespostaDto.html" data-type="entity-link" >AtletaEscaladoRespostaDto</a>
                             </li>
                             <li class="link">
-                                <a href="classes/AtletaPartidaRespostaDto.html" data-type="entity-link" >AtletaPartidaRespostaDto</a>
+                                <a href="classes/AtletaParticipacaoDto.html" data-type="entity-link" >AtletaParticipacaoDto</a>
                             </li>
                             <li class="link">
                                 <a href="classes/AtletaRepository.html" data-type="entity-link" >AtletaRepository</a>
@@ -535,6 +563,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/CriaLigaDto.html" data-type="entity-link" >CriaLigaDto</a>
                             </li>
                             <li class="link">
+                                <a href="classes/CriaMelhorLiberoView1654530011934.html" data-type="entity-link" >CriaMelhorLiberoView1654530011934</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/CriaPartida1653348797091.html" data-type="entity-link" >CriaPartida1653348797091</a>
                             </li>
                             <li class="link">
@@ -550,6 +581,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/CriaPontuacaoPartida1653869981185.html" data-type="entity-link" >CriaPontuacaoPartida1653869981185</a>
                             </li>
                             <li class="link">
+                                <a href="classes/CriaPontuacoesView1654597372424.html" data-type="entity-link" >CriaPontuacoesView1654597372424</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/CriaTecnicoDto.html" data-type="entity-link" >CriaTecnicoDto</a>
                             </li>
                             <li class="link">
@@ -559,10 +593,16 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/DelegadoRespostaDto.html" data-type="entity-link" >DelegadoRespostaDto</a>
                             </li>
                             <li class="link">
+                                <a href="classes/EditaMelhorLiberoView1654600637313.html" data-type="entity-link" >EditaMelhorLiberoView1654600637313</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/EntidadeBase.html" data-type="entity-link" >EntidadeBase</a>
                             </li>
                             <li class="link">
                                 <a href="classes/Equipe.html" data-type="entity-link" >Equipe</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/EquipePartidaRespostaDto.html" data-type="entity-link" >EquipePartidaRespostaDto</a>
                             </li>
                             <li class="link">
                                 <a href="classes/EquipeRepository.html" data-type="entity-link" >EquipeRepository</a>
@@ -652,6 +692,18 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/MataMataGeneratorService.html" data-type="entity-link" >MataMataGeneratorService</a>
                             </li>
                             <li class="link">
+                                <a href="classes/MaterializedViewRepository.html" data-type="entity-link" >MaterializedViewRepository</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/MelhorLiberoView.html" data-type="entity-link" >MelhorLiberoView</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/MelhorLiberoViewRepository.html" data-type="entity-link" >MelhorLiberoViewRepository</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/ParticipacaoPartidaRepository.html" data-type="entity-link" >ParticipacaoPartidaRepository</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/Partida.html" data-type="entity-link" >Partida</a>
                             </li>
                             <li class="link">
@@ -659,6 +711,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="classes/PartidaAlteraTipagemTipoRodada1654450848783.html" data-type="entity-link" >PartidaAlteraTipagemTipoRodada1654450848783</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/PartidaCriaIndiceSemVencedores1654600953647.html" data-type="entity-link" >PartidaCriaIndiceSemVencedores1654600953647</a>
                             </li>
                             <li class="link">
                                 <a href="classes/PartidaRenomeiaFkEquipeGanhadora1654355572210.html" data-type="entity-link" >PartidaRenomeiaFkEquipeGanhadora1654355572210</a>
@@ -679,13 +734,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/PessoaRespostaDto.html" data-type="entity-link" >PessoaRespostaDto</a>
                             </li>
                             <li class="link">
-                                <a href="classes/PontuacaoEquipeRepository.html" data-type="entity-link" >PontuacaoEquipeRepository</a>
+                                <a href="classes/PontuacaoRespostaDto.html" data-type="entity-link" >PontuacaoRespostaDto</a>
                             </li>
                             <li class="link">
-                                <a href="classes/PontuacaoEquipeRespostaDto.html" data-type="entity-link" >PontuacaoEquipeRespostaDto</a>
+                                <a href="classes/PontuacaoView.html" data-type="entity-link" >PontuacaoView</a>
                             </li>
                             <li class="link">
-                                <a href="classes/PontuacaoPartidaRepository.html" data-type="entity-link" >PontuacaoPartidaRepository</a>
+                                <a href="classes/PontuacaoViewRepository.html" data-type="entity-link" >PontuacaoViewRepository</a>
                             </li>
                             <li class="link">
                                 <a href="classes/QuartaDeFinalDto.html" data-type="entity-link" >QuartaDeFinalDto</a>
@@ -728,7 +783,7 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="injectables/ArbitroService.html" data-type="entity-link" >ArbitroService</a>
                                 </li>
                                 <li class="link">
-                                    <a href="injectables/AtletaPartidaService.html" data-type="entity-link" >AtletaPartidaService</a>
+                                    <a href="injectables/AtletaEscaladoService.html" data-type="entity-link" >AtletaEscaladoService</a>
                                 </li>
                                 <li class="link">
                                     <a href="injectables/AtletaService.html" data-type="entity-link" >AtletaService</a>
@@ -761,7 +816,7 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="injectables/PartidaService.html" data-type="entity-link" >PartidaService</a>
                                 </li>
                                 <li class="link">
-                                    <a href="injectables/PontuacaoEquipeService.html" data-type="entity-link" >PontuacaoEquipeService</a>
+                                    <a href="injectables/PontuacaoService.html" data-type="entity-link" >PontuacaoService</a>
                                 </li>
                                 <li class="link">
                                     <a href="injectables/QuartaDeFinalGeneratorService.html" data-type="entity-link" >QuartaDeFinalGeneratorService</a>
@@ -792,7 +847,7 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/AppConfig.html" data-type="entity-link" >AppConfig</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/IBuscaAtletaPartida.html" data-type="entity-link" >IBuscaAtletaPartida</a>
+                                <a href="interfaces/IBuscaAtletaEscalado.html" data-type="entity-link" >IBuscaAtletaEscalado</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/IBuscaQuantidadePartidasPorTipoEStatus.html" data-type="entity-link" >IBuscaQuantidadePartidasPorTipoEStatus</a>
@@ -810,22 +865,16 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/IConfiguraInicializaoLiga.html" data-type="entity-link" >IConfiguraInicializaoLiga</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/IEquipePontuacaoDto.html" data-type="entity-link" >IEquipePontuacaoDto</a>
-                            </li>
-                            <li class="link">
                                 <a href="interfaces/IException.html" data-type="entity-link" >IException</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/IInfoRodada.html" data-type="entity-link" >IInfoRodada</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/IListaPontuacaoDaLigaOrdenadaResposta.html" data-type="entity-link" >IListaPontuacaoDaLigaOrdenadaResposta</a>
-                            </li>
-                            <li class="link">
                                 <a href="interfaces/IMataMataDto.html" data-type="entity-link" >IMataMataDto</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/IPontuacaoDto.html" data-type="entity-link" >IPontuacaoDto</a>
+                                <a href="interfaces/IPontoNoSet.html" data-type="entity-link" >IPontoNoSet</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/IPontuacaoPartidaDto.html" data-type="entity-link" >IPontuacaoPartidaDto</a>

@@ -214,7 +214,7 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Equipe } from &#x27;src/modules/equipe/entities/equipe.entity&#x27;;
 import { Column, Entity, Index, JoinColumn, ManyToOne } from &#x27;typeorm&#x27;;
 import { TipoAuxiliar } from &#x27;../enums&#x27;;
-import { PessoaDeEquipe } from &#x27;./pessoa_de_equipe&#x27;;
+import { PessoaDeEquipe } from &#x27;./pessoa_de_equipe.entity&#x27;;
 
 @Entity(&#x27;auxiliares&#x27;)
 export class Auxiliar extends PessoaDeEquipe {
@@ -228,7 +228,8 @@ export class Auxiliar extends PessoaDeEquipe {
   @ManyToOne(() &#x3D;&gt; Equipe, (equipe) &#x3D;&gt; equipe.auxiliares)
   @JoinColumn({ name: &#x27;id_equipe&#x27; })
   equipe!: Equipe;
-}</code></pre>
+}
+</code></pre>
     </div>
 </div>
 

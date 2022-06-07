@@ -183,13 +183,14 @@
 } from &#x27;@nestjs/common&#x27;;
 import { chunk, countBy } from &#x27;lodash&#x27;;
 import { EquipeRespostaDto } from &#x27;src/modules/equipe/dto/equipe.dto&#x27;;
+import { EquipePartidaRespostaDto } from &#x27;src/modules/partida/dto/equipe-partida.dto&#x27;;
 import { PartidaRespostaDto } from &#x27;src/modules/partida/dto/partida.dto&#x27;;
 import { PartidaService } from &#x27;src/modules/partida/services/partida.service&#x27;;
 import { TipoRodadaMataMata } from &#x27;src/modules/partida/types/tipo-rodada.type&#x27;;
+import { PontuacaoRespostaDto } from &#x27;src/modules/pontuacao/dtos/pontuacao.dto&#x27;;
+import { PontuacaoService } from &#x27;src/modules/pontuacao/pontuacao.service&#x27;;
 import { IClassificados } from &#x27;../dto/mata-mata.dto&#x27;;
-import { PontuacaoEquipeRespostaDto } from &#x27;../dto/pontuacao_equipe.dto&#x27;;
 import { Liga } from &#x27;../entities/liga.entity&#x27;;
-import { PontuacaoEquipeService } from &#x27;../services/pontuacao-equipe.service&#x27;;
 import { MataMataGeneratorService } from &#x27;./mata-mata-generator.service&#x27;;
 
 interface IInfoRodada {
@@ -220,7 +221,7 @@ export abstract class SemisEFinalGeneratorService extends MataMataGeneratorServi
 
   constructor(
     private readonly partidaService: PartidaService,
-    private readonly pontuacaoEquipeService: PontuacaoEquipeService,
+    private readonly pontuacaoService: PontuacaoService,
   ) {
     super();
   }
@@ -258,7 +259,7 @@ export abstract class SemisEFinalGeneratorService extends MataMataGeneratorServi
   // consistente com as regras
   private ordenaVencedorPorClassificacao(
     vencedores: string[],
-    pontuacoes: PontuacaoEquipeRespostaDto[],
+    pontuacoes: PontuacaoRespostaDto[],
   ) {
     const idEquipeClassificacaoMap: ReadonlyMap&lt;string, number&gt; &#x3D; new Map(
       pontuacoes.map((pontuacao, index) &#x3D;&gt; [pontuacao.equipe.id, index + 1]),
@@ -301,11 +302,10 @@ export abstract class SemisEFinalGeneratorService extends MataMataGeneratorServi
       );
     }
 
-    const pontuacoes &#x3D;
-      await this.pontuacaoEquipeService.listaPontuacoesOrdenadas(
-        idLiga,
-        Liga.quantidadeDeEquipesClassificadas,
-      );
+    const pontuacoes &#x3D; await this.pontuacaoService.listaPontuacoesOrdenadas(
+      idLiga,
+      Liga.quantidadeDeEquipesClassificadas,
+    );
 
     const vencedores &#x3D; this.listarVencedores(partidas);
 
@@ -314,11 +314,11 @@ export abstract class SemisEFinalGeneratorService extends MataMataGeneratorServi
 
     const equipeMap: ReadonlyMap&lt;string, EquipeRespostaDto&gt; &#x3D; new Map(
       partidas
-        .filter((partida) &#x3D;&gt; partida.equipeGanhadora)
-        .map(({ equipeGanhadora }) &#x3D;&gt; {
-          const equipe &#x3D; equipeGanhadora as EquipeRespostaDto;
+        .filter((partida) &#x3D;&gt; partida.ganhadora)
+        .map(({ ganhadora }) &#x3D;&gt; {
+          const equipePartida &#x3D; ganhadora as EquipePartidaRespostaDto;
 
-          return [equipe.id, equipe];
+          return [equipePartida.equipe.id, equipePartida.equipe];
         }),
     );
 

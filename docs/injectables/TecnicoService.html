@@ -411,7 +411,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, NotFoundException, Scope } from &#x27;@nestjs/common&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, NotFoundException } from &#x27;@nestjs/common&#x27;;
 import { LigaService } from &#x27;src/modules/liga/services/liga.service&#x27;;
 import { TypeORMFilterService } from &#x27;src/modules/core/services/typeorm-filter.service&#x27;;
 import { EquipeService } from &#x27;src/modules/equipe/equipe.service&#x27;;
@@ -419,7 +419,7 @@ import { CriaTecnicoDto, TecnicoRespostaDto } from &#x27;../dto/tecnico.dto&#x27
 import { TecnicoRepository } from &#x27;../repositories/tecnico.repository&#x27;;
 import { TipoPessoa } from &#x27;../enums&#x27;;
 
-@Injectable({ scope: Scope.REQUEST })
+@Injectable()
 export class TecnicoService {
   constructor(
     private readonly tecnicoRepository: TecnicoRepository,

@@ -79,6 +79,11 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#atualizeViews" >atualizeViews</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Async</span>
                                 <a href="#criaFundamento" >criaFundamento</a>
                             </li>
@@ -104,12 +109,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(fundamentoAtletaRepository: <a href="../classes/FundamentoAtletaRepository.html" target="_self">FundamentoAtletaRepository</a>, atletaPartidaService: <a href="../injectables/AtletaPartidaService.html" target="_self">AtletaPartidaService</a>, ligaService: <a href="../injectables/LigaService.html" target="_self">LigaService</a>, typeormFilterService: <a href="../injectables/TypeORMFilterService.html" target="_self">TypeORMFilterService</a>)</code>
+<code>constructor(fundamentoAtletaRepository: <a href="../classes/FundamentoAtletaRepository.html" target="_self">FundamentoAtletaRepository</a>, melhorLiberoRepository: <a href="../classes/MelhorLiberoViewRepository.html" target="_self">MelhorLiberoViewRepository</a>, atletaEscaladoService: <a href="../injectables/AtletaEscaladoService.html" target="_self">AtletaEscaladoService</a>, ligaService: <a href="../injectables/LigaService.html" target="_self">LigaService</a>, typeormFilterService: <a href="../injectables/TypeORMFilterService.html" target="_self">TypeORMFilterService</a>, connection: Connection)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/modules/estatistica/services/fundamento-atleta.service.ts:13</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/modules/estatistica/services/fundamento-atleta.service.ts:18</a></div>
                             </td>
                         </tr>
 
@@ -139,10 +144,22 @@
                                                     
                                                 </tr>
                                                 <tr>
-                                                        <td>atletaPartidaService</td>
+                                                        <td>melhorLiberoRepository</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../injectables/AtletaPartidaService.html" target="_self" >AtletaPartidaService</a></code>
+                                                                        <code><a href="../classes/MelhorLiberoViewRepository.html" target="_self" >MelhorLiberoViewRepository</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>atletaEscaladoService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/AtletaEscaladoService.html" target="_self" >AtletaEscaladoService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -174,6 +191,18 @@
                                                     </td>
                                                     
                                                 </tr>
+                                                <tr>
+                                                        <td>connection</td>
+                                                  
+                                                        <td>
+                                                                    <code>Connection</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                         </tbody>
                                     </table>
                             </div>
@@ -188,6 +217,78 @@
     <h3 id="methods">
         Methods
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="atualizeViews"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>atualizeViews</b></span>
+                        <a href="#atualizeViews"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>atualizeViews(manager: EntityManager)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="86"
+                            class="link-to-prism">src/modules/estatistica/services/fundamento-atleta.service.ts:86</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>manager</td>
+                                    <td>
+                                            <code>EntityManager</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>unknown</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -210,8 +311,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="21"
-                            class="link-to-prism">src/modules/estatistica/services/fundamento-atleta.service.ts:21</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="28"
+                            class="link-to-prism">src/modules/estatistica/services/fundamento-atleta.service.ts:28</a></div>
                 </td>
             </tr>
 
@@ -281,8 +382,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="50"
-                            class="link-to-prism">src/modules/estatistica/services/fundamento-atleta.service.ts:50</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="61"
+                            class="link-to-prism">src/modules/estatistica/services/fundamento-atleta.service.ts:61</a></div>
                 </td>
             </tr>
 
@@ -336,29 +437,36 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, NotFoundException, Scope } from &#x27;@nestjs/common&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, NotFoundException } from &#x27;@nestjs/common&#x27;;
+import * as pLimit from &#x27;p-limit&#x27;;
 import { TypeORMFilterService } from &#x27;src/modules/core/services/typeorm-filter.service&#x27;;
 import { StatusLiga } from &#x27;src/modules/liga/enums/status-liga.enum&#x27;;
 import { LigaService } from &#x27;src/modules/liga/services/liga.service&#x27;;
-import { AtletaPartidaService } from &#x27;src/modules/partida/services&#x27;;
+import { AtletaEscaladoService } from &#x27;src/modules/partida/services&#x27;;
+import { Connection, EntityManager } from &#x27;typeorm&#x27;;
 import {
   CriaFundamentoAtletaDto,
   FundamentoAtletaRespostaDto,
 } from &#x27;../dto/fundamento-atleta.dto&#x27;;
-import { FundamentoAtletaRepository } from &#x27;../repositories&#x27;;
+import {
+  FundamentoAtletaRepository,
+  MelhorLiberoViewRepository,
+} from &#x27;../repositories&#x27;;
 
-@Injectable({ scope: Scope.REQUEST })
+@Injectable()
 export class FundamentoAtletaService {
   constructor(
     private readonly fundamentoAtletaRepository: FundamentoAtletaRepository,
-    private readonly atletaPartidaService: AtletaPartidaService,
+    private readonly melhorLiberoRepository: MelhorLiberoViewRepository,
+    private readonly atletaEscaladoService: AtletaEscaladoService,
     private readonly ligaService: LigaService,
     private readonly typeormFilterService: TypeORMFilterService,
+    private readonly connection: Connection,
   ) {}
 
   async criaFundamento(requisicao: CriaFundamentoAtletaDto) {
     const atletaPartida &#x3D;
-      await this.atletaPartidaService.encontraParticipacaoComGanhadora(
+      await this.atletaEscaladoService.encontraParticipacaoComEquipe(
         requisicao,
       );
 
@@ -373,9 +481,13 @@ export class FundamentoAtletaService {
     });
 
     try {
-      return new FundamentoAtletaRespostaDto(
-        await this.fundamentoAtletaRepository.save(fundamento),
+      const fundamentoSalvo &#x3D; await this.connection.transaction(
+        async (manager) &#x3D;&gt; {
+          await this.atualizeViews(manager);
+          return manager.save(fundamento);
+        },
       );
+      return new FundamentoAtletaRespostaDto(fundamentoSalvo);
     } catch (error) {
       throw this.typeormFilterService.catch({
         error,
@@ -388,7 +500,11 @@ export class FundamentoAtletaService {
   async removeFundamento(id: string) {
     const fundamento &#x3D; await this.fundamentoAtletaRepository.findOne({
       where: { id },
-      relations: [&#x27;atleta&#x27;, &#x27;atleta.partida&#x27;, &#x27;atleta.partida.equipeVisitante&#x27;],
+      relations: [
+        &#x27;atleta&#x27;,
+        &#x27;atleta.participacao&#x27;,
+        &#x27;atleta.participacao.equipe&#x27;,
+      ],
     });
 
     if (!fundamento) {
@@ -396,11 +512,22 @@ export class FundamentoAtletaService {
     }
 
     await this.ligaService.excecaoSeALigaStatus(
-      fundamento.atleta.partida.equipeVisitante.idLiga,
+      fundamento.atleta.participacao.equipe.idLiga,
       StatusLiga.CONCLUIDA,
     );
 
-    await this.fundamentoAtletaRepository.delete(fundamento.id);
+    await this.connection.transaction(async (manager) &#x3D;&gt; {
+      await manager.remove(fundamento);
+      await this.atualizeViews(manager);
+    });
+  }
+
+  private async atualizeViews(manager: EntityManager) {
+    const limit &#x3D; pLimit(1);
+    const refreshSincrono &#x3D; [this.melhorLiberoRepository].map((repo) &#x3D;&gt;
+      limit(() &#x3D;&gt; repo.refreshMaterializedView(manager)),
+    );
+    return Promise.all(refreshSincrono);
   }
 }
 </code></pre>

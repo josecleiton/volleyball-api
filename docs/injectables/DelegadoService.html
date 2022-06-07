@@ -113,7 +113,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/modules/pessoa/services/delegado.service.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/modules/pessoa/services/delegado.service.ts:18</a></div>
                             </td>
                         </tr>
 
@@ -202,8 +202,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="27"
-                            class="link-to-prism">src/modules/pessoa/services/delegado.service.ts:27</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="26"
+                            class="link-to-prism">src/modules/pessoa/services/delegado.service.ts:26</a></div>
                 </td>
             </tr>
 
@@ -273,8 +273,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="56"
-                            class="link-to-prism">src/modules/pessoa/services/delegado.service.ts:56</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="55"
+                            class="link-to-prism">src/modules/pessoa/services/delegado.service.ts:55</a></div>
                 </td>
             </tr>
 
@@ -344,8 +344,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="48"
-                            class="link-to-prism">src/modules/pessoa/services/delegado.service.ts:48</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="47"
+                            class="link-to-prism">src/modules/pessoa/services/delegado.service.ts:47</a></div>
                 </td>
             </tr>
 
@@ -404,7 +404,6 @@
   Inject,
   Injectable,
   NotFoundException,
-  Scope,
 } from &#x27;@nestjs/common&#x27;;
 import { LigaService } from &#x27;src/modules/liga/services/liga.service&#x27;;
 import { TypeORMFilterService } from &#x27;src/modules/core/services/typeorm-filter.service&#x27;;
@@ -416,7 +415,7 @@ import {
 import { DelegadoRepository } from &#x27;../repositories/delegado.repository&#x27;;
 import { TipoPessoa } from &#x27;../enums&#x27;;
 
-@Injectable({ scope: Scope.REQUEST })
+@Injectable()
 export class DelegadoService {
   constructor(
     private readonly delegadoRepository: DelegadoRepository,

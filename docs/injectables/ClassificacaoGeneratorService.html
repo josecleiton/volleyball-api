@@ -142,8 +142,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="31"
-                            class="link-to-prism">src/modules/liga/tabela/classificacao-generator.service.ts:31</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="32"
+                            class="link-to-prism">src/modules/liga/tabela/classificacao-generator.service.ts:32</a></div>
                 </td>
             </tr>
 
@@ -247,8 +247,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="68"
-                            class="link-to-prism">src/modules/liga/tabela/classificacao-generator.service.ts:68</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="69"
+                            class="link-to-prism">src/modules/liga/tabela/classificacao-generator.service.ts:69</a></div>
                 </td>
             </tr>
 
@@ -336,7 +336,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/modules/liga/tabela/classificacao-generator.service.ts:20</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/modules/liga/tabela/classificacao-generator.service.ts:21</a></div>
                         </td>
                     </tr>
 
@@ -349,7 +349,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { BadRequestException, Injectable, Scope } from &#x27;@nestjs/common&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { BadRequestException, Injectable } from &#x27;@nestjs/common&#x27;;
 import { addBusinessDays, nextDay, setMinutes } from &#x27;date-fns&#x27;;
 import { DiaDaSemana } from &#x27;src/modules/core/enums/dia-da-semana.enum&#x27;;
 import { Equipe } from &#x27;src/modules/equipe/entities/equipe.entity&#x27;;
@@ -357,6 +357,7 @@ import { Partida } from &#x27;src/modules/partida/entities/partida.entity&#x27;;
 import { DoublyLinkedList } from &#x27;datastructures-js&#x27;;
 import { createGroup } from &#x27;tournament_creator&#x27;;
 import { TipoRodada } from &#x27;src/modules/partida/types/tipo-rodada.type&#x27;;
+import { EquipePartida } from &#x27;src/modules/partida/entities/equipe-partida.entity&#x27;;
 
 interface IClassificacaoGeneratorRequest {
   equipes: Equipe[];
@@ -366,7 +367,7 @@ interface IClassificacaoGeneratorRequest {
   intervaloDeDiasUteisEntreTurnos: number;
 }
 
-@Injectable({ scope: Scope.TRANSIENT })
+@Injectable()
 export class ClassificacaoGeneratorService {
   private static readonly diaDaSemanaIndiceMap: ReadonlyMap&lt;DiaDaSemana, Day&gt; &#x3D;
     new Map([
@@ -466,12 +467,21 @@ export class ClassificacaoGeneratorService {
       rematch: true,
     }).matches.map((match, index) &#x3D;&gt; {
       const partida &#x3D; new Partida();
-      partida.equipeMandante &#x3D; idEquipeMap.get(
+      const equipeMandante &#x3D; idEquipeMap.get(
         match.homeTeam as string,
       ) as Equipe;
-      partida.equipeVisitante &#x3D; idEquipeMap.get(
+      const equipeVisitante &#x3D; idEquipeMap.get(
         match.awayTeam as string,
       ) as Equipe;
+
+      partida.mandante &#x3D; new EquipePartida();
+      partida.mandante.partida &#x3D; partida;
+      partida.mandante.equipe &#x3D; equipeMandante;
+
+      partida.visitante &#x3D; new EquipePartida();
+      partida.visitante.partida &#x3D; partida;
+      partida.visitante.equipe &#x3D; equipeVisitante;
+
       partida.dataComeco &#x3D; datasDasPartidas[index];
       partida.tipoDaRodada &#x3D; match.matchNumber.toString() as TipoRodada;
 

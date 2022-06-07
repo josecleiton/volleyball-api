@@ -140,7 +140,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/modules/partida/dto/partida.dto.ts:68</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/modules/partida/dto/partida.dto.ts:73</a></div>
                         </td>
                     </tr>
 
@@ -181,7 +181,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/modules/partida/dto/partida.dto.ts:74</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/modules/partida/dto/partida.dto.ts:79</a></div>
                         </td>
                     </tr>
 
@@ -217,7 +217,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/modules/partida/dto/partida.dto.ts:71</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/modules/partida/dto/partida.dto.ts:76</a></div>
                         </td>
                     </tr>
 
@@ -247,18 +247,18 @@
   IsUUID,
   ValidateNested,
 } from &#x27;class-validator&#x27;;
-import { EquipeRespostaDto } from &#x27;src/modules/equipe/dto/equipe.dto&#x27;;
 import { Posicao, TipoArbitro } from &#x27;src/modules/pessoa/enums&#x27;;
 import { Partida } from &#x27;../entities/partida.entity&#x27;;
 import { StatusPartida } from &#x27;../enums/status-partida.enum&#x27;;
 import { TipoRodada, tiposDeRodada } from &#x27;../types/tipo-rodada.type&#x27;;
+import { EquipePartidaRespostaDto } from &#x27;./equipe-partida.dto&#x27;;
 
 export class AtualizaPartidaStatusDto {
   @IsEnum(StatusPartida)
   status!: StatusPartida;
 }
 
-export class AtletaPartidaDto {
+export class AtletaParticipacaoDto {
   @IsUUID()
   idAtleta!: string;
 
@@ -272,6 +272,11 @@ class ArbitroPartidaDto {
 
   @IsEnum(TipoArbitro)
   tipo!: TipoArbitro;
+}
+
+export enum EscolhaDeDesistencia {
+  MANDANTE &#x3D; &#x27;mandante&#x27;,
+  VISITANTE &#x3D; &#x27;visitante&#x27;,
 }
 
 export class CadastrarParticipantesPartidaDto {
@@ -288,17 +293,17 @@ export class CadastrarParticipantesPartidaDto {
   @ArrayMinSize(12)
   @ArrayMaxSize(14)
   @ValidateNested({ each: true })
-  atletasMandante!: AtletaPartidaDto[];
+  atletasMandante!: AtletaParticipacaoDto[];
 
   @IsArray()
   @ArrayMinSize(12)
   @ArrayMaxSize(14)
   @ValidateNested({ each: true })
-  atletasVisitante!: AtletaPartidaDto[];
+  atletasVisitante!: AtletaParticipacaoDto[];
 
-  @IsIn([&#x27;mandante&#x27;, &#x27;visitante&#x27;])
+  @IsEnum(EscolhaDeDesistencia)
   @IsOptional()
-  desistente?: &#x27;mandante&#x27; | &#x27;visitante&#x27;;
+  desistente?: EscolhaDeDesistencia;
 }
 
 export class ListaPartidasDto {
@@ -331,7 +336,7 @@ export class PartidaRespostaDto {
   dataCriacao: Date;
   dataAtualizacao: Date;
   duracaoBruta?: number;
-  equipeGanhadora?: EquipeRespostaDto;
+  ganhadora?: EquipePartidaRespostaDto;
   tipoRodada: TipoRodada;
 
   constructor(partida: Partida) {
@@ -341,14 +346,14 @@ export class PartidaRespostaDto {
     this.status &#x3D; partida.status;
     this.dataComeco &#x3D; partida.dataComeco;
     this.dataFinalizacao &#x3D; partida.dataFinalizacao;
-    this.idEquipeGanhador &#x3D; partida.idEquipeGanhadora;
+    this.idEquipeGanhador &#x3D; partida.idGanhadora;
     this.dataCriacao &#x3D; partida.dataCriacao;
     this.dataAtualizacao &#x3D; partida.dataAtualizacao;
     this.duracaoBruta &#x3D; partida.duracaoBruta;
     this.idEquipeMandante &#x3D; partida.idMandante;
     this.idEquipeVisitante &#x3D; partida.idVisitante;
-    this.equipeGanhadora &#x3D; partida.equipeGanhadora
-      ? new EquipeRespostaDto(partida.equipeGanhadora)
+    this.ganhadora &#x3D; partida.ganhadora
+      ? new EquipePartidaRespostaDto(partida.ganhadora)
       : undefined;
     this.tipoRodada &#x3D; partida.tipoDaRodada;
   }

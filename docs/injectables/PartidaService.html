@@ -88,9 +88,6 @@
                                 <a href="#deveEncontrarEntidade" >deveEncontrarEntidade</a>
                             </li>
                             <li>
-                                <a href="#finalizaPartida" >finalizaPartida</a>
-                            </li>
-                            <li>
                                     <span class="modifier">Async</span>
                                 <a href="#listaPartidasOrdenadas" >listaPartidasOrdenadas</a>
                             </li>
@@ -121,12 +118,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(partidaRepository: <a href="../classes/PartidaRepository.html" target="_self">PartidaRepository</a>, atletaPartidaRepository: <a href="../classes/AtletaPartidaRepository.html" target="_self">AtletaPartidaRepository</a>, arbitroPartidaRepository: <a href="../classes/ArbitroPartidaRepository.html" target="_self">ArbitroPartidaRepository</a>, pontuacaoPartidaRepository: <a href="../classes/PontuacaoPartidaRepository.html" target="_self">PontuacaoPartidaRepository</a>, pontuacaoEquipeRepository: <a href="../classes/PontuacaoEquipeRepository.html" target="_self">PontuacaoEquipeRepository</a>, delegadoService: <a href="../injectables/DelegadoService.html" target="_self">DelegadoService</a>, atletaService: <a href="../injectables/AtletaService.html" target="_self">AtletaService</a>, arbitroService: <a href="../injectables/ArbitroService.html" target="_self">ArbitroService</a>, connection: Connection)</code>
+<code>constructor(partidaRepository: <a href="../classes/PartidaRepository.html" target="_self">PartidaRepository</a>, pontuacaoRepository: <a href="../classes/PontuacaoViewRepository.html" target="_self">PontuacaoViewRepository</a>, atletaEscaladoRepository: <a href="../classes/AtletaEscaladoRepository.html" target="_self">AtletaEscaladoRepository</a>, arbitroPartidaRepository: <a href="../classes/ArbitroPartidaRepository.html" target="_self">ArbitroPartidaRepository</a>, delegadoService: <a href="../injectables/DelegadoService.html" target="_self">DelegadoService</a>, atletaService: <a href="../injectables/AtletaService.html" target="_self">AtletaService</a>, arbitroService: <a href="../injectables/ArbitroService.html" target="_self">ArbitroService</a>, connection: Connection)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/modules/partida/services/partida.service.ts:32</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/modules/partida/services/partida.service.ts:28</a></div>
                             </td>
                         </tr>
 
@@ -156,10 +153,22 @@
                                                     
                                                 </tr>
                                                 <tr>
-                                                        <td>atletaPartidaRepository</td>
+                                                        <td>pontuacaoRepository</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../classes/AtletaPartidaRepository.html" target="_self" >AtletaPartidaRepository</a></code>
+                                                                        <code><a href="../classes/PontuacaoViewRepository.html" target="_self" >PontuacaoViewRepository</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>atletaEscaladoRepository</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../classes/AtletaEscaladoRepository.html" target="_self" >AtletaEscaladoRepository</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -172,30 +181,6 @@
                                                   
                                                         <td>
                                                                         <code><a href="../classes/ArbitroPartidaRepository.html" target="_self" >ArbitroPartidaRepository</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>pontuacaoPartidaRepository</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../classes/PontuacaoPartidaRepository.html" target="_self" >PontuacaoPartidaRepository</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>pontuacaoEquipeRepository</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../classes/PontuacaoEquipeRepository.html" target="_self" >PontuacaoEquipeRepository</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -287,8 +272,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="129"
-                            class="link-to-prism">src/modules/partida/services/partida.service.ts:129</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="123"
+                            class="link-to-prism">src/modules/partida/services/partida.service.ts:123</a></div>
                 </td>
             </tr>
 
@@ -371,8 +356,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="55"
-                            class="link-to-prism">src/modules/partida/services/partida.service.ts:55</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="50"
+                            class="link-to-prism">src/modules/partida/services/partida.service.ts:50</a></div>
                 </td>
             </tr>
 
@@ -424,99 +409,6 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="finalizaPartida"></a>
-                    <span class="name">
-                        <span ><b>finalizaPartida</b></span>
-                        <a href="#finalizaPartida"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>finalizaPartida(partida: <a href="../classes/Partida.html" target="_self">Partida</a>, equipeGanhadora: <a href="../classes/Equipe.html" target="_self">Equipe</a>, pontuacaoDto: <a href="../interfaces/IPontuacaoPartidaDto.html" target="_self">IPontuacaoPartidaDto</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="210"
-                            class="link-to-prism">src/modules/partida/services/partida.service.ts:210</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>partida</td>
-                                    <td>
-                                                <code><a href="../classes/Partida.html" target="_self" >Partida</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                                <tr>
-                                    <td>equipeGanhadora</td>
-                                    <td>
-                                                <code><a href="../classes/Equipe.html" target="_self" >Equipe</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                                <tr>
-                                    <td>pontuacaoDto</td>
-                                    <td>
-                                                <code><a href="../interfaces/IPontuacaoPartidaDto.html" target="_self" >IPontuacaoPartidaDto</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="listaPartidasOrdenadas"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -535,8 +427,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="45"
-                            class="link-to-prism">src/modules/partida/services/partida.service.ts:45</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="40"
+                            class="link-to-prism">src/modules/partida/services/partida.service.ts:40</a></div>
                 </td>
             </tr>
 
@@ -607,8 +499,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="91"
-                            class="link-to-prism">src/modules/partida/services/partida.service.ts:91</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="86"
+                            class="link-to-prism">src/modules/partida/services/partida.service.ts:86</a></div>
                 </td>
             </tr>
 
@@ -671,15 +563,15 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>validaAtletas(idEquipe: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, atletas: AtletaPartidaDto[])</code>
+                    <code>validaAtletas(idEquipe: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, atletas: <a href="../entitys/Atleta.html" target="_self">AtletaParticipacaoDto[]</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="66"
-                            class="link-to-prism">src/modules/partida/services/partida.service.ts:66</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="61"
+                            class="link-to-prism">src/modules/partida/services/partida.service.ts:61</a></div>
                 </td>
             </tr>
 
@@ -714,7 +606,7 @@
                                 <tr>
                                     <td>atletas</td>
                                     <td>
-                                            <code>AtletaPartidaDto[]</code>
+                                                <code><a href="../entitys/Atleta.html" target="_self" >AtletaParticipacaoDto[]</a></code>
                                     </td>
 
                                     <td>
@@ -750,39 +642,34 @@
   ConflictException,
   Injectable,
   NotFoundException,
-  NotImplementedException,
-  Scope,
 } from &#x27;@nestjs/common&#x27;;
 import { groupBy } from &#x27;lodash&#x27;;
+import { PontuacaoViewRepository } from &#x27;src/modules/pontuacao/repositories/pontuacao-view.repository&#x27;;
 import { Connection } from &#x27;typeorm&#x27;;
-import { Equipe } from &#x27;../../equipe/entities/equipe.entity&#x27;;
-import { PontuacaoEquipeRepository } from &#x27;../../liga/repositories/pontuacao_equipe.repository&#x27;;
 import { Posicao, TipoArbitro } from &#x27;../../pessoa/enums&#x27;;
 import { ArbitroService } from &#x27;../../pessoa/services/arbitro.service&#x27;;
 import { AtletaService } from &#x27;../../pessoa/services/atleta.service&#x27;;
 import { DelegadoService } from &#x27;../../pessoa/services/delegado.service&#x27;;
 import {
-  AtletaPartidaDto,
+  AtletaParticipacaoDto,
   CadastrarParticipantesPartidaDto,
+  EscolhaDeDesistencia,
   ListaPartidasDto,
   PartidaRespostaDto,
 } from &#x27;../dto/partida.dto&#x27;;
-import { IPontuacaoPartidaDto } from &#x27;../dto/pontuacao-partida.dto&#x27;;
 import { Partida } from &#x27;../entities/partida.entity&#x27;;
 import { StatusPartida } from &#x27;../enums/status-partida.enum&#x27;;
 import { ArbitroPartidaRepository } from &#x27;../repositories/arbitro-partida.repository&#x27;;
-import { AtletaPartidaRepository } from &#x27;../repositories/atleta-partida.repository&#x27;;
+import { AtletaEscaladoRepository } from &#x27;../repositories/atleta-escalado.repository&#x27;;
 import { PartidaRepository } from &#x27;../repositories/partida.repository&#x27;;
-import { PontuacaoPartidaRepository } from &#x27;../repositories/pontuacao-partida.repository&#x27;;
 
-@Injectable({ scope: Scope.REQUEST })
+@Injectable()
 export class PartidaService {
   constructor(
     private readonly partidaRepository: PartidaRepository,
-    private readonly atletaPartidaRepository: AtletaPartidaRepository,
+    private readonly pontuacaoRepository: PontuacaoViewRepository,
+    private readonly atletaEscaladoRepository: AtletaEscaladoRepository,
     private readonly arbitroPartidaRepository: ArbitroPartidaRepository,
-    private readonly pontuacaoPartidaRepository: PontuacaoPartidaRepository,
-    private readonly pontuacaoEquipeRepository: PontuacaoEquipeRepository,
     private readonly delegadoService: DelegadoService,
     private readonly atletaService: AtletaService,
     private readonly arbitroService: ArbitroService,
@@ -812,7 +699,7 @@ export class PartidaService {
 
   private validaAtletas(
     idEquipe: string,
-    atletas: AtletaPartidaDto[],
+    atletas: AtletaParticipacaoDto[],
   ): void | never {
     const atletasPorPosicao &#x3D; groupBy(atletas, (a) &#x3D;&gt; a.posicao);
     if (
@@ -837,38 +724,37 @@ export class PartidaService {
 
   private async registraDesistencia(partida: Partida) {
     const pontuacaoMandante &#x3D;
-      partida.idEquipeGanhadora &#x3D;&#x3D;&#x3D; partida.idMandante ? 2 : -2;
-    const pontuacaoPartida &#x3D; this.pontuacaoPartidaRepository.create({
-      id: partida.id,
-      visitante: -pontuacaoMandante,
-      mandante: pontuacaoMandante,
-    });
+      partida.idGanhadora &#x3D;&#x3D;&#x3D; partida.idMandante ? 2 : -2;
+
+    partida.mandante.pontuacao &#x3D; pontuacaoMandante;
+    partida.mandante.pontosNosSets &#x3D; [25, 25, 25].map((quantidade) &#x3D;&gt; ({
+      quantidade,
+    }));
+
+    partida.visitante.pontuacao &#x3D; -partida.mandante.pontuacao;
+    partida.visitante.pontosNosSets &#x3D; [0, 0, 0].map((quantidade) &#x3D;&gt; ({
+      quantidade,
+    }));
+
+    partida.mandante.resultadoCadastradoEm &#x3D;
+      partida.visitante.resultadoCadastradoEm &#x3D; new Date();
 
     const { partida: partidaAtualizada } &#x3D; await this.connection.transaction(
       async (manager) &#x3D;&gt; {
-        await manager.save(pontuacaoPartida);
-        const pontuacaoMandante &#x3D;
-          await this.pontuacaoEquipeRepository.atualizaPontuacao(
-            partida.idMandante,
-            pontuacaoPartida.mandante,
-            manager,
-          );
-        const pontuacaoVisitante &#x3D;
-          await this.pontuacaoEquipeRepository.atualizaPontuacao(
-            partida.idVisitante,
-            pontuacaoPartida.visitante,
-            manager,
-          );
+        const [mandante, visitante] &#x3D; await manager.save([
+          partida.mandante,
+          partida.visitante,
+        ]);
+
+        await this.pontuacaoRepository.refreshMaterializedView(manager);
 
         return {
           partida: await manager.save(partida),
-          pontuacaoMandante,
-          pontuacaoVisitante,
+          mandante,
+          visitante,
         };
       },
     );
-
-    partidaAtualizada.pontuacao &#x3D; pontuacaoPartida;
 
     return partidaAtualizada;
   }
@@ -890,8 +776,8 @@ export class PartidaService {
 
     if (requisicao.desistente) {
       partida.status &#x3D; StatusPartida.WO;
-      partida.idEquipeGanhadora &#x3D;
-        requisicao.desistente &#x3D;&#x3D;&#x3D; &#x27;mandante&#x27;
+      partida.idGanhadora &#x3D;
+        requisicao.desistente &#x3D;&#x3D;&#x3D; EscolhaDeDesistencia.MANDANTE
           ? partida.idVisitante
           : partida.idMandante;
 
@@ -922,13 +808,13 @@ export class PartidaService {
       ),
     );
 
-    const atletasMandantePartida &#x3D; requisicao.atletasMandante.map((atletaDto) &#x3D;&gt;
-      this.atletaPartidaRepository.create({ ...atletaDto }),
+    const escalacaoMandante &#x3D; requisicao.atletasMandante.map((atletaDto) &#x3D;&gt;
+      this.atletaEscaladoRepository.create({ ...atletaDto }),
     );
-    const atletasVisitantePartida &#x3D; requisicao.atletasVisitante.map(
-      (atletaDto) &#x3D;&gt; this.atletaPartidaRepository.create({ ...atletaDto }),
+    const escalacaoVisitante &#x3D; requisicao.atletasVisitante.map((atletaDto) &#x3D;&gt;
+      this.atletaEscaladoRepository.create({ ...atletaDto }),
     );
-    const arbitrosPartida &#x3D; requisicao.arbitros.map((arbitroDto) &#x3D;&gt;
+    const arbitrosDaPartida &#x3D; requisicao.arbitros.map((arbitroDto) &#x3D;&gt;
       this.arbitroPartidaRepository.create({ ...arbitroDto }),
     );
 
@@ -939,51 +825,19 @@ export class PartidaService {
       async (manager) &#x3D;&gt; {
         const partidaSalva &#x3D; await manager.save(partida);
 
-        await manager.save(atletasMandantePartida);
-        await manager.save(atletasVisitantePartida);
-        await manager.save(arbitrosPartida);
+        await manager.save(escalacaoMandante);
+        await manager.save(escalacaoVisitante);
+        await manager.save(arbitrosDaPartida);
 
-        partidaSalva.arbitros &#x3D; arbitrosPartida;
-        partidaSalva.atletasMandante &#x3D; atletasMandantePartida;
-        partidaSalva.atletasVisitante &#x3D; atletasVisitantePartida;
+        partidaSalva.arbitros &#x3D; arbitrosDaPartida;
+        partidaSalva.mandante.atletas &#x3D; escalacaoMandante;
+        partidaSalva.visitante.atletas &#x3D; escalacaoVisitante;
 
         return partidaSalva;
       },
     );
 
     return new PartidaRespostaDto(partidaAtualizada);
-  }
-
-  finalizaPartida(
-    partida: Partida,
-    equipeGanhadora: Equipe,
-    pontuacaoDto: IPontuacaoPartidaDto,
-  ) {
-    if (partida.status !&#x3D;&#x3D; StatusPartida.PARTICIPANTES_CADASTRADOS) {
-      throw new ConflictException(
-        &#x60;Partida ${partida.id} não está no status ${StatusPartida.PARTICIPANTES_CADASTRADOS}&#x60;,
-      );
-    }
-
-    partida.idEquipeGanhadora &#x3D; equipeGanhadora.id;
-    partida.status &#x3D; StatusPartida.CONCLUIDA;
-
-    const pontuacaoMandante &#x3D;
-      partida.idEquipeGanhadora &#x3D;&#x3D;&#x3D; partida.idMandante
-        ? pontuacaoDto.ganhador
-        : pontuacaoDto.perdedor;
-    const pontuacaoVisitante &#x3D;
-      pontuacaoMandante &#x3D;&#x3D;&#x3D; pontuacaoDto.ganhador
-        ? pontuacaoDto.perdedor
-        : pontuacaoDto.ganhador;
-
-    partida.pontuacao &#x3D; this.pontuacaoPartidaRepository.create({
-      id: partida.id,
-      mandante: pontuacaoMandante,
-      visitante: pontuacaoVisitante,
-    });
-
-    throw new NotImplementedException();
   }
 }
 </code></pre>

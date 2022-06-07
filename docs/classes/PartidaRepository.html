@@ -142,8 +142,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="12"
-                            class="link-to-prism">src/modules/partida/repositories/partida.repository.ts:12</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="11"
+                            class="link-to-prism">src/modules/partida/repositories/partida.repository.ts:11</a></div>
                 </td>
             </tr>
 
@@ -213,8 +213,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="60"
-                            class="link-to-prism">src/modules/partida/repositories/partida.repository.ts:60</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="55"
+                            class="link-to-prism">src/modules/partida/repositories/partida.repository.ts:55</a></div>
                 </td>
             </tr>
 
@@ -283,8 +283,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="35"
-                            class="link-to-prism">src/modules/partida/repositories/partida.repository.ts:35</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="31"
+                            class="link-to-prism">src/modules/partida/repositories/partida.repository.ts:31</a></div>
                 </td>
             </tr>
 
@@ -354,8 +354,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Equipe } from &#x27;src/modules/equipe/entities/equipe.entity&#x27;;
-import { EntityManager, EntityRepository, Repository } from &#x27;typeorm&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { EntityManager, EntityRepository, Repository } from &#x27;typeorm&#x27;;
 import {
   IBuscaQuantidadePartidasPorTipoEStatus,
   ListaPartidasDto,
@@ -368,12 +367,9 @@ export class PartidaRepository extends Repository&lt;Partida&gt; {
   async listaPartidasOrdenadas(requisicao: ListaPartidasDto) {
     const qb &#x3D; this.createQueryBuilder(&#x27;partidas&#x27;);
 
-    qb.innerJoinAndSelect(
-      &#x27;partidas.equipeGanhadora&#x27;,
-      &#x27;equipesG&#x27;,
-      &#x27;equipesG.id &#x3D; partidas.idEquipeGanhadora AND equipesG.idLiga &#x3D; :idLiga&#x27;,
-      { idLiga: requisicao.idLiga },
-    );
+    qb.innerJoinAndSelect(&#x27;partidas.visitante&#x27;, &#x27;visitantes&#x27;)
+      .innerJoinAndSelect(&#x27;visitantes.equipe&#x27;, &#x27;equipes&#x27;)
+      .where(&#x27;equipes.idLiga &#x3D; :idLiga&#x27;, { idLiga: requisicao.idLiga });
 
     if (requisicao.tipoPartida) {
       qb.andWhere(&#x27;partidas.tipoPartida &#x3D; :tipoPartida&#x27;, {
@@ -385,7 +381,7 @@ export class PartidaRepository extends Repository&lt;Partida&gt; {
       qb.limit(requisicao.limite);
     }
 
-    return qb.getMany();
+    return qb.orderBy(&#x27;partidas.dataCriacao&#x27;, &#x27;ASC&#x27;).getMany();
   }
 
   async removePartidasSemGanhadores(idLiga: string, manager: EntityManager) {
@@ -396,20 +392,19 @@ export class PartidaRepository extends Repository&lt;Partida&gt; {
       WHERE partidas.id &#x3D; IN (
         SELECT p.id AS id
         FROM partidas AS p
-        INNER JOIN equipes AS m
-        ON
-          m.id &#x3D; p.id_mandante
-          AND m.id_liga &#x3D; ?
-        INNER JOIN equipes AS v
+        INNER JOIN equipes_partidas AS v
         ON
           v.id &#x3D; p.id_visitante
-          AND v.id_liga &#x3D; ?
+        INNER JOIN equipes AS ev
+        ON
+          ev.id &#x3D; v.id_equipe
+          AND ev.id_liga &#x3D; ?
         WHERE
           p.status &#x3D; ?
-          AND p.id_equipe_ganhadora IS NULL
+          AND p.id_ganhadora IS NULL
       )
     &#x60;,
-      [idLiga, idLiga, StatusPartida.AGENDADA],
+      [idLiga, StatusPartida.AGENDADA],
     );
   }
 
@@ -421,12 +416,10 @@ export class PartidaRepository extends Repository&lt;Partida&gt; {
     const qb &#x3D; this.createQueryBuilder(&#x27;p&#x27;);
 
     qb.select(&#x27;p.id&#x27;)
-      .innerJoin(
-        Equipe,
-        &#x27;v&#x27;,
-        &#x27;v.id &#x3D; p.equipeVisitante AND v.idLiga &#x3D; :idLiga&#x27;,
-        { idLiga },
-      )
+      .innerJoin(&#x27;p.visitante&#x27;, &#x27;v&#x27;)
+      .innerJoin(&#x27;v.equipe&#x27;, &#x27;e&#x27;, &#x27;e.id &#x3D; v.idEquipe AND e.idLiga &#x3D; :idLiga&#x27;, {
+        idLiga,
+      })
       .where(&#x27;p.status IN (:...statusAceitos)&#x27;, { statusAceitos })
       .andWhere(&#x27;p.tipoDaRodada IN (:...tiposDeRodada)&#x27;, { tiposDeRodada });
 

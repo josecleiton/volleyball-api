@@ -486,7 +486,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, NotFoundException, Scope } from &#x27;@nestjs/common&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, NotFoundException } from &#x27;@nestjs/common&#x27;;
 import { TypeORMFilterService } from &#x27;src/modules/core/services/typeorm-filter.service&#x27;;
 import { EquipeService } from &#x27;src/modules/equipe/equipe.service&#x27;;
 import { LigaService } from &#x27;src/modules/liga/services/liga.service&#x27;;
@@ -498,7 +498,7 @@ import {
 import { TipoPessoa } from &#x27;../enums&#x27;;
 import { AuxiliarRepository } from &#x27;../repositories/auxiliar.repository&#x27;;
 
-@Injectable({ scope: Scope.REQUEST })
+@Injectable()
 export class AuxiliarService {
   constructor(
     private readonly auxiliarRepository: AuxiliarRepository,

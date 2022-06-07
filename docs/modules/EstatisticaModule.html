@@ -204,12 +204,18 @@ import { CoreModule } from &#x27;../core/core.module&#x27;;
 import { LigaModule } from &#x27;../liga/liga.module&#x27;;
 import { PartidaModule } from &#x27;../partida/partida.module&#x27;;
 import { FundamentoAtletaController } from &#x27;./controllers&#x27;;
-import { FundamentoAtletaRepository } from &#x27;./repositories&#x27;;
+import {
+  FundamentoAtletaRepository,
+  MelhorLiberoViewRepository,
+} from &#x27;./repositories&#x27;;
 import { FundamentoAtletaService } from &#x27;./services&#x27;;
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([FundamentoAtletaRepository]),
+    TypeOrmModule.forFeature([
+      FundamentoAtletaRepository,
+      MelhorLiberoViewRepository,
+    ]),
     CoreModule,
     PartidaModule,
     LigaModule,

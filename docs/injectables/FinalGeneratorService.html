@@ -179,7 +179,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(partidaService: <a href="../injectables/PartidaService.html" target="_self">PartidaService</a>, pontuacaoEquipeService: <a href="../injectables/PontuacaoEquipeService.html" target="_self">PontuacaoEquipeService</a>)</code>
+<code>constructor(partidaService: <a href="../injectables/PartidaService.html" target="_self">PartidaService</a>, pontuacaoService: <a href="../injectables/PontuacaoService.html" target="_self">PontuacaoService</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -214,10 +214,10 @@
                                                     
                                                 </tr>
                                                 <tr>
-                                                        <td>pontuacaoEquipeService</td>
+                                                        <td>pontuacaoService</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../injectables/PontuacaoEquipeService.html" target="_self" >PontuacaoEquipeService</a></code>
+                                                                        <code><a href="../injectables/PontuacaoService.html" target="_self" >PontuacaoService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -268,7 +268,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../classes/MataMataGeneratorService.html#source" target="_self" >MataMataGeneratorService:108</a></code>
+                        <div class="io-line">Defined in         <code><a href="../classes/MataMataGeneratorService.html#source" target="_self" >MataMataGeneratorService:109</a></code>
 </div>
                 </td>
             </tr>
@@ -345,7 +345,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../injectables/FinalGeneratorService.html#source" target="_self" >SemisEFinalGeneratorService:49</a></code>
+                        <div class="io-line">Defined in         <code><a href="../injectables/FinalGeneratorService.html#source" target="_self" >SemisEFinalGeneratorService:50</a></code>
 </div>
                 </td>
             </tr>
@@ -409,7 +409,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>ordenaVencedorPorClassificacao(vencedores: string[], pontuacoes: PontuacaoEquipeRespostaDto[])</code>
+                    <code>ordenaVencedorPorClassificacao(vencedores: string[], pontuacoes: <a href="../classes/PontuacaoRespostaDto.html" target="_self">PontuacaoRespostaDto[]</a>)</code>
                 </td>
             </tr>
 
@@ -422,7 +422,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../injectables/FinalGeneratorService.html#source" target="_self" >SemisEFinalGeneratorService:80</a></code>
+                        <div class="io-line">Defined in         <code><a href="../injectables/FinalGeneratorService.html#source" target="_self" >SemisEFinalGeneratorService:81</a></code>
 </div>
                 </td>
             </tr>
@@ -458,7 +458,7 @@
                                 <tr>
                                     <td>pontuacoes</td>
                                     <td>
-                                            <code>PontuacaoEquipeRespostaDto[]</code>
+                                                <code><a href="../classes/PontuacaoRespostaDto.html" target="_self" >PontuacaoRespostaDto[]</a></code>
                                     </td>
 
                                     <td>
@@ -655,7 +655,7 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../injectables/FinalGeneratorService.html#source" target="_self" >SemisEFinalGeneratorService:22</a></code>
+                                <div class="io-line">Defined in         <code><a href="../injectables/FinalGeneratorService.html#source" target="_self" >SemisEFinalGeneratorService:23</a></code>
 </div>
                         </td>
                     </tr>
@@ -943,20 +943,20 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { forwardRef, Inject, Injectable, Scope } from &#x27;@nestjs/common&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { forwardRef, Inject, Injectable } from &#x27;@nestjs/common&#x27;;
 import { PartidaService } from &#x27;src/modules/partida/services/partida.service&#x27;;
-import { PontuacaoEquipeService } from &#x27;../services/pontuacao-equipe.service&#x27;;
+import { PontuacaoService } from &#x27;src/modules/pontuacao/pontuacao.service&#x27;;
 import { SemisEFinalGeneratorService } from &#x27;./semis-e-final-generator.service&#x27;;
 
-@Injectable({ scope: Scope.TRANSIENT })
+@Injectable()
 export class FinalGeneratorService extends SemisEFinalGeneratorService {
   protected readonly tipoRodada &#x3D; &#x27;final&#x27;;
 
   constructor(
     @Inject(forwardRef(() &#x3D;&gt; PartidaService)) partidaService: PartidaService,
-    pontuacaoEquipeService: PontuacaoEquipeService,
+    pontuacaoService: PontuacaoService,
   ) {
-    super(partidaService, pontuacaoEquipeService);
+    super(partidaService, pontuacaoService);
   }
 }
 </code></pre>

@@ -76,19 +76,11 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#_equipeMandante" >_equipeMandante</a>
+                                <a href="#_mandante" >_mandante</a>
                             </li>
                             <li>
                                     <span class="modifier">Optional</span>
                                 <a href="#arbitros" >arbitros</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Optional</span>
-                                <a href="#atletasMandante" >atletasMandante</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Optional</span>
-                                <a href="#atletasVisitante" >atletasVisitante</a>
                             </li>
                             <li>
                                 <a href="#dataComeco" >dataComeco</a>
@@ -103,10 +95,7 @@
                             </li>
                             <li>
                                     <span class="modifier">Optional</span>
-                                <a href="#equipeGanhadora" >equipeGanhadora</a>
-                            </li>
-                            <li>
-                                <a href="#equipeVisitante" >equipeVisitante</a>
+                                <a href="#ganhadora" >ganhadora</a>
                             </li>
                             <li>
                                 <a href="#ginasio" >ginasio</a>
@@ -117,7 +106,7 @@
                             </li>
                             <li>
                                     <span class="modifier">Optional</span>
-                                <a href="#idEquipeGanhadora" >idEquipeGanhadora</a>
+                                <a href="#idGanhadora" >idGanhadora</a>
                             </li>
                             <li>
                                 <a href="#idGinasio" >idGinasio</a>
@@ -139,13 +128,13 @@
                                 <a href="#minimoDeAtletasNaPartida" >minimoDeAtletasNaPartida</a>
                             </li>
                             <li>
-                                <a href="#pontuacao" >pontuacao</a>
-                            </li>
-                            <li>
                                 <a href="#status" >status</a>
                             </li>
                             <li>
                                 <a href="#tipoDaRodada" >tipoDaRodada</a>
+                            </li>
+                            <li>
+                                <a href="#visitante" >visitante</a>
                             </li>
                         </ul>
                     </td>
@@ -169,17 +158,17 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="_equipeMandante"></a>
+                    <a name="_mandante"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
-                        <span ><b>_equipeMandante</b></span>
-                        <a href="#_equipeMandante"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>_mandante</b></span>
+                        <a href="#_mandante"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../classes/Equipe.html" target="_self" >Equipe</a></code>
+                        <i>Type : </i>        <code><a href="../entitys/EquipePartida.html" target="_self" >EquipePartida</a></code>
 
                     </td>
                 </tr>
@@ -188,13 +177,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ManyToOne(undefined)<br />@JoinColumn({name: &#x27;id_equipe_mandante&#x27;})<br />
+                            @ManyToOne(undefined, {eager: true})<br />@JoinColumn({name: &#x27;id_mandante&#x27;})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/modules/partida/entities/partida.entity.ts:100</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">src/modules/partida/entities/partida.entity.ts:98</a></div>
                         </td>
                     </tr>
 
@@ -230,61 +219,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/modules/partida/entities/partida.entity.ts:106</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="atletasMandante"></a>
-                    <span class="name">
-                            <span class="modifier">Optional</span>
-                        <span ><b>atletasMandante</b></span>
-                        <a href="#atletasMandante"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>AtletaPartida[]</code>
-
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/modules/partida/entities/partida.entity.ts:102</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="atletasVisitante"></a>
-                    <span class="name">
-                            <span class="modifier">Optional</span>
-                        <span ><b>atletasVisitante</b></span>
-                        <a href="#atletasVisitante"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>AtletaPartida[]</code>
-
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/modules/partida/entities/partida.entity.ts:103</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/modules/partida/entities/partida.entity.ts:101</a></div>
                         </td>
                     </tr>
 
@@ -319,7 +254,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/modules/partida/entities/partida.entity.ts:66</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/modules/partida/entities/partida.entity.ts:64</a></div>
                         </td>
                     </tr>
 
@@ -355,7 +290,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/modules/partida/entities/partida.entity.ts:69</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/modules/partida/entities/partida.entity.ts:67</a></div>
                         </td>
                     </tr>
 
@@ -391,7 +326,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/modules/partida/entities/partida.entity.ts:84</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/modules/partida/entities/partida.entity.ts:82</a></div>
                         </td>
                     </tr>
 
@@ -402,17 +337,17 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="equipeGanhadora"></a>
+                    <a name="ganhadora"></a>
                     <span class="name">
                             <span class="modifier">Optional</span>
-                        <span ><b>equipeGanhadora</b></span>
-                        <a href="#equipeGanhadora"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>ganhadora</b></span>
+                        <a href="#ganhadora"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../classes/Equipe.html" target="_self" >Equipe</a></code>
+                        <i>Type : </i>        <code><a href="../entitys/EquipePartida.html" target="_self" >EquipePartida</a></code>
 
                     </td>
                 </tr>
@@ -421,48 +356,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ManyToOne(undefined)<br />@JoinColumn({name: &#x27;id_equipe_ganhadora&#x27;})<br />
+                            @ManyToOne(undefined)<br />@JoinColumn({name: &#x27;id_ganhadora&#x27;})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/modules/partida/entities/partida.entity.ts:92</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="equipeVisitante"></a>
-                    <span class="name">
-                        <span ><b>equipeVisitante</b></span>
-                        <a href="#equipeVisitante"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../classes/Equipe.html" target="_self" >Equipe</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @ManyToOne(undefined)<br />@JoinColumn({name: &#x27;id_equipe_visitante&#x27;})<br />
-                        </code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/modules/partida/entities/partida.entity.ts:96</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/modules/partida/entities/partida.entity.ts:90</a></div>
                         </td>
                     </tr>
 
@@ -497,7 +397,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/modules/partida/entities/partida.entity.ts:88</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/modules/partida/entities/partida.entity.ts:86</a></div>
                         </td>
                     </tr>
 
@@ -533,7 +433,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/modules/partida/entities/partida.entity.ts:31</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/modules/partida/entities/partida.entity.ts:29</a></div>
                         </td>
                     </tr>
 
@@ -544,11 +444,11 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="idEquipeGanhadora"></a>
+                    <a name="idGanhadora"></a>
                     <span class="name">
                             <span class="modifier">Optional</span>
-                        <span ><b>idEquipeGanhadora</b></span>
-                        <a href="#idEquipeGanhadora"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>idGanhadora</b></span>
+                        <a href="#idGanhadora"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -569,7 +469,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/modules/partida/entities/partida.entity.ts:73</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/modules/partida/entities/partida.entity.ts:71</a></div>
                         </td>
                     </tr>
 
@@ -604,7 +504,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/modules/partida/entities/partida.entity.ts:35</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/modules/partida/entities/partida.entity.ts:33</a></div>
                         </td>
                     </tr>
 
@@ -639,7 +539,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/modules/partida/entities/partida.entity.ts:52</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/modules/partida/entities/partida.entity.ts:50</a></div>
                         </td>
                     </tr>
 
@@ -674,7 +574,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/modules/partida/entities/partida.entity.ts:56</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/modules/partida/entities/partida.entity.ts:54</a></div>
                         </td>
                     </tr>
 
@@ -707,7 +607,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/modules/partida/entities/partida.entity.ts:28</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/modules/partida/entities/partida.entity.ts:26</a></div>
                         </td>
                     </tr>
 
@@ -740,42 +640,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/modules/partida/entities/partida.entity.ts:27</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="pontuacao"></a>
-                    <span class="name">
-                        <span ><b>pontuacao</b></span>
-                        <a href="#pontuacao"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../classes/Partida.html" target="_self" >PontuacaoPartida</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @OneToOne(undefined)<br />@JoinColumn({name: &#x27;id&#x27;})<br />
-                        </code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/modules/partida/entities/partida.entity.ts:110</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/modules/partida/entities/partida.entity.ts:25</a></div>
                         </td>
                     </tr>
 
@@ -815,7 +680,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/modules/partida/entities/partida.entity.ts:63</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/modules/partida/entities/partida.entity.ts:61</a></div>
                         </td>
                     </tr>
 
@@ -850,7 +715,42 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/modules/partida/entities/partida.entity.ts:48</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/modules/partida/entities/partida.entity.ts:46</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="visitante"></a>
+                    <span class="name">
+                        <span ><b>visitante</b></span>
+                        <a href="#visitante"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../entitys/EquipePartida.html" target="_self" >EquipePartida</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ManyToOne(undefined, {eager: true})<br />@JoinColumn({name: &#x27;id_visitante&#x27;})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/modules/partida/entities/partida.entity.ts:94</a></div>
                         </td>
                     </tr>
 
@@ -874,17 +774,15 @@ import {
   JoinColumn,
   ManyToOne,
   OneToMany,
-  OneToOne,
 } from &#x27;typeorm&#x27;;
 import { StatusPartida } from &#x27;../enums/status-partida.enum&#x27;;
 import { TipoRodada, tiposDeRodada } from &#x27;../types/tipo-rodada.type&#x27;;
 import { ArbitroPartida } from &#x27;./arbitro-partida.entity&#x27;;
-import { AtletaPartida } from &#x27;./atleta-partida.entity&#x27;;
-import { PontuacaoPartida } from &#x27;./partida-pontuacao.entity&#x27;;
+import { EquipePartida } from &#x27;./equipe-partida.entity&#x27;;
 
 @Entity(&#x27;partidas&#x27;)
 @Index(&#x27;IX_partidas_RemovePartidasSemVencedores&#x27;, [&#x27;status&#x27;], {
-  where: &#x27;id_equipe_ganhadora IS NULL&#x27;,
+  where: &#x27;id_ganhadora IS NULL&#x27;,
 })
 @Index(&#x27;IX_partidas_status_tipoDaRodada&#x27;, [&#x27;status&#x27;, &#x27;tipoDaRodada&#x27;])
 export class Partida extends EntidadeBase {
@@ -898,13 +796,13 @@ export class Partida extends EntidadeBase {
   @Index()
   idGinasio!: string;
 
-  public set equipeMandante(e: Equipe) {
-    this._equipeMandante &#x3D; e;
-    this.idGinasio &#x3D; e.idGinasio;
+  public set mandante(pp: EquipePartida) {
+    this._mandante &#x3D; pp;
+    this.idGinasio &#x3D; pp.equipe.idGinasio;
   }
 
-  public get equipeMandante(): Equipe {
-    return this._equipeMandante;
+  public get mandante(): EquipePartida {
+    return this._mandante;
   }
 
   @Column({ type: &#x27;enum&#x27;, enum: tiposDeRodada })
@@ -934,7 +832,7 @@ export class Partida extends EntidadeBase {
 
   @Column({ type: &#x27;uuid&#x27;, nullable: true })
   @Index()
-  idEquipeGanhadora?: string;
+  idGanhadora?: string;
 
   public get duracaoBruta(): number | undefined {
     if (!this.dataFinalizacao) return undefined;
@@ -951,27 +849,20 @@ export class Partida extends EntidadeBase {
   @JoinColumn({ name: &#x27;id_ginasio&#x27; })
   ginasio!: Ginasio;
 
-  @ManyToOne(() &#x3D;&gt; Equipe)
-  @JoinColumn({ name: &#x27;id_equipe_ganhadora&#x27; })
-  equipeGanhadora?: Equipe;
+  @ManyToOne(() &#x3D;&gt; EquipePartida)
+  @JoinColumn({ name: &#x27;id_ganhadora&#x27; })
+  ganhadora?: EquipePartida;
 
-  @ManyToOne(() &#x3D;&gt; Equipe)
-  @JoinColumn({ name: &#x27;id_equipe_visitante&#x27; })
-  equipeVisitante!: Equipe;
+  @ManyToOne(() &#x3D;&gt; Equipe, { eager: true })
+  @JoinColumn({ name: &#x27;id_visitante&#x27; })
+  visitante!: EquipePartida;
 
-  @ManyToOne(() &#x3D;&gt; Equipe)
-  @JoinColumn({ name: &#x27;id_equipe_mandante&#x27; })
-  private _equipeMandante!: Equipe;
-
-  atletasMandante?: AtletaPartida[];
-  atletasVisitante?: AtletaPartida[];
+  @ManyToOne(() &#x3D;&gt; Equipe, { eager: true })
+  @JoinColumn({ name: &#x27;id_mandante&#x27; })
+  private _mandante!: EquipePartida;
 
   @OneToMany(() &#x3D;&gt; ArbitroPartida, (ap) &#x3D;&gt; ap.partida)
   arbitros?: ArbitroPartida[];
-
-  @OneToOne(() &#x3D;&gt; PontuacaoPartida)
-  @JoinColumn({ name: &#x27;id&#x27; })
-  pontuacao!: PontuacaoPartida;
 }
 </code></pre>
     </div>

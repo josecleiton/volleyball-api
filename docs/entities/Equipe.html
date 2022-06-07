@@ -110,13 +110,7 @@
                                 <a href="#nome" >nome</a>
                             </li>
                             <li>
-                                <a href="#partidasGanhadas" >partidasGanhadas</a>
-                            </li>
-                            <li>
-                                <a href="#partidasMandantes" >partidasMandantes</a>
-                            </li>
-                            <li>
-                                <a href="#partidasVisitantes" >partidasVisitantes</a>
+                                <a href="#participacoesEmPartidas" >participacoesEmPartidas</a>
                             </li>
                             <li>
                                     <span class="modifier">Static</span>
@@ -542,16 +536,16 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="partidasGanhadas"></a>
+                    <a name="participacoesEmPartidas"></a>
                     <span class="name">
-                        <span ><b>partidasGanhadas</b></span>
-                        <a href="#partidasGanhadas"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>participacoesEmPartidas</b></span>
+                        <a href="#participacoesEmPartidas"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../classes/Partida.html" target="_self" >Partida[]</a></code>
+                        <i>Type : </i>    <code>EquipePartida[]</code>
 
                     </td>
                 </tr>
@@ -560,83 +554,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @OneToMany(undefined, p &#x3D;&gt; p.equipeGanhadora)<br />
+                            @OneToMany(undefined, p &#x3D;&gt; p.equipe)<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
                                 <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/modules/equipe/entities/equipe.entity.ts:88</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="partidasMandantes"></a>
-                    <span class="name">
-                        <span ><b>partidasMandantes</b></span>
-                        <a href="#partidasMandantes"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../classes/Partida.html" target="_self" >Partida[]</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @OneToMany(undefined, p &#x3D;&gt; p.equipeMandante)<br />
-                        </code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/modules/equipe/entities/equipe.entity.ts:94</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="partidasVisitantes"></a>
-                    <span class="name">
-                        <span ><b>partidasVisitantes</b></span>
-                        <a href="#partidasVisitantes"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../classes/Partida.html" target="_self" >Partida[]</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @OneToMany(undefined, p &#x3D;&gt; p.equipeVisitante)<br />
-                        </code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/modules/equipe/entities/equipe.entity.ts:91</a></div>
                         </td>
                     </tr>
 
@@ -787,7 +711,6 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Liga } from &#x27;src/modules/liga/entities/liga.entity&#x27;;
 import { EntidadeBase } from &#x27;src/modules/core/entities/base.entity&#x27;;
 import { Ginasio } from &#x27;src/modules/ginasio/entities/ginasio.entity&#x27;;
-import { Partida } from &#x27;src/modules/partida/entities/partida.entity&#x27;;
 import { Atleta } from &#x27;src/modules/pessoa/entities/atleta.entity&#x27;;
 import { Tecnico } from &#x27;src/modules/pessoa/entities/tecnico.entity&#x27;;
 import {
@@ -800,6 +723,7 @@ import {
   OneToOne,
 } from &#x27;typeorm&#x27;;
 import { Auxiliar } from &#x27;src/modules/pessoa/entities/auxiliar.entity&#x27;;
+import { EquipePartida } from &#x27;src/modules/partida/entities/equipe-partida.entity&#x27;;
 
 @Entity(&#x27;equipes&#x27;)
 @Index(&#x27;IX_equipes_cidade_estado&#x27;, [&#x27;cidade&#x27;, &#x27;estado&#x27;])
@@ -870,15 +794,10 @@ export class Equipe extends EntidadeBase {
   @JoinColumn({ name: &#x27;id_ginasio&#x27; })
   ginasio!: Ginasio;
 
-  @OneToMany(() &#x3D;&gt; Partida, (p) &#x3D;&gt; p.equipeGanhadora)
-  partidasGanhadas!: Partida[];
-
-  @OneToMany(() &#x3D;&gt; Partida, (p) &#x3D;&gt; p.equipeVisitante)
-  partidasVisitantes!: Partida[];
-
-  @OneToMany(() &#x3D;&gt; Partida, (p) &#x3D;&gt; p.equipeMandante)
-  partidasMandantes!: Partida[];
-}</code></pre>
+  @OneToMany(() &#x3D;&gt; EquipePartida, (p) &#x3D;&gt; p.equipe)
+  participacoesEmPartidas!: EquipePartida[];
+}
+</code></pre>
     </div>
 </div>
 
