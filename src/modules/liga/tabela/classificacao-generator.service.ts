@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable, Scope } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { addBusinessDays, nextDay, setMinutes } from 'date-fns';
 import { DiaDaSemana } from 'src/modules/core/enums/dia-da-semana.enum';
 import { Equipe } from 'src/modules/equipe/entities/equipe.entity';
@@ -6,6 +6,7 @@ import { Partida } from 'src/modules/partida/entities/partida.entity';
 import { DoublyLinkedList } from 'datastructures-js';
 import { createGroup } from 'tournament_creator';
 import { TipoRodada } from 'src/modules/partida/types/tipo-rodada.type';
+import { EquipePartida } from 'src/modules/partida/entities/equipe-partida.entity';
 
 interface IClassificacaoGeneratorRequest {
   equipes: Equipe[];
@@ -15,7 +16,7 @@ interface IClassificacaoGeneratorRequest {
   intervaloDeDiasUteisEntreTurnos: number;
 }
 
-@Injectable({ scope: Scope.TRANSIENT })
+@Injectable()
 export class ClassificacaoGeneratorService {
   private static readonly diaDaSemanaIndiceMap: ReadonlyMap<DiaDaSemana, Day> =
     new Map([
@@ -115,12 +116,21 @@ export class ClassificacaoGeneratorService {
       rematch: true,
     }).matches.map((match, index) => {
       const partida = new Partida();
-      partida.equipeMandante = idEquipeMap.get(
+      const equipeMandante = idEquipeMap.get(
         match.homeTeam as string,
       ) as Equipe;
-      partida.equipeVisitante = idEquipeMap.get(
+      const equipeVisitante = idEquipeMap.get(
         match.awayTeam as string,
       ) as Equipe;
+
+      partida.mandante = new EquipePartida();
+      partida.mandante.partida = partida;
+      partida.mandante.equipe = equipeMandante;
+
+      partida.visitante = new EquipePartida();
+      partida.visitante.partida = partida;
+      partida.visitante.equipe = equipeVisitante;
+
       partida.dataComeco = datasDasPartidas[index];
       partida.tipoDaRodada = match.matchNumber.toString() as TipoRodada;
 

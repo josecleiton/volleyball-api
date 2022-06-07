@@ -1,5 +1,5 @@
 import { EntidadeBase } from 'src/modules/core/entities/base.entity';
-import { AtletaPartida } from 'src/modules/partida/entities/atleta-partida.entity';
+import { AtletaEscalado } from 'src/modules/partida/entities/atleta-escalado.entity';
 import { Column, Entity, Index, JoinColumn, ManyToOne } from 'typeorm';
 
 @Entity('fundamentos_atletas')
@@ -38,7 +38,7 @@ export class FundamentoAtleta extends EntidadeBase {
     return this.pontos / this.ataques;
   }
 
-  @ManyToOne(() => AtletaPartida)
+  @ManyToOne(() => AtletaEscalado)
   @JoinColumn({ name: 'id_atleta_partida' })
-  atleta!: AtletaPartida;
+  atleta!: AtletaEscalado;
 }

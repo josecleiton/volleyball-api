@@ -3,39 +3,34 @@ import {
   ConflictException,
   Injectable,
   NotFoundException,
-  NotImplementedException,
-  Scope,
 } from '@nestjs/common';
 import { groupBy } from 'lodash';
+import { PontuacaoViewRepository } from 'src/modules/pontuacao/repositories/pontuacao-view.repository';
 import { Connection } from 'typeorm';
-import { Equipe } from '../../equipe/entities/equipe.entity';
-import { PontuacaoEquipeRepository } from '../../liga/repositories/pontuacao_equipe.repository';
 import { Posicao, TipoArbitro } from '../../pessoa/enums';
 import { ArbitroService } from '../../pessoa/services/arbitro.service';
 import { AtletaService } from '../../pessoa/services/atleta.service';
 import { DelegadoService } from '../../pessoa/services/delegado.service';
 import {
-  AtletaPartidaDto,
+  AtletaParticipacaoDto,
   CadastrarParticipantesPartidaDto,
+  EscolhaDeDesistencia,
   ListaPartidasDto,
   PartidaRespostaDto,
 } from '../dto/partida.dto';
-import { IPontuacaoPartidaDto } from '../dto/pontuacao-partida.dto';
 import { Partida } from '../entities/partida.entity';
 import { StatusPartida } from '../enums/status-partida.enum';
 import { ArbitroPartidaRepository } from '../repositories/arbitro-partida.repository';
-import { AtletaPartidaRepository } from '../repositories/atleta-partida.repository';
+import { AtletaEscaladoRepository } from '../repositories/atleta-escalado.repository';
 import { PartidaRepository } from '../repositories/partida.repository';
-import { PontuacaoPartidaRepository } from '../repositories/pontuacao-partida.repository';
 
-@Injectable({ scope: Scope.REQUEST })
+@Injectable()
 export class PartidaService {
   constructor(
     private readonly partidaRepository: PartidaRepository,
-    private readonly atletaPartidaRepository: AtletaPartidaRepository,
+    private readonly pontuacaoRepository: PontuacaoViewRepository,
+    private readonly atletaEscaladoRepository: AtletaEscaladoRepository,
     private readonly arbitroPartidaRepository: ArbitroPartidaRepository,
-    private readonly pontuacaoPartidaRepository: PontuacaoPartidaRepository,
-    private readonly pontuacaoEquipeRepository: PontuacaoEquipeRepository,
     private readonly delegadoService: DelegadoService,
     private readonly atletaService: AtletaService,
     private readonly arbitroService: ArbitroService,
@@ -65,7 +60,7 @@ export class PartidaService {
 
   private validaAtletas(
     idEquipe: string,
-    atletas: AtletaPartidaDto[],
+    atletas: AtletaParticipacaoDto[],
   ): void | never {
     const atletasPorPosicao = groupBy(atletas, (a) => a.posicao);
     if (
@@ -90,38 +85,27 @@ export class PartidaService {
 
   private async registraDesistencia(partida: Partida) {
     const pontuacaoMandante =
-      partida.idEquipeGanhadora === partida.idMandante ? 2 : -2;
-    const pontuacaoPartida = this.pontuacaoPartidaRepository.create({
-      id: partida.id,
-      visitante: -pontuacaoMandante,
-      mandante: pontuacaoMandante,
-    });
+      partida.idGanhadora === partida.idMandante ? 2 : -2;
+
+    partida.mandante.pontuacao = pontuacaoMandante;
+    partida.visitante.pontuacao = -partida.mandante.pontuacao;
 
     const { partida: partidaAtualizada } = await this.connection.transaction(
       async (manager) => {
-        await manager.save(pontuacaoPartida);
-        const pontuacaoMandante =
-          await this.pontuacaoEquipeRepository.atualizaPontuacao(
-            partida.idMandante,
-            pontuacaoPartida.mandante,
-            manager,
-          );
-        const pontuacaoVisitante =
-          await this.pontuacaoEquipeRepository.atualizaPontuacao(
-            partida.idVisitante,
-            pontuacaoPartida.visitante,
-            manager,
-          );
+        const [mandante, visitante] = await manager.save([
+          partida.mandante,
+          partida.visitante,
+        ]);
+
+        await this.pontuacaoRepository.refreshMaterializedView(manager);
 
         return {
           partida: await manager.save(partida),
-          pontuacaoMandante,
-          pontuacaoVisitante,
+          mandante,
+          visitante,
         };
       },
     );
-
-    partidaAtualizada.pontuacao = pontuacaoPartida;
 
     return partidaAtualizada;
   }
@@ -143,8 +127,8 @@ export class PartidaService {
 
     if (requisicao.desistente) {
       partida.status = StatusPartida.WO;
-      partida.idEquipeGanhadora =
-        requisicao.desistente === 'mandante'
+      partida.idGanhadora =
+        requisicao.desistente === EscolhaDeDesistencia.MANDANTE
           ? partida.idVisitante
           : partida.idMandante;
 
@@ -175,13 +159,13 @@ export class PartidaService {
       ),
     );
 
-    const atletasMandantePartida = requisicao.atletasMandante.map((atletaDto) =>
-      this.atletaPartidaRepository.create({ ...atletaDto }),
+    const escalacaoMandante = requisicao.atletasMandante.map((atletaDto) =>
+      this.atletaEscaladoRepository.create({ ...atletaDto }),
     );
-    const atletasVisitantePartida = requisicao.atletasVisitante.map(
-      (atletaDto) => this.atletaPartidaRepository.create({ ...atletaDto }),
+    const escalacaoVisitante = requisicao.atletasVisitante.map((atletaDto) =>
+      this.atletaEscaladoRepository.create({ ...atletaDto }),
     );
-    const arbitrosPartida = requisicao.arbitros.map((arbitroDto) =>
+    const arbitrosDaPartida = requisicao.arbitros.map((arbitroDto) =>
       this.arbitroPartidaRepository.create({ ...arbitroDto }),
     );
 
@@ -192,50 +176,18 @@ export class PartidaService {
       async (manager) => {
         const partidaSalva = await manager.save(partida);
 
-        await manager.save(atletasMandantePartida);
-        await manager.save(atletasVisitantePartida);
-        await manager.save(arbitrosPartida);
+        await manager.save(escalacaoMandante);
+        await manager.save(escalacaoVisitante);
+        await manager.save(arbitrosDaPartida);
 
-        partidaSalva.arbitros = arbitrosPartida;
-        partidaSalva.atletasMandante = atletasMandantePartida;
-        partidaSalva.atletasVisitante = atletasVisitantePartida;
+        partidaSalva.arbitros = arbitrosDaPartida;
+        partidaSalva.mandante.atletas = escalacaoMandante;
+        partidaSalva.visitante.atletas = escalacaoVisitante;
 
         return partidaSalva;
       },
     );
 
     return new PartidaRespostaDto(partidaAtualizada);
-  }
-
-  finalizaPartida(
-    partida: Partida,
-    equipeGanhadora: Equipe,
-    pontuacaoDto: IPontuacaoPartidaDto,
-  ) {
-    if (partida.status !== StatusPartida.PARTICIPANTES_CADASTRADOS) {
-      throw new ConflictException(
-        `Partida ${partida.id} não está no status ${StatusPartida.PARTICIPANTES_CADASTRADOS}`,
-      );
-    }
-
-    partida.idEquipeGanhadora = equipeGanhadora.id;
-    partida.status = StatusPartida.CONCLUIDA;
-
-    const pontuacaoMandante =
-      partida.idEquipeGanhadora === partida.idMandante
-        ? pontuacaoDto.ganhador
-        : pontuacaoDto.perdedor;
-    const pontuacaoVisitante =
-      pontuacaoMandante === pontuacaoDto.ganhador
-        ? pontuacaoDto.perdedor
-        : pontuacaoDto.ganhador;
-
-    partida.pontuacao = this.pontuacaoPartidaRepository.create({
-      id: partida.id,
-      mandante: pontuacaoMandante,
-      visitante: pontuacaoVisitante,
-    });
-
-    throw new NotImplementedException();
   }
 }

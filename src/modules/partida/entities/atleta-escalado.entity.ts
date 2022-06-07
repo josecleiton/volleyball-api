@@ -2,14 +2,14 @@ import { EntidadeBase } from 'src/modules/core/entities/base.entity';
 import { Atleta } from 'src/modules/pessoa/entities/atleta.entity';
 import { Posicao } from 'src/modules/pessoa/enums';
 import { Column, Entity, Index, JoinColumn, ManyToOne, Unique } from 'typeorm';
-import { Partida } from './partida.entity';
+import { EquipePartida } from './equipe-partida.entity';
 
-@Entity('atletas_partida')
-@Unique(['idAtleta', 'idPartida'])
-export class AtletaPartida extends EntidadeBase {
+@Entity('atletas_escalados')
+@Unique(['idAtleta', 'idEquipePartida'])
+export class AtletaEscalado extends EntidadeBase {
   @Column('uuid')
   @Index()
-  idPartida!: string;
+  idEquipePartida!: string;
 
   @Column('uuid')
   @Index()
@@ -18,9 +18,9 @@ export class AtletaPartida extends EntidadeBase {
   @Column({ type: 'enum', enum: Posicao })
   posicao!: Posicao;
 
-  @ManyToOne(() => Partida)
-  @JoinColumn({ name: 'id_partida' })
-  partida!: Partida;
+  @ManyToOne(() => EquipePartida)
+  @JoinColumn({ name: 'id_equipe_partida' })
+  participacao!: EquipePartida;
 
   @ManyToOne(() => Atleta)
   @JoinColumn({ name: 'id_atleta' })

@@ -3,7 +3,6 @@ import {
   Inject,
   Injectable,
   NotFoundException,
-  Scope,
 } from '@nestjs/common';
 import { In } from 'typeorm';
 import { LigaService } from '../liga/services/liga.service';
@@ -19,7 +18,7 @@ import { Equipe } from './entities/equipe.entity';
 import { EquipeRepository } from './equipe.repository';
 import { VerificaUrlService } from '../core/services/verifica-url.service';
 
-@Injectable({ scope: Scope.REQUEST })
+@Injectable()
 export class EquipeService {
   constructor(
     private readonly equipeRepository: EquipeRepository,

@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException, Scope } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { LigaService } from 'src/modules/liga/services/liga.service';
 import { TypeORMFilterService } from 'src/modules/core/services/typeorm-filter.service';
 import { EquipeService } from 'src/modules/equipe/equipe.service';
@@ -6,7 +6,7 @@ import { CriaTecnicoDto, TecnicoRespostaDto } from '../dto/tecnico.dto';
 import { TecnicoRepository } from '../repositories/tecnico.repository';
 import { TipoPessoa } from '../enums';
 
-@Injectable({ scope: Scope.REQUEST })
+@Injectable()
 export class TecnicoService {
   constructor(
     private readonly tecnicoRepository: TecnicoRepository,

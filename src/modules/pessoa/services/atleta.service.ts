@@ -4,7 +4,6 @@ import {
   Inject,
   Injectable,
   NotFoundException,
-  Scope,
 } from '@nestjs/common';
 import { TypeORMFilterService } from 'src/modules/core/services/typeorm-filter.service';
 import { Equipe } from 'src/modules/equipe/entities/equipe.entity';
@@ -21,7 +20,7 @@ import {
 import { TipoPessoa } from '../enums';
 import { AtletaRepository } from '../repositories/atleta.repository';
 
-@Injectable({ scope: Scope.REQUEST })
+@Injectable()
 export class AtletaService {
   constructor(
     private readonly atletaRepository: AtletaRepository,

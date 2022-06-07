@@ -1,16 +1,16 @@
-import { forwardRef, Inject, Injectable, Scope } from '@nestjs/common';
+import { forwardRef, Inject, Injectable } from '@nestjs/common';
 import { PartidaService } from 'src/modules/partida/services/partida.service';
-import { PontuacaoEquipeService } from '../services/pontuacao-equipe.service';
+import { PontuacaoService } from 'src/modules/pontuacao/pontuacao.service';
 import { SemisEFinalGeneratorService } from './semis-e-final-generator.service';
 
-@Injectable({ scope: Scope.TRANSIENT })
+@Injectable()
 export class FinalGeneratorService extends SemisEFinalGeneratorService {
   protected readonly tipoRodada = 'final';
 
   constructor(
     @Inject(forwardRef(() => PartidaService)) partidaService: PartidaService,
-    pontuacaoEquipeService: PontuacaoEquipeService,
+    pontuacaoService: PontuacaoService,
   ) {
-    super(partidaService, pontuacaoEquipeService);
+    super(partidaService, pontuacaoService);
   }
 }

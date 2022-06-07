@@ -9,18 +9,18 @@ import {
   IsUUID,
   ValidateNested,
 } from 'class-validator';
-import { EquipeRespostaDto } from 'src/modules/equipe/dto/equipe.dto';
 import { Posicao, TipoArbitro } from 'src/modules/pessoa/enums';
 import { Partida } from '../entities/partida.entity';
 import { StatusPartida } from '../enums/status-partida.enum';
 import { TipoRodada, tiposDeRodada } from '../types/tipo-rodada.type';
+import { EquipePartidaRespostaDto } from './equipe-partida.dto';
 
 export class AtualizaPartidaStatusDto {
   @IsEnum(StatusPartida)
   status!: StatusPartida;
 }
 
-export class AtletaPartidaDto {
+export class AtletaParticipacaoDto {
   @IsUUID()
   idAtleta!: string;
 
@@ -34,6 +34,11 @@ class ArbitroPartidaDto {
 
   @IsEnum(TipoArbitro)
   tipo!: TipoArbitro;
+}
+
+export enum EscolhaDeDesistencia {
+  MANDANTE = 'mandante',
+  VISITANTE = 'visitante',
 }
 
 export class CadastrarParticipantesPartidaDto {
@@ -50,17 +55,17 @@ export class CadastrarParticipantesPartidaDto {
   @ArrayMinSize(12)
   @ArrayMaxSize(14)
   @ValidateNested({ each: true })
-  atletasMandante!: AtletaPartidaDto[];
+  atletasMandante!: AtletaParticipacaoDto[];
 
   @IsArray()
   @ArrayMinSize(12)
   @ArrayMaxSize(14)
   @ValidateNested({ each: true })
-  atletasVisitante!: AtletaPartidaDto[];
+  atletasVisitante!: AtletaParticipacaoDto[];
 
-  @IsIn(['mandante', 'visitante'])
+  @IsEnum(EscolhaDeDesistencia)
   @IsOptional()
-  desistente?: 'mandante' | 'visitante';
+  desistente?: EscolhaDeDesistencia;
 }
 
 export class ListaPartidasDto {
@@ -93,7 +98,7 @@ export class PartidaRespostaDto {
   dataCriacao: Date;
   dataAtualizacao: Date;
   duracaoBruta?: number;
-  equipeGanhadora?: EquipeRespostaDto;
+  ganhadora?: EquipePartidaRespostaDto;
   tipoRodada: TipoRodada;
 
   constructor(partida: Partida) {
@@ -103,14 +108,14 @@ export class PartidaRespostaDto {
     this.status = partida.status;
     this.dataComeco = partida.dataComeco;
     this.dataFinalizacao = partida.dataFinalizacao;
-    this.idEquipeGanhador = partida.idEquipeGanhadora;
+    this.idEquipeGanhador = partida.idGanhadora;
     this.dataCriacao = partida.dataCriacao;
     this.dataAtualizacao = partida.dataAtualizacao;
     this.duracaoBruta = partida.duracaoBruta;
     this.idEquipeMandante = partida.idMandante;
     this.idEquipeVisitante = partida.idVisitante;
-    this.equipeGanhadora = partida.equipeGanhadora
-      ? new EquipeRespostaDto(partida.equipeGanhadora)
+    this.ganhadora = partida.ganhadora
+      ? new EquipePartidaRespostaDto(partida.ganhadora)
       : undefined;
     this.tipoRodada = partida.tipoDaRodada;
   }
