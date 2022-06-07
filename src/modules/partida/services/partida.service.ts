@@ -88,7 +88,17 @@ export class PartidaService {
       partida.idGanhadora === partida.idMandante ? 2 : -2;
 
     partida.mandante.pontuacao = pontuacaoMandante;
+    partida.mandante.pontosNosSets = [25, 25, 25].map((quantidade) => ({
+      quantidade,
+    }));
+
     partida.visitante.pontuacao = -partida.mandante.pontuacao;
+    partida.visitante.pontosNosSets = [0, 0, 0].map((quantidade) => ({
+      quantidade,
+    }));
+
+    partida.mandante.resultadoCadastradoEm =
+      partida.visitante.resultadoCadastradoEm = new Date();
 
     const { partida: partidaAtualizada } = await this.connection.transaction(
       async (manager) => {

@@ -1,6 +1,7 @@
 import { EntidadeBase } from 'src/modules/core/entities/base.entity';
 import { Equipe } from 'src/modules/equipe/entities/equipe.entity';
 import { Column, Entity, ManyToOne, OneToMany } from 'typeorm';
+import { IPontoNoSet } from '../interfaces/ponto_no_set.interface';
 import { AtletaEscalado } from './atleta-escalado.entity';
 import { Partida } from './partida.entity';
 
@@ -19,7 +20,7 @@ export class EquipePartida extends EntidadeBase {
   setsGanhos!: number;
 
   @Column({ type: 'jsonb', default: [] })
-  pontosNosSets!: number[];
+  pontosNosSets!: IPontoNoSet[];
 
   @Column({
     name: 'sets_disputados',

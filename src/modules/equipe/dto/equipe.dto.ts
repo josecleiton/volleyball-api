@@ -78,7 +78,8 @@ export class EquipeRespostaDto {
       ? new TecnicoRespostaDto(equipe.tecnico)
       : undefined;
     this.quantidadeAuxiliares = equipe.auxiliares?.length ?? 0;
-    this.atletas = equipe.atletas.map((x) => new AtletaRespostaDto(x));
-    this.auxiliares = equipe.auxiliares.map((x) => new AuxiliarRespostaDto(x));
+    this.atletas = equipe.atletas?.map((x) => new AtletaRespostaDto(x)) ?? [];
+    this.auxiliares =
+      equipe.auxiliares?.map((x) => new AuxiliarRespostaDto(x)) ?? [];
   }
 }

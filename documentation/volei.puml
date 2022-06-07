@@ -150,6 +150,35 @@ entity partidas {
 	* data_atualizacao: timestamp
 }
 
+entity equipes_partidas {
+	* id : uuid <<generated>>
+	--
+	* id_equipe : uuid <<FK>>
+	* id_partida : uuid <<FK>>
+	* pontuacao: int = 0
+	* sets_ganhos: int = 0
+	* pontos_nos_sets: {quantidade: int}[] = []
+	* sets_disputados: <<GENERATED>>
+	* ganhou: smallint <<GENERATED>>
+	resultado_cadastrado_em: timestamp
+	* data_criacao: timestamp
+	* data_atualizacao: timestamp
+}
+
+entity pontuacoes_view {
+	* idEquipe : uuid <<FK>>
+	--
+	* pontuacao : int
+	* sets_ganhos : int
+	* sets_disputados : int
+	* sets_perdidos : int
+	* pontos_average : int
+	* sets_average : int
+	* partidas_ganhas : int
+	* partidas_perdidas : int
+	* partidas_disputadas : int
+}
+
 ligas ||--o{ "<= 12" equipes
 ligas ||--o{ arbitros
 ligas ||--o{ delegados
@@ -157,10 +186,11 @@ equipes ||--o{ "<= 22" atletas : no mínimo 12 para o time estar regular
 equipes "1" --|| "1" tecnicos
 equipes ||--o{ "*" auxiliares
 equipes "1" ||-- "1" ginasios
+equipes "1" ||-- "1" pontuacoes_view
 partidas "1" ||-- "1" arbitros
 partidas "1" ||-- "1" delegados
 partidas "1" ||-- "1" ginasios
-partidas "1" ||--o{ "2" equipes : time vencedor e time derrotado
+partidas "1" ||--o{ "2" equipes_partidas : equipe mandante e visitante
 
 atletas ||-- pessoas
 tecnicos ||-- pessoas

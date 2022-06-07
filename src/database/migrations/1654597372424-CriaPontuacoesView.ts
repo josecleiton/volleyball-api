@@ -1,25 +1,20 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
-export class PontuacoesView1654569206139 implements MigrationInterface {
-  name = 'PontuacoesView1654569206139';
+export class CriaPontuacoesView1654597372424 implements MigrationInterface {
+  name = 'CriaPontuacoesView1654597372424';
 
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(
-      `DELETE FROM "typeorm_metadata" WHERE "type" = $1 AND "name" = $2 AND "schema" = $3`,
-      ['MATERIALIZED_VIEW', 'melhores_liberos_view', 'public'],
-    );
-    await queryRunner.query(`DROP MATERIALIZED VIEW "melhores_liberos_view"`);
-    await queryRunner.query(
-      `ALTER TABLE "partidas" DROP CONSTRAINT "FK_5e275812a0861e5b9e56adf02fc"`,
-    );
-    await queryRunner.query(
-      `ALTER TABLE "partidas" DROP CONSTRAINT "FK_c7c95e31a3db527a6efdac0c345"`,
+      `ALTER TABLE "partidas" DROP CONSTRAINT "FK_98b9592061b55759e443f83c8fb"`,
     );
     await queryRunner.query(
       `ALTER TABLE "partidas" DROP CONSTRAINT "FK_6e9cc7455a900d190278156517c"`,
     );
     await queryRunner.query(
-      `ALTER TABLE "partidas" DROP CONSTRAINT "FK_98b9592061b55759e443f83c8fb"`,
+      `ALTER TABLE "partidas" DROP CONSTRAINT "FK_c7c95e31a3db527a6efdac0c345"`,
+    );
+    await queryRunner.query(
+      `ALTER TABLE "partidas" DROP CONSTRAINT "FK_5e275812a0861e5b9e56adf02fc"`,
     );
     await queryRunner.query(
       `ALTER TABLE "fundamentos_atletas" DROP CONSTRAINT "FK_17be2ae28b3a1b637af04786246"`,
@@ -43,23 +38,24 @@ export class PontuacoesView1654569206139 implements MigrationInterface {
       `CREATE INDEX "IDX_f72a0deda9a05fa5079ebaf7d3" ON "atletas_escalados" ("id_atleta") `,
     );
     await queryRunner.query(`
-          CREATE TABLE "equipes_partidas" (
-            "id" uuid NOT NULL DEFAULT uuid_generate_v4(),
-            "data_atualizacao" timestamp NOT NULL DEFAULT now(),
-            "data_criacao" timestamp NOT NULL DEFAULT now(),
-            "id_equipe" uuid NOT NULL,
-            "id_partida" uuid NOT NULL,
-            "pontuacao" integer NOT NULL DEFAULT '0',
-            "sets_ganhos" integer NOT NULL DEFAULT '0',
-            "pontos_nos_sets" jsonb NOT NULL DEFAULT '[]',
-            "sets_disputados" integer NOT NULL GENERATED ALWAYS AS (COALESCE(jsonb_array_length(pontos_nos_sets), 0)) STORED,
-            "ganhou" smallint NOT NULL GENERATED ALWAYS AS (cast(pontuacao > 2 AS INTEGER)) STORED,
-            "resultado_cadastrado_em" timestamp,
-            "equipe_id" uuid,
-            "partida_id" uuid,
-            CONSTRAINT "PK_24349dada80e22369201346b0e9" PRIMARY KEY ("id")
-          ) 
-        `);
+      CREATE TABLE "equipes_partidas" (
+        "id" uuid NOT NULL DEFAULT uuid_generate_v4(),
+        "data_atualizacao" timestamp NOT NULL DEFAULT now(),
+        "data_criacao" timestamp NOT NULL DEFAULT now(),
+        "id_equipe" uuid NOT NULL,
+        "id_partida" uuid NOT NULL,
+        "pontuacao" integer NOT NULL DEFAULT '0',
+        "sets_ganhos" integer NOT NULL DEFAULT '0',
+        "pontos_nos_sets" jsonb NOT NULL DEFAULT '[]',
+        "sets_disputados" integer NOT NULL GENERATED ALWAYS AS (COALESCE(jsonb_array_length(pontos_nos_sets), 0)) STORED,
+        "ganhou" smallint NOT NULL GENERATED ALWAYS AS (cast(pontuacao > 1 AS INTEGER)) STORED,
+        "resultado_cadastrado_em" timestamp,
+        "equipe_id" uuid,
+        "partida_id" uuid,
+        CONSTRAINT "PK_24349dada80e22369201346b0e9" PRIMARY KEY ("id")
+      )
+    `);
+
     await queryRunner.query(
       `CREATE INDEX "IDX_31f3de618c0b4fd37763676ee1" ON "equipes_partidas" ("data_criacao") `,
     );
@@ -110,6 +106,15 @@ export class PontuacoesView1654569206139 implements MigrationInterface {
       `ALTER TABLE "fundamentos_atletas" ADD CONSTRAINT "FK_17be2ae28b3a1b637af04786246" FOREIGN KEY ("id_atleta_partida") REFERENCES "atletas_escalados"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`,
     );
     await queryRunner.query(`CREATE MATERIALIZED VIEW "pontuacoes_view" AS 
+    WITH total_pontos_ep AS (
+      SELECT 
+        id,
+        COALESCE(SUM((value->>'quantidade')::int),0) as total_pontos
+      FROM equipes_partidas
+      CROSS JOIN LATERAL jsonb_array_elements(pontos_nos_sets)
+      GROUP BY id
+    )
+    
     SELECT
       e.id AS id_equipe,
       SUM(ep.pontuacao) AS pontuacao,
@@ -118,15 +123,22 @@ export class PontuacoesView1654569206139 implements MigrationInterface {
       COUNT(ep.id) AS partidas_disputadas,
       SUM(ep.ganhou) AS partidas_ganhas,
       SUM(ep.sets_disputados) - SUM(ep.sets_ganhos) AS sets_perdidos,
-      COUNT(ep.id) - SUM(ep.ganhou) AS partidas_perdidas
+      COUNT(ep.id) - SUM(ep.ganhou) AS partidas_perdidas,
+      COALESCE(SUM(total_pontos_ep.total_pontos) / NULLIF(SUM(ep.sets_disputados), 0), 0) AS pontos_average,
+      COALESCE(SUM(ep.sets_ganhos) / NULLIF(SUM(ep.sets_disputados), 0), 0) AS sets_average
     FROM equipes_partidas AS ep
+    INNER JOIN total_pontos_ep
+      ON total_pontos_ep.id = ep.id
     INNER JOIN equipes AS e
       ON e.id = ep.id_equipe
     GROUP BY e.id
-    ORDER BY pontuacao DESC
+    ORDER BY pontuacao DESC;
   `);
     await queryRunner.query(
       `CREATE UNIQUE INDEX "UQ_pontuacoes_view_id_equipe" ON "pontuacoes_view" ("id_equipe")`,
+    );
+    await queryRunner.query(
+      `CREATE INDEX "IX_pontuacoes_view_pontuacao" ON "pontuacoes_view" ("pontuacao" DESC)`,
     );
     await queryRunner.query(
       `INSERT INTO "typeorm_metadata"("database", "schema", "table", "type", "name", "value") VALUES (DEFAULT, $1, DEFAULT, $2, $3, $4)`,
@@ -134,7 +146,7 @@ export class PontuacoesView1654569206139 implements MigrationInterface {
         'public',
         'MATERIALIZED_VIEW',
         'pontuacoes_view',
-        'SELECT\n      e.id AS id_equipe,\n      SUM(ep.pontuacao) AS pontuacao,\n      SUM(ep.sets_ganhos) AS sets_ganhos,\n      SUM(ep.sets_disputados) AS sets_disputados,\n      COUNT(ep.id) AS partidas_disputadas,\n      SUM(ep.ganhou) AS partidas_ganhas,\n      SUM(ep.sets_disputados) - SUM(ep.sets_ganhos) AS sets_perdidos,\n      COUNT(ep.id) - SUM(ep.ganhou) AS partidas_perdidas\n    FROM equipes_partidas AS ep\n    INNER JOIN equipes AS e\n      ON e.id = ep.id_equipe\n    GROUP BY e.id\n    ORDER BY pontuacao DESC',
+        "WITH total_pontos_ep AS (\n      SELECT \n        id,\n        SUM((value->>'quantidade')::int) as total_pontos\n      FROM equipes_partidas\n      CROSS JOIN LATERAL jsonb_array_elements(pontos_nos_sets)\n      GROUP BY id\n    )\n    \n    SELECT\n      e.id AS id_equipe,\n      SUM(ep.pontuacao) AS pontuacao,\n      SUM(ep.sets_ganhos) AS sets_ganhos,\n      SUM(ep.sets_disputados) AS sets_disputados,\n      COUNT(ep.id) AS partidas_disputadas,\n      SUM(ep.ganhou) AS partidas_ganhas,\n      SUM(ep.sets_disputados) - SUM(ep.sets_ganhos) AS sets_perdidos,\n      COUNT(ep.id) - SUM(ep.ganhou) AS partidas_perdidas,\n      COALESCE(SUM(total_pontos_ep.total_pontos) / NULLIF(SUM(ep.sets_disputados), 0), 0) AS pontos_average,\n      COALESCE(SUM(ep.sets_ganhos) / NULLIF(SUM(ep.sets_disputados), 0), 0) AS sets_average\n    FROM equipes_partidas AS ep\n    INNER JOIN total_pontos_ep\n      ON total_pontos_ep.id = ep.id\n    INNER JOIN equipes AS e\n      ON e.id = ep.id_equipe\n    GROUP BY e.id\n    ORDER BY pontuacao DESC;",
       ],
     );
   }
@@ -217,16 +229,16 @@ export class PontuacoesView1654569206139 implements MigrationInterface {
       `ALTER TABLE "fundamentos_atletas" ADD CONSTRAINT "FK_17be2ae28b3a1b637af04786246" FOREIGN KEY ("id_atleta_partida") REFERENCES "atletas_partida"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`,
     );
     await queryRunner.query(
-      `ALTER TABLE "partidas" ADD CONSTRAINT "FK_98b9592061b55759e443f83c8fb" FOREIGN KEY ("id_equipe_ganhadora") REFERENCES "equipes"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`,
-    );
-    await queryRunner.query(
-      `ALTER TABLE "partidas" ADD CONSTRAINT "FK_6e9cc7455a900d190278156517c" FOREIGN KEY ("id") REFERENCES "pontuacoes_partida"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`,
+      `ALTER TABLE "partidas" ADD CONSTRAINT "FK_5e275812a0861e5b9e56adf02fc" FOREIGN KEY ("id_equipe_visitante") REFERENCES "equipes"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`,
     );
     await queryRunner.query(
       `ALTER TABLE "partidas" ADD CONSTRAINT "FK_c7c95e31a3db527a6efdac0c345" FOREIGN KEY ("id_equipe_mandante") REFERENCES "equipes"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`,
     );
     await queryRunner.query(
-      `ALTER TABLE "partidas" ADD CONSTRAINT "FK_5e275812a0861e5b9e56adf02fc" FOREIGN KEY ("id_equipe_visitante") REFERENCES "equipes"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`,
+      `ALTER TABLE "partidas" ADD CONSTRAINT "FK_6e9cc7455a900d190278156517c" FOREIGN KEY ("id") REFERENCES "pontuacoes_partida"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`,
+    );
+    await queryRunner.query(
+      `ALTER TABLE "partidas" ADD CONSTRAINT "FK_98b9592061b55759e443f83c8fb" FOREIGN KEY ("id_equipe_ganhadora") REFERENCES "equipes"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`,
     );
   }
 }

@@ -89,11 +89,11 @@ export class Partida extends EntidadeBase {
   @JoinColumn({ name: 'id_ganhadora' })
   ganhadora?: EquipePartida;
 
-  @ManyToOne(() => Equipe)
+  @ManyToOne(() => Equipe, { eager: true })
   @JoinColumn({ name: 'id_visitante' })
   visitante!: EquipePartida;
 
-  @ManyToOne(() => Equipe)
+  @ManyToOne(() => Equipe, { eager: true })
   @JoinColumn({ name: 'id_mandante' })
   private _mandante!: EquipePartida;
 

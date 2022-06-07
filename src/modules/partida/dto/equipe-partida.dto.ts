@@ -21,7 +21,7 @@ export class EquipePartidaRespostaDto {
     this.idPartida = e.idPartida;
     this.pontuacao = e.pontuacao;
     this.setsGanhos = e.setsGanhos;
-    this.pontosNosSets = e.pontosNosSets;
+    this.pontosNosSets = e.pontosNosSets.map((x) => x.quantidade);
     this.resultadoCadastradoEm = e.resultadoCadastradoEm;
     this.equipe = new EquipeRespostaDto(e.equipe);
   }
