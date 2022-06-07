@@ -5,9 +5,9 @@ import {
   Body,
   Param,
   Delete,
-  Put,
   Query,
   ParseUUIDPipe,
+  Patch,
 } from '@nestjs/common';
 import {
   AtualizaEquipeDto,
@@ -35,7 +35,7 @@ export class EquipeController {
     return this.equipeService.deveEncontrarUm(id);
   }
 
-  @Put(':id')
+  @Patch(':id')
   atualiza(
     @Param('id', ParseUUIDPipe) id: string,
     @Body() request: AtualizaEquipeDto,

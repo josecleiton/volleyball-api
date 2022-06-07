@@ -1,8 +1,4 @@
-import {
-  ConflictException,
-  Injectable,
-  InternalServerErrorException,
-} from '@nestjs/common';
+import { ConflictException, Injectable } from '@nestjs/common';
 import axios, { AxiosInstance } from 'axios';
 
 @Injectable()
@@ -14,7 +10,7 @@ export class VerificaUrlService {
       .get(url)
       .then((res) => res.headers['Content-Type'])
       .then((contentType) => contentType.startsWith('image/'))
-      .catch((e) => new InternalServerErrorException(e));
+      .catch(() => false);
 
     if (!result) {
       throw new ConflictException(`${url} não é uma imagem`);
