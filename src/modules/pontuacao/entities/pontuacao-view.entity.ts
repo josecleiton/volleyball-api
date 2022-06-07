@@ -23,8 +23,8 @@ import { Index, JoinColumn, ManyToOne, ViewColumn, ViewEntity } from 'typeorm';
       SUM(ep.ganhou) AS partidas_ganhas,
       SUM(ep.sets_disputados) - SUM(ep.sets_ganhos) AS sets_perdidos,
       COUNT(ep.id) - SUM(ep.ganhou) AS partidas_perdidas,
-      COALESCE(SUM(total_pontos_ep.total_pontos) / NULLIF(SUM(ep.sets_disputados), 0), 0) AS pontos_average,
-      COALESCE(SUM(ep.sets_ganhos) / NULLIF(SUM(ep.sets_disputados), 0), 0) AS sets_average
+      COALESCE(SUM(total_pontos_ep.total_pontos) / NULLIF(SUM(ep.sets_disputados), 0)::double precision, 0) AS pontos_average,
+      COALESCE(SUM(ep.sets_ganhos) / NULLIF(SUM(ep.sets_disputados), 0)::double precision, 0) AS sets_average
     FROM equipes_partidas AS ep
     INNER JOIN total_pontos_ep
       ON total_pontos_ep.id = ep.id
