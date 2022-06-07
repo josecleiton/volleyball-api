@@ -28,33 +28,28 @@ export class PartidaRepository extends Repository<Partida> {
     return qb.getMany();
   }
 
-  async removePartidasSemGanhadores(
-    id: string,
-    tipo: 'semis' | 'quartas' | 'final',
-    manager: EntityManager,
-  ) {
+  async removePartidasSemGanhadores(idLiga: string, manager: EntityManager) {
     return manager.query(
       `
       DELETE
       FROM partidas
       WHERE partidas.id = IN (
         SELECT p.id AS id
-        FROM p
-        INNER JOIN equipes AS mandantes
+        FROM partidas AS p
+        INNER JOIN equipes AS m
         ON
-          mandantes.id = p.id_mandante
-          AND mandantes.id_liga = ?
-        INNER JOIN equipes AS visitantes
+          m.id = p.id_mandante
+          AND m.id_liga = ?
+        INNER JOIN equipes AS v
         ON
-          visitantes.id = p.id_visitante
-          AND visitantes.id_liga = ?
+          v.id = p.id_visitante
+          AND v.id_liga = ?
         WHERE
           p.status = ?
-          AND p.tipoRodada = ?
           AND p.id_equipe_ganhadora IS NULL
       )
     `,
-      [id, id, PartidaStatus.AGENDADA, tipo],
+      [idLiga, idLiga, PartidaStatus.AGENDADA],
     );
   }
 }

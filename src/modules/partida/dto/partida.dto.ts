@@ -13,6 +13,7 @@ import { EquipeRespostaDto } from 'src/modules/equipe/dto/equipe.dto';
 import { Posicao, TipoArbitro } from 'src/modules/pessoa/enums';
 import { Partida } from '../entities/partida.entity';
 import { PartidaStatus } from '../enums/partida-status.enum';
+import { TipoRodada, tiposDeRodada } from '../types/tipo-rodada.type';
 
 export class AtualizaPartidaStatusDto {
   @IsEnum(PartidaStatus)
@@ -66,12 +67,8 @@ export class ListaPartidasDto {
   @IsUUID()
   idLiga!: string;
 
-  @IsIn(
-    [...Array(30).keys()]
-      .map((x) => (x + 1).toString())
-      .concat(['quartas', 'semis', 'final']),
-  )
-  tipoPartida?: string;
+  @IsIn(tiposDeRodada)
+  tipoPartida?: TipoRodada;
 
   @IsPositive()
   limite? = 51;

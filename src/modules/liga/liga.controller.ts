@@ -10,6 +10,7 @@ import {
 import { LigaService } from './services/liga.service';
 import { CriaLigaDto, InicializaLigaDto } from './dto/liga.dto';
 import {
+  InicializaFinalDto,
   InicializaQuartaDeFinalDto,
   InicializaSemifinalDto,
 } from './dto/tabela.dto';
@@ -51,6 +52,16 @@ export class LigaController {
     requisicao.valida();
 
     return this.ligaService.inicializaSemis(id, requisicao);
+  }
+
+  @Post(':id/inicializa-final')
+  async inicializaFinal(
+    @Param('id', ParseUUIDPipe) id: string,
+    @Body() requisicao: InicializaFinalDto,
+  ) {
+    requisicao.valida();
+
+    return this.ligaService.inicializaFinal(id, requisicao);
   }
 
   @Get()

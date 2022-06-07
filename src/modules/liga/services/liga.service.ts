@@ -10,6 +10,7 @@ import { TypeORMFilterService } from '../../core/services/typeorm-filter.service
 import { EquipeService } from '../../equipe/equipe.service';
 import {
   CriaLigaDto,
+  FinalLigaRespostaDto,
   InicializaLigaDto,
   InicializaLigaRespostaDto,
   LigaRespostaDto,
@@ -17,16 +18,20 @@ import {
   SemisLigaRespostaDto,
 } from '../dto/liga.dto';
 import {
+  InicializaFinalDto,
   InicializaQuartaDeFinalDto,
   InicializaSemifinalDto,
 } from '../dto/tabela.dto';
 import { Liga } from '../entities/liga.entity';
-import { StatusLiga } from '../enums/estado-liga.enum';
+import { StatusLiga } from '../enums/status-liga.enum';
 import { LigaRepository } from '../repositories/liga.repository';
 import { PontuacaoEquipeRepository } from '../repositories/pontuacao_equipe.repository';
-import { ClassificacaoGeneratorService } from '../tabela/classificacao-generator.service';
-import { QuartaDeFinalGeneratorService } from '../tabela/quarta-de-final-generator.service';
-import { SemifinalGeneratorService } from '../tabela/semifinal-generator.service';
+import {
+  ClassificacaoGeneratorService,
+  FinalGeneratorService,
+  QuartaDeFinalGeneratorService,
+  SemifinalGeneratorService,
+} from '../tabela';
 
 @Injectable({ scope: Scope.REQUEST })
 export class LigaService {
@@ -38,6 +43,7 @@ export class LigaService {
     private readonly classificacaoService: ClassificacaoGeneratorService,
     private readonly quartasService: QuartaDeFinalGeneratorService,
     private readonly semisService: SemifinalGeneratorService,
+    private readonly finalService: FinalGeneratorService,
     private readonly typeormFilterService: TypeORMFilterService,
     private readonly connection: Connection,
   ) {}
@@ -133,10 +139,11 @@ export class LigaService {
     liga.status = StatusLiga.QUARTAS;
 
     const [ligaAtualizada, partidasAgendadas] =
-      await this.connection.transaction(async (manager) => [
-        await manager.save(liga),
-        await manager.save(partidas),
-      ]);
+      await this.connection.transaction(async (manager) => {
+        await this.partidaRepository.removePartidasSemGanhadores(id, manager);
+
+        return [await manager.save(liga), await manager.save(partidas)];
+      });
 
     return new QuartasLigaRespostaDto(ligaAtualizada, partidasAgendadas);
   }
@@ -154,18 +161,41 @@ export class LigaService {
       idLiga: id,
     });
 
+    liga.status = StatusLiga.SEMIS;
     const [ligaAtualizada, partidasAgendadas] =
       await this.connection.transaction(async (manager) => {
-        await this.partidaRepository.removePartidasSemGanhadores(
-          id,
-          'semis',
-          manager,
-        );
+        await this.partidaRepository.removePartidasSemGanhadores(id, manager);
 
         return [await manager.save(liga), await manager.save(partidas)];
       });
 
     return new SemisLigaRespostaDto(ligaAtualizada, partidasAgendadas);
+  }
+
+  async inicializaFinal(id: string, requisicao: InicializaFinalDto) {
+    const liga = await this.devePegarEntidade(id);
+    if (liga.status !== StatusLiga.SEMIS) {
+      throw new ConflictException(
+        `Liga ${liga.id} não está ${StatusLiga.QUARTAS}`,
+      );
+    }
+
+    const partidas = await this.finalService.geraPartidas({
+      datas: [...requisicao.datas],
+      mandos: [requisicao.mando],
+      idLiga: id,
+    });
+
+    liga.status = StatusLiga.FINAL;
+
+    const [ligaAtualizada, partidasAgendadas] =
+      await this.connection.transaction(async (manager) => {
+        await this.partidaRepository.removePartidasSemGanhadores(id, manager);
+
+        return [await manager.save(liga), await manager.save(partidas)];
+      });
+
+    return new FinalLigaRespostaDto(ligaAtualizada, partidasAgendadas);
   }
 
   private async getLigaIniciadaEm(id: string) {

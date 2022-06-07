@@ -22,7 +22,7 @@ import { Partida } from 'src/modules/partida/entities/partida.entity';
 import { ArbitroRespostaDto } from 'src/modules/pessoa/dto/arbitro.dto';
 import { DelegadoRespostaDto } from 'src/modules/pessoa/dto/delegado.dto';
 import { Liga } from '../entities/liga.entity';
-import { StatusLiga } from '../enums/estado-liga.enum';
+import { StatusLiga } from '../enums/status-liga.enum';
 
 export class CriaLigaDto {
   @IsEnum(Genero)
@@ -119,6 +119,12 @@ export class QuartasLigaRespostaDto extends GeraPartidasLigaRespostaDto {
 }
 
 export class SemisLigaRespostaDto extends GeraPartidasLigaRespostaDto {
+  constructor(liga: Liga, partidas: Partida[]) {
+    super(liga, partidas);
+  }
+}
+
+export class FinalLigaRespostaDto extends GeraPartidasLigaRespostaDto {
   constructor(liga: Liga, partidas: Partida[]) {
     super(liga, partidas);
   }
