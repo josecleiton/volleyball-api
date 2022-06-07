@@ -50,6 +50,8 @@ export class HttpExceptionFilter implements ExceptionFilter {
         exception.getResponse() as IClassValidatorException;
       ex.message = classValidatorEx.message;
       ex.name = classValidatorEx.error;
+
+      console.log(ex);
     }
 
     response.status(status).send(ex);
