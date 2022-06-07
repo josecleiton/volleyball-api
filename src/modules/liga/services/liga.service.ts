@@ -2,7 +2,6 @@ import {
   ConflictException,
   Injectable,
   NotFoundException,
-  Scope,
 } from '@nestjs/common';
 import { StatusPartida } from 'src/modules/partida/enums/status-partida.enum';
 import { PartidaRepository } from 'src/modules/partida/repositories/partida.repository';
@@ -27,7 +26,6 @@ import {
 import { Liga } from '../entities/liga.entity';
 import { StatusLiga } from '../enums/status-liga.enum';
 import { LigaRepository } from '../repositories/liga.repository';
-import { PontuacaoEquipeRepository } from '../repositories/pontuacao_equipe.repository';
 import {
   ClassificacaoGeneratorService,
   FinalGeneratorService,
@@ -36,11 +34,10 @@ import {
 } from '../tabela';
 import { LigaIdStatus } from '../types/liga-id-status.type';
 
-@Injectable({ scope: Scope.REQUEST })
+@Injectable()
 export class LigaService {
   constructor(
     private readonly ligaRepository: LigaRepository,
-    private readonly pontuacaoEquipeRepository: PontuacaoEquipeRepository,
     private readonly partidaRepository: PartidaRepository,
     private readonly equipeService: EquipeService,
     private readonly classificacaoService: ClassificacaoGeneratorService,
@@ -113,11 +110,6 @@ export class LigaService {
       async (manager) => {
         const partidasSalvas = await manager.save(partidas);
         const ligaSalva = await manager.save(liga);
-        await manager.save(
-          liga.equipes.map(({ id }) =>
-            this.pontuacaoEquipeRepository.create({ id }),
-          ),
-        );
 
         return [ligaSalva, partidasSalvas];
       },

@@ -1,7 +1,7 @@
 import { Equipe } from 'src/modules/equipe/entities/equipe.entity';
 import { Column, Entity, Index, JoinColumn, ManyToOne } from 'typeorm';
 import { TipoAuxiliar } from '../enums';
-import { PessoaDeEquipe } from './pessoa_de_equipe';
+import { PessoaDeEquipe } from './pessoa_de_equipe.entity';
 
 @Entity('auxiliares')
 export class Auxiliar extends PessoaDeEquipe {

@@ -10,17 +10,15 @@ import {
   JoinColumn,
   ManyToOne,
   OneToMany,
-  OneToOne,
 } from 'typeorm';
 import { StatusPartida } from '../enums/status-partida.enum';
 import { TipoRodada, tiposDeRodada } from '../types/tipo-rodada.type';
 import { ArbitroPartida } from './arbitro-partida.entity';
-import { AtletaPartida } from './atleta-partida.entity';
-import { PontuacaoPartida } from './partida-pontuacao.entity';
+import { EquipePartida } from './equipe-partida.entity';
 
 @Entity('partidas')
 @Index('IX_partidas_RemovePartidasSemVencedores', ['status'], {
-  where: 'id_equipe_ganhadora IS NULL',
+  where: 'id_ganhadora IS NULL',
 })
 @Index('IX_partidas_status_tipoDaRodada', ['status', 'tipoDaRodada'])
 export class Partida extends EntidadeBase {
@@ -34,13 +32,13 @@ export class Partida extends EntidadeBase {
   @Index()
   idGinasio!: string;
 
-  public set equipeMandante(e: Equipe) {
-    this._equipeMandante = e;
-    this.idGinasio = e.idGinasio;
+  public set mandante(pp: EquipePartida) {
+    this._mandante = pp;
+    this.idGinasio = pp.equipe.idGinasio;
   }
 
-  public get equipeMandante(): Equipe {
-    return this._equipeMandante;
+  public get mandante(): EquipePartida {
+    return this._mandante;
   }
 
   @Column({ type: 'enum', enum: tiposDeRodada })
@@ -70,7 +68,7 @@ export class Partida extends EntidadeBase {
 
   @Column({ type: 'uuid', nullable: true })
   @Index()
-  idEquipeGanhadora?: string;
+  idGanhadora?: string;
 
   public get duracaoBruta(): number | undefined {
     if (!this.dataFinalizacao) return undefined;
@@ -87,25 +85,18 @@ export class Partida extends EntidadeBase {
   @JoinColumn({ name: 'id_ginasio' })
   ginasio!: Ginasio;
 
-  @ManyToOne(() => Equipe)
-  @JoinColumn({ name: 'id_equipe_ganhadora' })
-  equipeGanhadora?: Equipe;
+  @ManyToOne(() => EquipePartida)
+  @JoinColumn({ name: 'id_ganhadora' })
+  ganhadora?: EquipePartida;
 
-  @ManyToOne(() => Equipe)
-  @JoinColumn({ name: 'id_equipe_visitante' })
-  equipeVisitante!: Equipe;
+  @ManyToOne(() => Equipe, { eager: true })
+  @JoinColumn({ name: 'id_visitante' })
+  visitante!: EquipePartida;
 
-  @ManyToOne(() => Equipe)
-  @JoinColumn({ name: 'id_equipe_mandante' })
-  private _equipeMandante!: Equipe;
-
-  atletasMandante?: AtletaPartida[];
-  atletasVisitante?: AtletaPartida[];
+  @ManyToOne(() => Equipe, { eager: true })
+  @JoinColumn({ name: 'id_mandante' })
+  private _mandante!: EquipePartida;
 
   @OneToMany(() => ArbitroPartida, (ap) => ap.partida)
   arbitros?: ArbitroPartida[];
-
-  @OneToOne(() => PontuacaoPartida)
-  @JoinColumn({ name: 'id' })
-  pontuacao!: PontuacaoPartida;
 }

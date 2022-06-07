@@ -3,7 +3,6 @@ import {
   Inject,
   Injectable,
   NotFoundException,
-  Scope,
 } from '@nestjs/common';
 import { LigaService } from 'src/modules/liga/services/liga.service';
 import { TypeORMFilterService } from 'src/modules/core/services/typeorm-filter.service';
@@ -16,7 +15,7 @@ import { ArbitroRepository } from '../repositories/arbitro.repository';
 import { TipoPessoa } from '../enums';
 import { In } from 'typeorm';
 
-@Injectable({ scope: Scope.REQUEST })
+@Injectable()
 export class ArbitroService {
   constructor(
     private readonly arbitroRepository: ArbitroRepository,

@@ -1,5 +1,5 @@
 import { Equipe } from 'src/modules/equipe/entities/equipe.entity';
-import { AtletaPartida } from 'src/modules/partida/entities/atleta-partida.entity';
+import { AtletaEscalado } from 'src/modules/partida/entities/atleta-escalado.entity';
 import {
   Column,
   Entity,
@@ -8,7 +8,7 @@ import {
   OneToMany,
   Unique,
 } from 'typeorm';
-import { PessoaDeEquipe } from './pessoa_de_equipe';
+import { PessoaDeEquipe } from './pessoa_de_equipe.entity';
 
 @Entity('atletas')
 @Unique('UQ_atletas_numero_por_equipe', ['numero', 'idEquipe'])
@@ -20,6 +20,6 @@ export class Atleta extends PessoaDeEquipe {
   @JoinColumn({ name: 'id_equipe' })
   equipe!: Equipe;
 
-  @OneToMany(() => AtletaPartida, (ap) => ap.atleta)
-  atletas!: AtletaPartida[];
+  @OneToMany(() => AtletaEscalado, (ap) => ap.atleta)
+  atletas!: AtletaEscalado[];
 }

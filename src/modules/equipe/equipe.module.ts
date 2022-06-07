@@ -4,8 +4,8 @@ import { EquipeController } from './equipe.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { EquipeRepository } from './equipe.repository';
 import { CoreModule } from '../core/core.module';
-import { LigaModule } from '../liga/liga.module';
 import { GinasioModule } from '../ginasio/ginasio.module';
+import { LigaModule } from '../liga/liga.module';
 
 @Module({
   imports: [

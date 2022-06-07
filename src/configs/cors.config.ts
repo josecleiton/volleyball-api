@@ -7,6 +7,7 @@ type Callback = (err: Error | null, stat?: boolean) => void;
 const whiteList: string[] = [
   'http://localhost:3000',
   'http://localhost:5000',
+  'http://localhost:8000',
   'https://voleibol-api.herokuapp.com',
   'https://volley.vercel.app',
 ];

@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException, Scope } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { TypeORMFilterService } from '../core/services/typeorm-filter.service';
 import {
   CriaGinasioDto,
@@ -7,7 +7,7 @@ import {
 } from './dto/ginasio.dto';
 import { GinasioRepository } from './repositories/ginasio.repository';
 
-@Injectable({ scope: Scope.REQUEST })
+@Injectable()
 export class GinasioService {
   constructor(
     private readonly ginasioRepository: GinasioRepository,

@@ -4,25 +4,27 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { PartidaController } from './partida.controller';
 import { PartidaRepository } from './repositories/partida.repository';
 import { ArbitroPartidaRepository } from './repositories/arbitro-partida.repository';
-import { AtletaPartidaRepository } from './repositories/atleta-partida.repository';
-import { PontuacaoPartidaRepository } from './repositories/pontuacao-partida.repository';
+import { AtletaEscaladoRepository } from './repositories/atleta-escalado.repository';
+import { ParticipacaoPartidaRepository } from './repositories/participacao-partida.repository';
 import { PessoaModule } from '../pessoa/pessoa.module';
 import { LigaModule } from '../liga/liga.module';
-import { AtletaPartidaService, PartidaService } from './services';
+import { AtletaEscaladoService, PartidaService } from './services';
+import { PontuacaoModule } from '../pontuacao/pontuacao.module';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([
       PartidaRepository,
       ArbitroPartidaRepository,
-      AtletaPartidaRepository,
-      PontuacaoPartidaRepository,
+      AtletaEscaladoRepository,
+      ParticipacaoPartidaRepository,
     ]),
     PessoaModule,
     forwardRef(() => LigaModule),
+    PontuacaoModule,
   ],
   controllers: [PartidaController],
-  providers: [PartidaService, AtletaPartidaService],
-  exports: [TypeOrmModule, PartidaService, AtletaPartidaService],
+  providers: [PartidaService, AtletaEscaladoService],
+  exports: [TypeOrmModule, PartidaService, AtletaEscaladoService],
 })
 export class PartidaModule {}

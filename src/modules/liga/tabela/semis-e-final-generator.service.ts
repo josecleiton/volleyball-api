@@ -4,13 +4,14 @@ import {
 } from '@nestjs/common';
 import { chunk, countBy } from 'lodash';
 import { EquipeRespostaDto } from 'src/modules/equipe/dto/equipe.dto';
+import { EquipePartidaRespostaDto } from 'src/modules/partida/dto/equipe-partida.dto';
 import { PartidaRespostaDto } from 'src/modules/partida/dto/partida.dto';
 import { PartidaService } from 'src/modules/partida/services/partida.service';
 import { TipoRodadaMataMata } from 'src/modules/partida/types/tipo-rodada.type';
+import { PontuacaoRespostaDto } from 'src/modules/pontuacao/dtos/pontuacao.dto';
+import { PontuacaoService } from 'src/modules/pontuacao/pontuacao.service';
 import { IClassificados } from '../dto/mata-mata.dto';
-import { PontuacaoEquipeRespostaDto } from '../dto/pontuacao_equipe.dto';
 import { Liga } from '../entities/liga.entity';
-import { PontuacaoEquipeService } from '../services/pontuacao-equipe.service';
 import { MataMataGeneratorService } from './mata-mata-generator.service';
 
 interface IInfoRodada {
@@ -41,7 +42,7 @@ export abstract class SemisEFinalGeneratorService extends MataMataGeneratorServi
 
   constructor(
     private readonly partidaService: PartidaService,
-    private readonly pontuacaoEquipeService: PontuacaoEquipeService,
+    private readonly pontuacaoService: PontuacaoService,
   ) {
     super();
   }
@@ -79,7 +80,7 @@ export abstract class SemisEFinalGeneratorService extends MataMataGeneratorServi
   // consistente com as regras
   private ordenaVencedorPorClassificacao(
     vencedores: string[],
-    pontuacoes: PontuacaoEquipeRespostaDto[],
+    pontuacoes: PontuacaoRespostaDto[],
   ) {
     const idEquipeClassificacaoMap: ReadonlyMap<string, number> = new Map(
       pontuacoes.map((pontuacao, index) => [pontuacao.equipe.id, index + 1]),
@@ -122,11 +123,10 @@ export abstract class SemisEFinalGeneratorService extends MataMataGeneratorServi
       );
     }
 
-    const pontuacoes =
-      await this.pontuacaoEquipeService.listaPontuacoesOrdenadas(
-        idLiga,
-        Liga.quantidadeDeEquipesClassificadas,
-      );
+    const pontuacoes = await this.pontuacaoService.listaPontuacoesOrdenadas(
+      idLiga,
+      Liga.quantidadeDeEquipesClassificadas,
+    );
 
     const vencedores = this.listarVencedores(partidas);
 
@@ -135,11 +135,11 @@ export abstract class SemisEFinalGeneratorService extends MataMataGeneratorServi
 
     const equipeMap: ReadonlyMap<string, EquipeRespostaDto> = new Map(
       partidas
-        .filter((partida) => partida.equipeGanhadora)
-        .map(({ equipeGanhadora }) => {
-          const equipe = equipeGanhadora as EquipeRespostaDto;
+        .filter((partida) => partida.ganhadora)
+        .map(({ ganhadora }) => {
+          const equipePartida = ganhadora as EquipePartidaRespostaDto;
 
-          return [equipe.id, equipe];
+          return [equipePartida.equipe.id, equipePartida.equipe];
         }),
     );
 

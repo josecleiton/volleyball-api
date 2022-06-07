@@ -3,7 +3,6 @@ import {
   Inject,
   Injectable,
   NotFoundException,
-  Scope,
 } from '@nestjs/common';
 import { LigaService } from 'src/modules/liga/services/liga.service';
 import { TypeORMFilterService } from 'src/modules/core/services/typeorm-filter.service';
@@ -15,7 +14,7 @@ import {
 import { DelegadoRepository } from '../repositories/delegado.repository';
 import { TipoPessoa } from '../enums';
 
-@Injectable({ scope: Scope.REQUEST })
+@Injectable()
 export class DelegadoService {
   constructor(
     private readonly delegadoRepository: DelegadoRepository,
