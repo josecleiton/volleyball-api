@@ -9,7 +9,7 @@ import { FundamentoAtleta } from './fundamento-atleta.entity';
     conn
       .createQueryBuilder()
       .select('a.id', 'id_atleta')
-      .addSelect('count(f.recepcoes)', 'recepcoes')
+      .addSelect('coalesce(sum(f.recepcoes), 0)', 'recepcoes')
       .from(FundamentoAtleta, 'f')
       .innerJoin('f.atleta', 'a')
       .groupBy('a.id')

@@ -5,7 +5,7 @@ export class CriaMelhorLiberoView1654530011934 implements MigrationInterface {
 
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(
-      `CREATE MATERIALIZED VIEW "melhores_liberos_view" AS SELECT "a"."id" AS "id_atleta", count("f"."recepcoes") AS "recepcoes" FROM "fundamentos_atletas" "f" INNER JOIN "atletas_partida" "a" ON "a"."id"="f"."id_atleta_partida" GROUP BY "a"."id" ORDER BY recepcoes DESC`,
+      `CREATE MATERIALIZED VIEW "melhores_liberos_view" AS SELECT "a"."id" AS "id_atleta", coalesce(sum(f.recepcoes), 0) AS "recepcoes" FROM "fundamentos_atletas" "f" INNER JOIN "atletas_partida" "a" ON "a"."id"="f"."id_atleta_partida" GROUP BY "a"."id" ORDER BY recepcoes DESC`,
     );
     await queryRunner.query(
       `INSERT INTO "typeorm_metadata"("database", "schema", "table", "type", "name", "value") VALUES (DEFAULT, $1, DEFAULT, $2, $3, $4)`,
@@ -13,7 +13,7 @@ export class CriaMelhorLiberoView1654530011934 implements MigrationInterface {
         'public',
         'MATERIALIZED_VIEW',
         'melhores_liberos_view',
-        'SELECT "a"."id" AS "id_atleta", count("f"."recepcoes") AS "recepcoes" FROM "fundamentos_atletas" "f" INNER JOIN "atletas_partida" "a" ON "a"."id"="f"."id_atleta_partida" GROUP BY "a"."id" ORDER BY recepcoes DESC',
+        'SELECT "a"."id" AS "id_atleta", coalesce(sum(f.recepcoes), 0) AS "recepcoes" FROM "fundamentos_atletas" "f" INNER JOIN "atletas_partida" "a" ON "a"."id"="f"."id_atleta_partida" GROUP BY "a"."id" ORDER BY recepcoes DESC',
       ],
     );
     await queryRunner.query(
