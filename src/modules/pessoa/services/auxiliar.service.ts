@@ -35,7 +35,7 @@ export class AuxiliarService {
         await this.auxiliarRepository.save(auxiliar),
       );
     } catch (error) {
-      this.typeormFilterService.catch({
+      throw this.typeormFilterService.catch({
         error,
         description: 'conflito',
         entityName: 'Auxiliar',

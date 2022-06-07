@@ -8,25 +8,25 @@ import {
 } from '@nestjs/common';
 import { groupBy } from 'lodash';
 import { Connection } from 'typeorm';
-import { Equipe } from '../equipe/entities/equipe.entity';
-import { PontuacaoEquipeRepository } from '../liga/repositories/pontuacao_equipe.repository';
-import { Posicao, TipoArbitro } from '../pessoa/enums';
-import { ArbitroService } from '../pessoa/services/arbitro.service';
-import { AtletaService } from '../pessoa/services/atleta.service';
-import { DelegadoService } from '../pessoa/services/delegado.service';
+import { Equipe } from '../../equipe/entities/equipe.entity';
+import { PontuacaoEquipeRepository } from '../../liga/repositories/pontuacao_equipe.repository';
+import { Posicao, TipoArbitro } from '../../pessoa/enums';
+import { ArbitroService } from '../../pessoa/services/arbitro.service';
+import { AtletaService } from '../../pessoa/services/atleta.service';
+import { DelegadoService } from '../../pessoa/services/delegado.service';
 import {
   AtletaPartidaDto,
   CadastrarParticipantesPartidaDto,
   ListaPartidasDto,
   PartidaRespostaDto,
-} from './dto/partida.dto';
-import { IPontuacaoPartidaDto } from './dto/pontuacao-partida.dto';
-import { Partida } from './entities/partida.entity';
-import { PartidaStatus } from './enums/partida-status.enum';
-import { ArbitroPartidaRepository } from './repositories/arbitro-partida.repository';
-import { AtletaPartidaRepository } from './repositories/atleta-partida.repository';
-import { PartidaRepository } from './repositories/partida.repository';
-import { PontuacaoPartidaRepository } from './repositories/pontuacao-partida.repository';
+} from '../dto/partida.dto';
+import { IPontuacaoPartidaDto } from '../dto/pontuacao-partida.dto';
+import { Partida } from '../entities/partida.entity';
+import { StatusPartida } from '../enums/status-partida.enum';
+import { ArbitroPartidaRepository } from '../repositories/arbitro-partida.repository';
+import { AtletaPartidaRepository } from '../repositories/atleta-partida.repository';
+import { PartidaRepository } from '../repositories/partida.repository';
+import { PontuacaoPartidaRepository } from '../repositories/pontuacao-partida.repository';
 
 @Injectable({ scope: Scope.REQUEST })
 export class PartidaService {
@@ -131,9 +131,9 @@ export class PartidaService {
     requisicao: CadastrarParticipantesPartidaDto,
   ) {
     const partida = await this.deveEncontrarEntidade(id);
-    if (partida.status !== PartidaStatus.AGENDADA) {
+    if (partida.status !== StatusPartida.AGENDADA) {
       throw new ConflictException(
-        `Partida ${id} não está no status ${PartidaStatus.AGENDADA}`,
+        `Partida ${id} não está no status ${StatusPartida.AGENDADA}`,
       );
     }
 
@@ -142,7 +142,7 @@ export class PartidaService {
     );
 
     if (requisicao.desistente) {
-      partida.status = PartidaStatus.WO;
+      partida.status = StatusPartida.WO;
       partida.idEquipeGanhadora =
         requisicao.desistente === 'mandante'
           ? partida.idVisitante
@@ -185,7 +185,7 @@ export class PartidaService {
       this.arbitroPartidaRepository.create({ ...arbitroDto }),
     );
 
-    partida.status = PartidaStatus.PARTICIPANTES_CADASTRADOS;
+    partida.status = StatusPartida.PARTICIPANTES_CADASTRADOS;
     partida.idDelegado = delegado.id;
 
     const partidaAtualizada = await this.connection.transaction(
@@ -212,14 +212,14 @@ export class PartidaService {
     equipeGanhadora: Equipe,
     pontuacaoDto: IPontuacaoPartidaDto,
   ) {
-    if (partida.status !== PartidaStatus.PARTICIPANTES_CADASTRADOS) {
+    if (partida.status !== StatusPartida.PARTICIPANTES_CADASTRADOS) {
       throw new ConflictException(
-        `Partida ${partida.id} não está no status ${PartidaStatus.PARTICIPANTES_CADASTRADOS}`,
+        `Partida ${partida.id} não está no status ${StatusPartida.PARTICIPANTES_CADASTRADOS}`,
       );
     }
 
     partida.idEquipeGanhadora = equipeGanhadora.id;
-    partida.status = PartidaStatus.CONCLUIDA;
+    partida.status = StatusPartida.CONCLUIDA;
 
     const pontuacaoMandante =
       partida.idEquipeGanhadora === partida.idMandante

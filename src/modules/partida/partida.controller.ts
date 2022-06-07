@@ -11,7 +11,7 @@ import {
   CadastrarParticipantesPartidaDto,
   ListaPartidasDto,
 } from './dto/partida.dto';
-import { PartidaService } from './partida.service';
+import { PartidaService } from './services/partida.service';
 
 @Controller('partida')
 export class PartidaController {

@@ -19,7 +19,7 @@ export class GinasioService {
     try {
       return await this.ginasioRepository.save(ginasio);
     } catch (error) {
-      this.ormFilterService.catch({
+      throw this.ormFilterService.catch({
         error,
         description: 'conflito',
         entityName: 'Ginasio',

@@ -1,5 +1,5 @@
 import { forwardRef, Inject, Injectable, Scope } from '@nestjs/common';
-import { PartidaService } from 'src/modules/partida/partida.service';
+import { PartidaService } from 'src/modules/partida/services/partida.service';
 import { PontuacaoEquipeService } from '../services/pontuacao-equipe.service';
 import { SemisEFinalGeneratorService } from './semis-e-final-generator.service';
 

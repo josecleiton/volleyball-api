@@ -66,7 +66,7 @@ export class AtletaService {
     try {
       return new AtletaRespostaDto(await this.atletaRepository.save(atleta));
     } catch (error) {
-      this.typeormFilterService.catch({
+      throw this.typeormFilterService.catch({
         error,
         description: 'conflito',
         entityName: 'Atleta',
@@ -134,7 +134,7 @@ export class AtletaService {
 
       return new AtletaRespostaDto(await this.atletaRepository.save(atleta));
     } catch (error) {
-      this.typeormFilterService.catch({
+      throw this.typeormFilterService.catch({
         error,
         description: 'conflito',
         entityName: 'Atleta',

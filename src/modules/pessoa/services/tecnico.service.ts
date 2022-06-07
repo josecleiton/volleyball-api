@@ -29,7 +29,7 @@ export class TecnicoService {
     try {
       return new TecnicoRespostaDto(await this.tecnicoRepository.save(tecnico));
     } catch (error) {
-      this.typeormFilterService.catch({
+      throw this.typeormFilterService.catch({
         error,
         description: 'conflito',
         entityName: 'Tecnico',

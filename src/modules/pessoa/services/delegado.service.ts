@@ -37,7 +37,7 @@ export class DelegadoService {
         await this.delegadoRepository.save(delegado),
       );
     } catch (error) {
-      this.typeormFilterService.catch({
+      throw this.typeormFilterService.catch({
         error,
         description: 'conflito',
         entityName: 'Delegado',

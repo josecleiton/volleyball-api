@@ -6,7 +6,7 @@ function strEnum<T extends string>(o: Array<T>): { [K in T]: K } {
   }, Object.create(null));
 }
 
-export const tiposDeRodada = [
+export const tiposDeRodadaClassificatoria = [
   '1',
   '2',
   '3',
@@ -37,6 +37,10 @@ export const tiposDeRodada = [
   '28',
   '29',
   '30',
+] as const;
+
+export const tiposDeRodada = [
+  ...tiposDeRodadaClassificatoria,
   'quartas',
   'semis',
   'final',

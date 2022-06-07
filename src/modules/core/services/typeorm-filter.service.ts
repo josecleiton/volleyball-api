@@ -13,18 +13,18 @@ export class TypeORMFilterService {
     error,
     description = '',
     entityName = 'Entidade',
-  }: ITypeORMFilterRequest) {
+  }: ITypeORMFilterRequest): Error | unknown {
     if (error instanceof QueryFailedError) {
       switch (error.driverError.code) {
         case '23505':
-          throw new ConflictException(`${entityName}: ${description}`);
+          return new ConflictException(`${entityName}: ${description}`);
         case '23503':
-          throw new ConflictException(
+          return new ConflictException(
             `${entityName} missing some relationship. ${error.driverError.detail}`,
           );
       }
     }
 
-    throw error;
+    return error;
   }
 }

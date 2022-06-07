@@ -12,7 +12,7 @@ import {
   OneToMany,
   OneToOne,
 } from 'typeorm';
-import { PartidaStatus } from '../enums/partida-status.enum';
+import { StatusPartida } from '../enums/status-partida.enum';
 import { TipoRodada, tiposDeRodada } from '../types/tipo-rodada.type';
 import { ArbitroPartida } from './arbitro-partida.entity';
 import { AtletaPartida } from './atleta-partida.entity';
@@ -22,6 +22,7 @@ import { PontuacaoPartida } from './partida-pontuacao.entity';
 @Index('IX_partidas_RemovePartidasSemVencedores', ['status'], {
   where: 'id_equipe_ganhadora IS NULL',
 })
+@Index('IX_partidas_status_tipoDaRodada', ['status', 'tipoDaRodada'])
 export class Partida extends EntidadeBase {
   static readonly minimoDeAtletasNaPartida = 12;
   static readonly maximoDeLiberos = 2;
@@ -56,10 +57,10 @@ export class Partida extends EntidadeBase {
 
   @Column({
     type: 'enum',
-    enum: PartidaStatus,
-    default: PartidaStatus.AGENDADA,
+    enum: StatusPartida,
+    default: StatusPartida.AGENDADA,
   })
-  status: PartidaStatus = PartidaStatus.AGENDADA;
+  status: StatusPartida = StatusPartida.AGENDADA;
 
   @Column()
   dataComeco!: Date;

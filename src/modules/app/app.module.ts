@@ -14,6 +14,7 @@ import { EquipeModule } from '../equipe/equipe.module';
 import { GinasioModule } from '../ginasio/ginasio.module';
 import { PartidaModule } from '../partida/partida.module';
 import { PessoaModule } from '../pessoa/pessoa.module';
+import { EstatisticaModule } from '../estatistica/estatistica.module';
 
 @Module({
   imports: [
@@ -32,6 +33,7 @@ import { PessoaModule } from '../pessoa/pessoa.module';
     LigaModule,
     GinasioModule,
     PartidaModule,
+    EstatisticaModule,
   ],
 })
 export class AppModule {}

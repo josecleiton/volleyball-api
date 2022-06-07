@@ -44,7 +44,7 @@ export class EquipeService {
       equipe.auxiliares = [];
       return new EquipeRespostaDto(await this.equipeRepository.save(equipe));
     } catch (e) {
-      this.ormFilterService.catch({
+      throw this.ormFilterService.catch({
         error: e,
         entityName: 'Equipe',
         description: 'nome já utilizado',

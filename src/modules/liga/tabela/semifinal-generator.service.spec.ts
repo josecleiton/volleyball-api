@@ -4,11 +4,11 @@ import { InternalServerErrorException } from '@nestjs/common';
 import { eachHourOfInterval, setHours } from 'date-fns';
 import { EscolhaDeMando } from '../dto/tabela.dto';
 import { SemifinalGeneratorService } from './semifinal-generator.service';
-import { PartidaService } from 'src/modules/partida/partida.service';
+import { PartidaService } from 'src/modules/partida/services/partida.service';
 import { MataMataGeneratorService } from './mata-mata-generator.service';
 import { EquipeRespostaDto } from 'src/modules/equipe/dto/equipe.dto';
 import { PartidaRespostaDto } from 'src/modules/partida/dto/partida.dto';
-import { PartidaStatus } from 'src/modules/partida/enums/partida-status.enum';
+import { StatusPartida } from 'src/modules/partida/enums/status-partida.enum';
 import { PontuacaoEquipeService } from '../services/pontuacao-equipe.service';
 
 faker.locale = 'pt_BR';
@@ -100,7 +100,8 @@ describe('SemifinalGeneratorService', () => {
         Pick<PartidaRespostaDto, 'dataCriacao'> &
         Pick<PartidaRespostaDto, 'dataAtualizacao'> &
         Pick<PartidaRespostaDto, 'dataFinalizacao'> &
-        Pick<PartidaRespostaDto, 'status'>;
+        Pick<PartidaRespostaDto, 'status'> &
+        Pick<PartidaRespostaDto, 'tipoRodada'>;
       function geraPartida(
         mandante: number,
         visitante: number,
@@ -110,8 +111,9 @@ describe('SemifinalGeneratorService', () => {
           dataAtualizacao: new Date(),
           dataComeco: new Date(),
           dataCriacao: new Date(),
-          status: PartidaStatus.CONCLUIDA,
+          status: StatusPartida.CONCLUIDA,
           dataFinalizacao: new Date(),
+          tipoRodada: 'quartas',
         };
         return {
           id: faker.datatype.uuid(),

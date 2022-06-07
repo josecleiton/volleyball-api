@@ -4,7 +4,9 @@ import {
   NotFoundException,
   Scope,
 } from '@nestjs/common';
+import { StatusPartida } from 'src/modules/partida/enums/status-partida.enum';
 import { PartidaRepository } from 'src/modules/partida/repositories/partida.repository';
+import { tiposDeRodadaClassificatoria } from 'src/modules/partida/types/tipo-rodada.type';
 import { Connection } from 'typeorm';
 import { TypeORMFilterService } from '../../core/services/typeorm-filter.service';
 import { EquipeService } from '../../equipe/equipe.service';
@@ -32,6 +34,7 @@ import {
   QuartaDeFinalGeneratorService,
   SemifinalGeneratorService,
 } from '../tabela';
+import { LigaIdStatus } from '../types/liga-id-status.type';
 
 @Injectable({ scope: Scope.REQUEST })
 export class LigaService {
@@ -54,7 +57,7 @@ export class LigaService {
     try {
       return new LigaRespostaDto(await this.ligaRepository.save(liga));
     } catch (error) {
-      this.typeormFilterService.catch({
+      throw this.typeormFilterService.catch({
         error,
         description: 'conflito',
         entityName: 'Competição',
@@ -128,6 +131,22 @@ export class LigaService {
     if (liga.status !== StatusLiga.CLASSIFICATORIA) {
       throw new ConflictException(
         `Liga ${liga.id} não está no estado ${StatusLiga.CLASSIFICATORIA} e sim ${liga.status}`,
+      );
+    }
+
+    const quantidadeDePartidasPorTipoRodada =
+      await this.partidaRepository.quantidadeDePartidasPorTipoRodadaEStatus({
+        idLiga: liga.id,
+        tiposDeRodada: [...tiposDeRodadaClassificatoria],
+        statusAceitos: [StatusPartida.CONCLUIDA, StatusPartida.WO],
+      });
+
+    if (
+      quantidadeDePartidasPorTipoRodada !==
+      Liga.quantidadeDePartidasEmClassificatorias
+    ) {
+      throw new ConflictException(
+        `Quantidades de partidas concluídas na liga ${liga.id} não é igual a ${Liga.quantidadeDePartidasEmClassificatorias}`,
       );
     }
 
@@ -221,6 +240,20 @@ export class LigaService {
     }
 
     throw new ConflictException(`Liga ${id} não está iniciada.`);
+  }
+
+  async excecaoSeALigaStatus(id: string, status: StatusLiga) {
+    const resultado: LigaIdStatus | undefined =
+      await this.ligaRepository.findOne({
+        where: { id },
+        select: ['id', 'status'],
+      });
+
+    if (resultado?.status === status) {
+      throw new NotFoundException(
+        `Liga ${id} não encontrada com status ${status}`,
+      );
+    }
   }
 
   async lista() {
