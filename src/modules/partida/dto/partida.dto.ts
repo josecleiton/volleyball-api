@@ -5,9 +5,11 @@ import {
   IsEnum,
   IsIn,
   IsOptional,
+  IsPositive,
   IsUUID,
   ValidateNested,
 } from 'class-validator';
+import { EquipeRespostaDto } from 'src/modules/equipe/dto/equipe.dto';
 import { Posicao, TipoArbitro } from 'src/modules/pessoa/enums';
 import { Partida } from '../entities/partida.entity';
 import { PartidaStatus } from '../enums/partida-status.enum';
@@ -60,6 +62,21 @@ export class CadastrarParticipantesPartidaDto {
   desistente?: 'mandante' | 'visitante';
 }
 
+export class ListaPartidasDto {
+  @IsUUID()
+  idLiga!: string;
+
+  @IsIn(
+    [...Array(30).keys()]
+      .map((x) => (x + 1).toString())
+      .concat(['quartas', 'semis', 'final']),
+  )
+  tipoPartida?: string;
+
+  @IsPositive()
+  limite? = 51;
+}
+
 export class PartidaRespostaDto {
   id: string;
   idDelegado?: string;
@@ -73,6 +90,7 @@ export class PartidaRespostaDto {
   dataCriacao: Date;
   dataAtualizacao: Date;
   duracaoBruta?: number;
+  equipeGanhadora?: EquipeRespostaDto;
 
   constructor(partida: Partida) {
     this.id = partida.id;
@@ -81,11 +99,14 @@ export class PartidaRespostaDto {
     this.status = partida.status;
     this.dataComeco = partida.dataComeco;
     this.dataFinalizacao = partida.dataFinalizacao;
-    this.idEquipeGanhador = partida.idEquipeGanhador;
+    this.idEquipeGanhador = partida.idEquipeGanhadora;
     this.dataCriacao = partida.dataCriacao;
     this.dataAtualizacao = partida.dataAtualizacao;
     this.duracaoBruta = partida.duracaoBruta;
     this.idEquipeMandante = partida.idMandante;
     this.idEquipeVisitante = partida.idVisitante;
+    this.equipeGanhadora = partida.equipeGanhadora
+      ? new EquipeRespostaDto(partida.equipeGanhadora)
+      : undefined;
   }
 }

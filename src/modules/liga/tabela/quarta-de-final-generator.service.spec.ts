@@ -4,7 +4,7 @@ import { QuartaDeFinalGeneratorService } from './quarta-de-final-generator.servi
 import faker = require('faker');
 import { ConflictException } from '@nestjs/common';
 import { eachHourOfInterval, setHours } from 'date-fns';
-import { EscolhaDeMando } from '../dto/pontuacao_equipe.dto';
+import { EscolhaDeMando } from '../dto/tabela.dto';
 
 const mockPontuacaoEquipeService = () => ({
   listaPontuacoesOrdenadas: jest.fn(),

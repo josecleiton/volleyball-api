@@ -1,7 +1,7 @@
 import { chunk } from 'lodash';
 import { Partida } from 'src/modules/partida/entities/partida.entity';
 import { IClassificados } from '../dto/mata-mata.dto';
-import { EscolhaDeMando, IMataMataDto } from '../dto/pontuacao_equipe.dto';
+import { EscolhaDeMando, IMataMataDto } from '../dto/tabela.dto';
 
 export abstract class MataMataGeneratorService {
   private static readonly escolhaDeMando: ReadonlyMap<EscolhaDeMando, number> =
@@ -10,6 +10,9 @@ export abstract class MataMataGeneratorService {
       [EscolhaDeMando.SEGUNDO_JOGO, 1],
     ]);
   private static readonly mandoFixoIndice = 2;
+  protected static readonly quantidadesDePartidasParaVencerMelhorDe3 = 2;
+  static readonly quantidadeDePartidasNasQuartas = 12;
+  static readonly quantidadeDePartidasNasSemis = 6;
 
   protected abstract readonly tipoRodada: 'quartas' | 'semis';
   protected abstract listaClassificados(
@@ -19,7 +22,7 @@ export abstract class MataMataGeneratorService {
   async geraPartidas({ datas, mandos, idLiga }: IMataMataDto) {
     const classificados = await this.listaClassificados(idLiga);
 
-    const chunksData = chunk(datas, 3) as [Date[], Date[], Date[], Date[]];
+    const chunksData = chunk(datas, 3);
 
     const partidasAgendadas: Partida[] = [];
 

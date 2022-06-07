@@ -17,6 +17,7 @@ import { DelegadoService } from '../pessoa/services/delegado.service';
 import {
   AtletaPartidaDto,
   CadastrarParticipantesPartidaDto,
+  ListaPartidasDto,
   PartidaRespostaDto,
 } from './dto/partida.dto';
 import { IPontuacaoPartidaDto } from './dto/pontuacao-partida.dto';
@@ -41,8 +42,14 @@ export class PartidaService {
     private readonly connection: Connection,
   ) {}
 
-  async listaPartidas(idLiga: string) {
-    throw new NotImplementedException(idLiga);
+  async listaPartidasOrdenadas(
+    requisicao: ListaPartidasDto,
+  ): Promise<PartidaRespostaDto[]> {
+    const partidas = await this.partidaRepository.listaPartidasOrdenadas(
+      requisicao,
+    );
+
+    return partidas.map((x) => new PartidaRespostaDto(x));
   }
 
   private async deveEncontrarEntidade(id: string) {
@@ -83,7 +90,7 @@ export class PartidaService {
 
   private async registraDesistencia(partida: Partida) {
     const pontuacaoMandante =
-      partida.idEquipeGanhador === partida.idMandante ? 2 : -2;
+      partida.idEquipeGanhadora === partida.idMandante ? 2 : -2;
     const pontuacaoPartida = this.pontuacaoPartidaRepository.create({
       id: partida.id,
       visitante: -pontuacaoMandante,
@@ -136,7 +143,7 @@ export class PartidaService {
 
     if (requisicao.desistente) {
       partida.status = PartidaStatus.WO;
-      partida.idEquipeGanhador =
+      partida.idEquipeGanhadora =
         requisicao.desistente === 'mandante'
           ? partida.idVisitante
           : partida.idMandante;
@@ -211,11 +218,11 @@ export class PartidaService {
       );
     }
 
-    partida.idEquipeGanhador = equipeGanhadora.id;
+    partida.idEquipeGanhadora = equipeGanhadora.id;
     partida.status = PartidaStatus.CONCLUIDA;
 
     const pontuacaoMandante =
-      partida.idEquipeGanhador === partida.idMandante
+      partida.idEquipeGanhadora === partida.idMandante
         ? pontuacaoDto.ganhador
         : pontuacaoDto.perdedor;
     const pontuacaoVisitante =
