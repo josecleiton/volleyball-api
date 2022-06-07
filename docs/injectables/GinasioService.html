@@ -408,7 +408,7 @@ export class GinasioService {
     try {
       return await this.ginasioRepository.save(ginasio);
     } catch (error) {
-      this.ormFilterService.catch({
+      throw this.ormFilterService.catch({
         error,
         description: &#x27;conflito&#x27;,
         entityName: &#x27;Ginasio&#x27;,

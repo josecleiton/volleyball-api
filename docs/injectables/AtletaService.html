@@ -135,7 +135,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/modules/pessoa/services/atleta.service.ts:23</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/modules/pessoa/services/atleta.service.ts:25</a></div>
                             </td>
                         </tr>
 
@@ -236,8 +236,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="111"
-                            class="link-to-prism">src/modules/pessoa/services/atleta.service.ts:111</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="114"
+                            class="link-to-prism">src/modules/pessoa/services/atleta.service.ts:114</a></div>
                 </td>
             </tr>
 
@@ -319,8 +319,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="43"
-                            class="link-to-prism">src/modules/pessoa/services/atleta.service.ts:43</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="46"
+                            class="link-to-prism">src/modules/pessoa/services/atleta.service.ts:46</a></div>
                 </td>
             </tr>
 
@@ -391,8 +391,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="74"
-                            class="link-to-prism">src/modules/pessoa/services/atleta.service.ts:74</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="77"
+                            class="link-to-prism">src/modules/pessoa/services/atleta.service.ts:77</a></div>
                 </td>
             </tr>
 
@@ -462,8 +462,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="86"
-                            class="link-to-prism">src/modules/pessoa/services/atleta.service.ts:86</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="89"
+                            class="link-to-prism">src/modules/pessoa/services/atleta.service.ts:89</a></div>
                 </td>
             </tr>
 
@@ -533,8 +533,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="98"
-                            class="link-to-prism">src/modules/pessoa/services/atleta.service.ts:98</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="101"
+                            class="link-to-prism">src/modules/pessoa/services/atleta.service.ts:101</a></div>
                 </td>
             </tr>
 
@@ -604,8 +604,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="90"
-                            class="link-to-prism">src/modules/pessoa/services/atleta.service.ts:90</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="93"
+                            class="link-to-prism">src/modules/pessoa/services/atleta.service.ts:93</a></div>
                 </td>
             </tr>
 
@@ -675,8 +675,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="142"
-                            class="link-to-prism">src/modules/pessoa/services/atleta.service.ts:142</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="145"
+                            class="link-to-prism">src/modules/pessoa/services/atleta.service.ts:145</a></div>
                 </td>
             </tr>
 
@@ -747,8 +747,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="31"
-                            class="link-to-prism">src/modules/pessoa/services/atleta.service.ts:31</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="34"
+                            class="link-to-prism">src/modules/pessoa/services/atleta.service.ts:34</a></div>
                 </td>
             </tr>
 
@@ -803,6 +803,8 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
   ConflictException,
+  forwardRef,
+  Inject,
   Injectable,
   NotFoundException,
   Scope,
@@ -828,6 +830,7 @@ export class AtletaService {
     private readonly atletaRepository: AtletaRepository,
     private readonly equipeService: EquipeService,
     private readonly typeormFilterService: TypeORMFilterService,
+    @Inject(forwardRef(() &#x3D;&gt; LigaService))
     private readonly ligaService: LigaService,
   ) {}
 
@@ -866,7 +869,7 @@ export class AtletaService {
     try {
       return new AtletaRespostaDto(await this.atletaRepository.save(atleta));
     } catch (error) {
-      this.typeormFilterService.catch({
+      throw this.typeormFilterService.catch({
         error,
         description: &#x27;conflito&#x27;,
         entityName: &#x27;Atleta&#x27;,
@@ -934,7 +937,7 @@ export class AtletaService {
 
       return new AtletaRespostaDto(await this.atletaRepository.save(atleta));
     } catch (error) {
-      this.typeormFilterService.catch({
+      throw this.typeormFilterService.catch({
         error,
         description: &#x27;conflito&#x27;,
         entityName: &#x27;Atleta&#x27;,

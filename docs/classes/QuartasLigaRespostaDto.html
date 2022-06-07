@@ -113,7 +113,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(liga: <a href="../entitys/Liga.html" target="_self">Liga</a>, partidas: <a href="../entitys/Partida.html" target="_self">Partida[]</a>)</code>
+<code>constructor(liga: <a href="../entitys/Liga.html" target="_self">Liga</a>, partidas: <a href="../classes/Partida.html" target="_self">Partida[]</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -151,7 +151,7 @@
                                                         <td>partidas</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../entitys/Partida.html" target="_self" >Partida[]</a></code>
+                                                                        <code><a href="../classes/Partida.html" target="_self" >Partida[]</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -219,7 +219,7 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../classes/PartidaRespostaDto.html" target="_self" >PartidaRespostaDto[]</a></code>
+                        <i>Type : </i>        <code><a href="../entitys/Partida.html" target="_self" >PartidaRespostaDto[]</a></code>
 
                     </td>
                 </tr>
@@ -275,7 +275,7 @@ import { Partida } from &#x27;src/modules/partida/entities/partida.entity&#x27;;
 import { ArbitroRespostaDto } from &#x27;src/modules/pessoa/dto/arbitro.dto&#x27;;
 import { DelegadoRespostaDto } from &#x27;src/modules/pessoa/dto/delegado.dto&#x27;;
 import { Liga } from &#x27;../entities/liga.entity&#x27;;
-import { EstadoLiga } from &#x27;../enums/estado-liga.enum&#x27;;
+import { StatusLiga } from &#x27;../enums/status-liga.enum&#x27;;
 
 export class CriaLigaDto {
   @IsEnum(Genero)
@@ -327,7 +327,7 @@ export class InicializaLigaDto {
 export class LigaRespostaDto {
   id: string;
   genero: string;
-  estado: EstadoLiga;
+  estado: StatusLiga;
   dataComeco?: Date;
   nome?: string;
   serie?: string;
@@ -339,7 +339,7 @@ export class LigaRespostaDto {
     this.id &#x3D; liga.id;
     this.genero &#x3D; liga.genero;
     this.dataComeco &#x3D; liga.dataComeco;
-    this.estado &#x3D; liga.estado;
+    this.estado &#x3D; liga.status;
     this.nome &#x3D; liga.nome;
     this.serie &#x3D; liga.serie;
     this.ano &#x3D; liga.ano;
@@ -366,6 +366,18 @@ export class InicializaLigaRespostaDto extends GeraPartidasLigaRespostaDto {
 }
 
 export class QuartasLigaRespostaDto extends GeraPartidasLigaRespostaDto {
+  constructor(liga: Liga, partidas: Partida[]) {
+    super(liga, partidas);
+  }
+}
+
+export class SemisLigaRespostaDto extends GeraPartidasLigaRespostaDto {
+  constructor(liga: Liga, partidas: Partida[]) {
+    super(liga, partidas);
+  }
+}
+
+export class FinalLigaRespostaDto extends GeraPartidasLigaRespostaDto {
   constructor(liga: Liga, partidas: Partida[]) {
     super(liga, partidas);
   }

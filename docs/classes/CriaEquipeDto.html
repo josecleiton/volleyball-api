@@ -148,7 +148,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/modules/equipe/dto/equipe.dto.ts:25</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/modules/equipe/dto/equipe.dto.ts:32</a></div>
                         </td>
                     </tr>
 
@@ -183,7 +183,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/modules/equipe/dto/equipe.dto.ts:29</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/modules/equipe/dto/equipe.dto.ts:36</a></div>
                         </td>
                     </tr>
 
@@ -218,7 +218,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/modules/equipe/dto/equipe.dto.ts:13</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/modules/equipe/dto/equipe.dto.ts:20</a></div>
                         </td>
                     </tr>
 
@@ -253,7 +253,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/modules/equipe/dto/equipe.dto.ts:10</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/modules/equipe/dto/equipe.dto.ts:17</a></div>
                         </td>
                     </tr>
 
@@ -288,7 +288,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/modules/equipe/dto/equipe.dto.ts:17</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/modules/equipe/dto/equipe.dto.ts:24</a></div>
                         </td>
                     </tr>
 
@@ -324,7 +324,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/modules/equipe/dto/equipe.dto.ts:21</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/modules/equipe/dto/equipe.dto.ts:28</a></div>
                         </td>
                     </tr>
 
@@ -344,7 +344,14 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { PartialType } from &#x27;@nestjs/swagger&#x27;;
-import { IsOptional, IsString, IsUrl, IsUUID, Length } from &#x27;class-validator&#x27;;
+import {
+  IsArray,
+  IsOptional,
+  IsString,
+  IsUrl,
+  IsUUID,
+  Length,
+} from &#x27;class-validator&#x27;;
 import { AtletaRespostaDto } from &#x27;src/modules/pessoa/dto/atleta.dto&#x27;;
 import { AuxiliarRespostaDto } from &#x27;src/modules/pessoa/dto/auxiliar.dto&#x27;;
 import { TecnicoRespostaDto } from &#x27;src/modules/pessoa/dto/tecnico.dto&#x27;;
@@ -379,6 +386,10 @@ export class AtualizaEquipeDto extends PartialType(CriaEquipeDto) {}
 export class ListaEquipesDto {
   @IsUUID()
   idLiga!: string;
+  @IsArray()
+  @IsUUID(&#x27;4&#x27;, { each: true })
+  @IsOptional()
+  ids?: string[];
 }
 
 export class EquipeRespostaDto {

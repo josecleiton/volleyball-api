@@ -301,7 +301,7 @@ import { Equipe } from &#x27;src/modules/equipe/entities/equipe.entity&#x27;;
 import { Partida } from &#x27;src/modules/partida/entities/partida.entity&#x27;;
 import { DoublyLinkedList } from &#x27;datastructures-js&#x27;;
 import { createGroup } from &#x27;tournament_creator&#x27;;
-import { diaDaSemanaIndiceMap } from &#x27;./helpers&#x27;;
+import { TipoRodada } from &#x27;src/modules/partida/types/tipo-rodada.type&#x27;;
 
 interface IClassificacaoGeneratorRequest {
   equipes: Equipe[];
@@ -313,6 +313,17 @@ interface IClassificacaoGeneratorRequest {
 
 @Injectable({ scope: Scope.TRANSIENT })
 export class ClassificacaoGeneratorService {
+  private static readonly diaDaSemanaIndiceMap: ReadonlyMap&lt;DiaDaSemana, Day&gt; &#x3D;
+    new Map([
+      [DiaDaSemana.Domingo, 0],
+      [DiaDaSemana.Segunda, 1],
+      [DiaDaSemana.Terça, 2],
+      [DiaDaSemana.Quarta, 3],
+      [DiaDaSemana.Quinta, 4],
+      [DiaDaSemana.Sexta, 5],
+      [DiaDaSemana.Sábado, 6],
+    ]);
+
   private geraDatas(
     quantidadeEquipes: number,
     dataComeco: Date,
@@ -368,7 +379,9 @@ export class ClassificacaoGeneratorService {
     }
 
     const diasDaSemanaIndices &#x3D; diasDaSemana
-      .map((x) &#x3D;&gt; diaDaSemanaIndiceMap.get(x) as Day)
+      .map(
+        (x) &#x3D;&gt; ClassificacaoGeneratorService.diaDaSemanaIndiceMap.get(x) as Day,
+      )
       .sort();
     const horariosOrdenados &#x3D; horarios.sort();
     const datasPrimeiroTurno &#x3D; this.geraDatas(
@@ -405,7 +418,7 @@ export class ClassificacaoGeneratorService {
         match.awayTeam as string,
       ) as Equipe;
       partida.dataComeco &#x3D; datasDasPartidas[index];
-      partida.tipoDaRodada &#x3D; match.matchNumber.toString();
+      partida.tipoDaRodada &#x3D; match.matchNumber.toString() as TipoRodada;
 
       return partida;
     });

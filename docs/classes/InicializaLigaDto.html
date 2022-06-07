@@ -346,7 +346,7 @@ import { Partida } from &#x27;src/modules/partida/entities/partida.entity&#x27;;
 import { ArbitroRespostaDto } from &#x27;src/modules/pessoa/dto/arbitro.dto&#x27;;
 import { DelegadoRespostaDto } from &#x27;src/modules/pessoa/dto/delegado.dto&#x27;;
 import { Liga } from &#x27;../entities/liga.entity&#x27;;
-import { EstadoLiga } from &#x27;../enums/estado-liga.enum&#x27;;
+import { StatusLiga } from &#x27;../enums/status-liga.enum&#x27;;
 
 export class CriaLigaDto {
   @IsEnum(Genero)
@@ -398,7 +398,7 @@ export class InicializaLigaDto {
 export class LigaRespostaDto {
   id: string;
   genero: string;
-  estado: EstadoLiga;
+  estado: StatusLiga;
   dataComeco?: Date;
   nome?: string;
   serie?: string;
@@ -410,7 +410,7 @@ export class LigaRespostaDto {
     this.id &#x3D; liga.id;
     this.genero &#x3D; liga.genero;
     this.dataComeco &#x3D; liga.dataComeco;
-    this.estado &#x3D; liga.estado;
+    this.estado &#x3D; liga.status;
     this.nome &#x3D; liga.nome;
     this.serie &#x3D; liga.serie;
     this.ano &#x3D; liga.ano;
@@ -437,6 +437,18 @@ export class InicializaLigaRespostaDto extends GeraPartidasLigaRespostaDto {
 }
 
 export class QuartasLigaRespostaDto extends GeraPartidasLigaRespostaDto {
+  constructor(liga: Liga, partidas: Partida[]) {
+    super(liga, partidas);
+  }
+}
+
+export class SemisLigaRespostaDto extends GeraPartidasLigaRespostaDto {
+  constructor(liga: Liga, partidas: Partida[]) {
+    super(liga, partidas);
+  }
+}
+
+export class FinalLigaRespostaDto extends GeraPartidasLigaRespostaDto {
   constructor(liga: Liga, partidas: Partida[]) {
     super(liga, partidas);
   }

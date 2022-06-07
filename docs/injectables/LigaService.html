@@ -100,6 +100,10 @@
                                 <a href="#excecaoSeALigaNaoEstaIniciada" >excecaoSeALigaNaoEstaIniciada</a>
                             </li>
                             <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#excecaoSeALigaStatus" >excecaoSeALigaStatus</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Private</span>
                                     <span class="modifier">Async</span>
                                 <a href="#getLigaIniciadaEm" >getLigaIniciadaEm</a>
@@ -110,7 +114,15 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#inicializaFinal" >inicializaFinal</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#inicializaQuartas" >inicializaQuartas</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#inicializaSemis" >inicializaSemis</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
@@ -138,12 +150,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(ligaRepository: <a href="../classes/LigaRepository.html" target="_self">LigaRepository</a>, pontuacaoEquipeRepository: <a href="../classes/PontuacaoEquipeRepository.html" target="_self">PontuacaoEquipeRepository</a>, equipeService: <a href="../injectables/EquipeService.html" target="_self">EquipeService</a>, classificacaoService: <a href="../injectables/ClassificacaoGeneratorService.html" target="_self">ClassificacaoGeneratorService</a>, quartasService: <a href="../injectables/QuartaDeFinalGeneratorService.html" target="_self">QuartaDeFinalGeneratorService</a>, typeormFilterService: <a href="../injectables/TypeORMFilterService.html" target="_self">TypeORMFilterService</a>, connection: Connection)</code>
+<code>constructor(ligaRepository: <a href="../classes/LigaRepository.html" target="_self">LigaRepository</a>, pontuacaoEquipeRepository: <a href="../classes/PontuacaoEquipeRepository.html" target="_self">PontuacaoEquipeRepository</a>, partidaRepository: <a href="../classes/PartidaRepository.html" target="_self">PartidaRepository</a>, equipeService: <a href="../injectables/EquipeService.html" target="_self">EquipeService</a>, classificacaoService: <a href="../injectables/ClassificacaoGeneratorService.html" target="_self">ClassificacaoGeneratorService</a>, quartasService: <a href="../injectables/QuartaDeFinalGeneratorService.html" target="_self">QuartaDeFinalGeneratorService</a>, semisService: <a href="../injectables/SemifinalGeneratorService.html" target="_self">SemifinalGeneratorService</a>, finalService: <a href="../injectables/FinalGeneratorService.html" target="_self">FinalGeneratorService</a>, typeormFilterService: <a href="../injectables/TypeORMFilterService.html" target="_self">TypeORMFilterService</a>, connection: Connection)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/modules/liga/services/liga.service.ts:26</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/modules/liga/services/liga.service.ts:40</a></div>
                             </td>
                         </tr>
 
@@ -185,6 +197,18 @@
                                                     
                                                 </tr>
                                                 <tr>
+                                                        <td>partidaRepository</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../classes/PartidaRepository.html" target="_self" >PartidaRepository</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
                                                         <td>equipeService</td>
                                                   
                                                         <td>
@@ -213,6 +237,30 @@
                                                   
                                                         <td>
                                                                         <code><a href="../injectables/QuartaDeFinalGeneratorService.html" target="_self" >QuartaDeFinalGeneratorService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>semisService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/SemifinalGeneratorService.html" target="_self" >SemifinalGeneratorService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>finalService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/FinalGeneratorService.html" target="_self" >FinalGeneratorService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -280,8 +328,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="37"
-                            class="link-to-prism">src/modules/liga/services/liga.service.ts:37</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="54"
+                            class="link-to-prism">src/modules/liga/services/liga.service.ts:54</a></div>
                 </td>
             </tr>
 
@@ -351,8 +399,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="177"
-                            class="link-to-prism">src/modules/liga/services/liga.service.ts:177</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="275"
+                            class="link-to-prism">src/modules/liga/services/liga.service.ts:275</a></div>
                 </td>
             </tr>
 
@@ -423,8 +471,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="168"
-                            class="link-to-prism">src/modules/liga/services/liga.service.ts:168</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="266"
+                            class="link-to-prism">src/modules/liga/services/liga.service.ts:266</a></div>
                 </td>
             </tr>
 
@@ -506,8 +554,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="143"
-                            class="link-to-prism">src/modules/liga/services/liga.service.ts:143</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="227"
+                            class="link-to-prism">src/modules/liga/services/liga.service.ts:227</a></div>
                 </td>
             </tr>
 
@@ -577,8 +625,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="152"
-                            class="link-to-prism">src/modules/liga/services/liga.service.ts:152</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="236"
+                            class="link-to-prism">src/modules/liga/services/liga.service.ts:236</a></div>
                 </td>
             </tr>
 
@@ -630,6 +678,89 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="excecaoSeALigaStatus"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>excecaoSeALigaStatus</b></span>
+                        <a href="#excecaoSeALigaStatus"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>excecaoSeALigaStatus(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, status: <a href="../entitys/Liga.html" target="_self">StatusLiga</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="245"
+                            class="link-to-prism">src/modules/liga/services/liga.service.ts:245</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>status</td>
+                                    <td>
+                                                <code><a href="../entitys/Liga.html" target="_self" >StatusLiga</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="getLigaIniciadaEm"></a>
                     <span class="name">
                         <span class="modifier">Private</span>
@@ -649,8 +780,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="136"
-                            class="link-to-prism">src/modules/liga/services/liga.service.ts:136</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="220"
+                            class="link-to-prism">src/modules/liga/services/liga.service.ts:220</a></div>
                 </td>
             </tr>
 
@@ -720,8 +851,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="51"
-                            class="link-to-prism">src/modules/liga/services/liga.service.ts:51</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="68"
+                            class="link-to-prism">src/modules/liga/services/liga.service.ts:68</a></div>
                 </td>
             </tr>
 
@@ -785,6 +916,89 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="inicializaFinal"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>inicializaFinal</b></span>
+                        <a href="#inicializaFinal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>inicializaFinal(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, requisicao: <a href="../classes/InicializaFinalDto.html" target="_self">InicializaFinalDto</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="194"
+                            class="link-to-prism">src/modules/liga/services/liga.service.ts:194</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>requisicao</td>
+                                    <td>
+                                                <code><a href="../classes/InicializaFinalDto.html" target="_self" >InicializaFinalDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>unknown</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="inicializaQuartas"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -803,8 +1017,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="112"
-                            class="link-to-prism">src/modules/liga/services/liga.service.ts:112</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="129"
+                            class="link-to-prism">src/modules/liga/services/liga.service.ts:129</a></div>
                 </td>
             </tr>
 
@@ -868,6 +1082,89 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="inicializaSemis"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>inicializaSemis</b></span>
+                        <a href="#inicializaSemis"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>inicializaSemis(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, requisicao: <a href="../classes/InicializaSemifinalDto.html" target="_self">InicializaSemifinalDto</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="170"
+                            class="link-to-prism">src/modules/liga/services/liga.service.ts:170</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>requisicao</td>
+                                    <td>
+                                                <code><a href="../classes/InicializaSemifinalDto.html" target="_self" >InicializaSemifinalDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>unknown</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="lista"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -886,8 +1183,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="161"
-                            class="link-to-prism">src/modules/liga/services/liga.service.ts:161</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="259"
+                            class="link-to-prism">src/modules/liga/services/liga.service.ts:259</a></div>
                 </td>
             </tr>
 
@@ -925,8 +1222,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="181"
-                            class="link-to-prism">src/modules/liga/services/liga.service.ts:181</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="279"
+                            class="link-to-prism">src/modules/liga/services/liga.service.ts:279</a></div>
                 </td>
             </tr>
 
@@ -986,32 +1283,49 @@
   NotFoundException,
   Scope,
 } from &#x27;@nestjs/common&#x27;;
+import { StatusPartida } from &#x27;src/modules/partida/enums/status-partida.enum&#x27;;
+import { PartidaRepository } from &#x27;src/modules/partida/repositories/partida.repository&#x27;;
+import { tiposDeRodadaClassificatoria } from &#x27;src/modules/partida/types/tipo-rodada.type&#x27;;
 import { Connection } from &#x27;typeorm&#x27;;
 import { TypeORMFilterService } from &#x27;../../core/services/typeorm-filter.service&#x27;;
 import { EquipeService } from &#x27;../../equipe/equipe.service&#x27;;
 import {
   CriaLigaDto,
+  FinalLigaRespostaDto,
   InicializaLigaDto,
   InicializaLigaRespostaDto,
   LigaRespostaDto,
   QuartasLigaRespostaDto,
+  SemisLigaRespostaDto,
 } from &#x27;../dto/liga.dto&#x27;;
-import { InicializaQuartaDeFinalDto } from &#x27;../dto/pontuacao_equipe.dto&#x27;;
+import {
+  InicializaFinalDto,
+  InicializaQuartaDeFinalDto,
+  InicializaSemifinalDto,
+} from &#x27;../dto/tabela.dto&#x27;;
 import { Liga } from &#x27;../entities/liga.entity&#x27;;
-import { EstadoLiga } from &#x27;../enums/estado-liga.enum&#x27;;
+import { StatusLiga } from &#x27;../enums/status-liga.enum&#x27;;
 import { LigaRepository } from &#x27;../repositories/liga.repository&#x27;;
 import { PontuacaoEquipeRepository } from &#x27;../repositories/pontuacao_equipe.repository&#x27;;
-import { ClassificacaoGeneratorService } from &#x27;../tabela/classificacao-generator.service&#x27;;
-import { QuartaDeFinalGeneratorService } from &#x27;../tabela/quarta-de-final-generator.service&#x27;;
+import {
+  ClassificacaoGeneratorService,
+  FinalGeneratorService,
+  QuartaDeFinalGeneratorService,
+  SemifinalGeneratorService,
+} from &#x27;../tabela&#x27;;
+import { LigaIdStatus } from &#x27;../types/liga-id-status.type&#x27;;
 
 @Injectable({ scope: Scope.REQUEST })
 export class LigaService {
   constructor(
     private readonly ligaRepository: LigaRepository,
     private readonly pontuacaoEquipeRepository: PontuacaoEquipeRepository,
+    private readonly partidaRepository: PartidaRepository,
     private readonly equipeService: EquipeService,
     private readonly classificacaoService: ClassificacaoGeneratorService,
     private readonly quartasService: QuartaDeFinalGeneratorService,
+    private readonly semisService: SemifinalGeneratorService,
+    private readonly finalService: FinalGeneratorService,
     private readonly typeormFilterService: TypeORMFilterService,
     private readonly connection: Connection,
   ) {}
@@ -1022,7 +1336,7 @@ export class LigaService {
     try {
       return new LigaRespostaDto(await this.ligaRepository.save(liga));
     } catch (error) {
-      this.typeormFilterService.catch({
+      throw this.typeormFilterService.catch({
         error,
         description: &#x27;conflito&#x27;,
         entityName: &#x27;Competição&#x27;,
@@ -1072,7 +1386,7 @@ export class LigaService {
       ...liga.configuracaoInicializacaoLiga,
     });
 
-    liga.estado &#x3D; EstadoLiga.CLASSIFICATORIA;
+    liga.status &#x3D; StatusLiga.CLASSIFICATORIA;
 
     const [ligaAtualizada, partidasSalvas] &#x3D; await this.connection.transaction(
       async (manager) &#x3D;&gt; {
@@ -1093,9 +1407,25 @@ export class LigaService {
 
   async inicializaQuartas(id: string, requisicao: InicializaQuartaDeFinalDto) {
     const liga &#x3D; await this.devePegarEntidade(id);
-    if (liga.estado !&#x3D;&#x3D; EstadoLiga.CLASSIFICATORIA) {
+    if (liga.status !&#x3D;&#x3D; StatusLiga.CLASSIFICATORIA) {
       throw new ConflictException(
-        &#x60;Liga ${liga.id} não está no estado ${EstadoLiga.CLASSIFICATORIA} e sim ${liga.estado}&#x60;,
+        &#x60;Liga ${liga.id} não está no estado ${StatusLiga.CLASSIFICATORIA} e sim ${liga.status}&#x60;,
+      );
+    }
+
+    const quantidadeDePartidasPorTipoRodada &#x3D;
+      await this.partidaRepository.quantidadeDePartidasPorTipoRodadaEStatus({
+        idLiga: liga.id,
+        tiposDeRodada: [...tiposDeRodadaClassificatoria],
+        statusAceitos: [StatusPartida.CONCLUIDA, StatusPartida.WO],
+      });
+
+    if (
+      quantidadeDePartidasPorTipoRodada !&#x3D;&#x3D;
+      Liga.quantidadeDePartidasEmClassificatorias
+    ) {
+      throw new ConflictException(
+        &#x60;Quantidades de partidas concluídas na liga ${liga.id} não é igual a ${Liga.quantidadeDePartidasEmClassificatorias}&#x60;,
       );
     }
 
@@ -1104,15 +1434,66 @@ export class LigaService {
       idLiga: id,
     });
 
-    liga.estado &#x3D; EstadoLiga.QUARTAS;
+    liga.status &#x3D; StatusLiga.QUARTAS;
 
     const [ligaAtualizada, partidasAgendadas] &#x3D;
-      await this.connection.transaction(async (manager) &#x3D;&gt; [
-        await manager.save(liga),
-        await manager.save(partidas),
-      ]);
+      await this.connection.transaction(async (manager) &#x3D;&gt; {
+        await this.partidaRepository.removePartidasSemGanhadores(id, manager);
+
+        return [await manager.save(liga), await manager.save(partidas)];
+      });
 
     return new QuartasLigaRespostaDto(ligaAtualizada, partidasAgendadas);
+  }
+
+  async inicializaSemis(id: string, requisicao: InicializaSemifinalDto) {
+    const liga &#x3D; await this.devePegarEntidade(id);
+    if (liga.status !&#x3D;&#x3D; StatusLiga.SEMIS) {
+      throw new ConflictException(
+        &#x60;Liga ${liga.id} não está ${StatusLiga.QUARTAS}&#x60;,
+      );
+    }
+
+    const partidas &#x3D; await this.semisService.geraPartidas({
+      ...requisicao,
+      idLiga: id,
+    });
+
+    liga.status &#x3D; StatusLiga.SEMIS;
+    const [ligaAtualizada, partidasAgendadas] &#x3D;
+      await this.connection.transaction(async (manager) &#x3D;&gt; {
+        await this.partidaRepository.removePartidasSemGanhadores(id, manager);
+
+        return [await manager.save(liga), await manager.save(partidas)];
+      });
+
+    return new SemisLigaRespostaDto(ligaAtualizada, partidasAgendadas);
+  }
+
+  async inicializaFinal(id: string, requisicao: InicializaFinalDto) {
+    const liga &#x3D; await this.devePegarEntidade(id);
+    if (liga.status !&#x3D;&#x3D; StatusLiga.SEMIS) {
+      throw new ConflictException(
+        &#x60;Liga ${liga.id} não está ${StatusLiga.QUARTAS}&#x60;,
+      );
+    }
+
+    const partidas &#x3D; await this.finalService.geraPartidas({
+      datas: [...requisicao.datas],
+      mandos: [requisicao.mando],
+      idLiga: id,
+    });
+
+    liga.status &#x3D; StatusLiga.FINAL;
+
+    const [ligaAtualizada, partidasAgendadas] &#x3D;
+      await this.connection.transaction(async (manager) &#x3D;&gt; {
+        await this.partidaRepository.removePartidasSemGanhadores(id, manager);
+
+        return [await manager.save(liga), await manager.save(partidas)];
+      });
+
+    return new FinalLigaRespostaDto(ligaAtualizada, partidasAgendadas);
   }
 
   private async getLigaIniciadaEm(id: string) {
@@ -1138,6 +1519,20 @@ export class LigaService {
     }
 
     throw new ConflictException(&#x60;Liga ${id} não está iniciada.&#x60;);
+  }
+
+  async excecaoSeALigaStatus(id: string, status: StatusLiga) {
+    const resultado: LigaIdStatus | undefined &#x3D;
+      await this.ligaRepository.findOne({
+        where: { id },
+        select: [&#x27;id&#x27;, &#x27;status&#x27;],
+      });
+
+    if (resultado?.status &#x3D;&#x3D;&#x3D; status) {
+      throw new NotFoundException(
+        &#x60;Liga ${id} não encontrada com status ${status}&#x60;,
+      );
+    }
   }
 
   async lista() {

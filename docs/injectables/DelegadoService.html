@@ -113,7 +113,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/modules/pessoa/services/delegado.service.ts:13</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/modules/pessoa/services/delegado.service.ts:19</a></div>
                             </td>
                         </tr>
 
@@ -202,8 +202,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="20"
-                            class="link-to-prism">src/modules/pessoa/services/delegado.service.ts:20</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="27"
+                            class="link-to-prism">src/modules/pessoa/services/delegado.service.ts:27</a></div>
                 </td>
             </tr>
 
@@ -273,8 +273,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="49"
-                            class="link-to-prism">src/modules/pessoa/services/delegado.service.ts:49</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="56"
+                            class="link-to-prism">src/modules/pessoa/services/delegado.service.ts:56</a></div>
                 </td>
             </tr>
 
@@ -344,8 +344,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="41"
-                            class="link-to-prism">src/modules/pessoa/services/delegado.service.ts:41</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="48"
+                            class="link-to-prism">src/modules/pessoa/services/delegado.service.ts:48</a></div>
                 </td>
             </tr>
 
@@ -399,7 +399,13 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, NotFoundException, Scope } from &#x27;@nestjs/common&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  forwardRef,
+  Inject,
+  Injectable,
+  NotFoundException,
+  Scope,
+} from &#x27;@nestjs/common&#x27;;
 import { LigaService } from &#x27;src/modules/liga/services/liga.service&#x27;;
 import { TypeORMFilterService } from &#x27;src/modules/core/services/typeorm-filter.service&#x27;;
 import {
@@ -414,6 +420,7 @@ import { TipoPessoa } from &#x27;../enums&#x27;;
 export class DelegadoService {
   constructor(
     private readonly delegadoRepository: DelegadoRepository,
+    @Inject(forwardRef(() &#x3D;&gt; LigaService))
     private readonly ligaService: LigaService,
     private readonly typeormFilterService: TypeORMFilterService,
   ) {}
@@ -431,7 +438,7 @@ export class DelegadoService {
         await this.delegadoRepository.save(delegado),
       );
     } catch (error) {
-      this.typeormFilterService.catch({
+      throw this.typeormFilterService.catch({
         error,
         description: &#x27;conflito&#x27;,
         entityName: &#x27;Delegado&#x27;,

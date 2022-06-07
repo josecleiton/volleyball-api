@@ -237,19 +237,19 @@ export class TypeORMFilterService {
     error,
     description &#x3D; &#x27;&#x27;,
     entityName &#x3D; &#x27;Entidade&#x27;,
-  }: ITypeORMFilterRequest) {
+  }: ITypeORMFilterRequest): Error | unknown {
     if (error instanceof QueryFailedError) {
       switch (error.driverError.code) {
         case &#x27;23505&#x27;:
-          throw new ConflictException(&#x60;${entityName}: ${description}&#x60;);
+          return new ConflictException(&#x60;${entityName}: ${description}&#x60;);
         case &#x27;23503&#x27;:
-          throw new ConflictException(
+          return new ConflictException(
             &#x60;${entityName} missing some relationship. ${error.driverError.detail}&#x60;,
           );
       }
     }
 
-    throw error;
+    return error;
   }
 }
 </code></pre>

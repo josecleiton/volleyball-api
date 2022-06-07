@@ -177,18 +177,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { BadRequestException } from &#x27;@nestjs/common&#x27;;
-import { Type } from &#x27;class-transformer&#x27;;
-import {
-  ArrayMaxSize,
-  ArrayMinSize,
-  IsArray,
-  IsDate,
-  IsEnum,
-  IsUUID,
-} from &#x27;class-validator&#x27;;
-
-export interface IPontuacaoDto {
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export interface IPontuacaoDto {
   pontuacao: number;
   id: string;
 }
@@ -206,48 +195,6 @@ export interface IListaPontuacaoDaLigaOrdenadaResposta {
   equipeIdGinasio: string;
   ligaId: string;
   pontuacao: number;
-}
-
-export enum EscolhaDeMando {
-  PRIMEIRO_JOGO &#x3D; &#x27;primeiro&#x27;,
-  SEGUNDO_JOGO &#x3D; &#x27;segundo&#x27;,
-}
-
-export interface IMataMataDto {
-  datas: Date[];
-  mandos: EscolhaDeMando[];
-  idLiga: string;
-}
-
-export class InicializaQuartaDeFinalDto {
-  @IsArray()
-  @ArrayMinSize(12)
-  @ArrayMaxSize(12)
-  @IsDate({ each: true })
-  @Type(() &#x3D;&gt; Date)
-  datas!: Date[];
-
-  @IsArray()
-  @IsEnum(EscolhaDeMando)
-  @ArrayMinSize(4)
-  @ArrayMaxSize(4)
-  mandos!: EscolhaDeMando[];
-
-  valida() {
-    this.datas.forEach((data, index) &#x3D;&gt; {
-      if (data instanceof Date &amp;&amp; !isFinite(data.getTime())) {
-        throw new BadRequestException(&#x60;&#x27;datas[${index}]&#x27; não fornecida&#x60;);
-      }
-    });
-  }
-}
-
-export class QuartaDeFinalDto
-  extends InicializaQuartaDeFinalDto
-  implements IMataMataDto
-{
-  @IsUUID()
-  idLiga!: string;
 }
 
 export class PontuacaoEquipeRespostaDto {

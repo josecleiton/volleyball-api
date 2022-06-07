@@ -145,7 +145,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/modules/partida/dto/partida.dto.ts:44</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/modules/partida/dto/partida.dto.ts:47</a></div>
                         </td>
                     </tr>
 
@@ -180,7 +180,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/modules/partida/dto/partida.dto.ts:50</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/modules/partida/dto/partida.dto.ts:53</a></div>
                         </td>
                     </tr>
 
@@ -215,7 +215,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/modules/partida/dto/partida.dto.ts:56</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/modules/partida/dto/partida.dto.ts:59</a></div>
                         </td>
                     </tr>
 
@@ -251,7 +251,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/modules/partida/dto/partida.dto.ts:60</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/modules/partida/dto/partida.dto.ts:63</a></div>
                         </td>
                     </tr>
 
@@ -286,7 +286,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/modules/partida/dto/partida.dto.ts:38</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/modules/partida/dto/partida.dto.ts:41</a></div>
                         </td>
                     </tr>
 
@@ -312,16 +312,19 @@
   IsEnum,
   IsIn,
   IsOptional,
+  IsPositive,
   IsUUID,
   ValidateNested,
 } from &#x27;class-validator&#x27;;
+import { EquipeRespostaDto } from &#x27;src/modules/equipe/dto/equipe.dto&#x27;;
 import { Posicao, TipoArbitro } from &#x27;src/modules/pessoa/enums&#x27;;
 import { Partida } from &#x27;../entities/partida.entity&#x27;;
-import { PartidaStatus } from &#x27;../enums/partida-status.enum&#x27;;
+import { StatusPartida } from &#x27;../enums/status-partida.enum&#x27;;
+import { TipoRodada, tiposDeRodada } from &#x27;../types/tipo-rodada.type&#x27;;
 
 export class AtualizaPartidaStatusDto {
-  @IsEnum(PartidaStatus)
-  status!: PartidaStatus;
+  @IsEnum(StatusPartida)
+  status!: StatusPartida;
 }
 
 export class AtletaPartidaDto {
@@ -367,19 +370,38 @@ export class CadastrarParticipantesPartidaDto {
   desistente?: &#x27;mandante&#x27; | &#x27;visitante&#x27;;
 }
 
+export class ListaPartidasDto {
+  @IsUUID()
+  idLiga!: string;
+
+  @IsIn(tiposDeRodada)
+  tipoPartida?: TipoRodada;
+
+  @IsPositive()
+  limite? &#x3D; 51;
+}
+
+export interface IBuscaQuantidadePartidasPorTipoEStatus {
+  idLiga: string;
+  tiposDeRodada: TipoRodada[];
+  statusAceitos: StatusPartida[];
+}
+
 export class PartidaRespostaDto {
   id: string;
   idDelegado?: string;
   idGinasio: string;
   idEquipeMandante: string;
   idEquipeVisitante: string;
-  status: PartidaStatus;
+  status: StatusPartida;
   dataComeco: Date;
   dataFinalizacao?: Date;
   idEquipeGanhador?: string;
   dataCriacao: Date;
   dataAtualizacao: Date;
   duracaoBruta?: number;
+  equipeGanhadora?: EquipeRespostaDto;
+  tipoRodada: TipoRodada;
 
   constructor(partida: Partida) {
     this.id &#x3D; partida.id;
@@ -388,12 +410,16 @@ export class PartidaRespostaDto {
     this.status &#x3D; partida.status;
     this.dataComeco &#x3D; partida.dataComeco;
     this.dataFinalizacao &#x3D; partida.dataFinalizacao;
-    this.idEquipeGanhador &#x3D; partida.idEquipeGanhador;
+    this.idEquipeGanhador &#x3D; partida.idEquipeGanhadora;
     this.dataCriacao &#x3D; partida.dataCriacao;
     this.dataAtualizacao &#x3D; partida.dataAtualizacao;
     this.duracaoBruta &#x3D; partida.duracaoBruta;
     this.idEquipeMandante &#x3D; partida.idMandante;
     this.idEquipeVisitante &#x3D; partida.idVisitante;
+    this.equipeGanhadora &#x3D; partida.equipeGanhadora
+      ? new EquipeRespostaDto(partida.equipeGanhadora)
+      : undefined;
+    this.tipoRodada &#x3D; partida.tipoDaRodada;
   }
 }
 </code></pre>

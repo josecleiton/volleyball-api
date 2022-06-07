@@ -1,0 +1,1156 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Voleibol API</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">Voleibol API</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content class">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Classes</li>
+  <li >SemisEFinalGeneratorService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/modules/liga/tabela/semis-e-final-generator.service.ts</code>
+        </p>
+
+
+
+            <p class="comment">
+                <h3>Extends</h3>
+            </p>
+            <p class="comment">
+                        <code><a href="../classes/MataMataGeneratorService.html" target="_self" >MataMataGeneratorService</a></code>
+            </p>
+
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Static</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#rodadaAnteriorMap" >rodadaAnteriorMap</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Static</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#escolhaDeMando" >escolhaDeMando</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Static</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#mandoFixoIndice" >mandoFixoIndice</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#quantidadeDePartidasNaFinal" >quantidadeDePartidasNaFinal</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#quantidadeDePartidasNasQuartas" >quantidadeDePartidasNasQuartas</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#quantidadeDePartidasNasSemis" >quantidadeDePartidasNasSemis</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#quantidadeDePartidasPorConfronto" >quantidadeDePartidasPorConfronto</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Static</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#quantidadesDePartidasParaVencerConfronto" >quantidadesDePartidasParaVencerConfronto</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Abstract</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#tipoRodada" >tipoRodada</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#listaClassificados" >listaClassificados</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#listarVencedores" >listarVencedores</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#ordenaVencedorPorClassificacao" >ordenaVencedorPorClassificacao</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#geraPartidas" >geraPartidas</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(partidaService: <a href="../injectables/PartidaService.html" target="_self">PartidaService</a>, pontuacaoEquipeService: <a href="../injectables/PontuacaoEquipeService.html" target="_self">PontuacaoEquipeService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/modules/liga/tabela/semis-e-final-generator.service.ts:40</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>partidaService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/PartidaService.html" target="_self" >PartidaService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>pontuacaoEquipeService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/PontuacaoEquipeService.html" target="_self" >PontuacaoEquipeService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="rodadaAnteriorMap"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Static</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>rodadaAnteriorMap</b></span>
+                        <a href="#rodadaAnteriorMap"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/IInfoRodada.html" target="_self" >ReadonlyMap&lt;string | IInfoRodada&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Map([
+      [
+        &#x27;semis&#x27;,
+        {
+          tipo: &#x27;quartas&#x27;,
+          quantidadePartidasAgendadas:
+            MataMataGeneratorService.quantidadeDePartidasNasQuartas,
+        },
+      ],
+      [
+        &#x27;final&#x27;,
+        {
+          tipo: &#x27;semis&#x27;,
+          quantidadePartidasAgendadas:
+            MataMataGeneratorService.quantidadeDePartidasNasSemis,
+        },
+      ],
+    ])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/modules/liga/tabela/semis-e-final-generator.service.ts:22</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="escolhaDeMando"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Static</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>escolhaDeMando</b></span>
+                        <a href="#escolhaDeMando"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/enumerations.html#EscolhaDeMando" target="_self" >ReadonlyMap&lt;EscolhaDeMando | number&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Map([
+      [EscolhaDeMando.PRIMEIRO_JOGO, 0],
+      [EscolhaDeMando.SEGUNDO_JOGO, 1],
+    ])</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../classes/MataMataGeneratorService.html" target="_self" >MataMataGeneratorService</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../classes/MataMataGeneratorService.html#source" target="_self" >MataMataGeneratorService:8</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mandoFixoIndice"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Static</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>mandoFixoIndice</b></span>
+                        <a href="#mandoFixoIndice"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>2</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../classes/MataMataGeneratorService.html" target="_self" >MataMataGeneratorService</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../classes/MataMataGeneratorService.html#source" target="_self" >MataMataGeneratorService:13</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="quantidadeDePartidasNaFinal"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>quantidadeDePartidasNaFinal</b></span>
+                        <a href="#quantidadeDePartidasNaFinal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.quantidadeDePartidasNasSemis / 2</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../classes/MataMataGeneratorService.html" target="_self" >MataMataGeneratorService</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../classes/MataMataGeneratorService.html#source" target="_self" >MataMataGeneratorService:19</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="quantidadeDePartidasNasQuartas"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>quantidadeDePartidasNasQuartas</b></span>
+                        <a href="#quantidadeDePartidasNasQuartas"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>12</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../classes/MataMataGeneratorService.html" target="_self" >MataMataGeneratorService</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../classes/MataMataGeneratorService.html#source" target="_self" >MataMataGeneratorService:16</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="quantidadeDePartidasNasSemis"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>quantidadeDePartidasNasSemis</b></span>
+                        <a href="#quantidadeDePartidasNasSemis"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.quantidadeDePartidasNasQuartas / 2</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../classes/MataMataGeneratorService.html" target="_self" >MataMataGeneratorService</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../classes/MataMataGeneratorService.html#source" target="_self" >MataMataGeneratorService:17</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="quantidadeDePartidasPorConfronto"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>quantidadeDePartidasPorConfronto</b></span>
+                        <a href="#quantidadeDePartidasPorConfronto"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>3</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../classes/MataMataGeneratorService.html" target="_self" >MataMataGeneratorService</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../classes/MataMataGeneratorService.html#source" target="_self" >MataMataGeneratorService:15</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="quantidadesDePartidasParaVencerConfronto"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Static</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>quantidadesDePartidasParaVencerConfronto</b></span>
+                        <a href="#quantidadesDePartidasParaVencerConfronto"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>2</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../classes/MataMataGeneratorService.html" target="_self" >MataMataGeneratorService</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../classes/MataMataGeneratorService.html#source" target="_self" >MataMataGeneratorService:14</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tipoRodada"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Abstract</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>tipoRodada</b></span>
+                        <a href="#tipoRodada"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#TipoRodadaMataMata" target="_self" >TipoRodadaMataMata</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../classes/MataMataGeneratorService.html" target="_self" >MataMataGeneratorService</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../classes/MataMataGeneratorService.html#source" target="_self" >MataMataGeneratorService:22</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="listaClassificados"></a>
+                    <span class="name">
+                        <span class="modifier">Protected</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>listaClassificados</b></span>
+                        <a href="#listaClassificados"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>listaClassificados(idLiga: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Inherited from         <code><a href="../classes/MataMataGeneratorService.html" target="_self" >MataMataGeneratorService</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../classes/MataMataGeneratorService.html#source" target="_self" >MataMataGeneratorService:108</a></code>
+</div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>idLiga</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../interfaces/IClassificados.html" target="_self" >Promise&lt;IClassificados&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="listarVencedores"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>listarVencedores</b></span>
+                        <a href="#listarVencedores"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>listarVencedores(partidas: <a href="../entitys/Partida.html" target="_self">PartidaRespostaDto[]</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="49"
+                            class="link-to-prism">src/modules/liga/tabela/semis-e-final-generator.service.ts:49</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>partidas</td>
+                                    <td>
+                                                <code><a href="../entitys/Partida.html" target="_self" >PartidaRespostaDto[]</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ordenaVencedorPorClassificacao"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>ordenaVencedorPorClassificacao</b></span>
+                        <a href="#ordenaVencedorPorClassificacao"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>ordenaVencedorPorClassificacao(vencedores: string[], pontuacoes: PontuacaoEquipeRespostaDto[])</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="80"
+                            class="link-to-prism">src/modules/liga/tabela/semis-e-final-generator.service.ts:80</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>vencedores</td>
+                                    <td>
+                                            <code>string[]</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>pontuacoes</td>
+                                    <td>
+                                            <code>PontuacaoEquipeRespostaDto[]</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>{}</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="geraPartidas"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>geraPartidas</b></span>
+                        <a href="#geraPartidas"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>geraPartidas(undefined: <a href="../interfaces/IMataMataDto.html" target="_self">IMataMataDto</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Inherited from         <code><a href="../classes/MataMataGeneratorService.html" target="_self" >MataMataGeneratorService</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../classes/MataMataGeneratorService.html#source" target="_self" >MataMataGeneratorService:27</a></code>
+</div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                                <code><a href="../interfaces/IMataMataDto.html" target="_self" >IMataMataDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>unknown</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  ConflictException,
+  InternalServerErrorException,
+} from &#x27;@nestjs/common&#x27;;
+import { chunk, countBy } from &#x27;lodash&#x27;;
+import { EquipeRespostaDto } from &#x27;src/modules/equipe/dto/equipe.dto&#x27;;
+import { PartidaRespostaDto } from &#x27;src/modules/partida/dto/partida.dto&#x27;;
+import { PartidaService } from &#x27;src/modules/partida/services/partida.service&#x27;;
+import { TipoRodadaMataMata } from &#x27;src/modules/partida/types/tipo-rodada.type&#x27;;
+import { IClassificados } from &#x27;../dto/mata-mata.dto&#x27;;
+import { PontuacaoEquipeRespostaDto } from &#x27;../dto/pontuacao_equipe.dto&#x27;;
+import { Liga } from &#x27;../entities/liga.entity&#x27;;
+import { PontuacaoEquipeService } from &#x27;../services/pontuacao-equipe.service&#x27;;
+import { MataMataGeneratorService } from &#x27;./mata-mata-generator.service&#x27;;
+
+interface IInfoRodada {
+  tipo: TipoRodadaMataMata;
+  quantidadePartidasAgendadas: number;
+}
+
+export abstract class SemisEFinalGeneratorService extends MataMataGeneratorService {
+  private static readonly rodadaAnteriorMap: ReadonlyMap&lt;string, IInfoRodada&gt; &#x3D;
+    new Map([
+      [
+        &#x27;semis&#x27;,
+        {
+          tipo: &#x27;quartas&#x27;,
+          quantidadePartidasAgendadas:
+            MataMataGeneratorService.quantidadeDePartidasNasQuartas,
+        },
+      ],
+      [
+        &#x27;final&#x27;,
+        {
+          tipo: &#x27;semis&#x27;,
+          quantidadePartidasAgendadas:
+            MataMataGeneratorService.quantidadeDePartidasNasSemis,
+        },
+      ],
+    ]);
+
+  constructor(
+    private readonly partidaService: PartidaService,
+    private readonly pontuacaoEquipeService: PontuacaoEquipeService,
+  ) {
+    super();
+  }
+
+  private listarVencedores(partidas: PartidaRespostaDto[]) {
+    return chunk(
+      partidas,
+      MataMataGeneratorService.quantidadeDePartidasPorConfronto,
+    ).map((confronto, index) &#x3D;&gt; {
+      const grupoVencedores &#x3D; countBy(
+        confronto,
+        (partida) &#x3D;&gt; partida.idEquipeGanhador,
+      );
+
+      const vencedor &#x3D; Object.entries(grupoVencedores).find(
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        ([_, quantidadePartidas]) &#x3D;&gt; quantidadePartidas &gt; 1,
+      );
+
+      if (!vencedor?.[0] || vencedor[0] &#x3D;&#x3D;&#x3D; &#x27;undefined&#x27;) {
+        const [partida] &#x3D; confronto;
+        throw new ConflictException(
+          &#x60;Confronto ${index + 1} entre ${partida.idEquipeMandante} x ${
+            partida.idEquipeVisitante
+          } não foi definido um vencedor ainda&#x60;,
+        );
+      }
+
+      return vencedor[0];
+    });
+  }
+
+  // Caso a colocação do vencedor da chave a direita seja maior,
+  // invertemos a posição com a outra equipe para manter a escolha de mando
+  // consistente com as regras
+  private ordenaVencedorPorClassificacao(
+    vencedores: string[],
+    pontuacoes: PontuacaoEquipeRespostaDto[],
+  ) {
+    const idEquipeClassificacaoMap: ReadonlyMap&lt;string, number&gt; &#x3D; new Map(
+      pontuacoes.map((pontuacao, index) &#x3D;&gt; [pontuacao.equipe.id, index + 1]),
+    );
+
+    const resultado &#x3D; [...vencedores];
+
+    resultado.some((vencedorEsquerda, index, array) &#x3D;&gt; {
+      const direitaIndex &#x3D; array.length - index - 1;
+      const vencedorDireita &#x3D; vencedorEsquerda[direitaIndex];
+
+      if (
+        (idEquipeClassificacaoMap.get(vencedorEsquerda) ?? 0) &lt;
+        (idEquipeClassificacaoMap.get(vencedorDireita) ?? 0)
+      ) {
+        array[index] &#x3D; vencedorDireita;
+        array[direitaIndex] &#x3D; vencedorEsquerda;
+      }
+
+      return index &#x3D;&#x3D;&#x3D; array.length / 2 - 1;
+    });
+
+    return resultado;
+  }
+
+  protected async listaClassificados(idLiga: string): Promise&lt;IClassificados&gt; {
+    const rodadaAnterior &#x3D; SemisEFinalGeneratorService.rodadaAnteriorMap.get(
+      this.tipoRodada,
+    ) as IInfoRodada;
+
+    const partidas &#x3D; await this.partidaService.listaPartidasOrdenadas({
+      idLiga,
+      tipoPartida: rodadaAnterior.tipo,
+      limite: rodadaAnterior.quantidadePartidasAgendadas,
+    });
+
+    if (partidas.length !&#x3D;&#x3D; rodadaAnterior.quantidadePartidasAgendadas) {
+      throw new InternalServerErrorException(
+        &#x60;Não foram agendadas ${rodadaAnterior.quantidadePartidasAgendadas} partidas para as quartas de final da liga ${idLiga}&#x60;,
+      );
+    }
+
+    const pontuacoes &#x3D;
+      await this.pontuacaoEquipeService.listaPontuacoesOrdenadas(
+        idLiga,
+        Liga.quantidadeDeEquipesClassificadas,
+      );
+
+    const vencedores &#x3D; this.listarVencedores(partidas);
+
+    const vencedoresOrdenadosPorClassificacao &#x3D;
+      this.ordenaVencedorPorClassificacao(vencedores, pontuacoes);
+
+    const equipeMap: ReadonlyMap&lt;string, EquipeRespostaDto&gt; &#x3D; new Map(
+      partidas
+        .filter((partida) &#x3D;&gt; partida.equipeGanhadora)
+        .map(({ equipeGanhadora }) &#x3D;&gt; {
+          const equipe &#x3D; equipeGanhadora as EquipeRespostaDto;
+
+          return [equipe.id, equipe];
+        }),
+    );
+
+    return {
+      equipes: vencedoresOrdenadosPorClassificacao.map(
+        (vencedor) &#x3D;&gt; equipeMap.get(vencedor) as EquipeRespostaDto,
+      ),
+    };
+  }
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
+            var COMPODOC_CURRENT_PAGE_URL = 'SemisEFinalGeneratorService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

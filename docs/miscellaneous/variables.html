@@ -73,13 +73,19 @@
                             <a href="#databaseConfig" title="src/configs/database.config.ts" ><b>databaseConfig</b>&nbsp;&nbsp;&nbsp;(src/.../database.config.ts)</a>
                         </li>
                         <li>
-                            <a href="#diaDaSemanaIndiceMap" title="src/modules/liga/tabela/helpers/dia-da-semana-indice.map.ts" ><b>diaDaSemanaIndiceMap</b>&nbsp;&nbsp;&nbsp;(src/.../dia-da-semana-indice.map.ts)</a>
-                        </li>
-                        <li>
                             <a href="#logger" title="src/main.ts" ><b>logger</b>&nbsp;&nbsp;&nbsp;(src/.../main.ts)</a>
                         </li>
                         <li>
                             <a href="#rateLimitConfig" title="src/configs/rate-limit.config.ts" ><b>rateLimitConfig</b>&nbsp;&nbsp;&nbsp;(src/.../rate-limit.config.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#TipoRodadaKV" title="src/modules/partida/types/tipo-rodada.type.ts" ><b>TipoRodadaKV</b>&nbsp;&nbsp;&nbsp;(src/.../tipo-rodada.type.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#tiposDeRodada" title="src/modules/partida/types/tipo-rodada.type.ts" ><b>tiposDeRodada</b>&nbsp;&nbsp;&nbsp;(src/.../tipo-rodada.type.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#tiposDeRodadaClassificatoria" title="src/modules/partida/types/tipo-rodada.type.ts" ><b>tiposDeRodadaClassificatoria</b>&nbsp;&nbsp;&nbsp;(src/.../tipo-rodada.type.ts)</a>
                         </li>
                         <li>
                             <a href="#whiteList" title="src/configs/cors.config.ts" ><b>whiteList</b>&nbsp;&nbsp;&nbsp;(src/.../cors.config.ts)</a>
@@ -262,43 +268,6 @@
         </tbody>
     </table>
 </section>
-    <h3>src/modules/liga/tabela/helpers/dia-da-semana-indice.map.ts</h3>
-    <section>
-    <h3></h3>    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="diaDaSemanaIndiceMap"></a>
-                    <span class="name">
-                        <span ><b>diaDaSemanaIndiceMap</b></span>
-                        <a href="#diaDaSemanaIndiceMap"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../miscellaneous/enumerations.html#DiaDaSemana" target="_self" >ReadonlyMap&lt;DiaDaSemana, Day&gt;</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>new Map([
-  [DiaDaSemana.Domingo, 0],
-  [DiaDaSemana.Segunda, 1],
-  [DiaDaSemana.Terça, 2],
-  [DiaDaSemana.Quarta, 3],
-  [DiaDaSemana.Quinta, 4],
-  [DiaDaSemana.Sexta, 5],
-  [DiaDaSemana.Sábado, 6],
-])</code>
-                    </td>
-                </tr>
-
-
-        </tbody>
-    </table>
-</section>
     <h3>src/main.ts</h3>
     <section>
     <h3></h3>    <table class="table table-sm table-bordered">
@@ -361,6 +330,105 @@
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>process.env</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/modules/partida/types/tipo-rodada.type.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="TipoRodadaKV"></a>
+                    <span class="name">
+                        <span ><b>TipoRodadaKV</b></span>
+                        <a href="#TipoRodadaKV"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>strEnum([...tiposDeRodada])</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tiposDeRodada"></a>
+                    <span class="name">
+                        <span ><b>tiposDeRodada</b></span>
+                        <a href="#tiposDeRodada"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  ...tiposDeRodadaClassificatoria,
+  &#x27;quartas&#x27;,
+  &#x27;semis&#x27;,
+  &#x27;final&#x27;,
+] as const</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tiposDeRodadaClassificatoria"></a>
+                    <span class="name">
+                        <span ><b>tiposDeRodadaClassificatoria</b></span>
+                        <a href="#tiposDeRodadaClassificatoria"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  &#x27;1&#x27;,
+  &#x27;2&#x27;,
+  &#x27;3&#x27;,
+  &#x27;4&#x27;,
+  &#x27;5&#x27;,
+  &#x27;6&#x27;,
+  &#x27;7&#x27;,
+  &#x27;8&#x27;,
+  &#x27;9&#x27;,
+  &#x27;10&#x27;,
+  &#x27;11&#x27;,
+  &#x27;12&#x27;,
+  &#x27;13&#x27;,
+  &#x27;14&#x27;,
+  &#x27;15&#x27;,
+  &#x27;16&#x27;,
+  &#x27;17&#x27;,
+  &#x27;18&#x27;,
+  &#x27;19&#x27;,
+  &#x27;20&#x27;,
+  &#x27;21&#x27;,
+  &#x27;22&#x27;,
+  &#x27;23&#x27;,
+  &#x27;24&#x27;,
+  &#x27;25&#x27;,
+  &#x27;26&#x27;,
+  &#x27;27&#x27;,
+  &#x27;28&#x27;,
+  &#x27;29&#x27;,
+  &#x27;30&#x27;,
+] as const</code>
                     </td>
                 </tr>
 

@@ -58,7 +58,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/modules/partida/partida.service.ts</code>
+            <code>src/modules/partida/services/partida.service.ts</code>
         </p>
 
 
@@ -92,7 +92,7 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#listaPartidas" >listaPartidas</a>
+                                <a href="#listaPartidasOrdenadas" >listaPartidasOrdenadas</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
@@ -126,7 +126,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/modules/partida/partida.service.ts:31</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/modules/partida/services/partida.service.ts:32</a></div>
                             </td>
                         </tr>
 
@@ -287,8 +287,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="122"
-                            class="link-to-prism">src/modules/partida/partida.service.ts:122</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="129"
+                            class="link-to-prism">src/modules/partida/services/partida.service.ts:129</a></div>
                 </td>
             </tr>
 
@@ -371,8 +371,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="48"
-                            class="link-to-prism">src/modules/partida/partida.service.ts:48</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="55"
+                            class="link-to-prism">src/modules/partida/services/partida.service.ts:55</a></div>
                 </td>
             </tr>
 
@@ -433,15 +433,15 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>finalizaPartida(partida: <a href="../entitys/Partida.html" target="_self">Partida</a>, equipeGanhadora: <a href="../classes/Equipe.html" target="_self">Equipe</a>, pontuacaoDto: <a href="../interfaces/IPontuacaoPartidaDto.html" target="_self">IPontuacaoPartidaDto</a>)</code>
+<code>finalizaPartida(partida: <a href="../classes/Partida.html" target="_self">Partida</a>, equipeGanhadora: <a href="../classes/Equipe.html" target="_self">Equipe</a>, pontuacaoDto: <a href="../interfaces/IPontuacaoPartidaDto.html" target="_self">IPontuacaoPartidaDto</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="203"
-                            class="link-to-prism">src/modules/partida/partida.service.ts:203</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="210"
+                            class="link-to-prism">src/modules/partida/services/partida.service.ts:210</a></div>
                 </td>
             </tr>
 
@@ -464,7 +464,7 @@
                                 <tr>
                                     <td>partida</td>
                                     <td>
-                                                <code><a href="../entitys/Partida.html" target="_self" >Partida</a></code>
+                                                <code><a href="../classes/Partida.html" target="_self" >Partida</a></code>
                                     </td>
 
                                     <td>
@@ -517,26 +517,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="listaPartidas"></a>
+                    <a name="listaPartidasOrdenadas"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
-                        <span ><b>listaPartidas</b></span>
-                        <a href="#listaPartidas"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>listaPartidasOrdenadas</b></span>
+                        <a href="#listaPartidasOrdenadas"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>listaPartidas(idLiga: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>listaPartidasOrdenadas(requisicao: <a href="../classes/ListaPartidasDto.html" target="_self">ListaPartidasDto</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="44"
-                            class="link-to-prism">src/modules/partida/partida.service.ts:44</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="45"
+                            class="link-to-prism">src/modules/partida/services/partida.service.ts:45</a></div>
                 </td>
             </tr>
 
@@ -557,9 +557,9 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>idLiga</td>
+                                    <td>requisicao</td>
                                     <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                <code><a href="../classes/ListaPartidasDto.html" target="_self" >ListaPartidasDto</a></code>
                                     </td>
 
                                     <td>
@@ -574,7 +574,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                        <b>Returns : </b>        <code><a href="../entitys/Partida.html" target="_self" >Promise&lt;PartidaRespostaDto[]&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -600,15 +600,15 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>registraDesistencia(partida: <a href="../entitys/Partida.html" target="_self">Partida</a>)</code>
+                    <code>registraDesistencia(partida: <a href="../classes/Partida.html" target="_self">Partida</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="84"
-                            class="link-to-prism">src/modules/partida/partida.service.ts:84</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="91"
+                            class="link-to-prism">src/modules/partida/services/partida.service.ts:91</a></div>
                 </td>
             </tr>
 
@@ -631,7 +631,7 @@
                                 <tr>
                                     <td>partida</td>
                                     <td>
-                                                <code><a href="../entitys/Partida.html" target="_self" >Partida</a></code>
+                                                <code><a href="../classes/Partida.html" target="_self" >Partida</a></code>
                                     </td>
 
                                     <td>
@@ -678,8 +678,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="59"
-                            class="link-to-prism">src/modules/partida/partida.service.ts:59</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="66"
+                            class="link-to-prism">src/modules/partida/services/partida.service.ts:66</a></div>
                 </td>
             </tr>
 
@@ -755,24 +755,25 @@
 } from &#x27;@nestjs/common&#x27;;
 import { groupBy } from &#x27;lodash&#x27;;
 import { Connection } from &#x27;typeorm&#x27;;
-import { Equipe } from &#x27;../equipe/entities/equipe.entity&#x27;;
-import { PontuacaoEquipeRepository } from &#x27;../liga/repositories/pontuacao_equipe.repository&#x27;;
-import { Posicao, TipoArbitro } from &#x27;../pessoa/enums&#x27;;
-import { ArbitroService } from &#x27;../pessoa/services/arbitro.service&#x27;;
-import { AtletaService } from &#x27;../pessoa/services/atleta.service&#x27;;
-import { DelegadoService } from &#x27;../pessoa/services/delegado.service&#x27;;
+import { Equipe } from &#x27;../../equipe/entities/equipe.entity&#x27;;
+import { PontuacaoEquipeRepository } from &#x27;../../liga/repositories/pontuacao_equipe.repository&#x27;;
+import { Posicao, TipoArbitro } from &#x27;../../pessoa/enums&#x27;;
+import { ArbitroService } from &#x27;../../pessoa/services/arbitro.service&#x27;;
+import { AtletaService } from &#x27;../../pessoa/services/atleta.service&#x27;;
+import { DelegadoService } from &#x27;../../pessoa/services/delegado.service&#x27;;
 import {
   AtletaPartidaDto,
   CadastrarParticipantesPartidaDto,
+  ListaPartidasDto,
   PartidaRespostaDto,
-} from &#x27;./dto/partida.dto&#x27;;
-import { IPontuacaoPartidaDto } from &#x27;./dto/pontuacao-partida.dto&#x27;;
-import { Partida } from &#x27;./entities/partida.entity&#x27;;
-import { PartidaStatus } from &#x27;./enums/partida-status.enum&#x27;;
-import { ArbitroPartidaRepository } from &#x27;./repositories/arbitro-partida.repository&#x27;;
-import { AtletaPartidaRepository } from &#x27;./repositories/atleta-partida.repository&#x27;;
-import { PartidaRepository } from &#x27;./repositories/partida.repository&#x27;;
-import { PontuacaoPartidaRepository } from &#x27;./repositories/pontuacao-partida.repository&#x27;;
+} from &#x27;../dto/partida.dto&#x27;;
+import { IPontuacaoPartidaDto } from &#x27;../dto/pontuacao-partida.dto&#x27;;
+import { Partida } from &#x27;../entities/partida.entity&#x27;;
+import { StatusPartida } from &#x27;../enums/status-partida.enum&#x27;;
+import { ArbitroPartidaRepository } from &#x27;../repositories/arbitro-partida.repository&#x27;;
+import { AtletaPartidaRepository } from &#x27;../repositories/atleta-partida.repository&#x27;;
+import { PartidaRepository } from &#x27;../repositories/partida.repository&#x27;;
+import { PontuacaoPartidaRepository } from &#x27;../repositories/pontuacao-partida.repository&#x27;;
 
 @Injectable({ scope: Scope.REQUEST })
 export class PartidaService {
@@ -788,8 +789,14 @@ export class PartidaService {
     private readonly connection: Connection,
   ) {}
 
-  async listaPartidas(idLiga: string) {
-    throw new NotImplementedException(idLiga);
+  async listaPartidasOrdenadas(
+    requisicao: ListaPartidasDto,
+  ): Promise&lt;PartidaRespostaDto[]&gt; {
+    const partidas &#x3D; await this.partidaRepository.listaPartidasOrdenadas(
+      requisicao,
+    );
+
+    return partidas.map((x) &#x3D;&gt; new PartidaRespostaDto(x));
   }
 
   private async deveEncontrarEntidade(id: string) {
@@ -830,7 +837,7 @@ export class PartidaService {
 
   private async registraDesistencia(partida: Partida) {
     const pontuacaoMandante &#x3D;
-      partida.idEquipeGanhador &#x3D;&#x3D;&#x3D; partida.idMandante ? 2 : -2;
+      partida.idEquipeGanhadora &#x3D;&#x3D;&#x3D; partida.idMandante ? 2 : -2;
     const pontuacaoPartida &#x3D; this.pontuacaoPartidaRepository.create({
       id: partida.id,
       visitante: -pontuacaoMandante,
@@ -871,9 +878,9 @@ export class PartidaService {
     requisicao: CadastrarParticipantesPartidaDto,
   ) {
     const partida &#x3D; await this.deveEncontrarEntidade(id);
-    if (partida.status !&#x3D;&#x3D; PartidaStatus.AGENDADA) {
+    if (partida.status !&#x3D;&#x3D; StatusPartida.AGENDADA) {
       throw new ConflictException(
-        &#x60;Partida ${id} não está no status ${PartidaStatus.AGENDADA}&#x60;,
+        &#x60;Partida ${id} não está no status ${StatusPartida.AGENDADA}&#x60;,
       );
     }
 
@@ -882,8 +889,8 @@ export class PartidaService {
     );
 
     if (requisicao.desistente) {
-      partida.status &#x3D; PartidaStatus.WO;
-      partida.idEquipeGanhador &#x3D;
+      partida.status &#x3D; StatusPartida.WO;
+      partida.idEquipeGanhadora &#x3D;
         requisicao.desistente &#x3D;&#x3D;&#x3D; &#x27;mandante&#x27;
           ? partida.idVisitante
           : partida.idMandante;
@@ -925,7 +932,7 @@ export class PartidaService {
       this.arbitroPartidaRepository.create({ ...arbitroDto }),
     );
 
-    partida.status &#x3D; PartidaStatus.PARTICIPANTES_CADASTRADOS;
+    partida.status &#x3D; StatusPartida.PARTICIPANTES_CADASTRADOS;
     partida.idDelegado &#x3D; delegado.id;
 
     const partidaAtualizada &#x3D; await this.connection.transaction(
@@ -952,17 +959,17 @@ export class PartidaService {
     equipeGanhadora: Equipe,
     pontuacaoDto: IPontuacaoPartidaDto,
   ) {
-    if (partida.status !&#x3D;&#x3D; PartidaStatus.PARTICIPANTES_CADASTRADOS) {
+    if (partida.status !&#x3D;&#x3D; StatusPartida.PARTICIPANTES_CADASTRADOS) {
       throw new ConflictException(
-        &#x60;Partida ${partida.id} não está no status ${PartidaStatus.PARTICIPANTES_CADASTRADOS}&#x60;,
+        &#x60;Partida ${partida.id} não está no status ${StatusPartida.PARTICIPANTES_CADASTRADOS}&#x60;,
       );
     }
 
-    partida.idEquipeGanhador &#x3D; equipeGanhadora.id;
-    partida.status &#x3D; PartidaStatus.CONCLUIDA;
+    partida.idEquipeGanhadora &#x3D; equipeGanhadora.id;
+    partida.status &#x3D; StatusPartida.CONCLUIDA;
 
     const pontuacaoMandante &#x3D;
-      partida.idEquipeGanhador &#x3D;&#x3D;&#x3D; partida.idMandante
+      partida.idEquipeGanhadora &#x3D;&#x3D;&#x3D; partida.idMandante
         ? pontuacaoDto.ganhador
         : pontuacaoDto.perdedor;
     const pontuacaoVisitante &#x3D;

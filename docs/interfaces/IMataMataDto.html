@@ -65,7 +65,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/modules/liga/dto/pontuacao_equipe.dto.ts</code>
+            <code>src/modules/liga/dto/tabela.dto.ts</code>
         </p>
 
 
@@ -227,26 +227,6 @@ import {
   IsUUID,
 } from &#x27;class-validator&#x27;;
 
-export interface IPontuacaoDto {
-  pontuacao: number;
-  id: string;
-}
-
-export interface IEquipePontuacaoDto {
-  id: string;
-  nome: string;
-  idLiga: string;
-  idGinasio: string;
-}
-
-export interface IListaPontuacaoDaLigaOrdenadaResposta {
-  equipeId: string;
-  equipeNome: string;
-  equipeIdGinasio: string;
-  ligaId: string;
-  pontuacao: number;
-}
-
 export enum EscolhaDeMando {
   PRIMEIRO_JOGO &#x3D; &#x27;primeiro&#x27;,
   SEGUNDO_JOGO &#x3D; &#x27;segundo&#x27;,
@@ -258,7 +238,19 @@ export interface IMataMataDto {
   idLiga: string;
 }
 
-export class InicializaQuartaDeFinalDto {
+abstract class InicializaMataMataDto {
+  abstract datas: Date[];
+
+  valida() {
+    this.datas.forEach((data, index) &#x3D;&gt; {
+      if (data instanceof Date &amp;&amp; !isFinite(data.getTime())) {
+        throw new BadRequestException(&#x60;&#x27;datas[${index}]&#x27; não fornecida&#x60;);
+      }
+    });
+  }
+}
+
+export class InicializaQuartaDeFinalDto extends InicializaMataMataDto {
   @IsArray()
   @ArrayMinSize(12)
   @ArrayMaxSize(12)
@@ -271,14 +263,32 @@ export class InicializaQuartaDeFinalDto {
   @ArrayMinSize(4)
   @ArrayMaxSize(4)
   mandos!: EscolhaDeMando[];
+}
 
-  valida() {
-    this.datas.forEach((data, index) &#x3D;&gt; {
-      if (data instanceof Date &amp;&amp; !isFinite(data.getTime())) {
-        throw new BadRequestException(&#x60;&#x27;datas[${index}]&#x27; não fornecida&#x60;);
-      }
-    });
-  }
+export class InicializaSemifinalDto extends InicializaMataMataDto {
+  @IsArray()
+  @ArrayMinSize(6)
+  @ArrayMaxSize(6)
+  @IsDate({ each: true })
+  @Type(() &#x3D;&gt; Date)
+  datas!: Date[];
+
+  @IsArray()
+  @IsEnum(EscolhaDeMando)
+  @ArrayMinSize(2)
+  @ArrayMaxSize(2)
+  mandos!: EscolhaDeMando[];
+}
+
+export class InicializaFinalDto extends InicializaMataMataDto {
+  @IsArray()
+  @ArrayMinSize(3)
+  @ArrayMaxSize(3)
+  @IsDate({ each: true })
+  @Type(() &#x3D;&gt; Date)
+  datas!: Date[];
+
+  mando!: EscolhaDeMando;
 }
 
 export class QuartaDeFinalDto
@@ -287,23 +297,6 @@ export class QuartaDeFinalDto
 {
   @IsUUID()
   idLiga!: string;
-}
-
-export class PontuacaoEquipeRespostaDto {
-  pontuacao: number;
-  equipe: IEquipePontuacaoDto;
-
-  constructor(
-    pontuacaoOrdenadaResposta: IListaPontuacaoDaLigaOrdenadaResposta,
-  ) {
-    this.pontuacao &#x3D; pontuacaoOrdenadaResposta.pontuacao;
-    this.equipe &#x3D; {
-      id: pontuacaoOrdenadaResposta.equipeId,
-      idLiga: pontuacaoOrdenadaResposta.ligaId,
-      nome: pontuacaoOrdenadaResposta.equipeNome,
-      idGinasio: pontuacaoOrdenadaResposta.equipeIdGinasio,
-    };
-  }
 }
 </code></pre>
     </div>

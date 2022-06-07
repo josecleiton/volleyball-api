@@ -887,7 +887,7 @@ export class EquipeService {
       equipe.auxiliares &#x3D; [];
       return new EquipeRespostaDto(await this.equipeRepository.save(equipe));
     } catch (e) {
-      this.ormFilterService.catch({
+      throw this.ormFilterService.catch({
         error: e,
         entityName: &#x27;Equipe&#x27;,
         description: &#x27;nome já utilizado&#x27;,
@@ -901,7 +901,7 @@ export class EquipeService {
 
   async listaEquipes(request: ListaEquipesDto) {
     const equipes &#x3D; await this.equipeRepository.find({
-      where: { ...request },
+      where: { ...request, id: request.ids ? In(request.ids) : undefined },
       order: { dataCriacao: &#x27;ASC&#x27; },
       relations: [&#x27;atletas&#x27;, &#x27;auxiliares&#x27;, &#x27;tecnico&#x27;],
     });

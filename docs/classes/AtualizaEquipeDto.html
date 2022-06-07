@@ -84,7 +84,14 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { PartialType } from &#x27;@nestjs/swagger&#x27;;
-import { IsOptional, IsString, IsUrl, IsUUID, Length } from &#x27;class-validator&#x27;;
+import {
+  IsArray,
+  IsOptional,
+  IsString,
+  IsUrl,
+  IsUUID,
+  Length,
+} from &#x27;class-validator&#x27;;
 import { AtletaRespostaDto } from &#x27;src/modules/pessoa/dto/atleta.dto&#x27;;
 import { AuxiliarRespostaDto } from &#x27;src/modules/pessoa/dto/auxiliar.dto&#x27;;
 import { TecnicoRespostaDto } from &#x27;src/modules/pessoa/dto/tecnico.dto&#x27;;
@@ -119,6 +126,10 @@ export class AtualizaEquipeDto extends PartialType(CriaEquipeDto) {}
 export class ListaEquipesDto {
   @IsUUID()
   idLiga!: string;
+  @IsArray()
+  @IsUUID(&#x27;4&#x27;, { each: true })
+  @IsOptional()
+  ids?: string[];
 }
 
 export class EquipeRespostaDto {

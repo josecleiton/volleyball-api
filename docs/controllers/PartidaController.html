@@ -137,8 +137,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="23"
-                            class="link-to-prism">src/modules/partida/partida.controller.ts:23</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="26"
+                            class="link-to-prism">src/modules/partida/partida.controller.ts:26</a></div>
                 </td>
             </tr>
 
@@ -213,7 +213,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>listaPartidas(idLiga: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>listaPartidas(requisicao: <a href="../classes/ListaPartidasDto.html" target="_self">ListaPartidasDto</a>)</code>
                 </td>
             </tr>
 
@@ -227,8 +227,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="18"
-                            class="link-to-prism">src/modules/partida/partida.controller.ts:18</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="21"
+                            class="link-to-prism">src/modules/partida/partida.controller.ts:21</a></div>
                 </td>
             </tr>
 
@@ -249,9 +249,9 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>idLiga</td>
+                                    <td>requisicao</td>
                                     <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                <code><a href="../classes/ListaPartidasDto.html" target="_self" >ListaPartidasDto</a></code>
                                     </td>
 
                                     <td>
@@ -289,16 +289,19 @@
   Post,
   Query,
 } from &#x27;@nestjs/common&#x27;;
-import { CadastrarParticipantesPartidaDto } from &#x27;./dto/partida.dto&#x27;;
-import { PartidaService } from &#x27;./partida.service&#x27;;
+import {
+  CadastrarParticipantesPartidaDto,
+  ListaPartidasDto,
+} from &#x27;./dto/partida.dto&#x27;;
+import { PartidaService } from &#x27;./services/partida.service&#x27;;
 
 @Controller(&#x27;partida&#x27;)
 export class PartidaController {
   constructor(private readonly partidaService: PartidaService) {}
 
   @Get()
-  async listaPartidas(@Query(&#x27;idLiga&#x27;, ParseUUIDPipe) idLiga: string) {
-    return this.partidaService.listaPartidas(idLiga);
+  async listaPartidas(@Query() requisicao: ListaPartidasDto) {
+    return this.partidaService.listaPartidasOrdenadas(requisicao);
   }
 
   @Post(&#x27;:id/cadastra-participantes&#x27;)

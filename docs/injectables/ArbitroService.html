@@ -113,7 +113,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/modules/pessoa/services/arbitro.service.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/modules/pessoa/services/arbitro.service.ts:20</a></div>
                             </td>
                         </tr>
 
@@ -202,8 +202,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="21"
-                            class="link-to-prism">src/modules/pessoa/services/arbitro.service.ts:21</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="28"
+                            class="link-to-prism">src/modules/pessoa/services/arbitro.service.ts:28</a></div>
                 </td>
             </tr>
 
@@ -273,8 +273,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="48"
-                            class="link-to-prism">src/modules/pessoa/services/arbitro.service.ts:48</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="55"
+                            class="link-to-prism">src/modules/pessoa/services/arbitro.service.ts:55</a></div>
                 </td>
             </tr>
 
@@ -344,8 +344,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="40"
-                            class="link-to-prism">src/modules/pessoa/services/arbitro.service.ts:40</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="47"
+                            class="link-to-prism">src/modules/pessoa/services/arbitro.service.ts:47</a></div>
                 </td>
             </tr>
 
@@ -399,7 +399,13 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, NotFoundException, Scope } from &#x27;@nestjs/common&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  forwardRef,
+  Inject,
+  Injectable,
+  NotFoundException,
+  Scope,
+} from &#x27;@nestjs/common&#x27;;
 import { LigaService } from &#x27;src/modules/liga/services/liga.service&#x27;;
 import { TypeORMFilterService } from &#x27;src/modules/core/services/typeorm-filter.service&#x27;;
 import {
@@ -416,6 +422,7 @@ export class ArbitroService {
   constructor(
     private readonly arbitroRepository: ArbitroRepository,
     private readonly typeormFilterService: TypeORMFilterService,
+    @Inject(forwardRef(() &#x3D;&gt; LigaService))
     private readonly ligaService: LigaService,
   ) {}
 
@@ -430,7 +437,7 @@ export class ArbitroService {
     try {
       return new ArbitroRespostaDto(await this.arbitroRepository.save(arbitro));
     } catch (error) {
-      this.typeormFilterService.catch({
+      throw this.typeormFilterService.catch({
         error,
         description: &#x27;conflito&#x27;,
         entityName: &#x27;Arbitro&#x27;,

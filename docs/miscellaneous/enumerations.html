@@ -64,13 +64,19 @@
                             <a href="#DiaDaSemana" title="src/modules/core/enums/dia-da-semana.enum.ts" ><b>DiaDaSemana</b>&nbsp;&nbsp;&nbsp;(src/.../dia-da-semana.enum.ts)</a>
                         </li>
                         <li>
+                            <a href="#EscolhaDeMando" title="src/modules/liga/dto/tabela.dto.ts" ><b>EscolhaDeMando</b>&nbsp;&nbsp;&nbsp;(src/.../tabela.dto.ts)</a>
+                        </li>
+                        <li>
                             <a href="#Genero" title="src/modules/core/enums/genero.enum.ts" ><b>Genero</b>&nbsp;&nbsp;&nbsp;(src/.../genero.enum.ts)</a>
                         </li>
                         <li>
-                            <a href="#PartidaStatus" title="src/modules/partida/enums/partida-status.enum.ts" ><b>PartidaStatus</b>&nbsp;&nbsp;&nbsp;(src/.../partida-status.enum.ts)</a>
+                            <a href="#Posicao" title="src/modules/pessoa/enums/posicao.enum.ts" ><b>Posicao</b>&nbsp;&nbsp;&nbsp;(src/.../posicao.enum.ts)</a>
                         </li>
                         <li>
-                            <a href="#Posicao" title="src/modules/pessoa/enums/posicao.enum.ts" ><b>Posicao</b>&nbsp;&nbsp;&nbsp;(src/.../posicao.enum.ts)</a>
+                            <a href="#StatusLiga" title="src/modules/liga/enums/status-liga.enum.ts" ><b>StatusLiga</b>&nbsp;&nbsp;&nbsp;(src/.../status-liga.enum.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#StatusPartida" title="src/modules/partida/enums/status-partida.enum.ts" ><b>StatusPartida</b>&nbsp;&nbsp;&nbsp;(src/.../status-partida.enum.ts)</a>
                         </li>
                         <li>
                             <a href="#TipoArbitro" title="src/modules/pessoa/enums/tipo-arbitro.enum.ts" ><b>TipoArbitro</b>&nbsp;&nbsp;&nbsp;(src/.../tipo-arbitro.enum.ts)</a>
@@ -171,6 +177,39 @@
             </tbody>
         </table>
 </section>
+    <h3>src/modules/liga/dto/tabela.dto.ts</h3>
+    <section>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="EscolhaDeMando"></a>
+                        <span class="name "><b>EscolhaDeMando</b><a href="#EscolhaDeMando"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;PRIMEIRO_JOGO
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>primeiro</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;SEGUNDO_JOGO
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>segundo</code>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
     <h3>src/modules/core/enums/genero.enum.ts</h3>
     <section>
         <table class="table table-sm table-bordered">
@@ -199,59 +238,6 @@
                         <tr>
                             <td class="col-md-4">
                                 <i>Value : </i><code>masculino</code>
-                            </td>
-                        </tr>
-            </tbody>
-        </table>
-</section>
-    <h3>src/modules/partida/enums/partida-status.enum.ts</h3>
-    <section>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="PartidaStatus"></a>
-                        <span class="name "><b>PartidaStatus</b><a href="#PartidaStatus"><span class="icon ion-ios-link"></span></a></span>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                &nbsp;AGENDADA
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <i>Value : </i><code>agendada</code>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                &nbsp;PARTICIPANTES_CADASTRADOS
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <i>Value : </i><code>participantes_cadastrados</code>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                &nbsp;WO
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <i>Value : </i><code>wo</code>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                &nbsp;CONCLUIDA
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <i>Value : </i><code>concluida</code>
                             </td>
                         </tr>
             </tbody>
@@ -315,6 +301,142 @@
                         <tr>
                             <td class="col-md-4">
                                 <i>Value : </i><code>levantador</code>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+    <h3>src/modules/liga/enums/status-liga.enum.ts</h3>
+    <section>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="StatusLiga"></a>
+                        <span class="name "><b>StatusLiga</b><a href="#StatusLiga"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;CRIADA
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>criada</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;CLASSIFICATORIA
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>classificatória</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;QUARTAS
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>quartas</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;SEMIS
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>semis</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;FINAL
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>final</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;PREMIACAO
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>premiacao</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;CONCLUIDA
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>concluida</code>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+    <h3>src/modules/partida/enums/status-partida.enum.ts</h3>
+    <section>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="StatusPartida"></a>
+                        <span class="name "><b>StatusPartida</b><a href="#StatusPartida"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;AGENDADA
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>agendada</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;PARTICIPANTES_CADASTRADOS
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>participantes_cadastrados</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;WO
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>wo</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;CONCLUIDA
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>concluida</code>
                             </td>
                         </tr>
             </tbody>

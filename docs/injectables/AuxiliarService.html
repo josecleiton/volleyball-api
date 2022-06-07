@@ -523,7 +523,7 @@ export class AuxiliarService {
         await this.auxiliarRepository.save(auxiliar),
       );
     } catch (error) {
-      this.typeormFilterService.catch({
+      throw this.typeormFilterService.catch({
         error,
         description: &#x27;conflito&#x27;,
         entityName: &#x27;Auxiliar&#x27;,
