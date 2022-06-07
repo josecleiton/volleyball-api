@@ -11,7 +11,8 @@ import { FundamentoAtleta } from './fundamento-atleta.entity';
       .select('a.id', 'id_atleta')
       .addSelect('coalesce(sum(f.recepcoes), 0)', 'recepcoes')
       .from(FundamentoAtleta, 'f')
-      .innerJoin('f.atleta', 'a')
+      .innerJoin('f.atleta', 'ae')
+      .innerJoin('ae.atleta', 'a')
       .groupBy('a.id')
       .orderBy('recepcoes', 'DESC'),
 })

@@ -83,7 +83,6 @@ enum partida_status {
 entity atletas{
 	* id : uuid <<generated>>
 	--
-	* posicao: posicao
 	* numero : tinyint
 	* id_pessoa : uuid <<FK>>
 	* id_equipe : uuid <<FK>>
@@ -140,7 +139,6 @@ entity partidas {
 	* id : uuid <<generated>>
 	--
 	* id_delegado : uuid <<FK>>
-	* id_arbitro : uuid <<FK>>
 	* id_ginasio : uuid <<FK>>
 	* status : partida_status
 	* data_comeco : timestamp
@@ -165,6 +163,46 @@ entity equipes_partidas {
 	* data_atualizacao: timestamp
 }
 
+entity atletas_escalados {
+	* id : uuid <<generated>>
+	--
+	* id_equipe_partida : uuid <<FK>>
+	* id_atleta : uuid <<FK>>
+	* posicao: posicao
+	* data_criacao: timestamp
+	* data_atualizacao: timestamp
+}
+
+enum tipo_arbitro {
+	principal
+	auxiliar
+	quadra
+}
+
+entity arbitros_partida {
+	* id : uuid <<generated>>
+	--
+	* id_arbitro : uuid <<FK>>
+	* id_partida : uuid <<FK>>
+	* tipo: tipo_arbitro
+	* data_criacao: timestamp
+	* data_atualizacao: timestamp
+}
+
+entity fundamentos_atletas {
+	* id : uuid <<generated>>
+	--
+	* id_atleta_partida : uuid <<FK>>
+	* bloqueios : int = 0
+	* recepcoes : int = 0
+	* aces : int = 0
+	* saques : int = 0
+	* ataques : int = 0
+	* pontos : int = 0
+	* data_criacao: timestamp
+	* data_atualizacao: timestamp
+}
+
 entity pontuacoes_view {
 	* idEquipe : uuid <<FK>>
 	--
@@ -179,18 +217,30 @@ entity pontuacoes_view {
 	* partidas_disputadas : int
 }
 
-ligas ||--o{ "<= 12" equipes
+entity melhores_liberos_view {
+	* id_atleta : uuid <<FK>>
+	--
+	* recepcoes : int
+}
+
+ligas ||--o{ "0..12" equipes
 ligas ||--o{ arbitros
 ligas ||--o{ delegados
 equipes ||--o{ "<= 22" atletas : no mínimo 12 para o time estar regular
 equipes "1" --|| "1" tecnicos
-equipes ||--o{ "*" auxiliares
-equipes "1" ||-- "1" ginasios
-equipes "1" ||-- "1" pontuacoes_view
-partidas "1" ||-- "1" arbitros
-partidas "1" ||-- "1" delegados
-partidas "1" ||-- "1" ginasios
+equipes ||--o{ auxiliares
+equipes ||-- ginasios
+equipes ||-- pontuacoes_view
+delegados "1" ||--o{ partidas
+ginasios "1" ||--o{ partidas
 partidas "1" ||--o{ "2" equipes_partidas : equipe mandante e visitante
+partidas "1" ||--o{ "1..4" arbitros_partida 
+equipes_partidas "1" ||--o{ "12..14" atletas_escalados : atletas que irão para a partida
+atletas "1" ||--o{ atletas_escalados
+atletas_escalados "1" ||--o{ fundamentos_atletas
+
+atletas ||-- melhores_liberos_view
+
 
 atletas ||-- pessoas
 tecnicos ||-- pessoas
