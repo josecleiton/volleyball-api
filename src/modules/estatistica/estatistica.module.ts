@@ -3,12 +3,15 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { CoreModule } from '../core/core.module';
 import { LigaModule } from '../liga/liga.module';
 import { PartidaModule } from '../partida/partida.module';
-import { FundamentoAtletaController } from './controllers';
+import {
+  FundamentoAtletaController,
+  MelhorLiberoController,
+} from './controllers';
 import {
   FundamentoAtletaRepository,
   MelhorLiberoViewRepository,
 } from './repositories';
-import { FundamentoAtletaService } from './services';
+import { FundamentoAtletaService, MelhorLiberoService } from './services';
 
 @Module({
   imports: [
@@ -20,7 +23,7 @@ import { FundamentoAtletaService } from './services';
     PartidaModule,
     LigaModule,
   ],
-  controllers: [FundamentoAtletaController],
-  providers: [FundamentoAtletaService],
+  controllers: [FundamentoAtletaController, MelhorLiberoController],
+  providers: [FundamentoAtletaService, MelhorLiberoService],
 })
 export class EstatisticaModule {}

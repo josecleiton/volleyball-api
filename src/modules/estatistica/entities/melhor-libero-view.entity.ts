@@ -1,4 +1,5 @@
-import { Index, ViewColumn, ViewEntity } from 'typeorm';
+import { Atleta } from 'src/modules/pessoa/entities/atleta.entity';
+import { Index, JoinColumn, ManyToOne, ViewColumn, ViewEntity } from 'typeorm';
 import { nomeMelhorLiberoView } from '../estatistica.constants';
 import { FundamentoAtleta } from './fundamento-atleta.entity';
 
@@ -23,4 +24,8 @@ export class MelhorLiberoView {
 
   @ViewColumn()
   recepcoes!: number;
+
+  @ManyToOne(() => Atleta)
+  @JoinColumn({ name: 'id_atleta' })
+  atleta!: Atleta;
 }
