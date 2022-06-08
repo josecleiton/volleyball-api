@@ -11,6 +11,7 @@ import {
 } from '../dto/fundamento-atleta.dto';
 import {
   FundamentoAtletaRepository,
+  MelhorCentralViewRepository,
   MelhorLiberoViewRepository,
 } from '../repositories';
 
@@ -19,6 +20,7 @@ export class FundamentoAtletaService {
   constructor(
     private readonly fundamentoAtletaRepository: FundamentoAtletaRepository,
     private readonly melhorLiberoRepository: MelhorLiberoViewRepository,
+    private readonly melhorCentralRepository: MelhorCentralViewRepository,
     private readonly atletaEscaladoService: AtletaEscaladoService,
     private readonly ligaService: LigaService,
     private readonly typeormFilterService: TypeORMFilterService,
@@ -85,9 +87,12 @@ export class FundamentoAtletaService {
 
   private async atualizeViews(manager: EntityManager) {
     const limit = pLimit(1);
-    const refreshSincrono = [this.melhorLiberoRepository].map((repo) =>
-      limit(() => repo.refreshMaterializedView(manager)),
-    );
+
+    const refreshSincrono = [
+      this.melhorLiberoRepository,
+      this.melhorCentralRepository,
+    ].map((repo) => limit(() => repo.refreshMaterializedView(manager)));
+
     return Promise.all(refreshSincrono);
   }
 }

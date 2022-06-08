@@ -1,6 +1,6 @@
 import { EntidadeBase } from 'src/modules/core/entities/base.entity';
 import { Equipe } from 'src/modules/equipe/entities/equipe.entity';
-import { Column, Entity, ManyToOne, OneToMany } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
 import { IPontoNoSet } from '../interfaces/ponto_no_set.interface';
 import { AtletaEscalado } from './atleta-escalado.entity';
 import { Partida } from './partida.entity';
@@ -50,9 +50,11 @@ export class EquipePartida extends EntidadeBase {
   resultadoCadastradoEm?: Date;
 
   @ManyToOne(() => Equipe)
+  @JoinColumn({ name: 'id_equipe' })
   equipe!: Equipe;
 
   @ManyToOne(() => Partida)
+  @JoinColumn({ name: 'id_partida' })
   partida!: Partida;
 
   @OneToMany(() => AtletaEscalado, (e) => e.participacao)

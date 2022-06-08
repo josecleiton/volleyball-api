@@ -223,6 +223,12 @@ entity melhores_liberos_view {
 	* recepcoes : int
 }
 
+entity melhores_centrais_view {
+	* id_atleta : uuid <<FK>>
+	--
+	* bloqueios : int
+}
+
 ligas ||--o{ "0..12" equipes
 ligas ||--o{ arbitros
 ligas ||--o{ delegados
@@ -240,6 +246,7 @@ atletas "1" ||--o{ atletas_escalados
 atletas_escalados "1" ||--o{ fundamentos_atletas
 
 atletas ||-- melhores_liberos_view
+atletas ||-- melhores_centrais_view
 
 
 atletas ||-- pessoas
