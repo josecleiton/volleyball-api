@@ -5,25 +5,40 @@ import { LigaModule } from '../liga/liga.module';
 import { PartidaModule } from '../partida/partida.module';
 import {
   FundamentoAtletaController,
+  MelhorCentralController,
   MelhorLiberoController,
 } from './controllers';
 import {
   FundamentoAtletaRepository,
+  MelhorCentralViewRepository,
   MelhorLiberoViewRepository,
 } from './repositories';
-import { FundamentoAtletaService, MelhorLiberoService } from './services';
+import {
+  FundamentoAtletaService,
+  MelhorCentralService,
+  MelhorLiberoService,
+} from './services';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([
       FundamentoAtletaRepository,
       MelhorLiberoViewRepository,
+      MelhorCentralViewRepository,
     ]),
     CoreModule,
     PartidaModule,
     LigaModule,
   ],
-  controllers: [FundamentoAtletaController, MelhorLiberoController],
-  providers: [FundamentoAtletaService, MelhorLiberoService],
+  controllers: [
+    FundamentoAtletaController,
+    MelhorLiberoController,
+    MelhorCentralController,
+  ],
+  providers: [
+    FundamentoAtletaService,
+    MelhorLiberoService,
+    MelhorCentralService,
+  ],
 })
 export class EstatisticaModule {}

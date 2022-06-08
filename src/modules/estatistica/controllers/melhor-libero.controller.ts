@@ -7,6 +7,6 @@ export class MelhorLiberoController {
 
   @Get()
   async listaMelhoresDaLiga(@Query('idLiga', ParseUUIDPipe) idLiga: string) {
-    return this.melhorLiberoService.listaMelhores(idLiga);
+    return this.melhorLiberoService.listaMelhoresDaLiga(idLiga);
   }
 }
