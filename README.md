@@ -8,9 +8,9 @@
 
 Gerenciamos as tarefas da sprint pelo Trello (disponível no Teams)
 
-## Mapa de Riscos
+## Diagrama BD
 
-Em construçao
+![ER](/out/documentation/volei/er.svg "Diagrama ER")
 
 ## Arquitetura 
 

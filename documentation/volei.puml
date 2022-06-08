@@ -210,8 +210,8 @@ entity pontuacoes_view {
 	* sets_ganhos : int
 	* sets_disputados : int
 	* sets_perdidos : int
-	* pontos_average : int
-	* sets_average : int
+	* pontos_average : double
+	* sets_average : double
 	* partidas_ganhas : int
 	* partidas_perdidas : int
 	* partidas_disputadas : int
