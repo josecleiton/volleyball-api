@@ -18,7 +18,7 @@ export class Liga extends EntidadeBase {
   @Column()
   genero!: Genero;
 
-  @Column({ type: 'timestamp with time zone', nullable: true })
+  @Column({ nullable: true })
   dataComeco?: Date;
 
   @Column({ type: 'jsonb', nullable: true, select: false })
