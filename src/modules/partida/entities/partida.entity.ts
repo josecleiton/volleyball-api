@@ -89,13 +89,16 @@ export class Partida extends EntidadeBase {
   @JoinColumn({ name: 'id_ganhadora' })
   ganhadora?: EquipePartida;
 
-  @ManyToOne(() => Equipe, { eager: true })
+  @ManyToOne(() => EquipePartida, { eager: true })
   @JoinColumn({ name: 'id_visitante' })
   visitante!: EquipePartida;
 
-  @ManyToOne(() => Equipe, { eager: true })
+  @ManyToOne(() => EquipePartida, { eager: true })
   @JoinColumn({ name: 'id_mandante' })
   private _mandante!: EquipePartida;
+
+  @ManyToOne(() => Equipe, { eager: false, cascade: false })
+  private _nãoremova!: Equipe;
 
   @OneToMany(() => ArbitroPartida, (ap) => ap.partida)
   arbitros?: ArbitroPartida[];

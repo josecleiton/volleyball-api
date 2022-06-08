@@ -20,9 +20,11 @@ import {
 } from '../dto/partida.dto';
 import { Partida } from '../entities/partida.entity';
 import { StatusPartida } from '../enums/status-partida.enum';
-import { ArbitroPartidaRepository } from '../repositories/arbitro-partida.repository';
-import { AtletaEscaladoRepository } from '../repositories/atleta-escalado.repository';
-import { PartidaRepository } from '../repositories/partida.repository';
+import {
+  ArbitroPartidaRepository,
+  AtletaEscaladoRepository,
+  PartidaRepository,
+} from '../repositories';
 
 @Injectable()
 export class PartidaService {
