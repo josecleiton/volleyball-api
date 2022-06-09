@@ -28,7 +28,7 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content class">
+               <div class="content injectable">
                    <div class="content-data">
 
 
@@ -38,13 +38,9 @@
 
 
 
-
-
-
-
 <ol class="breadcrumb">
-  <li>Classes</li>
-  <li >HttpExceptionFilter</li>
+  <li>Injectables</li>
+  <li >MelhorCentralService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -62,18 +58,11 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/filters/http-exception.filter.ts</code>
+            <code>src/modules/estatistica/services/melhor-central.service.ts</code>
         </p>
 
 
 
-
-            <p class="comment">
-                <h3>Implements</h3>
-            </p>
-            <p class="comment">
-                        <code>ExceptionFilter</code>
-            </p>
 
 
             <section>
@@ -90,7 +79,8 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#catch" >catch</a>
+                                    <span class="modifier">Async</span>
+                                <a href="#listaMelhoresDaLiga" >listaMelhoresDaLiga</a>
                             </li>
                         </ul>
                     </td>
@@ -110,12 +100,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(configService: ConfigService)</code>
+<code>constructor(centralRepository: <a href="../classes/MelhorCentralViewRepository.html" target="_self">MelhorCentralViewRepository</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/filters/http-exception.filter.ts:26</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/modules/estatistica/services/melhor-central.service.ts:9</a></div>
                             </td>
                         </tr>
 
@@ -133,10 +123,10 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>configService</td>
+                                                        <td>centralRepository</td>
                                                   
                                                         <td>
-                                                                    <code>ConfigService</code>
+                                                                        <code><a href="../classes/MelhorCentralViewRepository.html" target="_self" >MelhorCentralViewRepository</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -153,7 +143,6 @@
         </table>
 </section>
 
-
             <section>
     
     <h3 id="methods">
@@ -163,24 +152,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="catch"></a>
+                    <a name="listaMelhoresDaLiga"></a>
                     <span class="name">
-                        <span ><b>catch</b></span>
-                        <a href="#catch"><span class="icon ion-ios-link"></span></a>
+                        <span class="modifier">Async</span>
+                        <span ><b>listaMelhoresDaLiga</b></span>
+                        <a href="#listaMelhoresDaLiga"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>catch(exception: HttpException, host: ArgumentsHost)</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>listaMelhoresDaLiga(idLiga: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="29"
-                            class="link-to-prism">src/filters/http-exception.filter.ts:29</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="13"
+                            class="link-to-prism">src/modules/estatistica/services/melhor-central.service.ts:13</a></div>
                 </td>
             </tr>
 
@@ -201,21 +192,9 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>exception</td>
+                                    <td>idLiga</td>
                                     <td>
-                                            <code>HttpException</code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                                <tr>
-                                    <td>host</td>
-                                    <td>
-                                            <code>ArgumentsHost</code>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                     </td>
 
                                     <td>
@@ -230,7 +209,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                        <b>Returns : </b>        <code><a href="../classes/MelhorCentralRespostaDto.html" target="_self" >Promise&lt;MelhorCentralRespostaDto[]&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -242,76 +221,38 @@
     </table>
 </section>
 
-
-
-
-
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
-  ExceptionFilter,
-  Catch,
-  ArgumentsHost,
-  HttpException,
-} from &#x27;@nestjs/common&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@nestjs/common&#x27;;
+import { MelhorCentralRespostaDto } from &#x27;../dto/melhor-central.dto&#x27;;
+import { IMelhorPosicaoService } from &#x27;../interfaces/melhor-posicao-service.interface&#x27;;
+import { MelhorCentralViewRepository } from &#x27;../repositories&#x27;;
 
-import { ConfigService } from &#x27;@nestjs/config&#x27;;
+@Injectable()
+export class MelhorCentralService
+  implements IMelhorPosicaoService&lt;MelhorCentralRespostaDto&gt;
+{
+  constructor(
+    private readonly centralRepository: MelhorCentralViewRepository,
+  ) {}
+  async listaMelhoresDaLiga(
+    idLiga: string,
+  ): Promise&lt;MelhorCentralRespostaDto[]&gt; {
+    const centrais &#x3D; await this.centralRepository.listaMelhoresDaLiga(idLiga);
 
-interface IException {
-  statusCode: number;
-  timestamp: string;
-  path: string;
-  stack?: unknown;
-  message: unknown;
-  name?: string;
-}
-
-interface IClassValidatorException {
-  statusCode: number;
-  error: string;
-  message: string[];
-}
-
-@Catch(HttpException)
-export class HttpExceptionFilter implements ExceptionFilter {
-  constructor(private readonly configService: ConfigService) {}
-
-  catch(exception: HttpException, host: ArgumentsHost) {
-    const ctx &#x3D; host.switchToHttp();
-    const response &#x3D; ctx.getResponse();
-    const request &#x3D; ctx.getRequest();
-    const status &#x3D; exception.getStatus();
-    exception.initMessage();
-    const ex: IException &#x3D; {
-      statusCode: status,
-      timestamp: new Date().toISOString(),
-      path: request.url,
-      message: exception.message,
-    };
-    const NODE_ENV &#x3D; this.configService.get(&#x27;NODE_ENV&#x27;);
-    if (NODE_ENV !&#x3D;&#x3D; &#x27;production&#x27;) {
-      ex.stack &#x3D; exception.stack;
-      ex.name &#x3D; exception.name;
-    }
-
-    // Only emit to Sentry exceptions that dont have code 4xx
-    if (status &#x3D;&#x3D;&#x3D; 400) {
-      const classValidatorEx &#x3D;
-        exception.getResponse() as IClassValidatorException;
-      ex.message &#x3D; classValidatorEx.message;
-      ex.name &#x3D; classValidatorEx.error;
-
-      console.log(ex);
-    }
-
-    response.status(status).send(ex);
+    return centrais.map((x) &#x3D;&gt; new MelhorCentralRespostaDto(x));
   }
 }
 </code></pre>
     </div>
+
 </div>
+
+
+
+
 
 
 
@@ -346,8 +287,8 @@ export class HttpExceptionFilter implements ExceptionFilter {
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
-            var COMPODOC_CURRENT_PAGE_URL = 'HttpExceptionFilter.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'MelhorCentralService.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

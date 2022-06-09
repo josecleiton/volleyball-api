@@ -228,7 +228,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/modules/partida/entities/equipe-partida.entity.ts:59</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/modules/partida/entities/equipe-partida.entity.ts:61</a></div>
                         </td>
                     </tr>
 
@@ -257,13 +257,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ManyToOne(undefined)<br />
+                            @ManyToOne(undefined)<br />@JoinColumn({name: &#x27;id_equipe&#x27;})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/modules/partida/entities/equipe-partida.entity.ts:53</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/modules/partida/entities/equipe-partida.entity.ts:54</a></div>
                         </td>
                     </tr>
 
@@ -362,13 +362,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ManyToOne(undefined)<br />
+                            @ManyToOne(undefined)<br />@JoinColumn({name: &#x27;id_partida&#x27;})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/modules/partida/entities/equipe-partida.entity.ts:56</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/modules/partida/entities/equipe-partida.entity.ts:58</a></div>
                         </td>
                     </tr>
 
@@ -523,7 +523,7 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { EntidadeBase } from &#x27;src/modules/core/entities/base.entity&#x27;;
 import { Equipe } from &#x27;src/modules/equipe/entities/equipe.entity&#x27;;
-import { Column, Entity, ManyToOne, OneToMany } from &#x27;typeorm&#x27;;
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from &#x27;typeorm&#x27;;
 import { IPontoNoSet } from &#x27;../interfaces/ponto_no_set.interface&#x27;;
 import { AtletaEscalado } from &#x27;./atleta-escalado.entity&#x27;;
 import { Partida } from &#x27;./partida.entity&#x27;;
@@ -573,9 +573,11 @@ export class EquipePartida extends EntidadeBase {
   resultadoCadastradoEm?: Date;
 
   @ManyToOne(() &#x3D;&gt; Equipe)
+  @JoinColumn({ name: &#x27;id_equipe&#x27; })
   equipe!: Equipe;
 
   @ManyToOne(() &#x3D;&gt; Partida)
+  @JoinColumn({ name: &#x27;id_partida&#x27; })
   partida!: Partida;
 
   @OneToMany(() &#x3D;&gt; AtletaEscalado, (e) &#x3D;&gt; e.participacao)

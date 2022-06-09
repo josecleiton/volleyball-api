@@ -44,7 +44,7 @@
 
 <ol class="breadcrumb">
   <li>Classes</li>
-  <li >MelhorLiberoViewRepository</li>
+  <li >CriaMelhorCentralView1654692169345</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -62,18 +62,18 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/modules/estatistica/repositories/melhor-libero-view.repository.ts</code>
+            <code>src/database/migrations/1654692169345-CriaMelhorCentralView.ts</code>
         </p>
 
 
 
-            <p class="comment">
-                <h3>Extends</h3>
-            </p>
-            <p class="comment">
-                        <code><a href="../classes/MelhorPosicaoViewRepository.html" target="_self" >MelhorPosicaoViewRepository</a></code>
-            </p>
 
+            <p class="comment">
+                <h3>Implements</h3>
+            </p>
+            <p class="comment">
+                        <code>MigrationInterface</code>
+            </p>
 
 
             <section>
@@ -89,13 +89,6 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier">Protected</span>
-                                    <span class="modifier">Readonly</span>
-                                <a href="#concurrently" >concurrently</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Protected</span>
-                                    <span class="modifier">Readonly</span>
                                 <a href="#name" >name</a>
                             </li>
                         </ul>
@@ -111,12 +104,14 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Public</span>
                                     <span class="modifier">Async</span>
-                                <a href="#listaMelhoresDaLiga" >listaMelhoresDaLiga</a>
+                                <a href="#down" >down</a>
                             </li>
                             <li>
+                                    <span class="modifier">Public</span>
                                     <span class="modifier">Async</span>
-                                <a href="#refreshMaterializedView" >refreshMaterializedView</a>
+                                <a href="#up" >up</a>
                             </li>
                         </ul>
                     </td>
@@ -140,44 +135,8 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="concurrently"></a>
-                    <span class="name">
-                            <span class="modifier">Protected</span>
-                            <span class="modifier">Readonly</span>
-                        <span ><b>concurrently</b></span>
-                        <a href="#concurrently"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>true</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Inherited from         <code><a href="../classes/MaterializedViewRepository.html" target="_self" >MaterializedViewRepository</a></code>
-</div>
-                            </td>
-                        </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../classes/MaterializedViewRepository.html#source" target="_self" >MaterializedViewRepository:9</a></code>
-</div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="name"></a>
                     <span class="name">
-                            <span class="modifier">Protected</span>
-                            <span class="modifier">Readonly</span>
                         <span ><b>name</b></span>
                         <a href="#name"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -185,19 +144,18 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>nomeMelhorLiberoView</code>
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
                     </td>
                 </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Inherited from         <code><a href="../classes/MaterializedViewRepository.html" target="_self" >MaterializedViewRepository</a></code>
-</div>
-                            </td>
-                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;CriaMelhorCentralView1654692169345&#x27;</code>
+                    </td>
+                </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../classes/MaterializedViewRepository.html#source" target="_self" >MaterializedViewRepository:8</a></code>
-</div>
+                                <div class="io-line">Defined in <a href="" data-line="4" class="link-to-prism">src/database/migrations/1654692169345-CriaMelhorCentralView.ts:4</a></div>
                         </td>
                     </tr>
 
@@ -215,32 +173,27 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="listaMelhoresDaLiga"></a>
+                    <a name="down"></a>
                     <span class="name">
+                        <span class="modifier">Public</span>
                         <span class="modifier">Async</span>
-                        <span ><b>listaMelhoresDaLiga</b></span>
-                        <a href="#listaMelhoresDaLiga"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>down</b></span>
+                        <a href="#down"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>listaMelhoresDaLiga(idLiga: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, limite: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    <code>down(queryRunner: QueryRunner)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Inherited from         <code><a href="../classes/MelhorPosicaoViewRepository.html" target="_self" >MelhorPosicaoViewRepository</a></code>
-</div>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../classes/MelhorPosicaoViewRepository.html#source" target="_self" >MelhorPosicaoViewRepository:6</a></code>
-</div>
+                    <div class="io-line">Defined in <a href="" data-line="27"
+                            class="link-to-prism">src/database/migrations/1654692169345-CriaMelhorCentralView.ts:27</a></div>
                 </td>
             </tr>
 
@@ -257,37 +210,19 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
-                                    <td>Default value</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>idLiga</td>
+                                    <td>queryRunner</td>
                                     <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            <code>QueryRunner</code>
                                     </td>
 
                                     <td>
                                         No
                                     </td>
 
-                                    <td>
-                                    </td>
-
-                                </tr>
-                                <tr>
-                                    <td>limite</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-                                    <td>
-                                        <code>10</code>
-                                    </td>
 
                                 </tr>
                             </tbody>
@@ -296,7 +231,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>unknown</code>
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -310,32 +245,27 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="refreshMaterializedView"></a>
+                    <a name="up"></a>
                     <span class="name">
+                        <span class="modifier">Public</span>
                         <span class="modifier">Async</span>
-                        <span ><b>refreshMaterializedView</b></span>
-                        <a href="#refreshMaterializedView"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>up</b></span>
+                        <a href="#up"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>refreshMaterializedView(manager: EntityManager)</code>
+                    <code>up(queryRunner: QueryRunner)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Inherited from         <code><a href="../classes/MaterializedViewRepository.html" target="_self" >MaterializedViewRepository</a></code>
-</div>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../classes/MaterializedViewRepository.html#source" target="_self" >MaterializedViewRepository:11</a></code>
-</div>
+                    <div class="io-line">Defined in <a href="" data-line="6"
+                            class="link-to-prism">src/database/migrations/1654692169345-CriaMelhorCentralView.ts:6</a></div>
                 </td>
             </tr>
 
@@ -356,9 +286,9 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>manager</td>
+                                    <td>queryRunner</td>
                                     <td>
-                                            <code>EntityManager</code>
+                                            <code>QueryRunner</code>
                                     </td>
 
                                     <td>
@@ -373,7 +303,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>unknown</code>
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -393,15 +323,39 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { EntityRepository } from &#x27;typeorm&#x27;;
-import { MelhorLiberoView } from &#x27;../entities/melhor-libero-view.entity&#x27;;
-import { MelhorPosicaoViewRepository } from &#x27;./melhor-posicao-view.repository&#x27;;
-import { nomeMelhorLiberoView } from &#x27;../estatistica.constants&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { MigrationInterface, QueryRunner } from &#x27;typeorm&#x27;;
 
-@EntityRepository(MelhorLiberoView)
-export class MelhorLiberoViewRepository extends MelhorPosicaoViewRepository&lt;MelhorLiberoView&gt; {
-  protected readonly name &#x3D; nomeMelhorLiberoView;
-  protected readonly concurrently &#x3D; true;
+export class CriaMelhorCentralView1654692169345 implements MigrationInterface {
+  name &#x3D; &#x27;CriaMelhorCentralView1654692169345&#x27;;
+
+  public async up(queryRunner: QueryRunner): Promise&lt;void&gt; {
+    await queryRunner.query(
+      &#x60;CREATE MATERIALIZED VIEW &quot;melhores_centrais_view&quot; AS SELECT &quot;a&quot;.&quot;id&quot; AS &quot;id_atleta&quot;, COALESCE(SUM(&quot;f&quot;.&quot;bloqueios&quot;), 0) AS &quot;bloqueios&quot; FROM &quot;fundamentos_atletas&quot; &quot;f&quot; INNER JOIN &quot;atletas_escalados&quot; &quot;ae&quot; ON &quot;ae&quot;.&quot;id&quot;&#x3D;&quot;f&quot;.&quot;id_atleta_partida&quot;  INNER JOIN &quot;atletas&quot; &quot;a&quot; ON &quot;a&quot;.&quot;id&quot;&#x3D;&quot;ae&quot;.&quot;id_atleta&quot; GROUP BY &quot;a&quot;.&quot;id&quot; ORDER BY bloqueios DESC&#x60;,
+    );
+    await queryRunner.query(
+      &#x60;INSERT INTO &quot;typeorm_metadata&quot;(&quot;database&quot;, &quot;schema&quot;, &quot;table&quot;, &quot;type&quot;, &quot;name&quot;, &quot;value&quot;) VALUES (DEFAULT, $1, DEFAULT, $2, $3, $4)&#x60;,
+      [
+        &#x27;public&#x27;,
+        &#x27;MATERIALIZED_VIEW&#x27;,
+        &#x27;melhores_centrais_view&#x27;,
+        &#x27;SELECT &quot;a&quot;.&quot;id&quot; AS &quot;id_atleta&quot;, COALESCE(SUM(&quot;f&quot;.&quot;bloqueios&quot;), 0) AS &quot;bloqueios&quot; FROM &quot;fundamentos_atletas&quot; &quot;f&quot; INNER JOIN &quot;atletas_escalados&quot; &quot;ae&quot; ON &quot;ae&quot;.&quot;id&quot;&#x3D;&quot;f&quot;.&quot;id_atleta_partida&quot;  INNER JOIN &quot;atletas&quot; &quot;a&quot; ON &quot;a&quot;.&quot;id&quot;&#x3D;&quot;ae&quot;.&quot;id_atleta&quot; GROUP BY &quot;a&quot;.&quot;id&quot; ORDER BY bloqueios DESC&#x27;,
+      ],
+    );
+    await queryRunner.query(
+      &#x60;CREATE UNIQUE INDEX &quot;UQ_melhores_centrais_view_idAtleta&quot; ON &quot;melhores_centrais_view&quot; (&quot;id_atleta&quot;)&#x60;,
+    );
+    await queryRunner.query(
+      &#x60;CREATE INDEX &quot;IX_melhores_centrais_view_bloqueios&quot; ON &quot;melhores_centrais_view&quot; (&quot;bloqueios&quot; DESC)&#x60;,
+    );
+  }
+
+  public async down(queryRunner: QueryRunner): Promise&lt;void&gt; {
+    await queryRunner.query(
+      &#x60;DELETE FROM &quot;typeorm_metadata&quot; WHERE &quot;type&quot; &#x3D; $1 AND &quot;name&quot; &#x3D; $2 AND &quot;schema&quot; &#x3D; $3&#x60;,
+      [&#x27;MATERIALIZED_VIEW&#x27;, &#x27;melhores_centrais_view&#x27;, &#x27;public&#x27;],
+    );
+    await queryRunner.query(&#x60;DROP MATERIALIZED VIEW &quot;melhores_centrais_view&quot;&#x60;);
+  }
 }
 </code></pre>
     </div>
@@ -441,7 +395,7 @@ export class MelhorLiberoViewRepository extends MelhorPosicaoViewRepository&lt;M
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
-            var COMPODOC_CURRENT_PAGE_URL = 'MelhorLiberoViewRepository.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'CriaMelhorCentralView1654692169345.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

@@ -73,10 +73,16 @@
                             <a href="#buildSwaggerDoc" title="src/main.ts" ><b>buildSwaggerDoc</b>&nbsp;&nbsp;&nbsp;(src/.../main.ts)</a>
                         </li>
                         <li>
+                            <a href="#criaLigaDto" title="test/__MOCKS__/liga/liga.mock.ts" ><b>criaLigaDto</b>&nbsp;&nbsp;&nbsp;(test/.../liga.mock.ts)</a>
+                        </li>
+                        <li>
                             <a href="#origin" title="src/configs/cors.config.ts" ><b>origin</b>&nbsp;&nbsp;&nbsp;(src/.../cors.config.ts)</a>
                         </li>
                         <li>
                             <a href="#strEnum" title="src/modules/partida/types/tipo-rodada.type.ts" ><b>strEnum</b>&nbsp;&nbsp;&nbsp;(src/.../tipo-rodada.type.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#stubDatabaseConnection" title="test/modules/helpers/stub-database-connection.helper.ts" ><b>stubDatabaseConnection</b>&nbsp;&nbsp;&nbsp;(test/.../stub-database-connection.helper.ts)</a>
                         </li>
                     </ul>
                 </td>
@@ -313,6 +319,89 @@
             </tr>
         </tbody>
     </table>
+</section>    <h3>test/__MOCKS__/liga/liga.mock.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="criaLigaDto"></a>
+                    <span class="name">
+                        <span ><b>criaLigaDto</b></span>
+                        <a href="#criaLigaDto"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>criaLigaDto(genero, serie: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Default value</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>genero</td>
+                                    <td>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                        <code>Genero.feminino</code>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>serie</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                        <code>&#x27;A&#x27;</code>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/CriaLigaDto.html" target="_self" >CriaLigaDto</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>    <h3>src/configs/cors.config.ts</h3>
     <section>
     <h3></h3>    <table class="table table-sm table-bordered">
@@ -441,6 +530,71 @@
                     </div>
                     <div class="io-description">
                         <b>Returns : </b>    <code>K</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>test/modules/helpers/stub-database-connection.helper.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="stubDatabaseConnection"></a>
+                    <span class="name">
+                        <span ><b>stubDatabaseConnection</b></span>
+                        <a href="#stubDatabaseConnection"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>stubDatabaseConnection(builder: TestingModuleBuilder)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>builder</td>
+                                    <td>
+                                            <code>TestingModuleBuilder</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;TestingModuleBuilder&gt;</code>
 
                     </div>
                     <div class="io-description">

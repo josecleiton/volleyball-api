@@ -60,13 +60,13 @@
 <title>cluster_PartidaModule_imports</title>
 <polygon fill="none" stroke="black" points="389,-40.8 389,-92.8 639,-92.8 639,-40.8 389,-40.8"/>
 </g>
-<g id="clust4" class="cluster">
-<title>cluster_PartidaModule_exports</title>
-<polygon fill="none" stroke="black" points="215,-170.8 215,-222.8 497,-222.8 497,-170.8 215,-170.8"/>
-</g>
 <g id="clust6" class="cluster">
 <title>cluster_PartidaModule_providers</title>
 <polygon fill="none" stroke="black" points="16,-40.8 16,-92.8 381,-92.8 381,-40.8 16,-40.8"/>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster_PartidaModule_exports</title>
+<polygon fill="none" stroke="black" points="215,-170.8 215,-222.8 497,-222.8 497,-170.8 215,-170.8"/>
 </g>
 <!-- PessoaModule -->
 <g id="node1" class="node">
@@ -242,14 +242,16 @@
 import { TypeOrmModule } from &#x27;@nestjs/typeorm&#x27;;
 
 import { PartidaController } from &#x27;./partida.controller&#x27;;
-import { PartidaRepository } from &#x27;./repositories/partida.repository&#x27;;
-import { ArbitroPartidaRepository } from &#x27;./repositories/arbitro-partida.repository&#x27;;
-import { AtletaEscaladoRepository } from &#x27;./repositories/atleta-escalado.repository&#x27;;
-import { ParticipacaoPartidaRepository } from &#x27;./repositories/participacao-partida.repository&#x27;;
 import { PessoaModule } from &#x27;../pessoa/pessoa.module&#x27;;
 import { LigaModule } from &#x27;../liga/liga.module&#x27;;
 import { AtletaEscaladoService, PartidaService } from &#x27;./services&#x27;;
 import { PontuacaoModule } from &#x27;../pontuacao/pontuacao.module&#x27;;
+import {
+  ArbitroPartidaRepository,
+  AtletaEscaladoRepository,
+  EquipePartidaRepository,
+  PartidaRepository,
+} from &#x27;./repositories&#x27;;
 
 @Module({
   imports: [
@@ -257,7 +259,7 @@ import { PontuacaoModule } from &#x27;../pontuacao/pontuacao.module&#x27;;
       PartidaRepository,
       ArbitroPartidaRepository,
       AtletaEscaladoRepository,
-      ParticipacaoPartidaRepository,
+      EquipePartidaRepository,
     ]),
     PessoaModule,
     forwardRef(() &#x3D;&gt; LigaModule),

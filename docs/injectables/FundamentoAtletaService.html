@@ -109,12 +109,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(fundamentoAtletaRepository: <a href="../classes/FundamentoAtletaRepository.html" target="_self">FundamentoAtletaRepository</a>, melhorLiberoRepository: <a href="../classes/MelhorLiberoViewRepository.html" target="_self">MelhorLiberoViewRepository</a>, atletaEscaladoService: <a href="../injectables/AtletaEscaladoService.html" target="_self">AtletaEscaladoService</a>, ligaService: <a href="../injectables/LigaService.html" target="_self">LigaService</a>, typeormFilterService: <a href="../injectables/TypeORMFilterService.html" target="_self">TypeORMFilterService</a>, connection: Connection)</code>
+<code>constructor(fundamentoAtletaRepository: <a href="../classes/FundamentoAtletaRepository.html" target="_self">FundamentoAtletaRepository</a>, melhorLiberoRepository: <a href="../classes/MelhorLiberoViewRepository.html" target="_self">MelhorLiberoViewRepository</a>, melhorCentralRepository: <a href="../classes/MelhorCentralViewRepository.html" target="_self">MelhorCentralViewRepository</a>, atletaEscaladoService: <a href="../injectables/AtletaEscaladoService.html" target="_self">AtletaEscaladoService</a>, ligaService: <a href="../injectables/LigaService.html" target="_self">LigaService</a>, typeormFilterService: <a href="../injectables/TypeORMFilterService.html" target="_self">TypeORMFilterService</a>, connection: Connection)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/modules/estatistica/services/fundamento-atleta.service.ts:18</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/modules/estatistica/services/fundamento-atleta.service.ts:19</a></div>
                             </td>
                         </tr>
 
@@ -148,6 +148,18 @@
                                                   
                                                         <td>
                                                                         <code><a href="../classes/MelhorLiberoViewRepository.html" target="_self" >MelhorLiberoViewRepository</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>melhorCentralRepository</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../classes/MelhorCentralViewRepository.html" target="_self" >MelhorCentralViewRepository</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -240,8 +252,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="86"
-                            class="link-to-prism">src/modules/estatistica/services/fundamento-atleta.service.ts:86</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="88"
+                            class="link-to-prism">src/modules/estatistica/services/fundamento-atleta.service.ts:88</a></div>
                 </td>
             </tr>
 
@@ -311,8 +323,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="28"
-                            class="link-to-prism">src/modules/estatistica/services/fundamento-atleta.service.ts:28</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="30"
+                            class="link-to-prism">src/modules/estatistica/services/fundamento-atleta.service.ts:30</a></div>
                 </td>
             </tr>
 
@@ -382,8 +394,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="61"
-                            class="link-to-prism">src/modules/estatistica/services/fundamento-atleta.service.ts:61</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="63"
+                            class="link-to-prism">src/modules/estatistica/services/fundamento-atleta.service.ts:63</a></div>
                 </td>
             </tr>
 
@@ -450,6 +462,7 @@ import {
 } from &#x27;../dto/fundamento-atleta.dto&#x27;;
 import {
   FundamentoAtletaRepository,
+  MelhorCentralViewRepository,
   MelhorLiberoViewRepository,
 } from &#x27;../repositories&#x27;;
 
@@ -458,6 +471,7 @@ export class FundamentoAtletaService {
   constructor(
     private readonly fundamentoAtletaRepository: FundamentoAtletaRepository,
     private readonly melhorLiberoRepository: MelhorLiberoViewRepository,
+    private readonly melhorCentralRepository: MelhorCentralViewRepository,
     private readonly atletaEscaladoService: AtletaEscaladoService,
     private readonly ligaService: LigaService,
     private readonly typeormFilterService: TypeORMFilterService,
@@ -524,9 +538,12 @@ export class FundamentoAtletaService {
 
   private async atualizeViews(manager: EntityManager) {
     const limit &#x3D; pLimit(1);
-    const refreshSincrono &#x3D; [this.melhorLiberoRepository].map((repo) &#x3D;&gt;
-      limit(() &#x3D;&gt; repo.refreshMaterializedView(manager)),
-    );
+
+    const refreshSincrono &#x3D; [
+      this.melhorLiberoRepository,
+      this.melhorCentralRepository,
+    ].map((repo) &#x3D;&gt; limit(() &#x3D;&gt; repo.refreshMaterializedView(manager)));
+
     return Promise.all(refreshSincrono);
   }
 }

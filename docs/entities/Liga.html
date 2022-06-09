@@ -237,7 +237,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @Column({type: &#x27;timestamp with time zone&#x27;, nullable: true})<br />
+                            @Column({nullable: true})<br />
                         </code>
                     </td>
                 </tr>
@@ -619,7 +619,7 @@ export class Liga extends EntidadeBase {
   @Column()
   genero!: Genero;
 
-  @Column({ type: &#x27;timestamp with time zone&#x27;, nullable: true })
+  @Column({ nullable: true })
   dataComeco?: Date;
 
   @Column({ type: &#x27;jsonb&#x27;, nullable: true, select: false })

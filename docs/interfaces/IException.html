@@ -385,6 +385,8 @@ export class HttpExceptionFilter implements ExceptionFilter {
         exception.getResponse() as IClassValidatorException;
       ex.message &#x3D; classValidatorEx.message;
       ex.name &#x3D; classValidatorEx.error;
+
+      console.log(ex);
     }
 
     response.status(status).send(ex);

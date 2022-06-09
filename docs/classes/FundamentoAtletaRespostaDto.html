@@ -451,7 +451,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { IsOptional, IsPositive, IsUUID, Max } from &#x27;class-validator&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { IsOptional, IsUUID, Max, Min } from &#x27;class-validator&#x27;;
 import { FundamentoAtleta } from &#x27;../entities/fundamento-atleta.entity&#x27;;
 
 export class CriaFundamentoAtletaDto {
@@ -461,32 +461,32 @@ export class CriaFundamentoAtletaDto {
   @IsUUID()
   idAtleta!: string;
 
-  @IsPositive()
+  @Min(0)
   @Max(200)
   @IsOptional()
   bloqueios?: number;
 
-  @IsPositive()
+  @Min(0)
   @Max(200)
   @IsOptional()
   recepcoes?: number;
 
-  @IsPositive()
+  @Min(0)
   @Max(200)
   @IsOptional()
   aces?: number;
 
-  @IsPositive()
+  @Min(0)
   @Max(200)
   @IsOptional()
   saques?: number;
 
-  @IsPositive()
+  @Min(0)
   @Max(200)
   @IsOptional()
   ataques?: number;
 
-  @IsPositive()
+  @Min(0)
   @Max(200)
   @IsOptional()
   pontos?: number;
