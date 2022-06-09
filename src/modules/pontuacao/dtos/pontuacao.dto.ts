@@ -9,6 +9,9 @@ export class PontuacaoRespostaDto {
   partidasGanhas: number;
   partidasPerdidas: number;
   partidasDisputadas: number;
+  pontuacao: number;
+  pontosAverage: number;
+  setsAverage: number;
 
   equipe: EquipeRespostaDto;
 
@@ -20,6 +23,9 @@ export class PontuacaoRespostaDto {
     this.partidasGanhas = p.partidasGanhas;
     this.partidasPerdidas = p.partidasPerdidas;
     this.partidasDisputadas = p.partidasDisputadas;
+    this.pontuacao = p.pontuacao;
+    this.pontosAverage = p.pontosAverage;
+    this.setsAverage = p.setsAverage;
 
     this.equipe = new EquipeRespostaDto(p.equipe);
   }
