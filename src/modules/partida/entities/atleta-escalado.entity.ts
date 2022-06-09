@@ -16,6 +16,7 @@ export class AtletaEscalado extends EntidadeBase {
   idAtleta!: string;
 
   @Column({ type: 'enum', enum: Posicao })
+  @Index()
   posicao!: Posicao;
 
   @ManyToOne(() => EquipePartida)

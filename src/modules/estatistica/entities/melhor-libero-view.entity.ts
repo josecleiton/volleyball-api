@@ -1,4 +1,5 @@
 import { Atleta } from 'src/modules/pessoa/entities/atleta.entity';
+import { Posicao } from 'src/modules/pessoa/enums';
 import { Index, JoinColumn, ManyToOne, ViewColumn, ViewEntity } from 'typeorm';
 import { nomeMelhorLiberoView } from '../estatistica.constants';
 import { FundamentoAtleta } from './fundamento-atleta.entity';
@@ -12,7 +13,11 @@ import { FundamentoAtleta } from './fundamento-atleta.entity';
       .select('a.id', 'id_atleta')
       .addSelect('coalesce(sum(f.recepcoes), 0)', 'recepcoes')
       .from(FundamentoAtleta, 'f')
-      .innerJoin('f.atleta', 'ae')
+      .innerJoin(
+        'f.atleta',
+        'ae',
+        `ae.id = f.idAtletaEscalado AND ae.posicao = '${Posicao.LIBERO}'`,
+      )
       .innerJoin('ae.atleta', 'a')
       .groupBy('a.id')
       .orderBy('recepcoes', 'DESC'),
