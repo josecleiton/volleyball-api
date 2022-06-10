@@ -1,3 +1,3 @@
 export const nomeMelhorLiberoView = 'melhores_liberos_view';
 export const nomeMelhorCentralView = 'melhores_centrais_view';
-export const nomeMelhorPontaView = 'melhores_ponteiros_view';
+export const nomeMelhorPontaView = 'melhores_pontas_view';

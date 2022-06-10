@@ -11,7 +11,7 @@ import { nomeMelhorPontaView } from '../estatistica.constants';
       SELECT
         a.id AS id,
         COUNT(f.id) AS qtd,
-        SUM(f.aces) AS total_aces
+        SUM(f.aces) AS total_aces,
         SUM(f.saques) AS total_saques
       FROM fundamentos_atletas AS f
       INNER JOIN atletas_escalados AS ae
@@ -27,8 +27,8 @@ import { nomeMelhorPontaView } from '../estatistica.constants';
     SELECT
       ac.id AS id_atleta,
       ac.qtd AS quantidade_partidas,
-      COALESCE(ac.total_aces / NULLIF(ac.qtd, 0), 0) AS aces_por_partida
-      COALESCE(ac.total_aces / NULLIF(ac.saques, 0), 0) AS saques_efetivos
+      COALESCE(ac.total_aces / NULLIF(ac.qtd, 0), 0) AS aces_por_partida,
+      COALESCE(ac.total_aces / NULLIF(ac.total_saques, 0), 0) AS saques_efetivos
     FROM ac
 `,
 })
