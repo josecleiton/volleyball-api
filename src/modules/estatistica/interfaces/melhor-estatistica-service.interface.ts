@@ -1,3 +1,3 @@
-export interface IMelhorPosicaoService<T> {
+export interface IMelhorEstatisticaService<T> {
   listaMelhoresDaLiga(idLiga: string): Promise<T[]>;
 }

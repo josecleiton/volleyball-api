@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { MelhorCentralRespostaDto } from '../dto/melhor-central.dto';
-import { IMelhorPosicaoService } from '../interfaces/melhor-posicao-service.interface';
+import { IMelhorEstatisticaService } from '../interfaces/melhor-estatistica-service.interface';
 import { MelhorCentralViewRepository } from '../repositories';
 
 @Injectable()
 export class MelhorCentralService
-  implements IMelhorPosicaoService<MelhorCentralRespostaDto>
+  implements IMelhorEstatisticaService<MelhorCentralRespostaDto>
 {
   constructor(
     private readonly centralRepository: MelhorCentralViewRepository,
