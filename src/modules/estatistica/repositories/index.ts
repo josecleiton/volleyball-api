@@ -3,3 +3,4 @@ export * from './melhor-libero-view.repository';
 export * from './melhor-central-view.repository';
 export * from './melhor-ponta-view.repository';
 export * from './voto-da-galera.repository';
+export * from './craque-da-galera-view.repository';

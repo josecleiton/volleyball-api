@@ -18,13 +18,17 @@ import {
   IniciarVotoRespostaDto,
 } from '../dto/voto-da-galera.dto';
 import { VotoDaGalera } from '../entities/voto-da-galera.entity';
-import { VotoDaGaleraRepository } from '../repositories';
+import {
+  CraqueDaGaleraViewRepository,
+  VotoDaGaleraRepository,
+} from '../repositories';
 
 @Injectable()
 export class VotoDaGaleraService {
   private readonly logger = new Logger('VotoDaGaleraService');
   constructor(
     private readonly votoDaGaleraRepository: VotoDaGaleraRepository,
+    private readonly craqueDaGaleraRepository: CraqueDaGaleraViewRepository,
     private readonly enviaVerificacaoSmsService: EnviaVerificacaoSmsService,
     private readonly verificaCodigoSmsService: VerificaCodigoSmsService,
     private readonly atletaService: AtletaService,
@@ -101,8 +105,11 @@ export class VotoDaGaleraService {
       throw new ForbiddenException(token);
     }
 
-    voto.verificadoEm = new Date();
-
-    await this.votoDaGaleraRepository.update(voto.id, voto);
+    await this.connection.transaction(async (manager) => {
+      await manager.update(VotoDaGalera, voto.id, {
+        verificadoEm: new Date(),
+      });
+      await this.craqueDaGaleraRepository.refreshMaterializedView(manager);
+    });
   }
 }

@@ -6,6 +6,7 @@ import { PartidaModule } from '../partida/partida.module';
 import { PessoaModule } from '../pessoa/pessoa.module';
 import { SmsModule } from '../sms/sms.module';
 import {
+  CraqueDaGaleraController,
   FundamentoAtletaController,
   MelhorCentralController,
   MelhorLiberoController,
@@ -13,6 +14,7 @@ import {
 import { MelhorPontaController } from './controllers/melhor-ponta.controller';
 import { VotoDaGaleraController } from './controllers/voto-da-galera.controller';
 import {
+  CraqueDaGaleraViewRepository,
   FundamentoAtletaRepository,
   MelhorCentralViewRepository,
   MelhorLiberoViewRepository,
@@ -20,6 +22,7 @@ import {
   VotoDaGaleraRepository,
 } from './repositories';
 import {
+  CraqueDaGaleraService,
   FundamentoAtletaService,
   MelhorCentralService,
   MelhorLiberoService,
@@ -35,6 +38,7 @@ import {
       MelhorCentralViewRepository,
       MelhorPontaViewRepository,
       VotoDaGaleraRepository,
+      CraqueDaGaleraViewRepository,
     ]),
     CoreModule,
     PartidaModule,
@@ -48,6 +52,7 @@ import {
     MelhorCentralController,
     MelhorPontaController,
     VotoDaGaleraController,
+    CraqueDaGaleraController,
   ],
   providers: [
     FundamentoAtletaService,
@@ -55,6 +60,7 @@ import {
     MelhorCentralService,
     MelhorPontaService,
     VotoDaGaleraService,
+    CraqueDaGaleraService,
   ],
 })
 export class EstatisticaModule {}
