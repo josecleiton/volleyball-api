@@ -10,6 +10,7 @@ export class VotoDaGaleraRepository extends Repository<VotoDaGalera> {
       .innerJoin('voto.atleta', 'a')
       .innerJoin('a.equipe', 'e')
       .where('voto.telefone = :telefone', { telefone })
+      .andWhere('voto.verificadoEm IS NOT NULL')
       .andWhere('e.idLiga = :idLiga', { idLiga })
       .limit(1);
 

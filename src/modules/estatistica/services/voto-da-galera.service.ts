@@ -11,7 +11,7 @@ import {
   EnviaVerificacaoSmsService,
   VerificaCodigoSmsService,
 } from 'src/modules/sms/services';
-import { Connection, IsNull, Not } from 'typeorm';
+import { Connection, IsNull } from 'typeorm';
 import {
   ConfirmarVotoDto,
   IniciarVotoDto,
@@ -61,7 +61,7 @@ export class VotoDaGaleraService {
     const voto = await this.connection.transaction(async (manager) => {
       await manager.delete(VotoDaGalera, {
         telefone: requisicao.telefone,
-        verificadoEm: Not(IsNull()),
+        verificadoEm: IsNull(),
       });
 
       return manager.save(
