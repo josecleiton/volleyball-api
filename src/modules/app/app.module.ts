@@ -15,6 +15,8 @@ import { GinasioModule } from '../ginasio/ginasio.module';
 import { PartidaModule } from '../partida/partida.module';
 import { PessoaModule } from '../pessoa/pessoa.module';
 import { EstatisticaModule } from '../estatistica/estatistica.module';
+import { ThrottlerModule } from '@nestjs/throttler';
+import { getModuleThrottlerProvider } from '../core/guards';
 
 @Module({
   imports: [
@@ -27,6 +29,12 @@ import { EstatisticaModule } from '../estatistica/estatistica.module';
     ConfigModule.forRoot({
       load: [appConfig, databaseConfig, corsConfig, rateLimitConfig],
     }),
+    ThrottlerModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: (configService: ConfigService) =>
+        configService.get('rateLimit') ?? { ttl: 60, max: 10 },
+      inject: [ConfigService],
+    }),
     CoreModule,
     EquipeModule,
     PessoaModule,
@@ -35,5 +43,6 @@ import { EstatisticaModule } from '../estatistica/estatistica.module';
     PartidaModule,
     EstatisticaModule,
   ],
+  providers: [getModuleThrottlerProvider()],
 })
 export class AppModule {}

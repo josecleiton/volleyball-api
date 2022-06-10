@@ -3,12 +3,18 @@ import { MelhorCentralView } from '../entities/melhor-central-view.entity';
 
 export class MelhorCentralRespostaDto {
   idAtleta: string;
-  bloqueios: number;
+  bloqueiosPorPartida: number;
   atleta: AtletaRespostaDto;
+  quantidadeDePartidas: number;
+
+  public get totalDeBloqueios(): number {
+    return this.bloqueiosPorPartida * this.quantidadeDePartidas;
+  }
 
   constructor(m: MelhorCentralView) {
     this.idAtleta = m.idAtleta;
-    this.bloqueios = m.bloqueios;
+    this.bloqueiosPorPartida = m.bloqueiosPorPartida;
+    this.quantidadeDePartidas = m.quantidadePartidas;
     this.atleta = new AtletaRespostaDto(m.atleta);
   }
 }

@@ -8,15 +8,18 @@ import {
   MelhorCentralController,
   MelhorLiberoController,
 } from './controllers';
+import { MelhorPontaController } from './controllers/melhor-ponta.controller';
 import {
   FundamentoAtletaRepository,
   MelhorCentralViewRepository,
   MelhorLiberoViewRepository,
+  MelhorPontaViewRepository,
 } from './repositories';
 import {
   FundamentoAtletaService,
   MelhorCentralService,
   MelhorLiberoService,
+  MelhorPontaService,
 } from './services';
 
 @Module({
@@ -25,6 +28,7 @@ import {
       FundamentoAtletaRepository,
       MelhorLiberoViewRepository,
       MelhorCentralViewRepository,
+      MelhorPontaViewRepository,
     ]),
     CoreModule,
     PartidaModule,
@@ -34,11 +38,13 @@ import {
     FundamentoAtletaController,
     MelhorLiberoController,
     MelhorCentralController,
+    MelhorPontaController,
   ],
   providers: [
     FundamentoAtletaService,
     MelhorLiberoService,
     MelhorCentralService,
+    MelhorPontaService,
   ],
 })
 export class EstatisticaModule {}
