@@ -16,7 +16,7 @@ export class EnviaVerificacaoSmsService {
 
         return resolve({
           id: verify.id,
-          expireAt: new Date(verify.validUntilDatetime),
+          expiraEm: new Date(verify.validUntilDatetime),
         });
       }),
     );

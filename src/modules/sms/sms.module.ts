@@ -1,18 +1,21 @@
 import { Module } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import {
   EnviaVerificacaoSmsService,
   VerificaCodigoSmsService,
 } from './services';
 import { MESSAGEBIRD } from './sms.constant';
-import initMB from 'messagebird';
 
 @Module({
+  imports: [ConfigModule],
   providers: [
     {
       provide: MESSAGEBIRD,
-      useFactory: (configService: ConfigService) =>
-        initMB(configService.get('MESSAGEBIRD_KEY') as string),
+      useFactory: (configService: ConfigService) => {
+        // TODO: BIZARRO
+        // eslint-disable-next-line @typescript-eslint/no-var-requires
+        return require('messagebird')(configService.get('MESSAGEBIRD_KEY'));
+      },
       inject: [ConfigService],
     },
     EnviaVerificacaoSmsService,
