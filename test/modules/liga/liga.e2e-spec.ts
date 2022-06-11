@@ -1,23 +1,16 @@
-import { Test } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
-import * as request from 'supertest';
-import { AppModule } from 'src/modules/app/app.module';
+import { randomUUID } from 'crypto';
 import { criaLigaDto } from 'test/__MOCKS__/liga/liga.mock';
-import { stubDatabaseConnection } from '../helpers';
+import { initTestingApp } from '../helpers/init-testingapp.helper';
+import { LigaServer } from './liga.server';
 
 describe('LigaController (e2e)', () => {
   let app: INestApplication;
+  let server: LigaServer;
 
   beforeEach(async () => {
-    const moduleFixture = await stubDatabaseConnection(
-      Test.createTestingModule({
-        imports: [AppModule],
-      }),
-    ).then((builder) => builder.compile());
-
-    app = moduleFixture.createNestApplication();
-
-    await app.init();
+    app = await initTestingApp();
+    server = new LigaServer(app.getHttpServer());
   });
 
   afterEach(async () => {
@@ -26,12 +19,40 @@ describe('LigaController (e2e)', () => {
 
   it('/liga (POST)', async () => {
     const body = criaLigaDto();
-    const res = await request(app.getHttpServer())
-      .post('/liga')
-      .send(body)
-      .expect(201)
-      .expect('Content-Type', /json/);
+    const liga = await server.criaLiga(body);
 
-    expect(res.body).toEqual(expect.objectContaining(body));
+    expect(liga).toEqual(expect.objectContaining(body));
+  });
+
+  it('/liga (GET)', async () => {
+    const ligas = await server.listaLigas();
+
+    expect(ligas).toEqual(expect.any(Array));
+  });
+
+  describe('/liga/:id (GET)', () => {
+    it('Ok', async () => {
+      const ligaCriada = await server.criaLiga();
+      const ligaResposta = await server.encontraLiga(ligaCriada.id);
+
+      expect(ligaResposta).toEqual(expect.objectContaining(ligaCriada));
+    });
+
+    it('Not Found', async () => {
+      await expect(server.encontraLiga(randomUUID())).rejects.toThrow('404');
+    });
+  });
+
+  describe('/liga/:id (DELETE)', () => {
+    it('OK', async () => {
+      const ligaCriada = await server.criaLiga();
+      await server.removeLiga(ligaCriada.id);
+
+      await expect(server.encontraLiga(ligaCriada.id)).rejects.toThrow('404');
+    });
+
+    it('Not Found', async () => {
+      await expect(server.removeLiga(randomUUID())).rejects.toThrow('404');
+    });
   });
 });

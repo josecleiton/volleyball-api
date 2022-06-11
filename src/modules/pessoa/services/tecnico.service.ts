@@ -48,7 +48,7 @@ export class TecnicoService {
     return tecnico;
   }
 
-  async devePegarUm(id: string) {
+  async deveEncontrarUm(id: string) {
     return new TecnicoRespostaDto(await this.devePegarEntidade(id));
   }
 }

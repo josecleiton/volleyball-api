@@ -1,12 +1,5 @@
-import { PartialType } from '@nestjs/swagger';
-import {
-  IsArray,
-  IsOptional,
-  IsString,
-  IsUrl,
-  IsUUID,
-  Length,
-} from 'class-validator';
+import { PartialType, OmitType } from '@nestjs/swagger';
+import { IsOptional, IsString, IsUrl, IsUUID, Length } from 'class-validator';
 import { AtletaRespostaDto } from 'src/modules/pessoa/dto/atleta.dto';
 import { AuxiliarRespostaDto } from 'src/modules/pessoa/dto/auxiliar.dto';
 import { TecnicoRespostaDto } from 'src/modules/pessoa/dto/tecnico.dto';
@@ -36,15 +29,13 @@ export class CriaEquipeDto {
   estado!: string;
 }
 
-export class AtualizaEquipeDto extends PartialType(CriaEquipeDto) {}
+export class AtualizaEquipeDto extends PartialType(
+  OmitType(CriaEquipeDto, ['idLiga']),
+) {}
 
 export class ListaEquipesDto {
   @IsUUID()
   idLiga!: string;
-  @IsArray()
-  @IsUUID('4', { each: true })
-  @IsOptional()
-  ids?: string[];
 }
 
 export class EquipeRespostaDto {

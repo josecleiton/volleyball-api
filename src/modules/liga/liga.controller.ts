@@ -70,7 +70,7 @@ export class LigaController {
   }
 
   @Get(':id')
-  async pegaLiga(@Param('id', ParseUUIDPipe) id: string) {
+  async encontraLiga(@Param('id', ParseUUIDPipe) id: string) {
     return this.ligaService.deveEncontrarUm(id);
   }
 

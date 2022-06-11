@@ -57,7 +57,7 @@ export class EquipeService {
 
   async listaEquipes(request: ListaEquipesDto) {
     const equipes = await this.equipeRepository.find({
-      where: { ...request, id: request.ids ? In(request.ids) : undefined },
+      where: request,
       order: { dataCriacao: 'ASC' },
       relations: ['atletas', 'auxiliares', 'tecnico'],
     });

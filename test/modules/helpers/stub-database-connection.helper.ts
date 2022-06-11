@@ -12,6 +12,7 @@ export async function stubDatabaseConnection(
     type: 'postgres',
     url: process.env.DATABASE_URL,
     logging: false,
+    name: randomUUID(),
   });
 
   const urlObj = new URL(process.env.DATABASE_URL as string);

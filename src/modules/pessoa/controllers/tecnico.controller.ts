@@ -20,7 +20,7 @@ export class TecnicoController {
   }
 
   @Get(':id')
-  pegaUm(@Param('id', ParseUUIDPipe) id: string) {
-    return this.tecnicoService.devePegarUm(id);
+  encontraUm(@Param('id', ParseUUIDPipe) id: string) {
+    return this.tecnicoService.deveEncontrarUm(id);
   }
 }

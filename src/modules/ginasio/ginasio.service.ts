@@ -39,4 +39,11 @@ export class GinasioService {
 
     return new GinasioRespostaDto(ginasio);
   }
+
+  async removeGinasio(id: string) {
+    const resultado = await this.ginasioRepository.delete(id);
+    if (!resultado.affected) {
+      throw new NotFoundException(`Ginásio ${id} não encontrado`);
+    }
+  }
 }
