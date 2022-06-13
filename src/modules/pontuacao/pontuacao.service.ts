@@ -14,9 +14,12 @@ export class PontuacaoService {
       idLiga,
       limite,
     );
-
+      
+   
+    // odernar por pontuação 
+    pontuacoes.sort((a,b)=> a.pontuacao > b.pontuacao ? -1:1)
     // TODO: critério de desempate
-
+     
     return pontuacoes.map((x) => new PontuacaoRespostaDto(x));
   }
 }
