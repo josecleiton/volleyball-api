@@ -15,7 +15,6 @@ export class TecnicoController {
 
   @Post()
   criaTecnico(@Body() requisicao: CriaTecnicoDto) {
-    requisicao.validar();
     return this.tecnicoService.createTecnico(requisicao);
   }
 

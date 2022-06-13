@@ -18,6 +18,7 @@ import {
   ListaAtletaDto,
 } from '../dto/atleta.dto';
 import { TipoPessoa } from '../enums';
+import { dtoParaPessoa } from '../mapper';
 import { AtletaRepository } from '../repositories/atleta.repository';
 
 @Injectable()
@@ -59,7 +60,7 @@ export class AtletaService {
     const atleta = this.atletaRepository.create({
       ...requisicao,
       idEquipe: equipe.id,
-      pessoa: requisicao.paraPessoa(TipoPessoa.atleta),
+      pessoa: dtoParaPessoa(requisicao, TipoPessoa.atleta),
     });
 
     try {

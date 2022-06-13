@@ -14,6 +14,7 @@ import {
 import { ArbitroRepository } from '../repositories/arbitro.repository';
 import { TipoPessoa } from '../enums';
 import { In } from 'typeorm';
+import { dtoParaPessoa } from '../mapper';
 
 @Injectable()
 export class ArbitroService {
@@ -29,7 +30,7 @@ export class ArbitroService {
     const arbitro = this.arbitroRepository.create({
       ...requisicao,
       idLiga: liga.id,
-      pessoa: requisicao.paraPessoa(TipoPessoa.arbitro),
+      pessoa: dtoParaPessoa(requisicao, TipoPessoa.arbitro),
     });
 
     try {

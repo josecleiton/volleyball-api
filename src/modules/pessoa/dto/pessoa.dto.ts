@@ -1,10 +1,8 @@
-import { BadRequestException } from '@nestjs/common';
 import { Type } from 'class-transformer';
-import { IsDate, IsEnum, IsString, Length } from 'class-validator';
-import { differenceInYears } from 'date-fns';
+import { IsEnum, IsString, Length, MinDate } from 'class-validator';
+import { startOfYear, subYears } from 'date-fns';
 import { Genero } from 'src/modules/core/enums';
 import { Pessoa } from '../entities/pessoa.entity';
-import { TipoPessoa } from '../enums';
 
 export class CriaPessoaDto {
   @IsString()
@@ -18,7 +16,7 @@ export class CriaPessoaDto {
   @IsEnum(Genero)
   genero!: Genero;
 
-  @IsDate()
+  @MinDate(subYears(startOfYear(new Date()), CriaPessoaDto.idadeLimite))
   @Type(() => Date)
   dataNascimento!: Date;
 
@@ -26,22 +24,7 @@ export class CriaPessoaDto {
   @Length(11, 11)
   documentoCbv!: string;
 
-  paraPessoa(tipo: TipoPessoa): Pessoa {
-    return Object.assign(new Pessoa(tipo), this);
-  }
-
-  private static idadeLimite = 15;
-
-  validar() {
-    if (
-      differenceInYears(new Date(), this.dataNascimento) <
-      CriaPessoaDto.idadeLimite
-    ) {
-      throw new BadRequestException(
-        `Idade menor que ${CriaPessoaDto.idadeLimite} anos`,
-      );
-    }
-  }
+  private static readonly idadeLimite = 15;
 }
 
 export class PessoaRespostaDto {
@@ -59,6 +42,5 @@ export class PessoaRespostaDto {
     this.genero = pessoa.genero;
     this.idade = pessoa.idade;
     this.documentoCbv = pessoa.documentoCbv;
-    this.idade = pessoa.idade;
   }
 }

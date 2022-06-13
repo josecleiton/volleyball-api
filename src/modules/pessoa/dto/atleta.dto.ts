@@ -11,20 +11,10 @@ export class CriaAtletaDto extends CriaPessoaDto {
 
   @IsUUID()
   idEquipe!: string;
-
-  validar() {
-    super.validar();
-  }
 }
 
 export class AtualizaAtletaDto extends PartialType(
-  OmitType(CriaAtletaDto, [
-    'idEquipe',
-    'documento',
-    'documentoCbv',
-    'paraPessoa',
-    'genero',
-  ]),
+  OmitType(CriaAtletaDto, ['idEquipe', 'documento', 'documentoCbv', 'genero']),
 ) {}
 
 export class ListaAtletaDto {

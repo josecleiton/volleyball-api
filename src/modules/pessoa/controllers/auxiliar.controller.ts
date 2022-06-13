@@ -16,7 +16,6 @@ export class AuxiliarController {
 
   @Post()
   async criaAuxiliar(@Body() requisicao: CriaAuxiliarDto) {
-    requisicao.validar();
     return this.auxiliarService.criaAuxiliar(requisicao);
   }
 

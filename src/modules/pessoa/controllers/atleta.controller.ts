@@ -22,7 +22,6 @@ export class AtletaController {
 
   @Post()
   async criaAtleta(@Body() requisicao: CriaAtletaDto) {
-    requisicao.validar();
     return this.atletaService.criaAtleta(requisicao);
   }
 
@@ -41,7 +40,6 @@ export class AtletaController {
     @Param('id', ParseUUIDPipe) id: string,
     @Body() requisicao: AtualizaAtletaDto,
   ) {
-    requisicao.validar?.();
     return this.atletaService.atualizaAtleta(id, requisicao);
   }
 

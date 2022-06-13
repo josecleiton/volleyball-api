@@ -13,6 +13,7 @@ import {
 } from '../dto/delegado.dto';
 import { DelegadoRepository } from '../repositories/delegado.repository';
 import { TipoPessoa } from '../enums';
+import { dtoParaPessoa } from '../mapper';
 
 @Injectable()
 export class DelegadoService {
@@ -28,7 +29,7 @@ export class DelegadoService {
     const delegado = this.delegadoRepository.create({
       ...requisicao,
       idLiga: liga.id,
-      pessoa: requisicao.paraPessoa(TipoPessoa.delegado),
+      pessoa: dtoParaPessoa(requisicao, TipoPessoa.delegado),
     });
 
     try {
