@@ -32,11 +32,15 @@ export function atualizaEquipeDto(
   nome = false,
   cidade = false,
   estado = false,
+  urlBrasao = false,
 ): AtualizaEquipeDto {
   return Object.assign(new AtualizaEquipeDto(), {
     idGinasio,
     nome: nome ? faker.name.title() : undefined,
     cidade: cidade ? faker.address.city() : undefined,
     estado: estado ? faker.address.state() : undefined,
+    urlBrasao: urlBrasao
+      ? 'https://www.google.com/images/branding/googlelogo/1x/googlelogo_light_color_272x92dp.png'
+      : undefined,
   });
 }
