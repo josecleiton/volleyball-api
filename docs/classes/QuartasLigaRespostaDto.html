@@ -118,7 +118,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="115" class="link-to-prism">src/modules/liga/dto/liga.dto.ts:115</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">src/modules/liga/dto/liga.dto.ts:121</a></div>
                             </td>
                         </tr>
 
@@ -198,7 +198,7 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../classes/GeraPartidasLigaRespostaDto.html#source" target="_self" >GeraPartidasLigaRespostaDto:99</a></code>
+                                <div class="io-line">Defined in         <code><a href="../classes/GeraPartidasLigaRespostaDto.html#source" target="_self" >GeraPartidasLigaRespostaDto:105</a></code>
 </div>
                         </td>
                     </tr>
@@ -231,7 +231,7 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../classes/GeraPartidasLigaRespostaDto.html#source" target="_self" >GeraPartidasLigaRespostaDto:100</a></code>
+                                <div class="io-line">Defined in         <code><a href="../classes/GeraPartidasLigaRespostaDto.html#source" target="_self" >GeraPartidasLigaRespostaDto:106</a></code>
 </div>
                         </td>
                     </tr>
@@ -308,8 +308,14 @@ export class InicializaLigaDto {
   @ArrayMinSize(1)
   @ArrayMaxSize(12)
   @ArrayUnique()
-  @Min(6 * 60, { each: true })
-  @Max(22 * 60, { each: true })
+  @Min(6 * 60, {
+    each: true,
+    message: &#x27;Horário tem que ser em minutos e maior que $constraint4&#x27;,
+  })
+  @Max(22 * 60, {
+    each: true,
+    message: &#x27;Horário tem que ser em minutos e menor que $constraint5&#x27;,
+  })
   horarios!: number[];
 
   @IsPositive()

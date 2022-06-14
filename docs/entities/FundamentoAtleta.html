@@ -87,7 +87,7 @@
                                 <a href="#bloqueios" >bloqueios</a>
                             </li>
                             <li>
-                                <a href="#idAtletaPartida" >idAtletaPartida</a>
+                                <a href="#idAtletaEscalado" >idAtletaEscalado</a>
                             </li>
                             <li>
                                 <a href="#pontos" >pontos</a>
@@ -208,7 +208,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ManyToOne(undefined)<br />@JoinColumn({name: &#x27;id_atleta_partida&#x27;})<br />
+                            @ManyToOne(undefined, {onDelete: &#x27;CASCADE&#x27;})<br />@JoinColumn({name: &#x27;id_atleta_escalado&#x27;})<br />
                         </code>
                     </td>
                 </tr>
@@ -260,10 +260,10 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="idAtletaPartida"></a>
+                    <a name="idAtletaEscalado"></a>
                     <span class="name">
-                        <span ><b>idAtletaPartida</b></span>
-                        <a href="#idAtletaPartida"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>idAtletaEscalado</b></span>
+                        <a href="#idAtletaEscalado"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -409,7 +409,7 @@ import { Column, Entity, Index, JoinColumn, ManyToOne } from &#x27;typeorm&#x27;
 export class FundamentoAtleta extends EntidadeBase {
   @Column(&#x27;uuid&#x27;)
   @Index()
-  idAtletaPartida!: string;
+  idAtletaEscalado!: string;
 
   @Column({ type: &#x27;int&#x27;, default: 0 })
   bloqueios!: number;
@@ -429,20 +429,20 @@ export class FundamentoAtleta extends EntidadeBase {
   @Column({ type: &#x27;int&#x27;, default: 0 })
   pontos!: number;
 
-  public get mediasDeAcesPorSaque(): number {
+  public get saquesEfetivos(): number {
     if (!this.saques) return 0;
 
     return this.aces / this.saques;
   }
 
-  public get mediaDePontosPorAtaque(): number {
+  public get ataquesEfetivos(): number {
     if (!this.ataques) return 0;
 
     return this.pontos / this.ataques;
   }
 
-  @ManyToOne(() &#x3D;&gt; AtletaEscalado)
-  @JoinColumn({ name: &#x27;id_atleta_partida&#x27; })
+  @ManyToOne(() &#x3D;&gt; AtletaEscalado, { onDelete: &#x27;CASCADE&#x27; })
+  @JoinColumn({ name: &#x27;id_atleta_escalado&#x27; })
   atleta!: AtletaEscalado;
 }
 </code></pre>

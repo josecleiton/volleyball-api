@@ -900,7 +900,7 @@ export class EquipeService {
 
   async listaEquipes(request: ListaEquipesDto) {
     const equipes &#x3D; await this.equipeRepository.find({
-      where: { ...request, id: request.ids ? In(request.ids) : undefined },
+      where: request,
       order: { dataCriacao: &#x27;ASC&#x27; },
       relations: [&#x27;atletas&#x27;, &#x27;auxiliares&#x27;, &#x27;tecnico&#x27;],
     });

@@ -87,7 +87,7 @@
                                 <a href="#criaTecnico" >criaTecnico</a>
                             </li>
                             <li>
-                                <a href="#pegaUm" >pegaUm</a>
+                                <a href="#encontraUm" >encontraUm</a>
                             </li>
                         </ul>
                     </td>
@@ -186,16 +186,16 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="pegaUm"></a>
+                    <a name="encontraUm"></a>
                     <span class="name">
-                        <span ><b>pegaUm</b></span>
-                        <a href="#pegaUm"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>encontraUm</b></span>
+                        <a href="#encontraUm"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>pegaUm(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>encontraUm(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
@@ -209,8 +209,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="23"
-                            class="link-to-prism">src/modules/pessoa/controllers/tecnico.controller.ts:23</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="22"
+                            class="link-to-prism">src/modules/pessoa/controllers/tecnico.controller.ts:22</a></div>
                 </td>
             </tr>
 
@@ -279,13 +279,12 @@ export class TecnicoController {
 
   @Post()
   criaTecnico(@Body() requisicao: CriaTecnicoDto) {
-    requisicao.validar();
     return this.tecnicoService.createTecnico(requisicao);
   }
 
   @Get(&#x27;:id&#x27;)
-  pegaUm(@Param(&#x27;id&#x27;, ParseUUIDPipe) id: string) {
-    return this.tecnicoService.devePegarUm(id);
+  encontraUm(@Param(&#x27;id&#x27;, ParseUUIDPipe) id: string) {
+    return this.tecnicoService.deveEncontrarUm(id);
   }
 }
 </code></pre>

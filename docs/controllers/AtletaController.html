@@ -149,8 +149,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="40"
-                            class="link-to-prism">src/modules/pessoa/controllers/atleta.controller.ts:40</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="39"
+                            class="link-to-prism">src/modules/pessoa/controllers/atleta.controller.ts:39</a></div>
                 </td>
             </tr>
 
@@ -317,8 +317,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="35"
-                            class="link-to-prism">src/modules/pessoa/controllers/atleta.controller.ts:35</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="34"
+                            class="link-to-prism">src/modules/pessoa/controllers/atleta.controller.ts:34</a></div>
                 </td>
             </tr>
 
@@ -395,8 +395,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="30"
-                            class="link-to-prism">src/modules/pessoa/controllers/atleta.controller.ts:30</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="29"
+                            class="link-to-prism">src/modules/pessoa/controllers/atleta.controller.ts:29</a></div>
                 </td>
             </tr>
 
@@ -473,8 +473,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="49"
-                            class="link-to-prism">src/modules/pessoa/controllers/atleta.controller.ts:49</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="47"
+                            class="link-to-prism">src/modules/pessoa/controllers/atleta.controller.ts:47</a></div>
                 </td>
             </tr>
 
@@ -550,7 +550,6 @@ export class AtletaController {
 
   @Post()
   async criaAtleta(@Body() requisicao: CriaAtletaDto) {
-    requisicao.validar();
     return this.atletaService.criaAtleta(requisicao);
   }
 
@@ -569,7 +568,6 @@ export class AtletaController {
     @Param(&#x27;id&#x27;, ParseUUIDPipe) id: string,
     @Body() requisicao: AtualizaAtletaDto,
   ) {
-    requisicao.validar?.();
     return this.atletaService.atualizaAtleta(id, requisicao);
   }
 

@@ -84,11 +84,11 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#devePegarEntidade" >devePegarEntidade</a>
+                                <a href="#deveEncontrarUm" >deveEncontrarUm</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#devePegarUm" >devePegarUm</a>
+                                <a href="#devePegarEntidade" >devePegarEntidade</a>
                             </li>
                         </ul>
                     </td>
@@ -113,7 +113,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/modules/pessoa/services/tecnico.service.ts:10</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/modules/pessoa/services/tecnico.service.ts:11</a></div>
                             </td>
                         </tr>
 
@@ -214,8 +214,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="18"
-                            class="link-to-prism">src/modules/pessoa/services/tecnico.service.ts:18</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="19"
+                            class="link-to-prism">src/modules/pessoa/services/tecnico.service.ts:19</a></div>
                 </td>
             </tr>
 
@@ -267,26 +267,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="devePegarEntidade"></a>
+                    <a name="deveEncontrarUm"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
-                        <span ><b>devePegarEntidade</b></span>
-                        <a href="#devePegarEntidade"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>deveEncontrarUm</b></span>
+                        <a href="#deveEncontrarUm"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>devePegarEntidade(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>deveEncontrarUm(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="40"
-                            class="link-to-prism">src/modules/pessoa/services/tecnico.service.ts:40</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="52"
+                            class="link-to-prism">src/modules/pessoa/services/tecnico.service.ts:52</a></div>
                 </td>
             </tr>
 
@@ -338,26 +338,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="devePegarUm"></a>
+                    <a name="devePegarEntidade"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
-                        <span ><b>devePegarUm</b></span>
-                        <a href="#devePegarUm"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>devePegarEntidade</b></span>
+                        <a href="#devePegarEntidade"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>devePegarUm(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>devePegarEntidade(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="51"
-                            class="link-to-prism">src/modules/pessoa/services/tecnico.service.ts:51</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="41"
+                            class="link-to-prism">src/modules/pessoa/services/tecnico.service.ts:41</a></div>
                 </td>
             </tr>
 
@@ -418,6 +418,7 @@ import { EquipeService } from &#x27;src/modules/equipe/equipe.service&#x27;;
 import { CriaTecnicoDto, TecnicoRespostaDto } from &#x27;../dto/tecnico.dto&#x27;;
 import { TecnicoRepository } from &#x27;../repositories/tecnico.repository&#x27;;
 import { TipoPessoa } from &#x27;../enums&#x27;;
+import { dtoParaPessoa } from &#x27;../mapper&#x27;;
 
 @Injectable()
 export class TecnicoService {
@@ -436,7 +437,7 @@ export class TecnicoService {
     const tecnico &#x3D; this.tecnicoRepository.create({
       ...requisicao,
       idEquipe: equipe.id,
-      pessoa: requisicao.paraPessoa(TipoPessoa.tecnico),
+      pessoa: dtoParaPessoa(requisicao, TipoPessoa.tecnico),
     });
 
     try {
@@ -461,7 +462,7 @@ export class TecnicoService {
     return tecnico;
   }
 
-  async devePegarUm(id: string) {
+  async deveEncontrarUm(id: string) {
     return new TecnicoRespostaDto(await this.devePegarEntidade(id));
   }
 }

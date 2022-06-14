@@ -328,7 +328,7 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { differenceInYears } from &#x27;date-fns&#x27;;
 import { EntidadeBase } from &#x27;src/modules/core/entities/base.entity&#x27;;
 import { Genero } from &#x27;src/modules/core/enums&#x27;;
-import { Column, Entity } from &#x27;typeorm&#x27;;
+import { AfterInsert, AfterLoad, Column, Entity } from &#x27;typeorm&#x27;;
 import { TipoPessoa } from &#x27;../enums&#x27;;
 
 @Entity(&#x27;pessoas&#x27;)
@@ -360,6 +360,12 @@ export class Pessoa extends EntidadeBase {
     super();
 
     this.tipo &#x3D; tipo ?? this.tipo;
+  }
+
+  @AfterLoad()
+  @AfterInsert()
+  carregaDatas() {
+    this.dataNascimento &#x3D; new Date(this.dataNascimento);
   }
 }
 </code></pre>

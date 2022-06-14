@@ -219,8 +219,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="29"
-                            class="link-to-prism">src/modules/pessoa/controllers/auxiliar.controller.ts:29</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="28"
+                            class="link-to-prism">src/modules/pessoa/controllers/auxiliar.controller.ts:28</a></div>
                 </td>
             </tr>
 
@@ -297,8 +297,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="24"
-                            class="link-to-prism">src/modules/pessoa/controllers/auxiliar.controller.ts:24</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="23"
+                            class="link-to-prism">src/modules/pessoa/controllers/auxiliar.controller.ts:23</a></div>
                 </td>
             </tr>
 
@@ -368,7 +368,6 @@ export class AuxiliarController {
 
   @Post()
   async criaAuxiliar(@Body() requisicao: CriaAuxiliarDto) {
-    requisicao.validar();
     return this.auxiliarService.criaAuxiliar(requisicao);
   }
 

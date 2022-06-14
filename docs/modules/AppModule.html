@@ -241,6 +241,8 @@ import { GinasioModule } from &#x27;../ginasio/ginasio.module&#x27;;
 import { PartidaModule } from &#x27;../partida/partida.module&#x27;;
 import { PessoaModule } from &#x27;../pessoa/pessoa.module&#x27;;
 import { EstatisticaModule } from &#x27;../estatistica/estatistica.module&#x27;;
+import { ThrottlerModule } from &#x27;@nestjs/throttler&#x27;;
+import { getModuleThrottlerProvider } from &#x27;../core/guards&#x27;;
 
 @Module({
   imports: [
@@ -253,6 +255,12 @@ import { EstatisticaModule } from &#x27;../estatistica/estatistica.module&#x27;;
     ConfigModule.forRoot({
       load: [appConfig, databaseConfig, corsConfig, rateLimitConfig],
     }),
+    ThrottlerModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: (configService: ConfigService) &#x3D;&gt;
+        configService.get(&#x27;rateLimit&#x27;) ?? { ttl: 60, max: 10 },
+      inject: [ConfigService],
+    }),
     CoreModule,
     EquipeModule,
     PessoaModule,
@@ -261,6 +269,7 @@ import { EstatisticaModule } from &#x27;../estatistica/estatistica.module&#x27;;
     PartidaModule,
     EstatisticaModule,
   ],
+  providers: [getModuleThrottlerProvider()],
 })
 export class AppModule {}
 </code></pre>

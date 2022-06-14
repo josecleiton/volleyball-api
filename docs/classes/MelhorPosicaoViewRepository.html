@@ -113,6 +113,11 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Abstract</span>
+                                <a href="#adicionaOrdenacao" >adicionaOrdenacao</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Async</span>
                                 <a href="#listaMelhoresDaLiga" >listaMelhoresDaLiga</a>
                             </li>
@@ -221,6 +226,78 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="adicionaOrdenacao"></a>
+                    <span class="name">
+                        <span class="modifier">Protected</span>
+                        <span class="modifier">Abstract</span>
+                        <span ><b>adicionaOrdenacao</b></span>
+                        <a href="#adicionaOrdenacao"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>adicionaOrdenacao(qb: SelectQueryBuilder<T>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="7"
+                            class="link-to-prism">src/modules/estatistica/repositories/melhor-posicao-view.repository.ts:7</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>qb</td>
+                                    <td>
+                                            <code>SelectQueryBuilder&lt;T&gt;</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>SelectQueryBuilder&lt;T&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="listaMelhoresDaLiga"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -239,8 +316,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="6"
-                            class="link-to-prism">src/modules/estatistica/repositories/melhor-posicao-view.repository.ts:6</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="11"
+                            class="link-to-prism">src/modules/estatistica/repositories/melhor-posicao-view.repository.ts:11</a></div>
                 </td>
             </tr>
 
@@ -394,17 +471,25 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { MaterializedViewRepository } from &#x27;src/modules/core/repositories/materialized-view.repository&#x27;;
+import { SelectQueryBuilder } from &#x27;typeorm&#x27;;
 
 export abstract class MelhorPosicaoViewRepository&lt;
   T,
 &gt; extends MaterializedViewRepository&lt;T&gt; {
+  protected abstract adicionaOrdenacao(
+    qb: SelectQueryBuilder&lt;T&gt;,
+  ): SelectQueryBuilder&lt;T&gt;;
+
   async listaMelhoresDaLiga(idLiga: string, limite &#x3D; 10) {
     const qb &#x3D; this.createQueryBuilder(&#x27;m&#x27;);
 
-    qb.innerJoinAndSelect(&#x27;m.atleta&#x27;, &#x27;a&#x27;)
-      .innerJoin(&#x27;a.equipe&#x27;, &#x27;ae&#x27;)
-      .where(&#x27;e.idLiga &#x3D; :idLiga&#x27;, { idLiga })
-      .limit(limite);
+    this.adicionaOrdenacao(
+      qb
+        .innerJoinAndSelect(&#x27;m.atleta&#x27;, &#x27;a&#x27;)
+        .innerJoinAndSelect(&#x27;a.equipe&#x27;, &#x27;e&#x27;)
+        .where(&#x27;e.idLiga &#x3D; :idLiga&#x27;, { idLiga })
+        .orderBy(&#x27;m.quantidadePartidas&#x27;, &#x27;DESC&#x27;),
+    ).limit(limite);
 
     return qb.getMany();
   }

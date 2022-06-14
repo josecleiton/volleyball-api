@@ -480,20 +480,20 @@ export class FundamentoAtletaRespostaDto {
   ataques: number;
   pontos: number;
 
-  mediasDeAcesPorSaque: number;
-  mediaDePontosPorAtaque: number;
+  saquesEfetivos: number;
+  ataquesEfetivos: number;
 
   constructor(fundamento: FundamentoAtleta) {
     this.id &#x3D; fundamento.id;
-    this.idAtletaPartida &#x3D; fundamento.idAtletaPartida;
+    this.idAtletaPartida &#x3D; fundamento.idAtletaEscalado;
     this.bloqueios &#x3D; fundamento.bloqueios;
     this.recepcoes &#x3D; fundamento.recepcoes;
     this.aces &#x3D; fundamento.aces;
     this.saques &#x3D; fundamento.saques;
     this.ataques &#x3D; fundamento.ataques;
     this.pontos &#x3D; fundamento.pontos;
-    this.mediasDeAcesPorSaque &#x3D; fundamento.mediasDeAcesPorSaque;
-    this.mediaDePontosPorAtaque &#x3D; fundamento.mediaDePontosPorAtaque;
+    this.saquesEfetivos &#x3D; fundamento.saquesEfetivos;
+    this.ataquesEfetivos &#x3D; fundamento.ataquesEfetivos;
   }
 }
 </code></pre>

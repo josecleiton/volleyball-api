@@ -257,7 +257,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ManyToOne(undefined)<br />@JoinColumn({name: &#x27;id_equipe&#x27;})<br />
+                            @ManyToOne(undefined, {onDelete: &#x27;CASCADE&#x27;})<br />@JoinColumn({name: &#x27;id_equipe&#x27;})<br />
                         </code>
                     </td>
                 </tr>
@@ -362,7 +362,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ManyToOne(undefined)<br />@JoinColumn({name: &#x27;id_partida&#x27;})<br />
+                            @ManyToOne(undefined, {onDelete: &#x27;CASCADE&#x27;})<br />@JoinColumn({name: &#x27;id_partida&#x27;})<br />
                         </code>
                     </td>
                 </tr>
@@ -572,11 +572,11 @@ export class EquipePartida extends EntidadeBase {
   @Column({ nullable: true })
   resultadoCadastradoEm?: Date;
 
-  @ManyToOne(() &#x3D;&gt; Equipe)
+  @ManyToOne(() &#x3D;&gt; Equipe, { onDelete: &#x27;CASCADE&#x27; })
   @JoinColumn({ name: &#x27;id_equipe&#x27; })
   equipe!: Equipe;
 
-  @ManyToOne(() &#x3D;&gt; Partida)
+  @ManyToOne(() &#x3D;&gt; Partida, { onDelete: &#x27;CASCADE&#x27; })
   @JoinColumn({ name: &#x27;id_partida&#x27; })
   partida!: Partida;
 

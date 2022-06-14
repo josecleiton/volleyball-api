@@ -89,6 +89,9 @@
                                 <a href="#ataques" >ataques</a>
                             </li>
                             <li>
+                                <a href="#ataquesEfetivos" >ataquesEfetivos</a>
+                            </li>
+                            <li>
                                 <a href="#bloqueios" >bloqueios</a>
                             </li>
                             <li>
@@ -98,12 +101,6 @@
                                 <a href="#idAtletaPartida" >idAtletaPartida</a>
                             </li>
                             <li>
-                                <a href="#mediaDePontosPorAtaque" >mediaDePontosPorAtaque</a>
-                            </li>
-                            <li>
-                                <a href="#mediasDeAcesPorSaque" >mediasDeAcesPorSaque</a>
-                            </li>
-                            <li>
                                 <a href="#pontos" >pontos</a>
                             </li>
                             <li>
@@ -111,6 +108,9 @@
                             </li>
                             <li>
                                 <a href="#saques" >saques</a>
+                            </li>
+                            <li>
+                                <a href="#saquesEfetivos" >saquesEfetivos</a>
                             </li>
                         </ul>
                     </td>
@@ -235,6 +235,32 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="ataquesEfetivos"></a>
+                    <span class="name">
+                        <span ><b>ataquesEfetivos</b></span>
+                        <a href="#ataquesEfetivos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/modules/estatistica/dto/fundamento-atleta.dto.ts:53</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="bloqueios"></a>
                     <span class="name">
                         <span ><b>bloqueios</b></span>
@@ -303,58 +329,6 @@
                     <tr>
                         <td class="col-md-4">
                                 <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/modules/estatistica/dto/fundamento-atleta.dto.ts:44</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="mediaDePontosPorAtaque"></a>
-                    <span class="name">
-                        <span ><b>mediaDePontosPorAtaque</b></span>
-                        <a href="#mediaDePontosPorAtaque"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/modules/estatistica/dto/fundamento-atleta.dto.ts:53</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="mediasDeAcesPorSaque"></a>
-                    <span class="name">
-                        <span ><b>mediasDeAcesPorSaque</b></span>
-                        <a href="#mediasDeAcesPorSaque"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/modules/estatistica/dto/fundamento-atleta.dto.ts:52</a></div>
                         </td>
                     </tr>
 
@@ -439,6 +413,32 @@
 
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="saquesEfetivos"></a>
+                    <span class="name">
+                        <span ><b>saquesEfetivos</b></span>
+                        <a href="#saquesEfetivos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/modules/estatistica/dto/fundamento-atleta.dto.ts:52</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
 </section>
 
 
@@ -502,20 +502,20 @@ export class FundamentoAtletaRespostaDto {
   ataques: number;
   pontos: number;
 
-  mediasDeAcesPorSaque: number;
-  mediaDePontosPorAtaque: number;
+  saquesEfetivos: number;
+  ataquesEfetivos: number;
 
   constructor(fundamento: FundamentoAtleta) {
     this.id &#x3D; fundamento.id;
-    this.idAtletaPartida &#x3D; fundamento.idAtletaPartida;
+    this.idAtletaPartida &#x3D; fundamento.idAtletaEscalado;
     this.bloqueios &#x3D; fundamento.bloqueios;
     this.recepcoes &#x3D; fundamento.recepcoes;
     this.aces &#x3D; fundamento.aces;
     this.saques &#x3D; fundamento.saques;
     this.ataques &#x3D; fundamento.ataques;
     this.pontos &#x3D; fundamento.pontos;
-    this.mediasDeAcesPorSaque &#x3D; fundamento.mediasDeAcesPorSaque;
-    this.mediaDePontosPorAtaque &#x3D; fundamento.mediaDePontosPorAtaque;
+    this.saquesEfetivos &#x3D; fundamento.saquesEfetivos;
+    this.ataquesEfetivos &#x3D; fundamento.ataquesEfetivos;
   }
 }
 </code></pre>

@@ -93,6 +93,10 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#encontraLiga" >encontraLiga</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#inicializaFinal" >inicializaFinal</a>
                             </li>
                             <li>
@@ -106,10 +110,6 @@
                             <li>
                                     <span class="modifier">Async</span>
                                 <a href="#listaLigas" >listaLigas</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Async</span>
-                                <a href="#pegaLiga" >pegaLiga</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
@@ -276,6 +276,84 @@
                                     <td>requisicao</td>
                                     <td>
                                                 <code><a href="../classes/CriaLigaDto.html" target="_self" >CriaLigaDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>unknown</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="encontraLiga"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>encontraLiga</b></span>
+                        <a href="#encontraLiga"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>encontraLiga(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;:id&#x27;)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="73"
+                            class="link-to-prism">src/modules/liga/liga.controller.ts:73</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                     </td>
 
                                     <td>
@@ -620,84 +698,6 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="pegaLiga"></a>
-                    <span class="name">
-                        <span class="modifier">Async</span>
-                        <span ><b>pegaLiga</b></span>
-                        <a href="#pegaLiga"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>pegaLiga(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@Get(&#x27;:id&#x27;)<br /></code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="73"
-                            class="link-to-prism">src/modules/liga/liga.controller.ts:73</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>id</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>unknown</code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="removeLiga"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -848,7 +848,7 @@ export class LigaController {
   }
 
   @Get(&#x27;:id&#x27;)
-  async pegaLiga(@Param(&#x27;id&#x27;, ParseUUIDPipe) id: string) {
+  async encontraLiga(@Param(&#x27;id&#x27;, ParseUUIDPipe) id: string) {
     return this.ligaService.deveEncontrarUm(id);
   }
 

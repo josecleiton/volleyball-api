@@ -124,7 +124,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/modules/pessoa/dto/pessoa.dto.ts:53</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/modules/pessoa/dto/pessoa.dto.ts:36</a></div>
                             </td>
                         </tr>
 
@@ -186,7 +186,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/modules/pessoa/dto/pessoa.dto.ts:50</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/modules/pessoa/dto/pessoa.dto.ts:33</a></div>
                         </td>
                     </tr>
 
@@ -212,7 +212,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/modules/pessoa/dto/pessoa.dto.ts:53</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/modules/pessoa/dto/pessoa.dto.ts:36</a></div>
                         </td>
                     </tr>
 
@@ -238,7 +238,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/modules/pessoa/dto/pessoa.dto.ts:51</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/modules/pessoa/dto/pessoa.dto.ts:34</a></div>
                         </td>
                     </tr>
 
@@ -264,7 +264,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/modules/pessoa/dto/pessoa.dto.ts:48</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/modules/pessoa/dto/pessoa.dto.ts:31</a></div>
                         </td>
                     </tr>
 
@@ -290,7 +290,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/modules/pessoa/dto/pessoa.dto.ts:52</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/modules/pessoa/dto/pessoa.dto.ts:35</a></div>
                         </td>
                     </tr>
 
@@ -316,7 +316,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/modules/pessoa/dto/pessoa.dto.ts:49</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/modules/pessoa/dto/pessoa.dto.ts:32</a></div>
                         </td>
                     </tr>
 
@@ -335,13 +335,11 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { BadRequestException } from &#x27;@nestjs/common&#x27;;
-import { Type } from &#x27;class-transformer&#x27;;
-import { IsDate, IsEnum, IsString, Length } from &#x27;class-validator&#x27;;
-import { differenceInYears } from &#x27;date-fns&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Type } from &#x27;class-transformer&#x27;;
+import { IsEnum, IsString, Length, MinDate } from &#x27;class-validator&#x27;;
+import { startOfYear, subYears } from &#x27;date-fns&#x27;;
 import { Genero } from &#x27;src/modules/core/enums&#x27;;
 import { Pessoa } from &#x27;../entities/pessoa.entity&#x27;;
-import { TipoPessoa } from &#x27;../enums&#x27;;
 
 export class CriaPessoaDto {
   @IsString()
@@ -355,7 +353,7 @@ export class CriaPessoaDto {
   @IsEnum(Genero)
   genero!: Genero;
 
-  @IsDate()
+  @MinDate(subYears(startOfYear(new Date()), CriaPessoaDto.idadeLimite))
   @Type(() &#x3D;&gt; Date)
   dataNascimento!: Date;
 
@@ -363,22 +361,7 @@ export class CriaPessoaDto {
   @Length(11, 11)
   documentoCbv!: string;
 
-  paraPessoa(tipo: TipoPessoa): Pessoa {
-    return Object.assign(new Pessoa(tipo), this);
-  }
-
-  private static idadeLimite &#x3D; 15;
-
-  validar() {
-    if (
-      differenceInYears(new Date(), this.dataNascimento) &lt;
-      CriaPessoaDto.idadeLimite
-    ) {
-      throw new BadRequestException(
-        &#x60;Idade menor que ${CriaPessoaDto.idadeLimite} anos&#x60;,
-      );
-    }
-  }
+  private static readonly idadeLimite &#x3D; 15;
 }
 
 export class PessoaRespostaDto {
@@ -396,7 +379,6 @@ export class PessoaRespostaDto {
     this.genero &#x3D; pessoa.genero;
     this.idade &#x3D; pessoa.idade;
     this.documentoCbv &#x3D; pessoa.documentoCbv;
-    this.idade &#x3D; pessoa.idade;
   }
 }
 </code></pre>

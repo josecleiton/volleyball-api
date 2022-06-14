@@ -227,12 +227,12 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@nestjs/common&#x27;;
 import { MelhorCentralRespostaDto } from &#x27;../dto/melhor-central.dto&#x27;;
-import { IMelhorPosicaoService } from &#x27;../interfaces/melhor-posicao-service.interface&#x27;;
+import { IMelhorEstatisticaService } from &#x27;../interfaces/melhor-estatistica-service.interface&#x27;;
 import { MelhorCentralViewRepository } from &#x27;../repositories&#x27;;
 
 @Injectable()
 export class MelhorCentralService
-  implements IMelhorPosicaoService&lt;MelhorCentralRespostaDto&gt;
+  implements IMelhorEstatisticaService&lt;MelhorCentralRespostaDto&gt;
 {
   constructor(
     private readonly centralRepository: MelhorCentralViewRepository,

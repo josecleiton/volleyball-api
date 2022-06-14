@@ -117,7 +117,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/modules/pessoa/services/auxiliar.service.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/modules/pessoa/services/auxiliar.service.ts:15</a></div>
                             </td>
                         </tr>
 
@@ -218,8 +218,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="22"
-                            class="link-to-prism">src/modules/pessoa/services/auxiliar.service.ts:22</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="23"
+                            class="link-to-prism">src/modules/pessoa/services/auxiliar.service.ts:23</a></div>
                 </td>
             </tr>
 
@@ -289,8 +289,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="54"
-                            class="link-to-prism">src/modules/pessoa/services/auxiliar.service.ts:54</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="55"
+                            class="link-to-prism">src/modules/pessoa/services/auxiliar.service.ts:55</a></div>
                 </td>
             </tr>
 
@@ -360,8 +360,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="65"
-                            class="link-to-prism">src/modules/pessoa/services/auxiliar.service.ts:65</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="66"
+                            class="link-to-prism">src/modules/pessoa/services/auxiliar.service.ts:66</a></div>
                 </td>
             </tr>
 
@@ -431,8 +431,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="46"
-                            class="link-to-prism">src/modules/pessoa/services/auxiliar.service.ts:46</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="47"
+                            class="link-to-prism">src/modules/pessoa/services/auxiliar.service.ts:47</a></div>
                 </td>
             </tr>
 
@@ -496,6 +496,7 @@ import {
   ListaAuxiliarDto,
 } from &#x27;../dto/auxiliar.dto&#x27;;
 import { TipoPessoa } from &#x27;../enums&#x27;;
+import { dtoParaPessoa } from &#x27;../mapper&#x27;;
 import { AuxiliarRepository } from &#x27;../repositories/auxiliar.repository&#x27;;
 
 @Injectable()
@@ -515,7 +516,7 @@ export class AuxiliarService {
     const auxiliar &#x3D; this.auxiliarRepository.create({
       ...requisicao,
       idEquipe: equipe.id,
-      pessoa: requisicao.paraPessoa(TipoPessoa.auxiliar),
+      pessoa: dtoParaPessoa(requisicao, TipoPessoa.auxiliar),
     });
 
     try {

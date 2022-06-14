@@ -89,7 +89,10 @@
                                 <a href="#idAtleta" >idAtleta</a>
                             </li>
                             <li>
-                                <a href="#recepcoes" >recepcoes</a>
+                                <a href="#quantidadeDePartidas" >quantidadeDePartidas</a>
+                            </li>
+                            <li>
+                                <a href="#recepcoesPorPartida" >recepcoesPorPartida</a>
                             </li>
                         </ul>
                     </td>
@@ -100,6 +103,20 @@
 
 
 
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#totalDeRecepcoes" >totalDeRecepcoes</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
         </tbody>
     </table>
 </section>
@@ -115,7 +132,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/modules/estatistica/dto/melhor-libero.dto.ts:8</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/modules/estatistica/dto/melhor-libero.dto.ts:13</a></div>
                             </td>
                         </tr>
 
@@ -177,7 +194,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/modules/estatistica/dto/melhor-libero.dto.ts:8</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/modules/estatistica/dto/melhor-libero.dto.ts:9</a></div>
                         </td>
                     </tr>
 
@@ -214,10 +231,36 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="recepcoes"></a>
+                    <a name="quantidadeDePartidas"></a>
                     <span class="name">
-                        <span ><b>recepcoes</b></span>
-                        <a href="#recepcoes"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>quantidadeDePartidas</b></span>
+                        <a href="#quantidadeDePartidas"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/modules/estatistica/dto/melhor-libero.dto.ts:8</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="recepcoesPorPartida"></a>
+                    <span class="name">
+                        <span ><b>recepcoesPorPartida</b></span>
+                        <a href="#recepcoesPorPartida"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -244,6 +287,33 @@
 
 
 
+            <section>
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="totalDeRecepcoes"></a>
+                        <span class="name"><b>totalDeRecepcoes</b><a href="#totalDeRecepcoes"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>totalDeRecepcoes()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/modules/estatistica/dto/melhor-libero.dto.ts:11</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+</section>
     </div>
 
 
@@ -253,12 +323,18 @@ import { MelhorLiberoView } from &#x27;../entities/melhor-libero-view.entity&#x2
 
 export class MelhorLiberoRespostaDto {
   idAtleta: string;
-  recepcoes: number;
+  recepcoesPorPartida: number;
+  quantidadeDePartidas: number;
   atleta: AtletaRespostaDto;
+
+  public get totalDeRecepcoes(): number {
+    return this.recepcoesPorPartida * this.quantidadeDePartidas;
+  }
 
   constructor(ml: MelhorLiberoView) {
     this.idAtleta &#x3D; ml.idAtleta;
-    this.recepcoes &#x3D; ml.recepcoes;
+    this.recepcoesPorPartida &#x3D; ml.recepcoesPorPartida;
+    this.quantidadeDePartidas &#x3D; ml.quantidadePartidas;
     this.atleta &#x3D; new AtletaRespostaDto(ml.atleta);
   }
 }

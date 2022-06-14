@@ -484,7 +484,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ManyToOne(undefined, c &#x3D;&gt; c.equipes)<br />@JoinColumn({name: &#x27;id_liga&#x27;})<br />
+                            @ManyToOne(undefined, c &#x3D;&gt; c.equipes, {onDelete: &#x27;CASCADE&#x27;})<br />@JoinColumn({name: &#x27;id_liga&#x27;})<br />
                         </code>
                     </td>
                 </tr>
@@ -786,7 +786,7 @@ export class Equipe extends EntidadeBase {
   @OneToMany(() &#x3D;&gt; Auxiliar, (a) &#x3D;&gt; a.equipe)
   auxiliares!: Auxiliar[];
 
-  @ManyToOne(() &#x3D;&gt; Liga, (c) &#x3D;&gt; c.equipes)
+  @ManyToOne(() &#x3D;&gt; Liga, (c) &#x3D;&gt; c.equipes, { onDelete: &#x27;CASCADE&#x27; })
   @JoinColumn({ name: &#x27;id_liga&#x27; })
   liga!: Liga;
 

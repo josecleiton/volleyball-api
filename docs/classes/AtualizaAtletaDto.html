@@ -85,6 +85,7 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { OmitType, PartialType } from &#x27;@nestjs/swagger&#x27;;
 import { IsNotEmpty, IsPositive, IsUUID, Max } from &#x27;class-validator&#x27;;
+import { EquipeRespostaDto } from &#x27;src/modules/equipe/dto/equipe.dto&#x27;;
 import { Atleta } from &#x27;../entities/atleta.entity&#x27;;
 import { CriaPessoaDto, PessoaRespostaDto } from &#x27;./pessoa.dto&#x27;;
 
@@ -95,20 +96,10 @@ export class CriaAtletaDto extends CriaPessoaDto {
 
   @IsUUID()
   idEquipe!: string;
-
-  validar() {
-    super.validar();
-  }
 }
 
 export class AtualizaAtletaDto extends PartialType(
-  OmitType(CriaAtletaDto, [
-    &#x27;idEquipe&#x27;,
-    &#x27;documento&#x27;,
-    &#x27;documentoCbv&#x27;,
-    &#x27;paraPessoa&#x27;,
-    &#x27;genero&#x27;,
-  ]),
+  OmitType(CriaAtletaDto, [&#x27;idEquipe&#x27;, &#x27;documento&#x27;, &#x27;documentoCbv&#x27;, &#x27;genero&#x27;]),
 ) {}
 
 export class ListaAtletaDto {
@@ -126,6 +117,7 @@ export class AtletaRespostaDto extends PessoaRespostaDto {
   id: string;
   numero: number;
   idEquipe: string;
+  equipe: EquipeRespostaDto;
 
   constructor(atleta: Atleta) {
     super(atleta.pessoa);
@@ -133,6 +125,7 @@ export class AtletaRespostaDto extends PessoaRespostaDto {
     this.id &#x3D; atleta.id;
     this.numero &#x3D; atleta.numero;
     this.idEquipe &#x3D; atleta.idEquipe;
+    this.equipe &#x3D; new EquipeRespostaDto(atleta.equipe);
   }
 }
 </code></pre>

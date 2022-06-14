@@ -111,6 +111,10 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#adicionaOrdenacao" >adicionaOrdenacao</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Async</span>
                                 <a href="#listaMelhoresDaLiga" >listaMelhoresDaLiga</a>
                             </li>
@@ -215,6 +219,83 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="adicionaOrdenacao"></a>
+                    <span class="name">
+                        <span class="modifier">Protected</span>
+                        <span ><b>adicionaOrdenacao</b></span>
+                        <a href="#adicionaOrdenacao"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>adicionaOrdenacao(qb: <a href="../classes/MelhorLiberoView.html" target="_self">SelectQueryBuilder&lt;MelhorLiberoView&gt;</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Inherited from         <code><a href="../classes/MelhorPosicaoViewRepository.html" target="_self" >MelhorPosicaoViewRepository</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../classes/MelhorPosicaoViewRepository.html#source" target="_self" >MelhorPosicaoViewRepository:10</a></code>
+</div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>qb</td>
+                                    <td>
+                                                <code><a href="../classes/MelhorLiberoView.html" target="_self" >SelectQueryBuilder&lt;MelhorLiberoView&gt;</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/MelhorLiberoView.html" target="_self" >SelectQueryBuilder&lt;MelhorLiberoView&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="listaMelhoresDaLiga"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -239,7 +320,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../classes/MelhorPosicaoViewRepository.html#source" target="_self" >MelhorPosicaoViewRepository:6</a></code>
+                        <div class="io-line">Defined in         <code><a href="../classes/MelhorPosicaoViewRepository.html#source" target="_self" >MelhorPosicaoViewRepository:11</a></code>
 </div>
                 </td>
             </tr>
@@ -393,7 +474,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { EntityRepository } from &#x27;typeorm&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { EntityRepository, SelectQueryBuilder } from &#x27;typeorm&#x27;;
 import { MelhorLiberoView } from &#x27;../entities/melhor-libero-view.entity&#x27;;
 import { MelhorPosicaoViewRepository } from &#x27;./melhor-posicao-view.repository&#x27;;
 import { nomeMelhorLiberoView } from &#x27;../estatistica.constants&#x27;;
@@ -402,6 +483,11 @@ import { nomeMelhorLiberoView } from &#x27;../estatistica.constants&#x27;;
 export class MelhorLiberoViewRepository extends MelhorPosicaoViewRepository&lt;MelhorLiberoView&gt; {
   protected readonly name &#x3D; nomeMelhorLiberoView;
   protected readonly concurrently &#x3D; true;
+  protected adicionaOrdenacao(
+    qb: SelectQueryBuilder&lt;MelhorLiberoView&gt;,
+  ): SelectQueryBuilder&lt;MelhorLiberoView&gt; {
+    return qb.addOrderBy(&#x27;m.recepcoesPorPartida&#x27;, &#x27;DESC&#x27;);
+  }
 }
 </code></pre>
     </div>

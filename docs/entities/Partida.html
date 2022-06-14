@@ -181,7 +181,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ManyToOne(undefined, {eager: true})<br />@JoinColumn({name: &#x27;id_mandante&#x27;})<br />
+                            @ManyToOne(undefined, {eager: true, onDelete: &#x27;CASCADE&#x27;})<br />@JoinColumn({name: &#x27;id_mandante&#x27;})<br />
                         </code>
                     </td>
                 </tr>
@@ -360,7 +360,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ManyToOne(undefined)<br />@JoinColumn({name: &#x27;id_delegado&#x27;})<br />
+                            @ManyToOne(undefined, {onDelete: &#x27;SET NULL&#x27;})<br />@JoinColumn({name: &#x27;id_delegado&#x27;})<br />
                         </code>
                     </td>
                 </tr>
@@ -396,7 +396,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ManyToOne(undefined)<br />@JoinColumn({name: &#x27;id_ganhadora&#x27;})<br />
+                            @ManyToOne(undefined, {eager: true, onDelete: &#x27;SET NULL&#x27;})<br />@JoinColumn({name: &#x27;id_ganhadora&#x27;})<br />
                         </code>
                     </td>
                 </tr>
@@ -784,7 +784,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ManyToOne(undefined, {eager: true})<br />@JoinColumn({name: &#x27;id_visitante&#x27;})<br />
+                            @ManyToOne(undefined, {eager: true, onDelete: &#x27;CASCADE&#x27;})<br />@JoinColumn({name: &#x27;id_visitante&#x27;})<br />
                         </code>
                     </td>
                 </tr>
@@ -881,7 +881,7 @@ export class Partida extends EntidadeBase {
     return differenceInMinutes(this.dataFinalizacao, this.dataComeco);
   }
 
-  @ManyToOne(() &#x3D;&gt; Delegado)
+  @ManyToOne(() &#x3D;&gt; Delegado, { onDelete: &#x27;SET NULL&#x27; })
   @JoinColumn({ name: &#x27;id_delegado&#x27; })
   delegado?: Delegado;
 
@@ -889,15 +889,15 @@ export class Partida extends EntidadeBase {
   @JoinColumn({ name: &#x27;id_ginasio&#x27; })
   ginasio!: Ginasio;
 
-  @ManyToOne(() &#x3D;&gt; EquipePartida)
+  @ManyToOne(() &#x3D;&gt; EquipePartida, { eager: true, onDelete: &#x27;SET NULL&#x27; })
   @JoinColumn({ name: &#x27;id_ganhadora&#x27; })
   ganhadora?: EquipePartida;
 
-  @ManyToOne(() &#x3D;&gt; EquipePartida, { eager: true })
+  @ManyToOne(() &#x3D;&gt; EquipePartida, { eager: true, onDelete: &#x27;CASCADE&#x27; })
   @JoinColumn({ name: &#x27;id_visitante&#x27; })
   visitante!: EquipePartida;
 
-  @ManyToOne(() &#x3D;&gt; EquipePartida, { eager: true })
+  @ManyToOne(() &#x3D;&gt; EquipePartida, { eager: true, onDelete: &#x27;CASCADE&#x27; })
   @JoinColumn({ name: &#x27;id_mandante&#x27; })
   private _mandante!: EquipePartida;
 

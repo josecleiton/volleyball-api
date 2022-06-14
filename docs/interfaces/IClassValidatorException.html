@@ -256,8 +256,8 @@ export class HttpExceptionFilter implements ExceptionFilter {
       path: request.url,
       message: exception.message,
     };
-    const NODE_ENV &#x3D; this.configService.get(&#x27;NODE_ENV&#x27;);
-    if (NODE_ENV !&#x3D;&#x3D; &#x27;production&#x27;) {
+    const env &#x3D; this.configService.get(&#x27;NODE_ENV&#x27;);
+    if (env !&#x3D;&#x3D; &#x27;production&#x27;) {
       ex.stack &#x3D; exception.stack;
       ex.name &#x3D; exception.name;
     }
@@ -268,7 +268,9 @@ export class HttpExceptionFilter implements ExceptionFilter {
         exception.getResponse() as IClassValidatorException;
       ex.message &#x3D; classValidatorEx.message;
       ex.name &#x3D; classValidatorEx.error;
+    }
 
+    if (env !&#x3D;&#x3D; &#x27;production&#x27;) {
       console.log(ex);
     }
 

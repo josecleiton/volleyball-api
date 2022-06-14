@@ -86,10 +86,13 @@
                                 <a href="#atleta" >atleta</a>
                             </li>
                             <li>
-                                <a href="#bloqueios" >bloqueios</a>
+                                <a href="#bloqueiosPorPartida" >bloqueiosPorPartida</a>
                             </li>
                             <li>
                                 <a href="#idAtleta" >idAtleta</a>
+                            </li>
+                            <li>
+                                <a href="#quantidadeDePartidas" >quantidadeDePartidas</a>
                             </li>
                         </ul>
                     </td>
@@ -100,6 +103,20 @@
 
 
 
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#totalDeBloqueios" >totalDeBloqueios</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
         </tbody>
     </table>
 </section>
@@ -115,7 +132,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/modules/estatistica/dto/melhor-central.dto.ts:7</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/modules/estatistica/dto/melhor-central.dto.ts:12</a></div>
                             </td>
                         </tr>
 
@@ -188,10 +205,10 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="bloqueios"></a>
+                    <a name="bloqueiosPorPartida"></a>
                     <span class="name">
-                        <span ><b>bloqueios</b></span>
-                        <a href="#bloqueios"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>bloqueiosPorPartida</b></span>
+                        <a href="#bloqueiosPorPartida"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -236,6 +253,32 @@
 
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="quantidadeDePartidas"></a>
+                    <span class="name">
+                        <span ><b>quantidadeDePartidas</b></span>
+                        <a href="#quantidadeDePartidas"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/modules/estatistica/dto/melhor-central.dto.ts:8</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
 </section>
 
 
@@ -244,6 +287,33 @@
 
 
 
+            <section>
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="totalDeBloqueios"></a>
+                        <span class="name"><b>totalDeBloqueios</b><a href="#totalDeBloqueios"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>totalDeBloqueios()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/modules/estatistica/dto/melhor-central.dto.ts:10</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+</section>
     </div>
 
 
@@ -253,12 +323,18 @@ import { MelhorCentralView } from &#x27;../entities/melhor-central-view.entity&#
 
 export class MelhorCentralRespostaDto {
   idAtleta: string;
-  bloqueios: number;
+  bloqueiosPorPartida: number;
   atleta: AtletaRespostaDto;
+  quantidadeDePartidas: number;
+
+  public get totalDeBloqueios(): number {
+    return this.bloqueiosPorPartida * this.quantidadeDePartidas;
+  }
 
   constructor(m: MelhorCentralView) {
     this.idAtleta &#x3D; m.idAtleta;
-    this.bloqueios &#x3D; m.bloqueios;
+    this.bloqueiosPorPartida &#x3D; m.bloqueiosPorPartida;
+    this.quantidadeDePartidas &#x3D; m.quantidadePartidas;
     this.atleta &#x3D; new AtletaRespostaDto(m.atleta);
   }
 }
