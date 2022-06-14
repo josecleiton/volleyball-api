@@ -7,7 +7,7 @@ export class Tecnico extends PessoaDeEquipe {
   @Column({ unique: true, type: 'varchar', length: 50 })
   documentoCref!: string; // documento do conselho de educação fisica
 
-  @OneToOne(() => Equipe, (equipe) => equipe.tecnico)
+  @OneToOne(() => Equipe, (equipe) => equipe.tecnico, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'id_equipe' })
   equipe!: Equipe;
 }
