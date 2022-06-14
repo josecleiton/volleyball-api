@@ -18,11 +18,11 @@ export class ArbitroPartida extends EntidadeBase {
   @Column({ type: 'enum', enum: TipoArbitro })
   tipo!: TipoArbitro;
 
-  @ManyToOne(() => Arbitro)
+  @ManyToOne(() => Arbitro, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'id_arbitro' })
   arbitro!: Arbitro;
 
-  @ManyToOne(() => Partida)
+  @ManyToOne(() => Partida, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'id_partida' })
   partida!: Partida;
 }

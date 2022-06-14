@@ -77,23 +77,23 @@ export class Partida extends EntidadeBase {
     return differenceInMinutes(this.dataFinalizacao, this.dataComeco);
   }
 
-  @ManyToOne(() => Delegado)
+  @ManyToOne(() => Delegado, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'id_delegado' })
   delegado?: Delegado;
 
-  @ManyToOne(() => Ginasio)
+  @ManyToOne(() => Ginasio, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'id_ginasio' })
   ginasio!: Ginasio;
 
-  @ManyToOne(() => EquipePartida)
+  @ManyToOne(() => EquipePartida, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'id_ganhadora' })
   ganhadora?: EquipePartida;
 
-  @ManyToOne(() => EquipePartida, { eager: true })
+  @ManyToOne(() => EquipePartida, { eager: true, onDelete: 'CASCADE' })
   @JoinColumn({ name: 'id_visitante' })
   visitante!: EquipePartida;
 
-  @ManyToOne(() => EquipePartida, { eager: true })
+  @ManyToOne(() => EquipePartida, { eager: true, onDelete: 'CASCADE' })
   @JoinColumn({ name: 'id_mandante' })
   private _mandante!: EquipePartida;
 

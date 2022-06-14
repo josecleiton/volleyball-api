@@ -55,8 +55,14 @@ export class InicializaLigaDto {
   @ArrayMinSize(1)
   @ArrayMaxSize(12)
   @ArrayUnique()
-  @Min(6 * 60, { each: true })
-  @Max(22 * 60, { each: true })
+  @Min(6 * 60, {
+    each: true,
+    message: 'Horário tem que ser em minutos e maior que $constraint4',
+  })
+  @Max(22 * 60, {
+    each: true,
+    message: 'Horário tem que ser em minutos e menor que $constraint5',
+  })
   horarios!: number[];
 
   @IsPositive()

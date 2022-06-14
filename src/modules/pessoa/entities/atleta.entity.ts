@@ -16,7 +16,7 @@ export class Atleta extends PessoaDeEquipe {
   @Column({ type: 'smallint' })
   numero!: number;
 
-  @ManyToOne(() => Equipe, (equipe) => equipe.atletas)
+  @ManyToOne(() => Equipe, (equipe) => equipe.atletas, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'id_equipe' })
   equipe!: Equipe;
 
