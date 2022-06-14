@@ -9,14 +9,16 @@ import { TypeORMFilterService } from 'src/modules/core/services/typeorm-filter.s
 import { Equipe } from 'src/modules/equipe/entities/equipe.entity';
 import { EquipeService } from 'src/modules/equipe/equipe.service';
 import { LigaService } from 'src/modules/liga/services/liga.service';
-import { In } from 'typeorm';
+import { FindConditions, In } from 'typeorm';
 import {
   AtletaRespostaDto,
   AtualizaAtletaDto,
   CriaAtletaDto,
+  DeveListarAtletasDto,
   IValidaNumeroEquipeDto,
   ListaAtletaDto,
 } from '../dto/atleta.dto';
+import { Atleta } from '../entities/atleta.entity';
 import { TipoPessoa } from '../enums';
 import { dtoParaPessoa } from '../mapper';
 import { AtletaRepository } from '../repositories/atleta.repository';
@@ -91,24 +93,33 @@ export class AtletaService {
   }
 
   async listaAtletas(requisicao: ListaAtletaDto) {
+    const where: FindConditions<Atleta> = { idEquipe: requisicao.idEquipe };
+    if (requisicao.ids) {
+      where.id = In(requisicao.ids);
+    }
+
     const list = await this.atletaRepository.find({
-      where: requisicao,
+      where,
+      order: { dataCriacao: 'ASC' },
     });
 
     return list.map((x) => new AtletaRespostaDto(x));
   }
 
-  async deveListarPorId(ids: string[]) {
-    const atletas = await this.atletaRepository.find({
-      where: { id: In(ids) },
-    });
-    const setId = new Set(ids);
+  async deveListarAtletasEstritamente(requisicao: DeveListarAtletasDto) {
+    const atletas = await this.listaAtletas(requisicao);
 
-    const naoEncontrados = atletas.filter((x) => !setId.has(x.id));
-    if (naoEncontrados?.length) {
-      throw new NotFoundException(naoEncontrados);
+    const setIdReq = new Set(requisicao.ids);
+    if (
+      setIdReq.size !== atletas.length ||
+      atletas.some((x) => !setIdReq.has(x.id))
+    ) {
+      throw new NotFoundException(
+        `Algum atleta não foi encontrado na equipe ${requisicao.idEquipe}`,
+      );
     }
-    return atletas.map((x) => new AtletaRespostaDto(x));
+
+    return atletas;
   }
 
   async atualizaAtleta(id: string, requisicao: AtualizaAtletaDto) {

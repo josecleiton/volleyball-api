@@ -5,6 +5,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { groupBy } from 'lodash';
+import { AtletaRespostaDto } from 'src/modules/pessoa/dto/atleta.dto';
 import { PontuacaoViewRepository } from 'src/modules/pontuacao/repositories/pontuacao-view.repository';
 import { Connection } from 'typeorm';
 import { Posicao, TipoArbitro } from '../../pessoa/enums';
@@ -63,7 +64,7 @@ export class PartidaService {
   private validaAtletas(
     idEquipe: string,
     atletas: AtletaParticipacaoDto[],
-  ): void | never {
+  ): Promise<AtletaRespostaDto[]> | never {
     const atletasPorPosicao = groupBy(atletas, (a) => a.posicao);
     if (
       atletas.length === Partida.minimoDeAtletasNaPartida &&
@@ -83,6 +84,11 @@ export class PartidaService {
         `Em uma equipe ${idEquipe} com ${atletas.length} não pode ter mais do que ${Partida.maximoDeLiberos} líberos`,
       );
     }
+
+    return this.atletaService.deveListarAtletasEstritamente({
+      ids: atletas.map((x) => x.idAtleta),
+      idEquipe,
+    });
   }
 
   private async registraDesistencia(partida: Partida) {
@@ -162,23 +168,26 @@ export class PartidaService {
       requisicao.arbitros.map((x) => x.idArbitro),
     );
 
-    this.validaAtletas(partida.idMandante, requisicao.atletasMandante);
-    this.validaAtletas(partida.idVisitante, requisicao.atletasVisitante);
-
-    await this.atletaService.deveListarPorId(
-      [...requisicao.atletasMandante, ...requisicao.atletasVisitante].map(
-        (x) => x.idAtleta,
-      ),
-    );
+    await this.validaAtletas(partida.idMandante, requisicao.atletasMandante);
+    await this.validaAtletas(partida.idVisitante, requisicao.atletasVisitante);
 
     const escalacaoMandante = requisicao.atletasMandante.map((atletaDto) =>
-      this.atletaEscaladoRepository.create({ ...atletaDto }),
+      this.atletaEscaladoRepository.create({
+        ...atletaDto,
+        idEquipePartida: partida.idMandante,
+      }),
     );
     const escalacaoVisitante = requisicao.atletasVisitante.map((atletaDto) =>
-      this.atletaEscaladoRepository.create({ ...atletaDto }),
+      this.atletaEscaladoRepository.create({
+        ...atletaDto,
+        idEquipePartida: partida.idVisitante,
+      }),
     );
     const arbitrosDaPartida = requisicao.arbitros.map((arbitroDto) =>
-      this.arbitroPartidaRepository.create({ ...arbitroDto }),
+      this.arbitroPartidaRepository.create({
+        ...arbitroDto,
+        idPartida: partida.id,
+      }),
     );
 
     partida.status = StatusPartida.PARTICIPANTES_CADASTRADOS;

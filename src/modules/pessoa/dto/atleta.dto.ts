@@ -1,5 +1,12 @@
 import { OmitType, PartialType } from '@nestjs/swagger';
-import { IsNotEmpty, IsPositive, IsUUID, Max } from 'class-validator';
+import {
+  IsArray,
+  IsNotEmpty,
+  IsOptional,
+  IsPositive,
+  IsUUID,
+  Max,
+} from 'class-validator';
 import { EquipeRespostaDto } from 'src/modules/equipe/dto/equipe.dto';
 import { Atleta } from '../entities/atleta.entity';
 import { CriaPessoaDto, PessoaRespostaDto } from './pessoa.dto';
@@ -21,6 +28,15 @@ export class ListaAtletaDto {
   @IsNotEmpty()
   @IsUUID()
   idEquipe!: string;
+
+  @IsArray()
+  @IsOptional()
+  @IsUUID(4, { each: true })
+  ids?: string[];
+}
+
+export class DeveListarAtletasDto extends ListaAtletaDto {
+  ids!: string[];
 }
 
 export interface IValidaNumeroEquipeDto {
