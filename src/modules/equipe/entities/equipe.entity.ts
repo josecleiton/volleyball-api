@@ -67,7 +67,7 @@ export class Equipe extends EntidadeBase {
   @Column('uuid')
   idGinasio!: string;
 
-  @OneToOne(() => Tecnico, (t) => t.equipe, { onDelete: 'CASCADE' })
+  @OneToOne(() => Tecnico, (t) => t.equipe)
   tecnico?: Tecnico;
 
   @OneToMany(() => Atleta, (a) => a.equipe)
@@ -80,7 +80,7 @@ export class Equipe extends EntidadeBase {
   @JoinColumn({ name: 'id_liga' })
   liga!: Liga;
 
-  @OneToOne(() => Ginasio, { onDelete: 'CASCADE' })
+  @OneToOne(() => Ginasio)
   @JoinColumn({ name: 'id_ginasio' })
   ginasio!: Ginasio;
 
