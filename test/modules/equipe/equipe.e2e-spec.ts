@@ -1,5 +1,6 @@
 import { INestApplication } from '@nestjs/common';
 import { randomUUID } from 'crypto';
+import faker = require('faker');
 import {
   atualizaEquipeDto,
   criaEquipeDto,
@@ -65,6 +66,34 @@ describe('EquipeController (e2e)', () => {
       expect(equipeResposta).toEqual(
         expect.objectContaining({ ...equipe, nome: requisicao.nome }),
       );
+    });
+
+    it('Ok com brasão', async () => {
+      const { equipe } = await server.criaEquipeLigaEGinasio();
+
+      const requisicao = atualizaEquipeDto(
+        undefined,
+        false,
+        false,
+        false,
+        true,
+      );
+      const equipeResposta = await server.atualizaEquipe(equipe.id, requisicao);
+
+      expect(equipeResposta).toEqual(
+        expect.objectContaining({ ...equipe, urlBrasao: requisicao.urlBrasao }),
+      );
+    });
+
+    it('Conflict porque o brasão não é uma imagem', async () => {
+      const { equipe } = await server.criaEquipeLigaEGinasio();
+
+      const requisicao = atualizaEquipeDto(undefined, true);
+      requisicao.urlBrasao = faker.internet.url();
+
+      await expect(
+        server.atualizaEquipe(equipe.id, requisicao),
+      ).rejects.toThrow('409');
     });
 
     it('Not Found', async () => {
