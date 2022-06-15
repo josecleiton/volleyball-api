@@ -25,12 +25,12 @@ describe('AtletaController (e2e)', () => {
 
     const requisicao = criaAtletaDto(equipe.id);
 
-    const tecnico = await server.criaAtleta(requisicao);
+    const atleta = await server.criaAtleta(requisicao);
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { dataNascimento, ...toMatch } = requisicao;
 
-    expect(tecnico).toEqual(expect.objectContaining(toMatch));
+    expect(atleta).toEqual(expect.objectContaining(toMatch));
   });
 
   describe('/pessoa/atleta/:id (GET)', () => {
