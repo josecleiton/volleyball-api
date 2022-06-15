@@ -1,3 +1,4 @@
+import faker = require('faker');
 import { INestApplication } from '@nestjs/common';
 import { randomUUID } from 'crypto';
 import { initTestingApp } from 'test/modules/helpers/init-testingapp.helper';
@@ -39,7 +40,11 @@ describe('DelegadoController (e2e)', () => {
 
     const delegados = await server.listaDelegado(listaDelegadoDto(liga.id));
 
-    expect(delegados).toEqual(expect.arrayContaining([delegado2, delegado1]));
+    expect(delegados).toEqual(
+      expect.arrayContaining(
+        faker.random.arrayElements([delegado2, delegado1]),
+      ),
+    );
   });
 
   describe('/pessoa/delegado/:id (GET)', () => {

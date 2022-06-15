@@ -1,4 +1,3 @@
-import { PartialType, OmitType } from '@nestjs/swagger';
 import { IsOptional, IsString, IsUrl, IsUUID, Length } from 'class-validator';
 import { AtletaRespostaDto } from 'src/modules/pessoa/dto/atleta.dto';
 import { AuxiliarRespostaDto } from 'src/modules/pessoa/dto/auxiliar.dto';
@@ -29,9 +28,30 @@ export class CriaEquipeDto {
   estado!: string;
 }
 
-export class AtualizaEquipeDto extends PartialType(
-  OmitType(CriaEquipeDto, ['idLiga']),
-) {}
+export class AtualizaEquipeDto {
+  @IsOptional()
+  @IsUUID()
+  idGinasio!: string;
+
+  @IsOptional()
+  @IsString()
+  @Length(2, 200)
+  nome?: string;
+
+  @IsUrl()
+  @IsOptional()
+  urlBrasao?: string;
+
+  @IsOptional()
+  @IsString()
+  @Length(2, 200)
+  cidade?: string;
+
+  @IsOptional()
+  @IsString()
+  @Length(2, 2)
+  estado?: string;
+}
 
 export class ListaEquipesDto {
   @IsUUID()

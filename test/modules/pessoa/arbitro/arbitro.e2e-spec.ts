@@ -1,3 +1,4 @@
+import faker = require('faker');
 import { INestApplication } from '@nestjs/common';
 import { initTestingApp } from 'test/modules/helpers';
 import {
@@ -38,6 +39,8 @@ describe('ArbitroController (e2e)', () => {
 
     const arbitros = await server.listaArbitros(listaArbitroDto(liga.id));
 
-    expect(arbitros).toEqual(expect.arrayContaining([arbitro2, arbitro1]));
+    expect(arbitros).toEqual(
+      expect.arrayContaining(faker.random.arrayElements([arbitro2, arbitro1])),
+    );
   });
 });

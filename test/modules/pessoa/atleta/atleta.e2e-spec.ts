@@ -1,3 +1,4 @@
+import faker = require('faker');
 import { INestApplication } from '@nestjs/common';
 import { randomUUID } from 'crypto';
 import { initTestingApp } from 'test/modules/helpers/init-testingapp.helper';
@@ -53,7 +54,9 @@ describe('AtletaController (e2e)', () => {
 
     const atletas = await server.listaAtletas(equipe.id);
 
-    expect(atletas).toEqual(expect.arrayContaining([atleta2, atleta1]));
+    expect(atletas).toEqual(
+      expect.arrayContaining(faker.random.arrayElements([atleta2, atleta1])),
+    );
   });
 
   describe('/pessoa/atleta/:id (PATCH)', () => {
@@ -64,7 +67,7 @@ describe('AtletaController (e2e)', () => {
 
       const atletaAtualizado = await server.atualizaAtleta(
         id,
-        atualizaAtletaDto(),
+        atualizaAtletaDto(true),
       );
 
       const atleta = await server.encontraAtleta(id);
