@@ -48,7 +48,6 @@ export class AtletaRespostaDto extends PessoaRespostaDto {
   id: string;
   numero: number;
   idEquipe: string;
-  equipe: EquipeRespostaDto;
 
   constructor(atleta: Atleta) {
     super(atleta.pessoa);
@@ -56,6 +55,15 @@ export class AtletaRespostaDto extends PessoaRespostaDto {
     this.id = atleta.id;
     this.numero = atleta.numero;
     this.idEquipe = atleta.idEquipe;
+  }
+}
+
+export class AtletaComEquipeRespostaDto extends AtletaRespostaDto {
+  equipe: EquipeRespostaDto;
+
+  constructor(atleta: Atleta) {
+    super(atleta);
+
     this.equipe = new EquipeRespostaDto(atleta.equipe);
   }
 }

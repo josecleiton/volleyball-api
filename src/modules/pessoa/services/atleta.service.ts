@@ -11,6 +11,7 @@ import { EquipeService } from 'src/modules/equipe/equipe.service';
 import { LigaService } from 'src/modules/liga/services/liga.service';
 import { FindConditions, In } from 'typeorm';
 import {
+  AtletaComEquipeRespostaDto,
   AtletaRespostaDto,
   AtualizaAtletaDto,
   CriaAtletaDto,
@@ -46,7 +47,7 @@ export class AtletaService {
   }
 
   async criaAtleta(requisicao: CriaAtletaDto) {
-    const equipe = await this.equipeService.deveEncontrarUm(
+    const equipe = await this.equipeService.deveEncontrarSimplificada(
       requisicao.idEquipe,
     );
     await this.ligaService.excecaoSeALigaEstaIniciada(equipe.idLiga);
@@ -61,7 +62,7 @@ export class AtletaService {
 
     const atleta = this.atletaRepository.create({
       ...requisicao,
-      idEquipe: equipe.id,
+      equipe,
       pessoa: dtoParaPessoa(requisicao, TipoPessoa.atleta),
     });
 
@@ -76,10 +77,10 @@ export class AtletaService {
     }
   }
 
-  private async deveEncontrarEntidade(id: string) {
+  private async deveEncontrarEntidade(id: string, relacoes: string[] = []) {
     const atleta = await this.atletaRepository.findOne({
       where: { id },
-      relations: ['equipe'],
+      relations: [...relacoes, 'pessoa'],
     });
     if (!atleta) {
       throw new NotFoundException(`Atleta ${id} não encontrado`);
@@ -88,8 +89,14 @@ export class AtletaService {
     return atleta;
   }
 
-  async deveEncontrarUm(id: string) {
+  async deveEncontrar(id: string) {
     return new AtletaRespostaDto(await this.deveEncontrarEntidade(id));
+  }
+
+  async deveEncontrarComEquipe(id: string) {
+    return new AtletaComEquipeRespostaDto(
+      await this.deveEncontrarEntidade(id, ['equipe']),
+    );
   }
 
   async listaAtletas(requisicao: ListaAtletaDto) {
@@ -98,12 +105,12 @@ export class AtletaService {
       where.id = In(requisicao.ids);
     }
 
-    const list = await this.atletaRepository.find({
+    const atletas = await this.atletaRepository.find({
       where,
       order: { dataCriacao: 'ASC' },
     });
 
-    return list.map((x) => new AtletaRespostaDto(x));
+    return atletas.map((x) => new AtletaRespostaDto(x));
   }
 
   async deveListarAtletasEstritamente(requisicao: DeveListarAtletasDto) {
@@ -124,7 +131,7 @@ export class AtletaService {
 
   async atualizaAtleta(id: string, requisicao: AtualizaAtletaDto) {
     try {
-      const atleta = await this.deveEncontrarEntidade(id);
+      const atleta = await this.deveEncontrarEntidade(id, ['equipe']);
       await this.ligaService.excecaoSeALigaEstaIniciada(atleta.equipe.idLiga);
 
       if (requisicao.dataNascimento) {
@@ -154,7 +161,7 @@ export class AtletaService {
   }
 
   async removerAtleta(id: string) {
-    const atleta = await this.deveEncontrarEntidade(id);
+    const atleta = await this.deveEncontrarComEquipe(id);
     await this.ligaService.excecaoSeALigaEstaIniciada(atleta.equipe.idLiga);
 
     await this.atletaRepository.delete(id);

@@ -38,33 +38,41 @@ export class ListaEquipesDto {
   idLiga!: string;
 }
 
-export class EquipeRespostaDto {
+export class EquipeSimplificadaRespostaDto {
   id: string;
   nome: string;
+  idLiga: string;
+  idGinasio: string;
+  quantidadeAtletas: number;
+
+  constructor(equipe: Equipe) {
+    this.id = equipe.id;
+    this.nome = equipe.nome;
+    this.idLiga = equipe.idLiga;
+    this.idGinasio = equipe.idGinasio;
+    this.quantidadeAtletas = equipe.atletas?.length ?? 0;
+  }
+}
+
+export class EquipeRespostaDto extends EquipeSimplificadaRespostaDto {
   urlBrasao?: string;
   apta: boolean;
   descricaoAptidao?: string[];
   cidade: string;
   estado: string;
-  idLiga: string;
-  idGinasio: string;
   tecnico?: TecnicoRespostaDto;
-  quantidadeAtletas: number;
   quantidadeAuxiliares: number;
   atletas: AtletaRespostaDto[];
   auxiliares: AuxiliarRespostaDto[];
 
   constructor(equipe: Equipe) {
-    this.id = equipe.id;
-    this.nome = equipe.nome;
+    super(equipe);
+
     this.urlBrasao = equipe.urlBrasao;
     this.apta = equipe.apta;
     this.descricaoAptidao = equipe.descricaoAptidao;
     this.cidade = equipe.cidade;
     this.estado = equipe.estado;
-    this.idLiga = equipe.idLiga;
-    this.idGinasio = equipe.idGinasio;
-    this.quantidadeAtletas = equipe.atletas?.length ?? 0;
     this.tecnico = equipe.tecnico
       ? new TecnicoRespostaDto(equipe.tecnico)
       : undefined;

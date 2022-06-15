@@ -14,6 +14,7 @@ import {
 } from 'typeorm';
 import { Auxiliar } from 'src/modules/pessoa/entities/auxiliar.entity';
 import { EquipePartida } from 'src/modules/partida/entities/equipe-partida.entity';
+import { Logger } from '@nestjs/common';
 
 @Entity('equipes')
 @Index('IX_equipes_cidade_estado', ['cidade', 'estado'])
@@ -31,9 +32,18 @@ export class Equipe extends EntidadeBase {
   private _apta = false;
 
   public get apta(): boolean {
+    if (!this.atletas || !this.auxiliares) {
+      Logger.log(
+        `Equipe ${this.id} não carregou auxiliares nem atletas`,
+        'Equipe',
+      );
+
+      return this._apta;
+    }
+
     const descricaoAptidao = [];
 
-    if (this.atletas.length < Equipe.quantidadeAtletasPraAptidao) {
+    if (this.atletas?.length < Equipe.quantidadeAtletasPraAptidao) {
       descricaoAptidao.push(
         `Precisa-se de ${Equipe.quantidadeAtletasPraAptidao} atletas. Atletas cadastrados: ${this.atletas.length}`,
       );

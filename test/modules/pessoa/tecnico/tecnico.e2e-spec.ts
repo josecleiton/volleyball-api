@@ -1,4 +1,5 @@
 import { INestApplication } from '@nestjs/common';
+import { randomUUID } from 'crypto';
 import { initTestingApp } from 'test/modules/helpers/init-testingapp.helper';
 import { criaTecnicoDto } from 'test/__MOCKS__/pessoa/tecnico.mock';
 import { TecnicoServer } from './tecnico.server';
@@ -27,5 +28,19 @@ describe('TecnicoController (e2e)', () => {
     const { dataNascimento, ...toMatch } = requisicao;
 
     expect(tecnico).toEqual(expect.objectContaining(toMatch));
+  });
+
+  describe('/pessoa/tecnico/:id (GET)', () => {
+    it('Ok', async () => {
+      const { tecnico } = await server.criaTecnicoComEquipe();
+
+      const tecnicoResposta = await server.encontraTecnico(tecnico.id);
+
+      expect(tecnicoResposta).toEqual(expect.objectContaining(tecnico));
+    });
+
+    it('Not Found', async () => {
+      await expect(server.encontraTecnico(randomUUID())).rejects.toThrow('404');
+    });
   });
 });
