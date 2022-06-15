@@ -22,7 +22,7 @@ describe('AtletaController (e2e)', () => {
   });
 
   it('/pessoa/atleta (POST)', async () => {
-    const { equipe } = await server.equipeServer.criaEquipeLigaEGinasio();
+    const { equipe } = await server.equipe.criaEquipeLigaEGinasio();
 
     const requisicao = criaAtletaDto(equipe.id);
 
