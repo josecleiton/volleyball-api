@@ -53,7 +53,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
     }
 
     if (env !== 'production') {
-      console.log(ex);
+      console.warn(ex);
     }
 
     response.status(status).send(ex);

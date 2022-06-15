@@ -1,3 +1,5 @@
+import 'reflect-metadata';
+
 import { INestApplication } from '@nestjs/common';
 import { randomUUID } from 'crypto';
 import faker = require('faker');

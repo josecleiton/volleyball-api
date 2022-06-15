@@ -26,8 +26,8 @@ export class AtletaController {
   }
 
   @Get(':id')
-  async pegaUm(@Param('id', ParseUUIDPipe) id: string) {
-    return this.atletaService.deveEncontrarUm(id);
+  async encontraUm(@Param('id', ParseUUIDPipe) id: string) {
+    return this.atletaService.deveEncontrar(id);
   }
 
   @Get()

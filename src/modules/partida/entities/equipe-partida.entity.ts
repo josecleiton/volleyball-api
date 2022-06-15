@@ -49,11 +49,11 @@ export class EquipePartida extends EntidadeBase {
   @Column({ nullable: true })
   resultadoCadastradoEm?: Date;
 
-  @ManyToOne(() => Equipe, { onDelete: 'CASCADE' })
+  @ManyToOne(() => Equipe, { cascade: true, onDelete: 'CASCADE' })
   @JoinColumn({ name: 'id_equipe' })
   equipe!: Equipe;
 
-  @ManyToOne(() => Partida, { onDelete: 'CASCADE' })
+  @ManyToOne(() => Partida, { cascade: true, onDelete: 'CASCADE' })
   @JoinColumn({ name: 'id_partida' })
   partida!: Partida;
 

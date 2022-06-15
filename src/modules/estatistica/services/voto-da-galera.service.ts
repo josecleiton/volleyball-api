@@ -37,7 +37,7 @@ export class VotoDaGaleraService {
   ) {}
 
   async iniciarVoto(requisicao: IniciarVotoDto) {
-    const atleta = await this.atletaService.deveEncontrarUm(
+    const atleta = await this.atletaService.deveEncontrarComEquipe(
       requisicao.idAtleta,
     );
 
