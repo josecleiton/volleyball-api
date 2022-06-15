@@ -104,6 +104,10 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#criaTecnicoComEquipe" >criaTecnicoComEquipe</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#encontraTecnico" >encontraTecnico</a>
                             </li>
                         </ul>
@@ -129,7 +133,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">test/modules/pessoa/tecnico/tecnico.server.ts:9</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">test/modules/pessoa/tecnico/tecnico.server.ts:10</a></div>
                             </td>
                         </tr>
 
@@ -188,7 +192,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">test/modules/pessoa/tecnico/tecnico.server.ts:9</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">test/modules/pessoa/tecnico/tecnico.server.ts:10</a></div>
                         </td>
                     </tr>
 
@@ -224,8 +228,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="14"
-                            class="link-to-prism">test/modules/pessoa/tecnico/tecnico.server.ts:14</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="25"
+                            class="link-to-prism">test/modules/pessoa/tecnico/tecnico.server.ts:25</a></div>
                 </td>
             </tr>
 
@@ -277,6 +281,45 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="criaTecnicoComEquipe"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>criaTecnicoComEquipe</b></span>
+                        <a href="#criaTecnicoComEquipe"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>criaTecnicoComEquipe()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="15"
+                            class="link-to-prism">test/modules/pessoa/tecnico/tecnico.server.ts:15</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>unknown</code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="encontraTecnico"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -295,8 +338,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="23"
-                            class="link-to-prism">test/modules/pessoa/tecnico/tecnico.server.ts:23</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="34"
+                            class="link-to-prism">test/modules/pessoa/tecnico/tecnico.server.ts:34</a></div>
                 </td>
             </tr>
 
@@ -360,11 +403,22 @@ import {
   CriaTecnicoDto,
   TecnicoRespostaDto,
 } from &#x27;src/modules/pessoa/dto/tecnico.dto&#x27;;
+import { criaTecnicoDto } from &#x27;test/__MOCKS__/pessoa/tecnico.mock&#x27;;
 
 export class TecnicoServer {
   readonly equipeServer: EquipeServer;
   constructor(private readonly server: unknown) {
     this.equipeServer &#x3D; new EquipeServer(this.server);
+  }
+
+  async criaTecnicoComEquipe() {
+    const resultados &#x3D; await this.equipeServer.criaEquipeLigaEGinasio();
+
+    const tecnico &#x3D; await this.criaTecnico(
+      criaTecnicoDto(resultados.equipe.id),
+    );
+
+    return { ...resultados, tecnico };
   }
 
   async criaTecnico(requisicao: CriaTecnicoDto): Promise&lt;TecnicoRespostaDto&gt; {

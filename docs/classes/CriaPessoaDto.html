@@ -95,7 +95,6 @@
                                 <a href="#genero" >genero</a>
                             </li>
                             <li>
-                                    <span class="modifier">Private</span>
                                     <span class="modifier">Static</span>
                                     <span class="modifier">Readonly</span>
                                 <a href="#idadeLimite" >idadeLimite</a>
@@ -144,7 +143,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @MinDate(undefined)<br />@Type(undefined)<br />
+                            @MaxDate(undefined)<br />@Type(undefined)<br />
                         </code>
                     </td>
                 </tr>
@@ -268,7 +267,6 @@
                 <td class="col-md-4">
                     <a name="idadeLimite"></a>
                     <span class="name">
-                            <span class="modifier">Private</span>
                             <span class="modifier">Static</span>
                             <span class="modifier">Readonly</span>
                         <span ><b>idadeLimite</b></span>
@@ -344,7 +342,7 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Type } from &#x27;class-transformer&#x27;;
-import { IsEnum, IsString, Length, MinDate } from &#x27;class-validator&#x27;;
+import { IsEnum, IsOptional, IsString, Length, MaxDate } from &#x27;class-validator&#x27;;
 import { startOfYear, subYears } from &#x27;date-fns&#x27;;
 import { Genero } from &#x27;src/modules/core/enums&#x27;;
 import { Pessoa } from &#x27;../entities/pessoa.entity&#x27;;
@@ -361,7 +359,7 @@ export class CriaPessoaDto {
   @IsEnum(Genero)
   genero!: Genero;
 
-  @MinDate(subYears(startOfYear(new Date()), CriaPessoaDto.idadeLimite))
+  @MaxDate(subYears(startOfYear(new Date()), CriaPessoaDto.idadeLimite))
   @Type(() &#x3D;&gt; Date)
   dataNascimento!: Date;
 
@@ -369,11 +367,27 @@ export class CriaPessoaDto {
   @Length(11, 11)
   documentoCbv!: string;
 
-  private static readonly idadeLimite &#x3D; 15;
+  static readonly idadeLimite &#x3D; 15;
+}
+
+export class AtualizaPessoaDto {
+  @IsOptional()
+  @IsString()
+  @Length(3, 255)
+  nome?: string;
+
+  @IsOptional()
+  @IsEnum(Genero)
+  genero?: Genero;
+
+  @IsOptional()
+  @MaxDate(subYears(startOfYear(new Date()), CriaPessoaDto.idadeLimite))
+  @Type(() &#x3D;&gt; Date)
+  dataNascimento?: Date;
 }
 
 export class PessoaRespostaDto {
-  id: string;
+  idPessoa: string;
   nome: string;
   documento: string;
   genero: Genero;
@@ -381,7 +395,7 @@ export class PessoaRespostaDto {
   documentoCbv: string;
 
   constructor(pessoa: Pessoa) {
-    this.id &#x3D; pessoa.id;
+    this.idPessoa &#x3D; pessoa.id;
     this.nome &#x3D; pessoa.nome;
     this.documento &#x3D; pessoa.documento;
     this.genero &#x3D; pessoa.genero;

@@ -93,11 +93,11 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#listaAtletas" >listaAtletas</a>
+                                <a href="#encontraUm" >encontraUm</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#pegaUm" >pegaUm</a>
+                                <a href="#listaAtletas" >listaAtletas</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
@@ -292,6 +292,84 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="encontraUm"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>encontraUm</b></span>
+                        <a href="#encontraUm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>encontraUm(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;:id&#x27;)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="29"
+                            class="link-to-prism">src/modules/pessoa/controllers/atleta.controller.ts:29</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>unknown</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="listaAtletas"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -342,84 +420,6 @@
                                     <td>requisicao</td>
                                     <td>
                                                 <code><a href="../classes/ListaAtletaDto.html" target="_self" >ListaAtletaDto</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>unknown</code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="pegaUm"></a>
-                    <span class="name">
-                        <span class="modifier">Async</span>
-                        <span ><b>pegaUm</b></span>
-                        <a href="#pegaUm"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>pegaUm(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@Get(&#x27;:id&#x27;)<br /></code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="29"
-                            class="link-to-prism">src/modules/pessoa/controllers/atleta.controller.ts:29</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>id</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                     </td>
 
                                     <td>
@@ -554,8 +554,8 @@ export class AtletaController {
   }
 
   @Get(&#x27;:id&#x27;)
-  async pegaUm(@Param(&#x27;id&#x27;, ParseUUIDPipe) id: string) {
-    return this.atletaService.deveEncontrarUm(id);
+  async encontraUm(@Param(&#x27;id&#x27;, ParseUUIDPipe) id: string) {
+    return this.atletaService.deveEncontrar(id);
   }
 
   @Get()

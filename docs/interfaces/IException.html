@@ -388,7 +388,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
     }
 
     if (env !&#x3D;&#x3D; &#x27;production&#x27;) {
-      console.log(ex);
+      console.warn(ex);
     }
 
     response.status(status).send(ex);

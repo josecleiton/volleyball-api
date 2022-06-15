@@ -193,6 +193,7 @@ export class TypeORMFilterService {
       switch (error.driverError.code) {
         case &#x27;23505&#x27;:
           return new ConflictException(&#x60;${entityName}: ${description}&#x60;);
+        case &#x27;23502&#x27;:
         case &#x27;23503&#x27;:
           return new ConflictException(
             &#x60;${entityName} missing some relationship. ${error.driverError.detail}&#x60;,

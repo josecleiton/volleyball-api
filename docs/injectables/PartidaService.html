@@ -123,7 +123,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/modules/partida/services/partida.service.ts:30</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/modules/partida/services/partida.service.ts:31</a></div>
                             </td>
                         </tr>
 
@@ -272,8 +272,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="125"
-                            class="link-to-prism">src/modules/partida/services/partida.service.ts:125</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="131"
+                            class="link-to-prism">src/modules/partida/services/partida.service.ts:131</a></div>
                 </td>
             </tr>
 
@@ -356,8 +356,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="52"
-                            class="link-to-prism">src/modules/partida/services/partida.service.ts:52</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="53"
+                            class="link-to-prism">src/modules/partida/services/partida.service.ts:53</a></div>
                 </td>
             </tr>
 
@@ -427,8 +427,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="42"
-                            class="link-to-prism">src/modules/partida/services/partida.service.ts:42</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="43"
+                            class="link-to-prism">src/modules/partida/services/partida.service.ts:43</a></div>
                 </td>
             </tr>
 
@@ -499,8 +499,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="88"
-                            class="link-to-prism">src/modules/partida/services/partida.service.ts:88</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="94"
+                            class="link-to-prism">src/modules/partida/services/partida.service.ts:94</a></div>
                 </td>
             </tr>
 
@@ -570,8 +570,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="63"
-                            class="link-to-prism">src/modules/partida/services/partida.service.ts:63</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="64"
+                            class="link-to-prism">src/modules/partida/services/partida.service.ts:64</a></div>
                 </td>
             </tr>
 
@@ -621,7 +621,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>void | never</code>
+                        <b>Returns : </b>    <code>Promise | never</code>
 
                     </div>
                     <div class="io-description">
@@ -644,6 +644,7 @@
   NotFoundException,
 } from &#x27;@nestjs/common&#x27;;
 import { groupBy } from &#x27;lodash&#x27;;
+import { AtletaRespostaDto } from &#x27;src/modules/pessoa/dto/atleta.dto&#x27;;
 import { PontuacaoViewRepository } from &#x27;src/modules/pontuacao/repositories/pontuacao-view.repository&#x27;;
 import { Connection } from &#x27;typeorm&#x27;;
 import { Posicao, TipoArbitro } from &#x27;../../pessoa/enums&#x27;;
@@ -702,7 +703,7 @@ export class PartidaService {
   private validaAtletas(
     idEquipe: string,
     atletas: AtletaParticipacaoDto[],
-  ): void | never {
+  ): Promise&lt;AtletaRespostaDto[]&gt; | never {
     const atletasPorPosicao &#x3D; groupBy(atletas, (a) &#x3D;&gt; a.posicao);
     if (
       atletas.length &#x3D;&#x3D;&#x3D; Partida.minimoDeAtletasNaPartida &amp;&amp;
@@ -722,6 +723,11 @@ export class PartidaService {
         &#x60;Em uma equipe ${idEquipe} com ${atletas.length} não pode ter mais do que ${Partida.maximoDeLiberos} líberos&#x60;,
       );
     }
+
+    return this.atletaService.deveListarAtletasEstritamente({
+      ids: atletas.map((x) &#x3D;&gt; x.idAtleta),
+      idEquipe,
+    });
   }
 
   private async registraDesistencia(partida: Partida) {
@@ -801,23 +807,26 @@ export class PartidaService {
       requisicao.arbitros.map((x) &#x3D;&gt; x.idArbitro),
     );
 
-    this.validaAtletas(partida.idMandante, requisicao.atletasMandante);
-    this.validaAtletas(partida.idVisitante, requisicao.atletasVisitante);
-
-    await this.atletaService.deveListarPorId(
-      [...requisicao.atletasMandante, ...requisicao.atletasVisitante].map(
-        (x) &#x3D;&gt; x.idAtleta,
-      ),
-    );
+    await this.validaAtletas(partida.idMandante, requisicao.atletasMandante);
+    await this.validaAtletas(partida.idVisitante, requisicao.atletasVisitante);
 
     const escalacaoMandante &#x3D; requisicao.atletasMandante.map((atletaDto) &#x3D;&gt;
-      this.atletaEscaladoRepository.create({ ...atletaDto }),
+      this.atletaEscaladoRepository.create({
+        ...atletaDto,
+        idEquipePartida: partida.idMandante,
+      }),
     );
     const escalacaoVisitante &#x3D; requisicao.atletasVisitante.map((atletaDto) &#x3D;&gt;
-      this.atletaEscaladoRepository.create({ ...atletaDto }),
+      this.atletaEscaladoRepository.create({
+        ...atletaDto,
+        idEquipePartida: partida.idVisitante,
+      }),
     );
     const arbitrosDaPartida &#x3D; requisicao.arbitros.map((arbitroDto) &#x3D;&gt;
-      this.arbitroPartidaRepository.create({ ...arbitroDto }),
+      this.arbitroPartidaRepository.create({
+        ...arbitroDto,
+        idPartida: partida.id,
+      }),
     );
 
     partida.status &#x3D; StatusPartida.PARTICIPANTES_CADASTRADOS;

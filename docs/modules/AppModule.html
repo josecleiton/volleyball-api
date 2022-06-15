@@ -232,6 +232,7 @@ import {
   corsConfig,
   rateLimitConfig,
   databaseConfig,
+  validationPipeConfig,
 } from &#x27;../../configs&#x27;;
 import { LigaModule } from &#x27;../liga/liga.module&#x27;;
 
@@ -253,7 +254,13 @@ import { getModuleThrottlerProvider } from &#x27;../core/guards&#x27;;
       inject: [ConfigService],
     }),
     ConfigModule.forRoot({
-      load: [appConfig, databaseConfig, corsConfig, rateLimitConfig],
+      load: [
+        appConfig,
+        databaseConfig,
+        corsConfig,
+        rateLimitConfig,
+        validationPipeConfig,
+      ],
     }),
     ThrottlerModule.forRootAsync({
       imports: [ConfigModule],

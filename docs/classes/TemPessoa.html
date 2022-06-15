@@ -179,7 +179,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @OneToOne(undefined, {eager: true, onDelete: &#x27;CASCADE&#x27;})<br />@JoinColumn({name: &#x27;id_pessoa&#x27;})<br />
+                            @OneToOne(undefined, {eager: true, cascade: true, onDelete: &#x27;CASCADE&#x27;})<br />@JoinColumn({name: &#x27;id_pessoa&#x27;})<br />
                         </code>
                     </td>
                 </tr>
@@ -335,7 +335,7 @@ import { Column, JoinColumn, OneToOne } from &#x27;typeorm&#x27;;
 import { Pessoa } from &#x27;./pessoa.entity&#x27;;
 
 export abstract class TemPessoa extends EntidadeBase {
-  @OneToOne(() &#x3D;&gt; Pessoa, { eager: true, onDelete: &#x27;CASCADE&#x27; })
+  @OneToOne(() &#x3D;&gt; Pessoa, { eager: true, cascade: true, onDelete: &#x27;CASCADE&#x27; })
   @JoinColumn({ name: &#x27;id_pessoa&#x27; })
   pessoa!: Pessoa;
 

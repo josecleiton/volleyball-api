@@ -166,11 +166,13 @@ export class CriaDelegadoDto extends CriaPessoaDto {
 }
 
 export class DelegadoRespostaDto extends PessoaRespostaDto {
+  id: string;
   idLiga: string;
 
   constructor(delegado: Delegado) {
     super(delegado.pessoa);
 
+    this.id &#x3D; delegado.id;
     this.idLiga &#x3D; delegado.idLiga;
   }
 }
