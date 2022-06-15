@@ -28,7 +28,7 @@ export class CriaPessoaDto {
 }
 
 export class PessoaRespostaDto {
-  id: string;
+  idPessoa: string;
   nome: string;
   documento: string;
   genero: Genero;
@@ -36,7 +36,7 @@ export class PessoaRespostaDto {
   documentoCbv: string;
 
   constructor(pessoa: Pessoa) {
-    this.id = pessoa.id;
+    this.idPessoa = pessoa.id;
     this.nome = pessoa.nome;
     this.documento = pessoa.documento;
     this.genero = pessoa.genero;
