@@ -1,6 +1,7 @@
 import pLimit = require('p-limit');
 import { EquipeRespostaDto } from 'src/modules/equipe/dto/equipe.dto';
 import { Equipe } from 'src/modules/equipe/entities/equipe.entity';
+import { LigaRespostaDto } from 'src/modules/liga/dto/liga.dto';
 import { EquipeServer } from 'test/modules/equipe/equipe.server';
 import { AtletaServer } from 'test/modules/pessoa/atleta/atleta.server';
 import { AuxiliarServer } from 'test/modules/pessoa/auxiliar/auxiliar.server';
@@ -22,9 +23,17 @@ export class EquipeAptaServer {
     this.auxiliarServer = new AuxiliarServer(server);
   }
 
-  async tornaEquipeApta(equipe: EquipeRespostaDto) {
-    const limit = pLimit(5);
+  async criaEquipeApta(liga: LigaRespostaDto) {
+    const ginasio = await this.equipe.ginasio.criaGinasio();
+    const equipe = await this.equipe.criaEquipe(liga, ginasio);
 
+    await this.tornaEquipeApta(equipe);
+
+    return this.equipe.encontraEquipe(equipe.id);
+  }
+
+  async tornaEquipeApta(equipe: EquipeRespostaDto) {
+    const limit = pLimit(1);
     const reqs: Promise<unknown>[] = [];
 
     for (let index = 0; index < Equipe.quantidadeAtletasPraAptidao; index++) {

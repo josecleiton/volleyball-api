@@ -4,6 +4,6 @@ import { PessoaDeLiga } from './pessoa_de_liga.entity';
 
 @Entity('delegados')
 export class Delegado extends PessoaDeLiga {
-  @OneToMany(() => Partida, (p) => p.delegado)
+  @OneToMany('Partida', 'delegado')
   partidas!: Partida[];
 }

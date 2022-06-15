@@ -1,3 +1,5 @@
+import 'reflect-metadata';
+
 import { INestApplication } from '@nestjs/common';
 import { randomUUID } from 'crypto';
 import { criaLigaDto } from 'test/__MOCKS__/liga/liga.mock';

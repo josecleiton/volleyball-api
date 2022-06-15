@@ -10,8 +10,8 @@ export class EquipePartida extends EntidadeBase {
   @Column('uuid')
   idEquipe!: string;
 
-  @Column('uuid')
-  idPartida!: string;
+  @Column({ type: 'uuid', nullable: true })
+  idPartida?: string;
 
   @Column({ type: 'int', default: 0 })
   pontuacao!: number;
@@ -49,14 +49,14 @@ export class EquipePartida extends EntidadeBase {
   @Column({ nullable: true })
   resultadoCadastradoEm?: Date;
 
-  @ManyToOne(() => Equipe, { cascade: true, onDelete: 'CASCADE' })
+  @ManyToOne('Equipe', { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'id_equipe' })
   equipe!: Equipe;
 
-  @ManyToOne(() => Partida, { cascade: true, onDelete: 'CASCADE' })
+  @ManyToOne('Partida', { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'id_partida' })
   partida!: Partida;
 
-  @OneToMany(() => AtletaEscalado, (e) => e.participacao)
+  @OneToMany('AtletaEscalado', 'participacao')
   atletas!: AtletaEscalado[];
 }

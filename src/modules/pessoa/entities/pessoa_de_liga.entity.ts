@@ -7,7 +7,7 @@ export abstract class PessoaDeLiga extends TemPessoa {
   @Index()
   idLiga!: string;
 
-  @ManyToOne(() => Liga, { onDelete: 'CASCADE' })
+  @ManyToOne('Liga', { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'id_liga' })
   liga!: Liga;
 }

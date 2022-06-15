@@ -38,12 +38,12 @@ export class Liga extends EntidadeBase {
     return getYear(this.dataComeco);
   }
 
-  @OneToMany(() => Equipe, (e) => e.liga)
+  @OneToMany('Equipe', 'liga')
   equipes!: Equipe[];
 
-  @OneToMany(() => Arbitro, (a) => a.liga)
+  @OneToMany('Arbitro', 'liga')
   arbitros!: Arbitro[];
 
-  @OneToMany(() => Delegado, (d) => d.liga)
+  @OneToMany('Delegado', 'liga')
   delegados!: Delegado[];
 }

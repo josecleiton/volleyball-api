@@ -4,7 +4,7 @@ import { EquipePartida } from '../entities/equipe-partida.entity';
 export class EquipePartidaRespostaDto {
   id: string;
   idEquipe: string;
-  idPartida: string;
+  idPartida?: string;
   pontuacao: number;
   setsGanhos: number;
   resultadoCadastradoEm?: Date;

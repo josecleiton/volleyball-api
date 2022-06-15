@@ -41,7 +41,7 @@ export class MelhorCentralView {
   @ViewColumn()
   bloqueiosPorPartida!: number;
 
-  @ManyToOne(() => Atleta)
+  @ManyToOne('Atleta')
   @JoinColumn({ name: 'id_atleta' })
   atleta!: Atleta;
 }

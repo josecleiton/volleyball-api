@@ -1,6 +1,8 @@
+import 'reflect-metadata';
+
 import { INestApplication } from '@nestjs/common';
-import { EquipeServer } from '../equipe/equipe.server';
-import { initTestingApp } from '../helpers/init-testingapp.helper';
+import { EquipeServer } from '../../equipe/equipe.server';
+import { initTestingApp } from '../../helpers/init-testingapp.helper';
 
 describe('LigaController - Com Equipe (e2e)', () => {
   let app: INestApplication;

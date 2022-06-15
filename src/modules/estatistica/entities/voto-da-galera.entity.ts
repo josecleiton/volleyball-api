@@ -21,7 +21,7 @@ export class VotoDaGalera extends EntidadeBase {
   @Column()
   verificacaoExpiraEm!: Date;
 
-  @ManyToOne(() => Atleta, { onDelete: 'CASCADE' })
+  @ManyToOne('Atleta', { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'id_atleta' })
   atleta!: Atleta;
 }

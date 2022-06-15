@@ -6,6 +6,7 @@ import {
   Param,
   Delete,
   ParseUUIDPipe,
+  HttpCode,
 } from '@nestjs/common';
 import { LigaService } from './services/liga.service';
 import { CriaLigaDto, InicializaLigaDto } from './dto/liga.dto';
@@ -25,16 +26,16 @@ export class LigaController {
   }
 
   @Post(':id/inicializa')
+  @HttpCode(200)
   async inicializaLiga(
     @Param('id', ParseUUIDPipe) id: string,
     @Body() requisicao: InicializaLigaDto,
   ) {
-    requisicao.valida();
-
     return this.ligaService.iniciaLiga(id, requisicao);
   }
 
   @Post(':id/inicializa-quartas')
+  @HttpCode(200)
   async agendaQuartas(
     @Param('id', ParseUUIDPipe) id: string,
     @Body() requisicao: InicializaQuartaDeFinalDto,
@@ -45,6 +46,7 @@ export class LigaController {
   }
 
   @Post(':id/inicializa-semis')
+  @HttpCode(200)
   async inicializaSemis(
     @Param('id', ParseUUIDPipe) id: string,
     @Body() requisicao: InicializaSemifinalDto,
@@ -55,6 +57,7 @@ export class LigaController {
   }
 
   @Post(':id/inicializa-final')
+  @HttpCode(200)
   async inicializaFinal(
     @Param('id', ParseUUIDPipe) id: string,
     @Body() requisicao: InicializaFinalDto,

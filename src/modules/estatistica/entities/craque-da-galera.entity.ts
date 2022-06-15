@@ -24,7 +24,7 @@ export class CraqueDaGaleraView {
   @ViewColumn()
   quantidadeVotos!: number;
 
-  @ManyToOne(() => Atleta, { onDelete: 'CASCADE' })
+  @ManyToOne('Atleta', { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'id_atleta' })
   atleta!: Atleta;
 }

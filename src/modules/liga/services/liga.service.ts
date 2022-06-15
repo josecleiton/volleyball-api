@@ -3,6 +3,7 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
+import { EquipePartida } from 'src/modules/partida/entities/equipe-partida.entity';
 import { StatusPartida } from 'src/modules/partida/enums/status-partida.enum';
 import { PartidaRepository } from 'src/modules/partida/repositories/partida.repository';
 import { tiposDeRodadaClassificatoria } from 'src/modules/partida/types/tipo-rodada.type';
@@ -65,6 +66,10 @@ export class LigaService {
   async iniciaLiga(id: string, requisicao: InicializaLigaDto) {
     const liga = await this.ligaRepository.encontraUmComEquipesCompletas(id);
 
+    if (!liga) {
+      throw new NotFoundException(`Liga ${id} não encontrada`);
+    }
+
     if (liga.dataComeco) {
       throw new ConflictException(
         `Liga ${liga.id} já iniciada. Data de início: ${liga.dataComeco}`,
@@ -108,12 +113,18 @@ export class LigaService {
 
     const [ligaAtualizada, partidasSalvas] = await this.connection.transaction(
       async (manager) => {
+        await manager.insert(
+          EquipePartida,
+          partidas.map((x) => [x.mandante, x.visitante]).flat(),
+        );
         const partidasSalvas = await manager.save(partidas);
         const ligaSalva = await manager.save(liga);
 
         return [ligaSalva, partidasSalvas];
       },
     );
+
+    console.log({ status: ligaAtualizada.status });
 
     return new InicializaLigaRespostaDto(ligaAtualizada, partidasSalvas);
   }

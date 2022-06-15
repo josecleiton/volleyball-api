@@ -1,6 +1,5 @@
 import { differenceInMinutes } from 'date-fns';
 import { EntidadeBase } from 'src/modules/core/entities/base.entity';
-import { Equipe } from 'src/modules/equipe/entities/equipe.entity';
 import { Ginasio } from 'src/modules/ginasio/entities/ginasio.entity';
 import { Delegado } from 'src/modules/pessoa/entities/delegado.entity';
 import {
@@ -35,6 +34,7 @@ export class Partida extends EntidadeBase {
   public set mandante(pp: EquipePartida) {
     this._mandante = pp;
     this.idGinasio = pp.equipe.idGinasio;
+    this.idMandante = pp.id;
   }
 
   public get mandante(): EquipePartida {
@@ -77,29 +77,32 @@ export class Partida extends EntidadeBase {
     return differenceInMinutes(this.dataFinalizacao, this.dataComeco);
   }
 
-  @ManyToOne(() => Delegado, { onDelete: 'SET NULL' })
+  @ManyToOne('Delegado', { onDelete: 'SET NULL' })
   @JoinColumn({ name: 'id_delegado' })
   delegado?: Delegado;
 
-  @ManyToOne(() => Ginasio)
+  @ManyToOne('Ginasio')
   @JoinColumn({ name: 'id_ginasio' })
   ginasio!: Ginasio;
 
-  @ManyToOne(() => EquipePartida, { eager: true, onDelete: 'SET NULL' })
+  @ManyToOne('EquipePartida', { eager: true, onDelete: 'SET NULL' })
   @JoinColumn({ name: 'id_ganhadora' })
   ganhadora?: EquipePartida;
 
-  @ManyToOne(() => EquipePartida, { eager: true, onDelete: 'CASCADE' })
+  @ManyToOne('EquipePartida', {
+    eager: true,
+    onDelete: 'CASCADE',
+  })
   @JoinColumn({ name: 'id_visitante' })
   visitante!: EquipePartida;
 
-  @ManyToOne(() => EquipePartida, { eager: true, onDelete: 'CASCADE' })
+  @ManyToOne('EquipePartida', {
+    eager: true,
+    onDelete: 'CASCADE',
+  })
   @JoinColumn({ name: 'id_mandante' })
   private _mandante!: EquipePartida;
 
-  @ManyToOne(() => Equipe, { eager: false, cascade: false })
-  private _nãoremova!: Equipe;
-
-  @OneToMany(() => ArbitroPartida, (ap) => ap.partida)
+  @OneToMany('ArbitroPartida', 'partida')
   arbitros?: ArbitroPartida[];
 }
