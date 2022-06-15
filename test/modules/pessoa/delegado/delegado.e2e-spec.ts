@@ -21,7 +21,7 @@ describe('DelegadoController (e2e)', () => {
   });
 
   it('/pessoa/delegado (POST)', async () => {
-    const liga = await server.ligaServer.criaLiga();
+    const liga = await server.liga.criaLiga();
 
     const requisicao = criaDelegadoDto(liga.id);
 

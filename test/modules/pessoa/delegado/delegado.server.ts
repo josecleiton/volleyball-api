@@ -9,14 +9,14 @@ import { LigaServer } from 'test/modules/liga/liga.server';
 import { criaDelegadoDto } from 'test/__MOCKS__/pessoa/delegado.mock';
 
 export class DelegadoServer {
-  readonly ligaServer: LigaServer;
+  readonly liga: LigaServer;
 
   constructor(private readonly server: unknown) {
-    this.ligaServer = new LigaServer(this.server);
+    this.liga = new LigaServer(this.server);
   }
 
   async criaDelegadoComLiga() {
-    const liga = await this.ligaServer.criaLiga();
+    const liga = await this.liga.criaLiga();
 
     return {
       liga,
