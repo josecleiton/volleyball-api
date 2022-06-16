@@ -3,7 +3,10 @@ import {
   InternalServerErrorException,
 } from '@nestjs/common';
 import { chunk, countBy } from 'lodash';
-import { EquipeRespostaDto } from 'src/modules/equipe/dto/equipe.dto';
+import {
+  EquipeRespostaDto,
+  EquipeSimplificadaRespostaDto,
+} from 'src/modules/equipe/dto/equipe.dto';
 import { EquipePartidaRespostaDto } from 'src/modules/partida/dto/equipe-partida.dto';
 import { PartidaRespostaDto } from 'src/modules/partida/dto/partida.dto';
 import { PartidaService } from 'src/modules/partida/services/partida.service';
@@ -113,7 +116,7 @@ export abstract class SemisEFinalGeneratorService extends MataMataGeneratorServi
 
     const partidas = await this.partidaService.listaPartidasOrdenadas({
       idLiga,
-      tipoPartida: rodadaAnterior.tipo,
+      tipoRodada: rodadaAnterior.tipo,
       limite: rodadaAnterior.quantidadePartidasAgendadas,
     });
 
@@ -133,15 +136,16 @@ export abstract class SemisEFinalGeneratorService extends MataMataGeneratorServi
     const vencedoresOrdenadosPorClassificacao =
       this.ordenaVencedorPorClassificacao(vencedores, pontuacoes);
 
-    const equipeMap: ReadonlyMap<string, EquipeRespostaDto> = new Map(
-      partidas
-        .filter((partida) => partida.ganhadora)
-        .map(({ ganhadora }) => {
-          const equipePartida = ganhadora as EquipePartidaRespostaDto;
+    const equipeMap: ReadonlyMap<string, EquipeSimplificadaRespostaDto> =
+      new Map(
+        partidas
+          .filter((partida) => partida.ganhadora)
+          .map(({ ganhadora }) => {
+            const equipePartida = ganhadora as EquipePartidaRespostaDto;
 
-          return [equipePartida.equipe.id, equipePartida.equipe];
-        }),
-    );
+            return [equipePartida.equipe.id, equipePartida.equipe];
+          }),
+      );
 
     return {
       equipes: vencedoresOrdenadosPorClassificacao.map(

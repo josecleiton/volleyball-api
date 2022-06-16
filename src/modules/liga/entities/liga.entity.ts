@@ -13,7 +13,12 @@ export class Liga extends EntidadeBase {
   static readonly minimoDeEquipesNaLiga = 12;
   static readonly intervaloDeUteisDiasEntreTurnos = 5;
   static readonly quantidadeDeEquipesClassificadas = 8;
-  static readonly quantidadeDePartidasEmClassificatorias = 30;
+  static readonly quantidadeDeRodadasEmClassificatorias = 22;
+  static readonly quantidadeDePartidasEmRodadaClassificatoria =
+    Liga.minimoDeEquipesNaLiga / 2;
+  static readonly quantidadeDePartidasNaClassificacao =
+    Liga.quantidadeDeRodadasEmClassificatorias *
+    Liga.quantidadeDePartidasEmRodadaClassificatoria;
 
   @Column()
   genero!: Genero;

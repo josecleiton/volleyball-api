@@ -22,6 +22,11 @@ export class PartidaController {
     return this.partidaService.listaPartidasOrdenadas(requisicao);
   }
 
+  @Get(':id')
+  async encontraPartida(@Param('id', ParseUUIDPipe) id: string) {
+    return this.partidaService.encontraPartida(id);
+  }
+
   @Post(':id/cadastra-participantes')
   async iniciaPartida(
     @Param('id', ParseUUIDPipe) id: string,

@@ -13,7 +13,6 @@ import {
 } from '../dto/arbitro.dto';
 import { ArbitroRepository } from '../repositories/arbitro.repository';
 import { TipoPessoa } from '../enums';
-import { In } from 'typeorm';
 import { dtoParaPessoa } from '../mapper';
 
 @Injectable()
@@ -52,16 +51,15 @@ export class ArbitroService {
     return arbitros.map((x) => new ArbitroRespostaDto(x));
   }
 
-  async deveListarPorId(ids: string[]) {
-    const arbitros = await this.arbitroRepository.find({
-      where: { id: In(ids) },
-    });
+  async deveListarEstritatemente(ids: string[]) {
+    const arbitros = await this.arbitroRepository.findByIds(ids);
     const setId = new Set(ids);
 
     const naoEncontrados = arbitros.filter((x) => !setId.has(x.id));
-    if (naoEncontrados?.length) {
-      throw new NotFoundException(naoEncontrados);
+    if (arbitros.length !== setId.size || naoEncontrados?.length) {
+      throw new NotFoundException(`Arbitros ${naoEncontrados}`);
     }
+
     return arbitros.map((x) => new ArbitroRespostaDto(x));
   }
 }

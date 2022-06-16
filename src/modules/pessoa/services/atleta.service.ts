@@ -9,7 +9,6 @@ import { TypeORMFilterService } from 'src/modules/core/services/typeorm-filter.s
 import { Equipe } from 'src/modules/equipe/entities/equipe.entity';
 import { EquipeService } from 'src/modules/equipe/equipe.service';
 import { LigaService } from 'src/modules/liga/services/liga.service';
-import { FindConditions, In } from 'typeorm';
 import {
   AtletaComEquipeRespostaDto,
   AtletaRespostaDto,
@@ -19,7 +18,6 @@ import {
   IValidaNumeroEquipeDto,
   ListaAtletaDto,
 } from '../dto/atleta.dto';
-import { Atleta } from '../entities/atleta.entity';
 import { TipoPessoa } from '../enums';
 import { dtoParaPessoa } from '../mapper';
 import { AtletaRepository } from '../repositories/atleta.repository';
@@ -100,15 +98,7 @@ export class AtletaService {
   }
 
   async listaAtletas(requisicao: ListaAtletaDto) {
-    const where: FindConditions<Atleta> = { idEquipe: requisicao.idEquipe };
-    if (requisicao.ids) {
-      where.id = In(requisicao.ids);
-    }
-
-    const atletas = await this.atletaRepository.find({
-      where,
-      order: { dataCriacao: 'ASC' },
-    });
+    const atletas = await this.atletaRepository.listaAtletas(requisicao);
 
     return atletas.map((x) => new AtletaRespostaDto(x));
   }
@@ -117,13 +107,10 @@ export class AtletaService {
     const atletas = await this.listaAtletas(requisicao);
 
     const setIdReq = new Set(requisicao.ids);
-    if (
-      setIdReq.size !== atletas.length ||
-      atletas.some((x) => !setIdReq.has(x.id))
-    ) {
-      throw new NotFoundException(
-        `Algum atleta não foi encontrado na equipe ${requisicao.idEquipe}`,
-      );
+    const naoEncontrados = atletas.filter((x) => !setIdReq.has(x.id));
+
+    if (setIdReq.size !== atletas.length || naoEncontrados?.length) {
+      throw new NotFoundException(`Atletas ${naoEncontrados}`);
     }
 
     return atletas;

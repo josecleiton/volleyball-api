@@ -124,8 +124,6 @@ export class LigaService {
       },
     );
 
-    console.log({ status: ligaAtualizada.status });
-
     return new InicializaLigaRespostaDto(ligaAtualizada, partidasSalvas);
   }
 
@@ -146,10 +144,10 @@ export class LigaService {
 
     if (
       quantidadeDePartidasPorTipoRodada !==
-      Liga.quantidadeDePartidasEmClassificatorias
+      Liga.quantidadeDeRodadasEmClassificatorias
     ) {
       throw new ConflictException(
-        `Quantidades de partidas concluídas na liga ${liga.id} não é igual a ${Liga.quantidadeDePartidasEmClassificatorias}`,
+        `Quantidades de partidas concluídas na liga ${liga.id} não é igual a ${Liga.quantidadeDeRodadasEmClassificatorias}`,
       );
     }
 

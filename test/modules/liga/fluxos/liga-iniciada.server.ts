@@ -26,6 +26,12 @@ export class LigaIniciadaServer {
     this.arbitro = new ArbitroServer(server);
   }
 
+  async criaLigaInicializada() {
+    const liga = await this.liga.criaLiga();
+
+    return this.inicializaLiga(liga);
+  }
+
   async inicializaLiga(
     liga: LigaRespostaDto,
   ): Promise<InicializaLigaRespostaDto> {

@@ -33,7 +33,7 @@ export async function stubDatabaseConnection(
     synchronize: false,
     migrationsRun: true,
     namingStrategy: new SnakeNamingStrategy(),
-    logging: false,
+    logging: Boolean(process.env.LOGGING),
   };
 
   builder.overrideProvider('CONFIGURATION(database)').useValue(options);

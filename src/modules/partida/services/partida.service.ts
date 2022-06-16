@@ -50,10 +50,99 @@ export class PartidaService {
     return partidas.map((x) => new PartidaRespostaDto(x));
   }
 
+  async encontraPartida(id: string) {
+    const partida = await this.deveEncontrarEntidade(id);
+
+    return new PartidaRespostaDto(partida);
+  }
+
+  async cadastrarParticipantes(
+    id: string,
+    requisicao: CadastrarParticipantesPartidaDto,
+  ) {
+    const partida = await this.deveEncontrarEntidade(id);
+    if (partida.status !== StatusPartida.AGENDADA) {
+      throw new ConflictException(
+        `Partida ${id} não está no status ${StatusPartida.AGENDADA}`,
+      );
+    }
+
+    const delegado = await this.delegadoService.deveEncontrarUm(
+      requisicao.idDelegado,
+    );
+
+    if (requisicao.desistente) {
+      partida.status = StatusPartida.WO;
+      partida.idGanhadora =
+        requisicao.desistente === EscolhaDeDesistencia.MANDANTE
+          ? partida.idVisitante
+          : partida.idMandante;
+
+      return new PartidaRespostaDto(await this.registraDesistencia(partida));
+    }
+
+    const arbitrosPorTipo = groupBy(
+      requisicao.arbitros,
+      (arbitro) => arbitro.tipo,
+    );
+
+    if (!arbitrosPorTipo[TipoArbitro.PRINCIPAL]?.length) {
+      throw new BadRequestException(
+        'É necessário ao menos um árbitro principal',
+      );
+    }
+
+    await this.arbitroService.deveListarEstritatemente(
+      requisicao.arbitros.map((x) => x.idArbitro),
+    );
+
+    await Promise.all([
+      this.validaAtletas(partida.mandante.idEquipe, requisicao.atletasMandante),
+      this.validaAtletas(
+        partida.visitante.idEquipe,
+        requisicao.atletasVisitante,
+      ),
+    ]);
+
+    const escalacaoMandante = requisicao.atletasMandante.map((atletaDto) =>
+      this.atletaEscaladoRepository.create({
+        ...atletaDto,
+        idEquipePartida: partida.idMandante,
+      }),
+    );
+    const escalacaoVisitante = requisicao.atletasVisitante.map((atletaDto) =>
+      this.atletaEscaladoRepository.create({
+        ...atletaDto,
+        idEquipePartida: partida.idVisitante,
+      }),
+    );
+    const arbitrosDaPartida = requisicao.arbitros.map((arbitroDto) =>
+      this.arbitroPartidaRepository.create({
+        ...arbitroDto,
+        idPartida: partida.id,
+      }),
+    );
+
+    partida.status = StatusPartida.PARTICIPANTES_CADASTRADOS;
+    partida.idDelegado = delegado.id;
+
+    const partidaAtualizada = await this.connection.transaction(
+      async (manager) => {
+        const partidaSalva = await manager.save(partida);
+
+        partidaSalva.mandante.atletas = await manager.save(escalacaoMandante);
+        partidaSalva.visitante.atletas = await manager.save(escalacaoVisitante);
+        partidaSalva.arbitros = await manager.save(arbitrosDaPartida);
+
+        return partidaSalva;
+      },
+    );
+
+    return new PartidaRespostaDto(partidaAtualizada);
+  }
+
   private async deveEncontrarEntidade(id: string) {
-    const partida = await this.partidaRepository.findOne({
-      where: { id },
-    });
+    const partida = await this.partidaRepository.encontraPartidaCompleta(id);
     if (!partida) {
       throw new NotFoundException(`Partida ${id} não encontrada`);
     }
@@ -126,89 +215,5 @@ export class PartidaService {
     );
 
     return partidaAtualizada;
-  }
-
-  async cadastrarParticipantes(
-    id: string,
-    requisicao: CadastrarParticipantesPartidaDto,
-  ) {
-    const partida = await this.deveEncontrarEntidade(id);
-    if (partida.status !== StatusPartida.AGENDADA) {
-      throw new ConflictException(
-        `Partida ${id} não está no status ${StatusPartida.AGENDADA}`,
-      );
-    }
-
-    const delegado = await this.delegadoService.deveEncontrarUm(
-      requisicao.idDelegado,
-    );
-
-    if (requisicao.desistente) {
-      partida.status = StatusPartida.WO;
-      partida.idGanhadora =
-        requisicao.desistente === EscolhaDeDesistencia.MANDANTE
-          ? partida.idVisitante
-          : partida.idMandante;
-
-      return new PartidaRespostaDto(await this.registraDesistencia(partida));
-    }
-
-    const arbitrosPorTipo = groupBy(
-      requisicao.arbitros,
-      (arbitro) => arbitro.tipo,
-    );
-
-    if (!arbitrosPorTipo[TipoArbitro.PRINCIPAL]?.length) {
-      throw new BadRequestException(
-        'É necessário ao menos um árbitro principal',
-      );
-    }
-
-    await this.arbitroService.deveListarPorId(
-      requisicao.arbitros.map((x) => x.idArbitro),
-    );
-
-    await this.validaAtletas(partida.idMandante, requisicao.atletasMandante);
-    await this.validaAtletas(partida.idVisitante, requisicao.atletasVisitante);
-
-    const escalacaoMandante = requisicao.atletasMandante.map((atletaDto) =>
-      this.atletaEscaladoRepository.create({
-        ...atletaDto,
-        idEquipePartida: partida.idMandante,
-      }),
-    );
-    const escalacaoVisitante = requisicao.atletasVisitante.map((atletaDto) =>
-      this.atletaEscaladoRepository.create({
-        ...atletaDto,
-        idEquipePartida: partida.idVisitante,
-      }),
-    );
-    const arbitrosDaPartida = requisicao.arbitros.map((arbitroDto) =>
-      this.arbitroPartidaRepository.create({
-        ...arbitroDto,
-        idPartida: partida.id,
-      }),
-    );
-
-    partida.status = StatusPartida.PARTICIPANTES_CADASTRADOS;
-    partida.idDelegado = delegado.id;
-
-    const partidaAtualizada = await this.connection.transaction(
-      async (manager) => {
-        const partidaSalva = await manager.save(partida);
-
-        await manager.save(escalacaoMandante);
-        await manager.save(escalacaoVisitante);
-        await manager.save(arbitrosDaPartida);
-
-        partidaSalva.arbitros = arbitrosDaPartida;
-        partidaSalva.mandante.atletas = escalacaoMandante;
-        partidaSalva.visitante.atletas = escalacaoVisitante;
-
-        return partidaSalva;
-      },
-    );
-
-    return new PartidaRespostaDto(partidaAtualizada);
   }
 }

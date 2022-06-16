@@ -36,10 +36,10 @@ export class EquipeAptaServer {
     const limit = pLimit(1);
     const reqs: Promise<unknown>[] = [];
 
-    for (let index = 0; index < Equipe.quantidadeAtletasPraAptidao; index++) {
+    for (let index = 1; index <= Equipe.quantidadeAtletasPraAptidao; index++) {
       reqs.push(
         limit(() =>
-          this.atletaServer.criaAtleta(criaAtletaDto(equipe.id, index + 1)),
+          this.atletaServer.criaAtleta(criaAtletaDto(equipe.id, index)),
         ),
       );
     }
