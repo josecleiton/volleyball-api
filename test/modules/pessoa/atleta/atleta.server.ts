@@ -12,14 +12,14 @@ import {
 } from 'test/__MOCKS__/pessoa/atleta.mock';
 
 export class AtletaServer {
-  readonly equipeServer: EquipeServer;
+  readonly equipe: EquipeServer;
 
   constructor(private readonly server: unknown) {
-    this.equipeServer = new EquipeServer(this.server);
+    this.equipe = new EquipeServer(this.server);
   }
 
   async criaAtletaComEquipe() {
-    const resultado = await this.equipeServer.criaEquipeLigaEGinasio();
+    const resultado = await this.equipe.criaEquipeLigaEGinasio();
     const atleta = await this.criaAtleta(criaAtletaDto(resultado.equipe.id));
 
     return { ...resultado, atleta };

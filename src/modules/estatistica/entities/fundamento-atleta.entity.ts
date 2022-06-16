@@ -38,7 +38,7 @@ export class FundamentoAtleta extends EntidadeBase {
     return this.pontos / this.ataques;
   }
 
-  @ManyToOne(() => AtletaEscalado, { onDelete: 'CASCADE' })
+  @ManyToOne('AtletaEscalado', { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'id_atleta_escalado' })
   atleta!: AtletaEscalado;
 }

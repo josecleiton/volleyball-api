@@ -4,16 +4,18 @@ import { Liga } from '../entities/liga.entity';
 @EntityRepository(Liga)
 export class LigaRepository extends Repository<Liga> {
   async encontraUmComEquipesCompletas(id: string) {
-    const qb = this.createQueryBuilder('ligas');
-    qb.leftJoinAndSelect('ligas.equipes', 'equipes')
-      .leftJoinAndSelect('ligas.arbitros', 'arbitros')
-      .leftJoinAndSelect('ligas.delegados', 'delegados')
+    const qb = this.createQueryBuilder('l');
+    qb.leftJoinAndSelect('l.equipes', 'equipes')
+      .leftJoinAndSelect('l.arbitros', 'arbitros')
+      .innerJoinAndSelect('arbitros.pessoa', 'arbitroPessoa')
+      .leftJoinAndSelect('l.delegados', 'delegados')
+      .innerJoinAndSelect('delegados.pessoa', 'delegadoPessoa')
       .leftJoinAndSelect('equipes.atletas', 'atletas')
-      .leftJoinAndSelect('equipes.tecnico', 'tecnico')
+      .leftJoinAndSelect('equipes.tecnico', 'tecnicos')
       .leftJoinAndSelect('equipes.auxiliares', 'auxiliares')
-      .where('ligas.id = :id', { id })
+      .where('l.id = :id', { id })
       .orderBy('equipes.dataCriacao', 'ASC');
 
-    return qb.getOneOrFail();
+    return qb.getOne();
   }
 }

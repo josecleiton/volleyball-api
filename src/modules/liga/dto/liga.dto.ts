@@ -1,11 +1,9 @@
-import { BadRequestException } from '@nestjs/common';
 import { Type } from 'class-transformer';
 import {
   ArrayMaxSize,
   ArrayMinSize,
   ArrayUnique,
   IsArray,
-  IsDate,
   IsEnum,
   IsOptional,
   IsPositive,
@@ -13,8 +11,9 @@ import {
   Length,
   Max,
   Min,
+  MinDate,
 } from 'class-validator';
-import { compareAsc } from 'date-fns';
+import { compareAsc, startOfYear } from 'date-fns';
 import { Genero } from 'src/modules/core/enums';
 import { DiaDaSemana } from 'src/modules/core/enums/dia-da-semana.enum';
 import { PartidaRespostaDto } from 'src/modules/partida/dto/partida.dto';
@@ -40,7 +39,7 @@ export class CriaLigaDto {
 }
 
 export class InicializaLigaDto {
-  @IsDate()
+  @MinDate(startOfYear(new Date()))
   @Type(() => Date)
   data?: Date;
 
@@ -69,12 +68,6 @@ export class InicializaLigaDto {
   @Max(Liga.intervaloDeUteisDiasEntreTurnos)
   @IsOptional()
   intervaloDeDiasUteisEntreTurnos = Liga.intervaloDeUteisDiasEntreTurnos;
-
-  valida() {
-    if (this.data instanceof Date && !isFinite(this.data.getTime())) {
-      throw new BadRequestException("'data' não fornecida");
-    }
-  }
 }
 
 export class LigaRespostaDto {

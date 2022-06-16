@@ -22,7 +22,7 @@ describe('AtletaController (e2e)', () => {
   });
 
   it('/pessoa/atleta (POST)', async () => {
-    const { equipe } = await server.equipeServer.criaEquipeLigaEGinasio();
+    const { equipe } = await server.equipe.criaEquipeLigaEGinasio();
 
     const requisicao = criaAtletaDto(equipe.id);
 
@@ -57,6 +57,7 @@ describe('AtletaController (e2e)', () => {
     expect(atletas).toEqual(
       expect.arrayContaining(faker.random.arrayElements([atleta2, atleta1])),
     );
+    expect(atletas.every((x) => x.idEquipe === equipe.id)).toBeTruthy();
   });
 
   describe('/pessoa/atleta/:id (PATCH)', () => {

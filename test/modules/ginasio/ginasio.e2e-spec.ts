@@ -24,12 +24,19 @@ describe('GinasioController (e2e)', () => {
     expect(ginasio).toEqual(expect.objectContaining(requisicao));
   });
 
-  it('/ginasio (GET)', async () => {
-    const ginasio = await server.criaGinasio();
+  describe('/ginasio (GET)', () => {
+    it('Ok - Com Ginasio existente', async () => {
+      const ginasio = await server.criaGinasio();
 
-    const ligaGinasio = await server.listaGinasio(ginasio);
+      const ligaGinasio = await server.listaGinasio(ginasio);
 
-    expect(ligaGinasio).toEqual(expect.arrayContaining(ligaGinasio));
+      expect(ligaGinasio).toEqual(expect.arrayContaining(ligaGinasio));
+    });
+
+    it('Ok - Com dados gerados', async () => {
+      const ginasios = await server.listaGinasio();
+      expect(ginasios).toEqual(expect.any(Array));
+    });
   });
 
   describe('/ginasio/:id (DELETE)', () => {

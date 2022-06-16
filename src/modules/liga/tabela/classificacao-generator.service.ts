@@ -7,6 +7,7 @@ import { DoublyLinkedList } from 'datastructures-js';
 import { createGroup } from 'tournament_creator';
 import { TipoRodada } from 'src/modules/partida/types/tipo-rodada.type';
 import { EquipePartida } from 'src/modules/partida/entities/equipe-partida.entity';
+import { randomUUID } from 'crypto';
 
 interface IClassificacaoGeneratorRequest {
   equipes: Equipe[];
@@ -123,16 +124,18 @@ export class ClassificacaoGeneratorService {
         match.awayTeam as string,
       ) as Equipe;
 
-      partida.mandante = new EquipePartida();
-      partida.mandante.partida = partida;
-      partida.mandante.equipe = equipeMandante;
+      const equipePartidaMandante = new EquipePartida();
+      equipePartidaMandante.id = randomUUID();
+      equipePartidaMandante.equipe = equipeMandante;
 
-      partida.visitante = new EquipePartida();
-      partida.visitante.partida = partida;
-      partida.visitante.equipe = equipeVisitante;
+      const equipePartidaVisitante = new EquipePartida();
+      equipePartidaVisitante.id = randomUUID();
+      equipePartidaVisitante.equipe = equipeVisitante;
 
+      partida.mandante = equipePartidaMandante;
+      partida.visitante = equipePartidaVisitante;
       partida.dataComeco = datasDasPartidas[index];
-      partida.tipoDaRodada = match.matchNumber.toString() as TipoRodada;
+      partida.tipoDaRodada = match.roundNumber?.toString() as TipoRodada;
 
       return partida;
     });

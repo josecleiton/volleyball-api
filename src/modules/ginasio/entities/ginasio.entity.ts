@@ -20,6 +20,6 @@ export class Ginasio extends EntidadeBase {
   @Column({ default: 1000 })
   capacidade!: number;
 
-  @OneToMany(() => Partida, (p) => p.ginasio)
+  @OneToMany('Partida', 'ginasio')
   partidas!: Partida[];
 }
