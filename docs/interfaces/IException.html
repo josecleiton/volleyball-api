@@ -387,7 +387,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
       ex.name &#x3D; classValidatorEx.error;
     }
 
-    if (env !&#x3D;&#x3D; &#x27;production&#x27;) {
+    if (env !&#x3D;&#x3D; &#x27;production&#x27; &amp;&amp; env !&#x3D;&#x3D; &#x27;test&#x27;) {
       console.warn(ex);
     }
 

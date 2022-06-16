@@ -156,7 +156,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ManyToOne(undefined)<br />@JoinColumn({name: &#x27;id_equipe&#x27;})<br />
+                            @ManyToOne(&#x27;Equipe&#x27;)<br />@JoinColumn({name: &#x27;id_equipe&#x27;})<br />
                         </code>
                     </td>
                 </tr>
@@ -600,7 +600,7 @@ export class PontuacaoView {
   @ViewColumn()
   partidasDisputadas!: number;
 
-  @ManyToOne(() &#x3D;&gt; Equipe)
+  @ManyToOne(&#x27;Equipe&#x27;)
   @JoinColumn({ name: &#x27;id_equipe&#x27; })
   equipe!: Equipe;
 }

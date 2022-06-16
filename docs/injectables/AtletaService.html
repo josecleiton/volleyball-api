@@ -139,7 +139,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/modules/pessoa/services/atleta.service.ts:28</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/modules/pessoa/services/atleta.service.ts:26</a></div>
                             </td>
                         </tr>
 
@@ -240,8 +240,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="132"
-                            class="link-to-prism">src/modules/pessoa/services/atleta.service.ts:132</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="119"
+                            class="link-to-prism">src/modules/pessoa/services/atleta.service.ts:119</a></div>
                 </td>
             </tr>
 
@@ -323,8 +323,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="49"
-                            class="link-to-prism">src/modules/pessoa/services/atleta.service.ts:49</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="47"
+                            class="link-to-prism">src/modules/pessoa/services/atleta.service.ts:47</a></div>
                 </td>
             </tr>
 
@@ -394,8 +394,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="92"
-                            class="link-to-prism">src/modules/pessoa/services/atleta.service.ts:92</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="90"
+                            class="link-to-prism">src/modules/pessoa/services/atleta.service.ts:90</a></div>
                 </td>
             </tr>
 
@@ -465,8 +465,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="96"
-                            class="link-to-prism">src/modules/pessoa/services/atleta.service.ts:96</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="94"
+                            class="link-to-prism">src/modules/pessoa/services/atleta.service.ts:94</a></div>
                 </td>
             </tr>
 
@@ -537,8 +537,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="80"
-                            class="link-to-prism">src/modules/pessoa/services/atleta.service.ts:80</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="78"
+                            class="link-to-prism">src/modules/pessoa/services/atleta.service.ts:78</a></div>
                 </td>
             </tr>
 
@@ -626,8 +626,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="116"
-                            class="link-to-prism">src/modules/pessoa/services/atleta.service.ts:116</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="106"
+                            class="link-to-prism">src/modules/pessoa/services/atleta.service.ts:106</a></div>
                 </td>
             </tr>
 
@@ -697,8 +697,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="102"
-                            class="link-to-prism">src/modules/pessoa/services/atleta.service.ts:102</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="100"
+                            class="link-to-prism">src/modules/pessoa/services/atleta.service.ts:100</a></div>
                 </td>
             </tr>
 
@@ -768,8 +768,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="163"
-                            class="link-to-prism">src/modules/pessoa/services/atleta.service.ts:163</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="150"
+                            class="link-to-prism">src/modules/pessoa/services/atleta.service.ts:150</a></div>
                 </td>
             </tr>
 
@@ -840,8 +840,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="37"
-                            class="link-to-prism">src/modules/pessoa/services/atleta.service.ts:37</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="35"
+                            class="link-to-prism">src/modules/pessoa/services/atleta.service.ts:35</a></div>
                 </td>
             </tr>
 
@@ -905,7 +905,6 @@ import { TypeORMFilterService } from &#x27;src/modules/core/services/typeorm-fil
 import { Equipe } from &#x27;src/modules/equipe/entities/equipe.entity&#x27;;
 import { EquipeService } from &#x27;src/modules/equipe/equipe.service&#x27;;
 import { LigaService } from &#x27;src/modules/liga/services/liga.service&#x27;;
-import { FindConditions, In } from &#x27;typeorm&#x27;;
 import {
   AtletaComEquipeRespostaDto,
   AtletaRespostaDto,
@@ -915,7 +914,6 @@ import {
   IValidaNumeroEquipeDto,
   ListaAtletaDto,
 } from &#x27;../dto/atleta.dto&#x27;;
-import { Atleta } from &#x27;../entities/atleta.entity&#x27;;
 import { TipoPessoa } from &#x27;../enums&#x27;;
 import { dtoParaPessoa } from &#x27;../mapper&#x27;;
 import { AtletaRepository } from &#x27;../repositories/atleta.repository&#x27;;
@@ -996,15 +994,7 @@ export class AtletaService {
   }
 
   async listaAtletas(requisicao: ListaAtletaDto) {
-    const where: FindConditions&lt;Atleta&gt; &#x3D; { idEquipe: requisicao.idEquipe };
-    if (requisicao.ids) {
-      where.id &#x3D; In(requisicao.ids);
-    }
-
-    const atletas &#x3D; await this.atletaRepository.find({
-      where,
-      order: { dataCriacao: &#x27;ASC&#x27; },
-    });
+    const atletas &#x3D; await this.atletaRepository.listaAtletas(requisicao);
 
     return atletas.map((x) &#x3D;&gt; new AtletaRespostaDto(x));
   }
@@ -1013,13 +1003,10 @@ export class AtletaService {
     const atletas &#x3D; await this.listaAtletas(requisicao);
 
     const setIdReq &#x3D; new Set(requisicao.ids);
-    if (
-      setIdReq.size !&#x3D;&#x3D; atletas.length ||
-      atletas.some((x) &#x3D;&gt; !setIdReq.has(x.id))
-    ) {
-      throw new NotFoundException(
-        &#x60;Algum atleta não foi encontrado na equipe ${requisicao.idEquipe}&#x60;,
-      );
+    const naoEncontrados &#x3D; atletas.filter((x) &#x3D;&gt; !setIdReq.has(x.id));
+
+    if (setIdReq.size !&#x3D;&#x3D; atletas.length || naoEncontrados?.length) {
+      throw new NotFoundException(&#x60;Atletas ${naoEncontrados}&#x60;);
     }
 
     return atletas;

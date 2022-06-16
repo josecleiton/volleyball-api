@@ -303,6 +303,7 @@ import { DoublyLinkedList } from &#x27;datastructures-js&#x27;;
 import { createGroup } from &#x27;tournament_creator&#x27;;
 import { TipoRodada } from &#x27;src/modules/partida/types/tipo-rodada.type&#x27;;
 import { EquipePartida } from &#x27;src/modules/partida/entities/equipe-partida.entity&#x27;;
+import { randomUUID } from &#x27;crypto&#x27;;
 
 interface IClassificacaoGeneratorRequest {
   equipes: Equipe[];
@@ -419,16 +420,18 @@ export class ClassificacaoGeneratorService {
         match.awayTeam as string,
       ) as Equipe;
 
-      partida.mandante &#x3D; new EquipePartida();
-      partida.mandante.partida &#x3D; partida;
-      partida.mandante.equipe &#x3D; equipeMandante;
+      const equipePartidaMandante &#x3D; new EquipePartida();
+      equipePartidaMandante.id &#x3D; randomUUID();
+      equipePartidaMandante.equipe &#x3D; equipeMandante;
 
-      partida.visitante &#x3D; new EquipePartida();
-      partida.visitante.partida &#x3D; partida;
-      partida.visitante.equipe &#x3D; equipeVisitante;
+      const equipePartidaVisitante &#x3D; new EquipePartida();
+      equipePartidaVisitante.id &#x3D; randomUUID();
+      equipePartidaVisitante.equipe &#x3D; equipeVisitante;
 
+      partida.mandante &#x3D; equipePartidaMandante;
+      partida.visitante &#x3D; equipePartidaVisitante;
       partida.dataComeco &#x3D; datasDasPartidas[index];
-      partida.tipoDaRodada &#x3D; match.matchNumber.toString() as TipoRodada;
+      partida.tipoDaRodada &#x3D; match.roundNumber?.toString() as TipoRodada;
 
       return partida;
     });

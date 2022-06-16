@@ -28,7 +28,7 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content injectable">
+               <div class="content class">
                    <div class="content-data">
 
 
@@ -38,9 +38,13 @@
 
 
 
+
+
+
+
 <ol class="breadcrumb">
-  <li>Injectables</li>
-  <li >ArbitroService</li>
+  <li>Classes</li>
+  <li >EquipeAptaServer</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -58,8 +62,9 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/modules/pessoa/services/arbitro.service.ts</code>
+            <code>test/modules/equipe/fluxos/equipe-apta.server.ts</code>
         </p>
+
 
 
 
@@ -69,6 +74,36 @@
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#atletaServer" >atletaServer</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#auxiliarServer" >auxiliarServer</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#equipe" >equipe</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#tecnicoServer" >tecnicoServer</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -80,15 +115,11 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#criaArbitro" >criaArbitro</a>
+                                <a href="#criaEquipeApta" >criaEquipeApta</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#deveListarEstritatemente" >deveListarEstritatemente</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Async</span>
-                                <a href="#listaArbitros" >listaArbitros</a>
+                                <a href="#tornaEquipeApta" >tornaEquipeApta</a>
                             </li>
                         </ul>
                     </td>
@@ -108,12 +139,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(arbitroRepository: <a href="../classes/ArbitroRepository.html" target="_self">ArbitroRepository</a>, typeormFilterService: <a href="../injectables/TypeORMFilterService.html" target="_self">TypeORMFilterService</a>, ligaService: <a href="../injectables/LigaService.html" target="_self">LigaService</a>)</code>
+<code>constructor(server)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/modules/pessoa/services/arbitro.service.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">test/modules/equipe/fluxos/equipe-apta.server.ts:17</a></div>
                             </td>
                         </tr>
 
@@ -125,41 +156,13 @@
                                         <thead>
                                             <tr>
                                                 <td>Name</td>
-                                                    <td>Type</td>
                                                 <td>Optional</td>
                                             </tr>
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>arbitroRepository</td>
+                                                        <td>server</td>
                                                   
-                                                        <td>
-                                                                        <code><a href="../classes/ArbitroRepository.html" target="_self" >ArbitroRepository</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>typeormFilterService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/TypeORMFilterService.html" target="_self" >TypeORMFilterService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>ligaService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/LigaService.html" target="_self" >LigaService</a></code>
-                                                        </td>
                                                   
                                                     <td>
                                                             No
@@ -177,6 +180,124 @@
 
             <section>
     
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="atletaServer"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>atletaServer</b></span>
+                        <a href="#atletaServer"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/AtletaServer.html" target="_self" >AtletaServer</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">test/modules/equipe/fluxos/equipe-apta.server.ts:15</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="auxiliarServer"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>auxiliarServer</b></span>
+                        <a href="#auxiliarServer"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/AuxiliarServer.html" target="_self" >AuxiliarServer</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">test/modules/equipe/fluxos/equipe-apta.server.ts:17</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="equipe"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>equipe</b></span>
+                        <a href="#equipe"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/EquipeServer.html" target="_self" >EquipeServer</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">test/modules/equipe/fluxos/equipe-apta.server.ts:14</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tecnicoServer"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>tecnicoServer</b></span>
+                        <a href="#tecnicoServer"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/TecnicoServer.html" target="_self" >TecnicoServer</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">test/modules/equipe/fluxos/equipe-apta.server.ts:16</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section>
+    
     <h3 id="methods">
         Methods
     </h3>
@@ -184,26 +305,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="criaArbitro"></a>
+                    <a name="criaEquipeApta"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
-                        <span ><b>criaArbitro</b></span>
-                        <a href="#criaArbitro"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>criaEquipeApta</b></span>
+                        <a href="#criaEquipeApta"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>criaArbitro(requisicao: <a href="../classes/CriaArbitroDto.html" target="_self">CriaArbitroDto</a>)</code>
+                    <code>criaEquipeApta(liga: <a href="../classes/LigaRespostaDto.html" target="_self">LigaRespostaDto</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="27"
-                            class="link-to-prism">src/modules/pessoa/services/arbitro.service.ts:27</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="26"
+                            class="link-to-prism">test/modules/equipe/fluxos/equipe-apta.server.ts:26</a></div>
                 </td>
             </tr>
 
@@ -224,9 +345,9 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>requisicao</td>
+                                    <td>liga</td>
                                     <td>
-                                                <code><a href="../classes/CriaArbitroDto.html" target="_self" >CriaArbitroDto</a></code>
+                                                <code><a href="../classes/LigaRespostaDto.html" target="_self" >LigaRespostaDto</a></code>
                                     </td>
 
                                     <td>
@@ -255,26 +376,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="deveListarEstritatemente"></a>
+                    <a name="tornaEquipeApta"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
-                        <span ><b>deveListarEstritatemente</b></span>
-                        <a href="#deveListarEstritatemente"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>tornaEquipeApta</b></span>
+                        <a href="#tornaEquipeApta"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>deveListarEstritatemente(ids: string[])</code>
+                    <code>tornaEquipeApta(equipe: <a href="../classes/EquipeRespostaDto.html" target="_self">EquipeRespostaDto</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="54"
-                            class="link-to-prism">src/modules/pessoa/services/arbitro.service.ts:54</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="35"
+                            class="link-to-prism">test/modules/equipe/fluxos/equipe-apta.server.ts:35</a></div>
                 </td>
             </tr>
 
@@ -295,9 +416,9 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>ids</td>
+                                    <td>equipe</td>
                                     <td>
-                                            <code>string[]</code>
+                                                <code><a href="../classes/EquipeRespostaDto.html" target="_self" >EquipeRespostaDto</a></code>
                                     </td>
 
                                     <td>
@@ -312,78 +433,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>unknown</code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="listaArbitros"></a>
-                    <span class="name">
-                        <span class="modifier">Async</span>
-                        <span ><b>listaArbitros</b></span>
-                        <a href="#listaArbitros"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>listaArbitros(requisicao: <a href="../classes/ListaArbitroDto.html" target="_self">ListaArbitroDto</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="46"
-                            class="link-to-prism">src/modules/pessoa/services/arbitro.service.ts:46</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>requisicao</td>
-                                    <td>
-                                                <code><a href="../classes/ListaArbitroDto.html" target="_self" >ListaArbitroDto</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>unknown</code>
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
                     </div>
                     <div class="io-description">
@@ -395,83 +445,71 @@
     </table>
 </section>
 
+
+
+
+
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
-  forwardRef,
-  Inject,
-  Injectable,
-  NotFoundException,
-} from &#x27;@nestjs/common&#x27;;
-import { LigaService } from &#x27;src/modules/liga/services/liga.service&#x27;;
-import { TypeORMFilterService } from &#x27;src/modules/core/services/typeorm-filter.service&#x27;;
-import {
-  ArbitroRespostaDto,
-  CriaArbitroDto,
-  ListaArbitroDto,
-} from &#x27;../dto/arbitro.dto&#x27;;
-import { ArbitroRepository } from &#x27;../repositories/arbitro.repository&#x27;;
-import { TipoPessoa } from &#x27;../enums&#x27;;
-import { dtoParaPessoa } from &#x27;../mapper&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import pLimit &#x3D; require(&#x27;p-limit&#x27;);
+import { EquipeRespostaDto } from &#x27;src/modules/equipe/dto/equipe.dto&#x27;;
+import { Equipe } from &#x27;src/modules/equipe/entities/equipe.entity&#x27;;
+import { LigaRespostaDto } from &#x27;src/modules/liga/dto/liga.dto&#x27;;
+import { EquipeServer } from &#x27;test/modules/equipe/equipe.server&#x27;;
+import { AtletaServer } from &#x27;test/modules/pessoa/atleta/atleta.server&#x27;;
+import { AuxiliarServer } from &#x27;test/modules/pessoa/auxiliar/auxiliar.server&#x27;;
+import { TecnicoServer } from &#x27;test/modules/pessoa/tecnico/tecnico.server&#x27;;
+import { criaAtletaDto } from &#x27;test/__MOCKS__/pessoa/atleta.mock&#x27;;
+import { criaAuxiliarDto } from &#x27;test/__MOCKS__/pessoa/auxiliar.mock&#x27;;
+import { criaTecnicoDto } from &#x27;test/__MOCKS__/pessoa/tecnico.mock&#x27;;
 
-@Injectable()
-export class ArbitroService {
-  constructor(
-    private readonly arbitroRepository: ArbitroRepository,
-    private readonly typeormFilterService: TypeORMFilterService,
-    @Inject(forwardRef(() &#x3D;&gt; LigaService))
-    private readonly ligaService: LigaService,
-  ) {}
+export class EquipeAptaServer {
+  readonly equipe: EquipeServer;
+  private readonly atletaServer: AtletaServer;
+  private readonly tecnicoServer: TecnicoServer;
+  private readonly auxiliarServer: AuxiliarServer;
 
-  async criaArbitro(requisicao: CriaArbitroDto) {
-    const liga &#x3D; await this.ligaService.deveEncontrarUm(requisicao.idLiga);
-    const arbitro &#x3D; this.arbitroRepository.create({
-      ...requisicao,
-      idLiga: liga.id,
-      pessoa: dtoParaPessoa(requisicao, TipoPessoa.arbitro),
-    });
-
-    try {
-      return new ArbitroRespostaDto(await this.arbitroRepository.save(arbitro));
-    } catch (error) {
-      throw this.typeormFilterService.catch({
-        error,
-        description: &#x27;conflito&#x27;,
-        entityName: &#x27;Arbitro&#x27;,
-      });
-    }
+  constructor(server: unknown) {
+    this.equipe &#x3D; new EquipeServer(server);
+    this.atletaServer &#x3D; new AtletaServer(server);
+    this.tecnicoServer &#x3D; new TecnicoServer(server);
+    this.auxiliarServer &#x3D; new AuxiliarServer(server);
   }
 
-  async listaArbitros(requisicao: ListaArbitroDto) {
-    const arbitros &#x3D; await this.arbitroRepository.find({
-      where: { ...requisicao },
-    });
+  async criaEquipeApta(liga: LigaRespostaDto) {
+    const ginasio &#x3D; await this.equipe.ginasio.criaGinasio();
+    const equipe &#x3D; await this.equipe.criaEquipe(liga, ginasio);
 
-    return arbitros.map((x) &#x3D;&gt; new ArbitroRespostaDto(x));
+    await this.tornaEquipeApta(equipe);
+
+    return this.equipe.encontraEquipe(equipe.id);
   }
 
-  async deveListarEstritatemente(ids: string[]) {
-    const arbitros &#x3D; await this.arbitroRepository.findByIds(ids);
-    const setId &#x3D; new Set(ids);
+  async tornaEquipeApta(equipe: EquipeRespostaDto) {
+    const limit &#x3D; pLimit(1);
+    const reqs: Promise&lt;unknown&gt;[] &#x3D; [];
 
-    const naoEncontrados &#x3D; arbitros.filter((x) &#x3D;&gt; !setId.has(x.id));
-    if (arbitros.length !&#x3D;&#x3D; setId.size || naoEncontrados?.length) {
-      throw new NotFoundException(&#x60;Arbitros ${naoEncontrados}&#x60;);
+    for (let index &#x3D; 1; index &lt;&#x3D; Equipe.quantidadeAtletasPraAptidao; index++) {
+      reqs.push(
+        limit(() &#x3D;&gt;
+          this.atletaServer.criaAtleta(criaAtletaDto(equipe.id, index)),
+        ),
+      );
     }
 
-    return arbitros.map((x) &#x3D;&gt; new ArbitroRespostaDto(x));
+    reqs.push(
+      limit(() &#x3D;&gt; this.tecnicoServer.criaTecnico(criaTecnicoDto(equipe.id))),
+      limit(() &#x3D;&gt; this.auxiliarServer.criaAuxiliar(criaAuxiliarDto(equipe.id))),
+    );
+
+    await Promise.all(reqs);
   }
 }
 </code></pre>
     </div>
-
 </div>
-
-
-
-
 
 
 
@@ -506,8 +544,8 @@ export class ArbitroService {
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
-            var COMPODOC_CURRENT_PAGE_URL = 'ArbitroService.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
+            var COMPODOC_CURRENT_PAGE_URL = 'EquipeAptaServer.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

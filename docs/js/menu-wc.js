@@ -724,6 +724,12 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/Equipe.html" data-type="entity-link" >Equipe</a>
                             </li>
                             <li class="link">
+                                <a href="classes/EquipeAptaServer.html" data-type="entity-link" >EquipeAptaServer</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/EquipePartidaCircularDep1655328926296.html" data-type="entity-link" >EquipePartidaCircularDep1655328926296</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/EquipePartidaRepository.html" data-type="entity-link" >EquipePartidaRepository</a>
                             </li>
                             <li class="link">
@@ -803,6 +809,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="classes/IniciarVotoRespostaDto.html" data-type="entity-link" >IniciarVotoRespostaDto</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/LigaIniciadaServer.html" data-type="entity-link" >LigaIniciadaServer</a>
                             </li>
                             <li class="link">
                                 <a href="classes/LigaRenomeiaEstadoParaStatus1654366866798.html" data-type="entity-link" >LigaRenomeiaEstadoParaStatus1654366866798</a>
@@ -896,6 +905,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="classes/PartidaRespostaDto.html" data-type="entity-link" >PartidaRespostaDto</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/PartidaServer.html" data-type="entity-link" >PartidaServer</a>
                             </li>
                             <li class="link">
                                 <a href="classes/PessoaDeEquipe.html" data-type="entity-link" >PessoaDeEquipe</a>
@@ -1075,6 +1087,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/IInfoRodada.html" data-type="entity-link" >IInfoRodada</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/IInicializaLigaDto.html" data-type="entity-link" >IInicializaLigaDto</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/IMataMataDto.html" data-type="entity-link" >IMataMataDto</a>

@@ -44,7 +44,7 @@
 
 <ol class="breadcrumb">
   <li>Classes</li>
-  <li >HttpExceptionFilter</li>
+  <li >EquipePartidaCircularDep1655328926296</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -62,7 +62,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/filters/http-exception.filter.ts</code>
+            <code>src/database/migrations/1655328926296-EquipePartidaCircularDep.ts</code>
         </p>
 
 
@@ -72,7 +72,7 @@
                 <h3>Implements</h3>
             </p>
             <p class="comment">
-                        <code>ExceptionFilter</code>
+                        <code>MigrationInterface</code>
             </p>
 
 
@@ -80,6 +80,20 @@
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#name" >name</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -90,7 +104,14 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#catch" >catch</a>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#down" >down</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#up" >up</a>
                             </li>
                         </ul>
                     </td>
@@ -104,55 +125,44 @@
     </table>
 </section>
 
+
             <section>
-    <h3 id="constructor">Constructor</h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="name"></a>
+                    <span class="name">
+                        <span ><b>name</b></span>
+                        <a href="#name"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(configService: ConfigService)</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/filters/http-exception.filter.ts:26</a></div>
-                            </td>
-                        </tr>
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
-                <tr>
-                    <td class="col-md-4">
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>configService</td>
-                                                  
-                                                        <td>
-                                                                    <code>ConfigService</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
                     </td>
                 </tr>
-            </tbody>
-        </table>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;EquipePartidaCircularDep1655328926296&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="6" class="link-to-prism">src/database/migrations/1655328926296-EquipePartidaCircularDep.ts:6</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
 </section>
-
 
             <section>
     
@@ -163,24 +173,27 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="catch"></a>
+                    <a name="down"></a>
                     <span class="name">
-                        <span ><b>catch</b></span>
-                        <a href="#catch"><span class="icon ion-ios-link"></span></a>
+                        <span class="modifier">Public</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>down</b></span>
+                        <a href="#down"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>catch(exception: HttpException, host: ArgumentsHost)</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>down(queryRunner: QueryRunner)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="29"
-                            class="link-to-prism">src/filters/http-exception.filter.ts:29</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="20"
+                            class="link-to-prism">src/database/migrations/1655328926296-EquipePartidaCircularDep.ts:20</a></div>
                 </td>
             </tr>
 
@@ -201,21 +214,9 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>exception</td>
+                                    <td>queryRunner</td>
                                     <td>
-                                            <code>HttpException</code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                                <tr>
-                                    <td>host</td>
-                                    <td>
-                                            <code>ArgumentsHost</code>
+                                            <code>QueryRunner</code>
                                     </td>
 
                                     <td>
@@ -230,7 +231,79 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="up"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>up</b></span>
+                        <a href="#up"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>up(queryRunner: QueryRunner)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="8"
+                            class="link-to-prism">src/database/migrations/1655328926296-EquipePartidaCircularDep.ts:8</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>queryRunner</td>
+                                    <td>
+                                            <code>QueryRunner</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -250,65 +323,35 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
-  ExceptionFilter,
-  Catch,
-  ArgumentsHost,
-  HttpException,
-} from &#x27;@nestjs/common&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { MigrationInterface, QueryRunner } from &#x27;typeorm&#x27;;
 
-import { ConfigService } from &#x27;@nestjs/config&#x27;;
+export class EquipePartidaCircularDep1655328926296
+  implements MigrationInterface
+{
+  name &#x3D; &#x27;EquipePartidaCircularDep1655328926296&#x27;;
 
-interface IException {
-  statusCode: number;
-  timestamp: string;
-  path: string;
-  stack?: unknown;
-  message: unknown;
-  name?: string;
-}
+  public async up(queryRunner: QueryRunner): Promise&lt;void&gt; {
+    await queryRunner.query(
+      &#x60;ALTER TABLE &quot;equipes_partidas&quot; DROP CONSTRAINT &quot;FK_b38dc0d6c02b7dc8d01243694fe&quot;&#x60;,
+    );
+    await queryRunner.query(
+      &#x60;ALTER TABLE &quot;equipes_partidas&quot; ALTER COLUMN &quot;id_partida&quot; DROP NOT NULL&#x60;,
+    );
+    await queryRunner.query(
+      &#x60;ALTER TABLE &quot;equipes_partidas&quot; ADD CONSTRAINT &quot;FK_b38dc0d6c02b7dc8d01243694fe&quot; FOREIGN KEY (&quot;id_partida&quot;) REFERENCES &quot;partidas&quot;(&quot;id&quot;) ON DELETE CASCADE ON UPDATE NO ACTION&#x60;,
+    );
+  }
 
-interface IClassValidatorException {
-  statusCode: number;
-  error: string;
-  message: string[];
-}
-
-@Catch(HttpException)
-export class HttpExceptionFilter implements ExceptionFilter {
-  constructor(private readonly configService: ConfigService) {}
-
-  catch(exception: HttpException, host: ArgumentsHost) {
-    const ctx &#x3D; host.switchToHttp();
-    const response &#x3D; ctx.getResponse();
-    const request &#x3D; ctx.getRequest();
-    const status &#x3D; exception.getStatus();
-    exception.initMessage();
-    const ex: IException &#x3D; {
-      statusCode: status,
-      timestamp: new Date().toISOString(),
-      path: request.url,
-      message: exception.message,
-    };
-    const env &#x3D; this.configService.get(&#x27;NODE_ENV&#x27;);
-    if (env !&#x3D;&#x3D; &#x27;production&#x27;) {
-      ex.stack &#x3D; exception.stack;
-      ex.name &#x3D; exception.name;
-    }
-
-    // Only emit to Sentry exceptions that dont have code 4xx
-    if (status &#x3D;&#x3D;&#x3D; 400) {
-      const classValidatorEx &#x3D;
-        exception.getResponse() as IClassValidatorException;
-      ex.message &#x3D; classValidatorEx.message;
-      ex.name &#x3D; classValidatorEx.error;
-    }
-
-    if (env !&#x3D;&#x3D; &#x27;production&#x27; &amp;&amp; env !&#x3D;&#x3D; &#x27;test&#x27;) {
-      console.warn(ex);
-    }
-
-    response.status(status).send(ex);
+  public async down(queryRunner: QueryRunner): Promise&lt;void&gt; {
+    await queryRunner.query(
+      &#x60;ALTER TABLE &quot;equipes_partidas&quot; DROP CONSTRAINT &quot;FK_b38dc0d6c02b7dc8d01243694fe&quot;&#x60;,
+    );
+    await queryRunner.query(
+      &#x60;ALTER TABLE &quot;equipes_partidas&quot; ALTER COLUMN &quot;id_partida&quot; SET NOT NULL&#x60;,
+    );
+    await queryRunner.query(
+      &#x60;ALTER TABLE &quot;equipes_partidas&quot; ADD CONSTRAINT &quot;FK_b38dc0d6c02b7dc8d01243694fe&quot; FOREIGN KEY (&quot;id_partida&quot;) REFERENCES &quot;partidas&quot;(&quot;id&quot;) ON DELETE CASCADE ON UPDATE NO ACTION&#x60;,
+    );
   }
 }
 </code></pre>
@@ -349,7 +392,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
-            var COMPODOC_CURRENT_PAGE_URL = 'HttpExceptionFilter.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'EquipePartidaCircularDep1655328926296.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

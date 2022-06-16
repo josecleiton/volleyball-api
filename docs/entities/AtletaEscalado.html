@@ -129,7 +129,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ManyToOne(undefined, {onDelete: &#x27;CASCADE&#x27;})<br />@JoinColumn({name: &#x27;id_atleta&#x27;})<br />
+                            @ManyToOne(&#x27;Atleta&#x27;, {onDelete: &#x27;CASCADE&#x27;})<br />@JoinColumn({name: &#x27;id_atleta&#x27;})<br />
                         </code>
                     </td>
                 </tr>
@@ -234,7 +234,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ManyToOne(undefined, {onDelete: &#x27;CASCADE&#x27;})<br />@JoinColumn({name: &#x27;id_equipe_partida&#x27;})<br />
+                            @ManyToOne(&#x27;EquipePartida&#x27;, {onDelete: &#x27;CASCADE&#x27;})<br />@JoinColumn({name: &#x27;id_equipe_partida&#x27;})<br />
                         </code>
                     </td>
                 </tr>
@@ -308,11 +308,11 @@ export class AtletaEscalado extends EntidadeBase {
   @Index()
   posicao!: Posicao;
 
-  @ManyToOne(() &#x3D;&gt; EquipePartida, { onDelete: &#x27;CASCADE&#x27; })
+  @ManyToOne(&#x27;EquipePartida&#x27;, { onDelete: &#x27;CASCADE&#x27; })
   @JoinColumn({ name: &#x27;id_equipe_partida&#x27; })
   participacao!: EquipePartida;
 
-  @ManyToOne(() &#x3D;&gt; Atleta, { onDelete: &#x27;CASCADE&#x27; })
+  @ManyToOne(&#x27;Atleta&#x27;, { onDelete: &#x27;CASCADE&#x27; })
   @JoinColumn({ name: &#x27;id_atleta&#x27; })
   atleta!: Atleta;
 }

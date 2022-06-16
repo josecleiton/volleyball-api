@@ -190,7 +190,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/modules/liga/tabela/semis-e-final-generator.service.ts:41</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/modules/liga/tabela/semis-e-final-generator.service.ts:44</a></div>
                             </td>
                         </tr>
 
@@ -289,7 +289,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/modules/liga/tabela/semis-e-final-generator.service.ts:23</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/modules/liga/tabela/semis-e-final-generator.service.ts:26</a></div>
                         </td>
                     </tr>
 
@@ -642,7 +642,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../classes/MataMataGeneratorService.html#source" target="_self" >MataMataGeneratorService:109</a></code>
+                        <div class="io-line">Defined in         <code><a href="../classes/MataMataGeneratorService.html#source" target="_self" >MataMataGeneratorService:112</a></code>
 </div>
                 </td>
             </tr>
@@ -713,8 +713,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="50"
-                            class="link-to-prism">src/modules/liga/tabela/semis-e-final-generator.service.ts:50</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="53"
+                            class="link-to-prism">src/modules/liga/tabela/semis-e-final-generator.service.ts:53</a></div>
                 </td>
             </tr>
 
@@ -784,8 +784,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="81"
-                            class="link-to-prism">src/modules/liga/tabela/semis-e-final-generator.service.ts:81</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="84"
+                            class="link-to-prism">src/modules/liga/tabela/semis-e-final-generator.service.ts:84</a></div>
                 </td>
             </tr>
 
@@ -936,7 +936,10 @@
   InternalServerErrorException,
 } from &#x27;@nestjs/common&#x27;;
 import { chunk, countBy } from &#x27;lodash&#x27;;
-import { EquipeRespostaDto } from &#x27;src/modules/equipe/dto/equipe.dto&#x27;;
+import {
+  EquipeRespostaDto,
+  EquipeSimplificadaRespostaDto,
+} from &#x27;src/modules/equipe/dto/equipe.dto&#x27;;
 import { EquipePartidaRespostaDto } from &#x27;src/modules/partida/dto/equipe-partida.dto&#x27;;
 import { PartidaRespostaDto } from &#x27;src/modules/partida/dto/partida.dto&#x27;;
 import { PartidaService } from &#x27;src/modules/partida/services/partida.service&#x27;;
@@ -1046,7 +1049,7 @@ export abstract class SemisEFinalGeneratorService extends MataMataGeneratorServi
 
     const partidas &#x3D; await this.partidaService.listaPartidasOrdenadas({
       idLiga,
-      tipoPartida: rodadaAnterior.tipo,
+      tipoRodada: rodadaAnterior.tipo,
       limite: rodadaAnterior.quantidadePartidasAgendadas,
     });
 
@@ -1066,15 +1069,16 @@ export abstract class SemisEFinalGeneratorService extends MataMataGeneratorServi
     const vencedoresOrdenadosPorClassificacao &#x3D;
       this.ordenaVencedorPorClassificacao(vencedores, pontuacoes);
 
-    const equipeMap: ReadonlyMap&lt;string, EquipeRespostaDto&gt; &#x3D; new Map(
-      partidas
-        .filter((partida) &#x3D;&gt; partida.ganhadora)
-        .map(({ ganhadora }) &#x3D;&gt; {
-          const equipePartida &#x3D; ganhadora as EquipePartidaRespostaDto;
+    const equipeMap: ReadonlyMap&lt;string, EquipeSimplificadaRespostaDto&gt; &#x3D;
+      new Map(
+        partidas
+          .filter((partida) &#x3D;&gt; partida.ganhadora)
+          .map(({ ganhadora }) &#x3D;&gt; {
+            const equipePartida &#x3D; ganhadora as EquipePartidaRespostaDto;
 
-          return [equipePartida.equipe.id, equipePartida.equipe];
-        }),
-    );
+            return [equipePartida.equipe.id, equipePartida.equipe];
+          }),
+      );
 
     return {
       equipes: vencedoresOrdenadosPorClassificacao.map(

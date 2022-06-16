@@ -117,7 +117,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @OneToMany(undefined, p &#x3D;&gt; p.delegado)<br />
+                            @OneToMany(&#x27;Partida&#x27;, &#x27;delegado&#x27;)<br />
                         </code>
                     </td>
                 </tr>
@@ -141,7 +141,7 @@ import { PessoaDeLiga } from &#x27;./pessoa_de_liga.entity&#x27;;
 
 @Entity(&#x27;delegados&#x27;)
 export class Delegado extends PessoaDeLiga {
-  @OneToMany(() &#x3D;&gt; Partida, (p) &#x3D;&gt; p.delegado)
+  @OneToMany(&#x27;Partida&#x27;, &#x27;delegado&#x27;)
   partidas!: Partida[];
 }
 </code></pre>

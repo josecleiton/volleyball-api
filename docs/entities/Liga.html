@@ -116,7 +116,17 @@
                             <li>
                                     <span class="modifier">Static</span>
                                     <span class="modifier">Readonly</span>
-                                <a href="#quantidadeDePartidasEmClassificatorias" >quantidadeDePartidasEmClassificatorias</a>
+                                <a href="#quantidadeDePartidasEmRodadaClassificatoria" >quantidadeDePartidasEmRodadaClassificatoria</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#quantidadeDePartidasNaClassificacao" >quantidadeDePartidasNaClassificacao</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#quantidadeDeRodadasEmClassificatorias" >quantidadeDeRodadasEmClassificatorias</a>
                             </li>
                             <li>
                                     <span class="modifier">Optional</span>
@@ -165,13 +175,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @OneToMany(undefined, a &#x3D;&gt; a.liga)<br />
+                            @OneToMany(&#x27;Arbitro&#x27;, &#x27;liga&#x27;)<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/modules/liga/entities/liga.entity.ts:45</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/modules/liga/entities/liga.entity.ts:50</a></div>
                         </td>
                     </tr>
 
@@ -207,7 +217,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/modules/liga/entities/liga.entity.ts:25</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/modules/liga/entities/liga.entity.ts:30</a></div>
                         </td>
                     </tr>
 
@@ -243,7 +253,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/modules/liga/entities/liga.entity.ts:22</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/modules/liga/entities/liga.entity.ts:27</a></div>
                         </td>
                     </tr>
 
@@ -272,13 +282,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @OneToMany(undefined, d &#x3D;&gt; d.liga)<br />
+                            @OneToMany(&#x27;Delegado&#x27;, &#x27;liga&#x27;)<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/modules/liga/entities/liga.entity.ts:48</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/modules/liga/entities/liga.entity.ts:53</a></div>
                         </td>
                     </tr>
 
@@ -307,13 +317,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @OneToMany(undefined, e &#x3D;&gt; e.liga)<br />
+                            @OneToMany(&#x27;Equipe&#x27;, &#x27;liga&#x27;)<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/modules/liga/entities/liga.entity.ts:42</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/modules/liga/entities/liga.entity.ts:47</a></div>
                         </td>
                     </tr>
 
@@ -348,7 +358,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/modules/liga/entities/liga.entity.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/modules/liga/entities/liga.entity.ts:24</a></div>
                         </td>
                     </tr>
 
@@ -450,7 +460,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/modules/liga/entities/liga.entity.ts:28</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/modules/liga/entities/liga.entity.ts:33</a></div>
                         </td>
                     </tr>
 
@@ -494,12 +504,67 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="quantidadeDePartidasEmClassificatorias"></a>
+                    <a name="quantidadeDePartidasEmRodadaClassificatoria"></a>
                     <span class="name">
                             <span class="modifier">Static</span>
                             <span class="modifier">Readonly</span>
-                        <span ><b>quantidadeDePartidasEmClassificatorias</b></span>
-                        <a href="#quantidadeDePartidasEmClassificatorias"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>quantidadeDePartidasEmRodadaClassificatoria</b></span>
+                        <a href="#quantidadeDePartidasEmRodadaClassificatoria"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>Liga.minimoDeEquipesNaLiga / 2</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/modules/liga/entities/liga.entity.ts:17</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="quantidadeDePartidasNaClassificacao"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>quantidadeDePartidasNaClassificacao</b></span>
+                        <a href="#quantidadeDePartidasNaClassificacao"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>Liga.quantidadeDeRodadasEmClassificatorias *
+    Liga.quantidadeDePartidasEmRodadaClassificatoria</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/modules/liga/entities/liga.entity.ts:19</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="quantidadeDeRodadasEmClassificatorias"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>quantidadeDeRodadasEmClassificatorias</b></span>
+                        <a href="#quantidadeDeRodadasEmClassificatorias"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -511,7 +576,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>30</code>
+                        <i>Default value : </i><code>22</code>
                     </td>
                 </tr>
                     <tr>
@@ -552,7 +617,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/modules/liga/entities/liga.entity.ts:31</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/modules/liga/entities/liga.entity.ts:36</a></div>
                         </td>
                     </tr>
 
@@ -587,7 +652,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/modules/liga/entities/liga.entity.ts:34</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/modules/liga/entities/liga.entity.ts:39</a></div>
                         </td>
                     </tr>
 
@@ -614,7 +679,12 @@ export class Liga extends EntidadeBase {
   static readonly minimoDeEquipesNaLiga &#x3D; 12;
   static readonly intervaloDeUteisDiasEntreTurnos &#x3D; 5;
   static readonly quantidadeDeEquipesClassificadas &#x3D; 8;
-  static readonly quantidadeDePartidasEmClassificatorias &#x3D; 30;
+  static readonly quantidadeDeRodadasEmClassificatorias &#x3D; 22;
+  static readonly quantidadeDePartidasEmRodadaClassificatoria &#x3D;
+    Liga.minimoDeEquipesNaLiga / 2;
+  static readonly quantidadeDePartidasNaClassificacao &#x3D;
+    Liga.quantidadeDeRodadasEmClassificatorias *
+    Liga.quantidadeDePartidasEmRodadaClassificatoria;
 
   @Column()
   genero!: Genero;
@@ -639,13 +709,13 @@ export class Liga extends EntidadeBase {
     return getYear(this.dataComeco);
   }
 
-  @OneToMany(() &#x3D;&gt; Equipe, (e) &#x3D;&gt; e.liga)
+  @OneToMany(&#x27;Equipe&#x27;, &#x27;liga&#x27;)
   equipes!: Equipe[];
 
-  @OneToMany(() &#x3D;&gt; Arbitro, (a) &#x3D;&gt; a.liga)
+  @OneToMany(&#x27;Arbitro&#x27;, &#x27;liga&#x27;)
   arbitros!: Arbitro[];
 
-  @OneToMany(() &#x3D;&gt; Delegado, (d) &#x3D;&gt; d.liga)
+  @OneToMany(&#x27;Delegado&#x27;, &#x27;liga&#x27;)
   delegados!: Delegado[];
 }
 </code></pre>

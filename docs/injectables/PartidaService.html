@@ -89,6 +89,10 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#encontraPartida" >encontraPartida</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#listaPartidasOrdenadas" >listaPartidasOrdenadas</a>
                             </li>
                             <li>
@@ -272,8 +276,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="131"
-                            class="link-to-prism">src/modules/partida/services/partida.service.ts:131</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="59"
+                            class="link-to-prism">src/modules/partida/services/partida.service.ts:59</a></div>
                 </td>
             </tr>
 
@@ -350,6 +354,77 @@
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
                     <code>deveEncontrarEntidade(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="144"
+                            class="link-to-prism">src/modules/partida/services/partida.service.ts:144</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>unknown</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="encontraPartida"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>encontraPartida</b></span>
+                        <a href="#encontraPartida"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>encontraPartida(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
@@ -499,8 +574,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="94"
-                            class="link-to-prism">src/modules/partida/services/partida.service.ts:94</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="183"
+                            class="link-to-prism">src/modules/partida/services/partida.service.ts:183</a></div>
                 </td>
             </tr>
 
@@ -570,8 +645,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="64"
-                            class="link-to-prism">src/modules/partida/services/partida.service.ts:64</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="153"
+                            class="link-to-prism">src/modules/partida/services/partida.service.ts:153</a></div>
                 </td>
             </tr>
 
@@ -689,10 +764,99 @@ export class PartidaService {
     return partidas.map((x) &#x3D;&gt; new PartidaRespostaDto(x));
   }
 
+  async encontraPartida(id: string) {
+    const partida &#x3D; await this.deveEncontrarEntidade(id);
+
+    return new PartidaRespostaDto(partida);
+  }
+
+  async cadastrarParticipantes(
+    id: string,
+    requisicao: CadastrarParticipantesPartidaDto,
+  ) {
+    const partida &#x3D; await this.deveEncontrarEntidade(id);
+    if (partida.status !&#x3D;&#x3D; StatusPartida.AGENDADA) {
+      throw new ConflictException(
+        &#x60;Partida ${id} não está no status ${StatusPartida.AGENDADA}&#x60;,
+      );
+    }
+
+    const delegado &#x3D; await this.delegadoService.deveEncontrarUm(
+      requisicao.idDelegado,
+    );
+
+    if (requisicao.desistente) {
+      partida.status &#x3D; StatusPartida.WO;
+      partida.idGanhadora &#x3D;
+        requisicao.desistente &#x3D;&#x3D;&#x3D; EscolhaDeDesistencia.MANDANTE
+          ? partida.idVisitante
+          : partida.idMandante;
+
+      return new PartidaRespostaDto(await this.registraDesistencia(partida));
+    }
+
+    const arbitrosPorTipo &#x3D; groupBy(
+      requisicao.arbitros,
+      (arbitro) &#x3D;&gt; arbitro.tipo,
+    );
+
+    if (!arbitrosPorTipo[TipoArbitro.PRINCIPAL]?.length) {
+      throw new BadRequestException(
+        &#x27;É necessário ao menos um árbitro principal&#x27;,
+      );
+    }
+
+    await this.arbitroService.deveListarEstritatemente(
+      requisicao.arbitros.map((x) &#x3D;&gt; x.idArbitro),
+    );
+
+    await Promise.all([
+      this.validaAtletas(partida.mandante.idEquipe, requisicao.atletasMandante),
+      this.validaAtletas(
+        partida.visitante.idEquipe,
+        requisicao.atletasVisitante,
+      ),
+    ]);
+
+    const escalacaoMandante &#x3D; requisicao.atletasMandante.map((atletaDto) &#x3D;&gt;
+      this.atletaEscaladoRepository.create({
+        ...atletaDto,
+        idEquipePartida: partida.idMandante,
+      }),
+    );
+    const escalacaoVisitante &#x3D; requisicao.atletasVisitante.map((atletaDto) &#x3D;&gt;
+      this.atletaEscaladoRepository.create({
+        ...atletaDto,
+        idEquipePartida: partida.idVisitante,
+      }),
+    );
+    const arbitrosDaPartida &#x3D; requisicao.arbitros.map((arbitroDto) &#x3D;&gt;
+      this.arbitroPartidaRepository.create({
+        ...arbitroDto,
+        idPartida: partida.id,
+      }),
+    );
+
+    partida.status &#x3D; StatusPartida.PARTICIPANTES_CADASTRADOS;
+    partida.idDelegado &#x3D; delegado.id;
+
+    const partidaAtualizada &#x3D; await this.connection.transaction(
+      async (manager) &#x3D;&gt; {
+        const partidaSalva &#x3D; await manager.save(partida);
+
+        partidaSalva.mandante.atletas &#x3D; await manager.save(escalacaoMandante);
+        partidaSalva.visitante.atletas &#x3D; await manager.save(escalacaoVisitante);
+        partidaSalva.arbitros &#x3D; await manager.save(arbitrosDaPartida);
+
+        return partidaSalva;
+      },
+    );
+
+    return new PartidaRespostaDto(partidaAtualizada);
+  }
+
   private async deveEncontrarEntidade(id: string) {
-    const partida &#x3D; await this.partidaRepository.findOne({
-      where: { id },
-    });
+    const partida &#x3D; await this.partidaRepository.encontraPartidaCompleta(id);
     if (!partida) {
       throw new NotFoundException(&#x60;Partida ${id} não encontrada&#x60;);
     }
@@ -765,90 +929,6 @@ export class PartidaService {
     );
 
     return partidaAtualizada;
-  }
-
-  async cadastrarParticipantes(
-    id: string,
-    requisicao: CadastrarParticipantesPartidaDto,
-  ) {
-    const partida &#x3D; await this.deveEncontrarEntidade(id);
-    if (partida.status !&#x3D;&#x3D; StatusPartida.AGENDADA) {
-      throw new ConflictException(
-        &#x60;Partida ${id} não está no status ${StatusPartida.AGENDADA}&#x60;,
-      );
-    }
-
-    const delegado &#x3D; await this.delegadoService.deveEncontrarUm(
-      requisicao.idDelegado,
-    );
-
-    if (requisicao.desistente) {
-      partida.status &#x3D; StatusPartida.WO;
-      partida.idGanhadora &#x3D;
-        requisicao.desistente &#x3D;&#x3D;&#x3D; EscolhaDeDesistencia.MANDANTE
-          ? partida.idVisitante
-          : partida.idMandante;
-
-      return new PartidaRespostaDto(await this.registraDesistencia(partida));
-    }
-
-    const arbitrosPorTipo &#x3D; groupBy(
-      requisicao.arbitros,
-      (arbitro) &#x3D;&gt; arbitro.tipo,
-    );
-
-    if (!arbitrosPorTipo[TipoArbitro.PRINCIPAL]?.length) {
-      throw new BadRequestException(
-        &#x27;É necessário ao menos um árbitro principal&#x27;,
-      );
-    }
-
-    await this.arbitroService.deveListarPorId(
-      requisicao.arbitros.map((x) &#x3D;&gt; x.idArbitro),
-    );
-
-    await this.validaAtletas(partida.idMandante, requisicao.atletasMandante);
-    await this.validaAtletas(partida.idVisitante, requisicao.atletasVisitante);
-
-    const escalacaoMandante &#x3D; requisicao.atletasMandante.map((atletaDto) &#x3D;&gt;
-      this.atletaEscaladoRepository.create({
-        ...atletaDto,
-        idEquipePartida: partida.idMandante,
-      }),
-    );
-    const escalacaoVisitante &#x3D; requisicao.atletasVisitante.map((atletaDto) &#x3D;&gt;
-      this.atletaEscaladoRepository.create({
-        ...atletaDto,
-        idEquipePartida: partida.idVisitante,
-      }),
-    );
-    const arbitrosDaPartida &#x3D; requisicao.arbitros.map((arbitroDto) &#x3D;&gt;
-      this.arbitroPartidaRepository.create({
-        ...arbitroDto,
-        idPartida: partida.id,
-      }),
-    );
-
-    partida.status &#x3D; StatusPartida.PARTICIPANTES_CADASTRADOS;
-    partida.idDelegado &#x3D; delegado.id;
-
-    const partidaAtualizada &#x3D; await this.connection.transaction(
-      async (manager) &#x3D;&gt; {
-        const partidaSalva &#x3D; await manager.save(partida);
-
-        await manager.save(escalacaoMandante);
-        await manager.save(escalacaoVisitante);
-        await manager.save(arbitrosDaPartida);
-
-        partidaSalva.arbitros &#x3D; arbitrosDaPartida;
-        partidaSalva.mandante.atletas &#x3D; escalacaoMandante;
-        partidaSalva.visitante.atletas &#x3D; escalacaoVisitante;
-
-        return partidaSalva;
-      },
-    );
-
-    return new PartidaRespostaDto(partidaAtualizada);
   }
 }
 </code></pre>

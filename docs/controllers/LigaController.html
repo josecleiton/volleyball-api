@@ -155,14 +155,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Post(&#x27;:id/inicializa-quartas&#x27;)<br /></code>
+                    <code>@Post(&#x27;:id/inicializa-quartas&#x27;)<br />@HttpCode(200)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="38"
-                            class="link-to-prism">src/modules/liga/liga.controller.ts:38</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="39"
+                            class="link-to-prism">src/modules/liga/liga.controller.ts:39</a></div>
                 </td>
             </tr>
 
@@ -251,8 +251,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="23"
-                            class="link-to-prism">src/modules/liga/liga.controller.ts:23</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="24"
+                            class="link-to-prism">src/modules/liga/liga.controller.ts:24</a></div>
                 </td>
             </tr>
 
@@ -329,8 +329,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="73"
-                            class="link-to-prism">src/modules/liga/liga.controller.ts:73</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="76"
+                            class="link-to-prism">src/modules/liga/liga.controller.ts:76</a></div>
                 </td>
             </tr>
 
@@ -401,14 +401,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Post(&#x27;:id/inicializa-final&#x27;)<br /></code>
+                    <code>@Post(&#x27;:id/inicializa-final&#x27;)<br />@HttpCode(200)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="58"
-                            class="link-to-prism">src/modules/liga/liga.controller.ts:58</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="61"
+                            class="link-to-prism">src/modules/liga/liga.controller.ts:61</a></div>
                 </td>
             </tr>
 
@@ -491,14 +491,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Post(&#x27;:id/inicializa&#x27;)<br /></code>
+                    <code>@Post(&#x27;:id/inicializa&#x27;)<br />@HttpCode(200)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="28"
-                            class="link-to-prism">src/modules/liga/liga.controller.ts:28</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="30"
+                            class="link-to-prism">src/modules/liga/liga.controller.ts:30</a></div>
                 </td>
             </tr>
 
@@ -581,14 +581,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Post(&#x27;:id/inicializa-semis&#x27;)<br /></code>
+                    <code>@Post(&#x27;:id/inicializa-semis&#x27;)<br />@HttpCode(200)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="48"
-                            class="link-to-prism">src/modules/liga/liga.controller.ts:48</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="50"
+                            class="link-to-prism">src/modules/liga/liga.controller.ts:50</a></div>
                 </td>
             </tr>
 
@@ -677,8 +677,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="68"
-                            class="link-to-prism">src/modules/liga/liga.controller.ts:68</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="71"
+                            class="link-to-prism">src/modules/liga/liga.controller.ts:71</a></div>
                 </td>
             </tr>
 
@@ -723,8 +723,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="78"
-                            class="link-to-prism">src/modules/liga/liga.controller.ts:78</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="81"
+                            class="link-to-prism">src/modules/liga/liga.controller.ts:81</a></div>
                 </td>
             </tr>
 
@@ -784,6 +784,7 @@
   Param,
   Delete,
   ParseUUIDPipe,
+  HttpCode,
 } from &#x27;@nestjs/common&#x27;;
 import { LigaService } from &#x27;./services/liga.service&#x27;;
 import { CriaLigaDto, InicializaLigaDto } from &#x27;./dto/liga.dto&#x27;;
@@ -803,16 +804,16 @@ export class LigaController {
   }
 
   @Post(&#x27;:id/inicializa&#x27;)
+  @HttpCode(200)
   async inicializaLiga(
     @Param(&#x27;id&#x27;, ParseUUIDPipe) id: string,
     @Body() requisicao: InicializaLigaDto,
   ) {
-    requisicao.valida();
-
     return this.ligaService.iniciaLiga(id, requisicao);
   }
 
   @Post(&#x27;:id/inicializa-quartas&#x27;)
+  @HttpCode(200)
   async agendaQuartas(
     @Param(&#x27;id&#x27;, ParseUUIDPipe) id: string,
     @Body() requisicao: InicializaQuartaDeFinalDto,
@@ -823,6 +824,7 @@ export class LigaController {
   }
 
   @Post(&#x27;:id/inicializa-semis&#x27;)
+  @HttpCode(200)
   async inicializaSemis(
     @Param(&#x27;id&#x27;, ParseUUIDPipe) id: string,
     @Body() requisicao: InicializaSemifinalDto,
@@ -833,6 +835,7 @@ export class LigaController {
   }
 
   @Post(&#x27;:id/inicializa-final&#x27;)
+  @HttpCode(200)
   async inicializaFinal(
     @Param(&#x27;id&#x27;, ParseUUIDPipe) id: string,
     @Body() requisicao: InicializaFinalDto,

@@ -129,7 +129,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ManyToOne(undefined, {onDelete: &#x27;CASCADE&#x27;})<br />@JoinColumn({name: &#x27;id_arbitro&#x27;})<br />
+                            @ManyToOne(&#x27;Arbitro&#x27;, {onDelete: &#x27;CASCADE&#x27;})<br />@JoinColumn({name: &#x27;id_arbitro&#x27;})<br />
                         </code>
                     </td>
                 </tr>
@@ -234,7 +234,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ManyToOne(undefined, {onDelete: &#x27;CASCADE&#x27;})<br />@JoinColumn({name: &#x27;id_partida&#x27;})<br />
+                            @ManyToOne(&#x27;Partida&#x27;, {onDelete: &#x27;CASCADE&#x27;})<br />@JoinColumn({name: &#x27;id_partida&#x27;})<br />
                         </code>
                     </td>
                 </tr>
@@ -307,11 +307,11 @@ export class ArbitroPartida extends EntidadeBase {
   @Column({ type: &#x27;enum&#x27;, enum: TipoArbitro })
   tipo!: TipoArbitro;
 
-  @ManyToOne(() &#x3D;&gt; Arbitro, { onDelete: &#x27;CASCADE&#x27; })
+  @ManyToOne(&#x27;Arbitro&#x27;, { onDelete: &#x27;CASCADE&#x27; })
   @JoinColumn({ name: &#x27;id_arbitro&#x27; })
   arbitro!: Arbitro;
 
-  @ManyToOne(() &#x3D;&gt; Partida, { onDelete: &#x27;CASCADE&#x27; })
+  @ManyToOne(&#x27;Partida&#x27;, { onDelete: &#x27;CASCADE&#x27; })
   @JoinColumn({ name: &#x27;id_partida&#x27; })
   partida!: Partida;
 }

@@ -203,7 +203,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @OneToMany(undefined, a &#x3D;&gt; a.equipe)<br />
+                            @OneToMany(&#x27;Atleta&#x27;, &#x27;equipe&#x27;)<br />
                         </code>
                     </td>
                 </tr>
@@ -238,7 +238,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @OneToMany(undefined, a &#x3D;&gt; a.equipe)<br />
+                            @OneToMany(&#x27;Auxiliar&#x27;, &#x27;equipe&#x27;)<br />
                         </code>
                     </td>
                 </tr>
@@ -379,7 +379,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @OneToOne(undefined)<br />@JoinColumn({name: &#x27;id_ginasio&#x27;})<br />
+                            @OneToOne(&#x27;Ginasio&#x27;)<br />@JoinColumn({name: &#x27;id_ginasio&#x27;})<br />
                         </code>
                     </td>
                 </tr>
@@ -484,7 +484,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ManyToOne(undefined, c &#x3D;&gt; c.equipes, {onDelete: &#x27;CASCADE&#x27;})<br />@JoinColumn({name: &#x27;id_liga&#x27;})<br />
+                            @ManyToOne(&#x27;Liga&#x27;, &#x27;equipes&#x27;, {onDelete: &#x27;CASCADE&#x27;})<br />@JoinColumn({name: &#x27;id_liga&#x27;})<br />
                         </code>
                     </td>
                 </tr>
@@ -554,7 +554,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @OneToMany(undefined, p &#x3D;&gt; p.equipe)<br />
+                            @OneToMany(&#x27;EquipePartida&#x27;, &#x27;equipe&#x27;)<br />
                         </code>
                     </td>
                 </tr>
@@ -654,7 +654,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @OneToOne(undefined, t &#x3D;&gt; t.equipe)<br />
+                            @OneToOne(&#x27;Tecnico&#x27;, &#x27;equipe&#x27;)<br />
                         </code>
                     </td>
                 </tr>
@@ -787,24 +787,24 @@ export class Equipe extends EntidadeBase {
   @Column(&#x27;uuid&#x27;)
   idGinasio!: string;
 
-  @OneToOne(() &#x3D;&gt; Tecnico, (t) &#x3D;&gt; t.equipe)
+  @OneToOne(&#x27;Tecnico&#x27;, &#x27;equipe&#x27;)
   tecnico?: Tecnico;
 
-  @OneToMany(() &#x3D;&gt; Atleta, (a) &#x3D;&gt; a.equipe)
+  @OneToMany(&#x27;Atleta&#x27;, &#x27;equipe&#x27;)
   atletas!: Atleta[];
 
-  @OneToMany(() &#x3D;&gt; Auxiliar, (a) &#x3D;&gt; a.equipe)
+  @OneToMany(&#x27;Auxiliar&#x27;, &#x27;equipe&#x27;)
   auxiliares!: Auxiliar[];
 
-  @ManyToOne(() &#x3D;&gt; Liga, (c) &#x3D;&gt; c.equipes, { onDelete: &#x27;CASCADE&#x27; })
+  @ManyToOne(&#x27;Liga&#x27;, &#x27;equipes&#x27;, { onDelete: &#x27;CASCADE&#x27; })
   @JoinColumn({ name: &#x27;id_liga&#x27; })
   liga!: Liga;
 
-  @OneToOne(() &#x3D;&gt; Ginasio)
+  @OneToOne(&#x27;Ginasio&#x27;)
   @JoinColumn({ name: &#x27;id_ginasio&#x27; })
   ginasio!: Ginasio;
 
-  @OneToMany(() &#x3D;&gt; EquipePartida, (p) &#x3D;&gt; p.equipe)
+  @OneToMany(&#x27;EquipePartida&#x27;, &#x27;equipe&#x27;)
   participacoesEmPartidas!: EquipePartida[];
 }
 </code></pre>

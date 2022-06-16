@@ -118,7 +118,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="127" class="link-to-prism">src/modules/liga/dto/liga.dto.ts:127</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/modules/liga/dto/liga.dto.ts:120</a></div>
                             </td>
                         </tr>
 
@@ -198,7 +198,7 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../classes/GeraPartidasLigaRespostaDto.html#source" target="_self" >GeraPartidasLigaRespostaDto:105</a></code>
+                                <div class="io-line">Defined in         <code><a href="../classes/GeraPartidasLigaRespostaDto.html#source" target="_self" >GeraPartidasLigaRespostaDto:98</a></code>
 </div>
                         </td>
                     </tr>
@@ -231,7 +231,7 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../classes/GeraPartidasLigaRespostaDto.html#source" target="_self" >GeraPartidasLigaRespostaDto:106</a></code>
+                                <div class="io-line">Defined in         <code><a href="../classes/GeraPartidasLigaRespostaDto.html#source" target="_self" >GeraPartidasLigaRespostaDto:99</a></code>
 </div>
                         </td>
                     </tr>
@@ -251,14 +251,12 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { BadRequestException } from &#x27;@nestjs/common&#x27;;
-import { Type } from &#x27;class-transformer&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Type } from &#x27;class-transformer&#x27;;
 import {
   ArrayMaxSize,
   ArrayMinSize,
   ArrayUnique,
   IsArray,
-  IsDate,
   IsEnum,
   IsOptional,
   IsPositive,
@@ -266,8 +264,9 @@ import {
   Length,
   Max,
   Min,
+  MinDate,
 } from &#x27;class-validator&#x27;;
-import { compareAsc } from &#x27;date-fns&#x27;;
+import { compareAsc, startOfYear } from &#x27;date-fns&#x27;;
 import { Genero } from &#x27;src/modules/core/enums&#x27;;
 import { DiaDaSemana } from &#x27;src/modules/core/enums/dia-da-semana.enum&#x27;;
 import { PartidaRespostaDto } from &#x27;src/modules/partida/dto/partida.dto&#x27;;
@@ -293,7 +292,7 @@ export class CriaLigaDto {
 }
 
 export class InicializaLigaDto {
-  @IsDate()
+  @MinDate(startOfYear(new Date()))
   @Type(() &#x3D;&gt; Date)
   data?: Date;
 
@@ -322,12 +321,6 @@ export class InicializaLigaDto {
   @Max(Liga.intervaloDeUteisDiasEntreTurnos)
   @IsOptional()
   intervaloDeDiasUteisEntreTurnos &#x3D; Liga.intervaloDeUteisDiasEntreTurnos;
-
-  valida() {
-    if (this.data instanceof Date &amp;&amp; !isFinite(this.data.getTime())) {
-      throw new BadRequestException(&quot;&#x27;data&#x27; não fornecida&quot;);
-    }
-  }
 }
 
 export class LigaRespostaDto {

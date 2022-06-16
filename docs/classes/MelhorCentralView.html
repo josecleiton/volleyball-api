@@ -135,7 +135,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ManyToOne(undefined)<br />@JoinColumn({name: &#x27;id_atleta&#x27;})<br />
+                            @ManyToOne(&#x27;Atleta&#x27;)<br />@JoinColumn({name: &#x27;id_atleta&#x27;})<br />
                         </code>
                     </td>
                 </tr>
@@ -308,7 +308,7 @@ export class MelhorCentralView {
   @ViewColumn()
   bloqueiosPorPartida!: number;
 
-  @ManyToOne(() &#x3D;&gt; Atleta)
+  @ManyToOne(&#x27;Atleta&#x27;)
   @JoinColumn({ name: &#x27;id_atleta&#x27; })
   atleta!: Atleta;
 }

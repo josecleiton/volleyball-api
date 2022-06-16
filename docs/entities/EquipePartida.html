@@ -92,6 +92,7 @@
                                 <a href="#idEquipe" >idEquipe</a>
                             </li>
                             <li>
+                                    <span class="modifier">Optional</span>
                                 <a href="#idPartida" >idPartida</a>
                             </li>
                             <li>
@@ -222,7 +223,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @OneToMany(undefined, e &#x3D;&gt; e.participacao)<br />
+                            @OneToMany(&#x27;AtletaEscalado&#x27;, &#x27;participacao&#x27;)<br />
                         </code>
                     </td>
                 </tr>
@@ -257,7 +258,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ManyToOne(undefined, {cascade: true, onDelete: &#x27;CASCADE&#x27;})<br />@JoinColumn({name: &#x27;id_equipe&#x27;})<br />
+                            @ManyToOne(&#x27;Equipe&#x27;, {onDelete: &#x27;CASCADE&#x27;})<br />@JoinColumn({name: &#x27;id_equipe&#x27;})<br />
                         </code>
                     </td>
                 </tr>
@@ -311,6 +312,7 @@
                 <td class="col-md-4">
                     <a name="idPartida"></a>
                     <span class="name">
+                            <span class="modifier">Optional</span>
                         <span ><b>idPartida</b></span>
                         <a href="#idPartida"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -327,7 +329,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @Column(&#x27;uuid&#x27;)<br />
+                            @Column({type: &#x27;uuid&#x27;, nullable: true})<br />
                         </code>
                     </td>
                 </tr>
@@ -362,7 +364,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ManyToOne(undefined, {cascade: true, onDelete: &#x27;CASCADE&#x27;})<br />@JoinColumn({name: &#x27;id_partida&#x27;})<br />
+                            @ManyToOne(&#x27;Partida&#x27;, {onDelete: &#x27;CASCADE&#x27;})<br />@JoinColumn({name: &#x27;id_partida&#x27;})<br />
                         </code>
                     </td>
                 </tr>
@@ -533,8 +535,8 @@ export class EquipePartida extends EntidadeBase {
   @Column(&#x27;uuid&#x27;)
   idEquipe!: string;
 
-  @Column(&#x27;uuid&#x27;)
-  idPartida!: string;
+  @Column({ type: &#x27;uuid&#x27;, nullable: true })
+  idPartida?: string;
 
   @Column({ type: &#x27;int&#x27;, default: 0 })
   pontuacao!: number;
@@ -572,15 +574,15 @@ export class EquipePartida extends EntidadeBase {
   @Column({ nullable: true })
   resultadoCadastradoEm?: Date;
 
-  @ManyToOne(() &#x3D;&gt; Equipe, { cascade: true, onDelete: &#x27;CASCADE&#x27; })
+  @ManyToOne(&#x27;Equipe&#x27;, { onDelete: &#x27;CASCADE&#x27; })
   @JoinColumn({ name: &#x27;id_equipe&#x27; })
   equipe!: Equipe;
 
-  @ManyToOne(() &#x3D;&gt; Partida, { cascade: true, onDelete: &#x27;CASCADE&#x27; })
+  @ManyToOne(&#x27;Partida&#x27;, { onDelete: &#x27;CASCADE&#x27; })
   @JoinColumn({ name: &#x27;id_partida&#x27; })
   partida!: Partida;
 
-  @OneToMany(() &#x3D;&gt; AtletaEscalado, (e) &#x3D;&gt; e.participacao)
+  @OneToMany(&#x27;AtletaEscalado&#x27;, &#x27;participacao&#x27;)
   atletas!: AtletaEscalado[];
 }
 </code></pre>

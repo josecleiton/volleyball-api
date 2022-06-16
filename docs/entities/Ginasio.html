@@ -269,7 +269,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @OneToMany(undefined, p &#x3D;&gt; p.ginasio)<br />
+                            @OneToMany(&#x27;Partida&#x27;, &#x27;ginasio&#x27;)<br />
                         </code>
                     </td>
                 </tr>
@@ -309,7 +309,7 @@ export class Ginasio extends EntidadeBase {
   @Column({ default: 1000 })
   capacidade!: number;
 
-  @OneToMany(() &#x3D;&gt; Partida, (p) &#x3D;&gt; p.ginasio)
+  @OneToMany(&#x27;Partida&#x27;, &#x27;ginasio&#x27;)
   partidas!: Partida[];
 }
 </code></pre>
