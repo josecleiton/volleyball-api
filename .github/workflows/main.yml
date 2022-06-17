@@ -69,3 +69,8 @@ jobs:
           sed -i 's/DATABASE_URL=.*$/DATABASE_URL=postgres:\/\/voleibol:voleibol@localhost:5432\/voleibol/g' .env
       - name: Integration testing
         run: npm run test:e2e
+      - uses: codecov/codecov-action@v2
+        with:
+          token: ${{ secrets.COV_TOKEN }} # not required for public repos
+          files: ./coverage/clover.xml
+          flags: integration # optional
