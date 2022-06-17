@@ -1,5 +1,4 @@
 import { Controller, Get, ParseUUIDPipe, Query } from '@nestjs/common';
-import { Liga } from '../liga/entities/liga.entity';
 import { PontuacaoService } from './pontuacao.service';
 
 @Controller('pontuacao')
@@ -8,9 +7,6 @@ export class PontuacaoController {
 
   @Get()
   async listaPontuacaoOrdenada(@Query('idLiga', ParseUUIDPipe) idLiga: string) {
-    return this.pontuacaoService.listaPontuacoesOrdenadas(
-      idLiga,
-      Liga.minimoDeEquipesNaLiga,
-    );
+    return this.pontuacaoService.listaPontuacoesOrdenadas(idLiga);
   }
 }
