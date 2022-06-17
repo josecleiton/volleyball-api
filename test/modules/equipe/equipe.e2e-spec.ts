@@ -87,15 +87,28 @@ describe('EquipeController (e2e)', () => {
       );
     });
 
-    it('Conflict porque o brasão não é uma imagem', async () => {
-      const { equipe } = await server.criaEquipeLigaEGinasio();
+    describe('Conflict porque o brasão não é uma imagem', () => {
+      it('Random url', async () => {
+        const { equipe } = await server.criaEquipeLigaEGinasio();
 
-      const requisicao = atualizaEquipeDto(undefined, true);
-      requisicao.urlBrasao = faker.internet.url();
+        const requisicao = atualizaEquipeDto(undefined, true);
+        requisicao.urlBrasao = faker.internet.url();
 
-      await expect(
-        server.atualizaEquipe(equipe.id, requisicao),
-      ).rejects.toThrow('409');
+        await expect(
+          server.atualizaEquipe(equipe.id, requisicao),
+        ).rejects.toThrow('409');
+      });
+
+      it('Github url', async () => {
+        const { equipe } = await server.criaEquipeLigaEGinasio();
+
+        const requisicao = atualizaEquipeDto(undefined, true);
+        requisicao.urlBrasao = 'https://github.com/';
+
+        await expect(
+          server.atualizaEquipe(equipe.id, requisicao),
+        ).rejects.toThrow('409');
+      });
     });
 
     it('Not Found', async () => {
