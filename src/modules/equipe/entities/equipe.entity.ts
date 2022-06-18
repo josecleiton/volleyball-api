@@ -28,9 +28,9 @@ export class Equipe extends EntidadeBase {
   urlBrasao?: string;
 
   @Column({ name: 'apta', type: 'boolean', default: false })
-  private _apta = false;
+   apta = false;
 
-  public get apta(): boolean {
+  public get _apta(): boolean {
     const descricaoAptidao = [];
 
     if (this.atletas.length < Equipe.quantidadeAtletasPraAptidao) {
@@ -49,7 +49,7 @@ export class Equipe extends EntidadeBase {
 
     this.descricaoAptidao = descricaoAptidao;
 
-    return (this._apta = !descricaoAptidao.length);
+    return (this.apta = !descricaoAptidao.length);
   }
 
   @Column({ type: 'jsonb', nullable: true })

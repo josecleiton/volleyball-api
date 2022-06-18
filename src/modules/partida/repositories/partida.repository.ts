@@ -1,3 +1,4 @@
+import { IBuscarConfrontoEquipes } from 'src/modules/pontuacao/dtos/pontuacao.dto';
 import { EntityManager, EntityRepository, Repository } from 'typeorm';
 import {
   IBuscaQuantidadePartidasPorTipoEStatus,
@@ -69,4 +70,24 @@ export class PartidaRepository extends Repository<Partida> {
 
     return qb.getCount();
   }
+
+  async buscarConfrontoEquipes({ idTime1, idTime2 ,tipoRodadas }: IBuscarConfrontoEquipes) {
+
+    
+
+    const qb = this.createQueryBuilder('p')
+    
+    const result = await 
+        qb.where ('p.id_visitante =:idTime1 and p.id_mandante =:idTime2', { idTime1, idTime2  })
+        .orWhere('p.id_visitante =:idTime2 and p.id_mandante =:idTime1', { idTime1, idTime2  })
+        .andWhere('p.status= :status',{status:'concluida'})
+        .andWhere('p.tipo_da_rodada IN (:...tipoRodadas)',{tipoRodadas})
+        .getMany();
+    
+       
+   return result
+    
+   
+  }
+
 }

@@ -62,12 +62,13 @@ export class EquipeRespostaDto {
   quantidadeAuxiliares: number;
   atletas: AtletaRespostaDto[];
   auxiliares: AuxiliarRespostaDto[];
+  
 
   constructor(equipe: Equipe) {
     this.id = equipe.id;
     this.nome = equipe.nome;
     this.urlBrasao = equipe.urlBrasao;
-    this.apta = equipe.apta;
+    this.apta = equipe.apta
     this.descricaoAptidao = equipe.descricaoAptidao;
     this.cidade = equipe.cidade;
     this.estado = equipe.estado;
