@@ -12,7 +12,9 @@ export class Auxiliar extends PessoaDeEquipe {
   @Column({ unique: true, type: 'varchar', length: 50 })
   documentoCref!: string; // documento do conselho de educação fisica
 
-  @ManyToOne(() => Equipe, (equipe) => equipe.auxiliares)
+  @ManyToOne('Equipe', {
+    onDelete: 'CASCADE',
+  })
   @JoinColumn({ name: 'id_equipe' })
   equipe!: Equipe;
 }

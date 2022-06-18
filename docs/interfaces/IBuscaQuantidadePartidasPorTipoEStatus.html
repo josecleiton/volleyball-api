@@ -216,7 +216,8 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Type } from &#x27;class-transformer&#x27;;
+import {
   ArrayMaxSize,
   ArrayMinSize,
   IsArray,
@@ -225,8 +226,10 @@
   IsOptional,
   IsPositive,
   IsUUID,
+  Max,
   ValidateNested,
 } from &#x27;class-validator&#x27;;
+import { Liga } from &#x27;src/modules/liga/entities/liga.entity&#x27;;
 import { Posicao, TipoArbitro } from &#x27;src/modules/pessoa/enums&#x27;;
 import { Partida } from &#x27;../entities/partida.entity&#x27;;
 import { StatusPartida } from &#x27;../enums/status-partida.enum&#x27;;
@@ -246,7 +249,7 @@ export class AtletaParticipacaoDto {
   posicao!: Posicao;
 }
 
-class ArbitroPartidaDto {
+export class ArbitroPartidaDto {
   @IsUUID()
   idArbitro!: string;
 
@@ -267,18 +270,21 @@ export class CadastrarParticipantesPartidaDto {
   @ArrayMinSize(1)
   @ArrayMaxSize(4)
   @ValidateNested({ each: true })
+  @Type(() &#x3D;&gt; ArbitroPartidaDto)
   arbitros!: ArbitroPartidaDto[];
 
   @IsArray()
   @ArrayMinSize(12)
   @ArrayMaxSize(14)
   @ValidateNested({ each: true })
+  @Type(() &#x3D;&gt; AtletaParticipacaoDto)
   atletasMandante!: AtletaParticipacaoDto[];
 
   @IsArray()
   @ArrayMinSize(12)
   @ArrayMaxSize(14)
   @ValidateNested({ each: true })
+  @Type(() &#x3D;&gt; AtletaParticipacaoDto)
   atletasVisitante!: AtletaParticipacaoDto[];
 
   @IsEnum(EscolhaDeDesistencia)
@@ -291,10 +297,12 @@ export class ListaPartidasDto {
   idLiga!: string;
 
   @IsIn(tiposDeRodada)
-  tipoPartida?: TipoRodada;
+  tipoRodada?: TipoRodada;
 
+  @Type(() &#x3D;&gt; Number)
   @IsPositive()
-  limite? &#x3D; 51;
+  @Max(Liga.quantidadeDePartidasNaClassificacao)
+  limite? &#x3D; Liga.quantidadeDePartidasNaClassificacao;
 }
 
 export interface IBuscaQuantidadePartidasPorTipoEStatus {
@@ -318,6 +326,8 @@ export class PartidaRespostaDto {
   duracaoBruta?: number;
   ganhadora?: EquipePartidaRespostaDto;
   tipoRodada: TipoRodada;
+  mandante: EquipePartidaRespostaDto;
+  visitante: EquipePartidaRespostaDto;
 
   constructor(partida: Partida) {
     this.id &#x3D; partida.id;
@@ -336,6 +346,8 @@ export class PartidaRespostaDto {
       ? new EquipePartidaRespostaDto(partida.ganhadora)
       : undefined;
     this.tipoRodada &#x3D; partida.tipoDaRodada;
+    this.mandante &#x3D; new EquipePartidaRespostaDto(partida.mandante);
+    this.visitante &#x3D; new EquipePartidaRespostaDto(partida.visitante);
   }
 }
 </code></pre>

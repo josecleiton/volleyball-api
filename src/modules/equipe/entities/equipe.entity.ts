@@ -14,6 +14,7 @@ import {
 } from 'typeorm';
 import { Auxiliar } from 'src/modules/pessoa/entities/auxiliar.entity';
 import { EquipePartida } from 'src/modules/partida/entities/equipe-partida.entity';
+import { Logger } from '@nestjs/common';
 
 @Entity('equipes')
 @Index('IX_equipes_cidade_estado', ['cidade', 'estado'])
@@ -28,12 +29,19 @@ export class Equipe extends EntidadeBase {
   urlBrasao?: string;
 
   @Column({ name: 'apta', type: 'boolean', default: false })
-   apta = false;
+  public get apta(): boolean {
+    if (!this.atletas || !this.auxiliares) {
+      Logger.log(
+        `Equipe ${this.id} não carregou auxiliares nem atletas`,
+        'Equipe',
+      );
 
-  public get _apta(): boolean {
+      return this._apta;
+    }
+
     const descricaoAptidao = [];
 
-    if (this.atletas.length < Equipe.quantidadeAtletasPraAptidao) {
+    if (this.atletas?.length < Equipe.quantidadeAtletasPraAptidao) {
       descricaoAptidao.push(
         `Precisa-se de ${Equipe.quantidadeAtletasPraAptidao} atletas. Atletas cadastrados: ${this.atletas.length}`,
       );
@@ -67,23 +75,23 @@ export class Equipe extends EntidadeBase {
   @Column('uuid')
   idGinasio!: string;
 
-  @OneToOne(() => Tecnico, (t) => t.equipe)
+  @OneToOne('Tecnico', 'equipe')
   tecnico?: Tecnico;
 
-  @OneToMany(() => Atleta, (a) => a.equipe)
+  @OneToMany('Atleta', 'equipe')
   atletas!: Atleta[];
 
-  @OneToMany(() => Auxiliar, (a) => a.equipe)
+  @OneToMany('Auxiliar', 'equipe')
   auxiliares!: Auxiliar[];
 
-  @ManyToOne(() => Liga, (c) => c.equipes)
+  @ManyToOne('Liga', 'equipes', { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'id_liga' })
   liga!: Liga;
 
-  @OneToOne(() => Ginasio)
+  @OneToOne('Ginasio')
   @JoinColumn({ name: 'id_ginasio' })
   ginasio!: Ginasio;
 
-  @OneToMany(() => EquipePartida, (p) => p.equipe)
+  @OneToMany('EquipePartida', 'equipe')
   participacoesEmPartidas!: EquipePartida[];
 }

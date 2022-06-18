@@ -113,7 +113,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/modules/pessoa/services/delegado.service.ts:18</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/modules/pessoa/services/delegado.service.ts:19</a></div>
                             </td>
                         </tr>
 
@@ -202,8 +202,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="26"
-                            class="link-to-prism">src/modules/pessoa/services/delegado.service.ts:26</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="27"
+                            class="link-to-prism">src/modules/pessoa/services/delegado.service.ts:27</a></div>
                 </td>
             </tr>
 
@@ -273,8 +273,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="55"
-                            class="link-to-prism">src/modules/pessoa/services/delegado.service.ts:55</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="56"
+                            class="link-to-prism">src/modules/pessoa/services/delegado.service.ts:56</a></div>
                 </td>
             </tr>
 
@@ -344,8 +344,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="47"
-                            class="link-to-prism">src/modules/pessoa/services/delegado.service.ts:47</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="48"
+                            class="link-to-prism">src/modules/pessoa/services/delegado.service.ts:48</a></div>
                 </td>
             </tr>
 
@@ -414,6 +414,7 @@ import {
 } from &#x27;../dto/delegado.dto&#x27;;
 import { DelegadoRepository } from &#x27;../repositories/delegado.repository&#x27;;
 import { TipoPessoa } from &#x27;../enums&#x27;;
+import { dtoParaPessoa } from &#x27;../mapper&#x27;;
 
 @Injectable()
 export class DelegadoService {
@@ -429,7 +430,7 @@ export class DelegadoService {
     const delegado &#x3D; this.delegadoRepository.create({
       ...requisicao,
       idLiga: liga.id,
-      pessoa: requisicao.paraPessoa(TipoPessoa.delegado),
+      pessoa: dtoParaPessoa(requisicao, TipoPessoa.delegado),
     });
 
     try {

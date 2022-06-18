@@ -1,3 +1,4 @@
+import { Type } from 'class-transformer';
 import {
   ArrayMaxSize,
   ArrayMinSize,
@@ -7,8 +8,10 @@ import {
   IsOptional,
   IsPositive,
   IsUUID,
+  Max,
   ValidateNested,
 } from 'class-validator';
+import { Liga } from 'src/modules/liga/entities/liga.entity';
 import { Posicao, TipoArbitro } from 'src/modules/pessoa/enums';
 import { Partida } from '../entities/partida.entity';
 import { StatusPartida } from '../enums/status-partida.enum';
@@ -28,7 +31,7 @@ export class AtletaParticipacaoDto {
   posicao!: Posicao;
 }
 
-class ArbitroPartidaDto {
+export class ArbitroPartidaDto {
   @IsUUID()
   idArbitro!: string;
 
@@ -49,18 +52,21 @@ export class CadastrarParticipantesPartidaDto {
   @ArrayMinSize(1)
   @ArrayMaxSize(4)
   @ValidateNested({ each: true })
+  @Type(() => ArbitroPartidaDto)
   arbitros!: ArbitroPartidaDto[];
 
   @IsArray()
   @ArrayMinSize(12)
   @ArrayMaxSize(14)
   @ValidateNested({ each: true })
+  @Type(() => AtletaParticipacaoDto)
   atletasMandante!: AtletaParticipacaoDto[];
 
   @IsArray()
   @ArrayMinSize(12)
   @ArrayMaxSize(14)
   @ValidateNested({ each: true })
+  @Type(() => AtletaParticipacaoDto)
   atletasVisitante!: AtletaParticipacaoDto[];
 
   @IsEnum(EscolhaDeDesistencia)
@@ -73,10 +79,12 @@ export class ListaPartidasDto {
   idLiga!: string;
 
   @IsIn(tiposDeRodada)
-  tipoPartida?: TipoRodada;
+  tipoRodada?: TipoRodada;
 
+  @Type(() => Number)
   @IsPositive()
-  limite? = 51;
+  @Max(Liga.quantidadeDePartidasNaClassificacao)
+  limite? = Liga.quantidadeDePartidasNaClassificacao;
 }
 
 export interface IBuscaQuantidadePartidasPorTipoEStatus {
@@ -100,6 +108,8 @@ export class PartidaRespostaDto {
   duracaoBruta?: number;
   ganhadora?: EquipePartidaRespostaDto;
   tipoRodada: TipoRodada;
+  mandante: EquipePartidaRespostaDto;
+  visitante: EquipePartidaRespostaDto;
 
   constructor(partida: Partida) {
     this.id = partida.id;
@@ -118,5 +128,7 @@ export class PartidaRespostaDto {
       ? new EquipePartidaRespostaDto(partida.ganhadora)
       : undefined;
     this.tipoRodada = partida.tipoDaRodada;
+    this.mandante = new EquipePartidaRespostaDto(partida.mandante);
+    this.visitante = new EquipePartidaRespostaDto(partida.visitante);
   }
 }

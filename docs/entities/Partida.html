@@ -177,13 +177,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ManyToOne(undefined, {eager: true})<br />@JoinColumn({name: &#x27;id_mandante&#x27;})<br />
+                            @ManyToOne(&#x27;EquipePartida&#x27;, {eager: true, onDelete: &#x27;CASCADE&#x27;})<br />@JoinColumn({name: &#x27;id_mandante&#x27;})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">src/modules/partida/entities/partida.entity.ts:98</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/modules/partida/entities/partida.entity.ts:104</a></div>
                         </td>
                     </tr>
 
@@ -213,13 +213,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @OneToMany(undefined, ap &#x3D;&gt; ap.partida)<br />
+                            @OneToMany(&#x27;ArbitroPartida&#x27;, &#x27;partida&#x27;)<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/modules/partida/entities/partida.entity.ts:101</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">src/modules/partida/entities/partida.entity.ts:107</a></div>
                         </td>
                     </tr>
 
@@ -320,7 +320,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ManyToOne(undefined)<br />@JoinColumn({name: &#x27;id_delegado&#x27;})<br />
+                            @ManyToOne(&#x27;Delegado&#x27;, {onDelete: &#x27;SET NULL&#x27;})<br />@JoinColumn({name: &#x27;id_delegado&#x27;})<br />
                         </code>
                     </td>
                 </tr>
@@ -356,7 +356,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ManyToOne(undefined)<br />@JoinColumn({name: &#x27;id_ganhadora&#x27;})<br />
+                            @ManyToOne(&#x27;EquipePartida&#x27;, {eager: true, onDelete: &#x27;SET NULL&#x27;})<br />@JoinColumn({name: &#x27;id_ganhadora&#x27;})<br />
                         </code>
                     </td>
                 </tr>
@@ -391,7 +391,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ManyToOne(undefined)<br />@JoinColumn({name: &#x27;id_ginasio&#x27;})<br />
+                            @ManyToOne(&#x27;Ginasio&#x27;)<br />@JoinColumn({name: &#x27;id_ginasio&#x27;})<br />
                         </code>
                     </td>
                 </tr>
@@ -433,7 +433,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/modules/partida/entities/partida.entity.ts:29</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/modules/partida/entities/partida.entity.ts:28</a></div>
                         </td>
                     </tr>
 
@@ -504,7 +504,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/modules/partida/entities/partida.entity.ts:33</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/modules/partida/entities/partida.entity.ts:32</a></div>
                         </td>
                     </tr>
 
@@ -607,7 +607,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/modules/partida/entities/partida.entity.ts:26</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/modules/partida/entities/partida.entity.ts:25</a></div>
                         </td>
                     </tr>
 
@@ -640,7 +640,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/modules/partida/entities/partida.entity.ts:25</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/modules/partida/entities/partida.entity.ts:24</a></div>
                         </td>
                     </tr>
 
@@ -744,13 +744,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ManyToOne(undefined, {eager: true})<br />@JoinColumn({name: &#x27;id_visitante&#x27;})<br />
+                            @ManyToOne(&#x27;EquipePartida&#x27;, {eager: true, onDelete: &#x27;CASCADE&#x27;})<br />@JoinColumn({name: &#x27;id_visitante&#x27;})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/modules/partida/entities/partida.entity.ts:94</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/modules/partida/entities/partida.entity.ts:97</a></div>
                         </td>
                     </tr>
 
@@ -764,7 +764,6 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { differenceInMinutes } from &#x27;date-fns&#x27;;
 import { EntidadeBase } from &#x27;src/modules/core/entities/base.entity&#x27;;
-import { Equipe } from &#x27;src/modules/equipe/entities/equipe.entity&#x27;;
 import { Ginasio } from &#x27;src/modules/ginasio/entities/ginasio.entity&#x27;;
 import { Delegado } from &#x27;src/modules/pessoa/entities/delegado.entity&#x27;;
 import {
@@ -799,6 +798,7 @@ export class Partida extends EntidadeBase {
   public set mandante(pp: EquipePartida) {
     this._mandante &#x3D; pp;
     this.idGinasio &#x3D; pp.equipe.idGinasio;
+    this.idMandante &#x3D; pp.id;
   }
 
   public get mandante(): EquipePartida {
@@ -841,27 +841,33 @@ export class Partida extends EntidadeBase {
     return differenceInMinutes(this.dataFinalizacao, this.dataComeco);
   }
 
-  @ManyToOne(() &#x3D;&gt; Delegado)
+  @ManyToOne(&#x27;Delegado&#x27;, { onDelete: &#x27;SET NULL&#x27; })
   @JoinColumn({ name: &#x27;id_delegado&#x27; })
   delegado?: Delegado;
 
-  @ManyToOne(() &#x3D;&gt; Ginasio)
+  @ManyToOne(&#x27;Ginasio&#x27;)
   @JoinColumn({ name: &#x27;id_ginasio&#x27; })
   ginasio!: Ginasio;
 
-  @ManyToOne(() &#x3D;&gt; EquipePartida)
+  @ManyToOne(&#x27;EquipePartida&#x27;, { eager: true, onDelete: &#x27;SET NULL&#x27; })
   @JoinColumn({ name: &#x27;id_ganhadora&#x27; })
   ganhadora?: EquipePartida;
 
-  @ManyToOne(() &#x3D;&gt; Equipe, { eager: true })
+  @ManyToOne(&#x27;EquipePartida&#x27;, {
+    eager: true,
+    onDelete: &#x27;CASCADE&#x27;,
+  })
   @JoinColumn({ name: &#x27;id_visitante&#x27; })
   visitante!: EquipePartida;
 
-  @ManyToOne(() &#x3D;&gt; Equipe, { eager: true })
+  @ManyToOne(&#x27;EquipePartida&#x27;, {
+    eager: true,
+    onDelete: &#x27;CASCADE&#x27;,
+  })
   @JoinColumn({ name: &#x27;id_mandante&#x27; })
   private _mandante!: EquipePartida;
 
-  @OneToMany(() &#x3D;&gt; ArbitroPartida, (ap) &#x3D;&gt; ap.partida)
+  @OneToMany(&#x27;ArbitroPartida&#x27;, &#x27;partida&#x27;)
   arbitros?: ArbitroPartida[];
 }
 </code></pre>

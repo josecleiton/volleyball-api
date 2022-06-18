@@ -1,7 +1,18 @@
-import { OmitType, PartialType } from '@nestjs/swagger';
-import { IsNotEmpty, IsPositive, IsUUID, Max } from 'class-validator';
+import {
+  IsArray,
+  IsNotEmpty,
+  IsOptional,
+  IsPositive,
+  IsUUID,
+  Max,
+} from 'class-validator';
+import { EquipeRespostaDto } from 'src/modules/equipe/dto/equipe.dto';
 import { Atleta } from '../entities/atleta.entity';
-import { CriaPessoaDto, PessoaRespostaDto } from './pessoa.dto';
+import {
+  AtualizaPessoaDto,
+  CriaPessoaDto,
+  PessoaRespostaDto,
+} from './pessoa.dto';
 
 export class CriaAtletaDto extends CriaPessoaDto {
   @IsPositive()
@@ -10,26 +21,28 @@ export class CriaAtletaDto extends CriaPessoaDto {
 
   @IsUUID()
   idEquipe!: string;
-
-  validar() {
-    super.validar();
-  }
 }
 
-export class AtualizaAtletaDto extends PartialType(
-  OmitType(CriaAtletaDto, [
-    'idEquipe',
-    'documento',
-    'documentoCbv',
-    'paraPessoa',
-    'genero',
-  ]),
-) {}
+export class AtualizaAtletaDto extends AtualizaPessoaDto {
+  @IsOptional()
+  @IsPositive()
+  @Max(100)
+  numero?: number;
+}
 
 export class ListaAtletaDto {
   @IsNotEmpty()
   @IsUUID()
   idEquipe!: string;
+
+  @IsArray()
+  @IsOptional()
+  @IsUUID(4, { each: true })
+  ids?: string[];
+}
+
+export class DeveListarAtletasDto extends ListaAtletaDto {
+  ids!: string[];
 }
 
 export interface IValidaNumeroEquipeDto {
@@ -48,5 +61,15 @@ export class AtletaRespostaDto extends PessoaRespostaDto {
     this.id = atleta.id;
     this.numero = atleta.numero;
     this.idEquipe = atleta.idEquipe;
+  }
+}
+
+export class AtletaComEquipeRespostaDto extends AtletaRespostaDto {
+  equipe: EquipeRespostaDto;
+
+  constructor(atleta: Atleta) {
+    super(atleta);
+
+    this.equipe = new EquipeRespostaDto(atleta.equipe);
   }
 }

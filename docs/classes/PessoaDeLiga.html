@@ -62,7 +62,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/modules/pessoa/entities/pessoa_de_liga.ts</code>
+            <code>src/modules/pessoa/entities/pessoa_de_liga.entity.ts</code>
         </p>
 
 
@@ -156,7 +156,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/modules/pessoa/entities/pessoa_de_liga.ts:8</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/modules/pessoa/entities/pessoa_de_liga.entity.ts:8</a></div>
                         </td>
                     </tr>
 
@@ -185,13 +185,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @OneToOne(undefined)<br />@JoinColumn({name: &#x27;id_liga&#x27;})<br />
+                            @ManyToOne(&#x27;Liga&#x27;, {onDelete: &#x27;CASCADE&#x27;})<br />@JoinColumn({name: &#x27;id_liga&#x27;})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/modules/pessoa/entities/pessoa_de_liga.ts:12</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/modules/pessoa/entities/pessoa_de_liga.entity.ts:12</a></div>
                         </td>
                     </tr>
 
@@ -262,7 +262,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @OneToOne(undefined, {eager: true, cascade: true})<br />@JoinColumn({name: &#x27;id_pessoa&#x27;})<br />
+                            @OneToOne(&#x27;Pessoa&#x27;, {eager: true, cascade: true, onDelete: &#x27;CASCADE&#x27;})<br />@JoinColumn({name: &#x27;id_pessoa&#x27;})<br />
                         </code>
                     </td>
                 </tr>
@@ -421,7 +421,7 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Liga } from &#x27;src/modules/liga/entities/liga.entity&#x27;;
-import { Column, Index, JoinColumn, OneToOne } from &#x27;typeorm&#x27;;
+import { Column, Index, JoinColumn, ManyToOne } from &#x27;typeorm&#x27;;
 import { TemPessoa } from &#x27;./tem_pessoa.entity&#x27;;
 
 export abstract class PessoaDeLiga extends TemPessoa {
@@ -429,7 +429,7 @@ export abstract class PessoaDeLiga extends TemPessoa {
   @Index()
   idLiga!: string;
 
-  @OneToOne(() &#x3D;&gt; Liga)
+  @ManyToOne(&#x27;Liga&#x27;, { onDelete: &#x27;CASCADE&#x27; })
   @JoinColumn({ name: &#x27;id_liga&#x27; })
   liga!: Liga;
 }

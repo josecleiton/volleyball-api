@@ -199,17 +199,19 @@ import { Liga } from &#x27;../entities/liga.entity&#x27;;
 @EntityRepository(Liga)
 export class LigaRepository extends Repository&lt;Liga&gt; {
   async encontraUmComEquipesCompletas(id: string) {
-    const qb &#x3D; this.createQueryBuilder(&#x27;ligas&#x27;);
-    qb.leftJoinAndSelect(&#x27;ligas.equipes&#x27;, &#x27;equipes&#x27;)
-      .leftJoinAndSelect(&#x27;ligas.arbitros&#x27;, &#x27;arbitros&#x27;)
-      .leftJoinAndSelect(&#x27;ligas.delegados&#x27;, &#x27;delegados&#x27;)
+    const qb &#x3D; this.createQueryBuilder(&#x27;l&#x27;);
+    qb.leftJoinAndSelect(&#x27;l.equipes&#x27;, &#x27;equipes&#x27;)
+      .leftJoinAndSelect(&#x27;l.arbitros&#x27;, &#x27;arbitros&#x27;)
+      .innerJoinAndSelect(&#x27;arbitros.pessoa&#x27;, &#x27;arbitroPessoa&#x27;)
+      .leftJoinAndSelect(&#x27;l.delegados&#x27;, &#x27;delegados&#x27;)
+      .innerJoinAndSelect(&#x27;delegados.pessoa&#x27;, &#x27;delegadoPessoa&#x27;)
       .leftJoinAndSelect(&#x27;equipes.atletas&#x27;, &#x27;atletas&#x27;)
-      .leftJoinAndSelect(&#x27;equipes.tecnico&#x27;, &#x27;tecnico&#x27;)
+      .leftJoinAndSelect(&#x27;equipes.tecnico&#x27;, &#x27;tecnicos&#x27;)
       .leftJoinAndSelect(&#x27;equipes.auxiliares&#x27;, &#x27;auxiliares&#x27;)
-      .where(&#x27;ligas.id &#x3D; :id&#x27;, { id })
+      .where(&#x27;l.id &#x3D; :id&#x27;, { id })
       .orderBy(&#x27;equipes.dataCriacao&#x27;, &#x27;ASC&#x27;);
 
-    return qb.getOneOrFail();
+    return qb.getOne();
   }
 }
 </code></pre>

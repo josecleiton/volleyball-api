@@ -9,15 +9,17 @@ import { TypeORMFilterService } from 'src/modules/core/services/typeorm-filter.s
 import { Equipe } from 'src/modules/equipe/entities/equipe.entity';
 import { EquipeService } from 'src/modules/equipe/equipe.service';
 import { LigaService } from 'src/modules/liga/services/liga.service';
-import { In } from 'typeorm';
 import {
+  AtletaComEquipeRespostaDto,
   AtletaRespostaDto,
   AtualizaAtletaDto,
   CriaAtletaDto,
+  DeveListarAtletasDto,
   IValidaNumeroEquipeDto,
   ListaAtletaDto,
 } from '../dto/atleta.dto';
 import { TipoPessoa } from '../enums';
+import { dtoParaPessoa } from '../mapper';
 import { AtletaRepository } from '../repositories/atleta.repository';
 
 @Injectable()
@@ -43,7 +45,7 @@ export class AtletaService {
   }
 
   async criaAtleta(requisicao: CriaAtletaDto) {
-    const equipe = await this.equipeService.deveEncontrarUm(
+    const equipe = await this.equipeService.deveEncontrarSimplificada(
       requisicao.idEquipe,
     );
     await this.ligaService.excecaoSeALigaEstaIniciada(equipe.idLiga);
@@ -58,8 +60,8 @@ export class AtletaService {
 
     const atleta = this.atletaRepository.create({
       ...requisicao,
-      idEquipe: equipe.id,
-      pessoa: requisicao.paraPessoa(TipoPessoa.atleta),
+      equipe,
+      pessoa: dtoParaPessoa(requisicao, TipoPessoa.atleta),
     });
 
     try {
@@ -73,10 +75,10 @@ export class AtletaService {
     }
   }
 
-  private async deveEncontrarEntidade(id: string) {
+  private async deveEncontrarEntidade(id: string, relacoes: string[] = []) {
     const atleta = await this.atletaRepository.findOne({
       where: { id },
-      relations: ['equipe'],
+      relations: [...relacoes, 'pessoa'],
     });
     if (!atleta) {
       throw new NotFoundException(`Atleta ${id} não encontrado`);
@@ -85,34 +87,38 @@ export class AtletaService {
     return atleta;
   }
 
-  async deveEncontrarUm(id: string) {
+  async deveEncontrar(id: string) {
     return new AtletaRespostaDto(await this.deveEncontrarEntidade(id));
   }
 
-  async listaAtletas(requisicao: ListaAtletaDto) {
-    const list = await this.atletaRepository.find({
-      where: requisicao,
-    });
-
-    return list.map((x) => new AtletaRespostaDto(x));
+  async deveEncontrarComEquipe(id: string) {
+    return new AtletaComEquipeRespostaDto(
+      await this.deveEncontrarEntidade(id, ['equipe']),
+    );
   }
 
-  async deveListarPorId(ids: string[]) {
-    const atletas = await this.atletaRepository.find({
-      where: { id: In(ids) },
-    });
-    const setId = new Set(ids);
+  async listaAtletas(requisicao: ListaAtletaDto) {
+    const atletas = await this.atletaRepository.listaAtletas(requisicao);
 
-    const naoEncontrados = atletas.filter((x) => !setId.has(x.id));
-    if (naoEncontrados?.length) {
-      throw new NotFoundException(naoEncontrados);
-    }
     return atletas.map((x) => new AtletaRespostaDto(x));
+  }
+
+  async deveListarAtletasEstritamente(requisicao: DeveListarAtletasDto) {
+    const atletas = await this.listaAtletas(requisicao);
+
+    const setIdReq = new Set(requisicao.ids);
+    const naoEncontrados = atletas.filter((x) => !setIdReq.has(x.id));
+
+    if (setIdReq.size !== atletas.length || naoEncontrados?.length) {
+      throw new NotFoundException(`Atletas ${naoEncontrados}`);
+    }
+
+    return atletas;
   }
 
   async atualizaAtleta(id: string, requisicao: AtualizaAtletaDto) {
     try {
-      const atleta = await this.deveEncontrarEntidade(id);
+      const atleta = await this.deveEncontrarEntidade(id, ['equipe']);
       await this.ligaService.excecaoSeALigaEstaIniciada(atleta.equipe.idLiga);
 
       if (requisicao.dataNascimento) {
@@ -142,7 +148,7 @@ export class AtletaService {
   }
 
   async removerAtleta(id: string) {
-    const atleta = await this.deveEncontrarEntidade(id);
+    const atleta = await this.deveEncontrarComEquipe(id);
     await this.ligaService.excecaoSeALigaEstaIniciada(atleta.equipe.idLiga);
 
     await this.atletaRepository.delete(id);

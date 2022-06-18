@@ -105,7 +105,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="6" class="link-to-prism">src/modules/pontuacao/pontuacao.service.ts:6</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/modules/pontuacao/pontuacao.service.ts:7</a></div>
                             </td>
                         </tr>
 
@@ -163,15 +163,15 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>listaPontuacoesOrdenadas(idLiga: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, limite: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    <code>listaPontuacoesOrdenadas(idLiga: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, limite)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="9"
-                            class="link-to-prism">src/modules/pontuacao/pontuacao.service.ts:9</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="10"
+                            class="link-to-prism">src/modules/pontuacao/pontuacao.service.ts:10</a></div>
                 </td>
             </tr>
 
@@ -209,7 +209,6 @@
                                 <tr>
                                     <td>limite</td>
                                     <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
                                     </td>
 
                                     <td>
@@ -217,7 +216,7 @@
                                     </td>
 
                                     <td>
-                                        <code>12</code>
+                                        <code>Liga.minimoDeEquipesNaLiga</code>
                                     </td>
 
                                 </tr>
@@ -244,6 +243,7 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@nestjs/common&#x27;;
+import { Liga } from &#x27;../liga/entities/liga.entity&#x27;;
 import { PontuacaoRespostaDto } from &#x27;./dtos/pontuacao.dto&#x27;;
 import { PontuacaoViewRepository } from &#x27;./repositories/pontuacao-view.repository&#x27;;
 
@@ -253,16 +253,16 @@ export class PontuacaoService {
 
   async listaPontuacoesOrdenadas(
     idLiga: string,
-    limite &#x3D; 12,
+    limite &#x3D; Liga.minimoDeEquipesNaLiga,
   ): Promise&lt;PontuacaoRespostaDto[]&gt; {
     const pontuacoes &#x3D; await this.pontuacaoRepository.listaPorLiga(
       idLiga,
-      limite,
+      Liga.minimoDeEquipesNaLiga,
     );
 
     // TODO: critério de desempate
 
-    return pontuacoes.map((x) &#x3D;&gt; new PontuacaoRespostaDto(x));
+    return pontuacoes.map((x) &#x3D;&gt; new PontuacaoRespostaDto(x)).slice(0, limite);
   }
 }
 </code></pre>

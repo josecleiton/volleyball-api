@@ -177,10 +177,21 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { OmitType, PartialType } from &#x27;@nestjs/swagger&#x27;;
-import { IsNotEmpty, IsPositive, IsUUID, Max } from &#x27;class-validator&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  IsArray,
+  IsNotEmpty,
+  IsOptional,
+  IsPositive,
+  IsUUID,
+  Max,
+} from &#x27;class-validator&#x27;;
+import { EquipeRespostaDto } from &#x27;src/modules/equipe/dto/equipe.dto&#x27;;
 import { Atleta } from &#x27;../entities/atleta.entity&#x27;;
-import { CriaPessoaDto, PessoaRespostaDto } from &#x27;./pessoa.dto&#x27;;
+import {
+  AtualizaPessoaDto,
+  CriaPessoaDto,
+  PessoaRespostaDto,
+} from &#x27;./pessoa.dto&#x27;;
 
 export class CriaAtletaDto extends CriaPessoaDto {
   @IsPositive()
@@ -189,26 +200,28 @@ export class CriaAtletaDto extends CriaPessoaDto {
 
   @IsUUID()
   idEquipe!: string;
-
-  validar() {
-    super.validar();
-  }
 }
 
-export class AtualizaAtletaDto extends PartialType(
-  OmitType(CriaAtletaDto, [
-    &#x27;idEquipe&#x27;,
-    &#x27;documento&#x27;,
-    &#x27;documentoCbv&#x27;,
-    &#x27;paraPessoa&#x27;,
-    &#x27;genero&#x27;,
-  ]),
-) {}
+export class AtualizaAtletaDto extends AtualizaPessoaDto {
+  @IsOptional()
+  @IsPositive()
+  @Max(100)
+  numero?: number;
+}
 
 export class ListaAtletaDto {
   @IsNotEmpty()
   @IsUUID()
   idEquipe!: string;
+
+  @IsArray()
+  @IsOptional()
+  @IsUUID(4, { each: true })
+  ids?: string[];
+}
+
+export class DeveListarAtletasDto extends ListaAtletaDto {
+  ids!: string[];
 }
 
 export interface IValidaNumeroEquipeDto {
@@ -227,6 +240,16 @@ export class AtletaRespostaDto extends PessoaRespostaDto {
     this.id &#x3D; atleta.id;
     this.numero &#x3D; atleta.numero;
     this.idEquipe &#x3D; atleta.idEquipe;
+  }
+}
+
+export class AtletaComEquipeRespostaDto extends AtletaRespostaDto {
+  equipe: EquipeRespostaDto;
+
+  constructor(atleta: Atleta) {
+    super(atleta);
+
+    this.equipe &#x3D; new EquipeRespostaDto(atleta.equipe);
   }
 }
 </code></pre>

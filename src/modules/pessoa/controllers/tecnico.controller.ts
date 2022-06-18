@@ -15,12 +15,11 @@ export class TecnicoController {
 
   @Post()
   criaTecnico(@Body() requisicao: CriaTecnicoDto) {
-    requisicao.validar();
     return this.tecnicoService.createTecnico(requisicao);
   }
 
   @Get(':id')
-  pegaUm(@Param('id', ParseUUIDPipe) id: string) {
-    return this.tecnicoService.devePegarUm(id);
+  encontraUm(@Param('id', ParseUUIDPipe) id: string) {
+    return this.tecnicoService.deveEncontrarUm(id);
   }
 }

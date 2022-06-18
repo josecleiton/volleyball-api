@@ -154,7 +154,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @IsPositive()<br />@Max(200)<br />@IsOptional()<br />
+                            @Min(0)<br />@Max(200)<br />@IsOptional()<br />
                         </code>
                     </td>
                 </tr>
@@ -190,7 +190,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @IsPositive()<br />@Max(200)<br />@IsOptional()<br />
+                            @Min(0)<br />@Max(200)<br />@IsOptional()<br />
                         </code>
                     </td>
                 </tr>
@@ -226,7 +226,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @IsPositive()<br />@Max(200)<br />@IsOptional()<br />
+                            @Min(0)<br />@Max(200)<br />@IsOptional()<br />
                         </code>
                     </td>
                 </tr>
@@ -332,7 +332,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @IsPositive()<br />@Max(200)<br />@IsOptional()<br />
+                            @Min(0)<br />@Max(200)<br />@IsOptional()<br />
                         </code>
                     </td>
                 </tr>
@@ -368,7 +368,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @IsPositive()<br />@Max(200)<br />@IsOptional()<br />
+                            @Min(0)<br />@Max(200)<br />@IsOptional()<br />
                         </code>
                     </td>
                 </tr>
@@ -404,7 +404,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @IsPositive()<br />@Max(200)<br />@IsOptional()<br />
+                            @Min(0)<br />@Max(200)<br />@IsOptional()<br />
                         </code>
                     </td>
                 </tr>
@@ -429,7 +429,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { IsOptional, IsPositive, IsUUID, Max } from &#x27;class-validator&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { IsOptional, IsUUID, Max, Min } from &#x27;class-validator&#x27;;
 import { FundamentoAtleta } from &#x27;../entities/fundamento-atleta.entity&#x27;;
 
 export class CriaFundamentoAtletaDto {
@@ -439,32 +439,32 @@ export class CriaFundamentoAtletaDto {
   @IsUUID()
   idAtleta!: string;
 
-  @IsPositive()
+  @Min(0)
   @Max(200)
   @IsOptional()
   bloqueios?: number;
 
-  @IsPositive()
+  @Min(0)
   @Max(200)
   @IsOptional()
   recepcoes?: number;
 
-  @IsPositive()
+  @Min(0)
   @Max(200)
   @IsOptional()
   aces?: number;
 
-  @IsPositive()
+  @Min(0)
   @Max(200)
   @IsOptional()
   saques?: number;
 
-  @IsPositive()
+  @Min(0)
   @Max(200)
   @IsOptional()
   ataques?: number;
 
-  @IsPositive()
+  @Min(0)
   @Max(200)
   @IsOptional()
   pontos?: number;
@@ -480,20 +480,20 @@ export class FundamentoAtletaRespostaDto {
   ataques: number;
   pontos: number;
 
-  mediasDeAcesPorSaque: number;
-  mediaDePontosPorAtaque: number;
+  saquesEfetivos: number;
+  ataquesEfetivos: number;
 
   constructor(fundamento: FundamentoAtleta) {
     this.id &#x3D; fundamento.id;
-    this.idAtletaPartida &#x3D; fundamento.idAtletaPartida;
+    this.idAtletaPartida &#x3D; fundamento.idAtletaEscalado;
     this.bloqueios &#x3D; fundamento.bloqueios;
     this.recepcoes &#x3D; fundamento.recepcoes;
     this.aces &#x3D; fundamento.aces;
     this.saques &#x3D; fundamento.saques;
     this.ataques &#x3D; fundamento.ataques;
     this.pontos &#x3D; fundamento.pontos;
-    this.mediasDeAcesPorSaque &#x3D; fundamento.mediasDeAcesPorSaque;
-    this.mediaDePontosPorAtaque &#x3D; fundamento.mediaDePontosPorAtaque;
+    this.saquesEfetivos &#x3D; fundamento.saquesEfetivos;
+    this.ataquesEfetivos &#x3D; fundamento.ataquesEfetivos;
   }
 }
 </code></pre>

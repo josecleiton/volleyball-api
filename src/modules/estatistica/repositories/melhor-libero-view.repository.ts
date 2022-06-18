@@ -1,4 +1,4 @@
-import { EntityRepository } from 'typeorm';
+import { EntityRepository, SelectQueryBuilder } from 'typeorm';
 import { MelhorLiberoView } from '../entities/melhor-libero-view.entity';
 import { MelhorPosicaoViewRepository } from './melhor-posicao-view.repository';
 import { nomeMelhorLiberoView } from '../estatistica.constants';
@@ -7,4 +7,9 @@ import { nomeMelhorLiberoView } from '../estatistica.constants';
 export class MelhorLiberoViewRepository extends MelhorPosicaoViewRepository<MelhorLiberoView> {
   protected readonly name = nomeMelhorLiberoView;
   protected readonly concurrently = true;
+  protected adicionaOrdenacao(
+    qb: SelectQueryBuilder<MelhorLiberoView>,
+  ): SelectQueryBuilder<MelhorLiberoView> {
+    return qb.addOrderBy('m.recepcoesPorPartida', 'DESC');
+  }
 }

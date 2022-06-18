@@ -85,6 +85,10 @@
                             <li>
                                 <a href="#idEquipe" >idEquipe</a>
                             </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#ids" >ids</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -132,7 +136,43 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/modules/pessoa/dto/atleta.dto.ts:32</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/modules/pessoa/dto/atleta.dto.ts:36</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ids"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>ids</b></span>
+                        <a href="#ids"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsArray()<br />@IsOptional()<br />@IsUUID(4, {each: true})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/modules/pessoa/dto/atleta.dto.ts:41</a></div>
                         </td>
                     </tr>
 
@@ -151,10 +191,21 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { OmitType, PartialType } from &#x27;@nestjs/swagger&#x27;;
-import { IsNotEmpty, IsPositive, IsUUID, Max } from &#x27;class-validator&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  IsArray,
+  IsNotEmpty,
+  IsOptional,
+  IsPositive,
+  IsUUID,
+  Max,
+} from &#x27;class-validator&#x27;;
+import { EquipeRespostaDto } from &#x27;src/modules/equipe/dto/equipe.dto&#x27;;
 import { Atleta } from &#x27;../entities/atleta.entity&#x27;;
-import { CriaPessoaDto, PessoaRespostaDto } from &#x27;./pessoa.dto&#x27;;
+import {
+  AtualizaPessoaDto,
+  CriaPessoaDto,
+  PessoaRespostaDto,
+} from &#x27;./pessoa.dto&#x27;;
 
 export class CriaAtletaDto extends CriaPessoaDto {
   @IsPositive()
@@ -163,26 +214,28 @@ export class CriaAtletaDto extends CriaPessoaDto {
 
   @IsUUID()
   idEquipe!: string;
-
-  validar() {
-    super.validar();
-  }
 }
 
-export class AtualizaAtletaDto extends PartialType(
-  OmitType(CriaAtletaDto, [
-    &#x27;idEquipe&#x27;,
-    &#x27;documento&#x27;,
-    &#x27;documentoCbv&#x27;,
-    &#x27;paraPessoa&#x27;,
-    &#x27;genero&#x27;,
-  ]),
-) {}
+export class AtualizaAtletaDto extends AtualizaPessoaDto {
+  @IsOptional()
+  @IsPositive()
+  @Max(100)
+  numero?: number;
+}
 
 export class ListaAtletaDto {
   @IsNotEmpty()
   @IsUUID()
   idEquipe!: string;
+
+  @IsArray()
+  @IsOptional()
+  @IsUUID(4, { each: true })
+  ids?: string[];
+}
+
+export class DeveListarAtletasDto extends ListaAtletaDto {
+  ids!: string[];
 }
 
 export interface IValidaNumeroEquipeDto {
@@ -201,6 +254,16 @@ export class AtletaRespostaDto extends PessoaRespostaDto {
     this.id &#x3D; atleta.id;
     this.numero &#x3D; atleta.numero;
     this.idEquipe &#x3D; atleta.idEquipe;
+  }
+}
+
+export class AtletaComEquipeRespostaDto extends AtletaRespostaDto {
+  equipe: EquipeRespostaDto;
+
+  constructor(atleta: Atleta) {
+    super(atleta);
+
+    this.equipe &#x3D; new EquipeRespostaDto(atleta.equipe);
   }
 }
 </code></pre>

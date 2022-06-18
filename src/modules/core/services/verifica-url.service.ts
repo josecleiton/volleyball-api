@@ -1,16 +1,18 @@
+import { HttpService } from '@nestjs/axios';
 import { ConflictException, Injectable } from '@nestjs/common';
-import axios, { AxiosInstance } from 'axios';
+import { catchError, firstValueFrom, map, of } from 'rxjs';
 
 @Injectable()
 export class VerificaUrlService {
-  private readonly axios: AxiosInstance = axios.create();
+  constructor(private readonly httpService: HttpService) {}
 
   async ehImagem(url: string) {
-    const result = await this.axios
-      .get(url)
-      .then((res) => res.headers['Content-Type'])
-      .then((contentType) => contentType.startsWith('image/'))
-      .catch(() => false);
+    const result = await firstValueFrom(
+      this.httpService.get(url).pipe(
+        map((res) => res.headers['content-type'].startsWith('image/')),
+        catchError(() => of(false)),
+      ),
+    );
 
     if (!result) {
       throw new ConflictException(`${url} não é uma imagem`);

@@ -85,11 +85,15 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#criaArbitro" >criaArbitro</a>
+                                <a href="#criaDelegado" >criaDelegado</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#listaArbitros" >listaArbitros</a>
+                                <a href="#encontraDelegado" >encontraDelegado</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#listaDelegados" >listaDelegados</a>
                             </li>
                         </ul>
                     </td>
@@ -112,18 +116,18 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="criaArbitro"></a>
+                    <a name="criaDelegado"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
-                        <span ><b>criaArbitro</b></span>
-                        <a href="#criaArbitro"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>criaDelegado</b></span>
+                        <a href="#criaDelegado"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>criaArbitro(requisicao: <a href="../classes/CriaArbitroDto.html" target="_self">CriaArbitroDto</a>)</code>
+                    <code>criaDelegado(requisicao: <a href="../classes/CriaArbitroDto.html" target="_self">CriaArbitroDto</a>)</code>
                 </td>
             </tr>
 
@@ -137,8 +141,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="10"
-                            class="link-to-prism">src/modules/pessoa/controllers/delegado.controller.ts:10</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="18"
+                            class="link-to-prism">src/modules/pessoa/controllers/delegado.controller.ts:18</a></div>
                 </td>
             </tr>
 
@@ -190,18 +194,96 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="listaArbitros"></a>
+                    <a name="encontraDelegado"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
-                        <span ><b>listaArbitros</b></span>
-                        <a href="#listaArbitros"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>encontraDelegado</b></span>
+                        <a href="#encontraDelegado"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>listaArbitros(requisicao: <a href="../classes/ListaArbitroDto.html" target="_self">ListaArbitroDto</a>)</code>
+                    <code>encontraDelegado(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;:id&#x27;)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="28"
+                            class="link-to-prism">src/modules/pessoa/controllers/delegado.controller.ts:28</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>unknown</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="listaDelegados"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>listaDelegados</b></span>
+                        <a href="#listaDelegados"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>listaDelegados(requisicao: <a href="../classes/ListaArbitroDto.html" target="_self">ListaArbitroDto</a>)</code>
                 </td>
             </tr>
 
@@ -215,8 +297,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="15"
-                            class="link-to-prism">src/modules/pessoa/controllers/delegado.controller.ts:15</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="23"
+                            class="link-to-prism">src/modules/pessoa/controllers/delegado.controller.ts:23</a></div>
                 </td>
             </tr>
 
@@ -268,7 +350,15 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Body, Controller, Get, Post, Query } from &#x27;@nestjs/common&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  ParseUUIDPipe,
+  Post,
+  Query,
+} from &#x27;@nestjs/common&#x27;;
 import { CriaArbitroDto, ListaArbitroDto } from &#x27;../dto/arbitro.dto&#x27;;
 import { DelegadoService } from &#x27;../services/delegado.service&#x27;;
 
@@ -277,13 +367,18 @@ export class DelegadoController {
   constructor(private readonly delegadoService: DelegadoService) {}
 
   @Post()
-  async criaArbitro(@Body() requisicao: CriaArbitroDto) {
+  async criaDelegado(@Body() requisicao: CriaArbitroDto) {
     return this.delegadoService.criaDelegado(requisicao);
   }
 
   @Get()
-  async listaArbitros(@Query() requisicao: ListaArbitroDto) {
+  async listaDelegados(@Query() requisicao: ListaArbitroDto) {
     return this.delegadoService.listaDelegados(requisicao);
+  }
+
+  @Get(&#x27;:id&#x27;)
+  async encontraDelegado(@Param(&#x27;id&#x27;, ParseUUIDPipe) id: string) {
+    return this.delegadoService.deveEncontrarUm(id);
   }
 }
 </code></pre>

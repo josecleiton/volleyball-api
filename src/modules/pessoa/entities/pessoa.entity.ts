@@ -1,7 +1,7 @@
 import { differenceInYears } from 'date-fns';
 import { EntidadeBase } from 'src/modules/core/entities/base.entity';
 import { Genero } from 'src/modules/core/enums';
-import { Column, Entity } from 'typeorm';
+import { AfterInsert, AfterLoad, Column, Entity } from 'typeorm';
 import { TipoPessoa } from '../enums';
 
 @Entity('pessoas')
@@ -33,5 +33,11 @@ export class Pessoa extends EntidadeBase {
     super();
 
     this.tipo = tipo ?? this.tipo;
+  }
+
+  @AfterLoad()
+  @AfterInsert()
+  carregaDatas() {
+    this.dataNascimento = new Date(this.dataNascimento);
   }
 }

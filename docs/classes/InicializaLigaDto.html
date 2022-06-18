@@ -99,20 +99,6 @@
                     </td>
                 </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Methods</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
-                            <li>
-                                <a href="#valida" >valida</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
 
 
 
@@ -151,13 +137,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @IsDate()<br />@Type(undefined)<br />
+                            @MinDate(undefined)<br />@Type(undefined)<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/modules/liga/dto/liga.dto.ts:45</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/modules/liga/dto/liga.dto.ts:44</a></div>
                         </td>
                     </tr>
 
@@ -192,7 +178,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/modules/liga/dto/liga.dto.ts:52</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/modules/liga/dto/liga.dto.ts:51</a></div>
                         </td>
                     </tr>
 
@@ -221,13 +207,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @IsArray()<br />@ArrayMinSize(1)<br />@ArrayMaxSize(12)<br />@ArrayUnique()<br />@Min(undefined, {each: true})<br />@Max(undefined, {each: true})<br />
+                            @IsArray()<br />@ArrayMinSize(1)<br />@ArrayMaxSize(12)<br />@ArrayUnique()<br />@Min(undefined, {each: true, message: &#x27;Horário tem que ser em minutos e maior que $constraint4&#x27;})<br />@Max(undefined, {each: true, message: &#x27;Horário tem que ser em minutos e menor que $constraint5&#x27;})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/modules/liga/dto/liga.dto.ts:60</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/modules/liga/dto/liga.dto.ts:65</a></div>
                         </td>
                     </tr>
 
@@ -261,7 +247,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/modules/liga/dto/liga.dto.ts:65</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/modules/liga/dto/liga.dto.ts:70</a></div>
                         </td>
                     </tr>
 
@@ -270,49 +256,7 @@
     </table>
 </section>
 
-            <section>
-    
-    <h3 id="methods">
-        Methods
-    </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="valida"></a>
-                    <span class="name">
-                        <span ><b>valida</b></span>
-                        <a href="#valida"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>valida()</code>
-                </td>
-            </tr>
 
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="67"
-                            class="link-to-prism">src/modules/liga/dto/liga.dto.ts:67</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</section>
 
 
 
@@ -322,14 +266,12 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { BadRequestException } from &#x27;@nestjs/common&#x27;;
-import { Type } from &#x27;class-transformer&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Type } from &#x27;class-transformer&#x27;;
 import {
   ArrayMaxSize,
   ArrayMinSize,
   ArrayUnique,
   IsArray,
-  IsDate,
   IsEnum,
   IsOptional,
   IsPositive,
@@ -337,8 +279,9 @@ import {
   Length,
   Max,
   Min,
+  MinDate,
 } from &#x27;class-validator&#x27;;
-import { compareAsc } from &#x27;date-fns&#x27;;
+import { compareAsc, startOfYear } from &#x27;date-fns&#x27;;
 import { Genero } from &#x27;src/modules/core/enums&#x27;;
 import { DiaDaSemana } from &#x27;src/modules/core/enums/dia-da-semana.enum&#x27;;
 import { PartidaRespostaDto } from &#x27;src/modules/partida/dto/partida.dto&#x27;;
@@ -364,7 +307,7 @@ export class CriaLigaDto {
 }
 
 export class InicializaLigaDto {
-  @IsDate()
+  @MinDate(startOfYear(new Date()))
   @Type(() &#x3D;&gt; Date)
   data?: Date;
 
@@ -379,20 +322,20 @@ export class InicializaLigaDto {
   @ArrayMinSize(1)
   @ArrayMaxSize(12)
   @ArrayUnique()
-  @Min(6 * 60, { each: true })
-  @Max(22 * 60, { each: true })
+  @Min(6 * 60, {
+    each: true,
+    message: &#x27;Horário tem que ser em minutos e maior que $constraint4&#x27;,
+  })
+  @Max(22 * 60, {
+    each: true,
+    message: &#x27;Horário tem que ser em minutos e menor que $constraint5&#x27;,
+  })
   horarios!: number[];
 
   @IsPositive()
   @Max(Liga.intervaloDeUteisDiasEntreTurnos)
   @IsOptional()
   intervaloDeDiasUteisEntreTurnos &#x3D; Liga.intervaloDeUteisDiasEntreTurnos;
-
-  valida() {
-    if (this.data instanceof Date &amp;&amp; !isFinite(this.data.getTime())) {
-      throw new BadRequestException(&quot;&#x27;data&#x27; não fornecida&quot;);
-    }
-  }
 }
 
 export class LigaRespostaDto {

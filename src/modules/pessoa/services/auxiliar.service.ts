@@ -8,6 +8,7 @@ import {
   ListaAuxiliarDto,
 } from '../dto/auxiliar.dto';
 import { TipoPessoa } from '../enums';
+import { dtoParaPessoa } from '../mapper';
 import { AuxiliarRepository } from '../repositories/auxiliar.repository';
 
 @Injectable()
@@ -27,7 +28,7 @@ export class AuxiliarService {
     const auxiliar = this.auxiliarRepository.create({
       ...requisicao,
       idEquipe: equipe.id,
-      pessoa: requisicao.paraPessoa(TipoPessoa.auxiliar),
+      pessoa: dtoParaPessoa(requisicao, TipoPessoa.auxiliar),
     });
 
     try {
