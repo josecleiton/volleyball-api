@@ -12,6 +12,7 @@ import {
   AtualizaEquipeDto,
   CriaEquipeDto,
   EquipeRespostaDto,
+  EquipeSimplificadaRespostaDto,
   ListaEquipesDto,
 } from './dto/equipe.dto';
 import { Equipe } from './entities/equipe.entity';
@@ -57,7 +58,7 @@ export class EquipeService {
 
   async listaEquipes(request: ListaEquipesDto) {
     const equipes = await this.equipeRepository.find({
-      where: { ...request, id: request.ids ? In(request.ids) : undefined },
+      where: request,
       order: { dataCriacao: 'ASC' },
       relations: ['atletas', 'auxiliares', 'tecnico'],
     });
@@ -78,6 +79,21 @@ export class EquipeService {
 
   async deveEncontrarUm(id: string) {
     return new EquipeRespostaDto(await this.deveEncontrarEntidade(id));
+  }
+
+  async deveEncontrarSimplificada(
+    id: string,
+  ): Promise<EquipeSimplificadaRespostaDto> {
+    const equipe = await this.equipeRepository.findOne({
+      where: { id },
+      relations: ['atletas'],
+      select: ['id', 'idLiga', 'idGinasio', 'nome'],
+    });
+    if (!equipe) {
+      throw new NotFoundException(`Equipe ${id} não encontrada`);
+    }
+
+    return new EquipeSimplificadaRespostaDto(equipe);
   }
 
   async deveEncontrarEquipes(ids: string[], take?: number, mesmaLiga = true) {

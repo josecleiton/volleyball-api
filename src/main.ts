@@ -1,5 +1,4 @@
 import helmet from 'helmet';
-import rateLimit from 'express-rate-limit';
 
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
@@ -32,20 +31,17 @@ function applySecurityLayer(
   config: ConfigService,
 ) {
   app.use(helmet());
-  app.use(rateLimit(config.get('rateLimit')));
   app.enableCors(config.get('cors'));
   logger.log('Security layer applied to the app');
 }
 
 function applyGlobals(app: INestApplication, config: ConfigService) {
-  app.useGlobalFilters(new HttpExceptionFilter(config));
-  app.useGlobalPipes(
-    new ValidationPipe({
-      transform: true,
-      whitelist: true,
-    }),
-  );
+  app
+    .useGlobalFilters(new HttpExceptionFilter(config))
+    .useGlobalPipes(new ValidationPipe(config.get('validation')));
   logger.log('Global config applied');
+
+  return app;
 }
 
 async function bootstrap() {

@@ -5,6 +5,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { groupBy } from 'lodash';
+import { AtletaRespostaDto } from 'src/modules/pessoa/dto/atleta.dto';
 import { PontuacaoViewRepository } from 'src/modules/pontuacao/repositories/pontuacao-view.repository';
 import { Connection } from 'typeorm';
 import { Posicao, TipoArbitro } from '../../pessoa/enums';
@@ -49,77 +50,10 @@ export class PartidaService {
     return partidas.map((x) => new PartidaRespostaDto(x));
   }
 
-  private async deveEncontrarEntidade(id: string) {
-    const partida = await this.partidaRepository.findOne({
-      where: { id },
-    });
-    if (!partida) {
-      throw new NotFoundException(`Partida ${id} não encontrada`);
-    }
+  async encontraPartida(id: string) {
+    const partida = await this.deveEncontrarEntidade(id);
 
-    return partida;
-  }
-
-  private validaAtletas(
-    idEquipe: string,
-    atletas: AtletaParticipacaoDto[],
-  ): void | never {
-    const atletasPorPosicao = groupBy(atletas, (a) => a.posicao);
-    if (
-      atletas.length === Partida.minimoDeAtletasNaPartida &&
-      atletasPorPosicao[Posicao.LIBERO]?.length
-    ) {
-      throw new BadRequestException(
-        `Equipe ${idEquipe} com o mínimo de atletas relacionados, um líbero não pode ser relacionado`,
-      );
-    }
-
-    if (
-      atletas.length > Partida.minimoDeAtletasNaPartida &&
-      atletasPorPosicao[Posicao.LIBERO]?.length &&
-      atletasPorPosicao[Posicao.LIBERO].length > Partida.maximoDeLiberos
-    ) {
-      throw new BadRequestException(
-        `Em uma equipe ${idEquipe} com ${atletas.length} não pode ter mais do que ${Partida.maximoDeLiberos} líberos`,
-      );
-    }
-  }
-
-  private async registraDesistencia(partida: Partida) {
-    const pontuacaoMandante =
-      partida.idGanhadora === partida.idMandante ? 2 : -2;
-
-    partida.mandante.pontuacao = pontuacaoMandante;
-    partida.mandante.pontosNosSets = [25, 25, 25].map((quantidade) => ({
-      quantidade,
-    }));
-
-    partida.visitante.pontuacao = -partida.mandante.pontuacao;
-    partida.visitante.pontosNosSets = [0, 0, 0].map((quantidade) => ({
-      quantidade,
-    }));
-
-    partida.mandante.resultadoCadastradoEm =
-      partida.visitante.resultadoCadastradoEm = new Date();
-
-    const { partida: partidaAtualizada } = await this.connection.transaction(
-      async (manager) => {
-        const [mandante, visitante] = await manager.save([
-          partida.mandante,
-          partida.visitante,
-        ]);
-
-        await this.pontuacaoRepository.refreshMaterializedView(manager);
-
-        return {
-          partida: await manager.save(partida),
-          mandante,
-          visitante,
-        };
-      },
-    );
-
-    return partidaAtualizada;
+    return new PartidaRespostaDto(partida);
   }
 
   async cadastrarParticipantes(
@@ -158,27 +92,35 @@ export class PartidaService {
       );
     }
 
-    await this.arbitroService.deveListarPorId(
+    await this.arbitroService.deveListarEstritatemente(
       requisicao.arbitros.map((x) => x.idArbitro),
     );
 
-    this.validaAtletas(partida.idMandante, requisicao.atletasMandante);
-    this.validaAtletas(partida.idVisitante, requisicao.atletasVisitante);
-
-    await this.atletaService.deveListarPorId(
-      [...requisicao.atletasMandante, ...requisicao.atletasVisitante].map(
-        (x) => x.idAtleta,
+    await Promise.all([
+      this.validaAtletas(partida.mandante.idEquipe, requisicao.atletasMandante),
+      this.validaAtletas(
+        partida.visitante.idEquipe,
+        requisicao.atletasVisitante,
       ),
-    );
+    ]);
 
     const escalacaoMandante = requisicao.atletasMandante.map((atletaDto) =>
-      this.atletaEscaladoRepository.create({ ...atletaDto }),
+      this.atletaEscaladoRepository.create({
+        ...atletaDto,
+        idEquipePartida: partida.idMandante,
+      }),
     );
     const escalacaoVisitante = requisicao.atletasVisitante.map((atletaDto) =>
-      this.atletaEscaladoRepository.create({ ...atletaDto }),
+      this.atletaEscaladoRepository.create({
+        ...atletaDto,
+        idEquipePartida: partida.idVisitante,
+      }),
     );
     const arbitrosDaPartida = requisicao.arbitros.map((arbitroDto) =>
-      this.arbitroPartidaRepository.create({ ...arbitroDto }),
+      this.arbitroPartidaRepository.create({
+        ...arbitroDto,
+        idPartida: partida.id,
+      }),
     );
 
     partida.status = StatusPartida.PARTICIPANTES_CADASTRADOS;
@@ -188,18 +130,90 @@ export class PartidaService {
       async (manager) => {
         const partidaSalva = await manager.save(partida);
 
-        await manager.save(escalacaoMandante);
-        await manager.save(escalacaoVisitante);
-        await manager.save(arbitrosDaPartida);
-
-        partidaSalva.arbitros = arbitrosDaPartida;
-        partidaSalva.mandante.atletas = escalacaoMandante;
-        partidaSalva.visitante.atletas = escalacaoVisitante;
+        partidaSalva.mandante.atletas = await manager.save(escalacaoMandante);
+        partidaSalva.visitante.atletas = await manager.save(escalacaoVisitante);
+        partidaSalva.arbitros = await manager.save(arbitrosDaPartida);
 
         return partidaSalva;
       },
     );
 
     return new PartidaRespostaDto(partidaAtualizada);
+  }
+
+  private async deveEncontrarEntidade(id: string) {
+    const partida = await this.partidaRepository.encontraPartidaCompleta(id);
+    if (!partida) {
+      throw new NotFoundException(`Partida ${id} não encontrada`);
+    }
+
+    return partida;
+  }
+
+  private validaAtletas(
+    idEquipe: string,
+    atletas: AtletaParticipacaoDto[],
+  ): Promise<AtletaRespostaDto[]> | never {
+    const atletasPorPosicao = groupBy(atletas, (a) => a.posicao);
+    if (
+      atletas.length === Partida.minimoDeAtletasNaPartida &&
+      atletasPorPosicao[Posicao.LIBERO]?.length
+    ) {
+      throw new BadRequestException(
+        `Equipe ${idEquipe} com o mínimo de atletas relacionados, um líbero não pode ser relacionado`,
+      );
+    }
+
+    if (
+      atletas.length > Partida.minimoDeAtletasNaPartida &&
+      atletasPorPosicao[Posicao.LIBERO]?.length &&
+      atletasPorPosicao[Posicao.LIBERO].length > Partida.maximoDeLiberos
+    ) {
+      throw new BadRequestException(
+        `Em uma equipe ${idEquipe} com ${atletas.length} não pode ter mais do que ${Partida.maximoDeLiberos} líberos`,
+      );
+    }
+
+    return this.atletaService.deveListarAtletasEstritamente({
+      ids: atletas.map((x) => x.idAtleta),
+      idEquipe,
+    });
+  }
+
+  private async registraDesistencia(partida: Partida) {
+    const pontuacaoMandante =
+      partida.idGanhadora === partida.idMandante ? 2 : -2;
+
+    partida.mandante.pontuacao = pontuacaoMandante;
+    partida.mandante.pontosNosSets = [25, 25, 25].map((quantidade) => ({
+      quantidade,
+    }));
+
+    partida.visitante.pontuacao = -partida.mandante.pontuacao;
+    partida.visitante.pontosNosSets = [0, 0, 0].map((quantidade) => ({
+      quantidade,
+    }));
+
+    partida.mandante.resultadoCadastradoEm =
+      partida.visitante.resultadoCadastradoEm = new Date();
+
+    const { partida: partidaAtualizada } = await this.connection.transaction(
+      async (manager) => {
+        const [mandante, visitante] = await manager.save([
+          partida.mandante,
+          partida.visitante,
+        ]);
+
+        await this.pontuacaoRepository.refreshMaterializedView(manager);
+
+        return {
+          partida: await manager.save(partida),
+          mandante,
+          visitante,
+        };
+      },
+    );
+
+    return partidaAtualizada;
   }
 }

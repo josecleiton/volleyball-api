@@ -76,10 +76,113 @@
 
 
 
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#listaAtletas" >listaAtletas</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
 
 
 
+
+        </tbody>
+    </table>
+</section>
+
+
+
+            <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="listaAtletas"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>listaAtletas</b></span>
+                        <a href="#listaAtletas"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>listaAtletas(undefined: <a href="../classes/ListaAtletaDto.html" target="_self">ListaAtletaDto</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="7"
+                            class="link-to-prism">src/modules/pessoa/repositories/atleta.repository.ts:7</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                                <code><a href="../classes/ListaAtletaDto.html" target="_self" >ListaAtletaDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/Atleta.html" target="_self" >Promise&lt;Atleta[]&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
 
 
 
@@ -90,10 +193,28 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { EntityRepository, Repository } from &#x27;typeorm&#x27;;
+import { ListaAtletaDto } from &#x27;../dto/atleta.dto&#x27;;
 import { Atleta } from &#x27;../entities/atleta.entity&#x27;;
 
 @EntityRepository(Atleta)
-export class AtletaRepository extends Repository&lt;Atleta&gt; {}
+export class AtletaRepository extends Repository&lt;Atleta&gt; {
+  async listaAtletas({ idEquipe, ids }: ListaAtletaDto): Promise&lt;Atleta[]&gt; {
+    const qb &#x3D; this.createQueryBuilder(&#x27;atletas&#x27;);
+
+    qb.innerJoinAndSelect(&#x27;atletas.pessoa&#x27;, &#x27;pessoa&#x27;).where(
+      &#x27;atletas.idEquipe &#x3D; :idEquipe&#x27;,
+      { idEquipe },
+    );
+
+    if (ids) {
+      qb.andWhereInIds(ids);
+    }
+
+    qb.orderBy(&#x27;atletas.dataCriacao&#x27;, &#x27;ASC&#x27;);
+
+    return qb.getMany();
+  }
+}
 </code></pre>
     </div>
 </div>

@@ -12,13 +12,14 @@ export async function stubDatabaseConnection(
     type: 'postgres',
     url: process.env.DATABASE_URL,
     logging: false,
+    name: randomUUID(),
   });
 
   const urlObj = new URL(process.env.DATABASE_URL as string);
   urlObj.pathname = randomUUID().replace(/-/g, '_');
 
   try {
-    await connection.query(`CREATE DATABASE "${urlObj.pathname}"`);
+    await connection.query(`CREATE DATABASE "${urlObj.pathname.slice(1)}"`);
   } finally {
     await connection.close();
   }
@@ -26,18 +27,16 @@ export async function stubDatabaseConnection(
   const options: TypeOrmModuleOptions = {
     type: 'postgres',
     url: urlObj.toString(),
-    entities: [__dirname + '/../../**/*.entity.{js,ts}'],
-    migrations: [__dirname + '/../../database/migrations/*.{js,ts}'],
-    subscribers: [__dirname + '/../../**/*.subscriber.{js,ts}'],
+    entities: [__dirname + '/../../../src/**/*.entity.{js,ts}'],
+    migrations: [__dirname + '/../../../src/database/migrations/*.{js,ts}'],
+    subscribers: [__dirname + '/../../../src/**/*.subscriber.{js,ts}'],
     synchronize: false,
     migrationsRun: true,
     namingStrategy: new SnakeNamingStrategy(),
-    logging: false,
+    logging: Boolean(process.env.LOGGING),
   };
 
-  builder
-    .overrideProvider('PARTIAL_CONFIGURATION_KEYdatabase')
-    .useValue(options);
+  builder.overrideProvider('CONFIGURATION(database)').useValue(options);
 
   return builder;
 }

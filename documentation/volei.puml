@@ -237,6 +237,7 @@ equipes "1" --|| "1" tecnicos
 equipes ||--o{ auxiliares
 equipes ||-- ginasios
 equipes ||-- pontuacoes_view
+equipes ||--o{ equipes_partidas
 delegados "1" ||--o{ partidas
 ginasios "1" ||--o{ partidas
 partidas "1" ||--o{ "2" equipes_partidas : equipe mandante e visitante

@@ -136,7 +136,7 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Put(&#x27;:id&#x27;)<br /></code>
+                    <code>@Patch(&#x27;:id&#x27;)<br /></code>
                 </td>
             </tr>
 
@@ -518,9 +518,9 @@
   Body,
   Param,
   Delete,
-  Put,
   Query,
   ParseUUIDPipe,
+  Patch,
 } from &#x27;@nestjs/common&#x27;;
 import {
   AtualizaEquipeDto,
@@ -548,7 +548,7 @@ export class EquipeController {
     return this.equipeService.deveEncontrarUm(id);
   }
 
-  @Put(&#x27;:id&#x27;)
+  @Patch(&#x27;:id&#x27;)
   atualiza(
     @Param(&#x27;id&#x27;, ParseUUIDPipe) id: string,
     @Body() request: AtualizaEquipeDto,

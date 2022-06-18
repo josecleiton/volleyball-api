@@ -224,7 +224,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @OneToOne(undefined, {eager: true, cascade: true})<br />@JoinColumn({name: &#x27;id_pessoa&#x27;})<br />
+                            @OneToOne(&#x27;Pessoa&#x27;, {eager: true, cascade: true, onDelete: &#x27;CASCADE&#x27;})<br />@JoinColumn({name: &#x27;id_pessoa&#x27;})<br />
                         </code>
                     </td>
                 </tr>

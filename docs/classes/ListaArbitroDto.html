@@ -166,11 +166,13 @@ export class ListaArbitroDto {
 }
 
 export class ArbitroRespostaDto extends PessoaRespostaDto {
+  id: string;
   idLiga: string;
 
   constructor(arbitro: Arbitro) {
     super(arbitro.pessoa);
 
+    this.id &#x3D; arbitro.id;
     this.idLiga &#x3D; arbitro.idLiga;
   }
 }

@@ -1,15 +1,16 @@
-import { EquipeRespostaDto } from 'src/modules/equipe/dto/equipe.dto';
+import { EquipeSimplificadaRespostaDto } from 'src/modules/equipe/dto/equipe.dto';
 import { EquipePartida } from '../entities/equipe-partida.entity';
 
 export class EquipePartidaRespostaDto {
   id: string;
   idEquipe: string;
-  idPartida: string;
+  idPartida?: string;
   pontuacao: number;
   setsGanhos: number;
   resultadoCadastradoEm?: Date;
-  equipe: EquipeRespostaDto;
   pontosNosSets: number[];
+  equipe: EquipeSimplificadaRespostaDto;
+  quantidadeAtletasEscalados: number;
 
   public get setsJogados() {
     return this.pontosNosSets.length;
@@ -23,6 +24,7 @@ export class EquipePartidaRespostaDto {
     this.setsGanhos = e.setsGanhos;
     this.pontosNosSets = e.pontosNosSets.map((x) => x.quantidade);
     this.resultadoCadastradoEm = e.resultadoCadastradoEm;
-    this.equipe = new EquipeRespostaDto(e.equipe);
+    this.equipe = new EquipeSimplificadaRespostaDto(e.equipe);
+    this.quantidadeAtletasEscalados = e.atletas?.length ?? 0;
   }
 }

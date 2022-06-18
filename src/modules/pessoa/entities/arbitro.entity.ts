@@ -1,9 +1,5 @@
-import { ArbitroPartida } from 'src/modules/partida/entities/arbitro-partida.entity';
-import { Entity, OneToMany } from 'typeorm';
-import { PessoaDeLiga } from './pessoa_de_liga';
+import { Entity } from 'typeorm';
+import { PessoaDeLiga } from './pessoa_de_liga.entity';
 
 @Entity('arbitros')
-export class Arbitro extends PessoaDeLiga {
-  @OneToMany(() => ArbitroPartida, (p) => p.arbitro)
-  participacoesEmPartida!: ArbitroPartida[];
-}
+export class Arbitro extends PessoaDeLiga {}

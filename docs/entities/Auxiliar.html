@@ -158,13 +158,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ManyToOne(undefined, equipe &#x3D;&gt; equipe.auxiliares)<br />@JoinColumn({name: &#x27;id_equipe&#x27;})<br />
+                            @ManyToOne(&#x27;Equipe&#x27;, {onDelete: &#x27;CASCADE&#x27;})<br />@JoinColumn({name: &#x27;id_equipe&#x27;})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/modules/pessoa/entities/auxiliar.entity.ts:17</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/modules/pessoa/entities/auxiliar.entity.ts:19</a></div>
                         </td>
                     </tr>
 
@@ -225,7 +225,9 @@ export class Auxiliar extends PessoaDeEquipe {
   @Column({ unique: true, type: &#x27;varchar&#x27;, length: 50 })
   documentoCref!: string; // documento do conselho de educação fisica
 
-  @ManyToOne(() &#x3D;&gt; Equipe, (equipe) &#x3D;&gt; equipe.auxiliares)
+  @ManyToOne(&#x27;Equipe&#x27;, {
+    onDelete: &#x27;CASCADE&#x27;,
+  })
   @JoinColumn({ name: &#x27;id_equipe&#x27; })
   equipe!: Equipe;
 }

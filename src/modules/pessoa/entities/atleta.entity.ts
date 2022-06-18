@@ -16,10 +16,13 @@ export class Atleta extends PessoaDeEquipe {
   @Column({ type: 'smallint' })
   numero!: number;
 
-  @ManyToOne(() => Equipe, (equipe) => equipe.atletas)
+  @ManyToOne('Equipe', {
+    cascade: true,
+    onDelete: 'CASCADE',
+  })
   @JoinColumn({ name: 'id_equipe' })
   equipe!: Equipe;
 
-  @OneToMany(() => AtletaEscalado, (ap) => ap.atleta)
+  @OneToMany('AtletaEscalado', 'atleta')
   atletas!: AtletaEscalado[];
 }

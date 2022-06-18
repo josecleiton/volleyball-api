@@ -40,7 +40,7 @@ export class FundamentoAtletaService {
 
     const fundamento = this.fundamentoAtletaRepository.create({
       ...requisicao,
-      idAtletaPartida: atletaPartida.id,
+      idAtletaEscalado: atletaPartida.id,
     });
 
     try {

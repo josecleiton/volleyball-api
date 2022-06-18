@@ -16,13 +16,14 @@ export class AtletaEscalado extends EntidadeBase {
   idAtleta!: string;
 
   @Column({ type: 'enum', enum: Posicao })
+  @Index()
   posicao!: Posicao;
 
-  @ManyToOne(() => EquipePartida)
+  @ManyToOne('EquipePartida', { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'id_equipe_partida' })
   participacao!: EquipePartida;
 
-  @ManyToOne(() => Atleta)
+  @ManyToOne('Atleta', { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'id_atleta' })
   atleta!: Atleta;
 }

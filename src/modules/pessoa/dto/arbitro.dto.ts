@@ -13,11 +13,13 @@ export class ListaArbitroDto {
 }
 
 export class ArbitroRespostaDto extends PessoaRespostaDto {
+  id: string;
   idLiga: string;
 
   constructor(arbitro: Arbitro) {
     super(arbitro.pessoa);
 
+    this.id = arbitro.id;
     this.idLiga = arbitro.idLiga;
   }
 }

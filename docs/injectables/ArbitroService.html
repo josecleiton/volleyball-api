@@ -84,7 +84,7 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#deveListarPorId" >deveListarPorId</a>
+                                <a href="#deveListarEstritatemente" >deveListarEstritatemente</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
@@ -255,18 +255,18 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="deveListarPorId"></a>
+                    <a name="deveListarEstritatemente"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
-                        <span ><b>deveListarPorId</b></span>
-                        <a href="#deveListarPorId"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>deveListarEstritatemente</b></span>
+                        <a href="#deveListarEstritatemente"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>deveListarPorId(ids: string[])</code>
+                    <code>deveListarEstritatemente(ids: string[])</code>
                 </td>
             </tr>
 
@@ -414,7 +414,7 @@ import {
 } from &#x27;../dto/arbitro.dto&#x27;;
 import { ArbitroRepository } from &#x27;../repositories/arbitro.repository&#x27;;
 import { TipoPessoa } from &#x27;../enums&#x27;;
-import { In } from &#x27;typeorm&#x27;;
+import { dtoParaPessoa } from &#x27;../mapper&#x27;;
 
 @Injectable()
 export class ArbitroService {
@@ -430,7 +430,7 @@ export class ArbitroService {
     const arbitro &#x3D; this.arbitroRepository.create({
       ...requisicao,
       idLiga: liga.id,
-      pessoa: requisicao.paraPessoa(TipoPessoa.arbitro),
+      pessoa: dtoParaPessoa(requisicao, TipoPessoa.arbitro),
     });
 
     try {
@@ -452,16 +452,15 @@ export class ArbitroService {
     return arbitros.map((x) &#x3D;&gt; new ArbitroRespostaDto(x));
   }
 
-  async deveListarPorId(ids: string[]) {
-    const arbitros &#x3D; await this.arbitroRepository.find({
-      where: { id: In(ids) },
-    });
+  async deveListarEstritatemente(ids: string[]) {
+    const arbitros &#x3D; await this.arbitroRepository.findByIds(ids);
     const setId &#x3D; new Set(ids);
 
     const naoEncontrados &#x3D; arbitros.filter((x) &#x3D;&gt; !setId.has(x.id));
-    if (naoEncontrados?.length) {
-      throw new NotFoundException(naoEncontrados);
+    if (arbitros.length !&#x3D;&#x3D; setId.size || naoEncontrados?.length) {
+      throw new NotFoundException(&#x60;Arbitros ${naoEncontrados}&#x60;);
     }
+
     return arbitros.map((x) &#x3D;&gt; new ArbitroRespostaDto(x));
   }
 }

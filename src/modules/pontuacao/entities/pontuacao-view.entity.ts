@@ -67,7 +67,7 @@ export class PontuacaoView {
   @ViewColumn()
   partidasDisputadas!: number;
 
-  @ManyToOne(() => Equipe)
+  @ManyToOne('Equipe')
   @JoinColumn({ name: 'id_equipe' })
   equipe!: Equipe;
 }

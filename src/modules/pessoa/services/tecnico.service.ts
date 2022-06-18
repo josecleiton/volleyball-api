@@ -5,6 +5,7 @@ import { EquipeService } from 'src/modules/equipe/equipe.service';
 import { CriaTecnicoDto, TecnicoRespostaDto } from '../dto/tecnico.dto';
 import { TecnicoRepository } from '../repositories/tecnico.repository';
 import { TipoPessoa } from '../enums';
+import { dtoParaPessoa } from '../mapper';
 
 @Injectable()
 export class TecnicoService {
@@ -23,7 +24,7 @@ export class TecnicoService {
     const tecnico = this.tecnicoRepository.create({
       ...requisicao,
       idEquipe: equipe.id,
-      pessoa: requisicao.paraPessoa(TipoPessoa.tecnico),
+      pessoa: dtoParaPessoa(requisicao, TipoPessoa.tecnico),
     });
 
     try {
@@ -48,7 +49,7 @@ export class TecnicoService {
     return tecnico;
   }
 
-  async devePegarUm(id: string) {
+  async deveEncontrarUm(id: string) {
     return new TecnicoRespostaDto(await this.devePegarEntidade(id));
   }
 }

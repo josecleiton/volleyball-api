@@ -1,4 +1,9 @@
-import { EntityManager, EntityRepository, Repository } from 'typeorm';
+import {
+  EntityManager,
+  EntityRepository,
+  Repository,
+  SelectQueryBuilder,
+} from 'typeorm';
 import {
   IBuscaQuantidadePartidasPorTipoEStatus,
   ListaPartidasDto,
@@ -8,16 +13,27 @@ import { StatusPartida } from '../enums/status-partida.enum';
 
 @EntityRepository(Partida)
 export class PartidaRepository extends Repository<Partida> {
+  aplicaRelacoesDeUmaPartidaCompleta(
+    qb: SelectQueryBuilder<Partida>,
+  ): SelectQueryBuilder<Partida> {
+    return qb
+      .innerJoinAndSelect('partidas.visitante', 'visitantes')
+      .innerJoinAndSelect('visitantes.equipe', 'equipesVisitantes')
+      .innerJoinAndSelect('partidas._mandante', 'mandantes')
+      .innerJoinAndSelect('mandantes.equipe', 'equipesMandantes');
+  }
+
   async listaPartidasOrdenadas(requisicao: ListaPartidasDto) {
     const qb = this.createQueryBuilder('partidas');
 
-    qb.innerJoinAndSelect('partidas.visitante', 'visitantes')
-      .innerJoinAndSelect('visitantes.equipe', 'equipes')
-      .where('equipes.idLiga = :idLiga', { idLiga: requisicao.idLiga });
+    this.aplicaRelacoesDeUmaPartidaCompleta(qb).where(
+      'equipesVisitantes.idLiga = :idLiga AND equipesMandantes.idLiga = :idLiga',
+      { idLiga: requisicao.idLiga },
+    );
 
-    if (requisicao.tipoPartida) {
-      qb.andWhere('partidas.tipoPartida = :tipoPartida', {
-        tipoPartida: requisicao.tipoPartida,
+    if (requisicao.tipoRodada) {
+      qb.andWhere('partidas.tipoDaRodada = :tipoPartida', {
+        tipoPartida: requisicao.tipoRodada,
       });
     }
 
@@ -25,7 +41,19 @@ export class PartidaRepository extends Repository<Partida> {
       qb.limit(requisicao.limite);
     }
 
-    return qb.orderBy('partidas.dataCriacao', 'ASC').getMany();
+    qb.orderBy('partidas.dataCriacao', 'ASC');
+
+    return qb.getMany();
+  }
+
+  async encontraPartidaCompleta(id: string) {
+    const qb = this.createQueryBuilder('partidas');
+
+    this.aplicaRelacoesDeUmaPartidaCompleta(qb).where('partidas.id = :id', {
+      id,
+    });
+
+    return qb.getOne();
   }
 
   async removePartidasSemGanhadores(idLiga: string, manager: EntityManager) {

@@ -123,13 +123,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @OneToMany(undefined, ap &#x3D;&gt; ap.atleta)<br />
+                            @OneToMany(&#x27;AtletaEscalado&#x27;, &#x27;atleta&#x27;)<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/modules/pessoa/entities/atleta.entity.ts:24</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/modules/pessoa/entities/atleta.entity.ts:27</a></div>
                         </td>
                     </tr>
 
@@ -158,13 +158,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ManyToOne(undefined, equipe &#x3D;&gt; equipe.atletas)<br />@JoinColumn({name: &#x27;id_equipe&#x27;})<br />
+                            @ManyToOne(&#x27;Equipe&#x27;, {cascade: true, onDelete: &#x27;CASCADE&#x27;})<br />@JoinColumn({name: &#x27;id_equipe&#x27;})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/modules/pessoa/entities/atleta.entity.ts:21</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/modules/pessoa/entities/atleta.entity.ts:24</a></div>
                         </td>
                     </tr>
 
@@ -229,11 +229,14 @@ export class Atleta extends PessoaDeEquipe {
   @Column({ type: &#x27;smallint&#x27; })
   numero!: number;
 
-  @ManyToOne(() &#x3D;&gt; Equipe, (equipe) &#x3D;&gt; equipe.atletas)
+  @ManyToOne(&#x27;Equipe&#x27;, {
+    cascade: true,
+    onDelete: &#x27;CASCADE&#x27;,
+  })
   @JoinColumn({ name: &#x27;id_equipe&#x27; })
   equipe!: Equipe;
 
-  @OneToMany(() &#x3D;&gt; AtletaEscalado, (ap) &#x3D;&gt; ap.atleta)
+  @OneToMany(&#x27;AtletaEscalado&#x27;, &#x27;atleta&#x27;)
   atletas!: AtletaEscalado[];
 }
 </code></pre>

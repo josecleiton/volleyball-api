@@ -6,7 +6,7 @@ import { Column, Entity, Index, JoinColumn, ManyToOne } from 'typeorm';
 export class FundamentoAtleta extends EntidadeBase {
   @Column('uuid')
   @Index()
-  idAtletaPartida!: string;
+  idAtletaEscalado!: string;
 
   @Column({ type: 'int', default: 0 })
   bloqueios!: number;
@@ -26,19 +26,19 @@ export class FundamentoAtleta extends EntidadeBase {
   @Column({ type: 'int', default: 0 })
   pontos!: number;
 
-  public get mediasDeAcesPorSaque(): number {
+  public get saquesEfetivos(): number {
     if (!this.saques) return 0;
 
     return this.aces / this.saques;
   }
 
-  public get mediaDePontosPorAtaque(): number {
+  public get ataquesEfetivos(): number {
     if (!this.ataques) return 0;
 
     return this.pontos / this.ataques;
   }
 
-  @ManyToOne(() => AtletaEscalado)
-  @JoinColumn({ name: 'id_atleta_partida' })
+  @ManyToOne('AtletaEscalado', { onDelete: 'CASCADE' })
+  @JoinColumn({ name: 'id_atleta_escalado' })
   atleta!: AtletaEscalado;
 }

@@ -22,13 +22,12 @@ export class AtletaController {
 
   @Post()
   async criaAtleta(@Body() requisicao: CriaAtletaDto) {
-    requisicao.validar();
     return this.atletaService.criaAtleta(requisicao);
   }
 
   @Get(':id')
-  async pegaUm(@Param('id', ParseUUIDPipe) id: string) {
-    return this.atletaService.deveEncontrarUm(id);
+  async encontraUm(@Param('id', ParseUUIDPipe) id: string) {
+    return this.atletaService.deveEncontrar(id);
   }
 
   @Get()
@@ -41,7 +40,6 @@ export class AtletaController {
     @Param('id', ParseUUIDPipe) id: string,
     @Body() requisicao: AtualizaAtletaDto,
   ) {
-    requisicao.validar?.();
     return this.atletaService.atualizaAtleta(id, requisicao);
   }
 

@@ -1,0 +1,12 @@
+{
+  "moduleFileExtensions": ["js", "json", "ts"],
+  "testEnvironment": "node",
+  "testRegex": "test/.*e2e-spec.ts",
+  "transform": {
+    "^.+\\.(t|j)s$": "ts-jest"
+  },
+  "collectCoverage": true,
+  "collectCoverageFrom": ["src/modules/**"],
+  "modulePaths": ["<rootDir>"],
+  "testTimeout": 60000
+}

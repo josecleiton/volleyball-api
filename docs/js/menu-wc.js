@@ -62,13 +62,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/CoreModule.html" data-type="entity-link" >CoreModule</a>
                                 <li class="chapter inner">
                                     <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                        'data-target="#injectables-links-module-CoreModule-0e1bf9f389174af77f879bb56a2552af2ea230474beb72e916d4134fa40a0149318164485139a4981698a1be825071b9452eec91e52fff385d2bec9e47c07f68"' : 'data-target="#xs-injectables-links-module-CoreModule-0e1bf9f389174af77f879bb56a2552af2ea230474beb72e916d4134fa40a0149318164485139a4981698a1be825071b9452eec91e52fff385d2bec9e47c07f68"' }>
+                                        'data-target="#injectables-links-module-CoreModule-d10d7c8c2d26ae4eff68d72d10843adce0ce7418642c927b451f81e9d152451bfcd60b68e89fb44043253e67833a2578bd54c7d9253cc4a9f64fbfa40dc00415"' : 'data-target="#xs-injectables-links-module-CoreModule-d10d7c8c2d26ae4eff68d72d10843adce0ce7418642c927b451f81e9d152451bfcd60b68e89fb44043253e67833a2578bd54c7d9253cc4a9f64fbfa40dc00415"' }>
                                         <span class="icon ion-md-arrow-round-down"></span>
                                         <span>Injectables</span>
                                         <span class="icon ion-ios-arrow-down"></span>
                                     </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-CoreModule-0e1bf9f389174af77f879bb56a2552af2ea230474beb72e916d4134fa40a0149318164485139a4981698a1be825071b9452eec91e52fff385d2bec9e47c07f68"' :
-                                        'id="xs-injectables-links-module-CoreModule-0e1bf9f389174af77f879bb56a2552af2ea230474beb72e916d4134fa40a0149318164485139a4981698a1be825071b9452eec91e52fff385d2bec9e47c07f68"' }>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-CoreModule-d10d7c8c2d26ae4eff68d72d10843adce0ce7418642c927b451f81e9d152451bfcd60b68e89fb44043253e67833a2578bd54c7d9253cc4a9f64fbfa40dc00415"' :
+                                        'id="xs-injectables-links-module-CoreModule-d10d7c8c2d26ae4eff68d72d10843adce0ce7418642c927b451f81e9d152451bfcd60b68e89fb44043253e67833a2578bd54c7d9253cc4a9f64fbfa40dc00415"' }>
                                         <li class="link">
                                             <a href="injectables/TypeORMFilterService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >TypeORMFilterService</a>
                                         </li>
@@ -113,29 +113,59 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/EstatisticaModule.html" data-type="entity-link" >EstatisticaModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                            'data-target="#controllers-links-module-EstatisticaModule-ec7ba05857fbe03af12970cd6e50371367271e32e0e9b8e99764b596f175a9c40344f537b2214bda7649df9d6fb7ee63c2be8610c4972490ffbbf4e430265dcb"' : 'data-target="#xs-controllers-links-module-EstatisticaModule-ec7ba05857fbe03af12970cd6e50371367271e32e0e9b8e99764b596f175a9c40344f537b2214bda7649df9d6fb7ee63c2be8610c4972490ffbbf4e430265dcb"' }>
+                                            'data-target="#controllers-links-module-EstatisticaModule-0f494c88e40835b6e8bdb94f41ba538d6134c00f399383422f1446f3cc7cda6d623769332c0fc1793ab00e348a23db48a1c4bc6b295f80fd6ba32764899ce3c7"' : 'data-target="#xs-controllers-links-module-EstatisticaModule-0f494c88e40835b6e8bdb94f41ba538d6134c00f399383422f1446f3cc7cda6d623769332c0fc1793ab00e348a23db48a1c4bc6b295f80fd6ba32764899ce3c7"' }>
                                             <span class="icon ion-md-swap"></span>
                                             <span>Controllers</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-EstatisticaModule-ec7ba05857fbe03af12970cd6e50371367271e32e0e9b8e99764b596f175a9c40344f537b2214bda7649df9d6fb7ee63c2be8610c4972490ffbbf4e430265dcb"' :
-                                            'id="xs-controllers-links-module-EstatisticaModule-ec7ba05857fbe03af12970cd6e50371367271e32e0e9b8e99764b596f175a9c40344f537b2214bda7649df9d6fb7ee63c2be8610c4972490ffbbf4e430265dcb"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-EstatisticaModule-0f494c88e40835b6e8bdb94f41ba538d6134c00f399383422f1446f3cc7cda6d623769332c0fc1793ab00e348a23db48a1c4bc6b295f80fd6ba32764899ce3c7"' :
+                                            'id="xs-controllers-links-module-EstatisticaModule-0f494c88e40835b6e8bdb94f41ba538d6134c00f399383422f1446f3cc7cda6d623769332c0fc1793ab00e348a23db48a1c4bc6b295f80fd6ba32764899ce3c7"' }>
+                                            <li class="link">
+                                                <a href="controllers/CraqueDaGaleraController.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >CraqueDaGaleraController</a>
+                                            </li>
                                             <li class="link">
                                                 <a href="controllers/FundamentoAtletaController.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >FundamentoAtletaController</a>
+                                            </li>
+                                            <li class="link">
+                                                <a href="controllers/MelhorCentralController.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >MelhorCentralController</a>
+                                            </li>
+                                            <li class="link">
+                                                <a href="controllers/MelhorLiberoController.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >MelhorLiberoController</a>
+                                            </li>
+                                            <li class="link">
+                                                <a href="controllers/MelhorPontaController.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >MelhorPontaController</a>
+                                            </li>
+                                            <li class="link">
+                                                <a href="controllers/VotoDaGaleraController.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >VotoDaGaleraController</a>
                                             </li>
                                         </ul>
                                     </li>
                                 <li class="chapter inner">
                                     <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                        'data-target="#injectables-links-module-EstatisticaModule-ec7ba05857fbe03af12970cd6e50371367271e32e0e9b8e99764b596f175a9c40344f537b2214bda7649df9d6fb7ee63c2be8610c4972490ffbbf4e430265dcb"' : 'data-target="#xs-injectables-links-module-EstatisticaModule-ec7ba05857fbe03af12970cd6e50371367271e32e0e9b8e99764b596f175a9c40344f537b2214bda7649df9d6fb7ee63c2be8610c4972490ffbbf4e430265dcb"' }>
+                                        'data-target="#injectables-links-module-EstatisticaModule-0f494c88e40835b6e8bdb94f41ba538d6134c00f399383422f1446f3cc7cda6d623769332c0fc1793ab00e348a23db48a1c4bc6b295f80fd6ba32764899ce3c7"' : 'data-target="#xs-injectables-links-module-EstatisticaModule-0f494c88e40835b6e8bdb94f41ba538d6134c00f399383422f1446f3cc7cda6d623769332c0fc1793ab00e348a23db48a1c4bc6b295f80fd6ba32764899ce3c7"' }>
                                         <span class="icon ion-md-arrow-round-down"></span>
                                         <span>Injectables</span>
                                         <span class="icon ion-ios-arrow-down"></span>
                                     </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-EstatisticaModule-ec7ba05857fbe03af12970cd6e50371367271e32e0e9b8e99764b596f175a9c40344f537b2214bda7649df9d6fb7ee63c2be8610c4972490ffbbf4e430265dcb"' :
-                                        'id="xs-injectables-links-module-EstatisticaModule-ec7ba05857fbe03af12970cd6e50371367271e32e0e9b8e99764b596f175a9c40344f537b2214bda7649df9d6fb7ee63c2be8610c4972490ffbbf4e430265dcb"' }>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-EstatisticaModule-0f494c88e40835b6e8bdb94f41ba538d6134c00f399383422f1446f3cc7cda6d623769332c0fc1793ab00e348a23db48a1c4bc6b295f80fd6ba32764899ce3c7"' :
+                                        'id="xs-injectables-links-module-EstatisticaModule-0f494c88e40835b6e8bdb94f41ba538d6134c00f399383422f1446f3cc7cda6d623769332c0fc1793ab00e348a23db48a1c4bc6b295f80fd6ba32764899ce3c7"' }>
+                                        <li class="link">
+                                            <a href="injectables/CraqueDaGaleraService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >CraqueDaGaleraService</a>
+                                        </li>
                                         <li class="link">
                                             <a href="injectables/FundamentoAtletaService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >FundamentoAtletaService</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="injectables/MelhorCentralService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >MelhorCentralService</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="injectables/MelhorLiberoService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >MelhorLiberoService</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="injectables/MelhorPontaService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >MelhorPontaService</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="injectables/VotoDaGaleraService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >VotoDaGaleraService</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -218,13 +248,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/PartidaModule.html" data-type="entity-link" >PartidaModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                            'data-target="#controllers-links-module-PartidaModule-b13724f8ec9b70b6de8a3f318985b7eb534e6e6cf7293d00c71104f8c92f3ad1596ca6a80c3258166c20745f3a1c4d4455b7d567aa041dc92aab3f4656491d3c"' : 'data-target="#xs-controllers-links-module-PartidaModule-b13724f8ec9b70b6de8a3f318985b7eb534e6e6cf7293d00c71104f8c92f3ad1596ca6a80c3258166c20745f3a1c4d4455b7d567aa041dc92aab3f4656491d3c"' }>
+                                            'data-target="#controllers-links-module-PartidaModule-6bd97d4eb1c2e5c3163219ad432cbd0840c0cf66adc33a6f1a60a116fd4e2968fc61f747de4cfef3f6da4a19ab810887cca4b904693e401d28e567c9c440dabe"' : 'data-target="#xs-controllers-links-module-PartidaModule-6bd97d4eb1c2e5c3163219ad432cbd0840c0cf66adc33a6f1a60a116fd4e2968fc61f747de4cfef3f6da4a19ab810887cca4b904693e401d28e567c9c440dabe"' }>
                                             <span class="icon ion-md-swap"></span>
                                             <span>Controllers</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-PartidaModule-b13724f8ec9b70b6de8a3f318985b7eb534e6e6cf7293d00c71104f8c92f3ad1596ca6a80c3258166c20745f3a1c4d4455b7d567aa041dc92aab3f4656491d3c"' :
-                                            'id="xs-controllers-links-module-PartidaModule-b13724f8ec9b70b6de8a3f318985b7eb534e6e6cf7293d00c71104f8c92f3ad1596ca6a80c3258166c20745f3a1c4d4455b7d567aa041dc92aab3f4656491d3c"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-PartidaModule-6bd97d4eb1c2e5c3163219ad432cbd0840c0cf66adc33a6f1a60a116fd4e2968fc61f747de4cfef3f6da4a19ab810887cca4b904693e401d28e567c9c440dabe"' :
+                                            'id="xs-controllers-links-module-PartidaModule-6bd97d4eb1c2e5c3163219ad432cbd0840c0cf66adc33a6f1a60a116fd4e2968fc61f747de4cfef3f6da4a19ab810887cca4b904693e401d28e567c9c440dabe"' }>
                                             <li class="link">
                                                 <a href="controllers/PartidaController.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >PartidaController</a>
                                             </li>
@@ -232,13 +262,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     </li>
                                 <li class="chapter inner">
                                     <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                        'data-target="#injectables-links-module-PartidaModule-b13724f8ec9b70b6de8a3f318985b7eb534e6e6cf7293d00c71104f8c92f3ad1596ca6a80c3258166c20745f3a1c4d4455b7d567aa041dc92aab3f4656491d3c"' : 'data-target="#xs-injectables-links-module-PartidaModule-b13724f8ec9b70b6de8a3f318985b7eb534e6e6cf7293d00c71104f8c92f3ad1596ca6a80c3258166c20745f3a1c4d4455b7d567aa041dc92aab3f4656491d3c"' }>
+                                        'data-target="#injectables-links-module-PartidaModule-6bd97d4eb1c2e5c3163219ad432cbd0840c0cf66adc33a6f1a60a116fd4e2968fc61f747de4cfef3f6da4a19ab810887cca4b904693e401d28e567c9c440dabe"' : 'data-target="#xs-injectables-links-module-PartidaModule-6bd97d4eb1c2e5c3163219ad432cbd0840c0cf66adc33a6f1a60a116fd4e2968fc61f747de4cfef3f6da4a19ab810887cca4b904693e401d28e567c9c440dabe"' }>
                                         <span class="icon ion-md-arrow-round-down"></span>
                                         <span>Injectables</span>
                                         <span class="icon ion-ios-arrow-down"></span>
                                     </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-PartidaModule-b13724f8ec9b70b6de8a3f318985b7eb534e6e6cf7293d00c71104f8c92f3ad1596ca6a80c3258166c20745f3a1c4d4455b7d567aa041dc92aab3f4656491d3c"' :
-                                        'id="xs-injectables-links-module-PartidaModule-b13724f8ec9b70b6de8a3f318985b7eb534e6e6cf7293d00c71104f8c92f3ad1596ca6a80c3258166c20745f3a1c4d4455b7d567aa041dc92aab3f4656491d3c"' }>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-PartidaModule-6bd97d4eb1c2e5c3163219ad432cbd0840c0cf66adc33a6f1a60a116fd4e2968fc61f747de4cfef3f6da4a19ab810887cca4b904693e401d28e567c9c440dabe"' :
+                                        'id="xs-injectables-links-module-PartidaModule-6bd97d4eb1c2e5c3163219ad432cbd0840c0cf66adc33a6f1a60a116fd4e2968fc61f747de4cfef3f6da4a19ab810887cca4b904693e401d28e567c9c440dabe"' }>
                                         <li class="link">
                                             <a href="injectables/AtletaEscaladoService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >AtletaEscaladoService</a>
                                         </li>
@@ -334,6 +364,26 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     </ul>
                                 </li>
                             </li>
+                            <li class="link">
+                                <a href="modules/SmsModule.html" data-type="entity-link" >SmsModule</a>
+                                <li class="chapter inner">
+                                    <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
+                                        'data-target="#injectables-links-module-SmsModule-388af02b1d04a95dbee3e2fc5791423e171836d2bce4c9e405e961743c8f115dcc18fa6f51095e90324462aaa60de24e68e4f867b3a86ce1a64a26b7efd0dd64"' : 'data-target="#xs-injectables-links-module-SmsModule-388af02b1d04a95dbee3e2fc5791423e171836d2bce4c9e405e961743c8f115dcc18fa6f51095e90324462aaa60de24e68e4f867b3a86ce1a64a26b7efd0dd64"' }>
+                                        <span class="icon ion-md-arrow-round-down"></span>
+                                        <span>Injectables</span>
+                                        <span class="icon ion-ios-arrow-down"></span>
+                                    </div>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-SmsModule-388af02b1d04a95dbee3e2fc5791423e171836d2bce4c9e405e961743c8f115dcc18fa6f51095e90324462aaa60de24e68e4f867b3a86ce1a64a26b7efd0dd64"' :
+                                        'id="xs-injectables-links-module-SmsModule-388af02b1d04a95dbee3e2fc5791423e171836d2bce4c9e405e961743c8f115dcc18fa6f51095e90324462aaa60de24e68e4f867b3a86ce1a64a26b7efd0dd64"' }>
+                                        <li class="link">
+                                            <a href="injectables/EnviaVerificacaoSmsService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EnviaVerificacaoSmsService</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="injectables/VerificaCodigoSmsService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >VerificaCodigoSmsService</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </li>
                 </ul>
                 </li>
                         <li class="chapter">
@@ -354,6 +404,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="controllers/AuxiliarController.html" data-type="entity-link" >AuxiliarController</a>
                                 </li>
                                 <li class="link">
+                                    <a href="controllers/CraqueDaGaleraController.html" data-type="entity-link" >CraqueDaGaleraController</a>
+                                </li>
+                                <li class="link">
                                     <a href="controllers/DelegadoController.html" data-type="entity-link" >DelegadoController</a>
                                 </li>
                                 <li class="link">
@@ -369,6 +422,15 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="controllers/LigaController.html" data-type="entity-link" >LigaController</a>
                                 </li>
                                 <li class="link">
+                                    <a href="controllers/MelhorCentralController.html" data-type="entity-link" >MelhorCentralController</a>
+                                </li>
+                                <li class="link">
+                                    <a href="controllers/MelhorLiberoController.html" data-type="entity-link" >MelhorLiberoController</a>
+                                </li>
+                                <li class="link">
+                                    <a href="controllers/MelhorPontaController.html" data-type="entity-link" >MelhorPontaController</a>
+                                </li>
+                                <li class="link">
                                     <a href="controllers/PartidaController.html" data-type="entity-link" >PartidaController</a>
                                 </li>
                                 <li class="link">
@@ -376,6 +438,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 </li>
                                 <li class="link">
                                     <a href="controllers/TecnicoController.html" data-type="entity-link" >TecnicoController</a>
+                                </li>
+                                <li class="link">
+                                    <a href="controllers/VotoDaGaleraController.html" data-type="entity-link" >VotoDaGaleraController</a>
                                 </li>
                             </ul>
                         </li>
@@ -429,6 +494,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <li class="link">
                                     <a href="entities/Tecnico.html" data-type="entity-link" >Tecnico</a>
                                 </li>
+                                <li class="link">
+                                    <a href="entities/VotoDaGalera.html" data-type="entity-link" >VotoDaGalera</a>
+                                </li>
                             </ul>
                         </li>
                     <li class="chapter">
@@ -479,7 +547,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/ArbitroRespostaDto.html" data-type="entity-link" >ArbitroRespostaDto</a>
                             </li>
                             <li class="link">
+                                <a href="classes/ArbitroServer.html" data-type="entity-link" >ArbitroServer</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/Atleta.html" data-type="entity-link" >Atleta</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/AtletaComEquipeRespostaDto.html" data-type="entity-link" >AtletaComEquipeRespostaDto</a>
                             </li>
                             <li class="link">
                                 <a href="classes/AtletaEscalado.html" data-type="entity-link" >AtletaEscalado</a>
@@ -503,6 +577,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/AtletaRespostaDto.html" data-type="entity-link" >AtletaRespostaDto</a>
                             </li>
                             <li class="link">
+                                <a href="classes/AtletaServer.html" data-type="entity-link" >AtletaServer</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/AtualizaAtletaDto.html" data-type="entity-link" >AtualizaAtletaDto</a>
                             </li>
                             <li class="link">
@@ -512,13 +589,37 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/AtualizaPartidaStatusDto.html" data-type="entity-link" >AtualizaPartidaStatusDto</a>
                             </li>
                             <li class="link">
+                                <a href="classes/AtualizaPessoaDto.html" data-type="entity-link" >AtualizaPessoaDto</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/AuxiliarRepository.html" data-type="entity-link" >AuxiliarRepository</a>
                             </li>
                             <li class="link">
                                 <a href="classes/AuxiliarRespostaDto.html" data-type="entity-link" >AuxiliarRespostaDto</a>
                             </li>
                             <li class="link">
+                                <a href="classes/AuxiliarServer.html" data-type="entity-link" >AuxiliarServer</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/CadastrarParticipantesPartidaDto.html" data-type="entity-link" >CadastrarParticipantesPartidaDto</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/CascadeAll1655171226824.html" data-type="entity-link" >CascadeAll1655171226824</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/CascadeAll21655208308702.html" data-type="entity-link" >CascadeAll21655208308702</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/ConfirmarVotoDto.html" data-type="entity-link" >ConfirmarVotoDto</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/CraqueDaGaleraRespostaDto.html" data-type="entity-link" >CraqueDaGaleraRespostaDto</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/CraqueDaGaleraView.html" data-type="entity-link" >CraqueDaGaleraView</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/CraqueDaGaleraViewRepository.html" data-type="entity-link" >CraqueDaGaleraViewRepository</a>
                             </li>
                             <li class="link">
                                 <a href="classes/CriaArbitroDto.html" data-type="entity-link" >CriaArbitroDto</a>
@@ -534,6 +635,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="classes/CriaAuxiliarDto.html" data-type="entity-link" >CriaAuxiliarDto</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/CriaCraqueDaGaleraView1654858740252.html" data-type="entity-link" >CriaCraqueDaGaleraView1654858740252</a>
                             </li>
                             <li class="link">
                                 <a href="classes/CriaDelegadoDto.html" data-type="entity-link" >CriaDelegadoDto</a>
@@ -563,7 +667,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/CriaLigaDto.html" data-type="entity-link" >CriaLigaDto</a>
                             </li>
                             <li class="link">
+                                <a href="classes/CriaMelhorCentralView1654692169345.html" data-type="entity-link" >CriaMelhorCentralView1654692169345</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/CriaMelhorLiberoView1654530011934.html" data-type="entity-link" >CriaMelhorLiberoView1654530011934</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/CriaMelhorPontaView1654795843306.html" data-type="entity-link" >CriaMelhorPontaView1654795843306</a>
                             </li>
                             <li class="link">
                                 <a href="classes/CriaPartida1653348797091.html" data-type="entity-link" >CriaPartida1653348797091</a>
@@ -587,10 +697,22 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/CriaTecnicoDto.html" data-type="entity-link" >CriaTecnicoDto</a>
                             </li>
                             <li class="link">
+                                <a href="classes/CriaVotoDaGalera1654857614503.html" data-type="entity-link" >CriaVotoDaGalera1654857614503</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/DelegadoRepository.html" data-type="entity-link" >DelegadoRepository</a>
                             </li>
                             <li class="link">
                                 <a href="classes/DelegadoRespostaDto.html" data-type="entity-link" >DelegadoRespostaDto</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/DelegadoServer.html" data-type="entity-link" >DelegadoServer</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/DeveListarAtletasDto.html" data-type="entity-link" >DeveListarAtletasDto</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/DropTabelasNUsadas1654696649353.html" data-type="entity-link" >DropTabelasNUsadas1654696649353</a>
                             </li>
                             <li class="link">
                                 <a href="classes/EditaMelhorLiberoView1654600637313.html" data-type="entity-link" >EditaMelhorLiberoView1654600637313</a>
@@ -602,7 +724,19 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/Equipe.html" data-type="entity-link" >Equipe</a>
                             </li>
                             <li class="link">
+                                <a href="classes/EquipeAptaServer.html" data-type="entity-link" >EquipeAptaServer</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/EquipePartidaCircularDep1655328926296.html" data-type="entity-link" >EquipePartidaCircularDep1655328926296</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/EquipePartidaRepository.html" data-type="entity-link" >EquipePartidaRepository</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/EquipePartidaRespostaDto.html" data-type="entity-link" >EquipePartidaRespostaDto</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/EquipePartidasAjustaRelacionamento1654696771004.html" data-type="entity-link" >EquipePartidasAjustaRelacionamento1654696771004</a>
                             </li>
                             <li class="link">
                                 <a href="classes/EquipeRepository.html" data-type="entity-link" >EquipeRepository</a>
@@ -611,7 +745,19 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/EquipeRespostaDto.html" data-type="entity-link" >EquipeRespostaDto</a>
                             </li>
                             <li class="link">
+                                <a href="classes/EquipeServer.html" data-type="entity-link" >EquipeServer</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/EquipeSimplificadaRespostaDto.html" data-type="entity-link" >EquipeSimplificadaRespostaDto</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/EstadoLiga1654349284480.html" data-type="entity-link" >EstadoLiga1654349284480</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/EstatisticaMediaPorPartidaENaoAbsoluta1654794767125.html" data-type="entity-link" >EstatisticaMediaPorPartidaENaoAbsoluta1654794767125</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/EstatisticaViewFiltraPosicaoDoAtletaEscalado1654787068806.html" data-type="entity-link" >EstatisticaViewFiltraPosicaoDoAtletaEscalado1654787068806</a>
                             </li>
                             <li class="link">
                                 <a href="classes/FinalLigaRespostaDto.html" data-type="entity-link" >FinalLigaRespostaDto</a>
@@ -635,6 +781,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/GinasioRespostaDto.html" data-type="entity-link" >GinasioRespostaDto</a>
                             </li>
                             <li class="link">
+                                <a href="classes/GinasioServer.html" data-type="entity-link" >GinasioServer</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/HttpExceptionFilter.html" data-type="entity-link" >HttpExceptionFilter</a>
                             </li>
                             <li class="link">
@@ -656,6 +805,15 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/InicializaSemifinalDto.html" data-type="entity-link" >InicializaSemifinalDto</a>
                             </li>
                             <li class="link">
+                                <a href="classes/IniciarVotoDto.html" data-type="entity-link" >IniciarVotoDto</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/IniciarVotoRespostaDto.html" data-type="entity-link" >IniciarVotoRespostaDto</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/LigaIniciadaServer.html" data-type="entity-link" >LigaIniciadaServer</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/LigaRenomeiaEstadoParaStatus1654366866798.html" data-type="entity-link" >LigaRenomeiaEstadoParaStatus1654366866798</a>
                             </li>
                             <li class="link">
@@ -663,6 +821,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="classes/LigaRespostaDto.html" data-type="entity-link" >LigaRespostaDto</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/LigaServer.html" data-type="entity-link" >LigaServer</a>
                             </li>
                             <li class="link">
                                 <a href="classes/LigaStatusRenomeado1654398829604.html" data-type="entity-link" >LigaStatusRenomeado1654398829604</a>
@@ -695,13 +856,34 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/MaterializedViewRepository.html" data-type="entity-link" >MaterializedViewRepository</a>
                             </li>
                             <li class="link">
+                                <a href="classes/MelhorCentralRespostaDto.html" data-type="entity-link" >MelhorCentralRespostaDto</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/MelhorCentralView.html" data-type="entity-link" >MelhorCentralView</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/MelhorCentralViewRepository.html" data-type="entity-link" >MelhorCentralViewRepository</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/MelhorLiberoRespostaDto.html" data-type="entity-link" >MelhorLiberoRespostaDto</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/MelhorLiberoView.html" data-type="entity-link" >MelhorLiberoView</a>
                             </li>
                             <li class="link">
                                 <a href="classes/MelhorLiberoViewRepository.html" data-type="entity-link" >MelhorLiberoViewRepository</a>
                             </li>
                             <li class="link">
-                                <a href="classes/ParticipacaoPartidaRepository.html" data-type="entity-link" >ParticipacaoPartidaRepository</a>
+                                <a href="classes/MelhorPontaRespostaDto.html" data-type="entity-link" >MelhorPontaRespostaDto</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/MelhorPontaView.html" data-type="entity-link" >MelhorPontaView</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/MelhorPontaViewRepository.html" data-type="entity-link" >MelhorPontaViewRepository</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/MelhorPosicaoViewRepository.html" data-type="entity-link" >MelhorPosicaoViewRepository</a>
                             </li>
                             <li class="link">
                                 <a href="classes/Partida.html" data-type="entity-link" >Partida</a>
@@ -723,6 +905,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="classes/PartidaRespostaDto.html" data-type="entity-link" >PartidaRespostaDto</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/PartidaServer.html" data-type="entity-link" >PartidaServer</a>
                             </li>
                             <li class="link">
                                 <a href="classes/PessoaDeEquipe.html" data-type="entity-link" >PessoaDeEquipe</a>
@@ -767,7 +952,16 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/TecnicoRespostaDto.html" data-type="entity-link" >TecnicoRespostaDto</a>
                             </li>
                             <li class="link">
+                                <a href="classes/TecnicoServer.html" data-type="entity-link" >TecnicoServer</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/TemPessoa.html" data-type="entity-link" >TemPessoa</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/VotoDaGalera.html" data-type="entity-link" >VotoDaGalera</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/VotoDaGaleraRepository.html" data-type="entity-link" >VotoDaGaleraRepository</a>
                             </li>
                         </ul>
                     </li>
@@ -795,7 +989,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="injectables/ClassificacaoGeneratorService.html" data-type="entity-link" >ClassificacaoGeneratorService</a>
                                 </li>
                                 <li class="link">
+                                    <a href="injectables/CraqueDaGaleraService.html" data-type="entity-link" >CraqueDaGaleraService</a>
+                                </li>
+                                <li class="link">
                                     <a href="injectables/DelegadoService.html" data-type="entity-link" >DelegadoService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/EnviaVerificacaoSmsService.html" data-type="entity-link" >EnviaVerificacaoSmsService</a>
                                 </li>
                                 <li class="link">
                                     <a href="injectables/EquipeService.html" data-type="entity-link" >EquipeService</a>
@@ -811,6 +1011,15 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 </li>
                                 <li class="link">
                                     <a href="injectables/LigaService.html" data-type="entity-link" >LigaService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/MelhorCentralService.html" data-type="entity-link" >MelhorCentralService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/MelhorLiberoService.html" data-type="entity-link" >MelhorLiberoService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/MelhorPontaService.html" data-type="entity-link" >MelhorPontaService</a>
                                 </li>
                                 <li class="link">
                                     <a href="injectables/PartidaService.html" data-type="entity-link" >PartidaService</a>
@@ -831,7 +1040,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="injectables/TypeORMFilterService.html" data-type="entity-link" >TypeORMFilterService</a>
                                 </li>
                                 <li class="link">
+                                    <a href="injectables/VerificaCodigoSmsService.html" data-type="entity-link" >VerificaCodigoSmsService</a>
+                                </li>
+                                <li class="link">
                                     <a href="injectables/VerificaUrlService.html" data-type="entity-link" >VerificaUrlService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/VotoDaGaleraService.html" data-type="entity-link" >VotoDaGaleraService</a>
                                 </li>
                             </ul>
                         </li>
@@ -865,19 +1080,31 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/IConfiguraInicializaoLiga.html" data-type="entity-link" >IConfiguraInicializaoLiga</a>
                             </li>
                             <li class="link">
+                                <a href="interfaces/IEnviaVerificacaoSmsResposta.html" data-type="entity-link" >IEnviaVerificacaoSmsResposta</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/IException.html" data-type="entity-link" >IException</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/IInfoRodada.html" data-type="entity-link" >IInfoRodada</a>
                             </li>
                             <li class="link">
+                                <a href="interfaces/IInicializaLigaDto.html" data-type="entity-link" >IInicializaLigaDto</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/IMataMataDto.html" data-type="entity-link" >IMataMataDto</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/IMelhorEstatisticaService.html" data-type="entity-link" >IMelhorEstatisticaService</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/IPontoNoSet.html" data-type="entity-link" >IPontoNoSet</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/IPontuacaoPartidaDto.html" data-type="entity-link" >IPontuacaoPartidaDto</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/IRateLimitConfig.html" data-type="entity-link" >IRateLimitConfig</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/ITypeORMFilterRequest.html" data-type="entity-link" >ITypeORMFilterRequest</a>

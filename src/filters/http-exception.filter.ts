@@ -38,8 +38,8 @@ export class HttpExceptionFilter implements ExceptionFilter {
       path: request.url,
       message: exception.message,
     };
-    const NODE_ENV = this.configService.get('NODE_ENV');
-    if (NODE_ENV !== 'production') {
+    const env = this.configService.get('NODE_ENV');
+    if (env !== 'production') {
       ex.stack = exception.stack;
       ex.name = exception.name;
     }
@@ -50,8 +50,10 @@ export class HttpExceptionFilter implements ExceptionFilter {
         exception.getResponse() as IClassValidatorException;
       ex.message = classValidatorEx.message;
       ex.name = classValidatorEx.error;
+    }
 
-      console.log(ex);
+    if (env !== 'production' && env !== 'test') {
+      console.warn(ex);
     }
 
     response.status(status).send(ex);

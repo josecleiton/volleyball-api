@@ -1,10 +1,8 @@
-import { BadRequestException } from '@nestjs/common';
 import { Type } from 'class-transformer';
-import { IsDate, IsEnum, IsString, Length } from 'class-validator';
-import { differenceInYears } from 'date-fns';
+import { IsEnum, IsOptional, IsString, Length, MaxDate } from 'class-validator';
+import { startOfYear, subYears } from 'date-fns';
 import { Genero } from 'src/modules/core/enums';
 import { Pessoa } from '../entities/pessoa.entity';
-import { TipoPessoa } from '../enums';
 
 export class CriaPessoaDto {
   @IsString()
@@ -18,7 +16,7 @@ export class CriaPessoaDto {
   @IsEnum(Genero)
   genero!: Genero;
 
-  @IsDate()
+  @MaxDate(subYears(startOfYear(new Date()), CriaPessoaDto.idadeLimite))
   @Type(() => Date)
   dataNascimento!: Date;
 
@@ -26,26 +24,27 @@ export class CriaPessoaDto {
   @Length(11, 11)
   documentoCbv!: string;
 
-  paraPessoa(tipo: TipoPessoa): Pessoa {
-    return Object.assign(new Pessoa(tipo), this);
-  }
+  static readonly idadeLimite = 15;
+}
 
-  private static idadeLimite = 15;
+export class AtualizaPessoaDto {
+  @IsOptional()
+  @IsString()
+  @Length(3, 255)
+  nome?: string;
 
-  validar() {
-    if (
-      differenceInYears(new Date(), this.dataNascimento) <
-      CriaPessoaDto.idadeLimite
-    ) {
-      throw new BadRequestException(
-        `Idade menor que ${CriaPessoaDto.idadeLimite} anos`,
-      );
-    }
-  }
+  @IsOptional()
+  @IsEnum(Genero)
+  genero?: Genero;
+
+  @IsOptional()
+  @MaxDate(subYears(startOfYear(new Date()), CriaPessoaDto.idadeLimite))
+  @Type(() => Date)
+  dataNascimento?: Date;
 }
 
 export class PessoaRespostaDto {
-  id: string;
+  idPessoa: string;
   nome: string;
   documento: string;
   genero: Genero;
@@ -53,12 +52,11 @@ export class PessoaRespostaDto {
   documentoCbv: string;
 
   constructor(pessoa: Pessoa) {
-    this.id = pessoa.id;
+    this.idPessoa = pessoa.id;
     this.nome = pessoa.nome;
     this.documento = pessoa.documento;
     this.genero = pessoa.genero;
     this.idade = pessoa.idade;
     this.documentoCbv = pessoa.documentoCbv;
-    this.idade = pessoa.idade;
   }
 }
