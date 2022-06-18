@@ -1,3 +1,4 @@
+import { IBuscarConfrontoEquipes } from 'src/modules/pontuacao/dtos/pontuacao.dto';
 import {
   EntityManager,
   EntityRepository,
@@ -23,6 +24,16 @@ export class PartidaRepository extends Repository<Partida> {
       .innerJoinAndSelect('mandantes.equipe', 'equipesMandantes');
   }
 
+  async encontraPartidaCompleta(id: string) {
+    const qb = this.createQueryBuilder('partidas');
+
+    this.aplicaRelacoesDeUmaPartidaCompleta(qb).where('partidas.id = :id', {
+      id,
+    });
+
+    return qb.getOne();
+  }
+
   async listaPartidasOrdenadas(requisicao: ListaPartidasDto) {
     const qb = this.createQueryBuilder('partidas');
 
@@ -44,16 +55,6 @@ export class PartidaRepository extends Repository<Partida> {
     qb.orderBy('partidas.dataCriacao', 'ASC');
 
     return qb.getMany();
-  }
-
-  async encontraPartidaCompleta(id: string) {
-    const qb = this.createQueryBuilder('partidas');
-
-    this.aplicaRelacoesDeUmaPartidaCompleta(qb).where('partidas.id = :id', {
-      id,
-    });
-
-    return qb.getOne();
   }
 
   async removePartidasSemGanhadores(idLiga: string, manager: EntityManager) {
@@ -96,5 +97,28 @@ export class PartidaRepository extends Repository<Partida> {
       .andWhere('p.tipoDaRodada IN (:...tiposDeRodada)', { tiposDeRodada });
 
     return qb.getCount();
+  }
+
+  async buscarConfrontoEquipes({
+    idTime1,
+    idTime2,
+    tipoRodadas,
+  }: IBuscarConfrontoEquipes) {
+    const qb = this.createQueryBuilder('p');
+
+    const result = await qb
+      .where('p.id_visitante =:idTime1 and p.id_mandante =:idTime2', {
+        idTime1,
+        idTime2,
+      })
+      .orWhere('p.id_visitante =:idTime2 and p.id_mandante =:idTime1', {
+        idTime1,
+        idTime2,
+      })
+      .andWhere('p.status= :status', { status: 'concluida' })
+      .andWhere('p.tipo_da_rodada IN (:...tipoRodadas)', { tipoRodadas })
+      .getMany();
+
+    return result;
   }
 }

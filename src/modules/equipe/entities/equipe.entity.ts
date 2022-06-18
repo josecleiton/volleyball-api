@@ -29,7 +29,7 @@ export class Equipe extends EntidadeBase {
   urlBrasao?: string;
 
   @Column({ name: 'apta', type: 'boolean', default: false })
-  private _apta = false;
+  _apta = false;
 
   public get apta(): boolean {
     if (!this.atletas || !this.auxiliares) {

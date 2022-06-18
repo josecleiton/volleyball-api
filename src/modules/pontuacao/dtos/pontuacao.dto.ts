@@ -1,4 +1,5 @@
 import { EquipeRespostaDto } from 'src/modules/equipe/dto/equipe.dto';
+import { TipoRodada } from 'src/modules/partida/types/tipo-rodada.type';
 import { PontuacaoView } from '../entities/pontuacao-view.entity';
 
 export class PontuacaoRespostaDto {
@@ -29,4 +30,22 @@ export class PontuacaoRespostaDto {
 
     this.equipe = new EquipeRespostaDto(p.equipe);
   }
+}
+
+export interface ITrocarOrdemPontuacoes {
+  indexAnterior: number;
+  indexProximo: number;
+}
+
+export interface IBuscarConfrontoEquipes {
+  idTime1: string;
+  idTime2: string;
+  tipoRodadas: TipoRodada[];
+}
+
+export interface IAplicarCriterioDePontuacao {
+  a: number;
+  b: number;
+  indexAnterior: number;
+  indexProximo: number;
 }
