@@ -1,8 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { DirectedGraph } from 'datastructures-js';
-import { IBuscarConfrontoEquipesEmpatadas } from '../partida/dto/partida-pontuacao.dto';
-import { PartidaRepository } from '../partida/repositories';
-import { IAplicaRegraDesempateDto } from './dtos/desempate.dto';
+import { compareAsc } from 'date-fns';
+import { IBuscarConfrontoEquipesEmpatadas } from '../../partida/dto/partida-pontuacao.dto';
+import { PartidaRepository } from '../../partida/repositories';
+import { IAplicaRegraDesempateDto } from '../dtos/desempate.dto';
 
 @Injectable()
 export class AplicaRegraDesempateService {
@@ -29,10 +30,15 @@ export class AplicaRegraDesempateService {
       const fatorPontosAverage = b.pontosAverage - a.pontosAverage;
       if (fatorPontosAverage) return fatorPontosAverage;
 
-      return -grafoConfrontoDireto.buscaResultadoConfrontoDireto(
-        b.idEquipe,
-        a.idEquipe,
-      );
+      const fatorConfrontoDireto =
+        -grafoConfrontoDireto.buscaResultadoConfrontoDireto(
+          b.idEquipe,
+          a.idEquipe,
+        );
+
+      if (fatorConfrontoDireto) return fatorConfrontoDireto;
+
+      return compareAsc(b.equipe.dataCriacao, a.equipe.dataCriacao);
     });
   }
 }

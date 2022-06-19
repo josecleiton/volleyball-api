@@ -6,7 +6,7 @@ import {
 } from '@nestjs/common';
 import { groupBy } from 'lodash';
 import { AtletaRespostaDto } from 'src/modules/pessoa/dto/atleta.dto';
-import { PontuacaoViewRepository } from 'src/modules/pontuacao/repositories/pontuacao-view.repository';
+import { RegistraDesistenciaService } from 'src/modules/pontuacao/services/registra-desistencia.service';
 import { Connection } from 'typeorm';
 import { Posicao, TipoArbitro } from '../../pessoa/enums';
 import { ArbitroService } from '../../pessoa/services/arbitro.service';
@@ -15,7 +15,6 @@ import { DelegadoService } from '../../pessoa/services/delegado.service';
 import {
   AtletaParticipacaoDto,
   CadastrarParticipantesPartidaDto,
-  EscolhaDeDesistencia,
   ListaPartidasDto,
   PartidaRespostaDto,
 } from '../dto/partida.dto';
@@ -31,12 +30,12 @@ import {
 export class PartidaService {
   constructor(
     private readonly partidaRepository: PartidaRepository,
-    private readonly pontuacaoRepository: PontuacaoViewRepository,
     private readonly atletaEscaladoRepository: AtletaEscaladoRepository,
     private readonly arbitroPartidaRepository: ArbitroPartidaRepository,
     private readonly delegadoService: DelegadoService,
     private readonly atletaService: AtletaService,
     private readonly arbitroService: ArbitroService,
+    private readonly registraDesistenciaService: RegistraDesistenciaService,
     private readonly connection: Connection,
   ) {}
 
@@ -72,13 +71,12 @@ export class PartidaService {
     );
 
     if (requisicao.desistente) {
-      partida.status = StatusPartida.WO;
-      partida.idGanhadora =
-        requisicao.desistente === EscolhaDeDesistencia.MANDANTE
-          ? partida.idVisitante
-          : partida.idMandante;
-
-      return new PartidaRespostaDto(await this.registraDesistencia(partida));
+      return this.registraDesistenciaService
+        .executar({
+          partida,
+          desistente: requisicao.desistente,
+        })
+        .then((resultado) => new PartidaRespostaDto(resultado.partida));
     }
 
     const arbitrosPorTipo = groupBy(
@@ -178,42 +176,5 @@ export class PartidaService {
       ids: atletas.map((x) => x.idAtleta),
       idEquipe,
     });
-  }
-
-  private async registraDesistencia(partida: Partida) {
-    const pontuacaoMandante =
-      partida.idGanhadora === partida.idMandante ? 2 : -2;
-
-    partida.mandante.pontuacao = pontuacaoMandante;
-    partida.mandante.pontosNosSets = [25, 25, 25].map((quantidade) => ({
-      quantidade,
-    }));
-
-    partida.visitante.pontuacao = -partida.mandante.pontuacao;
-    partida.visitante.pontosNosSets = [0, 0, 0].map((quantidade) => ({
-      quantidade,
-    }));
-
-    partida.mandante.resultadoCadastradoEm =
-      partida.visitante.resultadoCadastradoEm = new Date();
-
-    const { partida: partidaAtualizada } = await this.connection.transaction(
-      async (manager) => {
-        const [mandante, visitante] = await manager.save([
-          partida.mandante,
-          partida.visitante,
-        ]);
-
-        await this.pontuacaoRepository.refreshMaterializedView(manager);
-
-        return {
-          partida: await manager.save(partida),
-          mandante,
-          visitante,
-        };
-      },
-    );
-
-    return partidaAtualizada;
   }
 }

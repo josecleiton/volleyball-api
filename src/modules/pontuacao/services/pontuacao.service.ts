@@ -1,12 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { Liga } from '../liga/entities/liga.entity';
+import { Liga } from 'src/modules/liga/entities/liga.entity';
+import { PontuacaoRespostaDto } from '../dtos/pontuacao.dto';
+import { PontuacaoViewRepository } from '../repositories/pontuacao-view.repository';
 import { AplicaRegraDesempateService } from './aplica-regra-desempate.service';
-import { PontuacaoRespostaDto } from './dtos/pontuacao.dto';
-import { PontuacaoViewRepository } from './repositories/pontuacao-view.repository';
 
 @Injectable()
 export class PontuacaoService {
-  private classificacao: PontuacaoRespostaDto[] = [];
   constructor(
     private readonly pontuacaoRepository: PontuacaoViewRepository,
     private readonly aplicaRegraDesempateService: AplicaRegraDesempateService,

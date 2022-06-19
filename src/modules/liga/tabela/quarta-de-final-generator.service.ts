@@ -2,7 +2,7 @@ import { ConflictException, Injectable } from '@nestjs/common';
 import { MataMataGeneratorService } from './mata-mata-generator.service';
 import { IClassificados } from '../dto/mata-mata.dto';
 import { Liga } from '../entities/liga.entity';
-import { PontuacaoService } from 'src/modules/pontuacao/pontuacao.service';
+import { PontuacaoService } from 'src/modules/pontuacao/services';
 
 @Injectable()
 export class QuartaDeFinalGeneratorService extends MataMataGeneratorService {

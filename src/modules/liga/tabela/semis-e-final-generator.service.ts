@@ -12,7 +12,7 @@ import { PartidaRespostaDto } from 'src/modules/partida/dto/partida.dto';
 import { PartidaService } from 'src/modules/partida/services/partida.service';
 import { TipoRodadaMataMata } from 'src/modules/partida/types/tipo-rodada.type';
 import { PontuacaoRespostaDto } from 'src/modules/pontuacao/dtos/pontuacao.dto';
-import { PontuacaoService } from 'src/modules/pontuacao/pontuacao.service';
+import { PontuacaoService } from 'src/modules/pontuacao/services';
 import { IClassificados } from '../dto/mata-mata.dto';
 import { Liga } from '../entities/liga.entity';
 import { MataMataGeneratorService } from './mata-mata-generator.service';
