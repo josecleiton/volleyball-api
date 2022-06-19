@@ -1,10 +1,10 @@
-import { IBuscarConfrontoEquipes } from 'src/modules/pontuacao/dtos/pontuacao.dto';
 import {
   EntityManager,
   EntityRepository,
   Repository,
   SelectQueryBuilder,
 } from 'typeorm';
+import { IBuscarConfrontoEquipesEmpatadas } from '../dto/partida-pontuacao.dto';
 import {
   IBuscaQuantidadePartidasPorTipoEStatus,
   ListaPartidasDto,
@@ -99,26 +99,47 @@ export class PartidaRepository extends Repository<Partida> {
     return qb.getCount();
   }
 
-  async buscarConfrontoEquipes({
-    idTime1,
-    idTime2,
-    tipoRodadas,
-  }: IBuscarConfrontoEquipes) {
-    const qb = this.createQueryBuilder('p');
+  async buscarConfrontosDeEquipesEmpatadas(
+    idLiga: string,
+  ): Promise<IBuscarConfrontoEquipesEmpatadas[]> {
+    return this.manager
+      .query(
+        `
+    WITH classificacoes_empatadas AS (
+      SELECT
+        a.pontuacao AS pontuacao,
+        a.id_equipe AS equipe_a,
+        b.id_equipe AS equipe_b,
+      FROM pontuacoes_view AS a
+      INNER JOIN equipes AS e
+      ON
+        e.id = a.id_equipe 
+        AND e.id_liga = ?
+      INNER JOIN pontuacoes_view AS b
+      ON
+        a.id <> b.id
+        AND a.pontuacao = b.pontuacao
+    )
 
-    const result = await qb
-      .where('p.id_visitante =:idTime1 and p.id_mandante =:idTime2', {
-        idTime1,
-        idTime2,
-      })
-      .orWhere('p.id_visitante =:idTime2 and p.id_mandante =:idTime1', {
-        idTime1,
-        idTime2,
-      })
-      .andWhere('p.status= :status', { status: 'concluida' })
-      .andWhere('p.tipo_da_rodada IN (:...tipoRodadas)', { tipoRodadas })
-      .getMany();
-
-    return result;
+    SELECT
+      p.id AS id,
+      p.id_ganhadora AS "idGanhadora",
+      classificacoes_empatadas.equipe_a AS "idEquipeA",
+      classificacoes_empatadas.equipe_b AS "idEquipeB"
+    FROM pontuacoes_view AS pv
+    INNER JOIN equipes_partida AS ep1
+    ON
+      ep1.id_equipe = classificacoes_empatadas.equipe_a
+    INNER JOIN equipes_partida AS ep2
+    ON
+      ep2.id_equipe = classificacoes_empatadas.equipe_b
+    INNER JOIN partidas AS p
+    ON
+      (p.id_mandante = ep1.id OR p.id_mandante = ep2.id)
+      AND (p.id_visitante = ep1.id OR p.id_visitante = ep2.id)
+  `,
+        [idLiga],
+      )
+      .then((res) => (res?.length ? res : []));
   }
 }
