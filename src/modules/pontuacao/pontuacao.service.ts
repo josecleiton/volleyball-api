@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Liga } from '../liga/entities/liga.entity';
-import { PartidaRepository } from '../partida/repositories';
-import { AplicaRegraDesempateHandler } from './aplica-regra-desempate.handler';
+import { AplicaRegraDesempateService } from './aplica-regra-desempate.service';
 import { PontuacaoRespostaDto } from './dtos/pontuacao.dto';
 import { PontuacaoViewRepository } from './repositories/pontuacao-view.repository';
 
@@ -10,30 +9,22 @@ export class PontuacaoService {
   private classificacao: PontuacaoRespostaDto[] = [];
   constructor(
     private readonly pontuacaoRepository: PontuacaoViewRepository,
-    private readonly partidaRepository: PartidaRepository,
+    private readonly aplicaRegraDesempateService: AplicaRegraDesempateService,
   ) {}
 
   async listaPontuacoesOrdenadas(
     idLiga: string,
-    limite = 12,
+    limite = Liga.minimoDeEquipesNaLiga,
   ): Promise<PontuacaoRespostaDto[]> {
     const pontuacoes = await this.pontuacaoRepository.listaPorLiga(
       idLiga,
       Liga.minimoDeEquipesNaLiga,
     );
 
-    const resultado = pontuacoes
-      .sort((a, b) => b.pontuacao - a.pontuacao)
-      .map((x) => new PontuacaoRespostaDto(x));
+    const classificacoes = pontuacoes.map((x) => new PontuacaoRespostaDto(x));
 
-    // odernar por pontuação
-    const aplicaDesempate = new AplicaRegraDesempateHandler(
-      resultado,
-      this.partidaRepository,
-    );
-
-    return aplicaDesempate
-      .buscarEmpateNaPontuacao()
+    return this.aplicaRegraDesempateService
+      .buscarEmpateNaPontuacao({ idLiga, classificacoes })
       .then((res) => res.slice(0, limite));
   }
 }
