@@ -1,3 +1,4 @@
+import { nomePontuacaoView } from 'src/modules/pontuacao/pontuacao.constant';
 import {
   EntityManager,
   EntityRepository,
@@ -21,7 +22,9 @@ export class PartidaRepository extends Repository<Partida> {
       .innerJoinAndSelect('partidas.visitante', 'visitantes')
       .innerJoinAndSelect('visitantes.equipe', 'equipesVisitantes')
       .innerJoinAndSelect('partidas._mandante', 'mandantes')
-      .innerJoinAndSelect('mandantes.equipe', 'equipesMandantes');
+      .innerJoinAndSelect('mandantes.equipe', 'equipesMandantes')
+      .leftJoinAndSelect('partidas.ganhadora', 'ganhadoras')
+      .leftJoinAndSelect('ganhadoras.equipe', 'equipesGanhadoras');
   }
 
   async encontraPartidaCompleta(id: string) {
@@ -57,7 +60,7 @@ export class PartidaRepository extends Repository<Partida> {
     return qb.getMany();
   }
 
-  async removePartidasSemGanhadores(idLiga: string, manager: EntityManager) {
+  async removePartidasNaoDisputadas(idLiga: string, manager: EntityManager) {
     return manager.query(
       `
       DELETE
@@ -102,44 +105,37 @@ export class PartidaRepository extends Repository<Partida> {
   async buscarConfrontosDeEquipesEmpatadas(
     idLiga: string,
   ): Promise<IBuscarConfrontoEquipesEmpatadas[]> {
-    return this.manager
-      .query(
-        `
-    WITH classificacoes_empatadas AS (
-      SELECT
-        a.pontuacao AS pontuacao,
-        a.id_equipe AS equipe_a,
-        b.id_equipe AS equipe_b,
-      FROM pontuacoes_view AS a
-      INNER JOIN equipes AS e
-      ON
-        e.id = a.id_equipe 
-        AND e.id_liga = ?
-      INNER JOIN pontuacoes_view AS b
-      ON
-        a.id <> b.id
-        AND a.pontuacao = b.pontuacao
-    )
+    const qb = this.createQueryBuilder('p');
 
-    SELECT
-      p.id AS id,
-      p.id_ganhadora AS "idGanhadora",
-      classificacoes_empatadas.equipe_a AS "idEquipeA",
-      classificacoes_empatadas.equipe_b AS "idEquipeB"
-    FROM pontuacoes_view AS pv
-    INNER JOIN equipes_partida AS ep1
-    ON
-      ep1.id_equipe = classificacoes_empatadas.equipe_a
-    INNER JOIN equipes_partida AS ep2
-    ON
-      ep2.id_equipe = classificacoes_empatadas.equipe_b
-    INNER JOIN partidas AS p
-    ON
-      (p.id_mandante = ep1.id OR p.id_mandante = ep2.id)
-      AND (p.id_visitante = ep1.id OR p.id_visitante = ep2.id)
-  `,
-        [idLiga],
-      )
-      .then((res) => (res?.length ? res : []));
+    qb.select('p.id', 'id')
+      .addSelect('eg.id', 'idEquipeGanhadora')
+      .addSelect('em.id', 'idEquipeMandante')
+      .addSelect('ev.id', 'idEquipeVisitante')
+      .innerJoin('p.ganhadora', 'ganhadora')
+      .innerJoin('p._mandante', 'mandante')
+      .innerJoin('p.visitante', 'visitante')
+      .innerJoin('ganhadora.equipe', 'eg')
+      .innerJoin('mandante.equipe', 'em')
+      .innerJoin('visitante.equipe', 'ev')
+      .where((qb) => {
+        const subQuery = qb
+          .subQuery()
+          .select('pv.idEquipe')
+          .distinct(true)
+          .from(nomePontuacaoView, 'pv')
+          .innerJoin(
+            nomePontuacaoView,
+            'pv2',
+            'pv2.idEquipe <> pv.idEquipe AND pv2.pontuacao = pv.pontuacao',
+          )
+          .innerJoin('pv.equipe', 'e', 'e.idLiga = :idLiga')
+          .getQuery();
+
+        return `eg.id IN ${subQuery}`;
+      })
+      .orderBy('p.dataCriacao')
+      .setParameter('idLiga', idLiga);
+
+    return qb.getRawMany();
   }
 }

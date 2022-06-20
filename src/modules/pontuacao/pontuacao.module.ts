@@ -20,6 +20,6 @@ import {
     AplicaRegraDesempateService,
     RegistraDesistenciaService,
   ],
-  exports: [PontuacaoService, RegistraDesistenciaService, TypeOrmModule],
+  exports: [PontuacaoService, RegistraDesistenciaService],
 })
 export class PontuacaoModule {}

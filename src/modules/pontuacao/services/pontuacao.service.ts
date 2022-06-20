@@ -15,10 +15,7 @@ export class PontuacaoService {
     idLiga: string,
     limite = Liga.minimoDeEquipesNaLiga,
   ): Promise<PontuacaoRespostaDto[]> {
-    const pontuacoes = await this.pontuacaoRepository.listaPorLiga(
-      idLiga,
-      Liga.minimoDeEquipesNaLiga,
-    );
+    const pontuacoes = await this.pontuacaoRepository.listaPorLiga(idLiga);
 
     const classificacoes = pontuacoes.map((x) => new PontuacaoRespostaDto(x));
 

@@ -27,12 +27,13 @@
 			"request": "launch",
 			"runtimeArgs": [
 				"--inspect-brk",
-				"${workspaceRoot}/node_modules/.bin/jest",
+				"${workspaceRoot}/node_modules/jest/bin/jest.js",
 				"--config",
 				"${workspaceRoot}/jest-e2e.json",
 				"--runInBand",
 				"--coverage",
 				"false",
+				"pontuacao.e2e-spec"
 			],
 			"console": "integratedTerminal"
 		}

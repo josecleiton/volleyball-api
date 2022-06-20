@@ -4,7 +4,7 @@ import { TypeORMFilterService } from 'src/modules/core/services/typeorm-filter.s
 import { StatusLiga } from 'src/modules/liga/enums/status-liga.enum';
 import { LigaService } from 'src/modules/liga/services/liga.service';
 import { AtletaEscaladoService } from 'src/modules/partida/services';
-import { Connection, EntityManager } from 'typeorm';
+import { Connection } from 'typeorm';
 import {
   CriaFundamentoAtletaDto,
   FundamentoAtletaRespostaDto,
@@ -13,6 +13,7 @@ import {
   FundamentoAtletaRepository,
   MelhorCentralViewRepository,
   MelhorLiberoViewRepository,
+  MelhorPontaViewRepository,
 } from '../repositories';
 
 @Injectable()
@@ -21,6 +22,7 @@ export class FundamentoAtletaService {
     private readonly fundamentoAtletaRepository: FundamentoAtletaRepository,
     private readonly melhorLiberoRepository: MelhorLiberoViewRepository,
     private readonly melhorCentralRepository: MelhorCentralViewRepository,
+    private readonly melhorPontaRepository: MelhorPontaViewRepository,
     private readonly atletaEscaladoService: AtletaEscaladoService,
     private readonly ligaService: LigaService,
     private readonly typeormFilterService: TypeORMFilterService,
@@ -44,12 +46,12 @@ export class FundamentoAtletaService {
     });
 
     try {
-      const fundamentoSalvo = await this.connection.transaction(
-        async (manager) => {
-          await this.atualizeViews(manager);
-          return manager.save(fundamento);
-        },
+      const fundamentoSalvo = await this.fundamentoAtletaRepository.save(
+        fundamento,
       );
+
+      await this.atualizeViews();
+
       return new FundamentoAtletaRespostaDto(fundamentoSalvo);
     } catch (error) {
       throw this.typeormFilterService.catch({
@@ -79,20 +81,22 @@ export class FundamentoAtletaService {
       StatusLiga.CONCLUIDA,
     );
 
-    await this.connection.transaction(async (manager) => {
-      await manager.remove(fundamento);
-      await this.atualizeViews(manager);
-    });
+    await this.fundamentoAtletaRepository.delete(fundamento.id);
+
+    await this.atualizeViews();
   }
 
-  private async atualizeViews(manager: EntityManager) {
+  private async atualizeViews() {
     const limit = pLimit(1);
 
-    const refreshSincrono = [
-      this.melhorLiberoRepository,
-      this.melhorCentralRepository,
-    ].map((repo) => limit(() => repo.refreshMaterializedView(manager)));
+    await this.connection.transaction(async (manager) => {
+      const refreshSincrono = [
+        this.melhorLiberoRepository,
+        this.melhorCentralRepository,
+        this.melhorPontaRepository,
+      ].map((repo) => limit(() => repo.refreshMaterializedView(manager)));
 
-    return Promise.all(refreshSincrono);
+      return Promise.all(refreshSincrono);
+    });
   }
 }

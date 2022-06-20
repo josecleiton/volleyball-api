@@ -13,33 +13,45 @@ export class AplicaRegraDesempateService {
     idLiga,
     classificacoes,
   }: IAplicaRegraDesempateDto) {
-    const grafoConfrontoDireto = new GrafoDeConfronto(
-      await this.partidaRepository.buscarConfrontosDeEquipesEmpatadas(idLiga),
-    );
+    const confrontos =
+      await this.partidaRepository.buscarConfrontosDeEquipesEmpatadas(idLiga);
+    const grafoConfrontoDireto = new GrafoDeConfronto(confrontos);
 
-    return classificacoes.sort((a, b) => {
+    const result = classificacoes.sort((a, b) => {
       const fatorVitoria = b.partidasGanhas - a.partidasGanhas;
-      if (fatorVitoria) return fatorVitoria;
+      if (fatorVitoria) {
+        return fatorVitoria;
+      }
 
       const fatorPontuacao = b.pontuacao - a.pontuacao;
-      if (fatorPontuacao) return fatorPontuacao;
+      if (fatorPontuacao) {
+        return fatorPontuacao;
+      }
 
       const fatorSetsAverage = b.setsAverage - a.setsAverage;
-      if (fatorSetsAverage) return fatorSetsAverage;
+      if (fatorSetsAverage) {
+        return fatorSetsAverage;
+      }
 
       const fatorPontosAverage = b.pontosAverage - a.pontosAverage;
-      if (fatorPontosAverage) return fatorPontosAverage;
+      if (fatorPontosAverage) {
+        return fatorPontosAverage;
+      }
 
       const fatorConfrontoDireto =
-        -grafoConfrontoDireto.buscaResultadoConfrontoDireto(
+        grafoConfrontoDireto.buscaResultadoConfrontoDireto(
           b.idEquipe,
           a.idEquipe,
         );
 
-      if (fatorConfrontoDireto) return fatorConfrontoDireto;
+      if (Number.isFinite(fatorConfrontoDireto)) {
+        return -fatorConfrontoDireto;
+      }
 
-      return compareAsc(b.equipe.dataCriacao, a.equipe.dataCriacao);
+      return compareAsc(a.equipe.dataCriacao, b.equipe.dataCriacao);
     });
+
+    return result;
   }
 }
 
@@ -53,33 +65,33 @@ class GrafoDeConfronto {
 
     for (const confronto of confrontosDiretos) {
       graphConfrontoDireto
-        .addVertex(confronto.idEquipeA, {})
-        .addVertex(confronto.idEquipeB, {});
+        .addVertex(confronto.idEquipeMandante, {})
+        .addVertex(confronto.idEquipeVisitante, {});
 
-      const pesoEquipeA =
-        confronto.idEquipeA === confronto.idGanhadora ? 1 : -1;
+      const pesoEquipeMandante =
+        confronto.idEquipeGanhadora === confronto.idEquipeMandante ? 1 : -1;
 
       const temConfronto = graphConfrontoDireto.hasEdge(
-        confronto.idEquipeA,
-        confronto.idEquipeB,
+        confronto.idEquipeMandante,
+        confronto.idEquipeVisitante,
       );
-      const pesoAnteriorDaEquipeA = temConfronto
+      const pesoAnteriorDaEquipeMandante = temConfronto
         ? graphConfrontoDireto.getWeight(
-            confronto.idEquipeA,
-            confronto.idEquipeB,
+            confronto.idEquipeMandante,
+            confronto.idEquipeVisitante,
           )
         : 0;
 
       graphConfrontoDireto
         .addEdge(
-          confronto.idEquipeA,
-          confronto.idEquipeB,
-          pesoEquipeA + pesoAnteriorDaEquipeA,
+          confronto.idEquipeMandante,
+          confronto.idEquipeVisitante,
+          pesoEquipeMandante + pesoAnteriorDaEquipeMandante,
         )
         .addEdge(
-          confronto.idEquipeB,
-          confronto.idEquipeA,
-          -pesoEquipeA - pesoAnteriorDaEquipeA,
+          confronto.idEquipeVisitante,
+          confronto.idEquipeMandante,
+          -pesoEquipeMandante - pesoAnteriorDaEquipeMandante,
         );
     }
 

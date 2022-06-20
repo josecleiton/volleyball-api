@@ -7,6 +7,12 @@ import { Partida } from './partida.entity';
 
 @Entity('equipes_partidas')
 export class EquipePartida extends EntidadeBase {
+  static unmarshallPontosDoSet(
+    pontos: [number, number, number],
+  ): IPontoNoSet[] {
+    return pontos.map((quantidade) => ({ quantidade }));
+  }
+
   @Column('uuid')
   idEquipe!: string;
 
@@ -40,6 +46,10 @@ export class EquipePartida extends EntidadeBase {
 
   public get ganhou(): boolean {
     return this._ganhou === 1;
+  }
+
+  public set ganhou(v: boolean) {
+    this._ganhou = v ? 1 : 0;
   }
 
   public get setsDisputados(): number {
