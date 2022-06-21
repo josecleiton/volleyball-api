@@ -8,6 +8,10 @@ require('dotenv/config');
 export async function stubDatabaseConnection(
   builder: TestingModuleBuilder,
 ): Promise<TestingModuleBuilder> {
+  if (process.env.REAL_CONNECTION) {
+    return builder;
+  }
+
   const connection = await createConnection({
     type: 'postgres',
     url: process.env.DATABASE_URL,

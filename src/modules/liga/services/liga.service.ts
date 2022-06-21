@@ -118,6 +118,14 @@ export class LigaService {
           partidas.map((x) => [x.mandante, x.visitante]).flat(),
         );
         const partidasSalvas = await manager.save(partidas);
+        await manager.save(
+          partidas
+            .map((x) => {
+              x.mandante.idPartida = x.visitante.idPartida = x.id;
+              return [x.mandante, x.visitante];
+            })
+            .flat(),
+        );
         const ligaSalva = await manager.save(liga);
 
         return [ligaSalva, partidasSalvas];
@@ -160,7 +168,7 @@ export class LigaService {
 
     const [ligaAtualizada, partidasAgendadas] =
       await this.connection.transaction(async (manager) => {
-        await this.partidaRepository.removePartidasSemGanhadores(id, manager);
+        await this.partidaRepository.removePartidasNaoDisputadas(id, manager);
 
         return [await manager.save(liga), await manager.save(partidas)];
       });
@@ -184,7 +192,7 @@ export class LigaService {
     liga.status = StatusLiga.SEMIS;
     const [ligaAtualizada, partidasAgendadas] =
       await this.connection.transaction(async (manager) => {
-        await this.partidaRepository.removePartidasSemGanhadores(id, manager);
+        await this.partidaRepository.removePartidasNaoDisputadas(id, manager);
 
         return [await manager.save(liga), await manager.save(partidas)];
       });
@@ -210,7 +218,7 @@ export class LigaService {
 
     const [ligaAtualizada, partidasAgendadas] =
       await this.connection.transaction(async (manager) => {
-        await this.partidaRepository.removePartidasSemGanhadores(id, manager);
+        await this.partidaRepository.removePartidasNaoDisputadas(id, manager);
 
         return [await manager.save(liga), await manager.save(partidas)];
       });

@@ -1,5 +1,5 @@
 import { Controller, Get, ParseUUIDPipe, Query } from '@nestjs/common';
-import { PontuacaoService } from './pontuacao.service';
+import { PontuacaoService } from './services';
 
 @Controller('pontuacao')
 export class PontuacaoController {

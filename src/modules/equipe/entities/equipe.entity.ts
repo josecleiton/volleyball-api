@@ -72,6 +72,7 @@ export class Equipe extends EntidadeBase {
   cidade!: string;
 
   @Column('uuid')
+  @Index()
   idLiga!: string;
 
   @Column('uuid')

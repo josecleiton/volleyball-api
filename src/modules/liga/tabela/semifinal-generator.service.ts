@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PartidaService } from 'src/modules/partida/services/partida.service';
-import { PontuacaoService } from 'src/modules/pontuacao/pontuacao.service';
+import { PontuacaoService } from 'src/modules/pontuacao/services';
 import { SemisEFinalGeneratorService } from './semis-e-final-generator.service';
 
 @Injectable()

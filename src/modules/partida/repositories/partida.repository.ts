@@ -1,10 +1,11 @@
-import { IBuscarConfrontoEquipes } from 'src/modules/pontuacao/dtos/pontuacao.dto';
+import { nomePontuacaoView } from 'src/modules/pontuacao/pontuacao.constant';
 import {
   EntityManager,
   EntityRepository,
   Repository,
   SelectQueryBuilder,
 } from 'typeorm';
+import { IBuscarConfrontoEquipesEmpatadas } from '../dto/partida-pontuacao.dto';
 import {
   IBuscaQuantidadePartidasPorTipoEStatus,
   ListaPartidasDto,
@@ -21,7 +22,9 @@ export class PartidaRepository extends Repository<Partida> {
       .innerJoinAndSelect('partidas.visitante', 'visitantes')
       .innerJoinAndSelect('visitantes.equipe', 'equipesVisitantes')
       .innerJoinAndSelect('partidas._mandante', 'mandantes')
-      .innerJoinAndSelect('mandantes.equipe', 'equipesMandantes');
+      .innerJoinAndSelect('mandantes.equipe', 'equipesMandantes')
+      .leftJoinAndSelect('partidas.ganhadora', 'ganhadoras')
+      .leftJoinAndSelect('ganhadoras.equipe', 'equipesGanhadoras');
   }
 
   async encontraPartidaCompleta(id: string) {
@@ -57,7 +60,7 @@ export class PartidaRepository extends Repository<Partida> {
     return qb.getMany();
   }
 
-  async removePartidasSemGanhadores(idLiga: string, manager: EntityManager) {
+  async removePartidasNaoDisputadas(idLiga: string, manager: EntityManager) {
     return manager.query(
       `
       DELETE
@@ -99,26 +102,40 @@ export class PartidaRepository extends Repository<Partida> {
     return qb.getCount();
   }
 
-  async buscarConfrontoEquipes({
-    idTime1,
-    idTime2,
-    tipoRodadas,
-  }: IBuscarConfrontoEquipes) {
+  async buscarConfrontosDeEquipesEmpatadas(
+    idLiga: string,
+  ): Promise<IBuscarConfrontoEquipesEmpatadas[]> {
     const qb = this.createQueryBuilder('p');
 
-    const result = await qb
-      .where('p.id_visitante =:idTime1 and p.id_mandante =:idTime2', {
-        idTime1,
-        idTime2,
-      })
-      .orWhere('p.id_visitante =:idTime2 and p.id_mandante =:idTime1', {
-        idTime1,
-        idTime2,
-      })
-      .andWhere('p.status= :status', { status: 'concluida' })
-      .andWhere('p.tipo_da_rodada IN (:...tipoRodadas)', { tipoRodadas })
-      .getMany();
+    qb.select('p.id', 'id')
+      .addSelect('eg.id', 'idEquipeGanhadora')
+      .addSelect('em.id', 'idEquipeMandante')
+      .addSelect('ev.id', 'idEquipeVisitante')
+      .innerJoin('p.ganhadora', 'ganhadora')
+      .innerJoin('p._mandante', 'mandante')
+      .innerJoin('p.visitante', 'visitante')
+      .innerJoin('ganhadora.equipe', 'eg')
+      .innerJoin('mandante.equipe', 'em')
+      .innerJoin('visitante.equipe', 'ev')
+      .where((qb) => {
+        const subQuery = qb
+          .subQuery()
+          .select('pv.idEquipe')
+          .distinct(true)
+          .from(nomePontuacaoView, 'pv')
+          .innerJoin(
+            nomePontuacaoView,
+            'pv2',
+            'pv2.idEquipe <> pv.idEquipe AND pv2.pontuacao = pv.pontuacao',
+          )
+          .innerJoin('pv.equipe', 'e', 'e.idLiga = :idLiga')
+          .getQuery();
 
-    return result;
+        return `eg.id IN ${subQuery}`;
+      })
+      .orderBy('p.dataCriacao')
+      .setParameter('idLiga', idLiga);
+
+    return qb.getRawMany();
   }
 }

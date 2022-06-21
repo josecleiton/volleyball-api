@@ -84,6 +84,7 @@ export class EquipeRespostaDto extends EquipeSimplificadaRespostaDto {
   quantidadeAuxiliares: number;
   atletas: AtletaRespostaDto[];
   auxiliares: AuxiliarRespostaDto[];
+  dataCriacao: Date;
 
   constructor(equipe: Equipe) {
     super(equipe);
@@ -100,5 +101,6 @@ export class EquipeRespostaDto extends EquipeSimplificadaRespostaDto {
     this.atletas = equipe.atletas?.map((x) => new AtletaRespostaDto(x)) ?? [];
     this.auxiliares =
       equipe.auxiliares?.map((x) => new AuxiliarRespostaDto(x)) ?? [];
+    this.dataCriacao = new Date(equipe.dataCriacao);
   }
 }

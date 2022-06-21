@@ -7,34 +7,22 @@ import { initTestingApp } from '../helpers';
 import { PartidaServer } from './partida.server';
 import { Liga } from 'src/modules/liga/entities/liga.entity';
 import { listaPartidasDto } from 'test/__MOCKS__/partidas/partida.mock';
-import { listaDelegadoDto } from 'test/__MOCKS__/pessoa/delegado.mock';
-import { listaArbitroDto } from 'test/__MOCKS__/pessoa/arbitro.mock';
-import { Posicao, TipoArbitro } from 'src/modules/pessoa/enums';
-import { AtletaRespostaDto } from 'src/modules/pessoa/dto/atleta.dto';
-import {
-  AtletaParticipacaoDto,
-  CadastrarParticipantesPartidaDto,
-  EscolhaDeDesistencia,
-} from 'src/modules/partida/dto/partida.dto';
+import { EscolhaDeDesistencia } from 'src/modules/partida/dto/partida.dto';
 import { StatusPartida } from 'src/modules/partida/enums/status-partida.enum';
 import { randomUUID } from 'crypto';
-
-const posicoes = [
-  Posicao.CENTRAL,
-  Posicao.LEVANTADOR,
-  Posicao.OPOSTO,
-  Posicao.PONTA,
-];
-
-function geraAtletaParticipacao(
-  atleta: AtletaRespostaDto,
-): AtletaParticipacaoDto {
-  return { idAtleta: atleta.id, posicao: faker.random.arrayElement(posicoes) };
-}
 
 describe('PartidaController (e2e)', () => {
   let app: INestApplication;
   let server: PartidaServer;
+
+  async function participacaoNaPartida() {
+    const { liga, partidas } =
+      await server.fluxoLigaIniciada.criaLigaInicializada();
+    return server.criaRegistroDeParticipantesNaPartida(
+      liga,
+      faker.random.arrayElement(partidas),
+    );
+  }
 
   beforeEach(async () => {
     app = await initTestingApp();
@@ -81,38 +69,6 @@ describe('PartidaController (e2e)', () => {
   });
 
   describe('/partida/cadastra-participantes (POST)', () => {
-    async function participacaoNaPartida() {
-      const { liga, partidas } =
-        await server.fluxoLigaIniciada.criaLigaInicializada();
-
-      const partida = faker.random.arrayElement(partidas);
-
-      const delegado = faker.random.arrayElement(
-        await server.delegado.listaDelegado(listaDelegadoDto(liga.id)),
-      );
-
-      const arbitro = faker.random.arrayElement(
-        await server.arbitro.listaArbitros(listaArbitroDto(liga.id)),
-      );
-
-      const atletasMandante = await server.atleta.listaAtletas(
-        partida.mandante.equipe.id,
-      );
-
-      const atletasVisitante = await server.atleta.listaAtletas(
-        partida.visitante.equipe.id,
-      );
-
-      const requisicao: CadastrarParticipantesPartidaDto = {
-        arbitros: [{ idArbitro: arbitro.id, tipo: TipoArbitro.PRINCIPAL }],
-        idDelegado: delegado.id,
-        atletasMandante: atletasMandante.map(geraAtletaParticipacao),
-        atletasVisitante: atletasVisitante.map(geraAtletaParticipacao),
-      };
-
-      return { partida, requisicao };
-    }
-
     it('Ok', async () => {
       const { partida, requisicao } = await participacaoNaPartida();
       await server.inicializaPartida(partida.id, requisicao);

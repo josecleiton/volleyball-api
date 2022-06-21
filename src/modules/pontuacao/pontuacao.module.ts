@@ -1,14 +1,25 @@
-import { Module } from '@nestjs/common';
+import { forwardRef, Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { PartidaRepository } from '../partida/repositories';
+import { PartidaModule } from '../partida/partida.module';
 import { PontuacaoController } from './pontuacao.controller';
-import { PontuacaoService } from './pontuacao.service';
 import { PontuacaoViewRepository } from './repositories/pontuacao-view.repository';
+import {
+  AplicaRegraDesempateService,
+  PontuacaoService,
+  RegistraDesistenciaService,
+} from './services';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([PontuacaoViewRepository, PartidaRepository])],
+  imports: [
+    TypeOrmModule.forFeature([PontuacaoViewRepository]),
+    forwardRef(() => PartidaModule),
+  ],
   controllers: [PontuacaoController],
-  providers: [PontuacaoService],
-  exports: [PontuacaoService, TypeOrmModule],
+  providers: [
+    PontuacaoService,
+    AplicaRegraDesempateService,
+    RegistraDesistenciaService,
+  ],
+  exports: [PontuacaoService, RegistraDesistenciaService],
 })
 export class PontuacaoModule {}
