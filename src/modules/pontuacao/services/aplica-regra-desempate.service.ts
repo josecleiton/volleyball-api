@@ -17,7 +17,7 @@ export class AplicaRegraDesempateService {
       await this.partidaRepository.buscarConfrontosDeEquipesEmpatadas(idLiga);
     const grafoConfrontoDireto = new GrafoDeConfronto(confrontos);
 
-    const result = classificacoes.sort((a, b) => {
+    return classificacoes.sort((a, b) => {
       const fatorVitoria = b.partidasGanhas - a.partidasGanhas;
       if (fatorVitoria) {
         return fatorVitoria;
@@ -44,14 +44,12 @@ export class AplicaRegraDesempateService {
           a.idEquipe,
         );
 
-      if (Number.isFinite(fatorConfrontoDireto)) {
+      if (fatorConfrontoDireto && Number.isFinite(fatorConfrontoDireto)) {
         return -fatorConfrontoDireto;
       }
 
       return compareAsc(a.equipe.dataCriacao, b.equipe.dataCriacao);
     });
-
-    return result;
   }
 }
 

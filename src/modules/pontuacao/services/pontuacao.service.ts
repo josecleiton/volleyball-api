@@ -17,10 +17,12 @@ export class PontuacaoService {
   ): Promise<PontuacaoRespostaDto[]> {
     const pontuacoes = await this.pontuacaoRepository.listaPorLiga(idLiga);
 
-    const classificacoes = pontuacoes.map((x) => new PontuacaoRespostaDto(x));
+    const classificacoes =
+      await this.aplicaRegraDesempateService.buscarEmpateNaPontuacao({
+        idLiga,
+        classificacoes: pontuacoes.map((x) => new PontuacaoRespostaDto(x)),
+      });
 
-    return this.aplicaRegraDesempateService
-      .buscarEmpateNaPontuacao({ idLiga, classificacoes })
-      .then((res) => res.slice(0, limite));
+    return classificacoes.slice(0, limite);
   }
 }
