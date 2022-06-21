@@ -1,7 +1,9 @@
 import { Controller, Get, ParseUUIDPipe, Query } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { PontuacaoService } from './services';
 
 @Controller('pontuacao')
+@ApiTags('pontuacao')
 export class PontuacaoController {
   constructor(private readonly pontuacaoService: PontuacaoService) {}
 

@@ -18,6 +18,7 @@ import { PessoaModule } from '../pessoa/pessoa.module';
 import { EstatisticaModule } from '../estatistica/estatistica.module';
 import { ThrottlerModule } from '@nestjs/throttler';
 import { getModuleThrottlerProvider } from '../core/guards';
+import { AppController } from './app.controller';
 
 @Module({
   imports: [
@@ -50,6 +51,7 @@ import { getModuleThrottlerProvider } from '../core/guards';
     PartidaModule,
     EstatisticaModule,
   ],
+  controllers: [AppController],
   providers: [getModuleThrottlerProvider()],
 })
 export class AppModule {}

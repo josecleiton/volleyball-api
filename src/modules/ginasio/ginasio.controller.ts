@@ -8,10 +8,12 @@ import {
   Post,
   Query,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { CriaGinasioDto, ListaGinasiosDto } from './dto/ginasio.dto';
 import { GinasioService } from './ginasio.service';
 
 @Controller('ginasio')
+@ApiTags('ginasio')
 export class GinasioController {
   constructor(private readonly ginasioService: GinasioService) {}
 

@@ -15,8 +15,10 @@ import {
   InicializaQuartaDeFinalDto,
   InicializaSemifinalDto,
 } from './dto/tabela.dto';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller('liga')
+@ApiTags('liga')
 export class LigaController {
   constructor(private readonly ligaService: LigaService) {}
 

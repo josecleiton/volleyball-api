@@ -7,10 +7,12 @@ import {
   Post,
   Query,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { CriaArbitroDto, ListaArbitroDto } from '../dto/arbitro.dto';
 import { DelegadoService } from '../services/delegado.service';
 
 @Controller('pessoa/delegado')
+@ApiTags('delegado')
 export class DelegadoController {
   constructor(private readonly delegadoService: DelegadoService) {}
 

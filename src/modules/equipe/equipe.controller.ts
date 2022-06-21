@@ -9,6 +9,7 @@ import {
   ParseUUIDPipe,
   Patch,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import {
   AtualizaEquipeDto,
   CriaEquipeDto,
@@ -17,6 +18,7 @@ import {
 import { EquipeService } from './equipe.service';
 
 @Controller('equipe')
+@ApiTags('equipe')
 export class EquipeController {
   constructor(private readonly equipeService: EquipeService) {}
 

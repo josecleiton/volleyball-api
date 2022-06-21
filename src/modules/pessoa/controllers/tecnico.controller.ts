@@ -6,10 +6,12 @@ import {
   ParseUUIDPipe,
   Post,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { CriaTecnicoDto } from '../dto/tecnico.dto';
 import { TecnicoService } from '../services/tecnico.service';
 
 @Controller('pessoa/tecnico')
+@ApiTags('tecnico')
 export class TecnicoController {
   constructor(private readonly tecnicoService: TecnicoService) {}
 

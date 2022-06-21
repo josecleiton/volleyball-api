@@ -6,10 +6,12 @@ import {
   ParseUUIDPipe,
   Post,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { CriaFundamentoAtletaDto } from '../dto/fundamento-atleta.dto';
 import { FundamentoAtletaService } from '../services/fundamento-atleta.service';
 
 @Controller('estatistica/atleta')
+@ApiTags('fundamento-atleta')
 export class FundamentoAtletaController {
   constructor(
     private readonly fundamentoAtletaService: FundamentoAtletaService,

@@ -9,6 +9,7 @@ import {
   Post,
   Query,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import {
   AtualizaAtletaDto,
   CriaAtletaDto,
@@ -17,6 +18,7 @@ import {
 import { AtletaService } from '../services/atleta.service';
 
 @Controller('pessoa/atleta')
+@ApiTags('atleta')
 export class AtletaController {
   constructor(private readonly atletaService: AtletaService) {}
 

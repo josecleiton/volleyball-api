@@ -1,7 +1,9 @@
 import { Controller, Get, ParseUUIDPipe, Query } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { MelhorPontaService } from '../services';
 
 @Controller('/estatistica/ranking/ponta')
+@ApiTags('melhor-ponta')
 export class MelhorPontaController {
   constructor(private readonly melhorPontaService: MelhorPontaService) {}
 

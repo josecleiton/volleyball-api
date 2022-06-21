@@ -7,10 +7,12 @@ import {
   Post,
   Query,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { CriaAuxiliarDto, ListaAuxiliarDto } from '../dto/auxiliar.dto';
 import { AuxiliarService } from '../services/auxiliar.service';
 
 @Controller('pessoa/auxiliar')
+@ApiTags('auxiliar')
 export class AuxiliarController {
   constructor(private readonly auxiliarService: AuxiliarService) {}
 

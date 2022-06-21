@@ -1,7 +1,9 @@
 import { Controller, Get, ParseUUIDPipe, Query } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { MelhorCentralService } from '../services';
 
 @Controller('/estatistica/ranking/central')
+@ApiTags('melhor-central')
 export class MelhorCentralController {
   constructor(private readonly melhorCentralService: MelhorCentralService) {}
 

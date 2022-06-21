@@ -1,8 +1,10 @@
 import { Body, Controller, Get, Post, Query } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { CriaArbitroDto, ListaArbitroDto } from '../dto/arbitro.dto';
 import { ArbitroService } from '../services/arbitro.service';
 
 @Controller('pessoa/arbitro')
+@ApiTags('arbitro')
 export class ArbitroController {
   constructor(private readonly arbitroService: ArbitroService) {}
 

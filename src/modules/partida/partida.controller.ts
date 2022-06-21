@@ -7,6 +7,7 @@ import {
   Post,
   Query,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import {
   CadastrarParticipantesPartidaDto,
   ListaPartidasDto,
@@ -14,6 +15,7 @@ import {
 import { PartidaService } from './services/partida.service';
 
 @Controller('partida')
+@ApiTags('partida')
 export class PartidaController {
   constructor(private readonly partidaService: PartidaService) {}
 
