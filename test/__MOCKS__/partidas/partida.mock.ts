@@ -1,12 +1,6 @@
 import faker = require('faker');
 import { Liga } from 'src/modules/liga/entities/liga.entity';
-import {
-  ArbitroPartidaDto,
-  AtletaParticipacaoDto,
-  CadastrarParticipantesPartidaDto,
-  EscolhaDeDesistencia,
-  ListaPartidasDto,
-} from 'src/modules/partida/dto/partida.dto';
+import { ListaPartidasDto } from 'src/modules/partida/dto/partida.dto';
 import {
   TipoRodada,
   tiposDeRodadaClassificatoria,

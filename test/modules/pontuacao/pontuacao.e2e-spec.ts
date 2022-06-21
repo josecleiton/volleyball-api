@@ -5,6 +5,7 @@ import { initTestingApp } from '../helpers';
 import { PontuacaoServer } from './pontuacao.server';
 
 // process.env.LOGGING = '1';
+// process.env.REAL_CONNECTION = '1';
 
 describe('PontuacaoController (e2e)', () => {
   let app: INestApplication;
