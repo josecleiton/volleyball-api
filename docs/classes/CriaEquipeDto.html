@@ -429,6 +429,7 @@ export class EquipeRespostaDto extends EquipeSimplificadaRespostaDto {
   quantidadeAuxiliares: number;
   atletas: AtletaRespostaDto[];
   auxiliares: AuxiliarRespostaDto[];
+  dataCriacao: Date;
 
   constructor(equipe: Equipe) {
     super(equipe);
@@ -445,6 +446,7 @@ export class EquipeRespostaDto extends EquipeSimplificadaRespostaDto {
     this.atletas &#x3D; equipe.atletas?.map((x) &#x3D;&gt; new AtletaRespostaDto(x)) ?? [];
     this.auxiliares &#x3D;
       equipe.auxiliares?.map((x) &#x3D;&gt; new AuxiliarRespostaDto(x)) ?? [];
+    this.dataCriacao &#x3D; new Date(equipe.dataCriacao);
   }
 }
 </code></pre>

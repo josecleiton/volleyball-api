@@ -94,6 +94,10 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#buscarConfrontosDeEquipesEmpatadas" >buscarConfrontosDeEquipesEmpatadas</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#encontraPartidaCompleta" >encontraPartidaCompleta</a>
                             </li>
                             <li>
@@ -106,7 +110,7 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#removePartidasSemGanhadores" >removePartidasSemGanhadores</a>
+                                <a href="#removePartidasNaoDisputadas" >removePartidasNaoDisputadas</a>
                             </li>
                         </ul>
                     </td>
@@ -147,8 +151,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="16"
-                            class="link-to-prism">src/modules/partida/repositories/partida.repository.ts:16</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="18"
+                            class="link-to-prism">src/modules/partida/repositories/partida.repository.ts:18</a></div>
                 </td>
             </tr>
 
@@ -200,6 +204,77 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="buscarConfrontosDeEquipesEmpatadas"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>buscarConfrontosDeEquipesEmpatadas</b></span>
+                        <a href="#buscarConfrontosDeEquipesEmpatadas"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>buscarConfrontosDeEquipesEmpatadas(idLiga: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="105"
+                            class="link-to-prism">src/modules/partida/repositories/partida.repository.ts:105</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>idLiga</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../interfaces/IBuscarConfrontoEquipesEmpatadas.html" target="_self" >Promise&lt;IBuscarConfrontoEquipesEmpatadas[]&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="encontraPartidaCompleta"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -218,8 +293,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="49"
-                            class="link-to-prism">src/modules/partida/repositories/partida.repository.ts:49</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="30"
+                            class="link-to-prism">src/modules/partida/repositories/partida.repository.ts:30</a></div>
                 </td>
             </tr>
 
@@ -289,8 +364,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="26"
-                            class="link-to-prism">src/modules/partida/repositories/partida.repository.ts:26</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="40"
+                            class="link-to-prism">src/modules/partida/repositories/partida.repository.ts:40</a></div>
                 </td>
             </tr>
 
@@ -360,8 +435,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="83"
-                            class="link-to-prism">src/modules/partida/repositories/partida.repository.ts:83</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="87"
+                            class="link-to-prism">src/modules/partida/repositories/partida.repository.ts:87</a></div>
                 </td>
             </tr>
 
@@ -412,26 +487,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="removePartidasSemGanhadores"></a>
+                    <a name="removePartidasNaoDisputadas"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
-                        <span ><b>removePartidasSemGanhadores</b></span>
-                        <a href="#removePartidasSemGanhadores"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>removePartidasNaoDisputadas</b></span>
+                        <a href="#removePartidasNaoDisputadas"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>removePartidasSemGanhadores(idLiga: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, manager: EntityManager)</code>
+                    <code>removePartidasNaoDisputadas(idLiga: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, manager: EntityManager)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="59"
-                            class="link-to-prism">src/modules/partida/repositories/partida.repository.ts:59</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="63"
+                            class="link-to-prism">src/modules/partida/repositories/partida.repository.ts:63</a></div>
                 </td>
             </tr>
 
@@ -501,12 +576,14 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { nomePontuacaoView } from &#x27;src/modules/pontuacao/pontuacao.constant&#x27;;
+import {
   EntityManager,
   EntityRepository,
   Repository,
   SelectQueryBuilder,
 } from &#x27;typeorm&#x27;;
+import { IBuscarConfrontoEquipesEmpatadas } from &#x27;../dto/partida-pontuacao.dto&#x27;;
 import {
   IBuscaQuantidadePartidasPorTipoEStatus,
   ListaPartidasDto,
@@ -523,7 +600,19 @@ export class PartidaRepository extends Repository&lt;Partida&gt; {
       .innerJoinAndSelect(&#x27;partidas.visitante&#x27;, &#x27;visitantes&#x27;)
       .innerJoinAndSelect(&#x27;visitantes.equipe&#x27;, &#x27;equipesVisitantes&#x27;)
       .innerJoinAndSelect(&#x27;partidas._mandante&#x27;, &#x27;mandantes&#x27;)
-      .innerJoinAndSelect(&#x27;mandantes.equipe&#x27;, &#x27;equipesMandantes&#x27;);
+      .innerJoinAndSelect(&#x27;mandantes.equipe&#x27;, &#x27;equipesMandantes&#x27;)
+      .leftJoinAndSelect(&#x27;partidas.ganhadora&#x27;, &#x27;ganhadoras&#x27;)
+      .leftJoinAndSelect(&#x27;ganhadoras.equipe&#x27;, &#x27;equipesGanhadoras&#x27;);
+  }
+
+  async encontraPartidaCompleta(id: string) {
+    const qb &#x3D; this.createQueryBuilder(&#x27;partidas&#x27;);
+
+    this.aplicaRelacoesDeUmaPartidaCompleta(qb).where(&#x27;partidas.id &#x3D; :id&#x27;, {
+      id,
+    });
+
+    return qb.getOne();
   }
 
   async listaPartidasOrdenadas(requisicao: ListaPartidasDto) {
@@ -549,17 +638,7 @@ export class PartidaRepository extends Repository&lt;Partida&gt; {
     return qb.getMany();
   }
 
-  async encontraPartidaCompleta(id: string) {
-    const qb &#x3D; this.createQueryBuilder(&#x27;partidas&#x27;);
-
-    this.aplicaRelacoesDeUmaPartidaCompleta(qb).where(&#x27;partidas.id &#x3D; :id&#x27;, {
-      id,
-    });
-
-    return qb.getOne();
-  }
-
-  async removePartidasSemGanhadores(idLiga: string, manager: EntityManager) {
+  async removePartidasNaoDisputadas(idLiga: string, manager: EntityManager) {
     return manager.query(
       &#x60;
       DELETE
@@ -599,6 +678,43 @@ export class PartidaRepository extends Repository&lt;Partida&gt; {
       .andWhere(&#x27;p.tipoDaRodada IN (:...tiposDeRodada)&#x27;, { tiposDeRodada });
 
     return qb.getCount();
+  }
+
+  async buscarConfrontosDeEquipesEmpatadas(
+    idLiga: string,
+  ): Promise&lt;IBuscarConfrontoEquipesEmpatadas[]&gt; {
+    const qb &#x3D; this.createQueryBuilder(&#x27;p&#x27;);
+
+    qb.select(&#x27;p.id&#x27;, &#x27;id&#x27;)
+      .addSelect(&#x27;eg.id&#x27;, &#x27;idEquipeGanhadora&#x27;)
+      .addSelect(&#x27;em.id&#x27;, &#x27;idEquipeMandante&#x27;)
+      .addSelect(&#x27;ev.id&#x27;, &#x27;idEquipeVisitante&#x27;)
+      .innerJoin(&#x27;p.ganhadora&#x27;, &#x27;ganhadora&#x27;)
+      .innerJoin(&#x27;p._mandante&#x27;, &#x27;mandante&#x27;)
+      .innerJoin(&#x27;p.visitante&#x27;, &#x27;visitante&#x27;)
+      .innerJoin(&#x27;ganhadora.equipe&#x27;, &#x27;eg&#x27;)
+      .innerJoin(&#x27;mandante.equipe&#x27;, &#x27;em&#x27;)
+      .innerJoin(&#x27;visitante.equipe&#x27;, &#x27;ev&#x27;)
+      .where((qb) &#x3D;&gt; {
+        const subQuery &#x3D; qb
+          .subQuery()
+          .select(&#x27;pv.idEquipe&#x27;)
+          .distinct(true)
+          .from(nomePontuacaoView, &#x27;pv&#x27;)
+          .innerJoin(
+            nomePontuacaoView,
+            &#x27;pv2&#x27;,
+            &#x27;pv2.idEquipe &lt;&gt; pv.idEquipe AND pv2.pontuacao &#x3D; pv.pontuacao&#x27;,
+          )
+          .innerJoin(&#x27;pv.equipe&#x27;, &#x27;e&#x27;, &#x27;e.idLiga &#x3D; :idLiga&#x27;)
+          .getQuery();
+
+        return &#x60;eg.id IN ${subQuery}&#x60;;
+      })
+      .orderBy(&#x27;p.dataCriacao&#x27;)
+      .setParameter(&#x27;idLiga&#x27;, idLiga);
+
+    return qb.getRawMany();
   }
 }
 </code></pre>

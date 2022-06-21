@@ -44,7 +44,7 @@
 
 <ol class="breadcrumb">
   <li>Classes</li>
-  <li >CraqueDaGaleraViewRepository</li>
+  <li >EquipeAdicionaIdxIdLiga1655655121730</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -62,18 +62,18 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/modules/estatistica/repositories/craque-da-galera-view.repository.ts</code>
+            <code>src/database/migrations/1655655121730-EquipeAdicionaIdxIdLiga.ts</code>
         </p>
 
 
 
-            <p class="comment">
-                <h3>Extends</h3>
-            </p>
-            <p class="comment">
-                        <code><a href="../classes/MaterializedViewRepository.html" target="_self" >MaterializedViewRepository</a></code>
-            </p>
 
+            <p class="comment">
+                <h3>Implements</h3>
+            </p>
+            <p class="comment">
+                        <code>MigrationInterface</code>
+            </p>
 
 
             <section>
@@ -89,13 +89,6 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier">Protected</span>
-                                    <span class="modifier">Readonly</span>
-                                <a href="#concurrently" >concurrently</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Protected</span>
-                                    <span class="modifier">Readonly</span>
                                 <a href="#name" >name</a>
                             </li>
                         </ul>
@@ -111,12 +104,14 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Public</span>
                                     <span class="modifier">Async</span>
-                                <a href="#listaMelhores" >listaMelhores</a>
+                                <a href="#down" >down</a>
                             </li>
                             <li>
+                                    <span class="modifier">Public</span>
                                     <span class="modifier">Async</span>
-                                <a href="#refreshMaterializedView" >refreshMaterializedView</a>
+                                <a href="#up" >up</a>
                             </li>
                         </ul>
                     </td>
@@ -140,44 +135,8 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="concurrently"></a>
-                    <span class="name">
-                            <span class="modifier">Protected</span>
-                            <span class="modifier">Readonly</span>
-                        <span ><b>concurrently</b></span>
-                        <a href="#concurrently"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>true</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Inherited from         <code><a href="../classes/MaterializedViewRepository.html" target="_self" >MaterializedViewRepository</a></code>
-</div>
-                            </td>
-                        </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../classes/MaterializedViewRepository.html#source" target="_self" >MaterializedViewRepository:9</a></code>
-</div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="name"></a>
                     <span class="name">
-                            <span class="modifier">Protected</span>
-                            <span class="modifier">Readonly</span>
                         <span ><b>name</b></span>
                         <a href="#name"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -185,19 +144,18 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>nomeCraqueDaGaleraView</code>
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
                     </td>
                 </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Inherited from         <code><a href="../classes/MaterializedViewRepository.html" target="_self" >MaterializedViewRepository</a></code>
-</div>
-                            </td>
-                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;EquipeAdicionaIdxIdLiga1655655121730&#x27;</code>
+                    </td>
+                </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../classes/MaterializedViewRepository.html#source" target="_self" >MaterializedViewRepository:8</a></code>
-</div>
+                                <div class="io-line">Defined in <a href="" data-line="6" class="link-to-prism">src/database/migrations/1655655121730-EquipeAdicionaIdxIdLiga.ts:6</a></div>
                         </td>
                     </tr>
 
@@ -215,26 +173,27 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="listaMelhores"></a>
+                    <a name="down"></a>
                     <span class="name">
+                        <span class="modifier">Public</span>
                         <span class="modifier">Async</span>
-                        <span ><b>listaMelhores</b></span>
-                        <a href="#listaMelhores"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>down</b></span>
+                        <a href="#down"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>listaMelhores(idLiga: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, limite: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    <code>down(queryRunner: QueryRunner)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="11"
-                            class="link-to-prism">src/modules/estatistica/repositories/craque-da-galera-view.repository.ts:11</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="14"
+                            class="link-to-prism">src/database/migrations/1655655121730-EquipeAdicionaIdxIdLiga.ts:14</a></div>
                 </td>
             </tr>
 
@@ -251,37 +210,19 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
-                                    <td>Default value</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>idLiga</td>
+                                    <td>queryRunner</td>
                                     <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            <code>QueryRunner</code>
                                     </td>
 
                                     <td>
                                         No
                                     </td>
 
-                                    <td>
-                                    </td>
-
-                                </tr>
-                                <tr>
-                                    <td>limite</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-                                    <td>
-                                        <code>5</code>
-                                    </td>
 
                                 </tr>
                             </tbody>
@@ -290,7 +231,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>unknown</code>
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -304,32 +245,27 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="refreshMaterializedView"></a>
+                    <a name="up"></a>
                     <span class="name">
+                        <span class="modifier">Public</span>
                         <span class="modifier">Async</span>
-                        <span ><b>refreshMaterializedView</b></span>
-                        <a href="#refreshMaterializedView"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>up</b></span>
+                        <a href="#up"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>refreshMaterializedView(manager?: EntityManager)</code>
+                    <code>up(queryRunner: QueryRunner)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Inherited from         <code><a href="../classes/MaterializedViewRepository.html" target="_self" >MaterializedViewRepository</a></code>
-</div>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../classes/MaterializedViewRepository.html#source" target="_self" >MaterializedViewRepository:11</a></code>
-</div>
+                    <div class="io-line">Defined in <a href="" data-line="8"
+                            class="link-to-prism">src/database/migrations/1655655121730-EquipeAdicionaIdxIdLiga.ts:8</a></div>
                 </td>
             </tr>
 
@@ -350,13 +286,13 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>manager</td>
+                                    <td>queryRunner</td>
                                     <td>
-                                            <code>EntityManager</code>
+                                            <code>QueryRunner</code>
                                     </td>
 
                                     <td>
-                                        Yes
+                                        No
                                     </td>
 
 
@@ -367,7 +303,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>unknown</code>
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -387,26 +323,23 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { MaterializedViewRepository } from &#x27;src/modules/core/repositories/materialized-view.repository&#x27;;
-import { EntityRepository } from &#x27;typeorm&#x27;;
-import { CraqueDaGaleraView } from &#x27;../entities/craque-da-galera.entity&#x27;;
-import { nomeCraqueDaGaleraView } from &#x27;../estatistica.constants&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { MigrationInterface, QueryRunner } from &#x27;typeorm&#x27;;
 
-@EntityRepository(CraqueDaGaleraView)
-export class CraqueDaGaleraViewRepository extends MaterializedViewRepository&lt;CraqueDaGaleraView&gt; {
-  protected readonly name &#x3D; nomeCraqueDaGaleraView;
-  protected readonly concurrently &#x3D; true;
+export class EquipeAdicionaIdxIdLiga1655655121730
+  implements MigrationInterface
+{
+  name &#x3D; &#x27;EquipeAdicionaIdxIdLiga1655655121730&#x27;;
 
-  async listaMelhores(idLiga: string, limite &#x3D; 5) {
-    const qb &#x3D; this.createQueryBuilder(&#x27;cg&#x27;);
+  public async up(queryRunner: QueryRunner): Promise&lt;void&gt; {
+    await queryRunner.query(
+      &#x60;CREATE INDEX &quot;IDX_c889de707e36b235a08c65e41c&quot; ON &quot;equipes&quot; (&quot;id_liga&quot;) &#x60;,
+    );
+  }
 
-    qb.innerJoinAndSelect(&#x27;cg.atleta&#x27;, &#x27;a&#x27;)
-      .innerJoinAndSelect(&#x27;a.equipe&#x27;, &#x27;e&#x27;)
-      .where(&#x27;e.idLiga &#x3D; :idLiga&#x27;, { idLiga })
-      .orderBy(&#x27;cg.quantidadeVotos&#x27;, &#x27;DESC&#x27;)
-      .limit(limite);
-
-    return qb.getMany();
+  public async down(queryRunner: QueryRunner): Promise&lt;void&gt; {
+    await queryRunner.query(
+      &#x60;DROP INDEX &quot;public&quot;.&quot;IDX_c889de707e36b235a08c65e41c&quot;&#x60;,
+    );
   }
 }
 </code></pre>
@@ -447,7 +380,7 @@ export class CraqueDaGaleraViewRepository extends MaterializedViewRepository&lt;
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
-            var COMPODOC_CURRENT_PAGE_URL = 'CraqueDaGaleraViewRepository.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'EquipeAdicionaIdxIdLiga1655655121730.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

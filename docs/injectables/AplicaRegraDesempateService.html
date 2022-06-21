@@ -40,7 +40,7 @@
 
 <ol class="breadcrumb">
   <li>Injectables</li>
-  <li >PontuacaoService</li>
+  <li >AplicaRegraDesempateService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -58,7 +58,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/modules/pontuacao/services/pontuacao.service.ts</code>
+            <code>src/modules/pontuacao/services/aplica-regra-desempate.service.ts</code>
         </p>
 
 
@@ -80,7 +80,7 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#listaPontuacoesOrdenadas" >listaPontuacoesOrdenadas</a>
+                                <a href="#buscarEmpateNaPontuacao" >buscarEmpateNaPontuacao</a>
                             </li>
                         </ul>
                     </td>
@@ -100,12 +100,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(pontuacaoRepository: <a href="../classes/PontuacaoViewRepository.html" target="_self">PontuacaoViewRepository</a>, aplicaRegraDesempateService: <a href="../injectables/AplicaRegraDesempateService.html" target="_self">AplicaRegraDesempateService</a>)</code>
+<code>constructor(partidaRepository: <a href="../classes/PartidaRepository.html" target="_self">PartidaRepository</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/modules/pontuacao/services/pontuacao.service.ts:8</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/modules/pontuacao/services/aplica-regra-desempate.service.ts:9</a></div>
                             </td>
                         </tr>
 
@@ -123,22 +123,10 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>pontuacaoRepository</td>
+                                                        <td>partidaRepository</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../classes/PontuacaoViewRepository.html" target="_self" >PontuacaoViewRepository</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>aplicaRegraDesempateService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/AplicaRegraDesempateService.html" target="_self" >AplicaRegraDesempateService</a></code>
+                                                                        <code><a href="../classes/PartidaRepository.html" target="_self" >PartidaRepository</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -164,26 +152,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="listaPontuacoesOrdenadas"></a>
+                    <a name="buscarEmpateNaPontuacao"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
-                        <span ><b>listaPontuacoesOrdenadas</b></span>
-                        <a href="#listaPontuacoesOrdenadas"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>buscarEmpateNaPontuacao</b></span>
+                        <a href="#buscarEmpateNaPontuacao"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>listaPontuacoesOrdenadas(idLiga: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, limite)</code>
+                    <code>buscarEmpateNaPontuacao(undefined: <a href="../interfaces/IAplicaRegraDesempateDto.html" target="_self">IAplicaRegraDesempateDto</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="14"
-                            class="link-to-prism">src/modules/pontuacao/services/pontuacao.service.ts:14</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="12"
+                            class="link-to-prism">src/modules/pontuacao/services/aplica-regra-desempate.service.ts:12</a></div>
                 </td>
             </tr>
 
@@ -200,36 +188,18 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
-                                    <td>Default value</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>idLiga</td>
                                     <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                <code><a href="../interfaces/IAplicaRegraDesempateDto.html" target="_self" >IAplicaRegraDesempateDto</a></code>
                                     </td>
 
                                     <td>
                                         No
                                     </td>
 
-                                    <td>
-                                    </td>
-
-                                </tr>
-                                <tr>
-                                    <td>limite</td>
-                                    <td>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-                                    <td>
-                                        <code>Liga.minimoDeEquipesNaLiga</code>
-                                    </td>
 
                                 </tr>
                             </tbody>
@@ -238,7 +208,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/PontuacaoRespostaDto.html" target="_self" >Promise&lt;PontuacaoRespostaDto[]&gt;</a></code>
+                        <b>Returns : </b>    <code>unknown</code>
 
                     </div>
                     <div class="io-description">
@@ -255,29 +225,107 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@nestjs/common&#x27;;
-import { Liga } from &#x27;src/modules/liga/entities/liga.entity&#x27;;
-import { PontuacaoRespostaDto } from &#x27;../dtos/pontuacao.dto&#x27;;
-import { PontuacaoViewRepository } from &#x27;../repositories/pontuacao-view.repository&#x27;;
-import { AplicaRegraDesempateService } from &#x27;./aplica-regra-desempate.service&#x27;;
+import { DirectedGraph } from &#x27;datastructures-js&#x27;;
+import { compareAsc } from &#x27;date-fns&#x27;;
+import { IBuscarConfrontoEquipesEmpatadas } from &#x27;../../partida/dto/partida-pontuacao.dto&#x27;;
+import { PartidaRepository } from &#x27;../../partida/repositories&#x27;;
+import { IAplicaRegraDesempateDto } from &#x27;../dtos/desempate.dto&#x27;;
 
 @Injectable()
-export class PontuacaoService {
-  constructor(
-    private readonly pontuacaoRepository: PontuacaoViewRepository,
-    private readonly aplicaRegraDesempateService: AplicaRegraDesempateService,
-  ) {}
+export class AplicaRegraDesempateService {
+  constructor(private readonly partidaRepository: PartidaRepository) {}
 
-  async listaPontuacoesOrdenadas(
-    idLiga: string,
-    limite &#x3D; Liga.minimoDeEquipesNaLiga,
-  ): Promise&lt;PontuacaoRespostaDto[]&gt; {
-    const pontuacoes &#x3D; await this.pontuacaoRepository.listaPorLiga(idLiga);
+  async buscarEmpateNaPontuacao({
+    idLiga,
+    classificacoes,
+  }: IAplicaRegraDesempateDto) {
+    const confrontos &#x3D;
+      await this.partidaRepository.buscarConfrontosDeEquipesEmpatadas(idLiga);
+    const grafoConfrontoDireto &#x3D; new GrafoDeConfronto(confrontos);
 
-    const classificacoes &#x3D; pontuacoes.map((x) &#x3D;&gt; new PontuacaoRespostaDto(x));
+    const result &#x3D; classificacoes.sort((a, b) &#x3D;&gt; {
+      const fatorVitoria &#x3D; b.partidasGanhas - a.partidasGanhas;
+      if (fatorVitoria) {
+        return fatorVitoria;
+      }
 
-    return this.aplicaRegraDesempateService
-      .buscarEmpateNaPontuacao({ idLiga, classificacoes })
-      .then((res) &#x3D;&gt; res.slice(0, limite));
+      const fatorPontuacao &#x3D; b.pontuacao - a.pontuacao;
+      if (fatorPontuacao) {
+        return fatorPontuacao;
+      }
+
+      const fatorSetsAverage &#x3D; b.setsAverage - a.setsAverage;
+      if (fatorSetsAverage) {
+        return fatorSetsAverage;
+      }
+
+      const fatorPontosAverage &#x3D; b.pontosAverage - a.pontosAverage;
+      if (fatorPontosAverage) {
+        return fatorPontosAverage;
+      }
+
+      const fatorConfrontoDireto &#x3D;
+        grafoConfrontoDireto.buscaResultadoConfrontoDireto(
+          b.idEquipe,
+          a.idEquipe,
+        );
+
+      if (Number.isFinite(fatorConfrontoDireto)) {
+        return -fatorConfrontoDireto;
+      }
+
+      return compareAsc(a.equipe.dataCriacao, b.equipe.dataCriacao);
+    });
+
+    return result;
+  }
+}
+
+class GrafoDeConfronto {
+  private readonly grafo: {
+    getWeight(equipeA: string, equipeB: string): number;
+  };
+
+  constructor(confrontosDiretos: IBuscarConfrontoEquipesEmpatadas[]) {
+    const graphConfrontoDireto &#x3D; new DirectedGraph&lt;string, unknown&gt;();
+
+    for (const confronto of confrontosDiretos) {
+      graphConfrontoDireto
+        .addVertex(confronto.idEquipeMandante, {})
+        .addVertex(confronto.idEquipeVisitante, {});
+
+      const pesoEquipeMandante &#x3D;
+        confronto.idEquipeGanhadora &#x3D;&#x3D;&#x3D; confronto.idEquipeMandante ? 1 : -1;
+
+      const temConfronto &#x3D; graphConfrontoDireto.hasEdge(
+        confronto.idEquipeMandante,
+        confronto.idEquipeVisitante,
+      );
+      const pesoAnteriorDaEquipeMandante &#x3D; temConfronto
+        ? graphConfrontoDireto.getWeight(
+            confronto.idEquipeMandante,
+            confronto.idEquipeVisitante,
+          )
+        : 0;
+
+      graphConfrontoDireto
+        .addEdge(
+          confronto.idEquipeMandante,
+          confronto.idEquipeVisitante,
+          pesoEquipeMandante + pesoAnteriorDaEquipeMandante,
+        )
+        .addEdge(
+          confronto.idEquipeVisitante,
+          confronto.idEquipeMandante,
+          -pesoEquipeMandante - pesoAnteriorDaEquipeMandante,
+        );
+    }
+
+    this.grafo &#x3D; graphConfrontoDireto;
+  }
+
+  buscaResultadoConfrontoDireto(equipeA: string, equipeB: string) {
+    return this.grafo.getWeight(equipeA, equipeB);
   }
 }
 </code></pre>
@@ -323,7 +371,7 @@ export class PontuacaoService {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
-            var COMPODOC_CURRENT_PAGE_URL = 'PontuacaoService.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'AplicaRegraDesempateService.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

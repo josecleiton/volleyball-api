@@ -228,7 +228,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>refreshMaterializedView(manager: EntityManager)</code>
+                    <code>refreshMaterializedView(manager?: EntityManager)</code>
                 </td>
             </tr>
 
@@ -263,7 +263,7 @@
                                     </td>
 
                                     <td>
-                                        No
+                                        Yes
                                     </td>
 
 
@@ -328,11 +328,11 @@ export abstract class MaterializedViewRepository&lt;T&gt; extends Repository&lt;
   protected abstract readonly concurrently: boolean;
 
   private get concurrentlyQuery(): string {
-    return this.concurrently ? &#x27;CONCURRENTLY &#x27; : &#x27;&#x27;;
+    return this.concurrently ? &#x27;CONCURRENTLY&#x27; : &#x27;&#x27;;
   }
 
-  async refreshMaterializedView(manager: EntityManager) {
-    return manager.query(
+  async refreshMaterializedView(manager?: EntityManager) {
+    return (manager ?? this.manager).query(
       &#x60;REFRESH MATERIALIZED VIEW ${this.concurrentlyQuery} &quot;${this.name}&quot;&#x60;,
     );
   }

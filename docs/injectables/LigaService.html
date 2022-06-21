@@ -387,8 +387,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="276"
-                            class="link-to-prism">src/modules/liga/services/liga.service.ts:276</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="284"
+                            class="link-to-prism">src/modules/liga/services/liga.service.ts:284</a></div>
                 </td>
             </tr>
 
@@ -459,8 +459,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="267"
-                            class="link-to-prism">src/modules/liga/services/liga.service.ts:267</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="275"
+                            class="link-to-prism">src/modules/liga/services/liga.service.ts:275</a></div>
                 </td>
             </tr>
 
@@ -542,8 +542,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="228"
-                            class="link-to-prism">src/modules/liga/services/liga.service.ts:228</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="236"
+                            class="link-to-prism">src/modules/liga/services/liga.service.ts:236</a></div>
                 </td>
             </tr>
 
@@ -613,8 +613,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="237"
-                            class="link-to-prism">src/modules/liga/services/liga.service.ts:237</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="245"
+                            class="link-to-prism">src/modules/liga/services/liga.service.ts:245</a></div>
                 </td>
             </tr>
 
@@ -684,8 +684,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="246"
-                            class="link-to-prism">src/modules/liga/services/liga.service.ts:246</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="254"
+                            class="link-to-prism">src/modules/liga/services/liga.service.ts:254</a></div>
                 </td>
             </tr>
 
@@ -768,8 +768,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="221"
-                            class="link-to-prism">src/modules/liga/services/liga.service.ts:221</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="229"
+                            class="link-to-prism">src/modules/liga/services/liga.service.ts:229</a></div>
                 </td>
             </tr>
 
@@ -922,8 +922,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="195"
-                            class="link-to-prism">src/modules/liga/services/liga.service.ts:195</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="203"
+                            class="link-to-prism">src/modules/liga/services/liga.service.ts:203</a></div>
                 </td>
             </tr>
 
@@ -1005,8 +1005,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="130"
-                            class="link-to-prism">src/modules/liga/services/liga.service.ts:130</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="138"
+                            class="link-to-prism">src/modules/liga/services/liga.service.ts:138</a></div>
                 </td>
             </tr>
 
@@ -1088,8 +1088,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="171"
-                            class="link-to-prism">src/modules/liga/services/liga.service.ts:171</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="179"
+                            class="link-to-prism">src/modules/liga/services/liga.service.ts:179</a></div>
                 </td>
             </tr>
 
@@ -1171,8 +1171,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="260"
-                            class="link-to-prism">src/modules/liga/services/liga.service.ts:260</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="268"
+                            class="link-to-prism">src/modules/liga/services/liga.service.ts:268</a></div>
                 </td>
             </tr>
 
@@ -1210,8 +1210,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="280"
-                            class="link-to-prism">src/modules/liga/services/liga.service.ts:280</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="288"
+                            class="link-to-prism">src/modules/liga/services/liga.service.ts:288</a></div>
                 </td>
             </tr>
 
@@ -1385,6 +1385,14 @@ export class LigaService {
           partidas.map((x) &#x3D;&gt; [x.mandante, x.visitante]).flat(),
         );
         const partidasSalvas &#x3D; await manager.save(partidas);
+        await manager.save(
+          partidas
+            .map((x) &#x3D;&gt; {
+              x.mandante.idPartida &#x3D; x.visitante.idPartida &#x3D; x.id;
+              return [x.mandante, x.visitante];
+            })
+            .flat(),
+        );
         const ligaSalva &#x3D; await manager.save(liga);
 
         return [ligaSalva, partidasSalvas];
@@ -1427,7 +1435,7 @@ export class LigaService {
 
     const [ligaAtualizada, partidasAgendadas] &#x3D;
       await this.connection.transaction(async (manager) &#x3D;&gt; {
-        await this.partidaRepository.removePartidasSemGanhadores(id, manager);
+        await this.partidaRepository.removePartidasNaoDisputadas(id, manager);
 
         return [await manager.save(liga), await manager.save(partidas)];
       });
@@ -1451,7 +1459,7 @@ export class LigaService {
     liga.status &#x3D; StatusLiga.SEMIS;
     const [ligaAtualizada, partidasAgendadas] &#x3D;
       await this.connection.transaction(async (manager) &#x3D;&gt; {
-        await this.partidaRepository.removePartidasSemGanhadores(id, manager);
+        await this.partidaRepository.removePartidasNaoDisputadas(id, manager);
 
         return [await manager.save(liga), await manager.save(partidas)];
       });
@@ -1477,7 +1485,7 @@ export class LigaService {
 
     const [ligaAtualizada, partidasAgendadas] &#x3D;
       await this.connection.transaction(async (manager) &#x3D;&gt; {
-        await this.partidaRepository.removePartidasSemGanhadores(id, manager);
+        await this.partidaRepository.removePartidasNaoDisputadas(id, manager);
 
         return [await manager.save(liga), await manager.save(partidas)];
       });

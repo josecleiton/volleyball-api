@@ -44,7 +44,7 @@
 
 <ol class="breadcrumb">
   <li>Classes</li>
-  <li >CraqueDaGaleraViewRepository</li>
+  <li >PontuacaoViewAjustaQuery1655760085847</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -62,18 +62,18 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/modules/estatistica/repositories/craque-da-galera-view.repository.ts</code>
+            <code>src/database/migrations/1655760085847-PontuacaoViewAjustaQuery.ts</code>
         </p>
 
 
 
-            <p class="comment">
-                <h3>Extends</h3>
-            </p>
-            <p class="comment">
-                        <code><a href="../classes/MaterializedViewRepository.html" target="_self" >MaterializedViewRepository</a></code>
-            </p>
 
+            <p class="comment">
+                <h3>Implements</h3>
+            </p>
+            <p class="comment">
+                        <code>MigrationInterface</code>
+            </p>
 
 
             <section>
@@ -89,13 +89,6 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier">Protected</span>
-                                    <span class="modifier">Readonly</span>
-                                <a href="#concurrently" >concurrently</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Protected</span>
-                                    <span class="modifier">Readonly</span>
                                 <a href="#name" >name</a>
                             </li>
                         </ul>
@@ -111,12 +104,14 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Public</span>
                                     <span class="modifier">Async</span>
-                                <a href="#listaMelhores" >listaMelhores</a>
+                                <a href="#down" >down</a>
                             </li>
                             <li>
+                                    <span class="modifier">Public</span>
                                     <span class="modifier">Async</span>
-                                <a href="#refreshMaterializedView" >refreshMaterializedView</a>
+                                <a href="#up" >up</a>
                             </li>
                         </ul>
                     </td>
@@ -140,44 +135,8 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="concurrently"></a>
-                    <span class="name">
-                            <span class="modifier">Protected</span>
-                            <span class="modifier">Readonly</span>
-                        <span ><b>concurrently</b></span>
-                        <a href="#concurrently"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>true</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Inherited from         <code><a href="../classes/MaterializedViewRepository.html" target="_self" >MaterializedViewRepository</a></code>
-</div>
-                            </td>
-                        </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../classes/MaterializedViewRepository.html#source" target="_self" >MaterializedViewRepository:9</a></code>
-</div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="name"></a>
                     <span class="name">
-                            <span class="modifier">Protected</span>
-                            <span class="modifier">Readonly</span>
                         <span ><b>name</b></span>
                         <a href="#name"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -185,19 +144,18 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>nomeCraqueDaGaleraView</code>
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
                     </td>
                 </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Inherited from         <code><a href="../classes/MaterializedViewRepository.html" target="_self" >MaterializedViewRepository</a></code>
-</div>
-                            </td>
-                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;PontuacaoViewAjustaQuery1655760085847&#x27;</code>
+                    </td>
+                </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../classes/MaterializedViewRepository.html#source" target="_self" >MaterializedViewRepository:8</a></code>
-</div>
+                                <div class="io-line">Defined in <a href="" data-line="6" class="link-to-prism">src/database/migrations/1655760085847-PontuacaoViewAjustaQuery.ts:6</a></div>
                         </td>
                     </tr>
 
@@ -215,26 +173,27 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="listaMelhores"></a>
+                    <a name="down"></a>
                     <span class="name">
+                        <span class="modifier">Public</span>
                         <span class="modifier">Async</span>
-                        <span ><b>listaMelhores</b></span>
-                        <a href="#listaMelhores"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>down</b></span>
+                        <a href="#down"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>listaMelhores(idLiga: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, limite: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    <code>down(queryRunner: QueryRunner)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="11"
-                            class="link-to-prism">src/modules/estatistica/repositories/craque-da-galera-view.repository.ts:11</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="86"
+                            class="link-to-prism">src/database/migrations/1655760085847-PontuacaoViewAjustaQuery.ts:86</a></div>
                 </td>
             </tr>
 
@@ -251,37 +210,19 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
-                                    <td>Default value</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>idLiga</td>
+                                    <td>queryRunner</td>
                                     <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            <code>QueryRunner</code>
                                     </td>
 
                                     <td>
                                         No
                                     </td>
 
-                                    <td>
-                                    </td>
-
-                                </tr>
-                                <tr>
-                                    <td>limite</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-                                    <td>
-                                        <code>5</code>
-                                    </td>
 
                                 </tr>
                             </tbody>
@@ -290,7 +231,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>unknown</code>
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -304,32 +245,27 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="refreshMaterializedView"></a>
+                    <a name="up"></a>
                     <span class="name">
+                        <span class="modifier">Public</span>
                         <span class="modifier">Async</span>
-                        <span ><b>refreshMaterializedView</b></span>
-                        <a href="#refreshMaterializedView"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>up</b></span>
+                        <a href="#up"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>refreshMaterializedView(manager?: EntityManager)</code>
+                    <code>up(queryRunner: QueryRunner)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Inherited from         <code><a href="../classes/MaterializedViewRepository.html" target="_self" >MaterializedViewRepository</a></code>
-</div>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../classes/MaterializedViewRepository.html#source" target="_self" >MaterializedViewRepository:11</a></code>
-</div>
+                    <div class="io-line">Defined in <a href="" data-line="8"
+                            class="link-to-prism">src/database/migrations/1655760085847-PontuacaoViewAjustaQuery.ts:8</a></div>
                 </td>
             </tr>
 
@@ -350,13 +286,13 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>manager</td>
+                                    <td>queryRunner</td>
                                     <td>
-                                            <code>EntityManager</code>
+                                            <code>QueryRunner</code>
                                     </td>
 
                                     <td>
-                                        Yes
+                                        No
                                     </td>
 
 
@@ -367,7 +303,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>unknown</code>
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -387,26 +323,97 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { MaterializedViewRepository } from &#x27;src/modules/core/repositories/materialized-view.repository&#x27;;
-import { EntityRepository } from &#x27;typeorm&#x27;;
-import { CraqueDaGaleraView } from &#x27;../entities/craque-da-galera.entity&#x27;;
-import { nomeCraqueDaGaleraView } from &#x27;../estatistica.constants&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { MigrationInterface, QueryRunner } from &#x27;typeorm&#x27;;
 
-@EntityRepository(CraqueDaGaleraView)
-export class CraqueDaGaleraViewRepository extends MaterializedViewRepository&lt;CraqueDaGaleraView&gt; {
-  protected readonly name &#x3D; nomeCraqueDaGaleraView;
-  protected readonly concurrently &#x3D; true;
+export class PontuacaoViewAjustaQuery1655760085847
+  implements MigrationInterface
+{
+  name &#x3D; &#x27;PontuacaoViewAjustaQuery1655760085847&#x27;;
 
-  async listaMelhores(idLiga: string, limite &#x3D; 5) {
-    const qb &#x3D; this.createQueryBuilder(&#x27;cg&#x27;);
+  public async up(queryRunner: QueryRunner): Promise&lt;void&gt; {
+    await queryRunner.query(
+      &#x60;DELETE FROM &quot;typeorm_metadata&quot; WHERE &quot;type&quot; &#x3D; $1 AND &quot;name&quot; &#x3D; $2 AND &quot;schema&quot; &#x3D; $3&#x60;,
+      [&#x27;MATERIALIZED_VIEW&#x27;, &#x27;pontuacoes_view&#x27;, &#x27;public&#x27;],
+    );
+    await queryRunner.query(&#x60;DROP MATERIALIZED VIEW &quot;pontuacoes_view&quot;&#x60;);
+    await queryRunner.query(
+      &#x60;INSERT INTO &quot;typeorm_metadata&quot;(&quot;database&quot;, &quot;schema&quot;, &quot;table&quot;, &quot;type&quot;, &quot;name&quot;, &quot;value&quot;) VALUES (DEFAULT, $1, DEFAULT, $2, $3, $4)&#x60;,
+      [
+        &#x27;public&#x27;,
+        &#x27;MATERIALIZED_VIEW&#x27;,
+        &#x27;melhores_liberos_view&#x27;,
+        &quot;WITH ac AS (\n      SELECT\n        a.id AS id,\n        COUNT(f.id) AS qtd,\n        SUM(f.recepcoes) AS total\n      FROM fundamentos_atletas AS f\n      INNER JOIN atletas_escalados AS ae\n      ON\n        ae.id &#x3D; f.id_atleta_escalado\n        AND ae.posicao &#x3D; &#x27;libero&#x27;\n      INNER JOIN atletas AS a\n      ON\n        a.id &#x3D; ae.id_atleta\n      GROUP BY a.id\n    )\n\n    SELECT\n      ac.id AS id_atleta,\n      ac.qtd AS quantidade_partidas,\n      COALESCE(ac.total / NULLIF(ac.qtd, 0), 0) AS recepcoes_por_partida\n    FROM ac&quot;,
+      ],
+    );
+    await queryRunner.query(&#x60;CREATE MATERIALIZED VIEW &quot;pontuacoes_view&quot; AS 
+    WITH total_pontos_ep AS (
+      SELECT 
+        ep.id AS id,
+        COALESCE(SUM((value-&gt;&gt;&#x27;quantidade&#x27;)::int),0) as total_pontos
+      FROM equipes_partidas AS ep
+      INNER JOIN partidas AS p
+      ON
+        p.id &#x3D; ep.id_partida
+        AND p.tipo_da_rodada IN (&#x27;1&#x27;, &#x27;2&#x27;, &#x27;3&#x27;, &#x27;4&#x27;, &#x27;5&#x27;, &#x27;6&#x27;, &#x27;7&#x27;, &#x27;8&#x27;, &#x27;9&#x27;, &#x27;10&#x27;, &#x27;11&#x27;, &#x27;12&#x27;, &#x27;13&#x27;, &#x27;14&#x27;, &#x27;15&#x27;, &#x27;16&#x27;, &#x27;17&#x27;, &#x27;18&#x27;, &#x27;19&#x27;, &#x27;20&#x27;, &#x27;21&#x27;, &#x27;22&#x27;)
+      CROSS JOIN LATERAL jsonb_array_elements(pontos_nos_sets)
+      GROUP BY ep.id
+    ),
+    partidas_disputadas AS (
+      SELECT
+        ep.id_equipe AS id,
+        COUNT(p.id) AS qtd,
+        SUM(ep.ganhou) AS ganhou
+      FROM equipes_partidas AS ep
+      INNER JOIN partidas AS p
+      ON
+        p.id &#x3D; ep.id_partida
+        AND p.status IN (&#x27;wo&#x27;, &#x27;concluida&#x27;)
+      GROUP BY ep.id_equipe
+    )
+    
+    SELECT
+      e.id AS id_equipe,
+      SUM(ep.pontuacao) AS pontuacao,
+      SUM(ep.sets_ganhos) AS sets_ganhos,
+      SUM(ep.sets_disputados) AS sets_disputados,
+      COALESCE(pd.qtd, 0) AS partidas_disputadas,
+      COALESCE(pd.ganhou, 0) AS partidas_ganhas,
+      SUM(ep.sets_disputados) - SUM(ep.sets_ganhos) AS sets_perdidos,
+      COALESCE(pd.qtd, 0) - COALESCE(pd.ganhou, 0) AS partidas_perdidas,
+      COALESCE(SUM(total_pontos_ep.total_pontos) / NULLIF(SUM(ep.sets_disputados), 0)::double precision, 0) AS pontos_average,
+      COALESCE(SUM(ep.sets_ganhos) / NULLIF(SUM(ep.sets_disputados), 0)::double precision, 0) AS sets_average
+    FROM equipes AS e
+    INNER JOIN equipes_partidas AS ep
+      ON ep.id_equipe &#x3D; e.id
+    LEFT JOIN total_pontos_ep
+      ON total_pontos_ep.id &#x3D; ep.id
+    LEFT JOIN partidas_disputadas AS pd
+      ON pd.id &#x3D; e.id
+    GROUP BY e.id, pd.qtd, pd.ganhou
+  &#x60;);
+    await queryRunner.query(
+      &#x60;CREATE UNIQUE INDEX &quot;UQ_pontuacoes_view_id_equipe&quot; ON &quot;pontuacoes_view&quot; (&quot;id_equipe&quot;)&#x60;,
+    );
+    await queryRunner.query(
+      &#x60;CREATE INDEX &quot;IX_pontuacoes_view_pontuacao&quot; ON &quot;pontuacoes_view&quot; (&quot;pontuacao&quot;)&#x60;,
+    );
+    await queryRunner.query(
+      &#x60;INSERT INTO &quot;typeorm_metadata&quot;(&quot;database&quot;, &quot;schema&quot;, &quot;table&quot;, &quot;type&quot;, &quot;name&quot;, &quot;value&quot;) VALUES (DEFAULT, $1, DEFAULT, $2, $3, $4)&#x60;,
+      [
+        &#x27;public&#x27;,
+        &#x27;MATERIALIZED_VIEW&#x27;,
+        &#x27;pontuacoes_view&#x27;,
+        &quot;WITH total_pontos_ep AS (\n      SELECT \n        ep.id AS id,\n        COALESCE(SUM((value-&gt;&gt;&#x27;quantidade&#x27;)::int),0) as total_pontos\n      FROM equipes_partidas AS ep\n      INNER JOIN partidas AS p\n      ON\n        p.id &#x3D; ep.id_partida\n        AND p.tipo_da_rodada IN (&#x27;1&#x27;, &#x27;2&#x27;, &#x27;3&#x27;, &#x27;4&#x27;, &#x27;5&#x27;, &#x27;6&#x27;, &#x27;7&#x27;, &#x27;8&#x27;, &#x27;9&#x27;, &#x27;10&#x27;, &#x27;11&#x27;, &#x27;12&#x27;, &#x27;13&#x27;, &#x27;14&#x27;, &#x27;15&#x27;, &#x27;16&#x27;, &#x27;17&#x27;, &#x27;18&#x27;, &#x27;19&#x27;, &#x27;20&#x27;, &#x27;21&#x27;, &#x27;22&#x27;)\n      CROSS JOIN LATERAL jsonb_array_elements(pontos_nos_sets)\n      GROUP BY ep.id\n    ),\n    partidas_disputadas AS (\n      SELECT\n        ep.id_equipe AS id,\n        COUNT(p.id) AS qtd,\n        SUM(ep.ganhou) AS ganhou\n      FROM equipes_partidas AS ep\n      INNER JOIN partidas AS p\n      ON\n        p.id &#x3D; ep.id_partida\n        AND p.status IN (&#x27;wo&#x27;, &#x27;concluida&#x27;)\n      GROUP BY ep.id_equipe\n    )\n    \n    SELECT\n      e.id AS id_equipe,\n      SUM(ep.pontuacao) AS pontuacao,\n      SUM(ep.sets_ganhos) AS sets_ganhos,\n      SUM(ep.sets_disputados) AS sets_disputados,\n      COALESCE(pd.qtd, 0) AS partidas_disputadas,\n      COALESCE(pd.ganhou, 0) AS partidas_ganhas,\n      SUM(ep.sets_disputados) - SUM(ep.sets_ganhos) AS sets_perdidos,\n      COALESCE(pd.qtd, 0) - COALESCE(pd.ganhou, 0) AS partidas_perdidas,\n      COALESCE(SUM(total_pontos_ep.total_pontos) / NULLIF(SUM(ep.sets_disputados), 0)::double precision, 0) AS pontos_average,\n      COALESCE(SUM(ep.sets_ganhos) / NULLIF(SUM(ep.sets_disputados), 0)::double precision, 0) AS sets_average\n    FROM equipes AS e\n    INNER JOIN equipes_partidas AS ep\n      ON ep.id_equipe &#x3D; e.id\n    LEFT JOIN total_pontos_ep\n      ON total_pontos_ep.id &#x3D; ep.id\n    LEFT JOIN partidas_disputadas AS pd\n      ON pd.id &#x3D; e.id\n    GROUP BY e.id, pd.qtd, pd.ganhou&quot;,
+      ],
+    );
+  }
 
-    qb.innerJoinAndSelect(&#x27;cg.atleta&#x27;, &#x27;a&#x27;)
-      .innerJoinAndSelect(&#x27;a.equipe&#x27;, &#x27;e&#x27;)
-      .where(&#x27;e.idLiga &#x3D; :idLiga&#x27;, { idLiga })
-      .orderBy(&#x27;cg.quantidadeVotos&#x27;, &#x27;DESC&#x27;)
-      .limit(limite);
-
-    return qb.getMany();
+  public async down(queryRunner: QueryRunner): Promise&lt;void&gt; {
+    await queryRunner.query(
+      &#x60;DELETE FROM &quot;typeorm_metadata&quot; WHERE &quot;type&quot; &#x3D; $1 AND &quot;name&quot; &#x3D; $2 AND &quot;schema&quot; &#x3D; $3&#x60;,
+      [&#x27;MATERIALIZED_VIEW&#x27;, &#x27;pontuacoes_view&#x27;, &#x27;public&#x27;],
+    );
+    await queryRunner.query(&#x60;DROP MATERIALIZED VIEW &quot;pontuacoes_view&quot;&#x60;);
   }
 }
 </code></pre>
@@ -447,7 +454,7 @@ export class CraqueDaGaleraViewRepository extends MaterializedViewRepository&lt;
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
-            var COMPODOC_CURRENT_PAGE_URL = 'CraqueDaGaleraViewRepository.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'PontuacaoViewAjustaQuery1655760085847.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

@@ -28,7 +28,7 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content class">
+               <div class="content injectable">
                    <div class="content-data">
 
 
@@ -38,13 +38,9 @@
 
 
 
-
-
-
-
 <ol class="breadcrumb">
-  <li>Classes</li>
-  <li >EquipeSimplificadaRespostaDto</li>
+  <li>Injectables</li>
+  <li >RegistraDesistenciaService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -62,9 +58,8 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/modules/equipe/dto/equipe.dto.ts</code>
+            <code>src/modules/pontuacao/services/registra-desistencia.service.ts</code>
         </p>
-
 
 
 
@@ -83,24 +78,29 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#id" >id</a>
-                            </li>
-                            <li>
-                                <a href="#idGinasio" >idGinasio</a>
-                            </li>
-                            <li>
-                                <a href="#idLiga" >idLiga</a>
-                            </li>
-                            <li>
-                                <a href="#nome" >nome</a>
-                            </li>
-                            <li>
-                                <a href="#quantidadeAtletas" >quantidadeAtletas</a>
+                                    <span class="modifier">Static</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#pontuacaoDoGanhador" >pontuacaoDoGanhador</a>
                             </li>
                         </ul>
                     </td>
                 </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#executar" >executar</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
 
 
@@ -116,12 +116,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(equipe: <a href="../classes/Equipe.html" target="_self">Equipe</a>)</code>
+<code>constructor(pontuacaoRepository: <a href="../classes/PontuacaoViewRepository.html" target="_self">PontuacaoViewRepository</a>, connection: Connection)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/modules/equipe/dto/equipe.dto.ts:66</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/modules/pontuacao/services/registra-desistencia.service.ts:11</a></div>
                             </td>
                         </tr>
 
@@ -139,10 +139,22 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>equipe</td>
+                                                        <td>pontuacaoRepository</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../classes/Equipe.html" target="_self" >Equipe</a></code>
+                                                                        <code><a href="../classes/PontuacaoViewRepository.html" target="_self" >PontuacaoViewRepository</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>connection</td>
+                                                  
+                                                        <td>
+                                                                    <code>Connection</code>
                                                         </td>
                                                   
                                                     <td>
@@ -161,6 +173,82 @@
 
             <section>
     
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="executar"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>executar</b></span>
+                        <a href="#executar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>executar(undefined: <a href="../interfaces/IRegistraDesistenciaDto.html" target="_self">IRegistraDesistenciaDto</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="16"
+                            class="link-to-prism">src/modules/pontuacao/services/registra-desistencia.service.ts:16</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                                <code><a href="../interfaces/IRegistraDesistenciaDto.html" target="_self" >IRegistraDesistenciaDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>unknown</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+            <section>
+    
     <h3 id="inputs">
         Properties
     </h3>
@@ -168,114 +256,12 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="id"></a>
+                    <a name="pontuacaoDoGanhador"></a>
                     <span class="name">
-                        <span ><b>id</b></span>
-                        <a href="#id"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/modules/equipe/dto/equipe.dto.ts:62</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="idGinasio"></a>
-                    <span class="name">
-                        <span ><b>idGinasio</b></span>
-                        <a href="#idGinasio"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/modules/equipe/dto/equipe.dto.ts:65</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="idLiga"></a>
-                    <span class="name">
-                        <span ><b>idLiga</b></span>
-                        <a href="#idLiga"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/modules/equipe/dto/equipe.dto.ts:64</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="nome"></a>
-                    <span class="name">
-                        <span ><b>nome</b></span>
-                        <a href="#nome"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/modules/equipe/dto/equipe.dto.ts:63</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="quantidadeAtletas"></a>
-                    <span class="name">
-                        <span ><b>quantidadeAtletas</b></span>
-                        <a href="#quantidadeAtletas"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier">Static</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>pontuacaoDoGanhador</b></span>
+                        <a href="#pontuacaoDoGanhador"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -285,9 +271,14 @@
 
                     </td>
                 </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>2</code>
+                    </td>
+                </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/modules/equipe/dto/equipe.dto.ts:66</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/modules/pontuacao/services/registra-desistencia.service.ts:11</a></div>
                         </td>
                     </tr>
 
@@ -296,125 +287,81 @@
     </table>
 </section>
 
-
-
-
-
-
-
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { IsOptional, IsString, IsUrl, IsUUID, Length } from &#x27;class-validator&#x27;;
-import { AtletaRespostaDto } from &#x27;src/modules/pessoa/dto/atleta.dto&#x27;;
-import { AuxiliarRespostaDto } from &#x27;src/modules/pessoa/dto/auxiliar.dto&#x27;;
-import { TecnicoRespostaDto } from &#x27;src/modules/pessoa/dto/tecnico.dto&#x27;;
-import { Equipe } from &#x27;../entities/equipe.entity&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@nestjs/common&#x27;;
+import { EscolhaDeDesistencia } from &#x27;src/modules/partida/dto/partida.dto&#x27;;
+import { EquipePartida } from &#x27;src/modules/partida/entities/equipe-partida.entity&#x27;;
+import { StatusPartida } from &#x27;src/modules/partida/enums/status-partida.enum&#x27;;
+import { Connection } from &#x27;typeorm&#x27;;
+import { IRegistraDesistenciaDto } from &#x27;../dtos/desistencia.dto&#x27;;
+import { PontuacaoViewRepository } from &#x27;../repositories/pontuacao-view.repository&#x27;;
 
-export class CriaEquipeDto {
-  @IsUUID()
-  idLiga!: string;
+@Injectable()
+export class RegistraDesistenciaService {
+  static readonly pontuacaoDoGanhador &#x3D; 2;
+  constructor(
+    private readonly pontuacaoRepository: PontuacaoViewRepository,
+    private readonly connection: Connection,
+  ) {}
+  async executar({ partida, desistente }: IRegistraDesistenciaDto) {
+    const mandanteEhDesistente &#x3D; desistente &#x3D;&#x3D;&#x3D; EscolhaDeDesistencia.MANDANTE;
 
-  @IsUUID()
-  idGinasio!: string;
+    partida.status &#x3D; StatusPartida.WO;
 
-  @IsString()
-  @Length(2, 200)
-  nome!: string;
+    const ganhadora &#x3D; mandanteEhDesistente
+      ? partida.visitante
+      : partida.mandante;
+    const perdedora &#x3D; mandanteEhDesistente
+      ? partida.mandante
+      : partida.visitante;
 
-  @IsUrl()
-  @IsOptional()
-  urlBrasao?: string;
+    partida.idGanhadora &#x3D; ganhadora.id;
+    partida.ganhadora &#x3D; ganhadora;
 
-  @IsString()
-  @Length(2, 200)
-  cidade!: string;
+    ganhadora.pontosNosSets &#x3D; EquipePartida.unmarshallPontosDoSet([25, 25, 25]);
+    ganhadora.pontuacao &#x3D; RegistraDesistenciaService.pontuacaoDoGanhador;
+    ganhadora.setsGanhos &#x3D; ganhadora.pontosNosSets.length;
+    ganhadora.ganhou &#x3D; true;
 
-  @IsString()
-  @Length(2, 2)
-  estado!: string;
-}
+    perdedora.pontosNosSets &#x3D; EquipePartida.unmarshallPontosDoSet([0, 0, 0]);
+    perdedora.pontuacao &#x3D; -ganhadora.pontuacao;
 
-export class AtualizaEquipeDto {
-  @IsOptional()
-  @IsUUID()
-  idGinasio!: string;
+    partida.mandante.resultadoCadastradoEm &#x3D;
+      partida.visitante.resultadoCadastradoEm &#x3D; new Date();
 
-  @IsOptional()
-  @IsString()
-  @Length(2, 200)
-  nome?: string;
+    const {
+      mandante,
+      visitante,
+      partida: partidaAtualizada,
+    } &#x3D; await this.connection.transaction(async (manager) &#x3D;&gt; {
+      const [mandante, visitante] &#x3D; await manager.save([
+        partida.mandante,
+        partida.visitante,
+      ]);
 
-  @IsUrl()
-  @IsOptional()
-  urlBrasao?: string;
+      return {
+        partida: await manager.save(partida),
+        mandante,
+        visitante,
+      };
+    });
 
-  @IsOptional()
-  @IsString()
-  @Length(2, 200)
-  cidade?: string;
+    await this.pontuacaoRepository.refreshMaterializedView();
 
-  @IsOptional()
-  @IsString()
-  @Length(2, 2)
-  estado?: string;
-}
-
-export class ListaEquipesDto {
-  @IsUUID()
-  idLiga!: string;
-}
-
-export class EquipeSimplificadaRespostaDto {
-  id: string;
-  nome: string;
-  idLiga: string;
-  idGinasio: string;
-  quantidadeAtletas: number;
-
-  constructor(equipe: Equipe) {
-    this.id &#x3D; equipe.id;
-    this.nome &#x3D; equipe.nome;
-    this.idLiga &#x3D; equipe.idLiga;
-    this.idGinasio &#x3D; equipe.idGinasio;
-    this.quantidadeAtletas &#x3D; equipe.atletas?.length ?? 0;
-  }
-}
-
-export class EquipeRespostaDto extends EquipeSimplificadaRespostaDto {
-  urlBrasao?: string;
-  apta: boolean;
-  descricaoAptidao?: string[];
-  cidade: string;
-  estado: string;
-  tecnico?: TecnicoRespostaDto;
-  quantidadeAuxiliares: number;
-  atletas: AtletaRespostaDto[];
-  auxiliares: AuxiliarRespostaDto[];
-  dataCriacao: Date;
-
-  constructor(equipe: Equipe) {
-    super(equipe);
-
-    this.urlBrasao &#x3D; equipe.urlBrasao;
-    this.apta &#x3D; equipe.apta;
-    this.descricaoAptidao &#x3D; equipe.descricaoAptidao;
-    this.cidade &#x3D; equipe.cidade;
-    this.estado &#x3D; equipe.estado;
-    this.tecnico &#x3D; equipe.tecnico
-      ? new TecnicoRespostaDto(equipe.tecnico)
-      : undefined;
-    this.quantidadeAuxiliares &#x3D; equipe.auxiliares?.length ?? 0;
-    this.atletas &#x3D; equipe.atletas?.map((x) &#x3D;&gt; new AtletaRespostaDto(x)) ?? [];
-    this.auxiliares &#x3D;
-      equipe.auxiliares?.map((x) &#x3D;&gt; new AuxiliarRespostaDto(x)) ?? [];
-    this.dataCriacao &#x3D; new Date(equipe.dataCriacao);
+    return { partida: partidaAtualizada, mandante, visitante };
   }
 }
 </code></pre>
     </div>
+
 </div>
+
+
+
+
 
 
 
@@ -449,8 +396,8 @@ export class EquipeRespostaDto extends EquipeSimplificadaRespostaDto {
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
-            var COMPODOC_CURRENT_PAGE_URL = 'EquipeSimplificadaRespostaDto.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'RegistraDesistenciaService.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

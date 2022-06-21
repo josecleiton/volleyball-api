@@ -44,7 +44,7 @@
 
 <ol class="breadcrumb">
   <li>Classes</li>
-  <li >PontuacaoViewRepository</li>
+  <li >GrafoDeConfronto</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -62,17 +62,11 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/modules/pontuacao/repositories/pontuacao-view.repository.ts</code>
+            <code>src/modules/pontuacao/services/aplica-regra-desempate.service.ts</code>
         </p>
 
 
 
-            <p class="comment">
-                <h3>Extends</h3>
-            </p>
-            <p class="comment">
-                        <code><a href="../classes/MaterializedViewRepository.html" target="_self" >MaterializedViewRepository</a></code>
-            </p>
 
 
 
@@ -89,14 +83,9 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Private</span>
                                     <span class="modifier">Readonly</span>
-                                <a href="#concurrently" >concurrently</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Protected</span>
-                                    <span class="modifier">Readonly</span>
-                                <a href="#name" >name</a>
+                                <a href="#grafo" >grafo</a>
                             </li>
                         </ul>
                     </td>
@@ -111,12 +100,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier">Async</span>
-                                <a href="#listaPorLiga" >listaPorLiga</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Async</span>
-                                <a href="#refreshMaterializedView" >refreshMaterializedView</a>
+                                <a href="#buscaResultadoConfrontoDireto" >buscaResultadoConfrontoDireto</a>
                             </li>
                         </ul>
                     </td>
@@ -130,6 +114,54 @@
     </table>
 </section>
 
+            <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(confrontosDiretos: <a href="../interfaces/IBuscarConfrontoEquipesEmpatadas.html" target="_self">IBuscarConfrontoEquipesEmpatadas[]</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/modules/pontuacao/services/aplica-regra-desempate.service.ts:61</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>confrontosDiretos</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../interfaces/IBuscarConfrontoEquipesEmpatadas.html" target="_self" >IBuscarConfrontoEquipesEmpatadas[]</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
 
             <section>
     
@@ -140,64 +172,24 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="concurrently"></a>
+                    <a name="grafo"></a>
                     <span class="name">
-                            <span class="modifier">Protected</span>
+                            <span class="modifier">Private</span>
                             <span class="modifier">Readonly</span>
-                        <span ><b>concurrently</b></span>
-                        <a href="#concurrently"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>grafo</b></span>
+                        <a href="#grafo"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>true</code>
+                        <i>Type : </i>    <code>literal type</code>
+
                     </td>
                 </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Inherited from         <code><a href="../classes/MaterializedViewRepository.html" target="_self" >MaterializedViewRepository</a></code>
-</div>
-                            </td>
-                        </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../classes/MaterializedViewRepository.html#source" target="_self" >MaterializedViewRepository:10</a></code>
-</div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="name"></a>
-                    <span class="name">
-                            <span class="modifier">Protected</span>
-                            <span class="modifier">Readonly</span>
-                        <span ><b>name</b></span>
-                        <a href="#name"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>nomePontuacaoView</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Inherited from         <code><a href="../classes/MaterializedViewRepository.html" target="_self" >MaterializedViewRepository</a></code>
-</div>
-                            </td>
-                        </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../classes/MaterializedViewRepository.html#source" target="_self" >MaterializedViewRepository:9</a></code>
-</div>
+                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/modules/pontuacao/services/aplica-regra-desempate.service.ts:59</a></div>
                         </td>
                     </tr>
 
@@ -215,26 +207,24 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="listaPorLiga"></a>
+                    <a name="buscaResultadoConfrontoDireto"></a>
                     <span class="name">
-                        <span class="modifier">Async</span>
-                        <span ><b>listaPorLiga</b></span>
-                        <a href="#listaPorLiga"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>buscaResultadoConfrontoDireto</b></span>
+                        <a href="#buscaResultadoConfrontoDireto"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>listaPorLiga(idLiga: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>buscaResultadoConfrontoDireto(equipeA: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, equipeB: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="12"
-                            class="link-to-prism">src/modules/pontuacao/repositories/pontuacao-view.repository.ts:12</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="101"
+                            class="link-to-prism">src/modules/pontuacao/services/aplica-regra-desempate.service.ts:101</a></div>
                 </td>
             </tr>
 
@@ -255,7 +245,19 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>idLiga</td>
+                                    <td>equipeA</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>equipeB</td>
                                     <td>
                                                 <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                     </td>
@@ -272,84 +274,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>unknown</code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="refreshMaterializedView"></a>
-                    <span class="name">
-                        <span class="modifier">Async</span>
-                        <span ><b>refreshMaterializedView</b></span>
-                        <a href="#refreshMaterializedView"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>refreshMaterializedView(manager?: EntityManager)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Inherited from         <code><a href="../classes/MaterializedViewRepository.html" target="_self" >MaterializedViewRepository</a></code>
-</div>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../classes/MaterializedViewRepository.html#source" target="_self" >MaterializedViewRepository:11</a></code>
-</div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>manager</td>
-                                    <td>
-                                            <code>EntityManager</code>
-                                    </td>
-
-                                    <td>
-                                        Yes
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>unknown</code>
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
 
                     </div>
                     <div class="io-description">
@@ -369,25 +294,108 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { MaterializedViewRepository } from &#x27;src/modules/core/repositories/materialized-view.repository&#x27;;
-import { EntityRepository } from &#x27;typeorm&#x27;;
-import { PontuacaoDto } from &#x27;../dtos/pontuacao.dto&#x27;;
-import { PontuacaoView } from &#x27;../entities/pontuacao-view.entity&#x27;;
-import { nomePontuacaoView } from &#x27;../pontuacao.constant&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@nestjs/common&#x27;;
+import { DirectedGraph } from &#x27;datastructures-js&#x27;;
+import { compareAsc } from &#x27;date-fns&#x27;;
+import { IBuscarConfrontoEquipesEmpatadas } from &#x27;../../partida/dto/partida-pontuacao.dto&#x27;;
+import { PartidaRepository } from &#x27;../../partida/repositories&#x27;;
+import { IAplicaRegraDesempateDto } from &#x27;../dtos/desempate.dto&#x27;;
 
-@EntityRepository(PontuacaoView)
-export class PontuacaoViewRepository extends MaterializedViewRepository&lt;PontuacaoView&gt; {
-  protected readonly name &#x3D; nomePontuacaoView;
-  protected readonly concurrently &#x3D; true;
+@Injectable()
+export class AplicaRegraDesempateService {
+  constructor(private readonly partidaRepository: PartidaRepository) {}
 
-  async listaPorLiga(idLiga: string) {
-    const qb &#x3D; this.createQueryBuilder(&#x27;p&#x27;);
+  async buscarEmpateNaPontuacao({
+    idLiga,
+    classificacoes,
+  }: IAplicaRegraDesempateDto) {
+    const confrontos &#x3D;
+      await this.partidaRepository.buscarConfrontosDeEquipesEmpatadas(idLiga);
+    const grafoConfrontoDireto &#x3D; new GrafoDeConfronto(confrontos);
 
-    qb.innerJoinAndSelect(&#x27;p.equipe&#x27;, &#x27;e&#x27;).where(&#x27;e.idLiga &#x3D; :idLiga&#x27;, {
-      idLiga,
+    const result &#x3D; classificacoes.sort((a, b) &#x3D;&gt; {
+      const fatorVitoria &#x3D; b.partidasGanhas - a.partidasGanhas;
+      if (fatorVitoria) {
+        return fatorVitoria;
+      }
+
+      const fatorPontuacao &#x3D; b.pontuacao - a.pontuacao;
+      if (fatorPontuacao) {
+        return fatorPontuacao;
+      }
+
+      const fatorSetsAverage &#x3D; b.setsAverage - a.setsAverage;
+      if (fatorSetsAverage) {
+        return fatorSetsAverage;
+      }
+
+      const fatorPontosAverage &#x3D; b.pontosAverage - a.pontosAverage;
+      if (fatorPontosAverage) {
+        return fatorPontosAverage;
+      }
+
+      const fatorConfrontoDireto &#x3D;
+        grafoConfrontoDireto.buscaResultadoConfrontoDireto(
+          b.idEquipe,
+          a.idEquipe,
+        );
+
+      if (Number.isFinite(fatorConfrontoDireto)) {
+        return -fatorConfrontoDireto;
+      }
+
+      return compareAsc(a.equipe.dataCriacao, b.equipe.dataCriacao);
     });
 
-    return qb.getMany().then((raw) &#x3D;&gt; raw.map((x) &#x3D;&gt; new PontuacaoDto(x)));
+    return result;
+  }
+}
+
+class GrafoDeConfronto {
+  private readonly grafo: {
+    getWeight(equipeA: string, equipeB: string): number;
+  };
+
+  constructor(confrontosDiretos: IBuscarConfrontoEquipesEmpatadas[]) {
+    const graphConfrontoDireto &#x3D; new DirectedGraph&lt;string, unknown&gt;();
+
+    for (const confronto of confrontosDiretos) {
+      graphConfrontoDireto
+        .addVertex(confronto.idEquipeMandante, {})
+        .addVertex(confronto.idEquipeVisitante, {});
+
+      const pesoEquipeMandante &#x3D;
+        confronto.idEquipeGanhadora &#x3D;&#x3D;&#x3D; confronto.idEquipeMandante ? 1 : -1;
+
+      const temConfronto &#x3D; graphConfrontoDireto.hasEdge(
+        confronto.idEquipeMandante,
+        confronto.idEquipeVisitante,
+      );
+      const pesoAnteriorDaEquipeMandante &#x3D; temConfronto
+        ? graphConfrontoDireto.getWeight(
+            confronto.idEquipeMandante,
+            confronto.idEquipeVisitante,
+          )
+        : 0;
+
+      graphConfrontoDireto
+        .addEdge(
+          confronto.idEquipeMandante,
+          confronto.idEquipeVisitante,
+          pesoEquipeMandante + pesoAnteriorDaEquipeMandante,
+        )
+        .addEdge(
+          confronto.idEquipeVisitante,
+          confronto.idEquipeMandante,
+          -pesoEquipeMandante - pesoAnteriorDaEquipeMandante,
+        );
+    }
+
+    this.grafo &#x3D; graphConfrontoDireto;
+  }
+
+  buscaResultadoConfrontoDireto(equipeA: string, equipeB: string) {
+    return this.grafo.getWeight(equipeA, equipeB);
   }
 }
 </code></pre>
@@ -428,7 +436,7 @@ export class PontuacaoViewRepository extends MaterializedViewRepository&lt;Pontu
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
-            var COMPODOC_CURRENT_PAGE_URL = 'PontuacaoViewRepository.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'GrafoDeConfronto.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

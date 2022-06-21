@@ -44,7 +44,7 @@
 
 <ol class="breadcrumb">
   <li>Classes</li>
-  <li >PontuacaoViewRepository</li>
+  <li >PontuacaoServer</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -62,17 +62,11 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/modules/pontuacao/repositories/pontuacao-view.repository.ts</code>
+            <code>test/modules/pontuacao/pontuacao.server.ts</code>
         </p>
 
 
 
-            <p class="comment">
-                <h3>Extends</h3>
-            </p>
-            <p class="comment">
-                        <code><a href="../classes/MaterializedViewRepository.html" target="_self" >MaterializedViewRepository</a></code>
-            </p>
 
 
 
@@ -89,14 +83,8 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier">Protected</span>
                                     <span class="modifier">Readonly</span>
-                                <a href="#concurrently" >concurrently</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Protected</span>
-                                    <span class="modifier">Readonly</span>
-                                <a href="#name" >name</a>
+                                <a href="#partida" >partida</a>
                             </li>
                         </ul>
                     </td>
@@ -112,11 +100,7 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#listaPorLiga" >listaPorLiga</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Async</span>
-                                <a href="#refreshMaterializedView" >refreshMaterializedView</a>
+                                <a href="#listaPontuacao" >listaPontuacao</a>
                             </li>
                         </ul>
                     </td>
@@ -130,6 +114,50 @@
     </table>
 </section>
 
+            <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(server)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="6" class="link-to-prism">test/modules/pontuacao/pontuacao.server.ts:6</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>server</td>
+                                                  
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
 
             <section>
     
@@ -140,64 +168,23 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="concurrently"></a>
+                    <a name="partida"></a>
                     <span class="name">
-                            <span class="modifier">Protected</span>
                             <span class="modifier">Readonly</span>
-                        <span ><b>concurrently</b></span>
-                        <a href="#concurrently"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>partida</b></span>
+                        <a href="#partida"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>true</code>
+                        <i>Type : </i>        <code><a href="../classes/PartidaServer.html" target="_self" >PartidaServer</a></code>
+
                     </td>
                 </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Inherited from         <code><a href="../classes/MaterializedViewRepository.html" target="_self" >MaterializedViewRepository</a></code>
-</div>
-                            </td>
-                        </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../classes/MaterializedViewRepository.html#source" target="_self" >MaterializedViewRepository:10</a></code>
-</div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="name"></a>
-                    <span class="name">
-                            <span class="modifier">Protected</span>
-                            <span class="modifier">Readonly</span>
-                        <span ><b>name</b></span>
-                        <a href="#name"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>nomePontuacaoView</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Inherited from         <code><a href="../classes/MaterializedViewRepository.html" target="_self" >MaterializedViewRepository</a></code>
-</div>
-                            </td>
-                        </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../classes/MaterializedViewRepository.html#source" target="_self" >MaterializedViewRepository:9</a></code>
-</div>
+                                <div class="io-line">Defined in <a href="" data-line="6" class="link-to-prism">test/modules/pontuacao/pontuacao.server.ts:6</a></div>
                         </td>
                     </tr>
 
@@ -215,26 +202,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="listaPorLiga"></a>
+                    <a name="listaPontuacao"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
-                        <span ><b>listaPorLiga</b></span>
-                        <a href="#listaPorLiga"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>listaPontuacao</b></span>
+                        <a href="#listaPontuacao"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>listaPorLiga(idLiga: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>listaPontuacao(idLiga: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="12"
-                            class="link-to-prism">src/modules/pontuacao/repositories/pontuacao-view.repository.ts:12</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="11"
+                            class="link-to-prism">test/modules/pontuacao/pontuacao.server.ts:11</a></div>
                 </td>
             </tr>
 
@@ -272,84 +259,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>unknown</code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="refreshMaterializedView"></a>
-                    <span class="name">
-                        <span class="modifier">Async</span>
-                        <span ><b>refreshMaterializedView</b></span>
-                        <a href="#refreshMaterializedView"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>refreshMaterializedView(manager?: EntityManager)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Inherited from         <code><a href="../classes/MaterializedViewRepository.html" target="_self" >MaterializedViewRepository</a></code>
-</div>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../classes/MaterializedViewRepository.html#source" target="_self" >MaterializedViewRepository:11</a></code>
-</div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>manager</td>
-                                    <td>
-                                            <code>EntityManager</code>
-                                    </td>
-
-                                    <td>
-                                        Yes
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>unknown</code>
+                        <b>Returns : </b>        <code><a href="../classes/PontuacaoRespostaDto.html" target="_self" >Promise&lt;PontuacaoRespostaDto[]&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -369,25 +279,23 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { MaterializedViewRepository } from &#x27;src/modules/core/repositories/materialized-view.repository&#x27;;
-import { EntityRepository } from &#x27;typeorm&#x27;;
-import { PontuacaoDto } from &#x27;../dtos/pontuacao.dto&#x27;;
-import { PontuacaoView } from &#x27;../entities/pontuacao-view.entity&#x27;;
-import { nomePontuacaoView } from &#x27;../pontuacao.constant&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { PontuacaoRespostaDto } from &#x27;src/modules/pontuacao/dtos/pontuacao.dto&#x27;;
+import request &#x3D; require(&#x27;supertest&#x27;);
+import { PartidaServer } from &#x27;../partida/partida.server&#x27;;
 
-@EntityRepository(PontuacaoView)
-export class PontuacaoViewRepository extends MaterializedViewRepository&lt;PontuacaoView&gt; {
-  protected readonly name &#x3D; nomePontuacaoView;
-  protected readonly concurrently &#x3D; true;
+export class PontuacaoServer {
+  readonly partida: PartidaServer;
+  constructor(private readonly server: unknown) {
+    this.partida &#x3D; new PartidaServer(this.server);
+  }
 
-  async listaPorLiga(idLiga: string) {
-    const qb &#x3D; this.createQueryBuilder(&#x27;p&#x27;);
-
-    qb.innerJoinAndSelect(&#x27;p.equipe&#x27;, &#x27;e&#x27;).where(&#x27;e.idLiga &#x3D; :idLiga&#x27;, {
-      idLiga,
-    });
-
-    return qb.getMany().then((raw) &#x3D;&gt; raw.map((x) &#x3D;&gt; new PontuacaoDto(x)));
+  async listaPontuacao(idLiga: string): Promise&lt;PontuacaoRespostaDto[]&gt; {
+    return request(this.server)
+      .get(&#x27;/pontuacao&#x27;)
+      .query({ idLiga })
+      .expect(200)
+      .expect(&#x27;Content-Type&#x27;, /json/)
+      .then((res) &#x3D;&gt; res.body);
   }
 }
 </code></pre>
@@ -428,7 +336,7 @@ export class PontuacaoViewRepository extends MaterializedViewRepository&lt;Pontu
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
-            var COMPODOC_CURRENT_PAGE_URL = 'PontuacaoViewRepository.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'PontuacaoServer.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 
