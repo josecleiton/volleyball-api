@@ -4,10 +4,10 @@ import {
   ArrayMaxSize,
   ArrayMinSize,
   IsArray,
-  IsDate,
   IsEnum,
   IsUUID,
 } from 'class-validator';
+import { IsValidDate } from 'src/modules/core/validations';
 
 export enum EscolhaDeMando {
   PRIMEIRO_JOGO = 'primeiro',
@@ -36,7 +36,7 @@ export class InicializaQuartaDeFinalDto extends InicializaMataMataDto {
   @IsArray()
   @ArrayMinSize(12)
   @ArrayMaxSize(12)
-  @IsDate({ each: true })
+  @IsValidDate({ each: true })
   @Type(() => Date)
   datas!: Date[];
 
@@ -51,7 +51,7 @@ export class InicializaSemifinalDto extends InicializaMataMataDto {
   @IsArray()
   @ArrayMinSize(6)
   @ArrayMaxSize(6)
-  @IsDate({ each: true })
+  @IsValidDate({ each: true })
   @Type(() => Date)
   datas!: Date[];
 
@@ -66,7 +66,7 @@ export class InicializaFinalDto extends InicializaMataMataDto {
   @IsArray()
   @ArrayMinSize(3)
   @ArrayMaxSize(3)
-  @IsDate({ each: true })
+  @IsValidDate({ each: true })
   @Type(() => Date)
   datas!: Date[];
 
