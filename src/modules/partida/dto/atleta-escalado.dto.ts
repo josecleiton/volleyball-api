@@ -1,5 +1,3 @@
-import { EquipeRespostaDto } from 'src/modules/equipe/dto/equipe.dto';
-import { Equipe } from 'src/modules/equipe/entities/equipe.entity';
 import { Posicao } from 'src/modules/pessoa/enums';
 import { AtletaEscalado } from '../entities/atleta-escalado.entity';
 import { EquipePartidaRespostaDto } from './equipe-partida.dto';

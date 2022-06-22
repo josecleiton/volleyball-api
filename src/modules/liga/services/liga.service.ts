@@ -3,6 +3,8 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
+import { getHours, getMinutes } from 'date-fns';
+import { validTimeStringToDate } from 'src/modules/core/validations';
 import { EquipePartida } from 'src/modules/partida/entities/equipe-partida.entity';
 import { StatusPartida } from 'src/modules/partida/enums/status-partida.enum';
 import { PartidaRepository } from 'src/modules/partida/repositories/partida.repository';
@@ -98,7 +100,10 @@ export class LigaService {
     liga.dataComeco = requisicao.data ?? new Date();
     liga.configuracaoInicializacaoLiga = {
       diasDaSemana: requisicao.diasDaSemana,
-      horarios: requisicao.horarios,
+      horarios: requisicao.horarios.map((horarioStr) => {
+        const date = validTimeStringToDate(horarioStr);
+        return getHours(date) * 60 + getMinutes(date);
+      }),
       intervaloDeDiasUteisEntreTurnos:
         requisicao.intervaloDeDiasUteisEntreTurnos,
     };

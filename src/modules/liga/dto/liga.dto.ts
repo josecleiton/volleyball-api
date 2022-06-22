@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import {
   ArrayMaxSize,
@@ -10,12 +11,12 @@ import {
   IsString,
   Length,
   Max,
-  Min,
   MinDate,
 } from 'class-validator';
 import { compareAsc, startOfYear } from 'date-fns';
 import { Genero } from 'src/modules/core/enums';
 import { DiaDaSemana } from 'src/modules/core/enums/dia-da-semana.enum';
+import { IsTimeString } from 'src/modules/core/validations';
 import { PartidaRespostaDto } from 'src/modules/partida/dto/partida.dto';
 import { Partida } from 'src/modules/partida/entities/partida.entity';
 import { ArbitroRespostaDto } from 'src/modules/pessoa/dto/arbitro.dto';
@@ -54,15 +55,9 @@ export class InicializaLigaDto {
   @ArrayMinSize(1)
   @ArrayMaxSize(12)
   @ArrayUnique()
-  @Min(6 * 60, {
-    each: true,
-    message: 'Horário tem que ser em minutos e maior que $constraint4',
-  })
-  @Max(22 * 60, {
-    each: true,
-    message: 'Horário tem que ser em minutos e menor que $constraint5',
-  })
-  horarios!: number[];
+  @IsTimeString({ each: true })
+  @ApiProperty({ example: ['21:00'], type: [String] })
+  horarios!: string[];
 
   @IsPositive()
   @Max(Liga.intervaloDeUteisDiasEntreTurnos)
