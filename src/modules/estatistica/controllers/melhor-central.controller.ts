@@ -3,7 +3,7 @@ import { ApiTags } from '@nestjs/swagger';
 import { MelhorCentralService } from '../services';
 
 @Controller('/estatistica/ranking/central')
-@ApiTags('melhor-central')
+@ApiTags('estatistica')
 export class MelhorCentralController {
   constructor(private readonly melhorCentralService: MelhorCentralService) {}
 

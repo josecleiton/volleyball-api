@@ -11,7 +11,7 @@ import { CriaFundamentoAtletaDto } from '../dto/fundamento-atleta.dto';
 import { FundamentoAtletaService } from '../services/fundamento-atleta.service';
 
 @Controller('estatistica/atleta')
-@ApiTags('fundamento-atleta')
+@ApiTags('estatistica')
 export class FundamentoAtletaController {
   constructor(
     private readonly fundamentoAtletaService: FundamentoAtletaService,
