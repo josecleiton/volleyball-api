@@ -105,11 +105,10 @@ export class VotoDaGaleraService {
       throw new ForbiddenException(token);
     }
 
-    await this.connection.transaction(async (manager) => {
-      await manager.update(VotoDaGalera, voto.id, {
-        verificadoEm: new Date(),
-      });
-      await this.craqueDaGaleraRepository.refreshMaterializedView(manager);
+    await this.votoDaGaleraRepository.update(voto.id, {
+      verificadoEm: new Date(),
     });
+
+    await this.craqueDaGaleraRepository.refreshMaterializedView();
   }
 }
