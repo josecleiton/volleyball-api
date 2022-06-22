@@ -1,10 +1,13 @@
 import {
   BadRequestException,
   ConflictException,
+  forwardRef,
+  Inject,
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
 import { groupBy } from 'lodash';
+import { LigaService } from 'src/modules/liga/services/liga.service';
 import { AtletaRespostaDto } from 'src/modules/pessoa/dto/atleta.dto';
 import { RegistraDesistenciaService } from 'src/modules/pontuacao/services/registra-desistencia.service';
 import { Connection } from 'typeorm';
@@ -17,6 +20,7 @@ import {
   CadastrarParticipantesPartidaDto,
   ListaPartidasDto,
   PartidaRespostaDto,
+  RemarcarPartidaDto,
 } from '../dto/partida.dto';
 import { Partida } from '../entities/partida.entity';
 import { StatusPartida } from '../enums/status-partida.enum';
@@ -36,6 +40,8 @@ export class PartidaService {
     private readonly atletaService: AtletaService,
     private readonly arbitroService: ArbitroService,
     private readonly registraDesistenciaService: RegistraDesistenciaService,
+    @Inject(forwardRef(() => LigaService))
+    private readonly ligaService: LigaService,
     private readonly connection: Connection,
   ) {}
 
@@ -51,6 +57,32 @@ export class PartidaService {
 
   async encontraPartida(id: string) {
     const partida = await this.deveEncontrarEntidade(id);
+
+    return new PartidaRespostaDto(partida);
+  }
+
+  async remarcarPartida(id: string, requisicao: RemarcarPartidaDto) {
+    const partida = await this.deveEncontrarEntidade(id);
+    if (partida.finalizada) {
+      throw new ConflictException(
+        `Partida ${id} se encontra finalizada. Status da partida: ${partida.status}`,
+      );
+    }
+
+    const liga = await this.ligaService.deveEncontrarLigaNaoIniciada(
+      partida.mandante.equipe.idLiga,
+    );
+    if (requisicao.data < liga.dataComeco) {
+      throw new ConflictException(
+        `Nova data da partida deve ser maior que a data de início da liga ${liga.id}`,
+      );
+    }
+
+    await this.partidaRepository.update(partida.id, {
+      dataComeco: requisicao.data,
+    });
+
+    partida.dataComeco = requisicao.data;
 
     return new PartidaRespostaDto(partida);
   }

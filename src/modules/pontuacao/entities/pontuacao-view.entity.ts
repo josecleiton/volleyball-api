@@ -1,12 +1,14 @@
+import { arrayToInClause } from 'src/modules/core/database/helpers';
 import { Equipe } from 'src/modules/equipe/entities/equipe.entity';
-import { StatusPartida } from 'src/modules/partida/enums/status-partida.enum';
+import { Partida } from 'src/modules/partida/entities/partida.entity';
 import { tiposDeRodadaClassificatoria } from 'src/modules/partida/types/tipo-rodada.type';
 import { Index, JoinColumn, ManyToOne, ViewColumn, ViewEntity } from 'typeorm';
 import { nomePontuacaoView } from '../pontuacao.constant';
 
-const tiposDeRodadaClassificatoriaJoin = tiposDeRodadaClassificatoria
-  .map((x) => `'${x}'`)
-  .join(', ');
+const tiposDeRodadaClassificatoriaJoin = arrayToInClause(
+  tiposDeRodadaClassificatoria,
+);
+const estadosFinaisPartidaJoin = arrayToInClause(Partida.estadosFinais);
 @ViewEntity({
   name: nomePontuacaoView,
   materialized: true,
@@ -32,7 +34,7 @@ const tiposDeRodadaClassificatoriaJoin = tiposDeRodadaClassificatoria
       INNER JOIN partidas AS p
       ON
         p.id = ep.id_partida
-        AND p.status IN ('${StatusPartida.WO}', '${StatusPartida.CONCLUIDA}')
+        AND p.status IN (${estadosFinaisPartidaJoin})
       GROUP BY ep.id_equipe
     )
     

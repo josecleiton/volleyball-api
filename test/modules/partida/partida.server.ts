@@ -6,6 +6,7 @@ import {
   EscolhaDeDesistencia,
   ListaPartidasDto,
   PartidaRespostaDto,
+  RemarcarPartidaDto,
 } from 'src/modules/partida/dto/partida.dto';
 import { LigaIniciadaServer } from '../liga/fluxos/liga-iniciada.server';
 import { AtletaServer } from '../pessoa/atleta/atleta.server';
@@ -125,6 +126,18 @@ export class PartidaServer {
       .post(`/partida/${id}/cadastra-participantes`)
       .send(requisicao)
       .expect(201)
+      .expect('Content-Type', /json/)
+      .then((res) => res.body);
+  }
+
+  async remarcarPartida(
+    id: string,
+    requisicao: RemarcarPartidaDto,
+  ): Promise<PartidaRespostaDto> {
+    return request(this.server)
+      .patch(`/partida/${id}/remarcar`)
+      .send(requisicao)
+      .expect(200)
       .expect('Content-Type', /json/)
       .then((res) => res.body);
   }

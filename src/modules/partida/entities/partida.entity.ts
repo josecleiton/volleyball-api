@@ -23,6 +23,8 @@ import { EquipePartida } from './equipe-partida.entity';
 export class Partida extends EntidadeBase {
   static readonly minimoDeAtletasNaPartida = 12;
   static readonly maximoDeLiberos = 2;
+  static readonly estadosFinais = [StatusPartida.CONCLUIDA, StatusPartida.WO];
+
   @Column({ type: 'uuid', nullable: true })
   @Index()
   idDelegado?: string;
@@ -75,6 +77,10 @@ export class Partida extends EntidadeBase {
     if (!this.dataComeco) return undefined;
 
     return differenceInMinutes(this.dataFinalizacao, this.dataComeco);
+  }
+
+  public get finalizada(): boolean {
+    return Partida.estadosFinais.includes(this.status);
   }
 
   @ManyToOne('Delegado', { onDelete: 'SET NULL' })

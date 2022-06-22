@@ -247,10 +247,10 @@ export class LigaService {
     throw new ConflictException(`Liga ${id} já está iniciada.`);
   }
 
-  async excecaoSeALigaNaoEstaIniciada(id: string) {
+  async deveEncontrarLigaNaoIniciada(id: string) {
     const resultado = await this.getLigaIniciadaEm(id);
     if (resultado?.dataComeco) {
-      return;
+      return { id, dataComeco: resultado.dataComeco };
     }
 
     throw new ConflictException(`Liga ${id} não está iniciada.`);
