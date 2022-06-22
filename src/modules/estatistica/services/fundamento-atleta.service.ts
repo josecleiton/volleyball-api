@@ -30,19 +30,19 @@ export class FundamentoAtletaService {
   ) {}
 
   async criaFundamento(requisicao: CriaFundamentoAtletaDto) {
-    const atletaPartida =
+    const atletaEscalado =
       await this.atletaEscaladoService.encontraParticipacaoComEquipe(
         requisicao,
       );
 
     await this.ligaService.excecaoSeALigaStatus(
-      atletaPartida.equipeGanhadora.idLiga,
+      atletaEscalado.participacao.equipe.idLiga,
       StatusLiga.CONCLUIDA,
     );
 
     const fundamento = this.fundamentoAtletaRepository.create({
       ...requisicao,
-      idAtletaEscalado: atletaPartida.id,
+      idAtletaEscalado: atletaEscalado.id,
     });
 
     try {
@@ -60,6 +60,13 @@ export class FundamentoAtletaService {
         entityName: 'FundamentoAtleta',
       });
     }
+  }
+
+  async listaFundamentoDeAtleta(idAtleta: string) {
+    const fundamentos =
+      await this.fundamentoAtletaRepository.listaFundamentoDeAtleta(idAtleta);
+
+    return fundamentos.map((x) => new FundamentoAtletaRespostaDto(x));
   }
 
   async removeFundamento(id: string) {

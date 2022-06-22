@@ -26,12 +26,3 @@ export class AtletaEscaladoRespostaDto {
     this.participacao = new EquipePartidaRespostaDto(atleta.participacao);
   }
 }
-
-export class AtletaEscaladoComGanhadoraRespostaDto extends AtletaEscaladoRespostaDto {
-  equipeGanhadora: EquipeRespostaDto;
-  constructor(atleta: AtletaEscalado, equipe: Equipe) {
-    super(atleta);
-
-    this.equipeGanhadora = new EquipeRespostaDto(equipe);
-  }
-}

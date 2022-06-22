@@ -78,6 +78,7 @@ export class PartidaServer {
 
     return {
       partidaInicializada: await this.inicializaPartida(partida.id, requisicao),
+      registroPartida: requisicao,
       liga,
       partidas,
     };

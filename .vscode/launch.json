@@ -33,7 +33,7 @@
 				"--runInBand",
 				"--coverage",
 				"false",
-				"pontuacao.e2e-spec"
+				"fundamento-atleta.e2e-spec"
 			],
 			"console": "integratedTerminal"
 		}
