@@ -41,7 +41,7 @@ export class VotoDaGaleraService {
       requisicao.idAtleta,
     );
 
-    await this.ligaService.deveEncontrarLigaNaoIniciada(atleta.equipe.idLiga);
+    await this.ligaService.deveEncontrarLigaIniciada(atleta.equipe.idLiga);
 
     const jaVotouNaLiga = await this.votoDaGaleraRepository.jaVotouNaLiga(
       requisicao.telefone,

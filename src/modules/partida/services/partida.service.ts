@@ -69,7 +69,7 @@ export class PartidaService {
       );
     }
 
-    const liga = await this.ligaService.deveEncontrarLigaNaoIniciada(
+    const liga = await this.ligaService.deveEncontrarLigaIniciada(
       partida.mandante.equipe.idLiga,
     );
     if (requisicao.data < liga.dataComeco) {
