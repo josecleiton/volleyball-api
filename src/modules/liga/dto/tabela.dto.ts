@@ -1,4 +1,3 @@
-import { BadRequestException } from '@nestjs/common';
 import { Type } from 'class-transformer';
 import {
   ArrayMaxSize,
@@ -20,19 +19,7 @@ export interface IMataMataDto {
   idLiga: string;
 }
 
-abstract class InicializaMataMataDto {
-  abstract datas: Date[];
-
-  valida() {
-    this.datas.forEach((data, index) => {
-      if (data instanceof Date && !isFinite(data.getTime())) {
-        throw new BadRequestException(`'datas[${index}]' não fornecida`);
-      }
-    });
-  }
-}
-
-export class InicializaQuartaDeFinalDto extends InicializaMataMataDto {
+export class InicializaQuartaDeFinalDto {
   @IsArray()
   @ArrayMinSize(12)
   @ArrayMaxSize(12)
@@ -47,7 +34,7 @@ export class InicializaQuartaDeFinalDto extends InicializaMataMataDto {
   mandos!: EscolhaDeMando[];
 }
 
-export class InicializaSemifinalDto extends InicializaMataMataDto {
+export class InicializaSemifinalDto {
   @IsArray()
   @ArrayMinSize(6)
   @ArrayMaxSize(6)
@@ -62,7 +49,7 @@ export class InicializaSemifinalDto extends InicializaMataMataDto {
   mandos!: EscolhaDeMando[];
 }
 
-export class InicializaFinalDto extends InicializaMataMataDto {
+export class InicializaFinalDto {
   @IsArray()
   @ArrayMinSize(3)
   @ArrayMaxSize(3)

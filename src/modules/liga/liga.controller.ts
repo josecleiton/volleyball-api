@@ -42,8 +42,6 @@ export class LigaController {
     @Param('id', ParseUUIDPipe) id: string,
     @Body() requisicao: InicializaQuartaDeFinalDto,
   ) {
-    requisicao.valida();
-
     return this.ligaService.inicializaQuartas(id, requisicao);
   }
 
@@ -53,8 +51,6 @@ export class LigaController {
     @Param('id', ParseUUIDPipe) id: string,
     @Body() requisicao: InicializaSemifinalDto,
   ) {
-    requisicao.valida();
-
     return this.ligaService.inicializaSemis(id, requisicao);
   }
 
@@ -64,8 +60,6 @@ export class LigaController {
     @Param('id', ParseUUIDPipe) id: string,
     @Body() requisicao: InicializaFinalDto,
   ) {
-    requisicao.valida();
-
     return this.ligaService.inicializaFinal(id, requisicao);
   }
 
