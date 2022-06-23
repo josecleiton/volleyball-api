@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, Scope } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import {
   EnviaVerificacaoSmsService,
@@ -11,6 +11,7 @@ import { MESSAGEBIRD } from './sms.constant';
   providers: [
     {
       provide: MESSAGEBIRD,
+      scope: Scope.DEFAULT,
       useFactory: (configService: ConfigService) => {
         // TODO: BIZARRO
         // eslint-disable-next-line @typescript-eslint/no-var-requires
