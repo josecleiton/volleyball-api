@@ -21,10 +21,13 @@ export class PartidaRepository extends Repository<Partida> {
     return qb
       .innerJoinAndSelect('partidas.visitante', 'visitantes')
       .innerJoinAndSelect('visitantes.equipe', 'equipesVisitantes')
+      .leftJoinAndSelect('visitantes.atletas', 'atletasVisitantes')
       .innerJoinAndSelect('partidas._mandante', 'mandantes')
       .innerJoinAndSelect('mandantes.equipe', 'equipesMandantes')
+      .leftJoinAndSelect('mandantes.atletas', 'atletasMandantes')
       .leftJoinAndSelect('partidas.ganhadora', 'ganhadoras')
-      .leftJoinAndSelect('ganhadoras.equipe', 'equipesGanhadoras');
+      .leftJoinAndSelect('ganhadoras.equipe', 'equipesGanhadoras')
+      .leftJoinAndSelect('ganhadoras.atletas', 'atletasGanhadores');
   }
 
   async encontraPartidaCompleta(id: string) {
