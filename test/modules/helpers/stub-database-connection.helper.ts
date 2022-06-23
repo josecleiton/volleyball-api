@@ -28,6 +28,10 @@ export async function stubDatabaseConnection(
     await connection.close();
   }
 
+  if (process.env.LOG_DB) {
+    console.log('Banco criado: ', urlObj.pathname);
+  }
+
   const options: TypeOrmModuleOptions = {
     type: 'postgres',
     url: urlObj.toString(),
