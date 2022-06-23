@@ -4,6 +4,7 @@ import {
   Get,
   Param,
   ParseUUIDPipe,
+  Patch,
   Post,
   Query,
 } from '@nestjs/common';
@@ -11,6 +12,7 @@ import { ApiTags } from '@nestjs/swagger';
 import {
   CadastrarParticipantesPartidaDto,
   ListaPartidasDto,
+  RemarcarPartidaDto,
 } from './dto/partida.dto';
 import { PartidaService } from './services/partida.service';
 
@@ -27,6 +29,14 @@ export class PartidaController {
   @Get(':id')
   async encontraPartida(@Param('id', ParseUUIDPipe) id: string) {
     return this.partidaService.encontraPartida(id);
+  }
+
+  @Patch(':id/remarcar')
+  async remarcarPartida(
+    @Param('id', ParseUUIDPipe) id: string,
+    @Body() requisicao: RemarcarPartidaDto,
+  ) {
+    return this.partidaService.remarcarPartida(id, requisicao);
   }
 
   @Post(':id/cadastra-participantes')

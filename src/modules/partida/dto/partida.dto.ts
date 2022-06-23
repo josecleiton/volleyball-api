@@ -11,6 +11,7 @@ import {
   Max,
   ValidateNested,
 } from 'class-validator';
+import { IsValidDate } from 'src/modules/core/validations';
 import { Liga } from 'src/modules/liga/entities/liga.entity';
 import { Posicao, TipoArbitro } from 'src/modules/pessoa/enums';
 import { Partida } from '../entities/partida.entity';
@@ -93,6 +94,12 @@ export interface IBuscaQuantidadePartidasPorTipoEStatus {
   statusAceitos: StatusPartida[];
 }
 
+export class RemarcarPartidaDto {
+  @IsValidDate()
+  @Type(() => Date)
+  data!: Date;
+}
+
 export class PartidaRespostaDto {
   id: string;
   idDelegado?: string;
@@ -110,6 +117,7 @@ export class PartidaRespostaDto {
   tipoRodada: TipoRodada;
   mandante: EquipePartidaRespostaDto;
   visitante: EquipePartidaRespostaDto;
+  finalizada: boolean;
 
   constructor(partida: Partida) {
     this.id = partida.id;
@@ -130,5 +138,6 @@ export class PartidaRespostaDto {
     this.tipoRodada = partida.tipoDaRodada;
     this.mandante = new EquipePartidaRespostaDto(partida.mandante);
     this.visitante = new EquipePartidaRespostaDto(partida.visitante);
+    this.finalizada = partida.finalizada;
   }
 }

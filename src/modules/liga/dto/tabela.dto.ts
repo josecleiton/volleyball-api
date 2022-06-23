@@ -1,18 +1,13 @@
-import { BadRequestException } from '@nestjs/common';
 import { Type } from 'class-transformer';
 import {
   ArrayMaxSize,
   ArrayMinSize,
   IsArray,
-  IsDate,
   IsEnum,
   IsUUID,
 } from 'class-validator';
-
-export enum EscolhaDeMando {
-  PRIMEIRO_JOGO = 'primeiro',
-  SEGUNDO_JOGO = 'segundo',
-}
+import { IsValidDate } from 'src/modules/core/validations';
+import { EscolhaDeMando } from '../enums';
 
 export interface IMataMataDto {
   datas: Date[];
@@ -20,23 +15,11 @@ export interface IMataMataDto {
   idLiga: string;
 }
 
-abstract class InicializaMataMataDto {
-  abstract datas: Date[];
-
-  valida() {
-    this.datas.forEach((data, index) => {
-      if (data instanceof Date && !isFinite(data.getTime())) {
-        throw new BadRequestException(`'datas[${index}]' não fornecida`);
-      }
-    });
-  }
-}
-
-export class InicializaQuartaDeFinalDto extends InicializaMataMataDto {
+export class InicializaQuartaDeFinalDto {
   @IsArray()
   @ArrayMinSize(12)
   @ArrayMaxSize(12)
-  @IsDate({ each: true })
+  @IsValidDate({ each: true })
   @Type(() => Date)
   datas!: Date[];
 
@@ -47,11 +30,11 @@ export class InicializaQuartaDeFinalDto extends InicializaMataMataDto {
   mandos!: EscolhaDeMando[];
 }
 
-export class InicializaSemifinalDto extends InicializaMataMataDto {
+export class InicializaSemifinalDto {
   @IsArray()
   @ArrayMinSize(6)
   @ArrayMaxSize(6)
-  @IsDate({ each: true })
+  @IsValidDate({ each: true })
   @Type(() => Date)
   datas!: Date[];
 
@@ -62,11 +45,11 @@ export class InicializaSemifinalDto extends InicializaMataMataDto {
   mandos!: EscolhaDeMando[];
 }
 
-export class InicializaFinalDto extends InicializaMataMataDto {
+export class InicializaFinalDto {
   @IsArray()
   @ArrayMinSize(3)
   @ArrayMaxSize(3)
-  @IsDate({ each: true })
+  @IsValidDate({ each: true })
   @Type(() => Date)
   datas!: Date[];
 

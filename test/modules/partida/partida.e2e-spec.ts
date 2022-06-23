@@ -7,9 +7,13 @@ import { initTestingApp } from '../helpers';
 import { PartidaServer } from './partida.server';
 import { Liga } from 'src/modules/liga/entities/liga.entity';
 import { listaPartidasDto } from 'test/__MOCKS__/partidas/partida.mock';
-import { EscolhaDeDesistencia } from 'src/modules/partida/dto/partida.dto';
+import {
+  EscolhaDeDesistencia,
+  RemarcarPartidaDto,
+} from 'src/modules/partida/dto/partida.dto';
 import { StatusPartida } from 'src/modules/partida/enums/status-partida.enum';
 import { randomUUID } from 'crypto';
+import { addDays, subMinutes } from 'date-fns';
 
 describe('PartidaController (e2e)', () => {
   let app: INestApplication;
@@ -68,7 +72,71 @@ describe('PartidaController (e2e)', () => {
     });
   });
 
-  describe('/partida/cadastra-participantes (POST)', () => {
+  describe('/partida/:id/remarcar (PATCH)', () => {
+    let requisicao: RemarcarPartidaDto;
+    beforeEach(() => {
+      requisicao = new RemarcarPartidaDto();
+      requisicao.data = new Date();
+    });
+
+    it('Ok', async () => {
+      const { liga, partidas } =
+        await server.fluxoLigaIniciada.criaLigaInicializada();
+
+      const partida = faker.random.arrayElement(partidas);
+
+      requisicao.data = faker.date.between(
+        liga.dataComeco ?? new Date(),
+        addDays(new Date(), 1),
+      );
+
+      const partidaEncontrada = await server.encontraPartida(partida.id);
+
+      const partidaAtualizada = await server.remarcarPartida(
+        partida.id,
+        requisicao,
+      );
+
+      expect(partidaAtualizada).toEqual(
+        expect.objectContaining({
+          ...partidaEncontrada,
+          dataComeco: requisicao.data.toISOString(),
+        }),
+      );
+    });
+
+    describe('Conflict', () => {
+      it('Data de remarcação menor que início da liga', async () => {
+        const { liga, partidas } =
+          await server.fluxoLigaIniciada.criaLigaInicializada();
+        const partida = faker.random.arrayElement(partidas);
+
+        requisicao.data = subMinutes(new Date(liga.dataComeco as Date), 1);
+
+        await expect(
+          server.remarcarPartida(partida.id, requisicao),
+        ).rejects.toThrow('409');
+      });
+
+      it('Partida já finalizada', async () => {
+        const { partida, requisicao: reqInicializaPartida } =
+          await participacaoNaPartida();
+
+        reqInicializaPartida.desistente = EscolhaDeDesistencia.MANDANTE;
+
+        await server.inicializaPartida(partida.id, reqInicializaPartida);
+
+        const partidaEncontrada = await server.encontraPartida(partida.id);
+
+        expect(partidaEncontrada.finalizada).toBeTruthy();
+        await expect(
+          server.remarcarPartida(partida.id, requisicao),
+        ).rejects.toThrow('409');
+      });
+    });
+  });
+
+  describe('/partida/:id/cadastra-participantes (POST)', () => {
     it('Ok', async () => {
       const { partida, requisicao } = await participacaoNaPartida();
       await server.inicializaPartida(partida.id, requisicao);

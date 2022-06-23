@@ -35,7 +35,7 @@ export function inicializaLigaDto({
       DiaDaSemana.Sábado,
       DiaDaSemana.Domingo,
     ],
-    horarios: horarios ?? [600, 660],
+    horarios: horarios ?? ['10:00', '11:00'],
     intervaloDeDiasUteisEntreTurnos:
       intervaloDeDiasUteisEntreTurnos ??
       faker.datatype.number({ min: 2, max: 5 }),

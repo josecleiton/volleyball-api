@@ -2,6 +2,7 @@ import {
   Body,
   Controller,
   Delete,
+  Get,
   Param,
   ParseUUIDPipe,
   Post,
@@ -20,6 +21,11 @@ export class FundamentoAtletaController {
   @Post()
   async criaFundamentoAtleta(@Body() requisicao: CriaFundamentoAtletaDto) {
     return this.fundamentoAtletaService.criaFundamento(requisicao);
+  }
+
+  @Get('geral/:id')
+  async listaFundamentosAtleta(@Param('id', ParseUUIDPipe) id: string) {
+    return this.fundamentoAtletaService.listaFundamentoDeAtleta(id);
   }
 
   @Delete(':id')

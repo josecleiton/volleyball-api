@@ -33,7 +33,7 @@
 				"--runInBand",
 				"--coverage",
 				"false",
-				"pontuacao.e2e-spec"
+				"partida.e2e-spec"
 			],
 			"console": "integratedTerminal"
 		}

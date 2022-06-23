@@ -41,7 +41,7 @@ export class VotoDaGaleraService {
       requisicao.idAtleta,
     );
 
-    await this.ligaService.excecaoSeALigaNaoEstaIniciada(atleta.equipe.idLiga);
+    await this.ligaService.deveEncontrarLigaIniciada(atleta.equipe.idLiga);
 
     const jaVotouNaLiga = await this.votoDaGaleraRepository.jaVotouNaLiga(
       requisicao.telefone,
@@ -105,11 +105,10 @@ export class VotoDaGaleraService {
       throw new ForbiddenException(token);
     }
 
-    await this.connection.transaction(async (manager) => {
-      await manager.update(VotoDaGalera, voto.id, {
-        verificadoEm: new Date(),
-      });
-      await this.craqueDaGaleraRepository.refreshMaterializedView(manager);
+    await this.votoDaGaleraRepository.update(voto.id, {
+      verificadoEm: new Date(),
     });
+
+    await this.craqueDaGaleraRepository.refreshMaterializedView();
   }
 }
