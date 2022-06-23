@@ -7,11 +7,7 @@ import {
   IsUUID,
 } from 'class-validator';
 import { IsValidDate } from 'src/modules/core/validations';
-
-export enum EscolhaDeMando {
-  PRIMEIRO_JOGO = 'primeiro',
-  SEGUNDO_JOGO = 'segundo',
-}
+import { EscolhaDeMando } from '../enums';
 
 export interface IMataMataDto {
   datas: Date[];

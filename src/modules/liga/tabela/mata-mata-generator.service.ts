@@ -2,7 +2,8 @@ import { chunk } from 'lodash';
 import { Partida } from 'src/modules/partida/entities/partida.entity';
 import type { TipoRodadaMataMata } from 'src/modules/partida/types/tipo-rodada.type';
 import { IClassificados } from '../dto/mata-mata.dto';
-import { EscolhaDeMando, IMataMataDto } from '../dto/tabela.dto';
+import { IMataMataDto } from '../dto/tabela.dto';
+import { EscolhaDeMando } from '../enums';
 
 export abstract class MataMataGeneratorService {
   private static readonly escolhaDeMando: ReadonlyMap<EscolhaDeMando, number> =
