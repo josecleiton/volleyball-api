@@ -50,22 +50,22 @@ export class CadastrarParticipantesPartidaDto {
   idDelegado!: string;
 
   @IsArray()
-  @ArrayMinSize(1)
-  @ArrayMaxSize(4)
+  @ArrayMinSize(Partida.quantidadeÁrbitrosPrimários)
+  @ArrayMaxSize(Partida.quantidadeDeÁrbitros)
   @ValidateNested({ each: true })
   @Type(() => ArbitroPartidaDto)
   arbitros!: ArbitroPartidaDto[];
 
   @IsArray()
-  @ArrayMinSize(12)
-  @ArrayMaxSize(14)
+  @ArrayMinSize(Partida.minimoDeAtletasNaPartida)
+  @ArrayMaxSize(Partida.maximoDeAtletasNaPartida)
   @ValidateNested({ each: true })
   @Type(() => AtletaParticipacaoDto)
   atletasMandante!: AtletaParticipacaoDto[];
 
   @IsArray()
-  @ArrayMinSize(12)
-  @ArrayMaxSize(14)
+  @ArrayMinSize(Partida.minimoDeAtletasNaPartida)
+  @ArrayMaxSize(Partida.maximoDeAtletasNaPartida)
   @ValidateNested({ each: true })
   @Type(() => AtletaParticipacaoDto)
   atletasVisitante!: AtletaParticipacaoDto[];

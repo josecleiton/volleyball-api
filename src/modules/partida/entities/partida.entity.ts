@@ -24,6 +24,14 @@ export class Partida extends EntidadeBase {
   static readonly minimoDeAtletasNaPartida = 12;
   static readonly maximoDeLiberos = 2;
   static readonly estadosFinais = [StatusPartida.CONCLUIDA, StatusPartida.WO];
+  static readonly maximoDeAtletasNaPartida = 14;
+  static readonly quantidadeÁrbitrosPrimários = 1;
+  static readonly maximoDeÁrbitrosSecundários = 1;
+  static readonly maximoDeJuízesDeQuadra = 4;
+  static readonly quantidadeDeÁrbitros =
+    Partida.quantidadeÁrbitrosPrimários +
+    Partida.maximoDeÁrbitrosSecundários +
+    Partida.maximoDeJuízesDeQuadra;
 
   @Column({ type: 'uuid', nullable: true })
   @Index()
