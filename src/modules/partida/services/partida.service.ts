@@ -208,19 +208,25 @@ export class PartidaService {
     atletas: AtletaParticipacaoDto[],
   ): Promise<AtletaRespostaDto[]> | never {
     const atletasPorPosicao = groupBy(atletas, (a) => a.posicao);
+    const quantidadeDeLiberos: number | undefined =
+      atletasPorPosicao[Posicao.LIBERO]?.length;
+
+    const quantidadeDeLiberosEhValida =
+      quantidadeDeLiberos <= Partida.maximoDeLiberos;
+
     if (
       atletas.length === Partida.minimoDeAtletasNaPartida &&
-      atletasPorPosicao[Posicao.LIBERO]?.length
+      quantidadeDeLiberos &&
+      !quantidadeDeLiberosEhValida
     ) {
       throw new BadRequestException(
-        `Equipe ${idEquipe} com o mínimo de atletas relacionados, um líbero não pode ser relacionado`,
+        `Equipe ${idEquipe} com o mínimo de atletas relacionados, não pode haver mais que ${Partida.maximoDeLiberos} líberos. PS: nesse caso nenhum líbero pode ser escalado também`,
       );
     }
 
     if (
       atletas.length > Partida.minimoDeAtletasNaPartida &&
-      atletasPorPosicao[Posicao.LIBERO]?.length &&
-      atletasPorPosicao[Posicao.LIBERO].length > Partida.maximoDeLiberos
+      !quantidadeDeLiberosEhValida
     ) {
       throw new BadRequestException(
         `Em uma equipe ${idEquipe} com ${atletas.length} não pode ter mais do que ${Partida.maximoDeLiberos} líberos`,
