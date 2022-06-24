@@ -116,9 +116,32 @@ export class PartidaService {
       (arbitro) => arbitro.tipo,
     );
 
-    if (!arbitrosPorTipo[TipoArbitro.PRINCIPAL]?.length) {
+    if (
+      arbitrosPorTipo[TipoArbitro.PRINCIPAL]?.length !==
+      Partida.quantidadeÁrbitrosPrimários
+    ) {
+      throw new BadRequestException('É necessário apenas um árbitro principal');
+    }
+
+    const quantidadeDeArbitrosSecundários =
+      arbitrosPorTipo[TipoArbitro.SECUNDÁRIO]?.length;
+    if (
+      quantidadeDeArbitrosSecundários &&
+      quantidadeDeArbitrosSecundários > Partida.quantidadeÁrbitrosSecundários
+    ) {
       throw new BadRequestException(
-        'É necessário ao menos um árbitro principal',
+        'É necessário apenas um árbitro secundário',
+      );
+    }
+
+    const quantidadeDeJuízesDeQuadra =
+      arbitrosPorTipo[TipoArbitro.QUADRA]?.length;
+    if (
+      quantidadeDeJuízesDeQuadra &&
+      quantidadeDeJuízesDeQuadra > Partida.quantidadeJuízesDeQuadra
+    ) {
+      throw new BadRequestException(
+        `É necessário até ${Partida.quantidadeJuízesDeQuadra} juízes de quadra`,
       );
     }
 
