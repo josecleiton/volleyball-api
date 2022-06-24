@@ -127,10 +127,10 @@ export class PartidaService {
       arbitrosPorTipo[TipoArbitro.SECUNDÁRIO]?.length;
     if (
       quantidadeDeArbitrosSecundários &&
-      quantidadeDeArbitrosSecundários > Partida.quantidadeÁrbitrosSecundários
+      quantidadeDeArbitrosSecundários > Partida.maximoDeÁrbitrosSecundários
     ) {
       throw new BadRequestException(
-        'É necessário apenas um árbitro secundário',
+        `É necessário apenas ${Partida.maximoDeÁrbitrosSecundários} árbitro secundário`,
       );
     }
 
@@ -138,10 +138,10 @@ export class PartidaService {
       arbitrosPorTipo[TipoArbitro.QUADRA]?.length;
     if (
       quantidadeDeJuízesDeQuadra &&
-      quantidadeDeJuízesDeQuadra > Partida.quantidadeJuízesDeQuadra
+      quantidadeDeJuízesDeQuadra > Partida.maximoDeJuízesDeQuadra
     ) {
       throw new BadRequestException(
-        `É necessário até ${Partida.quantidadeJuízesDeQuadra} juízes de quadra`,
+        `É necessário até ${Partida.maximoDeJuízesDeQuadra} juízes de quadra`,
       );
     }
 
