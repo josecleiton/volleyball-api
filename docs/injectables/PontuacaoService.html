@@ -273,11 +273,13 @@ export class PontuacaoService {
   ): Promise&lt;PontuacaoRespostaDto[]&gt; {
     const pontuacoes &#x3D; await this.pontuacaoRepository.listaPorLiga(idLiga);
 
-    const classificacoes &#x3D; pontuacoes.map((x) &#x3D;&gt; new PontuacaoRespostaDto(x));
+    const classificacoes &#x3D;
+      await this.aplicaRegraDesempateService.buscarEmpateNaPontuacao({
+        idLiga,
+        classificacoes: pontuacoes.map((x) &#x3D;&gt; new PontuacaoRespostaDto(x)),
+      });
 
-    return this.aplicaRegraDesempateService
-      .buscarEmpateNaPontuacao({ idLiga, classificacoes })
-      .then((res) &#x3D;&gt; res.slice(0, limite));
+    return classificacoes.slice(0, limite);
   }
 }
 </code></pre>

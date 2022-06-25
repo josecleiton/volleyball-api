@@ -96,6 +96,10 @@
                                 <a href="#listaPartidasOrdenadas" >listaPartidasOrdenadas</a>
                             </li>
                             <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#remarcarPartida" >remarcarPartida</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Private</span>
                                 <a href="#validaAtletas" >validaAtletas</a>
                             </li>
@@ -117,12 +121,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(partidaRepository: <a href="../classes/PartidaRepository.html" target="_self">PartidaRepository</a>, atletaEscaladoRepository: <a href="../classes/AtletaEscaladoRepository.html" target="_self">AtletaEscaladoRepository</a>, arbitroPartidaRepository: <a href="../classes/ArbitroPartidaRepository.html" target="_self">ArbitroPartidaRepository</a>, delegadoService: <a href="../injectables/DelegadoService.html" target="_self">DelegadoService</a>, atletaService: <a href="../injectables/AtletaService.html" target="_self">AtletaService</a>, arbitroService: <a href="../injectables/ArbitroService.html" target="_self">ArbitroService</a>, registraDesistenciaService: <a href="../injectables/RegistraDesistenciaService.html" target="_self">RegistraDesistenciaService</a>, connection: Connection)</code>
+<code>constructor(partidaRepository: <a href="../classes/PartidaRepository.html" target="_self">PartidaRepository</a>, atletaEscaladoRepository: <a href="../classes/AtletaEscaladoRepository.html" target="_self">AtletaEscaladoRepository</a>, arbitroPartidaRepository: <a href="../classes/ArbitroPartidaRepository.html" target="_self">ArbitroPartidaRepository</a>, delegadoService: <a href="../injectables/DelegadoService.html" target="_self">DelegadoService</a>, atletaService: <a href="../injectables/AtletaService.html" target="_self">AtletaService</a>, arbitroService: <a href="../injectables/ArbitroService.html" target="_self">ArbitroService</a>, registraDesistenciaService: <a href="../injectables/RegistraDesistenciaService.html" target="_self">RegistraDesistenciaService</a>, ligaService: <a href="../injectables/LigaService.html" target="_self">LigaService</a>, connection: Connection)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/modules/partida/services/partida.service.ts:30</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/modules/partida/services/partida.service.ts:34</a></div>
                             </td>
                         </tr>
 
@@ -224,6 +228,18 @@
                                                     
                                                 </tr>
                                                 <tr>
+                                                        <td>ligaService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/LigaService.html" target="_self" >LigaService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
                                                         <td>connection</td>
                                                   
                                                         <td>
@@ -271,8 +287,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="58"
-                            class="link-to-prism">src/modules/partida/services/partida.service.ts:58</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="90"
+                            class="link-to-prism">src/modules/partida/services/partida.service.ts:90</a></div>
                 </td>
             </tr>
 
@@ -355,8 +371,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="142"
-                            class="link-to-prism">src/modules/partida/services/partida.service.ts:142</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="199"
+                            class="link-to-prism">src/modules/partida/services/partida.service.ts:199</a></div>
                 </td>
             </tr>
 
@@ -426,8 +442,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="52"
-                            class="link-to-prism">src/modules/partida/services/partida.service.ts:52</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="58"
+                            class="link-to-prism">src/modules/partida/services/partida.service.ts:58</a></div>
                 </td>
             </tr>
 
@@ -497,8 +513,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="42"
-                            class="link-to-prism">src/modules/partida/services/partida.service.ts:42</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="48"
+                            class="link-to-prism">src/modules/partida/services/partida.service.ts:48</a></div>
                 </td>
             </tr>
 
@@ -550,6 +566,89 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="remarcarPartida"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>remarcarPartida</b></span>
+                        <a href="#remarcarPartida"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>remarcarPartida(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, requisicao: <a href="../classes/RemarcarPartidaDto.html" target="_self">RemarcarPartidaDto</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="64"
+                            class="link-to-prism">src/modules/partida/services/partida.service.ts:64</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>requisicao</td>
+                                    <td>
+                                                <code><a href="../classes/RemarcarPartidaDto.html" target="_self" >RemarcarPartidaDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>unknown</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="validaAtletas"></a>
                     <span class="name">
                         <span class="modifier">Private</span>
@@ -568,8 +667,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="151"
-                            class="link-to-prism">src/modules/partida/services/partida.service.ts:151</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="208"
+                            class="link-to-prism">src/modules/partida/services/partida.service.ts:208</a></div>
                 </td>
             </tr>
 
@@ -636,12 +735,15 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
-  BadRequestException,
   ConflictException,
+  forwardRef,
+  Inject,
   Injectable,
   NotFoundException,
+  UnprocessableEntityException,
 } from &#x27;@nestjs/common&#x27;;
 import { groupBy } from &#x27;lodash&#x27;;
+import { LigaService } from &#x27;src/modules/liga/services/liga.service&#x27;;
 import { AtletaRespostaDto } from &#x27;src/modules/pessoa/dto/atleta.dto&#x27;;
 import { RegistraDesistenciaService } from &#x27;src/modules/pontuacao/services/registra-desistencia.service&#x27;;
 import { Connection } from &#x27;typeorm&#x27;;
@@ -654,6 +756,7 @@ import {
   CadastrarParticipantesPartidaDto,
   ListaPartidasDto,
   PartidaRespostaDto,
+  RemarcarPartidaDto,
 } from &#x27;../dto/partida.dto&#x27;;
 import { Partida } from &#x27;../entities/partida.entity&#x27;;
 import { StatusPartida } from &#x27;../enums/status-partida.enum&#x27;;
@@ -673,6 +776,8 @@ export class PartidaService {
     private readonly atletaService: AtletaService,
     private readonly arbitroService: ArbitroService,
     private readonly registraDesistenciaService: RegistraDesistenciaService,
+    @Inject(forwardRef(() &#x3D;&gt; LigaService))
+    private readonly ligaService: LigaService,
     private readonly connection: Connection,
   ) {}
 
@@ -688,6 +793,32 @@ export class PartidaService {
 
   async encontraPartida(id: string) {
     const partida &#x3D; await this.deveEncontrarEntidade(id);
+
+    return new PartidaRespostaDto(partida);
+  }
+
+  async remarcarPartida(id: string, requisicao: RemarcarPartidaDto) {
+    const partida &#x3D; await this.deveEncontrarEntidade(id);
+    if (partida.finalizada) {
+      throw new ConflictException(
+        &#x60;Partida ${id} se encontra finalizada. Status da partida: ${partida.status}&#x60;,
+      );
+    }
+
+    const liga &#x3D; await this.ligaService.deveEncontrarLigaIniciada(
+      partida.mandante.equipe.idLiga,
+    );
+    if (requisicao.data &lt; liga.dataComeco) {
+      throw new ConflictException(
+        &#x60;Nova data da partida deve ser maior que a data de início da liga ${liga.id}&#x60;,
+      );
+    }
+
+    await this.partidaRepository.update(partida.id, {
+      dataComeco: requisicao.data,
+    });
+
+    partida.dataComeco &#x3D; requisicao.data;
 
     return new PartidaRespostaDto(partida);
   }
@@ -721,9 +852,34 @@ export class PartidaService {
       (arbitro) &#x3D;&gt; arbitro.tipo,
     );
 
-    if (!arbitrosPorTipo[TipoArbitro.PRINCIPAL]?.length) {
-      throw new BadRequestException(
-        &#x27;É necessário ao menos um árbitro principal&#x27;,
+    if (
+      arbitrosPorTipo[TipoArbitro.PRINCIPAL]?.length !&#x3D;&#x3D;
+      Partida.quantidadeÁrbitrosPrimários
+    ) {
+      throw new UnprocessableEntityException(
+        &#x27;É necessário apenas um árbitro principal&#x27;,
+      );
+    }
+
+    const quantidadeDeArbitrosSecundários &#x3D;
+      arbitrosPorTipo[TipoArbitro.SECUNDÁRIO]?.length;
+    if (
+      quantidadeDeArbitrosSecundários &amp;&amp;
+      quantidadeDeArbitrosSecundários &gt; Partida.maximoDeÁrbitrosSecundários
+    ) {
+      throw new UnprocessableEntityException(
+        &#x60;É necessário apenas ${Partida.maximoDeÁrbitrosSecundários} árbitro secundário&#x60;,
+      );
+    }
+
+    const quantidadeDeJuízesDeQuadra &#x3D;
+      arbitrosPorTipo[TipoArbitro.QUADRA]?.length;
+    if (
+      quantidadeDeJuízesDeQuadra &amp;&amp;
+      quantidadeDeJuízesDeQuadra &gt; Partida.maximoDeJuízesDeQuadra
+    ) {
+      throw new UnprocessableEntityException(
+        &#x60;É necessário até ${Partida.maximoDeJuízesDeQuadra} juízes de quadra&#x60;,
       );
     }
 
@@ -790,21 +946,27 @@ export class PartidaService {
     atletas: AtletaParticipacaoDto[],
   ): Promise&lt;AtletaRespostaDto[]&gt; | never {
     const atletasPorPosicao &#x3D; groupBy(atletas, (a) &#x3D;&gt; a.posicao);
+    const quantidadeDeLiberos: number | undefined &#x3D;
+      atletasPorPosicao[Posicao.LIBERO]?.length;
+
+    const quantidadeDeLiberosEhValida &#x3D;
+      quantidadeDeLiberos &lt;&#x3D; Partida.maximoDeLiberos;
+
     if (
       atletas.length &#x3D;&#x3D;&#x3D; Partida.minimoDeAtletasNaPartida &amp;&amp;
-      atletasPorPosicao[Posicao.LIBERO]?.length
+      quantidadeDeLiberos &amp;&amp;
+      !quantidadeDeLiberosEhValida
     ) {
-      throw new BadRequestException(
-        &#x60;Equipe ${idEquipe} com o mínimo de atletas relacionados, um líbero não pode ser relacionado&#x60;,
+      throw new UnprocessableEntityException(
+        &#x60;Equipe ${idEquipe} com o mínimo de atletas relacionados, não pode haver mais que ${Partida.maximoDeLiberos} líberos. PS: nesse caso nenhum líbero pode ser escalado também&#x60;,
       );
     }
 
     if (
       atletas.length &gt; Partida.minimoDeAtletasNaPartida &amp;&amp;
-      atletasPorPosicao[Posicao.LIBERO]?.length &amp;&amp;
-      atletasPorPosicao[Posicao.LIBERO].length &gt; Partida.maximoDeLiberos
+      !quantidadeDeLiberosEhValida
     ) {
-      throw new BadRequestException(
+      throw new UnprocessableEntityException(
         &#x60;Em uma equipe ${idEquipe} com ${atletas.length} não pode ter mais do que ${Partida.maximoDeLiberos} líberos&#x60;,
       );
     }

@@ -294,7 +294,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { BadRequestException, Injectable } from &#x27;@nestjs/common&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, UnprocessableEntityException } from &#x27;@nestjs/common&#x27;;
 import { addBusinessDays, nextDay, setMinutes } from &#x27;date-fns&#x27;;
 import { DiaDaSemana } from &#x27;src/modules/core/enums/dia-da-semana.enum&#x27;;
 import { Equipe } from &#x27;src/modules/equipe/entities/equipe.entity&#x27;;
@@ -371,11 +371,11 @@ export class ClassificacaoGeneratorService {
     intervaloDeDiasUteisEntreTurnos,
   }: IClassificacaoGeneratorRequest): Partida[] {
     if (equipes.length &amp; 1) {
-      throw new BadRequestException(&#x27;Quantidade de equipe é ímpar&#x27;);
+      throw new UnprocessableEntityException(&#x27;Quantidade de equipe é ímpar&#x27;);
     }
 
     if (diasDaSemana.length * horarios.length !&#x3D;&#x3D; equipes.length / 2) {
-      throw new BadRequestException(
+      throw new UnprocessableEntityException(
         &#x27;Não é possível agendar um jogo por semana (rodada) para cada equipe. O produto entre o tamanho da lista de dias da semana e horarios tem que ser igual a metade do número de equipes&#x27;,
       );
     }

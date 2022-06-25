@@ -37,7 +37,7 @@
 
 <ol class="breadcrumb">
   <li>Controllers</li>
-  <li >CraqueDaGaleraController</li>
+  <li >AppController</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -55,15 +55,9 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/modules/estatistica/controllers/craque-da-galera.controller.ts</code>
+            <code>src/modules/app/app.controller.ts</code>
         </p>
 
-            <p class="comment">
-                <h3>Prefix</h3>
-            </p>
-            <p class="comment">
-                <code>/estatistica/ranking/galera</code>
-            </p>
 
 
 
@@ -84,8 +78,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier">Async</span>
-                                <a href="#listaCraques" >listaCraques</a>
+                                <a href="#site" >site</a>
                             </li>
                         </ul>
                     </td>
@@ -108,18 +101,16 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="listaCraques"></a>
+                    <a name="site"></a>
                     <span class="name">
-                        <span class="modifier">Async</span>
-                        <span ><b>listaCraques</b></span>
-                        <a href="#listaCraques"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>site</b></span>
+                        <a href="#site"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>listaCraques(idLiga: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>site(res: Response)</code>
                 </td>
             </tr>
 
@@ -133,8 +124,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="11"
-                            class="link-to-prism">src/modules/estatistica/controllers/craque-da-galera.controller.ts:11</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="13"
+                            class="link-to-prism">src/modules/app/app.controller.ts:13</a></div>
                 </td>
             </tr>
 
@@ -155,9 +146,9 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>idLiga</td>
+                                    <td>res</td>
                                     <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            <code>Response</code>
                                     </td>
 
                                     <td>
@@ -172,7 +163,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>unknown</code>
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
                     </div>
                     <div class="io-description">
@@ -186,18 +177,22 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, ParseUUIDPipe, Query } from &#x27;@nestjs/common&#x27;;
-import { ApiTags } from &#x27;@nestjs/swagger&#x27;;
-import { CraqueDaGaleraService } from &#x27;../services&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Response } from &#x27;express&#x27;;
 
-@Controller(&#x27;/estatistica/ranking/galera&#x27;)
-@ApiTags(&#x27;estatistica&#x27;)
-export class CraqueDaGaleraController {
-  constructor(private readonly craqueDaGaleraService: CraqueDaGaleraService) {}
+import { Controller, Get, Res } from &#x27;@nestjs/common&#x27;;
+import { ConfigService } from &#x27;@nestjs/config&#x27;;
+import { ApiTags } from &#x27;@nestjs/swagger&#x27;;
+
+@Controller()
+@ApiTags(&#x27;/&#x27;)
+export class AppController {
+  constructor(private readonly configService: ConfigService) {}
 
   @Get()
-  async listaCraques(@Query(&#x27;idLiga&#x27;, ParseUUIDPipe) idLiga: string) {
-    return this.craqueDaGaleraService.listaMelhoresDaLiga(idLiga);
+  site(@Res() res: Response) {
+    return res
+      .status(301)
+      .redirect(this.configService.get&lt;string&gt;(&#x27;SITE_URL&#x27;) as string);
   }
 }
 </code></pre>
@@ -245,7 +240,7 @@ export class CraqueDaGaleraController {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'controller';
-            var COMPODOC_CURRENT_PAGE_URL = 'CraqueDaGaleraController.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'AppController.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

@@ -141,8 +141,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="18"
-                            class="link-to-prism">src/modules/pessoa/controllers/auxiliar.controller.ts:18</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="20"
+                            class="link-to-prism">src/modules/pessoa/controllers/auxiliar.controller.ts:20</a></div>
                 </td>
             </tr>
 
@@ -219,8 +219,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="28"
-                            class="link-to-prism">src/modules/pessoa/controllers/auxiliar.controller.ts:28</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="30"
+                            class="link-to-prism">src/modules/pessoa/controllers/auxiliar.controller.ts:30</a></div>
                 </td>
             </tr>
 
@@ -297,8 +297,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="23"
-                            class="link-to-prism">src/modules/pessoa/controllers/auxiliar.controller.ts:23</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="25"
+                            class="link-to-prism">src/modules/pessoa/controllers/auxiliar.controller.ts:25</a></div>
                 </td>
             </tr>
 
@@ -359,10 +359,12 @@
   Post,
   Query,
 } from &#x27;@nestjs/common&#x27;;
+import { ApiTags } from &#x27;@nestjs/swagger&#x27;;
 import { CriaAuxiliarDto, ListaAuxiliarDto } from &#x27;../dto/auxiliar.dto&#x27;;
 import { AuxiliarService } from &#x27;../services/auxiliar.service&#x27;;
 
 @Controller(&#x27;pessoa/auxiliar&#x27;)
+@ApiTags(&#x27;auxiliar&#x27;)
 export class AuxiliarController {
   constructor(private readonly auxiliarService: AuxiliarService) {}
 

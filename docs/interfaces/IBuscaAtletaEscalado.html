@@ -177,9 +177,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { EquipeRespostaDto } from &#x27;src/modules/equipe/dto/equipe.dto&#x27;;
-import { Equipe } from &#x27;src/modules/equipe/entities/equipe.entity&#x27;;
-import { Posicao } from &#x27;src/modules/pessoa/enums&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Posicao } from &#x27;src/modules/pessoa/enums&#x27;;
 import { AtletaEscalado } from &#x27;../entities/atleta-escalado.entity&#x27;;
 import { EquipePartidaRespostaDto } from &#x27;./equipe-partida.dto&#x27;;
 
@@ -203,15 +201,6 @@ export class AtletaEscaladoRespostaDto {
     this.posicao &#x3D; atleta.posicao;
     this.dataCriacao &#x3D; atleta.dataCriacao;
     this.participacao &#x3D; new EquipePartidaRespostaDto(atleta.participacao);
-  }
-}
-
-export class AtletaEscaladoComGanhadoraRespostaDto extends AtletaEscaladoRespostaDto {
-  equipeGanhadora: EquipeRespostaDto;
-  constructor(atleta: AtletaEscalado, equipe: Equipe) {
-    super(atleta);
-
-    this.equipeGanhadora &#x3D; new EquipeRespostaDto(equipe);
   }
 }
 </code></pre>

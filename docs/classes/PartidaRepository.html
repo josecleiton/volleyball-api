@@ -222,8 +222,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="105"
-                            class="link-to-prism">src/modules/partida/repositories/partida.repository.ts:105</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="108"
+                            class="link-to-prism">src/modules/partida/repositories/partida.repository.ts:108</a></div>
                 </td>
             </tr>
 
@@ -293,8 +293,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="30"
-                            class="link-to-prism">src/modules/partida/repositories/partida.repository.ts:30</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="33"
+                            class="link-to-prism">src/modules/partida/repositories/partida.repository.ts:33</a></div>
                 </td>
             </tr>
 
@@ -364,8 +364,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="40"
-                            class="link-to-prism">src/modules/partida/repositories/partida.repository.ts:40</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="43"
+                            class="link-to-prism">src/modules/partida/repositories/partida.repository.ts:43</a></div>
                 </td>
             </tr>
 
@@ -435,8 +435,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="87"
-                            class="link-to-prism">src/modules/partida/repositories/partida.repository.ts:87</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="90"
+                            class="link-to-prism">src/modules/partida/repositories/partida.repository.ts:90</a></div>
                 </td>
             </tr>
 
@@ -505,8 +505,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="63"
-                            class="link-to-prism">src/modules/partida/repositories/partida.repository.ts:63</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="66"
+                            class="link-to-prism">src/modules/partida/repositories/partida.repository.ts:66</a></div>
                 </td>
             </tr>
 
@@ -599,10 +599,13 @@ export class PartidaRepository extends Repository&lt;Partida&gt; {
     return qb
       .innerJoinAndSelect(&#x27;partidas.visitante&#x27;, &#x27;visitantes&#x27;)
       .innerJoinAndSelect(&#x27;visitantes.equipe&#x27;, &#x27;equipesVisitantes&#x27;)
+      .leftJoinAndSelect(&#x27;visitantes.atletas&#x27;, &#x27;atletasVisitantes&#x27;)
       .innerJoinAndSelect(&#x27;partidas._mandante&#x27;, &#x27;mandantes&#x27;)
       .innerJoinAndSelect(&#x27;mandantes.equipe&#x27;, &#x27;equipesMandantes&#x27;)
+      .leftJoinAndSelect(&#x27;mandantes.atletas&#x27;, &#x27;atletasMandantes&#x27;)
       .leftJoinAndSelect(&#x27;partidas.ganhadora&#x27;, &#x27;ganhadoras&#x27;)
-      .leftJoinAndSelect(&#x27;ganhadoras.equipe&#x27;, &#x27;equipesGanhadoras&#x27;);
+      .leftJoinAndSelect(&#x27;ganhadoras.equipe&#x27;, &#x27;equipesGanhadoras&#x27;)
+      .leftJoinAndSelect(&#x27;ganhadoras.atletas&#x27;, &#x27;atletasGanhadores&#x27;);
   }
 
   async encontraPartidaCompleta(id: string) {

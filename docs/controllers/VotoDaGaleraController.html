@@ -137,8 +137,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="15"
-                            class="link-to-prism">src/modules/estatistica/controllers/voto-da-galera.controller.ts:15</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="17"
+                            class="link-to-prism">src/modules/estatistica/controllers/voto-da-galera.controller.ts:17</a></div>
                 </td>
             </tr>
 
@@ -227,8 +227,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="10"
-                            class="link-to-prism">src/modules/estatistica/controllers/voto-da-galera.controller.ts:10</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="12"
+                            class="link-to-prism">src/modules/estatistica/controllers/voto-da-galera.controller.ts:12</a></div>
                 </td>
             </tr>
 
@@ -281,10 +281,12 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Body, Controller, Param, ParseUUIDPipe, Post } from &#x27;@nestjs/common&#x27;;
+import { ApiTags } from &#x27;@nestjs/swagger&#x27;;
 import { ConfirmarVotoDto, IniciarVotoDto } from &#x27;../dto/voto-da-galera.dto&#x27;;
 import { VotoDaGaleraService } from &#x27;../services&#x27;;
 
 @Controller(&#x27;/estatistica/ranking/galera/voto&#x27;)
+@ApiTags(&#x27;estatistica&#x27;)
 export class VotoDaGaleraController {
   constructor(private readonly votoDaGaleraService: VotoDaGaleraService) {}
 

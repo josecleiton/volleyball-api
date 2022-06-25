@@ -161,8 +161,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="39"
-                            class="link-to-prism">src/modules/liga/liga.controller.ts:39</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="41"
+                            class="link-to-prism">src/modules/liga/liga.controller.ts:41</a></div>
                 </td>
             </tr>
 
@@ -251,8 +251,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="24"
-                            class="link-to-prism">src/modules/liga/liga.controller.ts:24</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="26"
+                            class="link-to-prism">src/modules/liga/liga.controller.ts:26</a></div>
                 </td>
             </tr>
 
@@ -329,8 +329,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="76"
-                            class="link-to-prism">src/modules/liga/liga.controller.ts:76</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="72"
+                            class="link-to-prism">src/modules/liga/liga.controller.ts:72</a></div>
                 </td>
             </tr>
 
@@ -407,8 +407,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="61"
-                            class="link-to-prism">src/modules/liga/liga.controller.ts:61</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="59"
+                            class="link-to-prism">src/modules/liga/liga.controller.ts:59</a></div>
                 </td>
             </tr>
 
@@ -497,8 +497,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="30"
-                            class="link-to-prism">src/modules/liga/liga.controller.ts:30</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="32"
+                            class="link-to-prism">src/modules/liga/liga.controller.ts:32</a></div>
                 </td>
             </tr>
 
@@ -677,8 +677,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="71"
-                            class="link-to-prism">src/modules/liga/liga.controller.ts:71</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="67"
+                            class="link-to-prism">src/modules/liga/liga.controller.ts:67</a></div>
                 </td>
             </tr>
 
@@ -723,8 +723,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="81"
-                            class="link-to-prism">src/modules/liga/liga.controller.ts:81</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="77"
+                            class="link-to-prism">src/modules/liga/liga.controller.ts:77</a></div>
                 </td>
             </tr>
 
@@ -793,8 +793,10 @@ import {
   InicializaQuartaDeFinalDto,
   InicializaSemifinalDto,
 } from &#x27;./dto/tabela.dto&#x27;;
+import { ApiTags } from &#x27;@nestjs/swagger&#x27;;
 
 @Controller(&#x27;liga&#x27;)
+@ApiTags(&#x27;liga&#x27;)
 export class LigaController {
   constructor(private readonly ligaService: LigaService) {}
 
@@ -818,8 +820,6 @@ export class LigaController {
     @Param(&#x27;id&#x27;, ParseUUIDPipe) id: string,
     @Body() requisicao: InicializaQuartaDeFinalDto,
   ) {
-    requisicao.valida();
-
     return this.ligaService.inicializaQuartas(id, requisicao);
   }
 
@@ -829,8 +829,6 @@ export class LigaController {
     @Param(&#x27;id&#x27;, ParseUUIDPipe) id: string,
     @Body() requisicao: InicializaSemifinalDto,
   ) {
-    requisicao.valida();
-
     return this.ligaService.inicializaSemis(id, requisicao);
   }
 
@@ -840,8 +838,6 @@ export class LigaController {
     @Param(&#x27;id&#x27;, ParseUUIDPipe) id: string,
     @Body() requisicao: InicializaFinalDto,
   ) {
-    requisicao.valida();
-
     return this.ligaService.inicializaFinal(id, requisicao);
   }
 

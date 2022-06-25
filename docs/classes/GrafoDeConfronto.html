@@ -125,7 +125,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/modules/pontuacao/services/aplica-regra-desempate.service.ts:61</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/modules/pontuacao/services/aplica-regra-desempate.service.ts:59</a></div>
                             </td>
                         </tr>
 
@@ -189,7 +189,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/modules/pontuacao/services/aplica-regra-desempate.service.ts:59</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/modules/pontuacao/services/aplica-regra-desempate.service.ts:57</a></div>
                         </td>
                     </tr>
 
@@ -223,8 +223,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="101"
-                            class="link-to-prism">src/modules/pontuacao/services/aplica-regra-desempate.service.ts:101</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="99"
+                            class="link-to-prism">src/modules/pontuacao/services/aplica-regra-desempate.service.ts:99</a></div>
                 </td>
             </tr>
 
@@ -313,7 +313,7 @@ export class AplicaRegraDesempateService {
       await this.partidaRepository.buscarConfrontosDeEquipesEmpatadas(idLiga);
     const grafoConfrontoDireto &#x3D; new GrafoDeConfronto(confrontos);
 
-    const result &#x3D; classificacoes.sort((a, b) &#x3D;&gt; {
+    return classificacoes.sort((a, b) &#x3D;&gt; {
       const fatorVitoria &#x3D; b.partidasGanhas - a.partidasGanhas;
       if (fatorVitoria) {
         return fatorVitoria;
@@ -340,14 +340,12 @@ export class AplicaRegraDesempateService {
           a.idEquipe,
         );
 
-      if (Number.isFinite(fatorConfrontoDireto)) {
+      if (fatorConfrontoDireto &amp;&amp; Number.isFinite(fatorConfrontoDireto)) {
         return -fatorConfrontoDireto;
       }
 
       return compareAsc(a.equipe.dataCriacao, b.equipe.dataCriacao);
     });
-
-    return result;
   }
 }
 

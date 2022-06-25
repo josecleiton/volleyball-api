@@ -28,16 +28,23 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content controller">
+               <div class="content class">
                    <div class="content-data">
 
 
 
 
 
+
+
+
+
+
+
+
 <ol class="breadcrumb">
-  <li>Controllers</li>
-  <li >DelegadoController</li>
+  <li>Classes</li>
+  <li >ArbitroPartidaAtualizaEnumTipoArbitro1656090457531</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -55,25 +62,38 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/modules/pessoa/controllers/delegado.controller.ts</code>
+            <code>src/database/migrations/1656090457531-ArbitroPartidaAtualizaEnumTipoArbitro.ts</code>
         </p>
 
+
+
+
             <p class="comment">
-                <h3>Prefix</h3>
+                <h3>Implements</h3>
             </p>
             <p class="comment">
-                <code>pessoa/delegado</code>
+                        <code>MigrationInterface</code>
             </p>
-
-
-
-
 
 
             <section>
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#name" >name</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -84,16 +104,14 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Public</span>
                                     <span class="modifier">Async</span>
-                                <a href="#criaDelegado" >criaDelegado</a>
+                                <a href="#down" >down</a>
                             </li>
                             <li>
+                                    <span class="modifier">Public</span>
                                     <span class="modifier">Async</span>
-                                <a href="#encontraDelegado" >encontraDelegado</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Async</span>
-                                <a href="#listaDelegados" >listaDelegados</a>
+                                <a href="#up" >up</a>
                             </li>
                         </ul>
                     </td>
@@ -101,6 +119,45 @@
 
 
 
+
+
+        </tbody>
+    </table>
+</section>
+
+
+            <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="name"></a>
+                    <span class="name">
+                        <span ><b>name</b></span>
+                        <a href="#name"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;ArbitroPartidaAtualizaEnumTipoArbitro1656090457531&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="6" class="link-to-prism">src/database/migrations/1656090457531-ArbitroPartidaAtualizaEnumTipoArbitro.ts:6</a></div>
+                        </td>
+                    </tr>
 
 
         </tbody>
@@ -116,33 +173,27 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="criaDelegado"></a>
+                    <a name="down"></a>
                     <span class="name">
+                        <span class="modifier">Public</span>
                         <span class="modifier">Async</span>
-                        <span ><b>criaDelegado</b></span>
-                        <a href="#criaDelegado"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>down</b></span>
+                        <a href="#down"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>criaDelegado(requisicao: <a href="../classes/CriaArbitroDto.html" target="_self">CriaArbitroDto</a>)</code>
+                    <code>down(queryRunner: QueryRunner)</code>
                 </td>
             </tr>
 
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@Post()<br /></code>
-                </td>
-            </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="20"
-                            class="link-to-prism">src/modules/pessoa/controllers/delegado.controller.ts:20</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="23"
+                            class="link-to-prism">src/database/migrations/1656090457531-ArbitroPartidaAtualizaEnumTipoArbitro.ts:23</a></div>
                 </td>
             </tr>
 
@@ -163,9 +214,9 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>requisicao</td>
+                                    <td>queryRunner</td>
                                     <td>
-                                                <code><a href="../classes/CriaArbitroDto.html" target="_self" >CriaArbitroDto</a></code>
+                                            <code>QueryRunner</code>
                                     </td>
 
                                     <td>
@@ -180,7 +231,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>unknown</code>
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -194,33 +245,27 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="encontraDelegado"></a>
+                    <a name="up"></a>
                     <span class="name">
+                        <span class="modifier">Public</span>
                         <span class="modifier">Async</span>
-                        <span ><b>encontraDelegado</b></span>
-                        <a href="#encontraDelegado"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>up</b></span>
+                        <a href="#up"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>encontraDelegado(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>up(queryRunner: QueryRunner)</code>
                 </td>
             </tr>
 
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@Get(&#x27;:id&#x27;)<br /></code>
-                </td>
-            </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="30"
-                            class="link-to-prism">src/modules/pessoa/controllers/delegado.controller.ts:30</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="8"
+                            class="link-to-prism">src/database/migrations/1656090457531-ArbitroPartidaAtualizaEnumTipoArbitro.ts:8</a></div>
                 </td>
             </tr>
 
@@ -241,9 +286,9 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>id</td>
+                                    <td>queryRunner</td>
                                     <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            <code>QueryRunner</code>
                                     </td>
 
                                     <td>
@@ -258,7 +303,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>unknown</code>
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -268,131 +313,54 @@
             </tr>
         </tbody>
     </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="listaDelegados"></a>
-                    <span class="name">
-                        <span class="modifier">Async</span>
-                        <span ><b>listaDelegados</b></span>
-                        <a href="#listaDelegados"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>listaDelegados(requisicao: <a href="../classes/ListaArbitroDto.html" target="_self">ListaArbitroDto</a>)</code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@Get()<br /></code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="25"
-                            class="link-to-prism">src/modules/pessoa/controllers/delegado.controller.ts:25</a></div>
-                </td>
-            </tr>
+</section>
 
 
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>requisicao</td>
-                                    <td>
-                                                <code><a href="../classes/ListaArbitroDto.html" target="_self" >ListaArbitroDto</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
 
 
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>unknown</code>
 
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</section>    </div>
+    </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
-  Body,
-  Controller,
-  Get,
-  Param,
-  ParseUUIDPipe,
-  Post,
-  Query,
-} from &#x27;@nestjs/common&#x27;;
-import { ApiTags } from &#x27;@nestjs/swagger&#x27;;
-import { CriaArbitroDto, ListaArbitroDto } from &#x27;../dto/arbitro.dto&#x27;;
-import { DelegadoService } from &#x27;../services/delegado.service&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { MigrationInterface, QueryRunner } from &#x27;typeorm&#x27;;
 
-@Controller(&#x27;pessoa/delegado&#x27;)
-@ApiTags(&#x27;delegado&#x27;)
-export class DelegadoController {
-  constructor(private readonly delegadoService: DelegadoService) {}
+export class ArbitroPartidaAtualizaEnumTipoArbitro1656090457531
+  implements MigrationInterface
+{
+  name &#x3D; &#x27;ArbitroPartidaAtualizaEnumTipoArbitro1656090457531&#x27;;
 
-  @Post()
-  async criaDelegado(@Body() requisicao: CriaArbitroDto) {
-    return this.delegadoService.criaDelegado(requisicao);
+  public async up(queryRunner: QueryRunner): Promise&lt;void&gt; {
+    await queryRunner.query(
+      &#x60;ALTER TYPE &quot;public&quot;.&quot;arbitros_partida_tipo_enum&quot; RENAME TO &quot;arbitros_partida_tipo_enum_old&quot;&#x60;,
+    );
+    await queryRunner.query(
+      &#x60;CREATE TYPE &quot;public&quot;.&quot;arbitros_partida_tipo_enum&quot; AS ENUM(&#x27;principal&#x27;, &#x27;secundário&#x27;, &#x27;juiz_quadra&#x27;)&#x60;,
+    );
+    await queryRunner.query(
+      &#x60;ALTER TABLE &quot;arbitros_partida&quot; ALTER COLUMN &quot;tipo&quot; TYPE &quot;public&quot;.&quot;arbitros_partida_tipo_enum&quot; USING &quot;tipo&quot;::&quot;text&quot;::&quot;public&quot;.&quot;arbitros_partida_tipo_enum&quot;&#x60;,
+    );
+    await queryRunner.query(
+      &#x60;DROP TYPE &quot;public&quot;.&quot;arbitros_partida_tipo_enum_old&quot;&#x60;,
+    );
   }
 
-  @Get()
-  async listaDelegados(@Query() requisicao: ListaArbitroDto) {
-    return this.delegadoService.listaDelegados(requisicao);
-  }
-
-  @Get(&#x27;:id&#x27;)
-  async encontraDelegado(@Param(&#x27;id&#x27;, ParseUUIDPipe) id: string) {
-    return this.delegadoService.deveEncontrarUm(id);
+  public async down(queryRunner: QueryRunner): Promise&lt;void&gt; {
+    await queryRunner.query(
+      &#x60;CREATE TYPE &quot;public&quot;.&quot;arbitros_partida_tipo_enum_old&quot; AS ENUM(&#x27;principal&#x27;)&#x60;,
+    );
+    await queryRunner.query(
+      &#x60;ALTER TABLE &quot;arbitros_partida&quot; ALTER COLUMN &quot;tipo&quot; TYPE &quot;public&quot;.&quot;arbitros_partida_tipo_enum_old&quot; USING &quot;tipo&quot;::&quot;text&quot;::&quot;public&quot;.&quot;arbitros_partida_tipo_enum_old&quot;&#x60;,
+    );
+    await queryRunner.query(&#x60;DROP TYPE &quot;public&quot;.&quot;arbitros_partida_tipo_enum&quot;&#x60;);
+    await queryRunner.query(
+      &#x60;ALTER TYPE &quot;public&quot;.&quot;arbitros_partida_tipo_enum_old&quot; RENAME TO &quot;arbitros_partida_tipo_enum&quot;&#x60;,
+    );
   }
 }
 </code></pre>
     </div>
 </div>
-
-
-
-
-
-
-
 
 
 
@@ -427,8 +395,8 @@ export class DelegadoController {
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'controller';
-            var COMPODOC_CURRENT_PAGE_URL = 'DelegadoController.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
+            var COMPODOC_CURRENT_PAGE_URL = 'ArbitroPartidaAtualizaEnumTipoArbitro1656090457531.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

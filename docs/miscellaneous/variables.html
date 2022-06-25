@@ -73,6 +73,15 @@
                             <a href="#databaseConfig" title="src/configs/database.config.ts" ><b>databaseConfig</b>&nbsp;&nbsp;&nbsp;(src/.../database.config.ts)</a>
                         </li>
                         <li>
+                            <a href="#estadosFinaisPartidaJoin" title="src/modules/pontuacao/entities/pontuacao-view.entity.ts" ><b>estadosFinaisPartidaJoin</b>&nbsp;&nbsp;&nbsp;(src/.../pontuacao-view.entity.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#IsTimeString" title="src/modules/core/validations/is-time-string.validation.ts" ><b>IsTimeString</b>&nbsp;&nbsp;&nbsp;(src/.../is-time-string.validation.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#IsValidDate" title="src/modules/core/validations/is-valid-date.validation.ts" ><b>IsValidDate</b>&nbsp;&nbsp;&nbsp;(src/.../is-valid-date.validation.ts)</a>
+                        </li>
+                        <li>
                             <a href="#logger" title="src/main.ts" ><b>logger</b>&nbsp;&nbsp;&nbsp;(src/.../main.ts)</a>
                         </li>
                         <li>
@@ -282,6 +291,105 @@
           }
         : undefined,
   }),
+)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/modules/pontuacao/entities/pontuacao-view.entity.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="estadosFinaisPartidaJoin"></a>
+                    <span class="name">
+                        <span ><b>estadosFinaisPartidaJoin</b></span>
+                        <a href="#estadosFinaisPartidaJoin"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>arrayToInClause(Partida.estadosFinais)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tiposDeRodadaClassificatoriaJoin"></a>
+                    <span class="name">
+                        <span ><b>tiposDeRodadaClassificatoriaJoin</b></span>
+                        <a href="#tiposDeRodadaClassificatoriaJoin"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>arrayToInClause(
+  tiposDeRodadaClassificatoria,
+)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/modules/core/validations/is-time-string.validation.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="IsTimeString"></a>
+                    <span class="name">
+                        <span ><b>IsTimeString</b></span>
+                        <a href="#IsTimeString"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createDecorator(
+  validate,
+  &#x27;isTimeString&#x27;,
+  &#x27;$property must be a valid time string -&gt; HH:mm&#x27;,
+)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/modules/core/validations/is-valid-date.validation.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="IsValidDate"></a>
+                    <span class="name">
+                        <span ><b>IsValidDate</b></span>
+                        <a href="#IsValidDate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createDecorator(
+  validate,
+  &#x27;isValidDate&#x27;,
+  &#x27;$property must be a valid date&#x27;,
 )</code>
                     </td>
                 </tr>
@@ -591,31 +699,6 @@
   &#x27;21&#x27;,
   &#x27;22&#x27;,
 ] as const</code>
-                    </td>
-                </tr>
-
-
-        </tbody>
-    </table>
-</section>
-    <h3>src/modules/pontuacao/entities/pontuacao-view.entity.ts</h3>
-    <section>
-    <h3></h3>    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="tiposDeRodadaClassificatoriaJoin"></a>
-                    <span class="name">
-                        <span ><b>tiposDeRodadaClassificatoriaJoin</b></span>
-                        <a href="#tiposDeRodadaClassificatoriaJoin"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>tiposDeRodadaClassificatoria
-  .map((x) &#x3D;&gt; &#x60;&#x27;${x}&#x27;&#x60;)
-  .join(&#x27;, &#x27;)</code>
                     </td>
                 </tr>
 

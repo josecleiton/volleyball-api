@@ -112,7 +112,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/modules/liga/dto/liga.dto.ts:99</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/modules/liga/dto/liga.dto.ts:94</a></div>
                             </td>
                         </tr>
 
@@ -186,7 +186,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">src/modules/liga/dto/liga.dto.ts:98</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/modules/liga/dto/liga.dto.ts:93</a></div>
                         </td>
                     </tr>
 
@@ -212,7 +212,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/modules/liga/dto/liga.dto.ts:99</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/modules/liga/dto/liga.dto.ts:94</a></div>
                         </td>
                     </tr>
 
@@ -231,7 +231,8 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Type } from &#x27;class-transformer&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ApiProperty } from &#x27;@nestjs/swagger&#x27;;
+import { Type } from &#x27;class-transformer&#x27;;
 import {
   ArrayMaxSize,
   ArrayMinSize,
@@ -243,12 +244,12 @@ import {
   IsString,
   Length,
   Max,
-  Min,
   MinDate,
 } from &#x27;class-validator&#x27;;
 import { compareAsc, startOfYear } from &#x27;date-fns&#x27;;
 import { Genero } from &#x27;src/modules/core/enums&#x27;;
 import { DiaDaSemana } from &#x27;src/modules/core/enums/dia-da-semana.enum&#x27;;
+import { IsTimeString } from &#x27;src/modules/core/validations&#x27;;
 import { PartidaRespostaDto } from &#x27;src/modules/partida/dto/partida.dto&#x27;;
 import { Partida } from &#x27;src/modules/partida/entities/partida.entity&#x27;;
 import { ArbitroRespostaDto } from &#x27;src/modules/pessoa/dto/arbitro.dto&#x27;;
@@ -287,15 +288,9 @@ export class InicializaLigaDto {
   @ArrayMinSize(1)
   @ArrayMaxSize(12)
   @ArrayUnique()
-  @Min(6 * 60, {
-    each: true,
-    message: &#x27;Horário tem que ser em minutos e maior que $constraint4&#x27;,
-  })
-  @Max(22 * 60, {
-    each: true,
-    message: &#x27;Horário tem que ser em minutos e menor que $constraint5&#x27;,
-  })
-  horarios!: number[];
+  @IsTimeString({ each: true })
+  @ApiProperty({ example: [&#x27;21:00&#x27;], type: [String] })
+  horarios!: string[];
 
   @IsPositive()
   @Max(Liga.intervaloDeUteisDiasEntreTurnos)

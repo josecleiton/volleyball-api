@@ -190,6 +190,15 @@
         <div class="container-fluid module">
             <div class="row">
                 <div class="col-sm-3">
+                    <h3>Controllers<a href="https://docs.nestjs.com/controllers" target="_blank" title="Official documentation about module controllers"><span
+                                class="icon ion-ios-information-circle-outline"></a></h3>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <a href="../controllers/AppController.html">AppController</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
                     <h3>Imports<a href="https://angular.io/api/core/NgModule#imports" target="_blank" title="Official documentation about module imports"><span
                                 class="icon ion-ios-information-circle-outline"></a></h3>
                     <ul class="list-group">
@@ -244,6 +253,7 @@ import { PessoaModule } from &#x27;../pessoa/pessoa.module&#x27;;
 import { EstatisticaModule } from &#x27;../estatistica/estatistica.module&#x27;;
 import { ThrottlerModule } from &#x27;@nestjs/throttler&#x27;;
 import { getModuleThrottlerProvider } from &#x27;../core/guards&#x27;;
+import { AppController } from &#x27;./app.controller&#x27;;
 
 @Module({
   imports: [
@@ -276,6 +286,7 @@ import { getModuleThrottlerProvider } from &#x27;../core/guards&#x27;;
     PartidaModule,
     EstatisticaModule,
   ],
+  controllers: [AppController],
   providers: [getModuleThrottlerProvider()],
 })
 export class AppModule {}

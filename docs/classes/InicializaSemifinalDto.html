@@ -67,12 +67,6 @@
 
 
 
-            <p class="comment">
-                <h3>Extends</h3>
-            </p>
-            <p class="comment">
-                        <code><a href="../classes/InicializaMataMataDto.html" target="_self" >InicializaMataMataDto</a></code>
-            </p>
 
 
 
@@ -98,20 +92,6 @@
                     </td>
                 </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Methods</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
-                            <li>
-                                <a href="#valida" >valida</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
 
 
 
@@ -149,20 +129,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @IsArray()<br />@ArrayMinSize(6)<br />@ArrayMaxSize(6)<br />@IsDate({each: true})<br />@Type(undefined)<br />
+                            @IsArray()<br />@ArrayMinSize(6)<br />@ArrayMaxSize(6)<br />@IsValidDate({each: true})<br />@Type(undefined)<br />
                         </code>
                     </td>
                 </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Inherited from         <code><a href="../classes/InicializaMataMataDto.html" target="_self" >InicializaMataMataDto</a></code>
-</div>
-                            </td>
-                        </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../classes/InicializaMataMataDto.html#source" target="_self" >InicializaMataMataDto:56</a></code>
-</div>
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/modules/liga/dto/tabela.dto.ts:39</a></div>
                         </td>
                     </tr>
 
@@ -197,7 +170,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/modules/liga/dto/tabela.dto.ts:62</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/modules/liga/dto/tabela.dto.ts:45</a></div>
                         </td>
                     </tr>
 
@@ -206,55 +179,7 @@
     </table>
 </section>
 
-            <section>
-    
-    <h3 id="methods">
-        Methods
-    </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="valida"></a>
-                    <span class="name">
-                        <span ><b>valida</b></span>
-                        <a href="#valida"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>valida()</code>
-                </td>
-            </tr>
 
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Inherited from         <code><a href="../classes/InicializaMataMataDto.html" target="_self" >InicializaMataMataDto</a></code>
-</div>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../classes/InicializaMataMataDto.html#source" target="_self" >InicializaMataMataDto:26</a></code>
-</div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</section>
 
 
 
@@ -264,21 +189,16 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { BadRequestException } from &#x27;@nestjs/common&#x27;;
-import { Type } from &#x27;class-transformer&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Type } from &#x27;class-transformer&#x27;;
 import {
   ArrayMaxSize,
   ArrayMinSize,
   IsArray,
-  IsDate,
   IsEnum,
   IsUUID,
 } from &#x27;class-validator&#x27;;
-
-export enum EscolhaDeMando {
-  PRIMEIRO_JOGO &#x3D; &#x27;primeiro&#x27;,
-  SEGUNDO_JOGO &#x3D; &#x27;segundo&#x27;,
-}
+import { IsValidDate } from &#x27;src/modules/core/validations&#x27;;
+import { EscolhaDeMando } from &#x27;../enums&#x27;;
 
 export interface IMataMataDto {
   datas: Date[];
@@ -286,23 +206,11 @@ export interface IMataMataDto {
   idLiga: string;
 }
 
-abstract class InicializaMataMataDto {
-  abstract datas: Date[];
-
-  valida() {
-    this.datas.forEach((data, index) &#x3D;&gt; {
-      if (data instanceof Date &amp;&amp; !isFinite(data.getTime())) {
-        throw new BadRequestException(&#x60;&#x27;datas[${index}]&#x27; não fornecida&#x60;);
-      }
-    });
-  }
-}
-
-export class InicializaQuartaDeFinalDto extends InicializaMataMataDto {
+export class InicializaQuartaDeFinalDto {
   @IsArray()
   @ArrayMinSize(12)
   @ArrayMaxSize(12)
-  @IsDate({ each: true })
+  @IsValidDate({ each: true })
   @Type(() &#x3D;&gt; Date)
   datas!: Date[];
 
@@ -313,11 +221,11 @@ export class InicializaQuartaDeFinalDto extends InicializaMataMataDto {
   mandos!: EscolhaDeMando[];
 }
 
-export class InicializaSemifinalDto extends InicializaMataMataDto {
+export class InicializaSemifinalDto {
   @IsArray()
   @ArrayMinSize(6)
   @ArrayMaxSize(6)
-  @IsDate({ each: true })
+  @IsValidDate({ each: true })
   @Type(() &#x3D;&gt; Date)
   datas!: Date[];
 
@@ -328,11 +236,11 @@ export class InicializaSemifinalDto extends InicializaMataMataDto {
   mandos!: EscolhaDeMando[];
 }
 
-export class InicializaFinalDto extends InicializaMataMataDto {
+export class InicializaFinalDto {
   @IsArray()
   @ArrayMinSize(3)
   @ArrayMaxSize(3)
-  @IsDate({ each: true })
+  @IsValidDate({ each: true })
   @Type(() &#x3D;&gt; Date)
   datas!: Date[];
 

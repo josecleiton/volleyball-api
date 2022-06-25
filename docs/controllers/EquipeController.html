@@ -142,8 +142,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="39"
-                            class="link-to-prism">src/modules/equipe/equipe.controller.ts:39</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="41"
+                            class="link-to-prism">src/modules/equipe/equipe.controller.ts:41</a></div>
                 </td>
             </tr>
 
@@ -230,8 +230,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="24"
-                            class="link-to-prism">src/modules/equipe/equipe.controller.ts:24</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="26"
+                            class="link-to-prism">src/modules/equipe/equipe.controller.ts:26</a></div>
                 </td>
             </tr>
 
@@ -306,8 +306,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="34"
-                            class="link-to-prism">src/modules/equipe/equipe.controller.ts:34</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="36"
+                            class="link-to-prism">src/modules/equipe/equipe.controller.ts:36</a></div>
                 </td>
             </tr>
 
@@ -382,8 +382,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="29"
-                            class="link-to-prism">src/modules/equipe/equipe.controller.ts:29</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="31"
+                            class="link-to-prism">src/modules/equipe/equipe.controller.ts:31</a></div>
                 </td>
             </tr>
 
@@ -458,8 +458,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="47"
-                            class="link-to-prism">src/modules/equipe/equipe.controller.ts:47</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="49"
+                            class="link-to-prism">src/modules/equipe/equipe.controller.ts:49</a></div>
                 </td>
             </tr>
 
@@ -522,6 +522,7 @@
   ParseUUIDPipe,
   Patch,
 } from &#x27;@nestjs/common&#x27;;
+import { ApiTags } from &#x27;@nestjs/swagger&#x27;;
 import {
   AtualizaEquipeDto,
   CriaEquipeDto,
@@ -530,6 +531,7 @@ import {
 import { EquipeService } from &#x27;./equipe.service&#x27;;
 
 @Controller(&#x27;equipe&#x27;)
+@ApiTags(&#x27;equipe&#x27;)
 export class EquipeController {
   constructor(private readonly equipeService: EquipeService) {}
 

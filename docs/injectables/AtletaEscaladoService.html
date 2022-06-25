@@ -163,7 +163,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>encontraParticipacaoComEquipe(undefined: <a href="../interfaces/IBuscaAtletaEscalado.html" target="_self">IBuscaAtletaEscalado</a>)</code>
+                    <code>encontraParticipacaoComEquipe(requisicao: <a href="../interfaces/IBuscaAtletaEscalado.html" target="_self">IBuscaAtletaEscalado</a>)</code>
                 </td>
             </tr>
 
@@ -192,6 +192,7 @@
                             </thead>
                             <tbody>
                                 <tr>
+                                    <td>requisicao</td>
                                     <td>
                                                 <code><a href="../interfaces/IBuscaAtletaEscalado.html" target="_self" >IBuscaAtletaEscalado</a></code>
                                     </td>
@@ -226,7 +227,7 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, NotFoundException } from &#x27;@nestjs/common&#x27;;
 import {
-  AtletaEscaladoComGanhadoraRespostaDto,
+  AtletaEscaladoRespostaDto,
   IBuscaAtletaEscalado,
 } from &#x27;../dto/atleta-escalado.dto&#x27;;
 import { AtletaEscaladoRepository } from &#x27;../repositories/atleta-escalado.repository&#x27;;
@@ -237,25 +238,19 @@ export class AtletaEscaladoService {
     private readonly atletaEscaladoRepository: AtletaEscaladoRepository,
   ) {}
 
-  async encontraParticipacaoComEquipe({
-    idAtleta,
-    idPartida,
-  }: IBuscaAtletaEscalado) {
-    const atleta &#x3D; await this.atletaEscaladoRepository.findOne({
-      where: { idAtleta, idPartida },
-      relations: [&#x27;participacao&#x27;, &#x27;participacao.equipe&#x27;],
-    });
+  async encontraParticipacaoComEquipe(requisicao: IBuscaAtletaEscalado) {
+    const atleta &#x3D;
+      await this.atletaEscaladoRepository.encontraParticipacaoComEquipe(
+        requisicao,
+      );
 
     if (!atleta) {
       throw new NotFoundException(
-        &#x60;Atleta ${idAtleta} não participa da partida ${idPartida}&#x60;,
+        &#x60;Atleta ${requisicao.idAtleta} não participa da partida ${requisicao.idPartida}&#x60;,
       );
     }
 
-    return new AtletaEscaladoComGanhadoraRespostaDto(
-      atleta,
-      atleta.participacao.equipe,
-    );
+    return new AtletaEscaladoRespostaDto(atleta);
   }
 }
 </code></pre>
