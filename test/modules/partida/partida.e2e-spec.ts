@@ -14,6 +14,7 @@ import {
 import { StatusPartida } from 'src/modules/partida/enums/status-partida.enum';
 import { randomUUID } from 'crypto';
 import { addDays, subMinutes } from 'date-fns';
+import { Posicao } from 'src/modules/pessoa/enums';
 
 describe('PartidaController (e2e)', () => {
   let app: INestApplication;
@@ -137,34 +138,65 @@ describe('PartidaController (e2e)', () => {
   });
 
   describe('/partida/:id/cadastra-participantes (POST)', () => {
-    it('Ok', async () => {
-      const { partida, requisicao } = await participacaoNaPartida();
-      await server.inicializaPartida(partida.id, requisicao);
+    describe('Ok', () => {
+      it('12 atletas escalados sem líbero', async () => {
+        const { partida, requisicao } = await participacaoNaPartida();
+        await server.inicializaPartida(partida.id, requisicao);
 
-      const partidaAtualizada = await server.encontraPartida(partida.id);
+        const partidaAtualizada = await server.encontraPartida(partida.id);
 
-      expect(partidaAtualizada.id).toEqual(partida.id);
-      expect(partidaAtualizada.status).toEqual(
-        StatusPartida.PARTICIPANTES_CADASTRADOS,
-      );
+        expect(partidaAtualizada.id).toEqual(partida.id);
+        expect(partidaAtualizada.status).toEqual(
+          StatusPartida.PARTICIPANTES_CADASTRADOS,
+        );
+      });
+
+      describe('12 atletas escalados com líbero', () => {
+        it('1 líbero', async () => {
+          const { partida, requisicao } = await participacaoNaPartida();
+          requisicao.atletasMandante[0].posicao = Posicao.LIBERO;
+
+          await server.inicializaPartida(partida.id, requisicao);
+
+          const partidaAtualizada = await server.encontraPartida(partida.id);
+
+          expect(partidaAtualizada.id).toEqual(partida.id);
+          expect(partidaAtualizada.status).toEqual(
+            StatusPartida.PARTICIPANTES_CADASTRADOS,
+          );
+        });
+        it('2 líberos', async () => {
+          const { partida, requisicao } = await participacaoNaPartida();
+          requisicao.atletasMandante[0].posicao = Posicao.LIBERO;
+          requisicao.atletasMandante[1].posicao = Posicao.LIBERO;
+
+          await server.inicializaPartida(partida.id, requisicao);
+
+          const partidaAtualizada = await server.encontraPartida(partida.id);
+
+          expect(partidaAtualizada.id).toEqual(partida.id);
+          expect(partidaAtualizada.status).toEqual(
+            StatusPartida.PARTICIPANTES_CADASTRADOS,
+          );
+        });
+      });
+
+      it('Desistencia', async () => {
+        const { partida, requisicao } = await participacaoNaPartida();
+
+        requisicao.desistente = EscolhaDeDesistencia.MANDANTE;
+
+        await server.inicializaPartida(partida.id, requisicao);
+
+        const partidaAtualizada = await server.encontraPartida(partida.id);
+
+        expect(partidaAtualizada.id).toEqual(partida.id);
+        expect(partidaAtualizada.status).toEqual(StatusPartida.WO);
+        expect(partidaAtualizada.idEquipeGanhador).toEqual(
+          partidaAtualizada.idEquipeVisitante,
+        );
+      });
     });
-
-    it('Ok - Desistencia', async () => {
-      const { partida, requisicao } = await participacaoNaPartida();
-
-      requisicao.desistente = EscolhaDeDesistencia.MANDANTE;
-
-      await server.inicializaPartida(partida.id, requisicao);
-
-      const partidaAtualizada = await server.encontraPartida(partida.id);
-
-      expect(partidaAtualizada.id).toEqual(partida.id);
-      expect(partidaAtualizada.status).toEqual(StatusPartida.WO);
-      expect(partidaAtualizada.idEquipeGanhador).toEqual(
-        partidaAtualizada.idEquipeVisitante,
-      );
-    });
-
     describe('BadRequest', () => {
       it('Falta árbitro principal', async () => {
         const { partida, requisicao } = await participacaoNaPartida();
