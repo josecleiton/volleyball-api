@@ -1,10 +1,10 @@
 import {
-  BadRequestException,
   ConflictException,
   forwardRef,
   Inject,
   Injectable,
   NotFoundException,
+  UnprocessableEntityException,
 } from '@nestjs/common';
 import { groupBy } from 'lodash';
 import { LigaService } from 'src/modules/liga/services/liga.service';
@@ -120,7 +120,9 @@ export class PartidaService {
       arbitrosPorTipo[TipoArbitro.PRINCIPAL]?.length !==
       Partida.quantidadeÁrbitrosPrimários
     ) {
-      throw new BadRequestException('É necessário apenas um árbitro principal');
+      throw new UnprocessableEntityException(
+        'É necessário apenas um árbitro principal',
+      );
     }
 
     const quantidadeDeArbitrosSecundários =
@@ -129,7 +131,7 @@ export class PartidaService {
       quantidadeDeArbitrosSecundários &&
       quantidadeDeArbitrosSecundários > Partida.maximoDeÁrbitrosSecundários
     ) {
-      throw new BadRequestException(
+      throw new UnprocessableEntityException(
         `É necessário apenas ${Partida.maximoDeÁrbitrosSecundários} árbitro secundário`,
       );
     }
@@ -140,7 +142,7 @@ export class PartidaService {
       quantidadeDeJuízesDeQuadra &&
       quantidadeDeJuízesDeQuadra > Partida.maximoDeJuízesDeQuadra
     ) {
-      throw new BadRequestException(
+      throw new UnprocessableEntityException(
         `É necessário até ${Partida.maximoDeJuízesDeQuadra} juízes de quadra`,
       );
     }
@@ -219,7 +221,7 @@ export class PartidaService {
       quantidadeDeLiberos &&
       !quantidadeDeLiberosEhValida
     ) {
-      throw new BadRequestException(
+      throw new UnprocessableEntityException(
         `Equipe ${idEquipe} com o mínimo de atletas relacionados, não pode haver mais que ${Partida.maximoDeLiberos} líberos. PS: nesse caso nenhum líbero pode ser escalado também`,
       );
     }
@@ -228,7 +230,7 @@ export class PartidaService {
       atletas.length > Partida.minimoDeAtletasNaPartida &&
       !quantidadeDeLiberosEhValida
     ) {
-      throw new BadRequestException(
+      throw new UnprocessableEntityException(
         `Em uma equipe ${idEquipe} com ${atletas.length} não pode ter mais do que ${Partida.maximoDeLiberos} líberos`,
       );
     }

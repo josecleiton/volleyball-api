@@ -15,6 +15,7 @@ import { StatusPartida } from 'src/modules/partida/enums/status-partida.enum';
 import { randomUUID } from 'crypto';
 import { addDays, subMinutes } from 'date-fns';
 import { Posicao } from 'src/modules/pessoa/enums';
+import { Partida } from 'src/modules/partida/entities/partida.entity';
 
 describe('PartidaController (e2e)', () => {
   let app: INestApplication;
@@ -216,6 +217,24 @@ describe('PartidaController (e2e)', () => {
         await expect(
           server.inicializaPartida(partida.id, requisicao),
         ).rejects.toThrow('400');
+      });
+    });
+
+    describe('Unprocessable Entity', () => {
+      it('12 escalados, mais do que 2 líberos', async () => {
+        const { partida, requisicao } = await participacaoNaPartida();
+        const quantidadeLiberos = faker.datatype.number({
+          min: Partida.maximoDeLiberos + 1,
+          max: Partida.minimoDeAtletasNaPartida - 1,
+        });
+
+        for (const index of Array(quantidadeLiberos).keys()) {
+          requisicao.atletasMandante[index].posicao = Posicao.LIBERO;
+        }
+
+        await expect(
+          server.inicializaPartida(partida.id, requisicao),
+        ).rejects.toThrow('422');
       });
     });
 
