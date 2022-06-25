@@ -43,7 +43,7 @@ export class LigaIniciadaServer {
       reqs.push(limit(() => this.equipeAptaServer.criaEquipeApta(liga)));
     }
 
-    for (let index = 0; index < 5; index++) {
+    for (let index = 0; index < 10; index++) {
       reqs.push(
         limit(() => this.delegado.criaDelegado(criaDelegadoDto(liga.id))),
       );

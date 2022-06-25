@@ -231,7 +231,7 @@ export class PartidaService {
       !quantidadeDeLiberosEhValida
     ) {
       throw new UnprocessableEntityException(
-        `Em uma equipe ${idEquipe} com ${atletas.length} não pode ter mais do que ${Partida.maximoDeLiberos} líberos`,
+        `Em uma equipe ${idEquipe} com ${atletas.length} tem que ter ao menos 1 líbero e não pode ter mais do que ${Partida.maximoDeLiberos}. Recebido: ${quantidadeDeLiberos}`,
       );
     }
 

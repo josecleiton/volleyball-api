@@ -33,6 +33,8 @@
 				"--runInBand",
 				"--coverage",
 				"false",
+				"-t",
+				"13 escalados",
 				"partida.e2e-spec"
 			],
 			"console": "integratedTerminal"
