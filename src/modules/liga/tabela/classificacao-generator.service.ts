@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { Injectable, UnprocessableEntityException } from '@nestjs/common';
 import { addBusinessDays, nextDay, setMinutes } from 'date-fns';
 import { DiaDaSemana } from 'src/modules/core/enums/dia-da-semana.enum';
 import { Equipe } from 'src/modules/equipe/entities/equipe.entity';
@@ -75,11 +75,11 @@ export class ClassificacaoGeneratorService {
     intervaloDeDiasUteisEntreTurnos,
   }: IClassificacaoGeneratorRequest): Partida[] {
     if (equipes.length & 1) {
-      throw new BadRequestException('Quantidade de equipe é ímpar');
+      throw new UnprocessableEntityException('Quantidade de equipe é ímpar');
     }
 
     if (diasDaSemana.length * horarios.length !== equipes.length / 2) {
-      throw new BadRequestException(
+      throw new UnprocessableEntityException(
         'Não é possível agendar um jogo por semana (rodada) para cada equipe. O produto entre o tamanho da lista de dias da semana e horarios tem que ser igual a metade do número de equipes',
       );
     }
