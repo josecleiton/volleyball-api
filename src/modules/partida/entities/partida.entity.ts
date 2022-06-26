@@ -21,17 +21,17 @@ import { EquipePartida } from './equipe-partida.entity';
 })
 @Index('IX_partidas_status_tipoDaRodada', ['status', 'tipoDaRodada'])
 export class Partida extends EntidadeBase {
-  static readonly minimoDeAtletasNaPartida = 12;
-  static readonly maximoDeLiberos = 2;
+  static readonly mínimoDeAtletasNaPartida = 12;
+  static readonly máximoDeLíberos = 2;
   static readonly estadosFinais = [StatusPartida.CONCLUIDA, StatusPartida.WO];
-  static readonly maximoDeAtletasNaPartida = 14;
-  static readonly quantidadeÁrbitrosPrimários = 1;
-  static readonly maximoDeÁrbitrosSecundários = 1;
-  static readonly maximoDeJuízesDeQuadra = 4;
-  static readonly quantidadeDeÁrbitros =
-    Partida.quantidadeÁrbitrosPrimários +
-    Partida.maximoDeÁrbitrosSecundários +
-    Partida.maximoDeJuízesDeQuadra;
+  static readonly máximoDeAtletasNaPartida = 14;
+  static readonly máximoDeÁrbitrosPrimários = 1;
+  static readonly máximoDeÁrbitrosSecundários = 1;
+  static readonly máximoDeJuízesDeQuadra = 4;
+  static readonly máximoDeÁrbitros =
+    Partida.máximoDeÁrbitrosPrimários +
+    Partida.máximoDeÁrbitrosSecundários +
+    Partida.máximoDeJuízesDeQuadra;
 
   @Column({ type: 'uuid', nullable: true })
   @Index()

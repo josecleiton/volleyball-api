@@ -118,7 +118,7 @@ export class PartidaService {
 
     if (
       arbitrosPorTipo[TipoArbitro.PRINCIPAL]?.length !==
-      Partida.quantidadeÁrbitrosPrimários
+      Partida.máximoDeÁrbitrosPrimários
     ) {
       throw new UnprocessableEntityException(
         'É necessário apenas um árbitro principal',
@@ -129,10 +129,10 @@ export class PartidaService {
       arbitrosPorTipo[TipoArbitro.SECUNDÁRIO]?.length;
     if (
       quantidadeDeArbitrosSecundários &&
-      quantidadeDeArbitrosSecundários > Partida.maximoDeÁrbitrosSecundários
+      quantidadeDeArbitrosSecundários > Partida.máximoDeÁrbitrosSecundários
     ) {
       throw new UnprocessableEntityException(
-        `É necessário apenas ${Partida.maximoDeÁrbitrosSecundários} árbitro secundário`,
+        `É necessário apenas ${Partida.máximoDeÁrbitrosSecundários} árbitro secundário`,
       );
     }
 
@@ -140,10 +140,10 @@ export class PartidaService {
       arbitrosPorTipo[TipoArbitro.QUADRA]?.length;
     if (
       quantidadeDeJuízesDeQuadra &&
-      quantidadeDeJuízesDeQuadra > Partida.maximoDeJuízesDeQuadra
+      quantidadeDeJuízesDeQuadra > Partida.máximoDeJuízesDeQuadra
     ) {
       throw new UnprocessableEntityException(
-        `É necessário até ${Partida.maximoDeJuízesDeQuadra} juízes de quadra`,
+        `É necessário até ${Partida.máximoDeJuízesDeQuadra} juízes de quadra`,
       );
     }
 
@@ -214,24 +214,24 @@ export class PartidaService {
       atletasPorPosicao[Posicao.LIBERO]?.length;
 
     const quantidadeDeLiberosEhValida =
-      quantidadeDeLiberos <= Partida.maximoDeLiberos;
+      quantidadeDeLiberos <= Partida.máximoDeLíberos;
 
     if (
-      atletas.length === Partida.minimoDeAtletasNaPartida &&
+      atletas.length === Partida.mínimoDeAtletasNaPartida &&
       quantidadeDeLiberos &&
       !quantidadeDeLiberosEhValida
     ) {
       throw new UnprocessableEntityException(
-        `Equipe ${idEquipe} com o mínimo de atletas relacionados, não pode haver mais que ${Partida.maximoDeLiberos} líberos. PS: nesse caso nenhum líbero pode ser escalado também`,
+        `Equipe ${idEquipe} com o mínimo de atletas relacionados, não pode haver mais que ${Partida.máximoDeLíberos} líberos. PS: nesse caso nenhum líbero pode ser escalado também`,
       );
     }
 
     if (
-      atletas.length > Partida.minimoDeAtletasNaPartida &&
+      atletas.length > Partida.mínimoDeAtletasNaPartida &&
       !quantidadeDeLiberosEhValida
     ) {
       throw new UnprocessableEntityException(
-        `Em uma equipe ${idEquipe} com ${atletas.length} tem que ter ao menos 1 líbero e não pode ter mais do que ${Partida.maximoDeLiberos}. Recebido: ${quantidadeDeLiberos}`,
+        `Em uma equipe ${idEquipe} com ${atletas.length} tem que ter ao menos 1 líbero e não pode ter mais do que ${Partida.máximoDeLíberos}. Recebido: ${quantidadeDeLiberos}`,
       );
     }
 

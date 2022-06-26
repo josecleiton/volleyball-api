@@ -34,7 +34,7 @@
 				"--coverage",
 				"false",
 				"-t",
-				"13 escalados",
+				"Mais do que 4 juízes de quadra",
 				"partida.e2e-spec"
 			],
 			"console": "integratedTerminal"

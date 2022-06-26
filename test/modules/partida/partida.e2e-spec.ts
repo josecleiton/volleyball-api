@@ -285,8 +285,8 @@ describe('PartidaController (e2e)', () => {
       it('12 escalados, mais do que 2 líberos', async () => {
         const { partida, requisicao } = await participacaoNaPartida();
         const quantidadeLiberos = faker.datatype.number({
-          min: Partida.maximoDeLiberos + 1,
-          max: Partida.minimoDeAtletasNaPartida - 1,
+          min: Partida.máximoDeLíberos + 1,
+          max: Partida.mínimoDeAtletasNaPartida - 1,
         });
 
         for (const index of Array(quantidadeLiberos).keys()) {
@@ -315,8 +315,8 @@ describe('PartidaController (e2e)', () => {
           faker.datatype.number({ min: 13, max: 14 }),
         );
         const quantidadeLiberos = faker.datatype.number({
-          min: Partida.maximoDeLiberos + 1,
-          max: Partida.minimoDeAtletasNaPartida - 1,
+          min: Partida.máximoDeLíberos + 1,
+          max: Partida.mínimoDeAtletasNaPartida - 1,
         });
 
         for (const index of Array(quantidadeLiberos).keys()) {

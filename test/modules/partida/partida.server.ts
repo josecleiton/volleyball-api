@@ -37,8 +37,8 @@ export class PartidaServer {
   async criaRegistroDeParticipantesNaPartida(
     liga: LigaRespostaDto,
     partida: PartidaRespostaDto,
-    quantidadeDeEscalados = Partida.minimoDeAtletasNaPartida,
-    quantidadeDeÁrbitros = Partida.quantidadeÁrbitrosPrimários,
+    quantidadeDeEscalados = Partida.mínimoDeAtletasNaPartida,
+    quantidadeDeÁrbitros = Partida.máximoDeÁrbitrosPrimários,
   ) {
     const delegado = faker.random.arrayElement(
       await this.delegado.listaDelegado(listaDelegadoDto(liga.id)),
@@ -46,7 +46,7 @@ export class PartidaServer {
 
     const arbitro = faker.random.arrayElements(
       await this.arbitro.listaArbitros(listaArbitroDto(liga.id)),
-      Partida.quantidadeDeÁrbitros,
+      Partida.máximoDeÁrbitros,
     );
 
     const atletasMandante = await this.atleta.listaAtletas(
@@ -83,7 +83,7 @@ export class PartidaServer {
     const atletasVisitanteParticipacao = atletasVisitante
       .slice(0, quantidadeDeEscalados)
       .map(this.geraAtletaParticipacao);
-    if (quantidadeDeEscalados > Partida.minimoDeAtletasNaPartida) {
+    if (quantidadeDeEscalados > Partida.mínimoDeAtletasNaPartida) {
       atletasMandanteParticipacao[0].posicao =
         atletasVisitanteParticipacao[0].posicao = Posicao.LIBERO;
     }
