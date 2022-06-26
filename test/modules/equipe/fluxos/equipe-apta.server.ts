@@ -1,7 +1,7 @@
 import pLimit = require('p-limit');
 import { EquipeRespostaDto } from 'src/modules/equipe/dto/equipe.dto';
-import { Equipe } from 'src/modules/equipe/entities/equipe.entity';
 import { LigaRespostaDto } from 'src/modules/liga/dto/liga.dto';
+import { Partida } from 'src/modules/partida/entities/partida.entity';
 import { EquipeServer } from 'test/modules/equipe/equipe.server';
 import { AtletaServer } from 'test/modules/pessoa/atleta/atleta.server';
 import { AuxiliarServer } from 'test/modules/pessoa/auxiliar/auxiliar.server';
@@ -34,21 +34,17 @@ export class EquipeAptaServer {
 
   async tornaEquipeApta(equipe: EquipeRespostaDto) {
     const limit = pLimit(1);
-    const reqs: Promise<unknown>[] = [];
-
-    for (const index of Array(Equipe.quantidadeMaximaDeAtletas).keys()) {
-      reqs.push(
+    await Promise.all(
+      [...Array(Partida.máximoDeAtletasNaPartida + 1).keys()].map((_, index) =>
         limit(() =>
           this.atletaServer.criaAtleta(criaAtletaDto(equipe.id, index + 1)),
         ),
-      );
-    }
-
-    reqs.push(
-      limit(() => this.tecnicoServer.criaTecnico(criaTecnicoDto(equipe.id))),
-      limit(() => this.auxiliarServer.criaAuxiliar(criaAuxiliarDto(equipe.id))),
+      ),
     );
 
-    await Promise.all(reqs);
+    await Promise.all([
+      this.tecnicoServer.criaTecnico(criaTecnicoDto(equipe.id)),
+      this.auxiliarServer.criaAuxiliar(criaAuxiliarDto(equipe.id)),
+    ]);
   }
 }

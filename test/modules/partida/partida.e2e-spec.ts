@@ -14,7 +14,7 @@ import {
 import { StatusPartida } from 'src/modules/partida/enums/status-partida.enum';
 import { randomUUID } from 'crypto';
 import { addDays, subMinutes } from 'date-fns';
-import { Posicao } from 'src/modules/pessoa/enums';
+import { Posicao, TipoArbitro } from 'src/modules/pessoa/enums';
 import { Partida } from 'src/modules/partida/entities/partida.entity';
 
 describe('PartidaController (e2e)', () => {
@@ -322,6 +322,44 @@ describe('PartidaController (e2e)', () => {
         for (const index of Array(quantidadeLiberos).keys()) {
           requisicao.atletasMandante[index].posicao = Posicao.LIBERO;
         }
+
+        await expect(
+          server.inicializaPartida(partida.id, requisicao),
+        ).rejects.toThrow('422');
+      });
+
+      it('Mais do que 1 árbitro principal', async () => {
+        const { partida, requisicao } = await participacaoNaPartida(
+          Partida.mínimoDeAtletasNaPartida,
+          2,
+        );
+        for (const index of Array(2).keys()) {
+          requisicao.arbitros[index].tipo = TipoArbitro.PRINCIPAL;
+        }
+        await expect(
+          server.inicializaPartida(partida.id, requisicao),
+        ).rejects.toThrow('422');
+      });
+
+      it('Mais do que 1 árbitro secundário', async () => {
+        const { partida, requisicao } = await participacaoNaPartida(
+          Partida.mínimoDeAtletasNaPartida,
+          2,
+        );
+        for (const index of Array(2).keys()) {
+          requisicao.arbitros[index].tipo = TipoArbitro.SECUNDÁRIO;
+        }
+        await expect(
+          server.inicializaPartida(partida.id, requisicao),
+        ).rejects.toThrow('422');
+      });
+
+      it('Mais do que 4 juízes de quadra', async () => {
+        const { partida, requisicao } = await participacaoNaPartida(
+          Partida.mínimoDeAtletasNaPartida,
+          Partida.máximoDeÁrbitros,
+        );
+        requisicao.arbitros[1].tipo = TipoArbitro.QUADRA;
 
         await expect(
           server.inicializaPartida(partida.id, requisicao),

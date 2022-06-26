@@ -46,7 +46,7 @@ export class PartidaServer {
 
     const arbitro = faker.random.arrayElements(
       await this.arbitro.listaArbitros(listaArbitroDto(liga.id)),
-      Partida.máximoDeÁrbitros,
+      quantidadeDeÁrbitros,
     );
 
     const atletasMandante = await this.atleta.listaAtletas(
@@ -72,7 +72,7 @@ export class PartidaServer {
       for (const index of Array(quantidadeDeÁrbitros - 2).keys()) {
         arbitros.push({
           idArbitro: arbitro[index + 2].id,
-          tipo: TipoArbitro.SECUNDÁRIO,
+          tipo: TipoArbitro.QUADRA,
         });
       }
     }
