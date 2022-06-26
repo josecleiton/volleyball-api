@@ -14,20 +14,40 @@ import {
 import { StatusPartida } from 'src/modules/partida/enums/status-partida.enum';
 import { randomUUID } from 'crypto';
 import { addDays, subMinutes } from 'date-fns';
-import { Posicao } from 'src/modules/pessoa/enums';
+import { Posicao, TipoArbitro } from 'src/modules/pessoa/enums';
 import { Partida } from 'src/modules/partida/entities/partida.entity';
 
 describe('PartidaController (e2e)', () => {
   let app: INestApplication;
   let server: PartidaServer;
 
-  async function participacaoNaPartida() {
+  async function participacaoNaPartida(
+    quantidadeEscalados?: number,
+    quantidadeArbitros?: number,
+  ) {
     const { liga, partidas } =
       await server.fluxoLigaIniciada.criaLigaInicializada();
-    return server.criaRegistroDeParticipantesNaPartida(
+    const resultado = await server.criaRegistroDeParticipantesNaPartida(
       liga,
       faker.random.arrayElement(partidas),
+      quantidadeEscalados,
+      quantidadeArbitros,
     );
+
+    if (quantidadeEscalados) {
+      expect(resultado.requisicao.atletasMandante).toHaveLength(
+        quantidadeEscalados,
+      );
+      expect(resultado.requisicao.atletasVisitante).toHaveLength(
+        quantidadeEscalados,
+      );
+    }
+
+    if (quantidadeArbitros) {
+      expect(resultado.requisicao.arbitros).toHaveLength(quantidadeArbitros);
+    }
+
+    return resultado;
   }
 
   beforeEach(async () => {
@@ -168,8 +188,49 @@ describe('PartidaController (e2e)', () => {
         });
         it('2 líberos', async () => {
           const { partida, requisicao } = await participacaoNaPartida();
+          requisicao.atletasMandante[0].posicao =
+            requisicao.atletasMandante[1].posicao = Posicao.LIBERO;
+
+          await server.inicializaPartida(partida.id, requisicao);
+
+          const partidaAtualizada = await server.encontraPartida(partida.id);
+
+          expect(partidaAtualizada.id).toEqual(partida.id);
+          expect(partidaAtualizada.status).toEqual(
+            StatusPartida.PARTICIPANTES_CADASTRADOS,
+          );
+        });
+      });
+
+      describe('Mais de 12 escalados', () => {
+        let quantidadeDeEscalados: number;
+
+        beforeEach(() => {
+          quantidadeDeEscalados = faker.datatype.number({ min: 13, max: 14 });
+        });
+
+        it('1 líbero', async () => {
+          const { partida, requisicao } = await participacaoNaPartida(
+            quantidadeDeEscalados,
+          );
           requisicao.atletasMandante[0].posicao = Posicao.LIBERO;
-          requisicao.atletasMandante[1].posicao = Posicao.LIBERO;
+
+          await server.inicializaPartida(partida.id, requisicao);
+
+          const partidaAtualizada = await server.encontraPartida(partida.id);
+
+          expect(partidaAtualizada.id).toEqual(partida.id);
+          expect(partidaAtualizada.status).toEqual(
+            StatusPartida.PARTICIPANTES_CADASTRADOS,
+          );
+        });
+
+        it('2 líberos', async () => {
+          const { partida, requisicao } = await participacaoNaPartida(
+            quantidadeDeEscalados,
+          );
+          requisicao.atletasMandante[0].posicao =
+            requisicao.atletasMandante[1].posicao = Posicao.LIBERO;
 
           await server.inicializaPartida(partida.id, requisicao);
 
@@ -224,13 +285,81 @@ describe('PartidaController (e2e)', () => {
       it('12 escalados, mais do que 2 líberos', async () => {
         const { partida, requisicao } = await participacaoNaPartida();
         const quantidadeLiberos = faker.datatype.number({
-          min: Partida.maximoDeLiberos + 1,
-          max: Partida.minimoDeAtletasNaPartida - 1,
+          min: Partida.máximoDeLíberos + 1,
+          max: Partida.mínimoDeAtletasNaPartida - 1,
         });
 
         for (const index of Array(quantidadeLiberos).keys()) {
           requisicao.atletasMandante[index].posicao = Posicao.LIBERO;
         }
+
+        await expect(
+          server.inicializaPartida(partida.id, requisicao),
+        ).rejects.toThrow('422');
+      });
+
+      it('Mais do que 12 escalados sem líbero', async () => {
+        const { partida, requisicao } = await participacaoNaPartida(
+          faker.datatype.number({ min: 13, max: 14 }),
+        );
+
+        requisicao.atletasMandante[0].posicao = Posicao.OPOSTO;
+
+        await expect(
+          server.inicializaPartida(partida.id, requisicao),
+        ).rejects.toThrow('422');
+      });
+
+      it('Mais do que 12 escalados com mais do que 2 líberos', async () => {
+        const { partida, requisicao } = await participacaoNaPartida(
+          faker.datatype.number({ min: 13, max: 14 }),
+        );
+        const quantidadeLiberos = faker.datatype.number({
+          min: Partida.máximoDeLíberos + 1,
+          max: Partida.mínimoDeAtletasNaPartida - 1,
+        });
+
+        for (const index of Array(quantidadeLiberos).keys()) {
+          requisicao.atletasMandante[index].posicao = Posicao.LIBERO;
+        }
+
+        await expect(
+          server.inicializaPartida(partida.id, requisicao),
+        ).rejects.toThrow('422');
+      });
+
+      it('Mais do que 1 árbitro principal', async () => {
+        const { partida, requisicao } = await participacaoNaPartida(
+          Partida.mínimoDeAtletasNaPartida,
+          2,
+        );
+        for (const index of Array(2).keys()) {
+          requisicao.arbitros[index].tipo = TipoArbitro.PRINCIPAL;
+        }
+        await expect(
+          server.inicializaPartida(partida.id, requisicao),
+        ).rejects.toThrow('422');
+      });
+
+      it('Mais do que 1 árbitro secundário', async () => {
+        const { partida, requisicao } = await participacaoNaPartida(
+          Partida.mínimoDeAtletasNaPartida,
+          2,
+        );
+        for (const index of Array(2).keys()) {
+          requisicao.arbitros[index].tipo = TipoArbitro.SECUNDÁRIO;
+        }
+        await expect(
+          server.inicializaPartida(partida.id, requisicao),
+        ).rejects.toThrow('422');
+      });
+
+      it('Mais do que 4 juízes de quadra', async () => {
+        const { partida, requisicao } = await participacaoNaPartida(
+          Partida.mínimoDeAtletasNaPartida,
+          Partida.máximoDeÁrbitros,
+        );
+        requisicao.arbitros[1].tipo = TipoArbitro.QUADRA;
 
         await expect(
           server.inicializaPartida(partida.id, requisicao),

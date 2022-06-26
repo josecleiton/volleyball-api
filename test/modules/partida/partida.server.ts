@@ -1,6 +1,7 @@
 import request = require('supertest');
 
 import {
+  ArbitroPartidaDto,
   AtletaParticipacaoDto,
   CadastrarParticipantesPartidaDto,
   EscolhaDeDesistencia,
@@ -18,6 +19,7 @@ import { listaArbitroDto } from 'test/__MOCKS__/pessoa/arbitro.mock';
 import { Posicao, TipoArbitro } from 'src/modules/pessoa/enums';
 import { AtletaRespostaDto } from 'src/modules/pessoa/dto/atleta.dto';
 import { LigaRespostaDto } from 'src/modules/liga/dto/liga.dto';
+import { Partida } from 'src/modules/partida/entities/partida.entity';
 
 export class PartidaServer {
   readonly fluxoLigaIniciada: LigaIniciadaServer;
@@ -35,13 +37,16 @@ export class PartidaServer {
   async criaRegistroDeParticipantesNaPartida(
     liga: LigaRespostaDto,
     partida: PartidaRespostaDto,
+    quantidadeDeEscalados = Partida.mínimoDeAtletasNaPartida,
+    quantidadeDeÁrbitros = Partida.máximoDeÁrbitrosPrimários,
   ) {
     const delegado = faker.random.arrayElement(
       await this.delegado.listaDelegado(listaDelegadoDto(liga.id)),
     );
 
-    const arbitro = faker.random.arrayElement(
+    const arbitro = faker.random.arrayElements(
       await this.arbitro.listaArbitros(listaArbitroDto(liga.id)),
+      quantidadeDeÁrbitros,
     );
 
     const atletasMandante = await this.atleta.listaAtletas(
@@ -52,11 +57,42 @@ export class PartidaServer {
       partida.visitante.equipe.id,
     );
 
+    const arbitros: ArbitroPartidaDto[] = [
+      { idArbitro: arbitro[0].id, tipo: TipoArbitro.PRINCIPAL },
+    ];
+
+    if (quantidadeDeÁrbitros > 1) {
+      arbitros.push({
+        idArbitro: arbitro[1].id,
+        tipo: TipoArbitro.SECUNDÁRIO,
+      });
+    }
+
+    if (quantidadeDeÁrbitros > 2) {
+      for (const index of Array(quantidadeDeÁrbitros - 2).keys()) {
+        arbitros.push({
+          idArbitro: arbitro[index + 2].id,
+          tipo: TipoArbitro.QUADRA,
+        });
+      }
+    }
+
+    const atletasMandanteParticipacao = atletasMandante
+      .slice(0, quantidadeDeEscalados)
+      .map(this.geraAtletaParticipacao);
+    const atletasVisitanteParticipacao = atletasVisitante
+      .slice(0, quantidadeDeEscalados)
+      .map(this.geraAtletaParticipacao);
+    if (quantidadeDeEscalados > Partida.mínimoDeAtletasNaPartida) {
+      atletasMandanteParticipacao[0].posicao =
+        atletasVisitanteParticipacao[0].posicao = Posicao.LIBERO;
+    }
+
     const requisicao: CadastrarParticipantesPartidaDto = {
-      arbitros: [{ idArbitro: arbitro.id, tipo: TipoArbitro.PRINCIPAL }],
+      arbitros,
       idDelegado: delegado.id,
-      atletasMandante: atletasMandante.map(this.geraAtletaParticipacao),
-      atletasVisitante: atletasVisitante.map(this.geraAtletaParticipacao),
+      atletasMandante: atletasMandanteParticipacao,
+      atletasVisitante: atletasVisitanteParticipacao,
     };
 
     return { partida, requisicao };

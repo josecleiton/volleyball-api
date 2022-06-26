@@ -33,6 +33,8 @@
 				"--runInBand",
 				"--coverage",
 				"false",
+				"-t",
+				"Mais do que 4 juízes de quadra",
 				"partida.e2e-spec"
 			],
 			"console": "integratedTerminal"
