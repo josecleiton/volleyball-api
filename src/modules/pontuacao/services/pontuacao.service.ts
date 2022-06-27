@@ -13,7 +13,7 @@ export class PontuacaoService {
 
   async listaPontuacoesOrdenadas(
     idLiga: string,
-    limite = Liga.minimoDeEquipesNaLiga,
+    limite = Liga.quantidadeDeEquipesNaLiga,
   ): Promise<PontuacaoRespostaDto[]> {
     const pontuacoes = await this.pontuacaoRepository.listaPorLiga(idLiga);
 

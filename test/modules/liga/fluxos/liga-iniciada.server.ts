@@ -39,7 +39,7 @@ export class LigaIniciadaServer {
 
     const reqs: Promise<unknown>[] = [];
 
-    for (let index = 0; index < Liga.minimoDeEquipesNaLiga; index++) {
+    for (let index = 0; index < Liga.quantidadeDeEquipesNaLiga; index++) {
       reqs.push(limit(() => this.equipeAptaServer.criaEquipeApta(liga)));
     }
 
