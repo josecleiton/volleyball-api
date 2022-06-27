@@ -78,9 +78,9 @@ export class LigaService {
       );
     }
 
-    if (liga.equipes?.length !== Liga.minimoDeEquipesNaLiga) {
+    if (liga.equipes?.length !== Liga.quantidadeDeEquipesNaLiga) {
       throw new ConflictException(
-        `Quantidade de equipes na liga ${id} não é ${Liga.minimoDeEquipesNaLiga}`,
+        `Quantidade de equipes na liga ${id} não é ${Liga.quantidadeDeEquipesNaLiga}`,
       );
     }
 

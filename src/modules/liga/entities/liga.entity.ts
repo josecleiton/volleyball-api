@@ -10,12 +10,12 @@ import { StatusLiga } from '../enums/status-liga.enum';
 
 @Entity('ligas')
 export class Liga extends EntidadeBase {
-  static readonly minimoDeEquipesNaLiga = 12;
+  static readonly quantidadeDeEquipesNaLiga = 12;
   static readonly intervaloDeUteisDiasEntreTurnos = 5;
   static readonly quantidadeDeEquipesClassificadas = 8;
   static readonly quantidadeDeRodadasEmClassificatorias = 22;
   static readonly quantidadeDePartidasEmRodadaClassificatoria =
-    Liga.minimoDeEquipesNaLiga / 2;
+    Liga.quantidadeDeEquipesNaLiga / 2;
   static readonly quantidadeDePartidasNaClassificacao =
     Liga.quantidadeDeRodadasEmClassificatorias *
     Liga.quantidadeDePartidasEmRodadaClassificatoria;

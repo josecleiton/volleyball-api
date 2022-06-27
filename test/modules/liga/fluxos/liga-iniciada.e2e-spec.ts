@@ -25,7 +25,7 @@ describe('Fluxo - Liga iniciada', () => {
     );
 
     expect(partidas).toHaveLength(
-      Liga.minimoDeEquipesNaLiga * (Liga.minimoDeEquipesNaLiga - 1),
+      Liga.quantidadeDeEquipesNaLiga * (Liga.quantidadeDeEquipesNaLiga - 1),
     );
     expect(liga.id).toEqual(ligaAtualizada.id);
     expect(ligaAtualizada.dataComeco).toBeDefined();
