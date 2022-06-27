@@ -13,7 +13,7 @@ export function criaAtletaDto(
   return Object.assign(new CriaAtletaDto(), {
     ...criaPessoaDto(),
     idEquipe,
-    numero: numero ?? faker.datatype.number({ min: 1, max: 100 }),
+    numero: numero ?? faker.datatype.number({ min: 50, max: 100 }),
   });
 }
 
