@@ -52,7 +52,9 @@ export class PartidaService {
       requisicao,
     );
 
-    return partidas.map((x) => new PartidaRespostaDto(x));
+    return partidas
+      .slice(0, requisicao.limite ?? partidas.length)
+      .map((x) => new PartidaRespostaDto(x));
   }
 
   async encontraPartida(id: string) {

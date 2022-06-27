@@ -88,6 +88,11 @@ export class ListaPartidasDto {
   limite? = Liga.quantidadeDePartidasNaClassificacao;
 }
 
+export interface ListaPartidasRepositoryDto {
+  idLiga: string;
+  tipoRodada?: TipoRodada;
+}
+
 export interface IBuscaQuantidadePartidasPorTipoEStatus {
   idLiga: string;
   tiposDeRodada: TipoRodada[];

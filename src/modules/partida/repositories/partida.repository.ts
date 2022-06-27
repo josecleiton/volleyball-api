@@ -8,7 +8,7 @@ import {
 import { IBuscarConfrontoEquipesEmpatadas } from '../dto/partida-pontuacao.dto';
 import {
   IBuscaQuantidadePartidasPorTipoEStatus,
-  ListaPartidasDto,
+  ListaPartidasRepositoryDto,
 } from '../dto/partida.dto';
 import { Partida } from '../entities/partida.entity';
 import { StatusPartida } from '../enums/status-partida.enum';
@@ -40,11 +40,11 @@ export class PartidaRepository extends Repository<Partida> {
     return qb.getOne();
   }
 
-  async listaPartidasOrdenadas(requisicao: ListaPartidasDto) {
+  async listaPartidasOrdenadas(requisicao: ListaPartidasRepositoryDto) {
     const qb = this.createQueryBuilder('partidas');
 
     this.aplicaRelacoesDeUmaPartidaCompleta(qb).where(
-      'equipesVisitantes.idLiga = :idLiga AND equipesMandantes.idLiga = :idLiga',
+      'equipesVisitantes.idLiga = :idLiga',
       { idLiga: requisicao.idLiga },
     );
 
@@ -52,10 +52,6 @@ export class PartidaRepository extends Repository<Partida> {
       qb.andWhere('partidas.tipoDaRodada = :tipoPartida', {
         tipoPartida: requisicao.tipoRodada,
       });
-    }
-
-    if (requisicao.limite) {
-      qb.limit(requisicao.limite);
     }
 
     qb.orderBy('partidas.dataCriacao', 'ASC');
