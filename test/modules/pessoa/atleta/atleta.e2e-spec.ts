@@ -63,12 +63,12 @@ describe('AtletaController (e2e)', () => {
   describe('/pessoa/atleta/:id (PATCH)', () => {
     it('Ok', async () => {
       const {
-        atleta: { id },
+        atleta: { id, numero },
       } = await server.criaAtletaComEquipe();
 
       const atletaAtualizado = await server.atualizaAtleta(
         id,
-        atualizaAtletaDto(true),
+        atualizaAtletaDto(numero),
       );
 
       const atleta = await server.encontraAtleta(id);

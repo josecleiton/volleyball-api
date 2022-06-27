@@ -26,6 +26,12 @@ export class FundamentoAtleta extends EntidadeBase {
   @Column({ type: 'int', default: 0 })
   pontos!: number;
 
+  @Column({ type: 'int', default: 0 })
+  levantamentos!: number;
+
+  @Column({ type: 'int', default: 0 })
+  assistencias!: number;
+
   public get saquesEfetivos(): number {
     if (!this.saques) return 0;
 
@@ -36,6 +42,12 @@ export class FundamentoAtleta extends EntidadeBase {
     if (!this.ataques) return 0;
 
     return this.pontos / this.ataques;
+  }
+
+  public get levantamentosEfetivos(): number {
+    if (!this.levantamentos) return 0;
+
+    return this.assistencias / this.levantamentos;
   }
 
   @ManyToOne('AtletaEscalado', { onDelete: 'CASCADE' })

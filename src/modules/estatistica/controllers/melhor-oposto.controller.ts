@@ -1,11 +1,11 @@
 import { Controller, Get, ParseUUIDPipe, Query } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { MelhorPontaService } from '../services';
+import { MelhorOpostoService } from '../services';
 
-@Controller('/estatistica/ranking/ponta')
+@Controller('/estatistica/ranking/oposto')
 @ApiTags('estatistica')
-export class MelhorPontaController {
-  constructor(private readonly melhorPontaService: MelhorPontaService) {}
+export class MelhorOpostoController {
+  constructor(private readonly melhorPontaService: MelhorOpostoService) {}
 
   @Get()
   async listaMelhoresDaLiga(@Query('idLiga', ParseUUIDPipe) idLiga: string) {

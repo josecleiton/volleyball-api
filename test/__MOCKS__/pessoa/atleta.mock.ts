@@ -13,7 +13,7 @@ export function criaAtletaDto(
   return Object.assign(new CriaAtletaDto(), {
     ...criaPessoaDto(),
     idEquipe,
-    numero: numero ?? faker.datatype.number({ min: 50, max: 100 }),
+    numero: numero ?? faker.datatype.number({ min: 1, max: 50 }),
   });
 }
 
@@ -21,8 +21,8 @@ export function listaAtletasDto(idEquipe: string): ListaAtletaDto {
   return Object.assign(new ListaAtletaDto(), { idEquipe });
 }
 
-export function atualizaAtletaDto(numero = false) {
+export function atualizaAtletaDto(numeroAntigo: number) {
   return Object.assign(new AtualizaAtletaDto(), {
-    numero: numero ? faker.datatype.number({ min: 1, max: 100 }) : undefined,
+    numero: faker.datatype.number({ min: numeroAntigo + 1, max: 100 }),
   });
 }
