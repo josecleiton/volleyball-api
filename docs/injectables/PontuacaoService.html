@@ -228,7 +228,7 @@
                                     </td>
 
                                     <td>
-                                        <code>Liga.minimoDeEquipesNaLiga</code>
+                                        <code>Liga.quantidadeDeEquipesNaLiga</code>
                                     </td>
 
                                 </tr>
@@ -269,7 +269,7 @@ export class PontuacaoService {
 
   async listaPontuacoesOrdenadas(
     idLiga: string,
-    limite &#x3D; Liga.minimoDeEquipesNaLiga,
+    limite &#x3D; Liga.quantidadeDeEquipesNaLiga,
   ): Promise&lt;PontuacaoRespostaDto[]&gt; {
     const pontuacoes &#x3D; await this.pontuacaoRepository.listaPorLiga(idLiga);
 

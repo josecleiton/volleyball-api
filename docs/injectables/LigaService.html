@@ -1345,9 +1345,9 @@ export class LigaService {
       );
     }
 
-    if (liga.equipes?.length !&#x3D;&#x3D; Liga.minimoDeEquipesNaLiga) {
+    if (liga.equipes?.length !&#x3D;&#x3D; Liga.quantidadeDeEquipesNaLiga) {
       throw new ConflictException(
-        &#x60;Quantidade de equipes na liga ${id} não é ${Liga.minimoDeEquipesNaLiga}&#x60;,
+        &#x60;Quantidade de equipes na liga ${id} não é ${Liga.quantidadeDeEquipesNaLiga}&#x60;,
       );
     }
 

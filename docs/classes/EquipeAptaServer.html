@@ -455,8 +455,8 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import pLimit &#x3D; require(&#x27;p-limit&#x27;);
 import { EquipeRespostaDto } from &#x27;src/modules/equipe/dto/equipe.dto&#x27;;
-import { Equipe } from &#x27;src/modules/equipe/entities/equipe.entity&#x27;;
 import { LigaRespostaDto } from &#x27;src/modules/liga/dto/liga.dto&#x27;;
+import { Partida } from &#x27;src/modules/partida/entities/partida.entity&#x27;;
 import { EquipeServer } from &#x27;test/modules/equipe/equipe.server&#x27;;
 import { AtletaServer } from &#x27;test/modules/pessoa/atleta/atleta.server&#x27;;
 import { AuxiliarServer } from &#x27;test/modules/pessoa/auxiliar/auxiliar.server&#x27;;
@@ -489,22 +489,18 @@ export class EquipeAptaServer {
 
   async tornaEquipeApta(equipe: EquipeRespostaDto) {
     const limit &#x3D; pLimit(1);
-    const reqs: Promise&lt;unknown&gt;[] &#x3D; [];
-
-    for (let index &#x3D; 1; index &lt;&#x3D; Equipe.quantidadeAtletasPraAptidao; index++) {
-      reqs.push(
+    await Promise.all(
+      [...Array(Partida.máximoDeAtletasNaPartida + 1).keys()].map((_, index) &#x3D;&gt;
         limit(() &#x3D;&gt;
-          this.atletaServer.criaAtleta(criaAtletaDto(equipe.id, index)),
+          this.atletaServer.criaAtleta(criaAtletaDto(equipe.id, index + 1)),
         ),
-      );
-    }
-
-    reqs.push(
-      limit(() &#x3D;&gt; this.tecnicoServer.criaTecnico(criaTecnicoDto(equipe.id))),
-      limit(() &#x3D;&gt; this.auxiliarServer.criaAuxiliar(criaAuxiliarDto(equipe.id))),
+      ),
     );
 
-    await Promise.all(reqs);
+    await Promise.all([
+      this.tecnicoServer.criaTecnico(criaTecnicoDto(equipe.id)),
+      this.auxiliarServer.criaAuxiliar(criaAuxiliarDto(equipe.id)),
+    ]);
   }
 }
 </code></pre>

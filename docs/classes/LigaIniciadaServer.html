@@ -462,17 +462,17 @@ export class LigaIniciadaServer {
 
     const reqs: Promise&lt;unknown&gt;[] &#x3D; [];
 
-    for (let index &#x3D; 0; index &lt; Liga.minimoDeEquipesNaLiga; index++) {
+    for (let index &#x3D; 0; index &lt; Liga.quantidadeDeEquipesNaLiga; index++) {
       reqs.push(limit(() &#x3D;&gt; this.equipeAptaServer.criaEquipeApta(liga)));
     }
 
-    for (let index &#x3D; 0; index &lt; 5; index++) {
+    for (let index &#x3D; 0; index &lt; 6; index++) {
       reqs.push(
         limit(() &#x3D;&gt; this.delegado.criaDelegado(criaDelegadoDto(liga.id))),
       );
     }
 
-    for (let index &#x3D; 0; index &lt; 20; index++) {
+    for (let index &#x3D; 0; index &lt; 24; index++) {
       reqs.push(limit(() &#x3D;&gt; this.arbitro.criaArbitro(criaArbitroDto(liga.id))));
     }
 
