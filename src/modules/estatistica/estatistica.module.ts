@@ -11,14 +11,14 @@ import {
   MelhorCentralController,
   MelhorLiberoController,
 } from './controllers';
-import { MelhorPontaController } from './controllers/melhor-ponta.controller';
+import { MelhorOpostoController } from './controllers/melhor-oposto.controller';
 import { VotoDaGaleraController } from './controllers/voto-da-galera.controller';
 import {
   CraqueDaGaleraViewRepository,
   FundamentoAtletaRepository,
   MelhorCentralViewRepository,
   MelhorLiberoViewRepository,
-  MelhorPontaViewRepository,
+  MelhorOpostoViewRepository,
   VotoDaGaleraRepository,
 } from './repositories';
 import {
@@ -26,7 +26,7 @@ import {
   FundamentoAtletaService,
   MelhorCentralService,
   MelhorLiberoService,
-  MelhorPontaService,
+  MelhorOpostoService,
   VotoDaGaleraService,
 } from './services';
 
@@ -36,7 +36,7 @@ import {
       FundamentoAtletaRepository,
       MelhorLiberoViewRepository,
       MelhorCentralViewRepository,
-      MelhorPontaViewRepository,
+      MelhorOpostoViewRepository,
       VotoDaGaleraRepository,
       CraqueDaGaleraViewRepository,
     ]),
@@ -50,7 +50,7 @@ import {
     FundamentoAtletaController,
     MelhorLiberoController,
     MelhorCentralController,
-    MelhorPontaController,
+    MelhorOpostoController,
     VotoDaGaleraController,
     CraqueDaGaleraController,
   ],
@@ -58,7 +58,7 @@ import {
     FundamentoAtletaService,
     MelhorLiberoService,
     MelhorCentralService,
-    MelhorPontaService,
+    MelhorOpostoService,
     VotoDaGaleraService,
     CraqueDaGaleraService,
   ],

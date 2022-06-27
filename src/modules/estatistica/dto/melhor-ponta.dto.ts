@@ -1,5 +1,5 @@
 import { AtletaRespostaDto } from 'src/modules/pessoa/dto/atleta.dto';
-import { MelhorPontaView } from '../entities/melhor-ponta-view.entity';
+import { MelhorOpostoView } from '../entities/melhor-oposto-view.entity';
 
 export class MelhorPontaRespostaDto {
   idAtleta: string;
@@ -12,7 +12,7 @@ export class MelhorPontaRespostaDto {
     return this.acesPorPartida * this.quantidadeDePartidas;
   }
 
-  constructor(m: MelhorPontaView) {
+  constructor(m: MelhorOpostoView) {
     this.idAtleta = m.idAtleta;
     this.acesPorPartida = m.acesPorPartida;
     this.saquesEfetivos = m.saquesEfetivos;

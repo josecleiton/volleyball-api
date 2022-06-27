@@ -13,7 +13,7 @@ import {
   FundamentoAtletaRepository,
   MelhorCentralViewRepository,
   MelhorLiberoViewRepository,
-  MelhorPontaViewRepository,
+  MelhorOpostoViewRepository,
 } from '../repositories';
 
 @Injectable()
@@ -22,7 +22,7 @@ export class FundamentoAtletaService {
     private readonly fundamentoAtletaRepository: FundamentoAtletaRepository,
     private readonly melhorLiberoRepository: MelhorLiberoViewRepository,
     private readonly melhorCentralRepository: MelhorCentralViewRepository,
-    private readonly melhorPontaRepository: MelhorPontaViewRepository,
+    private readonly melhorPontaRepository: MelhorOpostoViewRepository,
     private readonly atletaEscaladoService: AtletaEscaladoService,
     private readonly ligaService: LigaService,
     private readonly typeormFilterService: TypeORMFilterService,

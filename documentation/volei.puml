@@ -199,6 +199,20 @@ entity fundamentos_atletas {
 	* saques : int = 0
 	* ataques : int = 0
 	* pontos : int = 0
+	* levantamentos : int = 0
+	* assistencias : int = 0
+	* data_criacao: timestamp
+	* data_atualizacao: timestamp
+}
+
+entity votos_da_galera {
+	* id : uuid <<generated>>
+	--
+	* id_atleta : uuid <<FK>>
+	* telefone : varchar
+	* id_verificacao : varchar <<UQ>>
+	verificacao_em  : timestamp
+	* verificacao_expira_em: timestamp
 	* data_criacao: timestamp
 	* data_atualizacao: timestamp
 }
@@ -229,6 +243,20 @@ entity melhores_centrais_view {
 	* bloqueios : int
 }
 
+entity melhores_opostos_view {
+	* id_atleta : uuid <<FK>>
+	--
+	* quantidade_partidas : int
+	* aces_por_partida : int
+	* saques_efetivos : int
+}
+
+entity craque_da_galera_view {
+	* id_atleta : uuid <<FK>>
+	--
+	* quantidade_votos: int
+}
+
 ligas ||--o{ "0..12" equipes
 ligas ||--o{ arbitros
 ligas ||--o{ delegados
@@ -246,9 +274,12 @@ equipes_partidas "1" ||--o{ "12..14" atletas_escalados : atletas que irão para 
 atletas "1" ||--o{ atletas_escalados
 atletas_escalados "1" ||--o{ fundamentos_atletas
 
+atletas "1" ||--o{ votos_da_galera
+
 atletas ||-- melhores_liberos_view
 atletas ||-- melhores_centrais_view
-
+atletas ||-- melhores_opostos_view
+atletas ||-- craque_da_galera_view
 
 atletas ||-- pessoas
 tecnicos ||-- pessoas
