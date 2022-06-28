@@ -96,6 +96,7 @@ export class VotoDaGaleraService {
         voto.idVerificacao,
         token,
       );
+      console.log({ status });
       verified = status === 'verified';
     } catch (e) {
       this.logger.warn(e);

@@ -18,7 +18,7 @@ export class IniciarVotoDto {
 export class ConfirmarVotoDto {
   @IsNotEmpty()
   @IsString()
-  @Length(10)
+  @Length(5)
   token!: string;
 }
 
