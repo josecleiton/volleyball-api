@@ -14,6 +14,6 @@ export class VotoDaGaleraRepository extends Repository<VotoDaGalera> {
       .andWhere('e.idLiga = :idLiga', { idLiga })
       .limit(1);
 
-    return qb.getOne().then((x) => Boolean(x));
+    return qb.getRawOne().then((x: { id: string } | undefined) => Boolean(x));
   }
 }
