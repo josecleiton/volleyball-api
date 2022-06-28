@@ -1,6 +1,6 @@
 import { MaterializedViewRepository } from 'src/modules/core/repositories/materialized-view.repository';
 import { EntityRepository } from 'typeorm';
-import { CraqueDaGaleraView } from '../entities/craque-da-galera.entity';
+import { CraqueDaGaleraView } from '../entities/craque-da-galera-view.entity';
 import { nomeCraqueDaGaleraView } from '../estatistica.constants';
 
 @EntityRepository(CraqueDaGaleraView)
@@ -12,6 +12,7 @@ export class CraqueDaGaleraViewRepository extends MaterializedViewRepository<Cra
     const qb = this.createQueryBuilder('cg');
 
     qb.innerJoinAndSelect('cg.atleta', 'a')
+      .innerJoinAndSelect('a.pessoa', 'pessoa')
       .innerJoinAndSelect('a.equipe', 'e')
       .where('e.idLiga = :idLiga', { idLiga })
       .orderBy('cg.quantidadeVotos', 'DESC')

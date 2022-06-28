@@ -1,5 +1,5 @@
 import { AtletaRespostaDto } from 'src/modules/pessoa/dto/atleta.dto';
-import { CraqueDaGaleraView } from '../entities/craque-da-galera.entity';
+import { CraqueDaGaleraView } from '../entities/craque-da-galera-view.entity';
 
 export class CraqueDaGaleraRespostaDto {
   idAtleta: string;
@@ -8,7 +8,7 @@ export class CraqueDaGaleraRespostaDto {
 
   constructor(cg: CraqueDaGaleraView) {
     this.idAtleta = cg.idAtleta;
-    this.quantidadeVotos = cg.quantidadeVotos;
+    this.quantidadeVotos = parseInt(cg.quantidadeVotos);
     this.atleta = new AtletaRespostaDto(cg.atleta);
   }
 }
