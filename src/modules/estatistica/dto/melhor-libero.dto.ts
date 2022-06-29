@@ -1,21 +1,18 @@
-// import { AtletaRespostaDto } from 'src/modules/pessoa/dto/atleta.dto';
-import { AtletaRespostaDto } from 'src/modules/pessoa/dto/atleta.dto';
 import { MelhorLiberoView } from '../entities/melhor-libero-view.entity';
+import { MelhorPosicaoRespostaDto } from './melhor-posicao.dto';
 
-export class MelhorLiberoRespostaDto {
-  idAtleta: string;
+export class MelhorLiberoRespostaDto extends MelhorPosicaoRespostaDto {
   recepcoesPorPartida: number;
   quantidadeDePartidas: number;
-  atleta: AtletaRespostaDto;
 
   public get totalDeRecepcoes(): number {
     return this.recepcoesPorPartida * this.quantidadeDePartidas;
   }
 
   constructor(ml: MelhorLiberoView) {
-    this.idAtleta = ml.idAtleta;
+    super(ml.atleta);
+
     this.recepcoesPorPartida = ml.recepcoesPorPartida;
     this.quantidadeDePartidas = ml.quantidadePartidas;
-    this.atleta = new AtletaRespostaDto(ml.atleta);
   }
 }

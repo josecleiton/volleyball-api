@@ -1,10 +1,8 @@
-import { AtletaRespostaDto } from 'src/modules/pessoa/dto/atleta.dto';
 import { MelhorCentralView } from '../entities/melhor-central-view.entity';
+import { MelhorPosicaoRespostaDto } from './melhor-posicao.dto';
 
-export class MelhorCentralRespostaDto {
-  idAtleta: string;
+export class MelhorCentralRespostaDto extends MelhorPosicaoRespostaDto {
   bloqueiosPorPartida: number;
-  atleta: AtletaRespostaDto;
   quantidadeDePartidas: number;
 
   public get totalDeBloqueios(): number {
@@ -12,9 +10,9 @@ export class MelhorCentralRespostaDto {
   }
 
   constructor(m: MelhorCentralView) {
-    this.idAtleta = m.idAtleta;
+    super(m.atleta);
+
     this.bloqueiosPorPartida = m.bloqueiosPorPartida;
     this.quantidadeDePartidas = m.quantidadePartidas;
-    this.atleta = new AtletaRespostaDto(m.atleta);
   }
 }
