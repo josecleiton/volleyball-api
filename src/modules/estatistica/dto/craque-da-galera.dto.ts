@@ -1,14 +1,12 @@
-import { AtletaRespostaDto } from 'src/modules/pessoa/dto/atleta.dto';
 import { CraqueDaGaleraView } from '../entities/craque-da-galera-view.entity';
+import { MelhorPosicaoRespostaDto } from './melhor-posicao.dto';
 
-export class CraqueDaGaleraRespostaDto {
-  idAtleta: string;
+export class CraqueDaGaleraRespostaDto extends MelhorPosicaoRespostaDto {
   quantidadeVotos: number;
-  atleta: AtletaRespostaDto;
 
   constructor(cg: CraqueDaGaleraView) {
-    this.idAtleta = cg.idAtleta;
+    super(cg.atleta);
+
     this.quantidadeVotos = parseInt(cg.quantidadeVotos);
-    this.atleta = new AtletaRespostaDto(cg.atleta);
   }
 }
