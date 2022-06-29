@@ -12,6 +12,7 @@ import {
   EquipePartidaRepository,
   PartidaRepository,
 } from './repositories';
+import { PontuacaoViewRepository } from '../pontuacao/repositories/pontuacao-view.repository';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import {
       ArbitroPartidaRepository,
       AtletaEscaladoRepository,
       EquipePartidaRepository,
+      PontuacaoViewRepository,
     ]),
     PessoaModule,
     forwardRef(() => LigaModule),

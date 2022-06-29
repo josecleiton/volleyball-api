@@ -146,3 +146,5 @@ export class PartidaRespostaDto {
     this.finalizada = partida.finalizada;
   }
 }
+
+

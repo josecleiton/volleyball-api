@@ -1,3 +1,4 @@
+/* eslint-disable no-empty */
 import {
   ConflictException,
   forwardRef,
@@ -9,12 +10,15 @@ import {
 import { groupBy } from 'lodash';
 import { LigaService } from 'src/modules/liga/services/liga.service';
 import { AtletaRespostaDto } from 'src/modules/pessoa/dto/atleta.dto';
+import { PontuacaoViewRepository } from 'src/modules/pontuacao/repositories/pontuacao-view.repository';
 import { RegistraDesistenciaService } from 'src/modules/pontuacao/services/registra-desistencia.service';
 import { Connection } from 'typeorm';
 import { Posicao, TipoArbitro } from '../../pessoa/enums';
 import { ArbitroService } from '../../pessoa/services/arbitro.service';
 import { AtletaService } from '../../pessoa/services/atleta.service';
 import { DelegadoService } from '../../pessoa/services/delegado.service';
+import { CadastrarResultadoPartidaDto, CadastrarResultadoPartidaRespostaDTO } from '../dto/partida-cadastro-resultado.dto';
+
 import {
   AtletaParticipacaoDto,
   CadastrarParticipantesPartidaDto,
@@ -23,10 +27,13 @@ import {
   RemarcarPartidaDto,
 } from '../dto/partida.dto';
 import { Partida } from '../entities/partida.entity';
+import { PontosPartida } from '../enums/pontos-partida.enum';
 import { StatusPartida } from '../enums/status-partida.enum';
+import { IPontoNoSet } from '../interfaces/ponto_no_set.interface';
 import {
   ArbitroPartidaRepository,
   AtletaEscaladoRepository,
+  EquipePartidaRepository,
   PartidaRepository,
 } from '../repositories';
 
@@ -43,7 +50,9 @@ export class PartidaService {
     @Inject(forwardRef(() => LigaService))
     private readonly ligaService: LigaService,
     private readonly connection: Connection,
-  ) {}
+    private readonly equipesPartidaRepository: EquipePartidaRepository,
+    private readonly pontuacaoViewRepositor: PontuacaoViewRepository,
+  ) { }
 
   async listaPartidasOrdenadas(
     requisicao: ListaPartidasDto,
@@ -242,4 +251,204 @@ export class PartidaService {
       idEquipe,
     });
   }
+
+  async cadastrarResultado(
+    id: string,
+    requisicao: CadastrarResultadoPartidaDto,
+  ): Promise<CadastrarResultadoPartidaRespostaDTO> {
+
+    const { equipeA, equipeB } = requisicao;
+
+
+
+    const partida = await this.partidaRepository.findOne({ where: { id } })
+
+    if (!partida) {
+      throw new UnprocessableEntityException(
+        `Não existe partida cadastrada com id: ${id}`,
+      );
+    }
+
+    if (
+      partida?.status !== StatusPartida.PARTICIPANTES_CADASTRADOS
+    ) {
+      throw new UnprocessableEntityException(
+        `A partida precisa está com status : '${StatusPartida.PARTICIPANTES_CADASTRADOS}' para cadastrar um resultado`,
+      );
+    }
+
+    if (
+      equipeA.wo === true && equipeB.wo === true
+    ) {
+
+      throw new UnprocessableEntityException(
+        `WO pode ser atribuido em apenas um equipe`,
+      );
+    }
+
+    if (
+      equipeA.pontos_nos_sets.length !== equipeB.pontos_nos_sets.length
+    ) {
+
+      throw new UnprocessableEntityException(
+        `O array de pontos_nos_sets precisa ter o mesmo tamanho `,
+      );
+    }
+
+
+    const equipePartidaA = await this.equipesPartidaRepository.findOne({
+      where: {
+        idEquipe: equipeA.idEquipe
+      }
+    })
+
+    if (!equipePartidaA) {
+      throw new UnprocessableEntityException(
+        `Não existe equipe cadastrada com id: ${equipeA.idEquipe}, referente a equipeA `,
+      );
+    }
+
+    const equipePartidaB = await this.equipesPartidaRepository.findOne({
+      where: {
+        idEquipe: equipeB.idEquipe
+      }
+    })
+
+    if (!equipePartidaB) {
+      throw new UnprocessableEntityException(
+        `Não existe equipe cadastrada com id: ${equipeB.idEquipe}, referente a equipeB `,
+      );
+    }
+
+    let pontuacaoEquipeA = 0;
+    let pontuacaoEquipeB = 0;
+    let setsganhosA = 0;
+    let setsganhosB = 0;
+
+
+    // verificar WO 
+    if (equipeA.wo === true) {
+      pontuacaoEquipeA = PontosPartida.WO;
+      pontuacaoEquipeB = PontosPartida.VITORIAPERFEITA;
+      equipePartidaA.pontuacao = pontuacaoEquipeA;
+      equipePartidaB.pontuacao = pontuacaoEquipeB;
+
+      await this.equipesPartidaRepository.save(equipePartidaA);
+      await this.equipesPartidaRepository.save(equipePartidaB);
+
+      partida.idGanhadora = equipePartidaB.id
+      partida.status = StatusPartida.CONCLUIDA;
+      await this.partidaRepository.save(partida);
+
+      await this.pontuacaoViewRepositor.refreshMaterializedView();
+
+      return new CadastrarResultadoPartidaRespostaDTO(equipePartidaA, equipePartidaB)
+
+    }
+
+    if (equipeB.wo === true) {
+      pontuacaoEquipeB = PontosPartida.WO;
+      pontuacaoEquipeA = PontosPartida.VITORIAPERFEITA;
+      equipePartidaA.pontuacao = pontuacaoEquipeA;
+      equipePartidaB.pontuacao = pontuacaoEquipeB;
+
+      await this.equipesPartidaRepository.save(equipePartidaA);
+      await this.equipesPartidaRepository.save(equipePartidaB);
+
+      partida.idGanhadora = equipePartidaA.id
+      partida.status = StatusPartida.CONCLUIDA;
+      await this.partidaRepository.save(partida);
+
+      await this.pontuacaoViewRepositor.refreshMaterializedView();
+
+      return new CadastrarResultadoPartidaRespostaDTO(equipePartidaA, equipePartidaB)
+
+    }
+
+    const pontoNoSetA: IPontoNoSet[] = []
+    const pontoNoSetB: IPontoNoSet[] = []
+
+    const sets_disputados = equipeA.pontos_nos_sets.length
+    // verificar  sets ganhos 
+    for (let i = 0; i < sets_disputados; i++) {
+      equipeA.pontos_nos_sets[i] > equipeB.pontos_nos_sets[i] ? setsganhosA += 1 : setsganhosB += 1;
+      pontoNoSetA.push({ quantidade: equipeA.pontos_nos_sets[i] })
+      pontoNoSetB.push({ quantidade: equipeB.pontos_nos_sets[i] })
+    }
+
+
+
+    if (
+      (setsganhosA !== 3 && setsganhosB !== 3) || (setsganhosA > 3 && setsganhosB > 3)
+    ) {
+
+      throw new UnprocessableEntityException(
+        ` Para haver ganhador precisa ter pelo menos uma equipe com 3 sets vencidos
+        além de não poder ter um equipe com mais de 3 sets ganhos`,
+      );
+    }
+
+
+    if (setsganhosA === 3 && (setsganhosB === 0 || setsganhosB === 1)) {
+      pontuacaoEquipeA = PontosPartida.VITORIAPERFEITA;
+      pontuacaoEquipeB = PontosPartida.DERROTAFEIA;
+    }
+
+    if (setsganhosB === 3 && (setsganhosA === 0 || setsganhosA === 1)) {
+      pontuacaoEquipeB = PontosPartida.VITORIAPERFEITA;
+      pontuacaoEquipeA = PontosPartida.DERROTAFEIA;
+    }
+
+    if (setsganhosA === 3 && setsganhosB === 2) {
+      pontuacaoEquipeA = PontosPartida.VITORIASIMPLES;
+      pontuacaoEquipeB = PontosPartida.DERROTASIMPLES
+    }
+
+    if (setsganhosB === 3 && setsganhosA === 2) {
+      pontuacaoEquipeB = PontosPartida.VITORIASIMPLES;
+      pontuacaoEquipeA = PontosPartida.DERROTASIMPLES;
+    }
+
+    // verificar vencedor 
+    let ganhouA = false
+    let ganhouB = false
+
+    setsganhosA > setsganhosB ? ganhouA = true : ganhouB = true;
+
+
+
+
+    equipePartidaA.idPartida = id;
+    equipePartidaA.pontuacao = pontuacaoEquipeA;
+    equipePartidaA.setsGanhos = setsganhosA;
+    equipePartidaA.pontosNosSets = equipePartidaA.pontosNosSets.concat(pontoNoSetA)
+    equipePartidaA.ganhou = ganhouA;
+    equipePartidaA.setsDisputados = sets_disputados;
+    equipePartidaA.resultadoCadastradoEm = new Date()
+
+
+    equipePartidaB.idPartida = id;
+    equipePartidaB.pontuacao = pontuacaoEquipeB;
+    equipePartidaB.setsGanhos = setsganhosB;
+    equipePartidaB.pontosNosSets = equipePartidaB.pontosNosSets.concat(pontoNoSetB)
+    equipePartidaB.ganhou = ganhouB;
+    equipePartidaB.setsDisputados = sets_disputados;
+    equipePartidaB.resultadoCadastradoEm = new Date()
+
+    await this.equipesPartidaRepository.save(equipePartidaA);
+    await this.equipesPartidaRepository.save(equipePartidaB);
+
+    setsganhosA > setsganhosB ? partida.idGanhadora = equipePartidaA.id : partida.idGanhadora = equipePartidaB.id;
+    partida.status = StatusPartida.CONCLUIDA;
+    await this.partidaRepository.save(partida);
+
+    await this.pontuacaoViewRepositor.refreshMaterializedView();
+
+
+
+    return new CadastrarResultadoPartidaRespostaDTO(equipePartidaA, equipePartidaB)
+  }
+
+
+
 }
