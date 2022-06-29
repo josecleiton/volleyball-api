@@ -7,6 +7,7 @@ import {
   Patch,
   Post,
   Query,
+  HttpCode,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { CadastrarResultadoPartidaDto } from './dto/partida-cadastro-resultado.dto';
@@ -49,11 +50,11 @@ export class PartidaController {
   }
 
   @Post(':id/cadastra-resultado')
+  @HttpCode(200)
   async cadastraResultado(
     @Param('id', ParseUUIDPipe) id: string,
-    @Body() requisicao: CadastrarResultadoPartidaDto ,
+    @Body() requisicao: CadastrarResultadoPartidaDto,
   ) {
-    
     return this.partidaService.cadastrarResultado(id, requisicao);
   }
 }
