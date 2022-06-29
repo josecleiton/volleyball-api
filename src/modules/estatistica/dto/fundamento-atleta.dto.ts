@@ -1,3 +1,4 @@
+import { Expose } from 'class-transformer';
 import { IsOptional, IsUUID, Max, Min } from 'class-validator';
 import { FundamentoAtleta } from '../entities/fundamento-atleta.entity';
 
@@ -39,6 +40,11 @@ export class CriaFundamentoAtletaDto {
   pontos?: number;
 }
 
+export class ListaFundamentoNaLigaDto {
+  @IsUUID()
+  idLiga!: string;
+}
+
 export class FundamentoAtletaRespostaDto {
   id: string;
   idAtletaPartida: string;
@@ -63,5 +69,35 @@ export class FundamentoAtletaRespostaDto {
     this.pontos = fundamento.pontos;
     this.saquesEfetivos = fundamento.saquesEfetivos;
     this.ataquesEfetivos = fundamento.ataquesEfetivos;
+  }
+}
+
+export class FundamentoAgregadoAtletaRespostaDto {
+  idAtleta!: string;
+  bloqueios!: number;
+  recepcoes!: number;
+  aces!: number;
+  saques!: number;
+  ataques!: number;
+  pontos!: number;
+  levantamentos!: number;
+  assistencias!: number;
+
+  @Expose()
+  public get saquesEfetivos(): number {
+    if (!this.saques) return 0;
+    return this.aces / this.saques;
+  }
+
+  @Expose()
+  public get ataquesEfetivos(): number {
+    if (!this.ataques) return 0;
+    return this.pontos / this.ataques;
+  }
+
+  @Expose()
+  public get levantamentosEfetivos(): number {
+    if (!this.levantamentos) return 0;
+    return this.assistencias / this.levantamentos;
   }
 }

@@ -8,6 +8,7 @@ import { Connection } from 'typeorm';
 import {
   CriaFundamentoAtletaDto,
   FundamentoAtletaRespostaDto,
+  ListaFundamentoNaLigaDto,
 } from '../dto/fundamento-atleta.dto';
 import {
   FundamentoAtletaRepository,
@@ -67,6 +68,10 @@ export class FundamentoAtletaService {
       await this.fundamentoAtletaRepository.listaFundamentoDeAtleta(idAtleta);
 
     return fundamentos.map((x) => new FundamentoAtletaRespostaDto(x));
+  }
+
+  async listaFundamentoNaLiga(requisicao: ListaFundamentoNaLigaDto) {
+    return this.fundamentoAtletaRepository.listaFundamentosNaLiga(requisicao);
   }
 
   async removeFundamento(id: string) {

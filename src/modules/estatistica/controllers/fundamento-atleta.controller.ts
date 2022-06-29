@@ -6,9 +6,14 @@ import {
   Param,
   ParseUUIDPipe,
   Post,
+  Query,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { CriaFundamentoAtletaDto } from '../dto/fundamento-atleta.dto';
+import { SkipThrottle, Throttle } from '@nestjs/throttler';
+import {
+  CriaFundamentoAtletaDto,
+  ListaFundamentoNaLigaDto,
+} from '../dto/fundamento-atleta.dto';
 import { FundamentoAtletaService } from '../services/fundamento-atleta.service';
 
 @Controller('estatistica/atleta')
@@ -21,6 +26,13 @@ export class FundamentoAtletaController {
   @Post()
   async criaFundamentoAtleta(@Body() requisicao: CriaFundamentoAtletaDto) {
     return this.fundamentoAtletaService.criaFundamento(requisicao);
+  }
+
+  @Get('geral')
+  @Throttle(3, 60)
+  @SkipThrottle(false)
+  async listaFundamentosNaLiga(@Query() requisicao: ListaFundamentoNaLigaDto) {
+    return this.fundamentoAtletaService.listaFundamentoNaLiga(requisicao);
   }
 
   @Get('geral/:id')
