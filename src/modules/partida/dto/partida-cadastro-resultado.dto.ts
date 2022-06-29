@@ -27,12 +27,12 @@ export class EquipeResultadoPartidaDto {
 
 
 export class  CadastrarResultadoPartidaRespostaDTO{
-    equipeA: EquipePartida
-    equipeB: EquipePartida
+    equipePartidaA: EquipePartida
+    equipePartidaB: EquipePartida
 
     constructor(equipeA: EquipePartida, equipeB: EquipePartida ){
-        this.equipeA = equipeA; 
-        this.equipeB = equipeB; 
+        this. equipePartidaA = equipeA; 
+        this. equipePartidaB = equipeB; 
 }
 }
 
