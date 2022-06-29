@@ -45,6 +45,22 @@ export class ListaFundamentoNaLigaDto {
   idLiga!: string;
 }
 
+export interface IFundamentoAtletaLiga {
+  bloqueios: string;
+  recepcoes: string;
+  aces: string;
+  saques: string;
+  ataques: string;
+  pontos: string;
+  levantamentos: string;
+  assistencias: string;
+  idAtleta: string;
+  numeroAtleta: string;
+  nomeAtleta: string;
+  idEquipe: string;
+  nomeEquipe: string;
+}
+
 export class FundamentoAtletaRespostaDto {
   id: string;
   idAtletaPartida: string;
@@ -73,15 +89,35 @@ export class FundamentoAtletaRespostaDto {
 }
 
 export class FundamentoAgregadoAtletaRespostaDto {
-  idAtleta!: string;
-  bloqueios!: number;
-  recepcoes!: number;
-  aces!: number;
-  saques!: number;
-  ataques!: number;
-  pontos!: number;
-  levantamentos!: number;
-  assistencias!: number;
+  idAtleta: string;
+  bloqueios: number;
+  recepcoes: number;
+  aces: number;
+  saques: number;
+  ataques: number;
+  pontos: number;
+  levantamentos: number;
+  assistencias: number;
+  atleta: { nome: string; numero: string; id: string };
+  equipe: { nome: string; id: string };
+
+  constructor(f: IFundamentoAtletaLiga) {
+    this.idAtleta = f.idAtleta;
+    this.bloqueios = parseInt(f.bloqueios);
+    this.recepcoes = parseInt(f.recepcoes);
+    this.aces = parseInt(f.aces);
+    this.saques = parseInt(f.saques);
+    this.ataques = parseInt(f.ataques);
+    this.pontos = parseInt(f.pontos);
+    this.levantamentos = parseInt(f.levantamentos);
+    this.assistencias = parseInt(f.assistencias);
+    this.atleta = {
+      id: f.idAtleta,
+      nome: f.nomeAtleta,
+      numero: f.numeroAtleta,
+    };
+    this.equipe = { nome: f.nomeEquipe, id: f.idEquipe };
+  }
 
   @Expose()
   public get saquesEfetivos(): number {

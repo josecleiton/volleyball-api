@@ -7,6 +7,7 @@ import { AtletaEscaladoService } from 'src/modules/partida/services';
 import { Connection } from 'typeorm';
 import {
   CriaFundamentoAtletaDto,
+  FundamentoAgregadoAtletaRespostaDto,
   FundamentoAtletaRespostaDto,
   ListaFundamentoNaLigaDto,
 } from '../dto/fundamento-atleta.dto';
@@ -71,7 +72,10 @@ export class FundamentoAtletaService {
   }
 
   async listaFundamentoNaLiga(requisicao: ListaFundamentoNaLigaDto) {
-    return this.fundamentoAtletaRepository.listaFundamentosNaLiga(requisicao);
+    const fundamentos =
+      await this.fundamentoAtletaRepository.listaFundamentosNaLiga(requisicao);
+
+    return fundamentos.map((x) => new FundamentoAgregadoAtletaRespostaDto(x));
   }
 
   async removeFundamento(id: string) {
