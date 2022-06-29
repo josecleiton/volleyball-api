@@ -2,6 +2,7 @@ import request = require('supertest');
 
 import {
   CriaFundamentoAtletaDto,
+  FundamentoAgregadoAtletaRespostaDto,
   FundamentoAtletaRespostaDto,
 } from 'src/modules/estatistica/dto/fundamento-atleta.dto';
 import { PartidaServer } from 'test/modules/partida/partida.server';
@@ -47,6 +48,17 @@ export class FundamentoAtletaServer {
 
   async removeFundamentoAtleta(id: string) {
     return request(this.server).delete(`/estatistica/atleta/${id}`).expect(200);
+  }
+
+  async listaFundamentosNaLiga(
+    idLiga: string,
+  ): Promise<FundamentoAgregadoAtletaRespostaDto[]> {
+    return request(this.server)
+      .get('/estatistica/atleta/geral')
+      .query({ idLiga })
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .then((res) => res.body);
   }
 
   async listaFundamentosAtleta(

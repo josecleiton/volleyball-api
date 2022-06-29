@@ -41,6 +41,12 @@ describe('FundamentoAtletaController (e2e)', () => {
     );
   });
 
+  it('/estatistica/atleta/geral (GET)', async () => {
+    const fundamentos = await server.listaFundamentosNaLiga(randomUUID());
+
+    expect(fundamentos).toEqual(expect.any(Array));
+  });
+
   it('/estatistica/atleta/geral/:id (GET)', async () => {
     const fundamentos = await server.listaFundamentosAtleta(randomUUID());
 
