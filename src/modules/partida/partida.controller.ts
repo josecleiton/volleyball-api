@@ -9,6 +9,7 @@ import {
   Query,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
+import { CadastrarResultadoPartidaDto } from './dto/partida-cadastro-resultado.dto';
 import {
   CadastrarParticipantesPartidaDto,
   ListaPartidasDto,
@@ -45,5 +46,14 @@ export class PartidaController {
     @Body() requisicao: CadastrarParticipantesPartidaDto,
   ) {
     return this.partidaService.cadastrarParticipantes(id, requisicao);
+  }
+
+  @Post(':id/cadastra-resultado')
+  async cadastraResultado(
+    @Param('id', ParseUUIDPipe) id: string,
+    @Body() requisicao: CadastrarResultadoPartidaDto ,
+  ) {
+    
+    return this.partidaService.cadastrarResultado(id, requisicao);
   }
 }

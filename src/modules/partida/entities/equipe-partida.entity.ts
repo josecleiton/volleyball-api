@@ -56,6 +56,10 @@ export class EquipePartida extends EntidadeBase {
     return this._setsDisputados;
   }
 
+  public set setsDisputados(v: number){
+   this._setsDisputados = v;
+  }
+
   @Column({ nullable: true })
   resultadoCadastradoEm?: Date;
 
