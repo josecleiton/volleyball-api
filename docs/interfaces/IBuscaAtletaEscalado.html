@@ -177,7 +177,8 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Posicao } from &#x27;src/modules/pessoa/enums&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { AtletaRespostaDto } from &#x27;src/modules/pessoa/dto/atleta.dto&#x27;;
+import { Posicao } from &#x27;src/modules/pessoa/enums&#x27;;
 import { AtletaEscalado } from &#x27;../entities/atleta-escalado.entity&#x27;;
 import { EquipePartidaRespostaDto } from &#x27;./equipe-partida.dto&#x27;;
 
@@ -186,13 +187,12 @@ export interface IBuscaAtletaEscalado {
   idPartida: string;
 }
 
-export class AtletaEscaladoRespostaDto {
+export class AtletaEscaladoSimplesRespostaDto {
   id: string;
   idAtleta: string;
   idPartida: string;
   posicao: Posicao;
   dataCriacao: Date;
-  participacao: EquipePartidaRespostaDto;
 
   constructor(atleta: AtletaEscalado) {
     this.id &#x3D; atleta.id;
@@ -200,7 +200,25 @@ export class AtletaEscaladoRespostaDto {
     this.idPartida &#x3D; atleta.idEquipePartida;
     this.posicao &#x3D; atleta.posicao;
     this.dataCriacao &#x3D; atleta.dataCriacao;
+  }
+}
+export class AtletaEscaladoRespostaDto extends AtletaEscaladoSimplesRespostaDto {
+  participacao: EquipePartidaRespostaDto;
+
+  constructor(atleta: AtletaEscalado) {
+    super(atleta);
+
     this.participacao &#x3D; new EquipePartidaRespostaDto(atleta.participacao);
+  }
+}
+
+export class AtletaEscaladoComPerfilAtletaRespostaDto extends AtletaEscaladoSimplesRespostaDto {
+  atleta: AtletaRespostaDto;
+
+  constructor(atleta: AtletaEscalado) {
+    super(atleta);
+
+    this.atleta &#x3D; new AtletaRespostaDto(atleta.atleta);
   }
 }
 </code></pre>

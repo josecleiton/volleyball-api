@@ -211,18 +211,12 @@ import { StatusPartida } from &#x27;../enums/status-partida.enum&#x27;;
 import {
   ArbitroPartidaRepository,
   AtletaEscaladoRepository,
-  EquipePartidaRepository,
   PartidaRepository,
 } from &#x27;../repositories&#x27;;
 
 interface IDeterminaPontuacaoNumeroDeSets {
   setsGanhosMandante: number;
   setsGanhosVisitante: number;
-}
-
-interface IDeterminaPontuacaoNumeroDeSetsResultado {
-  pontuacaoMandante: 0 | 1 | 2 | 3;
-  pontuacaoVisitante: 0 | 1 | 2 | 3;
 }
 
 @Injectable()
@@ -238,7 +232,6 @@ export class PartidaService {
     @Inject(forwardRef(() &#x3D;&gt; LigaService))
     private readonly ligaService: LigaService,
     private readonly connection: Connection,
-    private readonly equipesPartidaRepository: EquipePartidaRepository,
     private readonly pontuacaoViewRepository: PontuacaoViewRepository,
   ) {}
 
@@ -382,19 +375,17 @@ export class PartidaService {
     partida.status &#x3D; StatusPartida.PARTICIPANTES_CADASTRADOS;
     partida.idDelegado &#x3D; delegado.id;
 
-    const partidaAtualizada &#x3D; await this.connection.transaction(
-      async (manager) &#x3D;&gt; {
-        const partidaSalva &#x3D; await manager.save(partida);
+    await this.connection.transaction(async (manager) &#x3D;&gt; {
+      const partidaSalva &#x3D; await manager.save(partida);
 
-        partidaSalva.mandante.atletas &#x3D; await manager.save(escalacaoMandante);
-        partidaSalva.visitante.atletas &#x3D; await manager.save(escalacaoVisitante);
-        partidaSalva.arbitros &#x3D; await manager.save(arbitrosDaPartida);
+      partidaSalva.mandante.atletas &#x3D; await manager.save(escalacaoMandante);
+      partidaSalva.visitante.atletas &#x3D; await manager.save(escalacaoVisitante);
+      partidaSalva.arbitros &#x3D; await manager.save(arbitrosDaPartida);
 
-        return partidaSalva;
-      },
-    );
+      return partidaSalva;
+    });
 
-    return new PartidaRespostaDto(partidaAtualizada);
+    return new PartidaRespostaDto(await this.deveEncontrarEntidade(partida.id));
   }
 
   private async deveEncontrarEntidade(id: string, manager?: EntityManager) {
@@ -486,7 +477,7 @@ export class PartidaService {
       );
     }
 
-    const { pontuacaoMandante, pontuacaoVisitante } &#x3D;
+    const [pontuacaoMandante, pontuacaoVisitante] &#x3D;
       this.determinaPontuacaoPorNumeroDeSets({
         setsGanhosMandante,
         setsGanhosVisitante,
@@ -513,55 +504,41 @@ export class PartidaService {
     partida.mandante.resultadoCadastradoEm &#x3D;
       partida.visitante.resultadoCadastradoEm &#x3D; new Date();
 
-    const { partida: partidaAtualizada } &#x3D; await this.connection.transaction(
+    const partidaAtualizada &#x3D; await this.connection.transaction(
       async (manager) &#x3D;&gt; {
-        const [mandante, visitante] &#x3D; await manager.save([
-          partida.mandante,
-          partida.visitante,
-        ]);
+        await manager.save([partida.mandante, partida.visitante]);
 
         await manager.save(partida);
 
-        return {
-          mandante,
-          visitante,
-          partida: await this.deveEncontrarEntidade(partida.id, manager),
-        };
+        return this.deveEncontrarEntidade(partida.id, manager);
       },
     );
 
     await this.pontuacaoViewRepository.refreshMaterializedView();
 
-    return new PartidaRespostaDto(partidaAtualizada);
+    try {
+      return new PartidaRespostaDto(partidaAtualizada);
+    } catch (e) {
+      console.log(e);
+      throw e;
+    }
   }
 
   private determinaPontuacaoPorNumeroDeSets({
     setsGanhosMandante,
     setsGanhosVisitante,
-  }: IDeterminaPontuacaoNumeroDeSets): IDeterminaPontuacaoNumeroDeSetsResultado {
+  }: IDeterminaPontuacaoNumeroDeSets): [PontosPartida, PontosPartida] {
     const mandanteVenceu &#x3D; setsGanhosMandante &gt; setsGanhosVisitante;
 
     if (setsGanhosMandante + setsGanhosVisitante &lt; 5) {
       return mandanteVenceu
-        ? {
-            pontuacaoMandante: PontosPartida.VITORIA_PERFEITA,
-            pontuacaoVisitante: PontosPartida.DERROTA_FEIA,
-          }
-        : {
-            pontuacaoMandante: PontosPartida.DERROTA_FEIA,
-            pontuacaoVisitante: PontosPartida.VITORIA_PERFEITA,
-          };
+        ? [PontosPartida.VITORIA_PERFEITA, PontosPartida.DERROTA_FEIA]
+        : [PontosPartida.DERROTA_FEIA, PontosPartida.VITORIA_PERFEITA];
     }
 
     return mandanteVenceu
-      ? {
-          pontuacaoMandante: PontosPartida.VITORIA_SIMPLES,
-          pontuacaoVisitante: PontosPartida.DERROTA_SIMPLES,
-        }
-      : {
-          pontuacaoMandante: PontosPartida.DERROTA_SIMPLES,
-          pontuacaoVisitante: PontosPartida.VITORIA_SIMPLES,
-        };
+      ? [PontosPartida.VITORIA_SIMPLES, PontosPartida.DERROTA_SIMPLES]
+      : [PontosPartida.DERROTA_SIMPLES, PontosPartida.VITORIA_SIMPLES];
   }
 }
 </code></pre>

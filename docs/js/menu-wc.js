@@ -546,10 +546,16 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/AtletaEscalado.html" data-type="entity-link" >AtletaEscalado</a>
                             </li>
                             <li class="link">
+                                <a href="classes/AtletaEscaladoComPerfilAtletaRespostaDto.html" data-type="entity-link" >AtletaEscaladoComPerfilAtletaRespostaDto</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/AtletaEscaladoRepository.html" data-type="entity-link" >AtletaEscaladoRepository</a>
                             </li>
                             <li class="link">
                                 <a href="classes/AtletaEscaladoRespostaDto.html" data-type="entity-link" >AtletaEscaladoRespostaDto</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/AtletaEscaladoSimplesRespostaDto.html" data-type="entity-link" >AtletaEscaladoSimplesRespostaDto</a>
                             </li>
                             <li class="link">
                                 <a href="classes/AtletaParticipacaoDto.html" data-type="entity-link" >AtletaParticipacaoDto</a>
@@ -1089,9 +1095,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/IDeterminaPontuacaoNumeroDeSets.html" data-type="entity-link" >IDeterminaPontuacaoNumeroDeSets</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/IDeterminaPontuacaoNumeroDeSetsResultado.html" data-type="entity-link" >IDeterminaPontuacaoNumeroDeSetsResultado</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/IEnviaVerificacaoSmsResposta.html" data-type="entity-link" >IEnviaVerificacaoSmsResposta</a>
