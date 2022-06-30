@@ -1,62 +1,48 @@
-import { ArrayMaxSize, ArrayMinSize, IsArray, IsBoolean, IsUUID } from "class-validator";
-import { EquipePartida } from "../entities/equipe-partida.entity";
-import { IPontoNoSet } from "../interfaces/ponto_no_set.interface";
+import {
+  ArrayMaxSize,
+  ArrayMinSize,
+  IsArray,
+  IsInt,
+  IsNumber,
+  Min,
+} from 'class-validator';
+import { EquipePartida } from '../entities/equipe-partida.entity';
+import { IPontoNoSet } from '../interfaces/ponto_no_set.interface';
 
+export class CadastrarResultadoPartidaDto {
+  @IsArray()
+  @ArrayMinSize(3)
+  @ArrayMaxSize(5)
+  @IsInt({ each: true })
+  @Min(0, { each: true })
+  setsMandante!: number[];
 
-export interface CadastrarResultadoPartidaDto {
-    equipeA: EquipeResultadoPartidaDto
-    equipeB: EquipeResultadoPartidaDto
+  @IsArray()
+  @ArrayMinSize(3)
+  @ArrayMaxSize(5)
+  @IsInt({ each: true })
+  @Min(0, { each: true })
+  setsVisitante!: number[];
 }
 
+export class EquipePartidaRespostaDto {
+  idEquipe: string;
+  idPartida?: string;
+  pontuacao: number;
+  setsGanhos: number;
+  pontosNosSets: IPontoNoSet[];
+  setsDisputados: number;
+  ganhou: boolean;
+  resultadoCadastradoEm?: Date;
 
-
-export class EquipeResultadoPartidaDto {
-
-    @IsUUID()
-    idEquipe!: string;
-   
-    @IsArray()
-    @ArrayMinSize(3)
-    @ArrayMaxSize(5)
-    pontos_nos_sets!: number[];
-
-    @IsBoolean()
-    wo!: boolean;
-}
-
-
-
-export class  CadastrarResultadoPartidaRespostaDTO{
-    equipePartidaA: EquipePartida
-    equipePartidaB: EquipePartida
-
-    constructor(equipeA: EquipePartida, equipeB: EquipePartida ){
-        this. equipePartidaA = equipeA; 
-        this. equipePartidaB = equipeB; 
-}
-}
-
-
-export class  EquipePartidaRespostaDto{
-    
-    id_equipe: string;
-    id_partida?:string;
-    pontuacao: number;
-    sets_ganhos: number;
-    pontos_nos_sets : IPontoNoSet[];
-    sets_disputados:  number;
-    ganhou: number;
-    resultado_cadastrado_em ?: Date 
-
-    constructor(e: EquipePartida){
-      this.id_equipe  = e.idEquipe;
-      this.id_partida = e.idPartida;
-      this.sets_disputados = e.setsDisputados;
-      this.pontuacao = e.pontuacao;
-      this.sets_ganhos = e.setsGanhos;
-      this.pontos_nos_sets = e.pontosNosSets;
-      this.ganhou = Number(e.ganhou);
-      this.resultado_cadastrado_em = e.resultadoCadastradoEm;
-
-    }
+  constructor(e: EquipePartida) {
+    this.idEquipe = e.idEquipe;
+    this.idPartida = e.idPartida;
+    this.setsDisputados = e.setsDisputados;
+    this.pontuacao = e.pontuacao;
+    this.setsGanhos = e.setsGanhos;
+    this.pontosNosSets = e.pontosNosSets;
+    this.ganhou = e.ganhou;
+    this.resultadoCadastradoEm = e.resultadoCadastradoEm;
+  }
 }

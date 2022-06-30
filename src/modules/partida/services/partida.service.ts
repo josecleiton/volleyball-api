@@ -12,12 +12,12 @@ import { LigaService } from 'src/modules/liga/services/liga.service';
 import { AtletaRespostaDto } from 'src/modules/pessoa/dto/atleta.dto';
 import { PontuacaoViewRepository } from 'src/modules/pontuacao/repositories/pontuacao-view.repository';
 import { RegistraDesistenciaService } from 'src/modules/pontuacao/services/registra-desistencia.service';
-import { Connection } from 'typeorm';
+import { Connection, EntityManager } from 'typeorm';
 import { Posicao, TipoArbitro } from '../../pessoa/enums';
 import { ArbitroService } from '../../pessoa/services/arbitro.service';
 import { AtletaService } from '../../pessoa/services/atleta.service';
 import { DelegadoService } from '../../pessoa/services/delegado.service';
-import { CadastrarResultadoPartidaDto, CadastrarResultadoPartidaRespostaDTO } from '../dto/partida-cadastro-resultado.dto';
+import { CadastrarResultadoPartidaDto } from '../dto/partida-cadastro-resultado.dto';
 
 import {
   AtletaParticipacaoDto,
@@ -26,16 +26,26 @@ import {
   PartidaRespostaDto,
   RemarcarPartidaDto,
 } from '../dto/partida.dto';
+import { EquipePartida } from '../entities/equipe-partida.entity';
 import { Partida } from '../entities/partida.entity';
 import { PontosPartida } from '../enums/pontos-partida.enum';
 import { StatusPartida } from '../enums/status-partida.enum';
-import { IPontoNoSet } from '../interfaces/ponto_no_set.interface';
 import {
   ArbitroPartidaRepository,
   AtletaEscaladoRepository,
   EquipePartidaRepository,
   PartidaRepository,
 } from '../repositories';
+
+interface IDeterminaPontuacaoNumeroDeSets {
+  setsGanhosMandante: number;
+  setsGanhosVisitante: number;
+}
+
+interface IDeterminaPontuacaoNumeroDeSetsResultado {
+  pontuacaoMandante: 0 | 1 | 2 | 3;
+  pontuacaoVisitante: 0 | 1 | 2 | 3;
+}
 
 @Injectable()
 export class PartidaService {
@@ -51,8 +61,8 @@ export class PartidaService {
     private readonly ligaService: LigaService,
     private readonly connection: Connection,
     private readonly equipesPartidaRepository: EquipePartidaRepository,
-    private readonly pontuacaoViewRepositor: PontuacaoViewRepository,
-  ) { }
+    private readonly pontuacaoViewRepository: PontuacaoViewRepository,
+  ) {}
 
   async listaPartidasOrdenadas(
     requisicao: ListaPartidasDto,
@@ -114,12 +124,14 @@ export class PartidaService {
     );
 
     if (requisicao.desistente) {
-      return this.registraDesistenciaService
-        .executar({
-          partida,
-          desistente: requisicao.desistente,
-        })
-        .then((resultado) => new PartidaRespostaDto(resultado.partida));
+      await this.registraDesistenciaService.executar({
+        partida,
+        desistente: requisicao.desistente,
+      });
+
+      return this.deveEncontrarEntidade(partida.id).then(
+        (resultado) => new PartidaRespostaDto(resultado),
+      );
     }
 
     const arbitrosPorTipo = groupBy(
@@ -207,8 +219,10 @@ export class PartidaService {
     return new PartidaRespostaDto(partidaAtualizada);
   }
 
-  private async deveEncontrarEntidade(id: string) {
-    const partida = await this.partidaRepository.encontraPartidaCompleta(id);
+  private async deveEncontrarEntidade(id: string, manager?: EntityManager) {
+    const repository =
+      manager?.getCustomRepository(PartidaRepository) ?? this.partidaRepository;
+    const partida = await repository.encontraPartidaCompleta(id);
     if (!partida) {
       throw new NotFoundException(`Partida ${id} não encontrada`);
     }
@@ -254,201 +268,121 @@ export class PartidaService {
 
   async cadastrarResultado(
     id: string,
-    requisicao: CadastrarResultadoPartidaDto,
-  ): Promise<CadastrarResultadoPartidaRespostaDTO> {
+    { setsMandante, setsVisitante }: CadastrarResultadoPartidaDto,
+  ) {
+    const partida = await this.deveEncontrarEntidade(id);
 
-    const { equipeA, equipeB } = requisicao;
-
-
-
-    const partida = await this.partidaRepository.findOne({ where: { id } })
-
-    if (!partida) {
-      throw new UnprocessableEntityException(
-        `Não existe partida cadastrada com id: ${id}`,
-      );
-    }
-
-    if (
-      partida?.status !== StatusPartida.PARTICIPANTES_CADASTRADOS
-    ) {
+    if (partida.status !== StatusPartida.PARTICIPANTES_CADASTRADOS) {
       throw new UnprocessableEntityException(
         `A partida precisa está com status : '${StatusPartida.PARTICIPANTES_CADASTRADOS}' para cadastrar um resultado`,
       );
     }
 
     if (
-      equipeA.wo === true && equipeB.wo === true
+      setsMandante.length !== setsVisitante.length &&
+      setsMandante.some(
+        (_, index) => setsMandante[index] === setsVisitante[index],
+      )
     ) {
-
       throw new UnprocessableEntityException(
-        `WO pode ser atribuido em apenas um equipe`,
+        `O array de pontosNosSets precisa ter o mesmo tamanho e não pode ter valores iguais na mesma posição`,
       );
     }
 
-    if (
-      equipeA.pontos_nos_sets.length !== equipeB.pontos_nos_sets.length
-    ) {
-
-      throw new UnprocessableEntityException(
-        `O array de pontos_nos_sets precisa ter o mesmo tamanho `,
+    const { mandante: setsGanhosMandante, visitante: setsGanhosVisitante } =
+      setsMandante.reduce(
+        (prev, current, index) => {
+          const mandanteVenceu = setsMandante[index] > setsVisitante[index];
+          return {
+            mandante: prev.mandante + (mandanteVenceu ? 1 : 0),
+            visitante: prev.visitante + (mandanteVenceu ? 0 : 1),
+          };
+        },
+        { mandante: 0, visitante: 0 },
       );
-    }
 
-
-    const equipePartidaA = await this.equipesPartidaRepository.findOne({
-      where: {
-        idEquipe: equipeA.idEquipe
-      }
-    })
-
-    if (!equipePartidaA) {
-      throw new UnprocessableEntityException(
-        `Não existe equipe cadastrada com id: ${equipeA.idEquipe}, referente a equipeA `,
-      );
-    }
-
-    const equipePartidaB = await this.equipesPartidaRepository.findOne({
-      where: {
-        idEquipe: equipeB.idEquipe
-      }
-    })
-
-    if (!equipePartidaB) {
-      throw new UnprocessableEntityException(
-        `Não existe equipe cadastrada com id: ${equipeB.idEquipe}, referente a equipeB `,
-      );
-    }
-
-    let pontuacaoEquipeA = 0;
-    let pontuacaoEquipeB = 0;
-    let setsganhosA = 0;
-    let setsganhosB = 0;
-
-
-    // verificar WO 
-    if (equipeA.wo === true) {
-      pontuacaoEquipeA = PontosPartida.WO;
-      pontuacaoEquipeB = PontosPartida.VITORIAPERFEITA;
-      equipePartidaA.pontuacao = pontuacaoEquipeA;
-      equipePartidaB.pontuacao = pontuacaoEquipeB;
-
-      await this.equipesPartidaRepository.save(equipePartidaA);
-      await this.equipesPartidaRepository.save(equipePartidaB);
-
-      partida.idGanhadora = equipePartidaB.id
-      partida.status = StatusPartida.CONCLUIDA;
-      await this.partidaRepository.save(partida);
-
-      await this.pontuacaoViewRepositor.refreshMaterializedView();
-
-      return new CadastrarResultadoPartidaRespostaDTO(equipePartidaA, equipePartidaB)
-
-    }
-
-    if (equipeB.wo === true) {
-      pontuacaoEquipeB = PontosPartida.WO;
-      pontuacaoEquipeA = PontosPartida.VITORIAPERFEITA;
-      equipePartidaA.pontuacao = pontuacaoEquipeA;
-      equipePartidaB.pontuacao = pontuacaoEquipeB;
-
-      await this.equipesPartidaRepository.save(equipePartidaA);
-      await this.equipesPartidaRepository.save(equipePartidaB);
-
-      partida.idGanhadora = equipePartidaA.id
-      partida.status = StatusPartida.CONCLUIDA;
-      await this.partidaRepository.save(partida);
-
-      await this.pontuacaoViewRepositor.refreshMaterializedView();
-
-      return new CadastrarResultadoPartidaRespostaDTO(equipePartidaA, equipePartidaB)
-
-    }
-
-    const pontoNoSetA: IPontoNoSet[] = []
-    const pontoNoSetB: IPontoNoSet[] = []
-
-    const sets_disputados = equipeA.pontos_nos_sets.length
-    // verificar  sets ganhos 
-    for (let i = 0; i < sets_disputados; i++) {
-      equipeA.pontos_nos_sets[i] > equipeB.pontos_nos_sets[i] ? setsganhosA += 1 : setsganhosB += 1;
-      pontoNoSetA.push({ quantidade: equipeA.pontos_nos_sets[i] })
-      pontoNoSetB.push({ quantidade: equipeB.pontos_nos_sets[i] })
-    }
-
-
-
-    if (
-      (setsganhosA !== 3 && setsganhosB !== 3) || (setsganhosA > 3 && setsganhosB > 3)
-    ) {
-
+    if (setsGanhosMandante + setsGanhosVisitante > 5) {
       throw new UnprocessableEntityException(
         ` Para haver ganhador precisa ter pelo menos uma equipe com 3 sets vencidos
         além de não poder ter um equipe com mais de 3 sets ganhos`,
       );
     }
 
+    const { pontuacaoMandante, pontuacaoVisitante } =
+      this.determinaPontuacaoPorNumeroDeSets({
+        setsGanhosMandante,
+        setsGanhosVisitante,
+      });
 
-    if (setsganhosA === 3 && (setsganhosB === 0 || setsganhosB === 1)) {
-      pontuacaoEquipeA = PontosPartida.VITORIAPERFEITA;
-      pontuacaoEquipeB = PontosPartida.DERROTAFEIA;
-    }
-
-    if (setsganhosB === 3 && (setsganhosA === 0 || setsganhosA === 1)) {
-      pontuacaoEquipeB = PontosPartida.VITORIAPERFEITA;
-      pontuacaoEquipeA = PontosPartida.DERROTAFEIA;
-    }
-
-    if (setsganhosA === 3 && setsganhosB === 2) {
-      pontuacaoEquipeA = PontosPartida.VITORIASIMPLES;
-      pontuacaoEquipeB = PontosPartida.DERROTASIMPLES
-    }
-
-    if (setsganhosB === 3 && setsganhosA === 2) {
-      pontuacaoEquipeB = PontosPartida.VITORIASIMPLES;
-      pontuacaoEquipeA = PontosPartida.DERROTASIMPLES;
-    }
-
-    // verificar vencedor 
-    let ganhouA = false
-    let ganhouB = false
-
-    setsganhosA > setsganhosB ? ganhouA = true : ganhouB = true;
-
-
-
-
-    equipePartidaA.idPartida = id;
-    equipePartidaA.pontuacao = pontuacaoEquipeA;
-    equipePartidaA.setsGanhos = setsganhosA;
-    equipePartidaA.pontosNosSets = equipePartidaA.pontosNosSets.concat(pontoNoSetA)
-    equipePartidaA.ganhou = ganhouA;
-    equipePartidaA.setsDisputados = sets_disputados;
-    equipePartidaA.resultadoCadastradoEm = new Date()
-
-
-    equipePartidaB.idPartida = id;
-    equipePartidaB.pontuacao = pontuacaoEquipeB;
-    equipePartidaB.setsGanhos = setsganhosB;
-    equipePartidaB.pontosNosSets = equipePartidaB.pontosNosSets.concat(pontoNoSetB)
-    equipePartidaB.ganhou = ganhouB;
-    equipePartidaB.setsDisputados = sets_disputados;
-    equipePartidaB.resultadoCadastradoEm = new Date()
-
-    await this.equipesPartidaRepository.save(equipePartidaA);
-    await this.equipesPartidaRepository.save(equipePartidaB);
-
-    setsganhosA > setsganhosB ? partida.idGanhadora = equipePartidaA.id : partida.idGanhadora = equipePartidaB.id;
+    partida.idGanhadora =
+      pontuacaoMandante > pontuacaoVisitante
+        ? partida.idMandante
+        : partida.idVisitante;
     partida.status = StatusPartida.CONCLUIDA;
-    await this.partidaRepository.save(partida);
 
-    await this.pontuacaoViewRepositor.refreshMaterializedView();
+    partida.mandante.pontuacao = pontuacaoMandante;
+    partida.mandante.setsGanhos = setsGanhosMandante;
+    partida.mandante.pontosNosSets =
+      EquipePartida.unmarshallPontosDoSet(setsMandante);
+    partida.mandante.ganhou = partida.idGanhadora === partida.idMandante;
 
+    partida.visitante.pontuacao = pontuacaoVisitante;
+    partida.visitante.setsGanhos = setsGanhosVisitante;
+    partida.visitante.pontosNosSets =
+      EquipePartida.unmarshallPontosDoSet(setsVisitante);
+    partida.visitante.ganhou = partida.idGanhadora === partida.idVisitante;
 
+    partida.mandante.resultadoCadastradoEm =
+      partida.visitante.resultadoCadastradoEm = new Date();
 
-    return new CadastrarResultadoPartidaRespostaDTO(equipePartidaA, equipePartidaB)
+    const { partida: partidaAtualizada } = await this.connection.transaction(
+      async (manager) => {
+        const [mandante, visitante] = await manager.save([
+          partida.mandante,
+          partida.visitante,
+        ]);
+
+        await manager.save(partida);
+
+        return {
+          mandante,
+          visitante,
+          partida: await this.deveEncontrarEntidade(partida.id, manager),
+        };
+      },
+    );
+
+    await this.pontuacaoViewRepository.refreshMaterializedView();
+
+    return new PartidaRespostaDto(partidaAtualizada);
   }
 
+  private determinaPontuacaoPorNumeroDeSets({
+    setsGanhosMandante,
+    setsGanhosVisitante,
+  }: IDeterminaPontuacaoNumeroDeSets): IDeterminaPontuacaoNumeroDeSetsResultado {
+    const mandanteVenceu = setsGanhosMandante > setsGanhosVisitante;
 
+    if (setsGanhosMandante + setsGanhosVisitante < 5) {
+      return mandanteVenceu
+        ? {
+            pontuacaoMandante: PontosPartida.VITORIA_PERFEITA,
+            pontuacaoVisitante: PontosPartida.DERROTA_FEIA,
+          }
+        : {
+            pontuacaoMandante: PontosPartida.DERROTA_FEIA,
+            pontuacaoVisitante: PontosPartida.VITORIA_PERFEITA,
+          };
+    }
 
+    return mandanteVenceu
+      ? {
+          pontuacaoMandante: PontosPartida.VITORIA_SIMPLES,
+          pontuacaoVisitante: PontosPartida.DERROTA_SIMPLES,
+        }
+      : {
+          pontuacaoMandante: PontosPartida.DERROTA_SIMPLES,
+          pontuacaoVisitante: PontosPartida.VITORIA_SIMPLES,
+        };
+  }
 }

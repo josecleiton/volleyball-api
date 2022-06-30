@@ -7,9 +7,7 @@ import { Partida } from './partida.entity';
 
 @Entity('equipes_partidas')
 export class EquipePartida extends EntidadeBase {
-  static unmarshallPontosDoSet(
-    pontos: [number, number, number],
-  ): IPontoNoSet[] {
+  static unmarshallPontosDoSet(pontos: number[]): IPontoNoSet[] {
     return pontos.map((quantidade) => ({ quantidade }));
   }
 
@@ -54,10 +52,6 @@ export class EquipePartida extends EntidadeBase {
 
   public get setsDisputados(): number {
     return this._setsDisputados;
-  }
-
-  public set setsDisputados(v: number){
-   this._setsDisputados = v;
   }
 
   @Column({ nullable: true })
