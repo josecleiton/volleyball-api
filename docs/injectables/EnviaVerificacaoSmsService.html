@@ -69,6 +69,22 @@
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#ttl" >ttl</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -170,8 +186,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="10"
-                            class="link-to-prism">src/modules/sms/services/envia-veritifcacao-sms.service.ts:10</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="12"
+                            class="link-to-prism">src/modules/sms/services/envia-veritifcacao-sms.service.ts:12</a></div>
                 </td>
             </tr>
 
@@ -220,6 +236,45 @@
         </tbody>
     </table>
 </section>
+            <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ttl"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>ttl</b></span>
+                        <a href="#ttl"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>600</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/modules/sms/services/envia-veritifcacao-sms.service.ts:10</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
 
     </div>
 
@@ -234,18 +289,24 @@ import { MESSAGEBIRD } from &#x27;../sms.constant&#x27;;
 export class EnviaVerificacaoSmsService {
   constructor(@Inject(MESSAGEBIRD) private readonly messageBird: MessageBird) {}
 
+  private readonly ttl &#x3D; 600;
+
   async executa(telefone: string): Promise&lt;IEnviaVerificacaoSmsResposta&gt; {
     return new Promise((resolve, reject) &#x3D;&gt;
-      this.messageBird.verify.create(telefone, (err, verify) &#x3D;&gt; {
-        if (err || !verify) {
-          return reject(err);
-        }
+      this.messageBird.verify.create(
+        telefone,
+        { timeout: this.ttl },
+        (err, verify) &#x3D;&gt; {
+          if (err || !verify) {
+            return reject(err);
+          }
 
-        return resolve({
-          id: verify.id,
-          expiraEm: new Date(verify.validUntilDatetime),
-        });
-      }),
+          return resolve({
+            id: verify.id,
+            expiraEm: new Date(verify.validUntilDatetime),
+          });
+        },
+      ),
     );
   }
 }

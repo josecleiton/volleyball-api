@@ -221,7 +221,7 @@ export class VotoDaGaleraRepository extends Repository&lt;VotoDaGalera&gt; {
       .andWhere(&#x27;e.idLiga &#x3D; :idLiga&#x27;, { idLiga })
       .limit(1);
 
-    return qb.getOne().then((x) &#x3D;&gt; Boolean(x));
+    return qb.getRawOne().then((x: { id: string } | undefined) &#x3D;&gt; Boolean(x));
   }
 }
 </code></pre>

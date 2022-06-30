@@ -279,6 +279,11 @@ export class ListaPartidasDto {
   limite? &#x3D; Liga.quantidadeDePartidasNaClassificacao;
 }
 
+export interface ListaPartidasRepositoryDto {
+  idLiga: string;
+  tipoRodada?: TipoRodada;
+}
+
 export interface IBuscaQuantidadePartidasPorTipoEStatus {
   idLiga: string;
   tiposDeRodada: TipoRodada[];
@@ -332,6 +337,8 @@ export class PartidaRespostaDto {
     this.finalizada &#x3D; partida.finalizada;
   }
 }
+
+
 </code></pre>
     </div>
 </div>

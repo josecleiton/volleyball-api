@@ -126,7 +126,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @IsNotEmpty()<br />@IsString()<br />@Length(10)<br />
+                            @IsNotEmpty()<br />@IsString()<br />@Length(5)<br />
                         </code>
                     </td>
                 </tr>
@@ -171,7 +171,7 @@ export class IniciarVotoDto {
 export class ConfirmarVotoDto {
   @IsNotEmpty()
   @IsString()
-  @Length(10)
+  @Length(5)
   token!: string;
 }
 

@@ -78,6 +78,9 @@
                                 <a href="#aces" >aces</a>
                             </li>
                             <li>
+                                <a href="#assistencias" >assistencias</a>
+                            </li>
+                            <li>
                                 <a href="#ataques" >ataques</a>
                             </li>
                             <li>
@@ -88,6 +91,9 @@
                             </li>
                             <li>
                                 <a href="#idAtletaEscalado" >idAtletaEscalado</a>
+                            </li>
+                            <li>
+                                <a href="#levantamentos" >levantamentos</a>
                             </li>
                             <li>
                                 <a href="#pontos" >pontos</a>
@@ -145,6 +151,41 @@
                     <tr>
                         <td class="col-md-4">
                                 <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/modules/estatistica/entities/fundamento-atleta.entity.ts:18</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="assistencias"></a>
+                    <span class="name">
+                        <span ><b>assistencias</b></span>
+                        <a href="#assistencias"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Column({type: &#x27;int&#x27;, default: 0})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/modules/estatistica/entities/fundamento-atleta.entity.ts:33</a></div>
                         </td>
                     </tr>
 
@@ -214,7 +255,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/modules/estatistica/entities/fundamento-atleta.entity.ts:43</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/modules/estatistica/entities/fundamento-atleta.entity.ts:55</a></div>
                         </td>
                     </tr>
 
@@ -285,6 +326,41 @@
                     <tr>
                         <td class="col-md-4">
                                 <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/modules/estatistica/entities/fundamento-atleta.entity.ts:9</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="levantamentos"></a>
+                    <span class="name">
+                        <span ><b>levantamentos</b></span>
+                        <a href="#levantamentos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Column({type: &#x27;int&#x27;, default: 0})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/modules/estatistica/entities/fundamento-atleta.entity.ts:30</a></div>
                         </td>
                     </tr>
 
@@ -429,6 +505,12 @@ export class FundamentoAtleta extends EntidadeBase {
   @Column({ type: &#x27;int&#x27;, default: 0 })
   pontos!: number;
 
+  @Column({ type: &#x27;int&#x27;, default: 0 })
+  levantamentos!: number;
+
+  @Column({ type: &#x27;int&#x27;, default: 0 })
+  assistencias!: number;
+
   public get saquesEfetivos(): number {
     if (!this.saques) return 0;
 
@@ -439,6 +521,12 @@ export class FundamentoAtleta extends EntidadeBase {
     if (!this.ataques) return 0;
 
     return this.pontos / this.ataques;
+  }
+
+  public get levantamentosEfetivos(): number {
+    if (!this.levantamentos) return 0;
+
+    return this.assistencias / this.levantamentos;
   }
 
   @ManyToOne(&#x27;AtletaEscalado&#x27;, { onDelete: &#x27;CASCADE&#x27; })

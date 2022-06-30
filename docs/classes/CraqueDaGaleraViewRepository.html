@@ -389,7 +389,7 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { MaterializedViewRepository } from &#x27;src/modules/core/repositories/materialized-view.repository&#x27;;
 import { EntityRepository } from &#x27;typeorm&#x27;;
-import { CraqueDaGaleraView } from &#x27;../entities/craque-da-galera.entity&#x27;;
+import { CraqueDaGaleraView } from &#x27;../entities/craque-da-galera-view.entity&#x27;;
 import { nomeCraqueDaGaleraView } from &#x27;../estatistica.constants&#x27;;
 
 @EntityRepository(CraqueDaGaleraView)
@@ -401,6 +401,7 @@ export class CraqueDaGaleraViewRepository extends MaterializedViewRepository&lt;
     const qb &#x3D; this.createQueryBuilder(&#x27;cg&#x27;);
 
     qb.innerJoinAndSelect(&#x27;cg.atleta&#x27;, &#x27;a&#x27;)
+      .innerJoinAndSelect(&#x27;a.pessoa&#x27;, &#x27;pessoa&#x27;)
       .innerJoinAndSelect(&#x27;a.equipe&#x27;, &#x27;e&#x27;)
       .where(&#x27;e.idLiga &#x3D; :idLiga&#x27;, { idLiga })
       .orderBy(&#x27;cg.quantidadeVotos&#x27;, &#x27;DESC&#x27;)

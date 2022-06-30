@@ -69,22 +69,6 @@
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Properties</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
-                            <li>
-                                    <span class="modifier">Static</span>
-                                    <span class="modifier">Readonly</span>
-                                <a href="#pontuacaoDoGanhador" >pontuacaoDoGanhador</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -121,7 +105,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/modules/pontuacao/services/registra-desistencia.service.ts:11</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/modules/pontuacao/services/registra-desistencia.service.ts:12</a></div>
                             </td>
                         </tr>
 
@@ -198,8 +182,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="16"
-                            class="link-to-prism">src/modules/pontuacao/services/registra-desistencia.service.ts:16</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="17"
+                            class="link-to-prism">src/modules/pontuacao/services/registra-desistencia.service.ts:17</a></div>
                 </td>
             </tr>
 
@@ -247,45 +231,6 @@
         </tbody>
     </table>
 </section>
-            <section>
-    
-    <h3 id="inputs">
-        Properties
-    </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="pontuacaoDoGanhador"></a>
-                    <span class="name">
-                            <span class="modifier">Static</span>
-                            <span class="modifier">Readonly</span>
-                        <span ><b>pontuacaoDoGanhador</b></span>
-                        <a href="#pontuacaoDoGanhador"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>2</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/modules/pontuacao/services/registra-desistencia.service.ts:11</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-</section>
 
     </div>
 
@@ -294,14 +239,15 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@nestjs/common&#x27;;
 import { EscolhaDeDesistencia } from &#x27;src/modules/partida/dto/partida.dto&#x27;;
 import { EquipePartida } from &#x27;src/modules/partida/entities/equipe-partida.entity&#x27;;
+import { PontosPartida } from &#x27;src/modules/partida/enums/pontos-partida.enum&#x27;;
 import { StatusPartida } from &#x27;src/modules/partida/enums/status-partida.enum&#x27;;
+import { PartidaService } from &#x27;src/modules/partida/services&#x27;;
 import { Connection } from &#x27;typeorm&#x27;;
 import { IRegistraDesistenciaDto } from &#x27;../dtos/desistencia.dto&#x27;;
 import { PontuacaoViewRepository } from &#x27;../repositories/pontuacao-view.repository&#x27;;
 
 @Injectable()
 export class RegistraDesistenciaService {
-  static readonly pontuacaoDoGanhador &#x3D; 2;
   constructor(
     private readonly pontuacaoRepository: PontuacaoViewRepository,
     private readonly connection: Connection,
@@ -322,12 +268,12 @@ export class RegistraDesistenciaService {
     partida.ganhadora &#x3D; ganhadora;
 
     ganhadora.pontosNosSets &#x3D; EquipePartida.unmarshallPontosDoSet([25, 25, 25]);
-    ganhadora.pontuacao &#x3D; RegistraDesistenciaService.pontuacaoDoGanhador;
+    ganhadora.pontuacao &#x3D; PontosPartida.VITORIA_PERFEITA;
     ganhadora.setsGanhos &#x3D; ganhadora.pontosNosSets.length;
     ganhadora.ganhou &#x3D; true;
 
     perdedora.pontosNosSets &#x3D; EquipePartida.unmarshallPontosDoSet([0, 0, 0]);
-    perdedora.pontuacao &#x3D; -ganhadora.pontuacao;
+    perdedora.pontuacao &#x3D; PontosPartida.WO;
 
     partida.mandante.resultadoCadastradoEm &#x3D;
       partida.visitante.resultadoCadastradoEm &#x3D; new Date();

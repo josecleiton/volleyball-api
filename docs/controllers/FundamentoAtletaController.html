@@ -93,6 +93,10 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#listaFundamentosNaLiga" >listaFundamentosNaLiga</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#removeFundamentoAtleta" >removeFundamentoAtleta</a>
                             </li>
                         </ul>
@@ -141,8 +145,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="22"
-                            class="link-to-prism">src/modules/estatistica/controllers/fundamento-atleta.controller.ts:22</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="27"
+                            class="link-to-prism">src/modules/estatistica/controllers/fundamento-atleta.controller.ts:27</a></div>
                 </td>
             </tr>
 
@@ -219,8 +223,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="27"
-                            class="link-to-prism">src/modules/estatistica/controllers/fundamento-atleta.controller.ts:27</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="39"
+                            class="link-to-prism">src/modules/estatistica/controllers/fundamento-atleta.controller.ts:39</a></div>
                 </td>
             </tr>
 
@@ -244,6 +248,84 @@
                                     <td>id</td>
                                     <td>
                                                 <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>unknown</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="listaFundamentosNaLiga"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>listaFundamentosNaLiga</b></span>
+                        <a href="#listaFundamentosNaLiga"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>listaFundamentosNaLiga(requisicao: <a href="../classes/ListaFundamentoNaLigaDto.html" target="_self">ListaFundamentoNaLigaDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;geral&#x27;)<br />@Throttle(3, 60)<br />@SkipThrottle(undefined)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="34"
+                            class="link-to-prism">src/modules/estatistica/controllers/fundamento-atleta.controller.ts:34</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>requisicao</td>
+                                    <td>
+                                                <code><a href="../classes/ListaFundamentoNaLigaDto.html" target="_self" >ListaFundamentoNaLigaDto</a></code>
                                     </td>
 
                                     <td>
@@ -297,8 +379,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="32"
-                            class="link-to-prism">src/modules/estatistica/controllers/fundamento-atleta.controller.ts:32</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="44"
+                            class="link-to-prism">src/modules/estatistica/controllers/fundamento-atleta.controller.ts:44</a></div>
                 </td>
             </tr>
 
@@ -358,9 +440,14 @@
   Param,
   ParseUUIDPipe,
   Post,
+  Query,
 } from &#x27;@nestjs/common&#x27;;
 import { ApiTags } from &#x27;@nestjs/swagger&#x27;;
-import { CriaFundamentoAtletaDto } from &#x27;../dto/fundamento-atleta.dto&#x27;;
+import { SkipThrottle, Throttle } from &#x27;@nestjs/throttler&#x27;;
+import {
+  CriaFundamentoAtletaDto,
+  ListaFundamentoNaLigaDto,
+} from &#x27;../dto/fundamento-atleta.dto&#x27;;
 import { FundamentoAtletaService } from &#x27;../services/fundamento-atleta.service&#x27;;
 
 @Controller(&#x27;estatistica/atleta&#x27;)
@@ -373,6 +460,13 @@ export class FundamentoAtletaController {
   @Post()
   async criaFundamentoAtleta(@Body() requisicao: CriaFundamentoAtletaDto) {
     return this.fundamentoAtletaService.criaFundamento(requisicao);
+  }
+
+  @Get(&#x27;geral&#x27;)
+  @Throttle(3, 60)
+  @SkipThrottle(false)
+  async listaFundamentosNaLiga(@Query() requisicao: ListaFundamentoNaLigaDto) {
+    return this.fundamentoAtletaService.listaFundamentoNaLiga(requisicao);
   }
 
   @Get(&#x27;geral/:id&#x27;)

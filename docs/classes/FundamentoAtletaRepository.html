@@ -93,6 +93,10 @@
                                     <span class="modifier">Async</span>
                                 <a href="#listaFundamentoDeAtleta" >listaFundamentoDeAtleta</a>
                             </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#listaFundamentosNaLiga" >listaFundamentosNaLiga</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -134,8 +138,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="6"
-                            class="link-to-prism">src/modules/estatistica/repositories/fundamento-atleta.repository.ts:6</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="10"
+                            class="link-to-prism">src/modules/estatistica/repositories/fundamento-atleta.repository.ts:10</a></div>
                 </td>
             </tr>
 
@@ -183,6 +187,76 @@
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="listaFundamentosNaLiga"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>listaFundamentosNaLiga</b></span>
+                        <a href="#listaFundamentosNaLiga"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>listaFundamentosNaLiga(undefined: <a href="../classes/ListaFundamentoNaLigaDto.html" target="_self">ListaFundamentoNaLigaDto</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="23"
+                            class="link-to-prism">src/modules/estatistica/repositories/fundamento-atleta.repository.ts:23</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                                <code><a href="../classes/ListaFundamentoNaLigaDto.html" target="_self" >ListaFundamentoNaLigaDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>unknown</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>
 
 
@@ -194,6 +268,10 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { EntityRepository, Repository } from &#x27;typeorm&#x27;;
+import {
+  IFundamentoAtletaLiga,
+  ListaFundamentoNaLigaDto,
+} from &#x27;../dto/fundamento-atleta.dto&#x27;;
 import { FundamentoAtleta } from &#x27;../entities/fundamento-atleta.entity&#x27;;
 
 @EntityRepository(FundamentoAtleta)
@@ -209,6 +287,39 @@ export class FundamentoAtletaRepository extends Repository&lt;FundamentoAtleta&g
       .orderBy(&#x27;f.dataCriacao&#x27;, &#x27;ASC&#x27;);
 
     return qb.getMany();
+  }
+
+  async listaFundamentosNaLiga({ idLiga }: ListaFundamentoNaLigaDto) {
+    const qb &#x3D; this.createQueryBuilder(&#x27;f&#x27;);
+
+    qb.select(&#x27;SUM(f.bloqueios)&#x27;, &#x27;bloqueios&#x27;)
+      .addSelect(&#x27;SUM(f.recepcoes)&#x27;, &#x27;recepcoes&#x27;)
+      .addSelect(&#x27;SUM(f.aces)&#x27;, &#x27;aces&#x27;)
+      .addSelect(&#x27;SUM(f.saques)&#x27;, &#x27;saques&#x27;)
+      .addSelect(&#x27;SUM(ataques)&#x27;, &#x27;ataques&#x27;)
+      .addSelect(&#x27;SUM(pontos)&#x27;, &#x27;pontos&#x27;)
+      .addSelect(&#x27;SUM(levantamentos)&#x27;, &#x27;levantamentos&#x27;)
+      .addSelect(&#x27;SUM(assistencias)&#x27;, &#x27;assistencias&#x27;)
+      .addSelect(&#x27;a.id&#x27;, &#x27;idAtleta&#x27;)
+      .addSelect(&#x27;a.numero&#x27;, &#x27;numeroAtleta&#x27;)
+      .addSelect(&#x27;p.nome&#x27;, &#x27;nomeAtleta&#x27;)
+      .addSelect(&#x27;e.id&#x27;, &#x27;idEquipe&#x27;)
+      .addSelect(&#x27;e.nome&#x27;, &#x27;nomeEquipe&#x27;)
+      .innerJoin(&#x27;f.atleta&#x27;, &#x27;ae&#x27;)
+      .innerJoin(&#x27;ae.participacao&#x27;, &#x27;ep&#x27;)
+      .innerJoin(&#x27;ae.atleta&#x27;, &#x27;a&#x27;)
+      .innerJoin(&#x27;a.pessoa&#x27;, &#x27;p&#x27;)
+      .innerJoin(&#x27;a.equipe&#x27;, &#x27;e&#x27;)
+      .where(&#x27;e.idLiga &#x3D; :idLiga&#x27;, { idLiga })
+      .groupBy(&#x27;a.id&#x27;)
+      .addGroupBy(&#x27;p.id&#x27;)
+      .addGroupBy(&#x27;e.id&#x27;)
+      .addGroupBy(&#x27;a.numero&#x27;)
+      .addGroupBy(&#x27;p.nome&#x27;)
+      .addGroupBy(&#x27;e.nome&#x27;)
+      .orderBy(&#x27;COUNT(f.id)&#x27;, &#x27;DESC&#x27;);
+
+    return qb.getRawMany&lt;IFundamentoAtletaLiga&gt;();
   }
 }
 </code></pre>

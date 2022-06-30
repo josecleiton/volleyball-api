@@ -222,8 +222,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="108"
-                            class="link-to-prism">src/modules/partida/repositories/partida.repository.ts:108</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="104"
+                            class="link-to-prism">src/modules/partida/repositories/partida.repository.ts:104</a></div>
                 </td>
             </tr>
 
@@ -357,7 +357,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>listaPartidasOrdenadas(requisicao: <a href="../classes/ListaPartidasDto.html" target="_self">ListaPartidasDto</a>)</code>
+                    <code>listaPartidasOrdenadas(requisicao: <a href="../interfaces/ListaPartidasRepositoryDto.html" target="_self">ListaPartidasRepositoryDto</a>)</code>
                 </td>
             </tr>
 
@@ -388,7 +388,7 @@
                                 <tr>
                                     <td>requisicao</td>
                                     <td>
-                                                <code><a href="../classes/ListaPartidasDto.html" target="_self" >ListaPartidasDto</a></code>
+                                                <code><a href="../interfaces/ListaPartidasRepositoryDto.html" target="_self" >ListaPartidasRepositoryDto</a></code>
                                     </td>
 
                                     <td>
@@ -435,8 +435,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="90"
-                            class="link-to-prism">src/modules/partida/repositories/partida.repository.ts:90</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="86"
+                            class="link-to-prism">src/modules/partida/repositories/partida.repository.ts:86</a></div>
                 </td>
             </tr>
 
@@ -505,8 +505,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="66"
-                            class="link-to-prism">src/modules/partida/repositories/partida.repository.ts:66</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="62"
+                            class="link-to-prism">src/modules/partida/repositories/partida.repository.ts:62</a></div>
                 </td>
             </tr>
 
@@ -586,7 +586,7 @@ import {
 import { IBuscarConfrontoEquipesEmpatadas } from &#x27;../dto/partida-pontuacao.dto&#x27;;
 import {
   IBuscaQuantidadePartidasPorTipoEStatus,
-  ListaPartidasDto,
+  ListaPartidasRepositoryDto,
 } from &#x27;../dto/partida.dto&#x27;;
 import { Partida } from &#x27;../entities/partida.entity&#x27;;
 import { StatusPartida } from &#x27;../enums/status-partida.enum&#x27;;
@@ -618,11 +618,11 @@ export class PartidaRepository extends Repository&lt;Partida&gt; {
     return qb.getOne();
   }
 
-  async listaPartidasOrdenadas(requisicao: ListaPartidasDto) {
+  async listaPartidasOrdenadas(requisicao: ListaPartidasRepositoryDto) {
     const qb &#x3D; this.createQueryBuilder(&#x27;partidas&#x27;);
 
     this.aplicaRelacoesDeUmaPartidaCompleta(qb).where(
-      &#x27;equipesVisitantes.idLiga &#x3D; :idLiga AND equipesMandantes.idLiga &#x3D; :idLiga&#x27;,
+      &#x27;equipesVisitantes.idLiga &#x3D; :idLiga&#x27;,
       { idLiga: requisicao.idLiga },
     );
 
@@ -630,10 +630,6 @@ export class PartidaRepository extends Repository&lt;Partida&gt; {
       qb.andWhere(&#x27;partidas.tipoDaRodada &#x3D; :tipoPartida&#x27;, {
         tipoPartida: requisicao.tipoRodada,
       });
-    }
-
-    if (requisicao.limite) {
-      qb.limit(requisicao.limite);
     }
 
     qb.orderBy(&#x27;partidas.dataCriacao&#x27;, &#x27;ASC&#x27;);

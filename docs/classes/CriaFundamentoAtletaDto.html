@@ -160,7 +160,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/modules/estatistica/dto/fundamento-atleta.dto.ts:24</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/modules/estatistica/dto/fundamento-atleta.dto.ts:25</a></div>
                         </td>
                     </tr>
 
@@ -196,7 +196,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/modules/estatistica/dto/fundamento-atleta.dto.ts:34</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/modules/estatistica/dto/fundamento-atleta.dto.ts:35</a></div>
                         </td>
                     </tr>
 
@@ -232,7 +232,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/modules/estatistica/dto/fundamento-atleta.dto.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/modules/estatistica/dto/fundamento-atleta.dto.ts:15</a></div>
                         </td>
                     </tr>
 
@@ -267,7 +267,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/modules/estatistica/dto/fundamento-atleta.dto.ts:9</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/modules/estatistica/dto/fundamento-atleta.dto.ts:10</a></div>
                         </td>
                     </tr>
 
@@ -302,7 +302,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="6" class="link-to-prism">src/modules/estatistica/dto/fundamento-atleta.dto.ts:6</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/modules/estatistica/dto/fundamento-atleta.dto.ts:7</a></div>
                         </td>
                     </tr>
 
@@ -338,7 +338,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/modules/estatistica/dto/fundamento-atleta.dto.ts:39</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/modules/estatistica/dto/fundamento-atleta.dto.ts:40</a></div>
                         </td>
                     </tr>
 
@@ -374,7 +374,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/modules/estatistica/dto/fundamento-atleta.dto.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/modules/estatistica/dto/fundamento-atleta.dto.ts:20</a></div>
                         </td>
                     </tr>
 
@@ -410,7 +410,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/modules/estatistica/dto/fundamento-atleta.dto.ts:29</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/modules/estatistica/dto/fundamento-atleta.dto.ts:30</a></div>
                         </td>
                     </tr>
 
@@ -429,7 +429,8 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { IsOptional, IsUUID, Max, Min } from &#x27;class-validator&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Expose } from &#x27;class-transformer&#x27;;
+import { IsOptional, IsUUID, Max, Min } from &#x27;class-validator&#x27;;
 import { FundamentoAtleta } from &#x27;../entities/fundamento-atleta.entity&#x27;;
 
 export class CriaFundamentoAtletaDto {
@@ -470,6 +471,27 @@ export class CriaFundamentoAtletaDto {
   pontos?: number;
 }
 
+export class ListaFundamentoNaLigaDto {
+  @IsUUID()
+  idLiga!: string;
+}
+
+export interface IFundamentoAtletaLiga {
+  bloqueios: string;
+  recepcoes: string;
+  aces: string;
+  saques: string;
+  ataques: string;
+  pontos: string;
+  levantamentos: string;
+  assistencias: string;
+  idAtleta: string;
+  numeroAtleta: string;
+  nomeAtleta: string;
+  idEquipe: string;
+  nomeEquipe: string;
+}
+
 export class FundamentoAtletaRespostaDto {
   id: string;
   idAtletaPartida: string;
@@ -494,6 +516,56 @@ export class FundamentoAtletaRespostaDto {
     this.pontos &#x3D; fundamento.pontos;
     this.saquesEfetivos &#x3D; fundamento.saquesEfetivos;
     this.ataquesEfetivos &#x3D; fundamento.ataquesEfetivos;
+  }
+}
+
+export class FundamentoAgregadoAtletaRespostaDto {
+  idAtleta: string;
+  bloqueios: number;
+  recepcoes: number;
+  aces: number;
+  saques: number;
+  ataques: number;
+  pontos: number;
+  levantamentos: number;
+  assistencias: number;
+  atleta: { nome: string; numero: string; id: string };
+  equipe: { nome: string; id: string };
+
+  constructor(f: IFundamentoAtletaLiga) {
+    this.idAtleta &#x3D; f.idAtleta;
+    this.bloqueios &#x3D; parseInt(f.bloqueios);
+    this.recepcoes &#x3D; parseInt(f.recepcoes);
+    this.aces &#x3D; parseInt(f.aces);
+    this.saques &#x3D; parseInt(f.saques);
+    this.ataques &#x3D; parseInt(f.ataques);
+    this.pontos &#x3D; parseInt(f.pontos);
+    this.levantamentos &#x3D; parseInt(f.levantamentos);
+    this.assistencias &#x3D; parseInt(f.assistencias);
+    this.atleta &#x3D; {
+      id: f.idAtleta,
+      nome: f.nomeAtleta,
+      numero: f.numeroAtleta,
+    };
+    this.equipe &#x3D; { nome: f.nomeEquipe, id: f.idEquipe };
+  }
+
+  @Expose()
+  public get saquesEfetivos(): number {
+    if (!this.saques) return 0;
+    return this.aces / this.saques;
+  }
+
+  @Expose()
+  public get ataquesEfetivos(): number {
+    if (!this.ataques) return 0;
+    return this.pontos / this.ataques;
+  }
+
+  @Expose()
+  public get levantamentosEfetivos(): number {
+    if (!this.levantamentos) return 0;
+    return this.assistencias / this.levantamentos;
   }
 }
 </code></pre>

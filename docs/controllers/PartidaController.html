@@ -85,6 +85,10 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#cadastraResultado" >cadastraResultado</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#encontraPartida" >encontraPartida</a>
                             </li>
                             <li>
@@ -120,6 +124,96 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="cadastraResultado"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>cadastraResultado</b></span>
+                        <a href="#cadastraResultado"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>cadastraResultado(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, requisicao: <a href="../classes/CadastrarResultadoPartidaDto.html" target="_self">CadastrarResultadoPartidaDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Post(&#x27;:id/cadastra-resultado&#x27;)<br />@HttpCode(200)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="54"
+                            class="link-to-prism">src/modules/partida/partida.controller.ts:54</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>requisicao</td>
+                                    <td>
+                                                <code><a href="../classes/CadastrarResultadoPartidaDto.html" target="_self" >CadastrarResultadoPartidaDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>unknown</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="encontraPartida"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -145,8 +239,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="30"
-                            class="link-to-prism">src/modules/partida/partida.controller.ts:30</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="32"
+                            class="link-to-prism">src/modules/partida/partida.controller.ts:32</a></div>
                 </td>
             </tr>
 
@@ -223,8 +317,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="43"
-                            class="link-to-prism">src/modules/partida/partida.controller.ts:43</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="45"
+                            class="link-to-prism">src/modules/partida/partida.controller.ts:45</a></div>
                 </td>
             </tr>
 
@@ -313,8 +407,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="25"
-                            class="link-to-prism">src/modules/partida/partida.controller.ts:25</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="27"
+                            class="link-to-prism">src/modules/partida/partida.controller.ts:27</a></div>
                 </td>
             </tr>
 
@@ -391,8 +485,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="35"
-                            class="link-to-prism">src/modules/partida/partida.controller.ts:35</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="37"
+                            class="link-to-prism">src/modules/partida/partida.controller.ts:37</a></div>
                 </td>
             </tr>
 
@@ -465,8 +559,10 @@
   Patch,
   Post,
   Query,
+  HttpCode,
 } from &#x27;@nestjs/common&#x27;;
 import { ApiTags } from &#x27;@nestjs/swagger&#x27;;
+import { CadastrarResultadoPartidaDto } from &#x27;./dto/partida-cadastro-resultado.dto&#x27;;
 import {
   CadastrarParticipantesPartidaDto,
   ListaPartidasDto,
@@ -503,6 +599,15 @@ export class PartidaController {
     @Body() requisicao: CadastrarParticipantesPartidaDto,
   ) {
     return this.partidaService.cadastrarParticipantes(id, requisicao);
+  }
+
+  @Post(&#x27;:id/cadastra-resultado&#x27;)
+  @HttpCode(200)
+  async cadastraResultado(
+    @Param(&#x27;id&#x27;, ParseUUIDPipe) id: string,
+    @Body() requisicao: CadastrarResultadoPartidaDto,
+  ) {
+    return this.partidaService.cadastrarResultado(id, requisicao);
   }
 }
 </code></pre>
