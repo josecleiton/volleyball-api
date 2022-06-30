@@ -3,7 +3,6 @@ import {
   ArrayMinSize,
   IsArray,
   IsInt,
-  IsNumber,
   Min,
 } from 'class-validator';
 import { EquipePartida } from '../entities/equipe-partida.entity';

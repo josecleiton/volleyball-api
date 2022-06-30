@@ -3,7 +3,6 @@ import { EscolhaDeDesistencia } from 'src/modules/partida/dto/partida.dto';
 import { EquipePartida } from 'src/modules/partida/entities/equipe-partida.entity';
 import { PontosPartida } from 'src/modules/partida/enums/pontos-partida.enum';
 import { StatusPartida } from 'src/modules/partida/enums/status-partida.enum';
-import { PartidaService } from 'src/modules/partida/services';
 import { Connection } from 'typeorm';
 import { IRegistraDesistenciaDto } from '../dtos/desistencia.dto';
 import { PontuacaoViewRepository } from '../repositories/pontuacao-view.repository';

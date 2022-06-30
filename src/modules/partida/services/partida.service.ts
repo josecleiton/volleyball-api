@@ -42,11 +42,6 @@ interface IDeterminaPontuacaoNumeroDeSets {
   setsGanhosVisitante: number;
 }
 
-interface IDeterminaPontuacaoNumeroDeSetsResultado {
-  pontuacaoMandante: 0 | 1 | 2 | 3;
-  pontuacaoVisitante: 0 | 1 | 2 | 3;
-}
-
 @Injectable()
 export class PartidaService {
   constructor(
@@ -308,7 +303,7 @@ export class PartidaService {
       );
     }
 
-    const { pontuacaoMandante, pontuacaoVisitante } =
+    const [pontuacaoMandante, pontuacaoVisitante] =
       this.determinaPontuacaoPorNumeroDeSets({
         setsGanhosMandante,
         setsGanhosVisitante,
@@ -360,29 +355,17 @@ export class PartidaService {
   private determinaPontuacaoPorNumeroDeSets({
     setsGanhosMandante,
     setsGanhosVisitante,
-  }: IDeterminaPontuacaoNumeroDeSets): IDeterminaPontuacaoNumeroDeSetsResultado {
+  }: IDeterminaPontuacaoNumeroDeSets): [PontosPartida, PontosPartida] {
     const mandanteVenceu = setsGanhosMandante > setsGanhosVisitante;
 
     if (setsGanhosMandante + setsGanhosVisitante < 5) {
       return mandanteVenceu
-        ? {
-            pontuacaoMandante: PontosPartida.VITORIA_PERFEITA,
-            pontuacaoVisitante: PontosPartida.DERROTA_FEIA,
-          }
-        : {
-            pontuacaoMandante: PontosPartida.DERROTA_FEIA,
-            pontuacaoVisitante: PontosPartida.VITORIA_PERFEITA,
-          };
+        ? [PontosPartida.VITORIA_PERFEITA, PontosPartida.DERROTA_FEIA]
+        : [PontosPartida.DERROTA_FEIA, PontosPartida.VITORIA_PERFEITA];
     }
 
     return mandanteVenceu
-      ? {
-          pontuacaoMandante: PontosPartida.VITORIA_SIMPLES,
-          pontuacaoVisitante: PontosPartida.DERROTA_SIMPLES,
-        }
-      : {
-          pontuacaoMandante: PontosPartida.DERROTA_SIMPLES,
-          pontuacaoVisitante: PontosPartida.VITORIA_SIMPLES,
-        };
+      ? [PontosPartida.VITORIA_SIMPLES, PontosPartida.DERROTA_SIMPLES]
+      : [PontosPartida.DERROTA_SIMPLES, PontosPartida.VITORIA_SIMPLES];
   }
 }
