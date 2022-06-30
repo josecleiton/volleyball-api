@@ -33,7 +33,6 @@ import { StatusPartida } from '../enums/status-partida.enum';
 import {
   ArbitroPartidaRepository,
   AtletaEscaladoRepository,
-  EquipePartidaRepository,
   PartidaRepository,
 } from '../repositories';
 
@@ -55,7 +54,6 @@ export class PartidaService {
     @Inject(forwardRef(() => LigaService))
     private readonly ligaService: LigaService,
     private readonly connection: Connection,
-    private readonly equipesPartidaRepository: EquipePartidaRepository,
     private readonly pontuacaoViewRepository: PontuacaoViewRepository,
   ) {}
 
@@ -199,19 +197,17 @@ export class PartidaService {
     partida.status = StatusPartida.PARTICIPANTES_CADASTRADOS;
     partida.idDelegado = delegado.id;
 
-    const partidaAtualizada = await this.connection.transaction(
-      async (manager) => {
-        const partidaSalva = await manager.save(partida);
+    await this.connection.transaction(async (manager) => {
+      const partidaSalva = await manager.save(partida);
 
-        partidaSalva.mandante.atletas = await manager.save(escalacaoMandante);
-        partidaSalva.visitante.atletas = await manager.save(escalacaoVisitante);
-        partidaSalva.arbitros = await manager.save(arbitrosDaPartida);
+      partidaSalva.mandante.atletas = await manager.save(escalacaoMandante);
+      partidaSalva.visitante.atletas = await manager.save(escalacaoVisitante);
+      partidaSalva.arbitros = await manager.save(arbitrosDaPartida);
 
-        return partidaSalva;
-      },
-    );
+      return partidaSalva;
+    });
 
-    return new PartidaRespostaDto(partidaAtualizada);
+    return new PartidaRespostaDto(await this.deveEncontrarEntidade(partida.id));
   }
 
   private async deveEncontrarEntidade(id: string, manager?: EntityManager) {
@@ -330,26 +326,24 @@ export class PartidaService {
     partida.mandante.resultadoCadastradoEm =
       partida.visitante.resultadoCadastradoEm = new Date();
 
-    const { partida: partidaAtualizada } = await this.connection.transaction(
+    const partidaAtualizada = await this.connection.transaction(
       async (manager) => {
-        const [mandante, visitante] = await manager.save([
-          partida.mandante,
-          partida.visitante,
-        ]);
+        await manager.save([partida.mandante, partida.visitante]);
 
         await manager.save(partida);
 
-        return {
-          mandante,
-          visitante,
-          partida: await this.deveEncontrarEntidade(partida.id, manager),
-        };
+        return this.deveEncontrarEntidade(partida.id, manager);
       },
     );
 
     await this.pontuacaoViewRepository.refreshMaterializedView();
 
-    return new PartidaRespostaDto(partidaAtualizada);
+    try {
+      return new PartidaRespostaDto(partidaAtualizada);
+    } catch (e) {
+      console.log(e);
+      throw e;
+    }
   }
 
   private determinaPontuacaoPorNumeroDeSets({

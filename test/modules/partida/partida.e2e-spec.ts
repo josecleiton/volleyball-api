@@ -170,6 +170,9 @@ describe('PartidaController (e2e)', () => {
         expect(partidaAtualizada.status).toEqual(
           StatusPartida.PARTICIPANTES_CADASTRADOS,
         );
+        expect(
+          partidaAtualizada.mandante.atletas.length,
+        ).toBeGreaterThanOrEqual(Partida.mínimoDeAtletasNaPartida);
       });
 
       describe('12 atletas escalados com líbero', () => {

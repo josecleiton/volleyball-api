@@ -1,3 +1,4 @@
+import { AtletaRespostaDto } from 'src/modules/pessoa/dto/atleta.dto';
 import { Posicao } from 'src/modules/pessoa/enums';
 import { AtletaEscalado } from '../entities/atleta-escalado.entity';
 import { EquipePartidaRespostaDto } from './equipe-partida.dto';
@@ -7,13 +8,12 @@ export interface IBuscaAtletaEscalado {
   idPartida: string;
 }
 
-export class AtletaEscaladoRespostaDto {
+export class AtletaEscaladoSimplesRespostaDto {
   id: string;
   idAtleta: string;
   idPartida: string;
   posicao: Posicao;
   dataCriacao: Date;
-  participacao: EquipePartidaRespostaDto;
 
   constructor(atleta: AtletaEscalado) {
     this.id = atleta.id;
@@ -21,6 +21,24 @@ export class AtletaEscaladoRespostaDto {
     this.idPartida = atleta.idEquipePartida;
     this.posicao = atleta.posicao;
     this.dataCriacao = atleta.dataCriacao;
+  }
+}
+export class AtletaEscaladoRespostaDto extends AtletaEscaladoSimplesRespostaDto {
+  participacao: EquipePartidaRespostaDto;
+
+  constructor(atleta: AtletaEscalado) {
+    super(atleta);
+
     this.participacao = new EquipePartidaRespostaDto(atleta.participacao);
+  }
+}
+
+export class AtletaEscaladoComPerfilAtletaRespostaDto extends AtletaEscaladoSimplesRespostaDto {
+  atleta: AtletaRespostaDto;
+
+  constructor(atleta: AtletaEscalado) {
+    super(atleta);
+
+    this.atleta = new AtletaRespostaDto(atleta.atleta);
   }
 }

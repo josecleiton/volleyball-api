@@ -21,13 +21,22 @@ export class PartidaRepository extends Repository<Partida> {
     return qb
       .innerJoinAndSelect('partidas.visitante', 'visitantes')
       .innerJoinAndSelect('visitantes.equipe', 'equipesVisitantes')
-      .leftJoinAndSelect('visitantes.atletas', 'atletasVisitantes')
+      .leftJoinAndSelect('visitantes.atletas', 'escaladosVisitantes')
+      .leftJoinAndSelect('escaladosVisitantes.atleta', 'atletasVisitantes')
+      .leftJoinAndSelect('atletasVisitantes.pessoa', 'pessoasAtletasVisitantes')
       .innerJoinAndSelect('partidas._mandante', 'mandantes')
       .innerJoinAndSelect('mandantes.equipe', 'equipesMandantes')
-      .leftJoinAndSelect('mandantes.atletas', 'atletasMandantes')
+      .leftJoinAndSelect('mandantes.atletas', 'escaladosMandantes')
+      .leftJoinAndSelect('escaladosMandantes.atleta', 'atletasMandantes')
+      .leftJoinAndSelect('atletasMandantes.pessoa', 'pessoasAtletasMandantes')
       .leftJoinAndSelect('partidas.ganhadora', 'ganhadoras')
       .leftJoinAndSelect('ganhadoras.equipe', 'equipesGanhadoras')
-      .leftJoinAndSelect('ganhadoras.atletas', 'atletasGanhadores');
+      .leftJoinAndSelect('ganhadoras.atletas', 'escaladosGanhadores')
+      .leftJoinAndSelect('escaladosGanhadores.atleta', 'atletasGanhadores')
+      .leftJoinAndSelect(
+        'atletasGanhadores.pessoa',
+        'pessoasAtletasGanhadoras',
+      );
   }
 
   async encontraPartidaCompleta(id: string) {
