@@ -1,4 +1,11 @@
-import { ArrayMaxSize, ArrayMinSize, IsArray } from 'class-validator';
+import {
+  ArrayMaxSize,
+  ArrayMinSize,
+  IsArray,
+  IsInt,
+  IsNumber,
+  Min,
+} from 'class-validator';
 import { EquipePartida } from '../entities/equipe-partida.entity';
 import { IPontoNoSet } from '../interfaces/ponto_no_set.interface';
 
@@ -6,11 +13,15 @@ export class CadastrarResultadoPartidaDto {
   @IsArray()
   @ArrayMinSize(3)
   @ArrayMaxSize(5)
+  @IsInt({ each: true })
+  @Min(0, { each: true })
   setsMandante!: number[];
 
   @IsArray()
   @ArrayMinSize(3)
   @ArrayMaxSize(5)
+  @IsInt({ each: true })
+  @Min(0, { each: true })
   setsVisitante!: number[];
 }
 

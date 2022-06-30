@@ -12,7 +12,7 @@ import { LigaService } from 'src/modules/liga/services/liga.service';
 import { AtletaRespostaDto } from 'src/modules/pessoa/dto/atleta.dto';
 import { PontuacaoViewRepository } from 'src/modules/pontuacao/repositories/pontuacao-view.repository';
 import { RegistraDesistenciaService } from 'src/modules/pontuacao/services/registra-desistencia.service';
-import { Connection } from 'typeorm';
+import { Connection, EntityManager } from 'typeorm';
 import { Posicao, TipoArbitro } from '../../pessoa/enums';
 import { ArbitroService } from '../../pessoa/services/arbitro.service';
 import { AtletaService } from '../../pessoa/services/atleta.service';
@@ -124,12 +124,14 @@ export class PartidaService {
     );
 
     if (requisicao.desistente) {
-      return this.registraDesistenciaService
-        .executar({
-          partida,
-          desistente: requisicao.desistente,
-        })
-        .then((resultado) => new PartidaRespostaDto(resultado.partida));
+      await this.registraDesistenciaService.executar({
+        partida,
+        desistente: requisicao.desistente,
+      });
+
+      return this.deveEncontrarEntidade(partida.id).then(
+        (resultado) => new PartidaRespostaDto(resultado),
+      );
     }
 
     const arbitrosPorTipo = groupBy(
@@ -217,8 +219,10 @@ export class PartidaService {
     return new PartidaRespostaDto(partidaAtualizada);
   }
 
-  private async deveEncontrarEntidade(id: string) {
-    const partida = await this.partidaRepository.encontraPartidaCompleta(id);
+  private async deveEncontrarEntidade(id: string, manager?: EntityManager) {
+    const repository =
+      manager?.getCustomRepository(PartidaRepository) ?? this.partidaRepository;
+    const partida = await repository.encontraPartidaCompleta(id);
     if (!partida) {
       throw new NotFoundException(`Partida ${id} não encontrada`);
     }
@@ -338,10 +342,12 @@ export class PartidaService {
           partida.visitante,
         ]);
 
+        await manager.save(partida);
+
         return {
           mandante,
           visitante,
-          partida: await manager.save(partida),
+          partida: await this.deveEncontrarEntidade(partida.id, manager),
         };
       },
     );

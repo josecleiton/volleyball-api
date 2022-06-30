@@ -33,9 +33,7 @@
 				"--runInBand",
 				"--coverage",
 				"false",
-				"-t",
-				"Desempate",
-				"pontuacao.e2e-spec"
+				"partida-concluida.e2e-spec"
 			],
 			"console": "integratedTerminal"
 		}

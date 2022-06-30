@@ -1,14 +1,15 @@
 import { Injectable } from '@nestjs/common';
 import { EscolhaDeDesistencia } from 'src/modules/partida/dto/partida.dto';
 import { EquipePartida } from 'src/modules/partida/entities/equipe-partida.entity';
+import { PontosPartida } from 'src/modules/partida/enums/pontos-partida.enum';
 import { StatusPartida } from 'src/modules/partida/enums/status-partida.enum';
+import { PartidaService } from 'src/modules/partida/services';
 import { Connection } from 'typeorm';
 import { IRegistraDesistenciaDto } from '../dtos/desistencia.dto';
 import { PontuacaoViewRepository } from '../repositories/pontuacao-view.repository';
 
 @Injectable()
 export class RegistraDesistenciaService {
-  static readonly pontuacaoDoGanhador = 2;
   constructor(
     private readonly pontuacaoRepository: PontuacaoViewRepository,
     private readonly connection: Connection,
@@ -29,12 +30,12 @@ export class RegistraDesistenciaService {
     partida.ganhadora = ganhadora;
 
     ganhadora.pontosNosSets = EquipePartida.unmarshallPontosDoSet([25, 25, 25]);
-    ganhadora.pontuacao = RegistraDesistenciaService.pontuacaoDoGanhador;
+    ganhadora.pontuacao = PontosPartida.VITORIA_PERFEITA;
     ganhadora.setsGanhos = ganhadora.pontosNosSets.length;
     ganhadora.ganhou = true;
 
     perdedora.pontosNosSets = EquipePartida.unmarshallPontosDoSet([0, 0, 0]);
-    perdedora.pontuacao = -ganhadora.pontuacao;
+    perdedora.pontuacao = PontosPartida.WO;
 
     partida.mandante.resultadoCadastradoEm =
       partida.visitante.resultadoCadastradoEm = new Date();
