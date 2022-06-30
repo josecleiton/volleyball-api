@@ -3,8 +3,6 @@ import { PontosPartida } from 'src/modules/partida/enums/pontos-partida.enum';
 import { initTestingApp } from 'test/modules/helpers';
 import { PartidaConcluidaServer } from './partida-concluida.server';
 
-process.env.LOGGING = '1';
-
 describe('Fluxo - PartidaResultado (e2e)', () => {
   let app: INestApplication;
   let server: PartidaConcluidaServer;
