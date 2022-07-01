@@ -43,6 +43,10 @@ interface IDeterminaPontuacaoNumeroDeSets {
 
 @Injectable()
 export class PartidaService {
+  static readonly máximoDePontoNoSetParaVitoriaSemOvertime = 25;
+  static readonly diferençaDePontosNoSetParaVencerApósOvertime = 2;
+  static readonly máximoDeSetsParaVitória = 5;
+
   constructor(
     private readonly partidaRepository: PartidaRepository,
     private readonly atletaEscaladoRepository: AtletaEscaladoRepository,
@@ -280,9 +284,27 @@ export class PartidaService {
       );
     }
 
+    const setComFalha = setsMandante.findIndex((_, index) => {
+      const pontosMandante = setsMandante[index];
+      const pontosVisitante = setsVisitante[index];
+
+      return (
+        pontosMandante + pontosVisitante >=
+          PartidaService.máximoDePontoNoSetParaVitoriaSemOvertime * 2 &&
+        Math.abs(pontosMandante - pontosVisitante) !==
+          PartidaService.diferençaDePontosNoSetParaVencerApósOvertime
+      );
+    });
+
+    if (setComFalha !== -1) {
+      throw new UnprocessableEntityException(
+        `A diferença entre pontos no set ${setComFalha + 1} deve ser igual a 2`,
+      );
+    }
+
     const { mandante: setsGanhosMandante, visitante: setsGanhosVisitante } =
       setsMandante.reduce(
-        (prev, current, index) => {
+        (prev, _, index) => {
           const mandanteVenceu = setsMandante[index] > setsVisitante[index];
           return {
             mandante: prev.mandante + (mandanteVenceu ? 1 : 0),
@@ -292,7 +314,10 @@ export class PartidaService {
         { mandante: 0, visitante: 0 },
       );
 
-    if (setsGanhosMandante + setsGanhosVisitante > 5) {
+    if (
+      setsGanhosMandante + setsGanhosVisitante >
+      PartidaService.máximoDeSetsParaVitória
+    ) {
       throw new UnprocessableEntityException(
         ` Para haver ganhador precisa ter pelo menos uma equipe com 3 sets vencidos
         além de não poder ter um equipe com mais de 3 sets ganhos`,
@@ -338,12 +363,7 @@ export class PartidaService {
 
     await this.pontuacaoViewRepository.refreshMaterializedView();
 
-    try {
-      return new PartidaRespostaDto(partidaAtualizada);
-    } catch (e) {
-      console.log(e);
-      throw e;
-    }
+    return new PartidaRespostaDto(partidaAtualizada);
   }
 
   private determinaPontuacaoPorNumeroDeSets({
@@ -352,7 +372,10 @@ export class PartidaService {
   }: IDeterminaPontuacaoNumeroDeSets): [PontosPartida, PontosPartida] {
     const mandanteVenceu = setsGanhosMandante > setsGanhosVisitante;
 
-    if (setsGanhosMandante + setsGanhosVisitante < 5) {
+    if (
+      setsGanhosMandante + setsGanhosVisitante <
+      PartidaService.máximoDeSetsParaVitória
+    ) {
       return mandanteVenceu
         ? [PontosPartida.VITORIA_PERFEITA, PontosPartida.DERROTA_FEIA]
         : [PontosPartida.DERROTA_FEIA, PontosPartida.VITORIA_PERFEITA];
