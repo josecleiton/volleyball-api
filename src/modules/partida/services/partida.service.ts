@@ -304,7 +304,7 @@ export class PartidaService {
 
     const { mandante: setsGanhosMandante, visitante: setsGanhosVisitante } =
       setsMandante.reduce(
-        (prev, current, index) => {
+        (prev,_, index) => {
           const mandanteVenceu = setsMandante[index] > setsVisitante[index];
           return {
             mandante: prev.mandante + (mandanteVenceu ? 1 : 0),
