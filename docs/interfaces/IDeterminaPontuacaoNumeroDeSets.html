@@ -221,6 +221,10 @@ interface IDeterminaPontuacaoNumeroDeSets {
 
 @Injectable()
 export class PartidaService {
+  static readonly máximoDePontoNoSetParaVitoriaSemOvertime &#x3D; 25;
+  static readonly diferençaDePontosNoSetParaVencerApósOvertime &#x3D; 2;
+  static readonly máximoDeSetsParaVitória &#x3D; 5;
+
   constructor(
     private readonly partidaRepository: PartidaRepository,
     private readonly atletaEscaladoRepository: AtletaEscaladoRepository,
@@ -458,9 +462,27 @@ export class PartidaService {
       );
     }
 
+    const setComFalha &#x3D; setsMandante.findIndex((_, index) &#x3D;&gt; {
+      const pontosMandante &#x3D; setsMandante[index];
+      const pontosVisitante &#x3D; setsVisitante[index];
+
+      return (
+        pontosMandante + pontosVisitante &gt;&#x3D;
+          PartidaService.máximoDePontoNoSetParaVitoriaSemOvertime * 2 &amp;&amp;
+        Math.abs(pontosMandante - pontosVisitante) !&#x3D;&#x3D;
+          PartidaService.diferençaDePontosNoSetParaVencerApósOvertime
+      );
+    });
+
+    if (setComFalha !&#x3D;&#x3D; -1) {
+      throw new UnprocessableEntityException(
+        &#x60;A diferença entre pontos no set ${setComFalha + 1} deve ser igual a 2&#x60;,
+      );
+    }
+
     const { mandante: setsGanhosMandante, visitante: setsGanhosVisitante } &#x3D;
       setsMandante.reduce(
-        (prev, current, index) &#x3D;&gt; {
+        (prev, _, index) &#x3D;&gt; {
           const mandanteVenceu &#x3D; setsMandante[index] &gt; setsVisitante[index];
           return {
             mandante: prev.mandante + (mandanteVenceu ? 1 : 0),
@@ -470,7 +492,10 @@ export class PartidaService {
         { mandante: 0, visitante: 0 },
       );
 
-    if (setsGanhosMandante + setsGanhosVisitante &gt; 5) {
+    if (
+      setsGanhosMandante + setsGanhosVisitante &gt;
+      PartidaService.máximoDeSetsParaVitória
+    ) {
       throw new UnprocessableEntityException(
         &#x60; Para haver ganhador precisa ter pelo menos uma equipe com 3 sets vencidos
         além de não poder ter um equipe com mais de 3 sets ganhos&#x60;,
@@ -516,12 +541,7 @@ export class PartidaService {
 
     await this.pontuacaoViewRepository.refreshMaterializedView();
 
-    try {
-      return new PartidaRespostaDto(partidaAtualizada);
-    } catch (e) {
-      console.log(e);
-      throw e;
-    }
+    return new PartidaRespostaDto(partidaAtualizada);
   }
 
   private determinaPontuacaoPorNumeroDeSets({
@@ -530,7 +550,10 @@ export class PartidaService {
   }: IDeterminaPontuacaoNumeroDeSets): [PontosPartida, PontosPartida] {
     const mandanteVenceu &#x3D; setsGanhosMandante &gt; setsGanhosVisitante;
 
-    if (setsGanhosMandante + setsGanhosVisitante &lt; 5) {
+    if (
+      setsGanhosMandante + setsGanhosVisitante &lt;
+      PartidaService.máximoDeSetsParaVitória
+    ) {
       return mandanteVenceu
         ? [PontosPartida.VITORIA_PERFEITA, PontosPartida.DERROTA_FEIA]
         : [PontosPartida.DERROTA_FEIA, PontosPartida.VITORIA_PERFEITA];
