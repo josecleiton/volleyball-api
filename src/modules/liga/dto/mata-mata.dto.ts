@@ -1,3 +1,5 @@
+import { Equipe } from 'src/modules/equipe/entities/equipe.entity';
+
 export interface IClassificados {
-  equipes: { id: string; idGinasio: string }[];
+  equipes: Equipe[];
 }

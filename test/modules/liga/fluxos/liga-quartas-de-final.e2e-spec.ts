@@ -4,7 +4,9 @@ import { StatusPartida } from 'src/modules/partida/enums/status-partida.enum';
 import { initTestingApp } from 'test/modules/helpers';
 import { LigaQuartasDeFinalServer } from './liga-quartas-de-final.server';
 
-describe('LigaController - Com Equipe (e2e)', () => {
+// process.env.LOGGING = '1';
+
+describe('Fluxo - LigaQuartasDeFinal (e2e)', () => {
   let app: INestApplication;
   let server: LigaQuartasDeFinalServer;
 

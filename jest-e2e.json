@@ -8,5 +8,5 @@
   "collectCoverage": true,
   "collectCoverageFrom": ["src/modules/**"],
   "modulePaths": ["<rootDir>"],
-  "testTimeout": 0
+  "testTimeout": 240000
 }

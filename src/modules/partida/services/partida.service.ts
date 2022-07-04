@@ -265,112 +265,105 @@ export class PartidaService {
     id: string,
     { setsMandante, setsVisitante }: CadastrarResultadoPartidaDto,
   ) {
-    try {
-      const partida = await this.deveEncontrarEntidade(id);
+    const partida = await this.deveEncontrarEntidade(id);
 
-      if (partida.status !== StatusPartida.PARTICIPANTES_CADASTRADOS) {
-        throw new UnprocessableEntityException(
-          `A partida precisa está com status : '${StatusPartida.PARTICIPANTES_CADASTRADOS}' para cadastrar um resultado`,
-        );
-      }
+    if (partida.status !== StatusPartida.PARTICIPANTES_CADASTRADOS) {
+      throw new UnprocessableEntityException(
+        `A partida precisa está com status : '${StatusPartida.PARTICIPANTES_CADASTRADOS}' para cadastrar um resultado`,
+      );
+    }
 
-      if (
-        setsMandante.length !== setsVisitante.length &&
-        setsMandante.some(
-          (_, index) => setsMandante[index] === setsVisitante[index],
-        )
-      ) {
-        throw new UnprocessableEntityException(
-          `O array de pontosNosSets precisa ter o mesmo tamanho e não pode ter valores iguais na mesma posição`,
-        );
-      }
+    if (
+      setsMandante.length !== setsVisitante.length &&
+      setsMandante.some(
+        (_, index) => setsMandante[index] === setsVisitante[index],
+      )
+    ) {
+      throw new UnprocessableEntityException(
+        `O array de pontosNosSets precisa ter o mesmo tamanho e não pode ter valores iguais na mesma posição`,
+      );
+    }
 
-      const setComFalha = setsMandante.findIndex((_, index) => {
-        const pontosMandante = setsMandante[index];
-        const pontosVisitante = setsVisitante[index];
+    const setComFalha = setsMandante.findIndex((_, index) => {
+      const pontosMandante = setsMandante[index];
+      const pontosVisitante = setsVisitante[index];
 
-        return (
-          pontosMandante + pontosVisitante >=
-            PartidaService.máximoDePontoNoSetParaVitoriaSemOvertime * 2 &&
-          Math.abs(pontosMandante - pontosVisitante) !==
-            PartidaService.diferençaDePontosNoSetParaVencerApósOvertime
-        );
-      });
+      return (
+        pontosMandante + pontosVisitante >=
+          PartidaService.máximoDePontoNoSetParaVitoriaSemOvertime * 2 &&
+        Math.abs(pontosMandante - pontosVisitante) !==
+          PartidaService.diferençaDePontosNoSetParaVencerApósOvertime
+      );
+    });
 
-      if (setComFalha !== -1) {
-        throw new UnprocessableEntityException(
-          `A diferença entre pontos no set ${
-            setComFalha + 1
-          } deve ser igual a 2`,
-        );
-      }
+    if (setComFalha !== -1) {
+      throw new UnprocessableEntityException(
+        `A diferença entre pontos no set ${setComFalha + 1} deve ser igual a 2`,
+      );
+    }
 
-      const { mandante: setsGanhosMandante, visitante: setsGanhosVisitante } =
-        setsMandante.reduce(
-          (prev, _, index) => {
-            const mandanteVenceu = setsMandante[index] > setsVisitante[index];
-            return {
-              mandante: prev.mandante + (mandanteVenceu ? 1 : 0),
-              visitante: prev.visitante + (mandanteVenceu ? 0 : 1),
-            };
-          },
-          { mandante: 0, visitante: 0 },
-        );
-
-      if (
-        setsGanhosMandante + setsGanhosVisitante >
-        PartidaService.máximoDeSetsParaVitória
-      ) {
-        throw new UnprocessableEntityException(
-          ` Para haver ganhador precisa ter pelo menos uma equipe com 3 sets vencidos
-        além de não poder ter um equipe com mais de 3 sets ganhos`,
-        );
-      }
-
-      const [pontuacaoMandante, pontuacaoVisitante] =
-        this.determinaPontuacaoPorNumeroDeSets({
-          setsGanhosMandante,
-          setsGanhosVisitante,
-        });
-
-      partida.idGanhadora =
-        pontuacaoMandante > pontuacaoVisitante
-          ? partida.idMandante
-          : partida.idVisitante;
-      partida.status = StatusPartida.CONCLUIDA;
-
-      partida.mandante.pontuacao = pontuacaoMandante;
-      partida.mandante.setsGanhos = setsGanhosMandante;
-      partida.mandante.pontosNosSets =
-        EquipePartida.unmarshallPontosDoSet(setsMandante);
-      partida.mandante.ganhou = partida.idGanhadora === partida.idMandante;
-
-      partida.visitante.pontuacao = pontuacaoVisitante;
-      partida.visitante.setsGanhos = setsGanhosVisitante;
-      partida.visitante.pontosNosSets =
-        EquipePartida.unmarshallPontosDoSet(setsVisitante);
-      partida.visitante.ganhou = partida.idGanhadora === partida.idVisitante;
-
-      partida.mandante.resultadoCadastradoEm =
-        partida.visitante.resultadoCadastradoEm = new Date();
-
-      const partidaAtualizada = await this.connection.transaction(
-        async (manager) => {
-          await manager.save([partida.mandante, partida.visitante]);
-
-          await manager.save(partida);
-
-          return this.deveEncontrarEntidade(partida.id, manager);
+    const { mandante: setsGanhosMandante, visitante: setsGanhosVisitante } =
+      setsMandante.reduce(
+        (prev, _, index) => {
+          const mandanteVenceu = setsMandante[index] > setsVisitante[index];
+          return {
+            mandante: prev.mandante + (mandanteVenceu ? 1 : 0),
+            visitante: prev.visitante + (mandanteVenceu ? 0 : 1),
+          };
         },
+        { mandante: 0, visitante: 0 },
       );
 
-      await this.pontuacaoViewRepository.refreshMaterializedView();
-
-      return new PartidaRespostaDto(partidaAtualizada);
-    } catch (e) {
-      console.log(e);
-      throw e;
+    if (
+      setsGanhosMandante + setsGanhosVisitante >
+      PartidaService.máximoDeSetsParaVitória
+    ) {
+      throw new UnprocessableEntityException(
+        ` Para haver ganhador precisa ter pelo menos uma equipe com 3 sets vencidos
+        além de não poder ter um equipe com mais de 3 sets ganhos`,
+      );
     }
+
+    const [pontuacaoMandante, pontuacaoVisitante] =
+      this.determinaPontuacaoPorNumeroDeSets({
+        setsGanhosMandante,
+        setsGanhosVisitante,
+      });
+
+    partida.idGanhadora =
+      pontuacaoMandante > pontuacaoVisitante
+        ? partida.idMandante
+        : partida.idVisitante;
+    partida.status = StatusPartida.CONCLUIDA;
+
+    partida.mandante.pontuacao = pontuacaoMandante;
+    partida.mandante.setsGanhos = setsGanhosMandante;
+    partida.mandante.pontosNosSets =
+      EquipePartida.unmarshallPontosDoSet(setsMandante);
+    partida.mandante.ganhou = partida.idGanhadora === partida.idMandante;
+
+    partida.visitante.pontuacao = pontuacaoVisitante;
+    partida.visitante.setsGanhos = setsGanhosVisitante;
+    partida.visitante.pontosNosSets =
+      EquipePartida.unmarshallPontosDoSet(setsVisitante);
+    partida.visitante.ganhou = partida.idGanhadora === partida.idVisitante;
+
+    partida.mandante.resultadoCadastradoEm =
+      partida.visitante.resultadoCadastradoEm = new Date();
+
+    const partidaAtualizada = await this.connection.transaction(
+      async (manager) => {
+        await manager.save([partida.mandante, partida.visitante]);
+
+        await manager.save(partida);
+
+        return this.deveEncontrarEntidade(partida.id, manager);
+      },
+    );
+
+    await this.pontuacaoViewRepository.refreshMaterializedView();
+
+    return new PartidaRespostaDto(partidaAtualizada);
   }
 
   private determinaPontuacaoPorNumeroDeSets({

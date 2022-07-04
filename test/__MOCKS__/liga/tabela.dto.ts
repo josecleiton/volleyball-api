@@ -8,7 +8,7 @@ export function inicializaQuartaDeFinalDto(
 ): InicializaQuartaDeFinalDto {
   const dataBase = faker.date.recent(2, dataUltimaPartida);
   const datas = [...Array(12).keys()].map((index) => addDays(dataBase, index));
-  const mandos = [...Array(4).keys()].map(() => EscolhaDeMando.PRIMEIRO_JOGO);
+  const mandos = Array(4).fill(EscolhaDeMando.PRIMEIRO_JOGO);
 
   return Object.assign(new InicializaQuartaDeFinalDto(), {
     datas,

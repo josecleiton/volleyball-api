@@ -3,15 +3,12 @@ import {
   InternalServerErrorException,
 } from '@nestjs/common';
 import { chunk, countBy } from 'lodash';
-import {
-  EquipeRespostaDto,
-  EquipeSimplificadaRespostaDto,
-} from 'src/modules/equipe/dto/equipe.dto';
-import { EquipePartidaRespostaDto } from 'src/modules/partida/dto/equipe-partida.dto';
+import { Equipe } from 'src/modules/equipe/entities/equipe.entity';
 import { PartidaRespostaDto } from 'src/modules/partida/dto/partida.dto';
+import { PartidaFactory } from 'src/modules/partida/factories/partida.factory';
 import { PartidaService } from 'src/modules/partida/services/partida.service';
 import { TipoRodadaMataMata } from 'src/modules/partida/types/tipo-rodada.type';
-import { PontuacaoRespostaDto } from 'src/modules/pontuacao/dtos/pontuacao.dto';
+import { PontuacaoDto } from 'src/modules/pontuacao/dtos/pontuacao.dto';
 import { PontuacaoService } from 'src/modules/pontuacao/services';
 import { IClassificados } from '../dto/mata-mata.dto';
 import { Liga } from '../entities/liga.entity';
@@ -46,8 +43,9 @@ export abstract class SemisEFinalGeneratorService extends MataMataGeneratorServi
   constructor(
     private readonly partidaService: PartidaService,
     private readonly pontuacaoService: PontuacaoService,
+    partidaFactory: PartidaFactory,
   ) {
-    super();
+    super(partidaFactory);
   }
 
   private listarVencedores(partidas: PartidaRespostaDto[]) {
@@ -83,7 +81,7 @@ export abstract class SemisEFinalGeneratorService extends MataMataGeneratorServi
   // consistente com as regras
   private ordenaVencedorPorClassificacao(
     vencedores: string[],
-    pontuacoes: PontuacaoRespostaDto[],
+    pontuacoes: PontuacaoDto[],
   ) {
     const idEquipeClassificacaoMap: ReadonlyMap<string, number> = new Map(
       pontuacoes.map((pontuacao, index) => [pontuacao.equipe.id, index + 1]),
@@ -126,30 +124,24 @@ export abstract class SemisEFinalGeneratorService extends MataMataGeneratorServi
       );
     }
 
-    const pontuacoes = await this.pontuacaoService.listaPontuacoesOrdenadas(
-      idLiga,
-      Liga.quantidadeDeEquipesClassificadas,
-    );
+    const pontuacoes =
+      await this.pontuacaoService.listaPontuacoesOrdenadasEntidades(
+        idLiga,
+        Liga.quantidadeDeEquipesClassificadas,
+      );
 
     const vencedores = this.listarVencedores(partidas);
 
     const vencedoresOrdenadosPorClassificacao =
       this.ordenaVencedorPorClassificacao(vencedores, pontuacoes);
 
-    const equipeMap: ReadonlyMap<string, EquipeSimplificadaRespostaDto> =
-      new Map(
-        partidas
-          .filter((partida) => partida.ganhadora)
-          .map(({ ganhadora }) => {
-            const equipePartida = ganhadora as EquipePartidaRespostaDto;
-
-            return [equipePartida.equipe.id, equipePartida.equipe];
-          }),
-      );
+    const equipeMap = new Map(
+      pontuacoes.map((pontuacao) => [pontuacao.idEquipe, pontuacao.equipe]),
+    );
 
     return {
       equipes: vencedoresOrdenadosPorClassificacao.map(
-        (vencedor) => equipeMap.get(vencedor) as EquipeRespostaDto,
+        (vencedor) => equipeMap.get(vencedor) as Equipe,
       ),
     };
   }

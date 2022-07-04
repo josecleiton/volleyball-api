@@ -15,12 +15,21 @@ export class PontuacaoService {
     idLiga: string,
     limite = Liga.quantidadeDeEquipesNaLiga,
   ): Promise<PontuacaoRespostaDto[]> {
+    return this.listaPontuacoesOrdenadasEntidades(idLiga, limite).then(
+      (pontuacoes) => pontuacoes.map((x) => new PontuacaoRespostaDto(x)),
+    );
+  }
+
+  async listaPontuacoesOrdenadasEntidades(
+    idLiga: string,
+    limite = Liga.quantidadeDeEquipesNaLiga,
+  ) {
     const pontuacoes = await this.pontuacaoRepository.listaPorLiga(idLiga);
 
     const classificacoes =
       await this.aplicaRegraDesempateService.buscarEmpateNaPontuacao({
         idLiga,
-        classificacoes: pontuacoes.map((x) => new PontuacaoRespostaDto(x)),
+        classificacoes: pontuacoes,
       });
 
     return classificacoes.slice(0, limite);

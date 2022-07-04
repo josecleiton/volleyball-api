@@ -73,7 +73,7 @@ export class PartidaRepository extends Repository<Partida> {
       `
       DELETE
       FROM partidas
-      WHERE partidas.id = IN (
+      WHERE partidas.id IN (
         SELECT p.id AS id
         FROM partidas AS p
         INNER JOIN equipes_partidas AS v
@@ -82,9 +82,9 @@ export class PartidaRepository extends Repository<Partida> {
         INNER JOIN equipes AS ev
         ON
           ev.id = v.id_equipe
-          AND ev.id_liga = ?
+          AND ev.id_liga = $1
         WHERE
-          p.status = ?
+          p.status = $2
           AND p.id_ganhadora IS NULL
       )
     `,

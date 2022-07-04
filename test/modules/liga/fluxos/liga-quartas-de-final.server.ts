@@ -1,5 +1,4 @@
 /* eslint-disable no-await-in-loop */
-import pLimit = require('p-limit');
 import request = require('supertest');
 import { last } from 'lodash';
 
@@ -20,6 +19,12 @@ export class LigaQuartasDeFinalServer {
   constructor(private readonly server: unknown) {
     this.liga = new LigaIniciadaServer(server);
     this.partida = new PartidaConcluidaServer(server);
+  }
+
+  async criaLigaEmQuartas() {
+    const resultado = await this.liga.criaLigaInicializada();
+
+    return this.inicializaQuartasDeFinal(resultado);
   }
 
   async inicializaQuartasDeFinal({

@@ -5,8 +5,8 @@ import {
 } from '@nestjs/common';
 import { getHours, getMinutes } from 'date-fns';
 import { validTimeStringToDate } from 'src/modules/core/validations';
-import { EquipePartida } from 'src/modules/partida/entities/equipe-partida.entity';
 import { StatusPartida } from 'src/modules/partida/enums/status-partida.enum';
+import { SalvaPartidaFacade } from 'src/modules/partida/facades/salva-partida.facade';
 import { PartidaRepository } from 'src/modules/partida/repositories/partida.repository';
 import { tiposDeRodadaClassificatoria } from 'src/modules/partida/types/tipo-rodada.type';
 import { Connection } from 'typeorm';
@@ -44,6 +44,7 @@ export class LigaService {
     private readonly partidaRepository: PartidaRepository,
     private readonly equipeService: EquipeService,
     private readonly classificacaoService: ClassificacaoGeneratorService,
+    private readonly salvaPartidas: SalvaPartidaFacade,
     private readonly quartasService: QuartaDeFinalGeneratorService,
     private readonly semisService: SemifinalGeneratorService,
     private readonly finalService: FinalGeneratorService,
@@ -118,18 +119,9 @@ export class LigaService {
 
     const [ligaAtualizada, partidasSalvas] = await this.connection.transaction(
       async (manager) => {
-        await manager.insert(
-          EquipePartida,
-          partidas.map((x) => [x.mandante, x.visitante]).flat(),
-        );
-        const partidasSalvas = await manager.save(partidas);
-        await manager.save(
-          partidas
-            .map((x) => {
-              x.mandante.idPartida = x.visitante.idPartida = x.id;
-              return [x.mandante, x.visitante];
-            })
-            .flat(),
+        const partidasSalvas = await this.salvaPartidas.executa(
+          partidas,
+          manager,
         );
         const ligaSalva = await manager.save(liga);
 
@@ -172,18 +164,17 @@ export class LigaService {
     liga.status = StatusLiga.QUARTAS;
 
     const [ligaAtualizada, partidasAgendadas] =
-      await this.connection.transaction(async (manager) => {
-        await this.partidaRepository.removePartidasNaoDisputadas(id, manager);
-
-        return [await manager.save(liga), await manager.save(partidas)];
-      });
+      await this.connection.transaction(async (manager) => [
+        await manager.save(liga),
+        await this.salvaPartidas.executa(partidas, manager),
+      ]);
 
     return new QuartasLigaRespostaDto(ligaAtualizada, partidasAgendadas);
   }
 
   async inicializaSemis(id: string, requisicao: InicializaSemifinalDto) {
     const liga = await this.devePegarEntidade(id);
-    if (liga.status !== StatusLiga.SEMIS) {
+    if (liga.status !== StatusLiga.QUARTAS) {
       throw new ConflictException(
         `O status da Liga ${liga.id} não é ${StatusLiga.QUARTAS}`,
       );
@@ -199,7 +190,10 @@ export class LigaService {
       await this.connection.transaction(async (manager) => {
         await this.partidaRepository.removePartidasNaoDisputadas(id, manager);
 
-        return [await manager.save(liga), await manager.save(partidas)];
+        return [
+          await manager.save(liga),
+          await this.salvaPartidas.executa(partidas, manager),
+        ];
       });
 
     return new SemisLigaRespostaDto(ligaAtualizada, partidasAgendadas);
@@ -225,7 +219,10 @@ export class LigaService {
       await this.connection.transaction(async (manager) => {
         await this.partidaRepository.removePartidasNaoDisputadas(id, manager);
 
-        return [await manager.save(liga), await manager.save(partidas)];
+        return [
+          await manager.save(liga),
+          await this.salvaPartidas.executa(partidas, manager),
+        ];
       });
 
     return new FinalLigaRespostaDto(ligaAtualizada, partidasAgendadas);
