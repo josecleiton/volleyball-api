@@ -33,7 +33,7 @@
 				"--runInBand",
 				"--coverage",
 				"false",
-				"partida-concluida.e2e-spec"
+				"liga-quartas-de-final"
 			],
 			"console": "integratedTerminal"
 		}

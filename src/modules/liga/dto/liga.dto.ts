@@ -68,7 +68,7 @@ export class InicializaLigaDto {
 export class LigaRespostaDto {
   id: string;
   genero: string;
-  estado: StatusLiga;
+  status: StatusLiga;
   dataComeco?: Date;
   nome?: string;
   serie?: string;
@@ -80,7 +80,7 @@ export class LigaRespostaDto {
     this.id = liga.id;
     this.genero = liga.genero;
     this.dataComeco = liga.dataComeco;
-    this.estado = liga.status;
+    this.status = liga.status;
     this.nome = liga.nome;
     this.serie = liga.serie;
     this.ano = liga.ano;

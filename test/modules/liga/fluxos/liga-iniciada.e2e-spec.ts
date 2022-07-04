@@ -29,6 +29,6 @@ describe('Fluxo - Liga iniciada', () => {
     );
     expect(liga.id).toEqual(ligaAtualizada.id);
     expect(ligaAtualizada.dataComeco).toBeDefined();
-    expect(ligaAtualizada.estado).toEqual(StatusLiga.CLASSIFICATORIA);
+    expect(ligaAtualizada.status).toEqual(StatusLiga.CLASSIFICATORIA);
   });
 });

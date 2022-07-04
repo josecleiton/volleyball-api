@@ -59,7 +59,7 @@ export class LigaService {
     } catch (error) {
       throw this.typeormFilterService.catch({
         error,
-        description: 'conflito',
+        description: 'Conflito',
         entityName: 'Competição',
       });
     }
@@ -144,7 +144,7 @@ export class LigaService {
     const liga = await this.devePegarEntidade(id);
     if (liga.status !== StatusLiga.CLASSIFICATORIA) {
       throw new ConflictException(
-        `Liga ${liga.id} não está no estado ${StatusLiga.CLASSIFICATORIA} e sim ${liga.status}`,
+        `Liga ${liga.id} não é ${StatusLiga.CLASSIFICATORIA} e sim ${liga.status}`,
       );
     }
 
@@ -157,10 +157,10 @@ export class LigaService {
 
     if (
       quantidadeDePartidasPorTipoRodada !==
-      Liga.quantidadeDeRodadasEmClassificatorias
+      Liga.quantidadeDePartidasNaClassificacao
     ) {
       throw new ConflictException(
-        `Quantidades de partidas concluídas na liga ${liga.id} não é igual a ${Liga.quantidadeDeRodadasEmClassificatorias}`,
+        `Quantidades de partidas concluídas na liga ${liga.id} não é igual a ${Liga.quantidadeDePartidasNaClassificacao}`,
       );
     }
 
@@ -185,7 +185,7 @@ export class LigaService {
     const liga = await this.devePegarEntidade(id);
     if (liga.status !== StatusLiga.SEMIS) {
       throw new ConflictException(
-        `Liga ${liga.id} não está ${StatusLiga.QUARTAS}`,
+        `O status da Liga ${liga.id} não é ${StatusLiga.QUARTAS}`,
       );
     }
 
@@ -209,7 +209,7 @@ export class LigaService {
     const liga = await this.devePegarEntidade(id);
     if (liga.status !== StatusLiga.SEMIS) {
       throw new ConflictException(
-        `Liga ${liga.id} não está ${StatusLiga.QUARTAS}`,
+        `O status da Liga ${liga.id} não é ${StatusLiga.QUARTAS}`,
       );
     }
 
