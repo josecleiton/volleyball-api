@@ -39,5 +39,11 @@ export function cadastrarResultadoPartidaMd3(): [
 ] {
   const resultado = cadastrarResultadoPartidaDto();
 
-  return [resultado, resultado];
+  return [
+    resultado,
+    {
+      setsMandante: resultado.setsVisitante,
+      setsVisitante: resultado.setsMandante,
+    },
+  ];
 }

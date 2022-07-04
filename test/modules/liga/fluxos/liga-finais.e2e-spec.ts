@@ -29,5 +29,31 @@ describe('Fluxo - LigaFinais (e2e)', () => {
         partidas.every((x) => x.status === StatusPartida.AGENDADA),
       ).toBeTruthy();
     });
+
+    describe('Conflict', () => {
+      it('Liga não está em quartas', async () => {
+        const liga = await server.liga.liga.liga.criaLiga();
+
+        await expect(
+          server.inicializaSemis({
+            liga,
+            partidas: [],
+            ignorarPartidas: true,
+          }),
+        ).rejects.toThrow('409');
+      });
+
+      it('Confrontos sem vencedor nas quartas', async () => {
+        const { liga } = await server.liga.criaLigaEmQuartas();
+
+        await expect(
+          server.inicializaSemis({
+            liga,
+            partidas: [],
+            ignorarPartidas: true,
+          }),
+        ).rejects.toThrow('409');
+      });
+    });
   });
 });
