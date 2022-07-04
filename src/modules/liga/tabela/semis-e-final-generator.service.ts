@@ -2,7 +2,8 @@ import {
   ConflictException,
   InternalServerErrorException,
 } from '@nestjs/common';
-import { chunk, countBy } from 'lodash';
+import { isUUID } from 'class-validator';
+import { groupBy } from 'lodash';
 import { Equipe } from 'src/modules/equipe/entities/equipe.entity';
 import { PartidaRespostaDto } from 'src/modules/partida/dto/partida.dto';
 import { PartidaFactory } from 'src/modules/partida/factories/partida.factory';
@@ -39,7 +40,6 @@ export abstract class SemisEFinalGeneratorService extends MataMataGeneratorServi
         },
       ],
     ]);
-
   constructor(
     private readonly partidaService: PartidaService,
     private readonly pontuacaoService: PontuacaoService,
@@ -49,31 +49,20 @@ export abstract class SemisEFinalGeneratorService extends MataMataGeneratorServi
   }
 
   private listarVencedores(partidas: PartidaRespostaDto[]) {
-    return chunk(
-      partidas,
-      MataMataGeneratorService.quantidadeDePartidasPorConfronto,
-    ).map((confronto, index) => {
-      const grupoVencedores = countBy(
-        confronto,
-        (partida) => partida.idEquipeGanhador,
+    const grupo = groupBy(partidas, (partida) => partida.ganhadora?.idEquipe);
+    const vencedores = Object.entries(grupo).filter(
+      ([ganhador, partidasGanhas]) =>
+        isUUID(ganhador) && partidasGanhas.length > 1,
+    );
+
+    const quantidadeDeVencedores = this.tipoRodada === 'semis' ? 4 : 2;
+    if (vencedores.length !== quantidadeDeVencedores) {
+      throw new ConflictException(
+        'Algum dos confrontos da rodada anterior não foram concluídos',
       );
+    }
 
-      const vencedor = Object.entries(grupoVencedores).find(
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        ([_, quantidadePartidas]) => quantidadePartidas > 1,
-      );
-
-      if (!vencedor?.[0] || vencedor[0] === 'undefined') {
-        const [partida] = confronto;
-        throw new ConflictException(
-          `Confronto ${index + 1} entre ${partida.idEquipeMandante} x ${
-            partida.idEquipeVisitante
-          } não foi definido um vencedor ainda`,
-        );
-      }
-
-      return vencedor[0];
-    });
+    return vencedores.map(([idGanhador]) => idGanhador);
   }
 
   // Caso a colocação do vencedor da chave a direita seja maior,
@@ -91,7 +80,7 @@ export abstract class SemisEFinalGeneratorService extends MataMataGeneratorServi
 
     resultado.some((vencedorEsquerda, index, array) => {
       const direitaIndex = array.length - index - 1;
-      const vencedorDireita = vencedorEsquerda[direitaIndex];
+      const vencedorDireita = array[direitaIndex];
 
       if (
         (idEquipeClassificacaoMap.get(vencedorEsquerda) ?? 0) <

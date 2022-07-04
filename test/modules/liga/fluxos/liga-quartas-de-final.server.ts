@@ -2,19 +2,13 @@
 import request = require('supertest');
 import { last } from 'lodash';
 
-import {
-  InicializaLigaRespostaDto,
-  QuartasLigaRespostaDto,
-} from 'src/modules/liga/dto/liga.dto';
+import { QuartasLigaRespostaDto } from 'src/modules/liga/dto/liga.dto';
 import { PartidaConcluidaServer } from 'test/modules/partida/fluxos/partida-concluida.server';
 import { inicializaQuartaDeFinalDto } from 'test/__MOCKS__/liga/tabela.dto';
 import { cadastrarResultadoPartidaDto } from 'test/__MOCKS__/partidas/partida.mock';
 import { LigaIniciadaServer } from './liga-iniciada.server';
 import { sleep } from 'src/modules/core/utils';
-
-interface IInicializaQuartasDeFinal extends InicializaLigaRespostaDto {
-  ignorarPartidas?: boolean;
-}
+import { IInicializaFinais } from './helpers/inicializa-finais.interface';
 
 export class LigaQuartasDeFinalServer {
   readonly liga: LigaIniciadaServer;
@@ -35,7 +29,7 @@ export class LigaQuartasDeFinalServer {
     liga,
     partidas,
     ignorarPartidas = false,
-  }: IInicializaQuartasDeFinal): Promise<QuartasLigaRespostaDto> {
+  }: IInicializaFinais): Promise<QuartasLigaRespostaDto> {
     if (!ignorarPartidas) {
       for (const partida of partidas) {
         await this.partida.adicionaParticipantesNaPartidaECadastraResultado(

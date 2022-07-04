@@ -33,7 +33,9 @@
 				"--runInBand",
 				"--coverage",
 				"false",
-				"liga-quartas-de-final"
+				"-t",
+				"Semis",
+				"liga-finais"
 			],
 			"console": "integratedTerminal"
 		}
