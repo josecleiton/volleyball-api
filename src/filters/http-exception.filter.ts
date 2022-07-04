@@ -52,7 +52,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
       ex.name = classValidatorEx.error;
     }
 
-    if (env !== 'production' && env !== 'test') {
+    if (env !== 'production') {
       console.warn(ex);
     }
 

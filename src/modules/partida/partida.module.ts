@@ -13,6 +13,8 @@ import {
   PartidaRepository,
 } from './repositories';
 import { PontuacaoViewRepository } from '../pontuacao/repositories/pontuacao-view.repository';
+import { PartidaFactory } from './factories/partida.factory';
+import { SalvaPartidaFacade } from './facades/salva-partida.facade';
 
 @Module({
   imports: [
@@ -28,7 +30,18 @@ import { PontuacaoViewRepository } from '../pontuacao/repositories/pontuacao-vie
     PontuacaoModule,
   ],
   controllers: [PartidaController],
-  providers: [PartidaService, AtletaEscaladoService],
-  exports: [TypeOrmModule, PartidaService, AtletaEscaladoService],
+  providers: [
+    PartidaService,
+    AtletaEscaladoService,
+    PartidaFactory,
+    SalvaPartidaFacade,
+  ],
+  exports: [
+    TypeOrmModule,
+    PartidaService,
+    AtletaEscaladoService,
+    PartidaFactory,
+    SalvaPartidaFacade,
+  ],
 })
 export class PartidaModule {}

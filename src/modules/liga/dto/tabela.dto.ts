@@ -24,7 +24,7 @@ export class InicializaQuartaDeFinalDto {
   datas!: Date[];
 
   @IsArray()
-  @IsEnum(EscolhaDeMando)
+  @IsEnum(EscolhaDeMando, { each: true })
   @ArrayMinSize(4)
   @ArrayMaxSize(4)
   mandos!: EscolhaDeMando[];

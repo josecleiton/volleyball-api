@@ -1,11 +1,13 @@
 import { chunk } from 'lodash';
 import { Partida } from 'src/modules/partida/entities/partida.entity';
+import { PartidaFactory } from 'src/modules/partida/factories/partida.factory';
 import type { TipoRodadaMataMata } from 'src/modules/partida/types/tipo-rodada.type';
 import { IClassificados } from '../dto/mata-mata.dto';
 import { IMataMataDto } from '../dto/tabela.dto';
 import { EscolhaDeMando } from '../enums';
 
 export abstract class MataMataGeneratorService {
+  constructor(private readonly partidaFactory: PartidaFactory) {}
   private static readonly escolhaDeMando: ReadonlyMap<EscolhaDeMando, number> =
     new Map([
       [EscolhaDeMando.PRIMEIRO_JOGO, 0],
@@ -50,23 +52,17 @@ export abstract class MataMataGeneratorService {
 
         const partidasDoConfronto = datasPorConfronto[classificadoIndex].map(
           (data, dataIndex) => {
-            const partida = new Partida();
-
-            partida.dataComeco = data;
-
-            if (mandoDaIdaIndiceSet.has(dataIndex)) {
-              partida.idMandante = melhorColocado.id;
-              partida.idGinasio = melhorColocado.idGinasio;
-              partida.idVisitante = piorColocado.id;
-            } else {
-              partida.idMandante = piorColocado.id;
-              partida.idGinasio = piorColocado.idGinasio;
-              partida.idVisitante = melhorColocado.id;
-            }
-
-            partida.tipoDaRodada = this.tipoRodada;
-
-            return partida;
+            const mandoEhDoMelhorColocado = mandoDaIdaIndiceSet.has(dataIndex);
+            return this.partidaFactory.instanciaPartida({
+              dataComeco: data,
+              tipoDaRodada: this.tipoRodada,
+              equipeMandante: mandoEhDoMelhorColocado
+                ? melhorColocado
+                : piorColocado,
+              equipeVisitante: mandoEhDoMelhorColocado
+                ? piorColocado
+                : melhorColocado,
+            });
           },
         );
 

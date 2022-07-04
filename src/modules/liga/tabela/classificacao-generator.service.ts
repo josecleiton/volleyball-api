@@ -6,8 +6,7 @@ import { Partida } from 'src/modules/partida/entities/partida.entity';
 import { DoublyLinkedList } from 'datastructures-js';
 import { createGroup } from 'tournament_creator';
 import { TipoRodada } from 'src/modules/partida/types/tipo-rodada.type';
-import { EquipePartida } from 'src/modules/partida/entities/equipe-partida.entity';
-import { randomUUID } from 'crypto';
+import { PartidaFactory } from 'src/modules/partida/factories/partida.factory';
 
 interface IClassificacaoGeneratorRequest {
   equipes: Equipe[];
@@ -19,6 +18,7 @@ interface IClassificacaoGeneratorRequest {
 
 @Injectable()
 export class ClassificacaoGeneratorService {
+  constructor(private readonly partidaFactory: PartidaFactory) {}
   private static readonly diaDaSemanaIndiceMap: ReadonlyMap<DiaDaSemana, Day> =
     new Map([
       [DiaDaSemana.Domingo, 0],
@@ -116,28 +116,12 @@ export class ClassificacaoGeneratorService {
       teams: equipes.map((x) => x.id),
       rematch: true,
     }).matches.map((match, index) => {
-      const partida = new Partida();
-      const equipeMandante = idEquipeMap.get(
-        match.homeTeam as string,
-      ) as Equipe;
-      const equipeVisitante = idEquipeMap.get(
-        match.awayTeam as string,
-      ) as Equipe;
-
-      const equipePartidaMandante = new EquipePartida();
-      equipePartidaMandante.id = randomUUID();
-      equipePartidaMandante.equipe = equipeMandante;
-
-      const equipePartidaVisitante = new EquipePartida();
-      equipePartidaVisitante.id = randomUUID();
-      equipePartidaVisitante.equipe = equipeVisitante;
-
-      partida.mandante = equipePartidaMandante;
-      partida.visitante = equipePartidaVisitante;
-      partida.dataComeco = datasDasPartidas[index];
-      partida.tipoDaRodada = match.roundNumber?.toString() as TipoRodada;
-
-      return partida;
+      return this.partidaFactory.instanciaPartida({
+        dataComeco: datasDasPartidas[index],
+        equipeMandante: idEquipeMap.get(match.homeTeam as string) as Equipe,
+        equipeVisitante: idEquipeMap.get(match.awayTeam as string) as Equipe,
+        tipoDaRodada: match.roundNumber?.toString() as TipoRodada,
+      });
     });
   }
 }
