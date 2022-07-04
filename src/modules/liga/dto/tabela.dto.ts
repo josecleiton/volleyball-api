@@ -39,7 +39,7 @@ export class InicializaSemifinalDto {
   datas!: Date[];
 
   @IsArray()
-  @IsEnum(EscolhaDeMando)
+  @IsEnum(EscolhaDeMando, { each: true })
   @ArrayMinSize(2)
   @ArrayMaxSize(2)
   mandos!: EscolhaDeMando[];
@@ -53,6 +53,7 @@ export class InicializaFinalDto {
   @Type(() => Date)
   datas!: Date[];
 
+  @IsEnum(EscolhaDeMando)
   mando!: EscolhaDeMando;
 }
 

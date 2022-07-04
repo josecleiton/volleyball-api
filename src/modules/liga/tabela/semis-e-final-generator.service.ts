@@ -2,7 +2,7 @@ import {
   ConflictException,
   InternalServerErrorException,
 } from '@nestjs/common';
-import { chunk, countBy } from 'lodash';
+import { chunk, countBy, groupBy } from 'lodash';
 import { Equipe } from 'src/modules/equipe/entities/equipe.entity';
 import { PartidaRespostaDto } from 'src/modules/partida/dto/partida.dto';
 import { PartidaFactory } from 'src/modules/partida/factories/partida.factory';
@@ -49,6 +49,7 @@ export abstract class SemisEFinalGeneratorService extends MataMataGeneratorServi
   }
 
   private listarVencedores(partidas: PartidaRespostaDto[]) {
+    Object.(groupBy(partidas, (partida) => partida.idEquipeGanhador)).filter()
     return chunk(
       partidas,
       MataMataGeneratorService.quantidadeDePartidasPorConfronto,
