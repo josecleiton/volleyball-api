@@ -30,4 +30,27 @@ describe('Fluxo - LigaQuartasDeFinal (e2e)', () => {
     ).toBeTruthy();
     expect(liga.status).toEqual(StatusLiga.QUARTAS);
   });
+
+  describe('Conflict', () => {
+    it('Liga não está em Classificação', async () => {
+      const liga = await server.liga.liga.criaLiga();
+      await expect(
+        server.inicializaQuartasDeFinal({
+          liga,
+          partidas: [],
+        }),
+      ).rejects.toThrow('409');
+    });
+
+    it('Liga não teve todas as suas partidas jogadas', async () => {
+      const resultado = await server.liga.criaLigaInicializada();
+
+      await expect(
+        server.inicializaQuartasDeFinal({
+          ...resultado,
+          ignorarPartidas: true,
+        }),
+      ).rejects.toThrow('409');
+    });
+  });
 });

@@ -12,6 +12,10 @@ import { cadastrarResultadoPartidaDto } from 'test/__MOCKS__/partidas/partida.mo
 import { LigaIniciadaServer } from './liga-iniciada.server';
 import { sleep } from 'src/modules/core/utils';
 
+interface IInicializaQuartasDeFinal extends InicializaLigaRespostaDto {
+  ignorarPartidas?: boolean;
+}
+
 export class LigaQuartasDeFinalServer {
   readonly liga: LigaIniciadaServer;
   readonly partida: PartidaConcluidaServer;
@@ -30,22 +34,25 @@ export class LigaQuartasDeFinalServer {
   async inicializaQuartasDeFinal({
     liga,
     partidas,
-  }: InicializaLigaRespostaDto): Promise<QuartasLigaRespostaDto> {
-    for (const partida of partidas) {
-      await this.partida.adicionaParticipantesNaPartidaECadastraResultado(
-        liga,
-        partida,
-        cadastrarResultadoPartidaDto(),
-      );
+    ignorarPartidas = false,
+  }: IInicializaQuartasDeFinal): Promise<QuartasLigaRespostaDto> {
+    if (!ignorarPartidas) {
+      for (const partida of partidas) {
+        await this.partida.adicionaParticipantesNaPartidaECadastraResultado(
+          liga,
+          partida,
+          cadastrarResultadoPartidaDto(),
+        );
 
-      await sleep(700);
+        await sleep(700);
+      }
     }
 
     return request(this.server)
       .post(`/liga/${liga.id}/inicializa-quartas`)
       .send(
         inicializaQuartaDeFinalDto(
-          new Date(last(partidas)?.dataComeco as Date),
+          new Date(last(partidas)?.dataComeco ?? new Date()),
         ),
       )
       .expect(200)
