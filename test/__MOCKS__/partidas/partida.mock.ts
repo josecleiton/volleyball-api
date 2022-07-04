@@ -32,3 +32,12 @@ export function cadastrarResultadoPartidaDto(): CadastrarResultadoPartidaDto {
     setsVisitante: mandanteVence ? perdedor : vencedor,
   });
 }
+
+export function cadastrarResultadoPartidaMd3(): [
+  CadastrarResultadoPartidaDto,
+  CadastrarResultadoPartidaDto,
+] {
+  const resultado = cadastrarResultadoPartidaDto();
+
+  return [resultado, resultado];
+}
