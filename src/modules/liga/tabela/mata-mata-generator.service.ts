@@ -14,7 +14,7 @@ export abstract class MataMataGeneratorService {
       [EscolhaDeMando.SEGUNDO_JOGO, 1],
     ]);
   private static readonly mandoFixoIndice = 2;
-  protected static readonly quantidadesDePartidasParaVencerConfronto = 2;
+  static readonly quantidadesDePartidasParaVencerConfronto = 2;
   static readonly quantidadeDePartidasPorConfronto = 3;
   static readonly quantidadeDePartidasNasQuartas = 12;
   static readonly quantidadeDePartidasNasSemis =

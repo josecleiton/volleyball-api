@@ -56,4 +56,46 @@ describe('Fluxo - LigaFinais (e2e)', () => {
       });
     });
   });
+
+  describe('Final', () => {
+    it('Ok', async () => {
+      const resultado = await server.criaLigaEmSemi();
+
+      const { liga, partidas } = await server.inicializaFinal(resultado);
+
+      expect(liga.status).toEqual(StatusLiga.FINAL);
+      expect(partidas).toHaveLength(3);
+      expect(
+        partidas.every((x) => x.status === StatusPartida.AGENDADA),
+      ).toBeTruthy();
+    });
+  });
+
+  describe('Premiação da competição', () => {
+    it('Ok', async () => {
+      const resultado = await server.criaLigaFinal();
+
+      const liga = await server.premia(resultado);
+
+      expect(liga.status).toEqual(StatusLiga.PREMIACAO);
+    });
+
+    describe('Conflict', () => {
+      it('Status errado da liga', async () => {
+        const liga = await server.liga.liga.liga.criaLiga();
+
+        await expect(
+          server.premia({ liga, partidas: [], ignorarPartidas: true }),
+        ).rejects.toThrow('409');
+      });
+
+      it('Confronto não disputado', async () => {
+        const resultado = await server.criaLigaFinal();
+
+        await expect(
+          server.premia({ ...resultado, ignorarPartidas: true }),
+        ).rejects.toThrow('409');
+      });
+    });
+  });
 });

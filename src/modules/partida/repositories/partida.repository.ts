@@ -15,7 +15,7 @@ import { StatusPartida } from '../enums/status-partida.enum';
 
 @EntityRepository(Partida)
 export class PartidaRepository extends Repository<Partida> {
-  aplicaRelacoesDeUmaPartidaCompleta(
+  private aplicaRelacoesDeUmaPartidaCompleta(
     qb: SelectQueryBuilder<Partida>,
   ): SelectQueryBuilder<Partida> {
     return qb

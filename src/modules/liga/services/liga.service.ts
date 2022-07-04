@@ -35,6 +35,7 @@ import {
   QuartaDeFinalGeneratorService,
   SemifinalGeneratorService,
 } from '../tabela';
+import { MataMataGeneratorService } from '../tabela/mata-mata-generator.service';
 import { LigaIdStatus } from '../types/liga-id-status.type';
 
 @Injectable()
@@ -226,6 +227,41 @@ export class LigaService {
       });
 
     return new FinalLigaRespostaDto(ligaAtualizada, partidasAgendadas);
+  }
+
+  async premiacao(id: string) {
+    const liga = await this.devePegarEntidade(id);
+    if (liga.status !== StatusLiga.FINAL) {
+      throw new ConflictException(
+        `O status da Liga ${liga.id} não é ${StatusLiga.QUARTAS}`,
+      );
+    }
+
+    const partidas = await this.partidaRepository.listaPartidasOrdenadas({
+      idLiga: liga.id,
+      tipoRodada: 'final',
+    });
+
+    const partidasComGanhador = partidas.filter((x) => Boolean(x.ganhadora));
+
+    if (
+      partidasComGanhador.length !==
+      MataMataGeneratorService.quantidadesDePartidasParaVencerConfronto
+    ) {
+      throw new ConflictException(
+        `O confronto final da liga ${id} não foi disputado`,
+      );
+    }
+
+    liga.status = StatusLiga.PREMIACAO;
+
+    return this.connection
+      .transaction(async (manager) => {
+        await this.partidaRepository.removePartidasNaoDisputadas(id, manager);
+
+        return this.ligaRepository.save(liga);
+      })
+      .then((x) => new LigaRespostaDto(x));
   }
 
   private async getLigaIniciadaEm(id: string) {

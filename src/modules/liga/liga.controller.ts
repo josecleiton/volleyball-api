@@ -7,6 +7,7 @@ import {
   Delete,
   ParseUUIDPipe,
   HttpCode,
+  Patch,
 } from '@nestjs/common';
 import { LigaService } from './services/liga.service';
 import { CriaLigaDto, InicializaLigaDto } from './dto/liga.dto';
@@ -61,6 +62,11 @@ export class LigaController {
     @Body() requisicao: InicializaFinalDto,
   ) {
     return this.ligaService.inicializaFinal(id, requisicao);
+  }
+
+  @Patch(':id/premiacao')
+  async premiacao(@Param('id', ParseUUIDPipe) id: string) {
+    return this.ligaService.premiacao(id);
   }
 
   @Get()

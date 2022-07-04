@@ -1,6 +1,7 @@
 import { addDays } from 'date-fns';
 import faker = require('faker');
 import {
+  InicializaFinalDto,
   InicializaQuartaDeFinalDto,
   InicializaSemifinalDto,
 } from 'src/modules/liga/dto/tabela.dto';
@@ -29,5 +30,15 @@ export function inicializaSemiFinalDto(
   return Object.assign(new InicializaSemifinalDto(), {
     datas,
     mandos,
+  });
+}
+
+export function inicializaFinalDto(dataUltimaPartida: Date) {
+  const dataBase = faker.date.recent(2, dataUltimaPartida);
+  const datas = [...Array(3).keys()].map((index) => addDays(dataBase, index));
+
+  return Object.assign(new InicializaFinalDto(), {
+    datas,
+    mando: EscolhaDeMando.PRIMEIRO_JOGO,
   });
 }
