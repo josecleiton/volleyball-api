@@ -47,7 +47,7 @@
   <li>Interfaces</li>
   <li
   >
-  IAplicaRegraDesempateDto</li>
+  IInicializaFinais</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -65,11 +65,17 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/modules/pontuacao/dtos/desempate.dto.ts</code>
+            <code>test/modules/liga/fluxos/helpers/inicializa-finais.interface.ts</code>
         </p>
 
 
 
+            <p class="comment">
+                <h3>Extends</h3>
+            </p>
+            <p class="comment">
+                        <code><a href="../classes/InicializaLigaRespostaDto.html" target="_self" >InicializaLigaRespostaDto</a></code>
+            </p>
 
         <section>
             <h3 id="index">Index</h3>
@@ -84,15 +90,10 @@
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
-                                        <a href="#classificacoes" 
+                                            <span class="modifier">Optional</span>
+                                        <a href="#ignorarPartidas" 
 >
-                                            classificacoes
-                                        </a>
-                                </li>
-                                <li>
-                                        <a href="#idLiga" 
->
-                                            idLiga
+                                            ignorarPartidas
                                         </a>
                                 </li>
                             </ul>
@@ -110,9 +111,9 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="classificacoes"></a>
-                                        <span class="name "><b>classificacoes</b>
-                                            <a href="#classificacoes">
+                                        <a name="ignorarPartidas"></a>
+                                        <span class="name "><b>ignorarPartidas</b>
+                                            <a href="#ignorarPartidas">
                                                 <span class="icon ion-ios-link"></span>
                                             </a>
                                         </span>
@@ -120,7 +121,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>classificacoes:         <code><a href="../classes/PontuacaoDto.html" target="_self" >PontuacaoDto[]</a></code>
+                                        <code>ignorarPartidas:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -128,44 +129,16 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="../classes/PontuacaoDto.html" target="_self" >PontuacaoDto[]</a></code>
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
 
                                         </td>
                                     </tr>
-
-
-
-
-
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="idLiga"></a>
-                                        <span class="name "><b>idLiga</b>
-                                            <a href="#idLiga">
-                                                <span class="icon ion-ios-link"></span>
-                                            </a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>idLiga:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-</code>
-                                    </td>
-                                </tr>
-
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
+                                            <i>Optional</i>
                                         </td>
                                     </tr>
-
 
 
 
@@ -177,11 +150,10 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { PontuacaoDto } from &#x27;./pontuacao.dto&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { InicializaLigaRespostaDto } from &#x27;src/modules/liga/dto/liga.dto&#x27;;
 
-export interface IAplicaRegraDesempateDto {
-  idLiga: string;
-  classificacoes: PontuacaoDto[];
+export interface IInicializaFinais extends InicializaLigaRespostaDto {
+  ignorarPartidas?: boolean;
 }
 </code></pre>
     </div>
@@ -220,7 +192,7 @@ export interface IAplicaRegraDesempateDto {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
-            var COMPODOC_CURRENT_PAGE_URL = 'IAplicaRegraDesempateDto.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'IInicializaFinais.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

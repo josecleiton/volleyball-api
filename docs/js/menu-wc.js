@@ -262,13 +262,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/PartidaModule.html" data-type="entity-link" >PartidaModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                            'data-target="#controllers-links-module-PartidaModule-0873323a5286f66986828562d5fe9c05e90c8b0701b6c47e7627f9ababa694e28659409f14fb93ede7f327587a156f83d7b2dbef54f811707ba388ed894021f9"' : 'data-target="#xs-controllers-links-module-PartidaModule-0873323a5286f66986828562d5fe9c05e90c8b0701b6c47e7627f9ababa694e28659409f14fb93ede7f327587a156f83d7b2dbef54f811707ba388ed894021f9"' }>
+                                            'data-target="#controllers-links-module-PartidaModule-45735233cc36a6a4092006e86c223ae8988ebd1ce198ec5df8293616f9c0490b986c838f0f1afa3b764b29c1574a11a269269866066f9412f8d0c70d7dae5803"' : 'data-target="#xs-controllers-links-module-PartidaModule-45735233cc36a6a4092006e86c223ae8988ebd1ce198ec5df8293616f9c0490b986c838f0f1afa3b764b29c1574a11a269269866066f9412f8d0c70d7dae5803"' }>
                                             <span class="icon ion-md-swap"></span>
                                             <span>Controllers</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-PartidaModule-0873323a5286f66986828562d5fe9c05e90c8b0701b6c47e7627f9ababa694e28659409f14fb93ede7f327587a156f83d7b2dbef54f811707ba388ed894021f9"' :
-                                            'id="xs-controllers-links-module-PartidaModule-0873323a5286f66986828562d5fe9c05e90c8b0701b6c47e7627f9ababa694e28659409f14fb93ede7f327587a156f83d7b2dbef54f811707ba388ed894021f9"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-PartidaModule-45735233cc36a6a4092006e86c223ae8988ebd1ce198ec5df8293616f9c0490b986c838f0f1afa3b764b29c1574a11a269269866066f9412f8d0c70d7dae5803"' :
+                                            'id="xs-controllers-links-module-PartidaModule-45735233cc36a6a4092006e86c223ae8988ebd1ce198ec5df8293616f9c0490b986c838f0f1afa3b764b29c1574a11a269269866066f9412f8d0c70d7dae5803"' }>
                                             <li class="link">
                                                 <a href="controllers/PartidaController.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >PartidaController</a>
                                             </li>
@@ -276,18 +276,24 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     </li>
                                 <li class="chapter inner">
                                     <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                        'data-target="#injectables-links-module-PartidaModule-0873323a5286f66986828562d5fe9c05e90c8b0701b6c47e7627f9ababa694e28659409f14fb93ede7f327587a156f83d7b2dbef54f811707ba388ed894021f9"' : 'data-target="#xs-injectables-links-module-PartidaModule-0873323a5286f66986828562d5fe9c05e90c8b0701b6c47e7627f9ababa694e28659409f14fb93ede7f327587a156f83d7b2dbef54f811707ba388ed894021f9"' }>
+                                        'data-target="#injectables-links-module-PartidaModule-45735233cc36a6a4092006e86c223ae8988ebd1ce198ec5df8293616f9c0490b986c838f0f1afa3b764b29c1574a11a269269866066f9412f8d0c70d7dae5803"' : 'data-target="#xs-injectables-links-module-PartidaModule-45735233cc36a6a4092006e86c223ae8988ebd1ce198ec5df8293616f9c0490b986c838f0f1afa3b764b29c1574a11a269269866066f9412f8d0c70d7dae5803"' }>
                                         <span class="icon ion-md-arrow-round-down"></span>
                                         <span>Injectables</span>
                                         <span class="icon ion-ios-arrow-down"></span>
                                     </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-PartidaModule-0873323a5286f66986828562d5fe9c05e90c8b0701b6c47e7627f9ababa694e28659409f14fb93ede7f327587a156f83d7b2dbef54f811707ba388ed894021f9"' :
-                                        'id="xs-injectables-links-module-PartidaModule-0873323a5286f66986828562d5fe9c05e90c8b0701b6c47e7627f9ababa694e28659409f14fb93ede7f327587a156f83d7b2dbef54f811707ba388ed894021f9"' }>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-PartidaModule-45735233cc36a6a4092006e86c223ae8988ebd1ce198ec5df8293616f9c0490b986c838f0f1afa3b764b29c1574a11a269269866066f9412f8d0c70d7dae5803"' :
+                                        'id="xs-injectables-links-module-PartidaModule-45735233cc36a6a4092006e86c223ae8988ebd1ce198ec5df8293616f9c0490b986c838f0f1afa3b764b29c1574a11a269269866066f9412f8d0c70d7dae5803"' }>
                                         <li class="link">
                                             <a href="injectables/AtletaEscaladoService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >AtletaEscaladoService</a>
                                         </li>
                                         <li class="link">
+                                            <a href="injectables/PartidaFactory.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >PartidaFactory</a>
+                                        </li>
+                                        <li class="link">
                                             <a href="injectables/PartidaService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >PartidaService</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="injectables/SalvaPartidaFacade.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >SalvaPartidaFacade</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -858,7 +864,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/IniciarVotoRespostaDto.html" data-type="entity-link" >IniciarVotoRespostaDto</a>
                             </li>
                             <li class="link">
+                                <a href="classes/LigaFinaisServer.html" data-type="entity-link" >LigaFinaisServer</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/LigaIniciadaServer.html" data-type="entity-link" >LigaIniciadaServer</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/LigaQuartasDeFinalServer.html" data-type="entity-link" >LigaQuartasDeFinalServer</a>
                             </li>
                             <li class="link">
                                 <a href="classes/LigaRenomeiaEstadoParaStatus1654366866798.html" data-type="entity-link" >LigaRenomeiaEstadoParaStatus1654366866798</a>
@@ -1096,6 +1108,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="injectables/MelhorOpostoService.html" data-type="entity-link" >MelhorOpostoService</a>
                                 </li>
                                 <li class="link">
+                                    <a href="injectables/PartidaFactory.html" data-type="entity-link" >PartidaFactory</a>
+                                </li>
+                                <li class="link">
                                     <a href="injectables/PartidaService.html" data-type="entity-link" >PartidaService</a>
                                 </li>
                                 <li class="link">
@@ -1106,6 +1121,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 </li>
                                 <li class="link">
                                     <a href="injectables/RegistraDesistenciaService.html" data-type="entity-link" >RegistraDesistenciaService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/SalvaPartidaFacade.html" data-type="entity-link" >SalvaPartidaFacade</a>
                                 </li>
                                 <li class="link">
                                     <a href="injectables/SemifinalGeneratorService.html" data-type="entity-link" >SemifinalGeneratorService</a>
@@ -1178,6 +1196,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/IInfoRodada.html" data-type="entity-link" >IInfoRodada</a>
                             </li>
                             <li class="link">
+                                <a href="interfaces/IInicializaFinais.html" data-type="entity-link" >IInicializaFinais</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/IInicializaLigaDto.html" data-type="entity-link" >IInicializaLigaDto</a>
                             </li>
                             <li class="link">
@@ -1185,6 +1206,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/IMelhorEstatisticaService.html" data-type="entity-link" >IMelhorEstatisticaService</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/IPartidaFactoryDto.html" data-type="entity-link" >IPartidaFactoryDto</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/IPontoNoSet.html" data-type="entity-link" >IPontoNoSet</a>

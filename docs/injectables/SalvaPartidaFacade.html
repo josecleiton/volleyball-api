@@ -28,7 +28,7 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content class">
+               <div class="content injectable">
                    <div class="content-data">
 
 
@@ -38,13 +38,9 @@
 
 
 
-
-
-
-
 <ol class="breadcrumb">
-  <li>Classes</li>
-  <li >InicializaFinalDto</li>
+  <li>Injectables</li>
+  <li >SalvaPartidaFacade</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -62,9 +58,8 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/modules/liga/dto/tabela.dto.ts</code>
+            <code>src/modules/partida/facades/salva-partida.facade.ts</code>
         </p>
-
 
 
 
@@ -74,24 +69,22 @@
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
+
                 <tr>
                     <td class="col-md-4">
-                        <h6><b>Properties</b></h6>
+                        <h6><b>Methods</b></h6>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#datas" >datas</a>
-                            </li>
-                            <li>
-                                <a href="#mando" >mando</a>
+                                    <span class="modifier">Async</span>
+                                <a href="#executa" >executa</a>
                             </li>
                         </ul>
                     </td>
                 </tr>
-
 
 
 
@@ -104,160 +97,132 @@
 
             <section>
     
-    <h3 id="inputs">
-        Properties
+    <h3 id="methods">
+        Methods
     </h3>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="datas"></a>
+                    <a name="executa"></a>
                     <span class="name">
-                        <span ><b>datas</b></span>
-                        <a href="#datas"><span class="icon ion-ios-link"></span></a>
+                        <span class="modifier">Async</span>
+                        <span ><b>executa</b></span>
+                        <a href="#executa"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>Date[]</code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @IsArray()<br />@ArrayMinSize(3)<br />@ArrayMaxSize(3)<br />@IsValidDate({each: true})<br />@Type(undefined)<br />
-                        </code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/modules/liga/dto/tabela.dto.ts:54</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="mando"></a>
-                    <span class="name">
-                        <span ><b>mando</b></span>
-                        <a href="#mando"><span class="icon ion-ios-link"></span></a>
-                    </span>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>executa(partidas: <a href="../classes/Partida.html" target="_self">Partida[]</a>, manager: EntityManager)</code>
                 </td>
             </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../miscellaneous/enumerations.html#EscolhaDeMando" target="_self" >EscolhaDeMando</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @IsEnum(EscolhaDeMando)<br />
-                        </code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/modules/liga/dto/tabela.dto.ts:57</a></div>
-                        </td>
-                    </tr>
 
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="8"
+                            class="link-to-prism">src/modules/partida/facades/salva-partida.facade.ts:8</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>partidas</td>
+                                    <td>
+                                                <code><a href="../classes/Partida.html" target="_self" >Partida[]</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>manager</td>
+                                    <td>
+                                            <code>EntityManager</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>unknown</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
         </tbody>
     </table>
 </section>
-
-
-
-
-
-
 
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Type } from &#x27;class-transformer&#x27;;
-import {
-  ArrayMaxSize,
-  ArrayMinSize,
-  IsArray,
-  IsEnum,
-  IsUUID,
-} from &#x27;class-validator&#x27;;
-import { IsValidDate } from &#x27;src/modules/core/validations&#x27;;
-import { EscolhaDeMando } from &#x27;../enums&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@nestjs/common&#x27;;
+import { EntityManager } from &#x27;typeorm&#x27;;
+import { EquipePartida } from &#x27;../entities/equipe-partida.entity&#x27;;
+import { Partida } from &#x27;../entities/partida.entity&#x27;;
 
-export interface IMataMataDto {
-  datas: Date[];
-  mandos: EscolhaDeMando[];
-  idLiga: string;
-}
+@Injectable()
+export class SalvaPartidaFacade {
+  async executa(partidas: Partida[], manager: EntityManager) {
+    const participacoes &#x3D; partidas.map((x) &#x3D;&gt; [x.mandante, x.visitante]).flat();
 
-export class InicializaQuartaDeFinalDto {
-  @IsArray()
-  @ArrayMinSize(12)
-  @ArrayMaxSize(12)
-  @IsValidDate({ each: true })
-  @Type(() &#x3D;&gt; Date)
-  datas!: Date[];
+    await manager.insert(EquipePartida, participacoes);
 
-  @IsArray()
-  @IsEnum(EscolhaDeMando, { each: true })
-  @ArrayMinSize(4)
-  @ArrayMaxSize(4)
-  mandos!: EscolhaDeMando[];
-}
+    const partidasSalvas &#x3D; await manager.save(partidas);
 
-export class InicializaSemifinalDto {
-  @IsArray()
-  @ArrayMinSize(6)
-  @ArrayMaxSize(6)
-  @IsValidDate({ each: true })
-  @Type(() &#x3D;&gt; Date)
-  datas!: Date[];
+    await manager.save(
+      partidas
+        .map((x) &#x3D;&gt; {
+          x.mandante.idPartida &#x3D; x.visitante.idPartida &#x3D; x.id;
+          return [x.mandante, x.visitante];
+        })
+        .flat(),
+    );
 
-  @IsArray()
-  @IsEnum(EscolhaDeMando, { each: true })
-  @ArrayMinSize(2)
-  @ArrayMaxSize(2)
-  mandos!: EscolhaDeMando[];
-}
-
-export class InicializaFinalDto {
-  @IsArray()
-  @ArrayMinSize(3)
-  @ArrayMaxSize(3)
-  @IsValidDate({ each: true })
-  @Type(() &#x3D;&gt; Date)
-  datas!: Date[];
-
-  @IsEnum(EscolhaDeMando)
-  mando!: EscolhaDeMando;
-}
-
-export class QuartaDeFinalDto
-  extends InicializaQuartaDeFinalDto
-  implements IMataMataDto
-{
-  @IsUUID()
-  idLiga!: string;
+    return partidasSalvas;
+  }
 }
 </code></pre>
     </div>
+
 </div>
+
+
+
+
 
 
 
@@ -292,8 +257,8 @@ export class QuartaDeFinalDto
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
-            var COMPODOC_CURRENT_PAGE_URL = 'InicializaFinalDto.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'SalvaPartidaFacade.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

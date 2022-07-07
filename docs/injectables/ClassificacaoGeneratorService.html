@@ -114,6 +114,54 @@
     </table>
 </section>
 
+            <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(partidaFactory: <a href="../injectables/PartidaFactory.html" target="_self">PartidaFactory</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/modules/liga/tabela/classificacao-generator.service.ts:20</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>partidaFactory</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/PartidaFactory.html" target="_self" >PartidaFactory</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
 
             <section>
     
@@ -357,8 +405,7 @@ import { Partida } from &#x27;src/modules/partida/entities/partida.entity&#x27;;
 import { DoublyLinkedList } from &#x27;datastructures-js&#x27;;
 import { createGroup } from &#x27;tournament_creator&#x27;;
 import { TipoRodada } from &#x27;src/modules/partida/types/tipo-rodada.type&#x27;;
-import { EquipePartida } from &#x27;src/modules/partida/entities/equipe-partida.entity&#x27;;
-import { randomUUID } from &#x27;crypto&#x27;;
+import { PartidaFactory } from &#x27;src/modules/partida/factories/partida.factory&#x27;;
 
 interface IClassificacaoGeneratorRequest {
   equipes: Equipe[];
@@ -370,6 +417,7 @@ interface IClassificacaoGeneratorRequest {
 
 @Injectable()
 export class ClassificacaoGeneratorService {
+  constructor(private readonly partidaFactory: PartidaFactory) {}
   private static readonly diaDaSemanaIndiceMap: ReadonlyMap&lt;DiaDaSemana, Day&gt; &#x3D;
     new Map([
       [DiaDaSemana.Domingo, 0],
@@ -467,28 +515,12 @@ export class ClassificacaoGeneratorService {
       teams: equipes.map((x) &#x3D;&gt; x.id),
       rematch: true,
     }).matches.map((match, index) &#x3D;&gt; {
-      const partida &#x3D; new Partida();
-      const equipeMandante &#x3D; idEquipeMap.get(
-        match.homeTeam as string,
-      ) as Equipe;
-      const equipeVisitante &#x3D; idEquipeMap.get(
-        match.awayTeam as string,
-      ) as Equipe;
-
-      const equipePartidaMandante &#x3D; new EquipePartida();
-      equipePartidaMandante.id &#x3D; randomUUID();
-      equipePartidaMandante.equipe &#x3D; equipeMandante;
-
-      const equipePartidaVisitante &#x3D; new EquipePartida();
-      equipePartidaVisitante.id &#x3D; randomUUID();
-      equipePartidaVisitante.equipe &#x3D; equipeVisitante;
-
-      partida.mandante &#x3D; equipePartidaMandante;
-      partida.visitante &#x3D; equipePartidaVisitante;
-      partida.dataComeco &#x3D; datasDasPartidas[index];
-      partida.tipoDaRodada &#x3D; match.roundNumber?.toString() as TipoRodada;
-
-      return partida;
+      return this.partidaFactory.instanciaPartida({
+        dataComeco: datasDasPartidas[index],
+        equipeMandante: idEquipeMap.get(match.homeTeam as string) as Equipe,
+        equipeVisitante: idEquipeMap.get(match.awayTeam as string) as Equipe,
+        tipoDaRodada: match.roundNumber?.toString() as TipoRodada,
+      });
     });
   }
 }

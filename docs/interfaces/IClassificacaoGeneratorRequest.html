@@ -302,8 +302,7 @@ import { Partida } from &#x27;src/modules/partida/entities/partida.entity&#x27;;
 import { DoublyLinkedList } from &#x27;datastructures-js&#x27;;
 import { createGroup } from &#x27;tournament_creator&#x27;;
 import { TipoRodada } from &#x27;src/modules/partida/types/tipo-rodada.type&#x27;;
-import { EquipePartida } from &#x27;src/modules/partida/entities/equipe-partida.entity&#x27;;
-import { randomUUID } from &#x27;crypto&#x27;;
+import { PartidaFactory } from &#x27;src/modules/partida/factories/partida.factory&#x27;;
 
 interface IClassificacaoGeneratorRequest {
   equipes: Equipe[];
@@ -315,6 +314,7 @@ interface IClassificacaoGeneratorRequest {
 
 @Injectable()
 export class ClassificacaoGeneratorService {
+  constructor(private readonly partidaFactory: PartidaFactory) {}
   private static readonly diaDaSemanaIndiceMap: ReadonlyMap&lt;DiaDaSemana, Day&gt; &#x3D;
     new Map([
       [DiaDaSemana.Domingo, 0],
@@ -412,28 +412,12 @@ export class ClassificacaoGeneratorService {
       teams: equipes.map((x) &#x3D;&gt; x.id),
       rematch: true,
     }).matches.map((match, index) &#x3D;&gt; {
-      const partida &#x3D; new Partida();
-      const equipeMandante &#x3D; idEquipeMap.get(
-        match.homeTeam as string,
-      ) as Equipe;
-      const equipeVisitante &#x3D; idEquipeMap.get(
-        match.awayTeam as string,
-      ) as Equipe;
-
-      const equipePartidaMandante &#x3D; new EquipePartida();
-      equipePartidaMandante.id &#x3D; randomUUID();
-      equipePartidaMandante.equipe &#x3D; equipeMandante;
-
-      const equipePartidaVisitante &#x3D; new EquipePartida();
-      equipePartidaVisitante.id &#x3D; randomUUID();
-      equipePartidaVisitante.equipe &#x3D; equipeVisitante;
-
-      partida.mandante &#x3D; equipePartidaMandante;
-      partida.visitante &#x3D; equipePartidaVisitante;
-      partida.dataComeco &#x3D; datasDasPartidas[index];
-      partida.tipoDaRodada &#x3D; match.roundNumber?.toString() as TipoRodada;
-
-      return partida;
+      return this.partidaFactory.instanciaPartida({
+        dataComeco: datasDasPartidas[index],
+        equipeMandante: idEquipeMap.get(match.homeTeam as string) as Equipe,
+        equipeVisitante: idEquipeMap.get(match.awayTeam as string) as Equipe,
+        tipoDaRodada: match.roundNumber?.toString() as TipoRodada,
+      });
     });
   }
 }

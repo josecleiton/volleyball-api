@@ -44,7 +44,7 @@
 
 <ol class="breadcrumb">
   <li>Classes</li>
-  <li >PartidaConcluidaServer</li>
+  <li >LigaQuartasDeFinalServer</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -62,7 +62,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>test/modules/partida/fluxos/partida-concluida.server.ts</code>
+            <code>test/modules/liga/fluxos/liga-quartas-de-final.server.ts</code>
         </p>
 
 
@@ -84,6 +84,10 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Readonly</span>
+                                <a href="#liga" >liga</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#partida" >partida</a>
                             </li>
                         </ul>
@@ -100,11 +104,11 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#adicionaParticipantesNaPartidaECadastraResultado" >adicionaParticipantesNaPartidaECadastraResultado</a>
+                                <a href="#criaLigaEmQuartas" >criaLigaEmQuartas</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#cadastraResultado" >cadastraResultado</a>
+                                <a href="#inicializaQuartasDeFinal" >inicializaQuartasDeFinal</a>
                             </li>
                         </ul>
                     </td>
@@ -129,7 +133,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">test/modules/partida/fluxos/partida-concluida.server.ts:8</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">test/modules/liga/fluxos/liga-quartas-de-final.server.ts:15</a></div>
                             </td>
                         </tr>
 
@@ -172,6 +176,33 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="liga"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>liga</b></span>
+                        <a href="#liga"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/LigaIniciadaServer.html" target="_self" >LigaIniciadaServer</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">test/modules/liga/fluxos/liga-quartas-de-final.server.ts:14</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="partida"></a>
                     <span class="name">
                             <span class="modifier">Readonly</span>
@@ -182,13 +213,13 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../classes/PartidaServer.html" target="_self" >PartidaServer</a></code>
+                        <i>Type : </i>        <code><a href="../classes/PartidaConcluidaServer.html" target="_self" >PartidaConcluidaServer</a></code>
 
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">test/modules/partida/fluxos/partida-concluida.server.ts:8</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">test/modules/liga/fluxos/liga-quartas-de-final.server.ts:15</a></div>
                         </td>
                     </tr>
 
@@ -206,26 +237,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="adicionaParticipantesNaPartidaECadastraResultado"></a>
+                    <a name="criaLigaEmQuartas"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
-                        <span ><b>adicionaParticipantesNaPartidaECadastraResultado</b></span>
-                        <a href="#adicionaParticipantesNaPartidaECadastraResultado"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>criaLigaEmQuartas</b></span>
+                        <a href="#criaLigaEmQuartas"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>adicionaParticipantesNaPartidaECadastraResultado(liga: <a href="../classes/LigaRespostaDto.html" target="_self">LigaRespostaDto</a>, partida: <a href="../classes/PartidaRespostaDto.html" target="_self">PartidaRespostaDto</a>, requisicao: <a href="../classes/CadastrarResultadoPartidaDto.html" target="_self">CadastrarResultadoPartidaDto</a>)</code>
+                    <code>criaLigaEmQuartas()</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="13"
-                            class="link-to-prism">test/modules/partida/fluxos/partida-concluida.server.ts:13</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="22"
+                            class="link-to-prism">test/modules/liga/fluxos/liga-quartas-de-final.server.ts:22</a></div>
                 </td>
             </tr>
 
@@ -233,65 +264,9 @@
             <tr>
                 <td class="col-md-4">
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>liga</td>
-                                    <td>
-                                                <code><a href="../classes/LigaRespostaDto.html" target="_self" >LigaRespostaDto</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                                <tr>
-                                    <td>partida</td>
-                                    <td>
-                                                <code><a href="../classes/PartidaRespostaDto.html" target="_self" >PartidaRespostaDto</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                                <tr>
-                                    <td>requisicao</td>
-                                    <td>
-                                                <code><a href="../classes/CadastrarResultadoPartidaDto.html" target="_self" >CadastrarResultadoPartidaDto</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
                     <div class="io-description">
                         <b>Returns : </b>    <code>unknown</code>
 
-                    </div>
-                    <div class="io-description">
-                        
                     </div>
                 </td>
             </tr>
@@ -301,26 +276,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="cadastraResultado"></a>
+                    <a name="inicializaQuartasDeFinal"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
-                        <span ><b>cadastraResultado</b></span>
-                        <a href="#cadastraResultado"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>inicializaQuartasDeFinal</b></span>
+                        <a href="#inicializaQuartasDeFinal"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>cadastraResultado(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, requisicao: <a href="../classes/CadastrarResultadoPartidaDto.html" target="_self">CadastrarResultadoPartidaDto</a>)</code>
+                    <code>inicializaQuartasDeFinal(undefined: <a href="../interfaces/IInicializaFinais.html" target="_self">IInicializaFinais</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="29"
-                            class="link-to-prism">test/modules/partida/fluxos/partida-concluida.server.ts:29</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="28"
+                            class="link-to-prism">test/modules/liga/fluxos/liga-quartas-de-final.server.ts:28</a></div>
                 </td>
             </tr>
 
@@ -341,21 +316,8 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>id</td>
                                     <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                                <tr>
-                                    <td>requisicao</td>
-                                    <td>
-                                                <code><a href="../classes/CadastrarResultadoPartidaDto.html" target="_self" >CadastrarResultadoPartidaDto</a></code>
+                                                <code><a href="../interfaces/IInicializaFinais.html" target="_self" >IInicializaFinais</a></code>
                                     </td>
 
                                     <td>
@@ -370,7 +332,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../entitys/Partida.html" target="_self" >Promise&lt;PartidaRespostaDto&gt;</a></code>
+                        <b>Returns : </b>        <code><a href="../entitys/Liga.html" target="_self" >Promise&lt;QuartasLigaRespostaDto&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -390,41 +352,56 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { LigaRespostaDto } from &#x27;src/modules/liga/dto/liga.dto&#x27;;
-import { CadastrarResultadoPartidaDto } from &#x27;src/modules/partida/dto/partida-cadastro-resultado.dto&#x27;;
-import { PartidaRespostaDto } from &#x27;src/modules/partida/dto/partida.dto&#x27;;
-import request &#x3D; require(&#x27;supertest&#x27;);
-import { PartidaServer } from &#x27;../partida.server&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import request &#x3D; require(&#x27;supertest&#x27;);
+import { last } from &#x27;lodash&#x27;;
 
-export class PartidaConcluidaServer {
-  readonly partida: PartidaServer;
+import { QuartasLigaRespostaDto } from &#x27;src/modules/liga/dto/liga.dto&#x27;;
+import { PartidaConcluidaServer } from &#x27;test/modules/partida/fluxos/partida-concluida.server&#x27;;
+import { inicializaQuartaDeFinalDto } from &#x27;test/__MOCKS__/liga/tabela.dto&#x27;;
+import { cadastrarResultadoPartidaDto } from &#x27;test/__MOCKS__/partidas/partida.mock&#x27;;
+import { LigaIniciadaServer } from &#x27;./liga-iniciada.server&#x27;;
+import { sleep } from &#x27;src/modules/core/utils&#x27;;
+import { IInicializaFinais } from &#x27;./helpers/inicializa-finais.interface&#x27;;
+
+export class LigaQuartasDeFinalServer {
+  readonly liga: LigaIniciadaServer;
+  readonly partida: PartidaConcluidaServer;
+
   constructor(private readonly server: unknown) {
-    this.partida &#x3D; new PartidaServer(server);
+    this.liga &#x3D; new LigaIniciadaServer(server);
+    this.partida &#x3D; new PartidaConcluidaServer(server);
   }
 
-  async adicionaParticipantesNaPartidaECadastraResultado(
-    liga: LigaRespostaDto,
-    partida: PartidaRespostaDto,
-    requisicao: CadastrarResultadoPartidaDto,
-  ) {
-    const { requisicao: registro } &#x3D;
-      await this.partida.criaRegistroDeParticipantesNaPartida(liga, partida);
+  async criaLigaEmQuartas() {
+    const resultado &#x3D; await this.liga.criaLigaInicializada();
 
-    await this.partida.inicializaPartida(partida.id, registro);
-
-    return {
-      partida: await this.cadastraResultado(partida.id, requisicao),
-      registro,
-    };
+    return this.inicializaQuartasDeFinal(resultado);
   }
 
-  async cadastraResultado(
-    id: string,
-    requisicao: CadastrarResultadoPartidaDto,
-  ): Promise&lt;PartidaRespostaDto&gt; {
+  async inicializaQuartasDeFinal({
+    liga,
+    partidas,
+    ignorarPartidas &#x3D; false,
+  }: IInicializaFinais): Promise&lt;QuartasLigaRespostaDto&gt; {
+    if (!ignorarPartidas) {
+      for (const partida of partidas) {
+        await this.partida.adicionaParticipantesNaPartidaECadastraResultado(
+          liga,
+          partida,
+          cadastrarResultadoPartidaDto(),
+        );
+
+        await sleep(20);
+      }
+    }
+
     return request(this.server)
-      .post(&#x60;/partida/${id}/cadastra-resultado&#x60;)
-      .send(requisicao)
+      .post(&#x60;/liga/${liga.id}/inicializa-quartas&#x60;)
+      .send(
+        inicializaQuartaDeFinalDto(
+          new Date(last(partidas)?.dataComeco ?? new Date()),
+        ),
+      )
       .expect(200)
       .expect(&#x27;Content-Type&#x27;, /json/)
       .then((res) &#x3D;&gt; res.body);
@@ -468,7 +445,7 @@ export class PartidaConcluidaServer {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
-            var COMPODOC_CURRENT_PAGE_URL = 'PartidaConcluidaServer.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'LigaQuartasDeFinalServer.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

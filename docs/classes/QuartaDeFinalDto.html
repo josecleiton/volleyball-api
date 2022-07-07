@@ -150,7 +150,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/modules/liga/dto/tabela.dto.ts:64</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/modules/liga/dto/tabela.dto.ts:65</a></div>
                         </td>
                     </tr>
 
@@ -221,7 +221,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @IsArray()<br />@IsEnum(EscolhaDeMando)<br />@ArrayMinSize(4)<br />@ArrayMaxSize(4)<br />
+                            @IsArray()<br />@IsEnum(EscolhaDeMando, {each: true})<br />@ArrayMinSize(4)<br />@ArrayMaxSize(4)<br />
                         </code>
                     </td>
                 </tr>
@@ -279,7 +279,7 @@ export class InicializaQuartaDeFinalDto {
   datas!: Date[];
 
   @IsArray()
-  @IsEnum(EscolhaDeMando)
+  @IsEnum(EscolhaDeMando, { each: true })
   @ArrayMinSize(4)
   @ArrayMaxSize(4)
   mandos!: EscolhaDeMando[];
@@ -294,7 +294,7 @@ export class InicializaSemifinalDto {
   datas!: Date[];
 
   @IsArray()
-  @IsEnum(EscolhaDeMando)
+  @IsEnum(EscolhaDeMando, { each: true })
   @ArrayMinSize(2)
   @ArrayMaxSize(2)
   mandos!: EscolhaDeMando[];
@@ -308,6 +308,7 @@ export class InicializaFinalDto {
   @Type(() &#x3D;&gt; Date)
   datas!: Date[];
 
+  @IsEnum(EscolhaDeMando)
   mando!: EscolhaDeMando;
 }
 

@@ -82,6 +82,10 @@
                                     <span class="modifier">Async</span>
                                 <a href="#listaPontuacoesOrdenadas" >listaPontuacoesOrdenadas</a>
                             </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#listaPontuacoesOrdenadasEntidades" >listaPontuacoesOrdenadasEntidades</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -248,6 +252,94 @@
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="listaPontuacoesOrdenadasEntidades"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>listaPontuacoesOrdenadasEntidades</b></span>
+                        <a href="#listaPontuacoesOrdenadasEntidades"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>listaPontuacoesOrdenadasEntidades(idLiga: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, limite)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="23"
+                            class="link-to-prism">src/modules/pontuacao/services/pontuacao.service.ts:23</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Default value</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>idLiga</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>limite</td>
+                                    <td>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                        <code>Liga.quantidadeDeEquipesNaLiga</code>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>unknown</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>
 
     </div>
@@ -271,12 +363,21 @@ export class PontuacaoService {
     idLiga: string,
     limite &#x3D; Liga.quantidadeDeEquipesNaLiga,
   ): Promise&lt;PontuacaoRespostaDto[]&gt; {
+    return this.listaPontuacoesOrdenadasEntidades(idLiga, limite).then(
+      (pontuacoes) &#x3D;&gt; pontuacoes.map((x) &#x3D;&gt; new PontuacaoRespostaDto(x)),
+    );
+  }
+
+  async listaPontuacoesOrdenadasEntidades(
+    idLiga: string,
+    limite &#x3D; Liga.quantidadeDeEquipesNaLiga,
+  ) {
     const pontuacoes &#x3D; await this.pontuacaoRepository.listaPorLiga(idLiga);
 
     const classificacoes &#x3D;
       await this.aplicaRegraDesempateService.buscarEmpateNaPontuacao({
         idLiga,
-        classificacoes: pontuacoes.map((x) &#x3D;&gt; new PontuacaoRespostaDto(x)),
+        classificacoes: pontuacoes,
       });
 
     return classificacoes.slice(0, limite);

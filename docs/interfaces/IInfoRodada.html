@@ -181,16 +181,14 @@
   ConflictException,
   InternalServerErrorException,
 } from &#x27;@nestjs/common&#x27;;
-import { chunk, countBy } from &#x27;lodash&#x27;;
-import {
-  EquipeRespostaDto,
-  EquipeSimplificadaRespostaDto,
-} from &#x27;src/modules/equipe/dto/equipe.dto&#x27;;
-import { EquipePartidaRespostaDto } from &#x27;src/modules/partida/dto/equipe-partida.dto&#x27;;
+import { isUUID } from &#x27;class-validator&#x27;;
+import { groupBy } from &#x27;lodash&#x27;;
+import { Equipe } from &#x27;src/modules/equipe/entities/equipe.entity&#x27;;
 import { PartidaRespostaDto } from &#x27;src/modules/partida/dto/partida.dto&#x27;;
+import { PartidaFactory } from &#x27;src/modules/partida/factories/partida.factory&#x27;;
 import { PartidaService } from &#x27;src/modules/partida/services/partida.service&#x27;;
 import { TipoRodadaMataMata } from &#x27;src/modules/partida/types/tipo-rodada.type&#x27;;
-import { PontuacaoRespostaDto } from &#x27;src/modules/pontuacao/dtos/pontuacao.dto&#x27;;
+import { PontuacaoDto } from &#x27;src/modules/pontuacao/dtos/pontuacao.dto&#x27;;
 import { PontuacaoService } from &#x27;src/modules/pontuacao/services&#x27;;
 import { IClassificados } from &#x27;../dto/mata-mata.dto&#x27;;
 import { Liga } from &#x27;../entities/liga.entity&#x27;;
@@ -221,40 +219,29 @@ export abstract class SemisEFinalGeneratorService extends MataMataGeneratorServi
         },
       ],
     ]);
-
   constructor(
     private readonly partidaService: PartidaService,
     private readonly pontuacaoService: PontuacaoService,
+    partidaFactory: PartidaFactory,
   ) {
-    super();
+    super(partidaFactory);
   }
 
   private listarVencedores(partidas: PartidaRespostaDto[]) {
-    return chunk(
-      partidas,
-      MataMataGeneratorService.quantidadeDePartidasPorConfronto,
-    ).map((confronto, index) &#x3D;&gt; {
-      const grupoVencedores &#x3D; countBy(
-        confronto,
-        (partida) &#x3D;&gt; partida.idEquipeGanhador,
+    const grupo &#x3D; groupBy(partidas, (partida) &#x3D;&gt; partida.ganhadora?.idEquipe);
+    const vencedores &#x3D; Object.entries(grupo).filter(
+      ([ganhador, partidasGanhas]) &#x3D;&gt;
+        isUUID(ganhador) &amp;&amp; partidasGanhas.length &gt; 1,
+    );
+
+    const quantidadeDeVencedores &#x3D; this.tipoRodada &#x3D;&#x3D;&#x3D; &#x27;semis&#x27; ? 4 : 2;
+    if (vencedores.length !&#x3D;&#x3D; quantidadeDeVencedores) {
+      throw new ConflictException(
+        &#x27;Algum dos confrontos da rodada anterior não foram concluídos&#x27;,
       );
+    }
 
-      const vencedor &#x3D; Object.entries(grupoVencedores).find(
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        ([_, quantidadePartidas]) &#x3D;&gt; quantidadePartidas &gt; 1,
-      );
-
-      if (!vencedor?.[0] || vencedor[0] &#x3D;&#x3D;&#x3D; &#x27;undefined&#x27;) {
-        const [partida] &#x3D; confronto;
-        throw new ConflictException(
-          &#x60;Confronto ${index + 1} entre ${partida.idEquipeMandante} x ${
-            partida.idEquipeVisitante
-          } não foi definido um vencedor ainda&#x60;,
-        );
-      }
-
-      return vencedor[0];
-    });
+    return vencedores.map(([idGanhador]) &#x3D;&gt; idGanhador);
   }
 
   // Caso a colocação do vencedor da chave a direita seja maior,
@@ -262,7 +249,7 @@ export abstract class SemisEFinalGeneratorService extends MataMataGeneratorServi
   // consistente com as regras
   private ordenaVencedorPorClassificacao(
     vencedores: string[],
-    pontuacoes: PontuacaoRespostaDto[],
+    pontuacoes: PontuacaoDto[],
   ) {
     const idEquipeClassificacaoMap: ReadonlyMap&lt;string, number&gt; &#x3D; new Map(
       pontuacoes.map((pontuacao, index) &#x3D;&gt; [pontuacao.equipe.id, index + 1]),
@@ -272,7 +259,7 @@ export abstract class SemisEFinalGeneratorService extends MataMataGeneratorServi
 
     resultado.some((vencedorEsquerda, index, array) &#x3D;&gt; {
       const direitaIndex &#x3D; array.length - index - 1;
-      const vencedorDireita &#x3D; vencedorEsquerda[direitaIndex];
+      const vencedorDireita &#x3D; array[direitaIndex];
 
       if (
         (idEquipeClassificacaoMap.get(vencedorEsquerda) ?? 0) &lt;
@@ -305,30 +292,24 @@ export abstract class SemisEFinalGeneratorService extends MataMataGeneratorServi
       );
     }
 
-    const pontuacoes &#x3D; await this.pontuacaoService.listaPontuacoesOrdenadas(
-      idLiga,
-      Liga.quantidadeDeEquipesClassificadas,
-    );
+    const pontuacoes &#x3D;
+      await this.pontuacaoService.listaPontuacoesOrdenadasEntidades(
+        idLiga,
+        Liga.quantidadeDeEquipesClassificadas,
+      );
 
     const vencedores &#x3D; this.listarVencedores(partidas);
 
     const vencedoresOrdenadosPorClassificacao &#x3D;
       this.ordenaVencedorPorClassificacao(vencedores, pontuacoes);
 
-    const equipeMap: ReadonlyMap&lt;string, EquipeSimplificadaRespostaDto&gt; &#x3D;
-      new Map(
-        partidas
-          .filter((partida) &#x3D;&gt; partida.ganhadora)
-          .map(({ ganhadora }) &#x3D;&gt; {
-            const equipePartida &#x3D; ganhadora as EquipePartidaRespostaDto;
-
-            return [equipePartida.equipe.id, equipePartida.equipe];
-          }),
-      );
+    const equipeMap &#x3D; new Map(
+      pontuacoes.map((pontuacao) &#x3D;&gt; [pontuacao.idEquipe, pontuacao.equipe]),
+    );
 
     return {
       equipes: vencedoresOrdenadosPorClassificacao.map(
-        (vencedor) &#x3D;&gt; equipeMap.get(vencedor) as EquipeRespostaDto,
+        (vencedor) &#x3D;&gt; equipeMap.get(vencedor) as Equipe,
       ),
     };
   }

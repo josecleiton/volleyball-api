@@ -164,7 +164,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @IsArray()<br />@IsEnum(EscolhaDeMando)<br />@ArrayMinSize(2)<br />@ArrayMaxSize(2)<br />
+                            @IsArray()<br />@IsEnum(EscolhaDeMando, {each: true})<br />@ArrayMinSize(2)<br />@ArrayMaxSize(2)<br />
                         </code>
                     </td>
                 </tr>
@@ -215,7 +215,7 @@ export class InicializaQuartaDeFinalDto {
   datas!: Date[];
 
   @IsArray()
-  @IsEnum(EscolhaDeMando)
+  @IsEnum(EscolhaDeMando, { each: true })
   @ArrayMinSize(4)
   @ArrayMaxSize(4)
   mandos!: EscolhaDeMando[];
@@ -230,7 +230,7 @@ export class InicializaSemifinalDto {
   datas!: Date[];
 
   @IsArray()
-  @IsEnum(EscolhaDeMando)
+  @IsEnum(EscolhaDeMando, { each: true })
   @ArrayMinSize(2)
   @ArrayMaxSize(2)
   mandos!: EscolhaDeMando[];
@@ -244,6 +244,7 @@ export class InicializaFinalDto {
   @Type(() &#x3D;&gt; Date)
   datas!: Date[];
 
+  @IsEnum(EscolhaDeMando)
   mando!: EscolhaDeMando;
 }
 
