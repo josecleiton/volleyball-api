@@ -36,8 +36,11 @@ export class RegistraDesistenciaService {
     perdedora.pontosNosSets = EquipePartida.unmarshallPontosDoSet([0, 0, 0]);
     perdedora.pontuacao = PontosPartida.WO;
 
-    partida.mandante.resultadoCadastradoEm =
-      partida.visitante.resultadoCadastradoEm = new Date();
+    // TODO: refatorar para unificar a logica de finalização de partida em um facade
+    partida.dataFinalizacao =
+      partida.mandante.resultadoCadastradoEm =
+      partida.visitante.resultadoCadastradoEm =
+        new Date();
 
     const {
       mandante,

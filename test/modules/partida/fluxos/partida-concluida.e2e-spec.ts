@@ -30,6 +30,7 @@ describe('Fluxo - PartidaResultado (e2e)', () => {
 
         expect(partida.ganhadora).toBeTruthy();
         expect(partida.idEquipeGanhador).toEqual(partida.idEquipeVisitante);
+        expect(partida.dataFinalizacao).toBeTruthy();
         expect(partida.ganhadora?.pontuacao).toEqual(
           PontosPartida.VITORIA_PERFEITA,
         );
@@ -50,6 +51,7 @@ describe('Fluxo - PartidaResultado (e2e)', () => {
 
         expect(partida.ganhadora).toBeTruthy();
         expect(partida.idEquipeGanhador).toEqual(partida.idEquipeMandante);
+        expect(partida.dataFinalizacao).toBeTruthy();
         expect(partida.ganhadora?.pontuacao).toEqual(
           PontosPartida.VITORIA_PERFEITA,
         );
@@ -72,6 +74,7 @@ describe('Fluxo - PartidaResultado (e2e)', () => {
 
         expect(partida.ganhadora).toBeTruthy();
         expect(partida.idEquipeGanhador).toEqual(partida.idEquipeMandante);
+        expect(partida.dataFinalizacao).toBeTruthy();
         expect(partida.ganhadora?.pontuacao).toEqual(
           PontosPartida.VITORIA_SIMPLES,
         );
@@ -94,6 +97,7 @@ describe('Fluxo - PartidaResultado (e2e)', () => {
 
         expect(partida.ganhadora).toBeTruthy();
         expect(partida.idEquipeGanhador).toEqual(partida.idEquipeVisitante);
+        expect(partida.dataFinalizacao).toBeTruthy();
         expect(partida.ganhadora?.pontuacao).toEqual(
           PontosPartida.VITORIA_SIMPLES,
         );
