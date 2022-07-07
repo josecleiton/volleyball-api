@@ -257,6 +257,7 @@ describe('PartidaController (e2e)', () => {
 
         expect(partidaAtualizada.id).toEqual(partida.id);
         expect(partidaAtualizada.status).toEqual(StatusPartida.WO);
+        expect(partidaAtualizada.dataFinalizacao).toBeTruthy();
         expect(partidaAtualizada.idEquipeGanhador).toEqual(
           partidaAtualizada.idEquipeVisitante,
         );

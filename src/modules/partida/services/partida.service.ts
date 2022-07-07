@@ -348,8 +348,10 @@ export class PartidaService {
       EquipePartida.unmarshallPontosDoSet(setsVisitante);
     partida.visitante.ganhou = partida.idGanhadora === partida.idVisitante;
 
-    partida.mandante.resultadoCadastradoEm =
-      partida.visitante.resultadoCadastradoEm = new Date();
+    partida.dataFinalizacao =
+      partida.mandante.resultadoCadastradoEm =
+      partida.visitante.resultadoCadastradoEm =
+        new Date();
 
     const partidaAtualizada = await this.connection.transaction(
       async (manager) => {
