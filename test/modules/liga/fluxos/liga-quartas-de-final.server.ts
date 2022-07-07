@@ -38,7 +38,7 @@ export class LigaQuartasDeFinalServer {
           cadastrarResultadoPartidaDto(),
         );
 
-        await sleep(700);
+        await sleep(20);
       }
     }
 

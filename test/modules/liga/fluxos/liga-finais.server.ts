@@ -46,7 +46,7 @@ export class LigaFinaisServer {
     for (const partidasMd3 of chunk(partidas, 3)) {
       await this.jogaMd3(liga, partidasMd3);
 
-      await sleep(700);
+      await sleep(50);
     }
   }
 
