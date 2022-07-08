@@ -21,7 +21,15 @@ describe('Fluxo - LigaFinais (e2e)', () => {
     it('Ok', async () => {
       const resultado = await server.liga.criaLigaEmQuartas();
 
+      const pontuacoes = await server.pontuacao.listaPontuacao(
+        resultado.liga.id,
+      );
+
       const { liga, partidas } = await server.inicializaSemis(resultado);
+
+      expect(pontuacoes).toEqual(
+        expect.objectContaining(await server.pontuacao.listaPontuacao(liga.id)),
+      );
 
       expect(liga.status).toEqual(StatusLiga.SEMIS);
       expect(partidas).toHaveLength(6);
@@ -61,8 +69,15 @@ describe('Fluxo - LigaFinais (e2e)', () => {
     it('Ok', async () => {
       const resultado = await server.criaLigaEmSemi();
 
+      const pontuacoes = await server.pontuacao.listaPontuacao(
+        resultado.liga.id,
+      );
+
       const { liga, partidas } = await server.inicializaFinal(resultado);
 
+      expect(pontuacoes).toEqual(
+        expect.objectContaining(await server.pontuacao.listaPontuacao(liga.id)),
+      );
       expect(liga.status).toEqual(StatusLiga.FINAL);
       expect(partidas).toHaveLength(3);
       expect(
@@ -75,7 +90,15 @@ describe('Fluxo - LigaFinais (e2e)', () => {
     it('Ok', async () => {
       const resultado = await server.criaLigaFinal();
 
+      const pontuacoes = await server.pontuacao.listaPontuacao(
+        resultado.liga.id,
+      );
+
       const liga = await server.premia(resultado);
+
+      expect(pontuacoes).toEqual(
+        expect.objectContaining(await server.pontuacao.listaPontuacao(liga.id)),
+      );
 
       expect(liga.status).toEqual(StatusLiga.PREMIACAO);
     });

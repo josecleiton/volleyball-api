@@ -16,11 +16,14 @@ import { IInicializaFinais } from './helpers/inicializa-finais.interface';
 import { LigaQuartasDeFinalServer } from './liga-quartas-de-final.server';
 import { PartidaRespostaDto } from 'src/modules/partida/dto/partida.dto';
 import { cadastrarResultadoPartidaMd3 } from 'test/__MOCKS__/partidas/partida.mock';
+import { PontuacaoServer } from 'test/modules/pontuacao/pontuacao.server';
 
 export class LigaFinaisServer {
   readonly liga: LigaQuartasDeFinalServer;
+  readonly pontuacao: PontuacaoServer;
   constructor(private readonly server: unknown) {
     this.liga = new LigaQuartasDeFinalServer(this.server);
+    this.pontuacao = new PontuacaoServer(this.server);
   }
 
   private async jogaMd3(liga: LigaRespostaDto, partidas: PartidaRespostaDto[]) {
