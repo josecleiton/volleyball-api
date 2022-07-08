@@ -1,46 +1,45 @@
 import { Injectable } from '@nestjs/common';
-import { EscolhaDeDesistencia } from 'src/modules/partida/dto/partida.dto';
-import { EquipePartida } from 'src/modules/partida/entities/equipe-partida.entity';
-import { PontosPartida } from 'src/modules/partida/enums/pontos-partida.enum';
-import { StatusPartida } from 'src/modules/partida/enums/status-partida.enum';
 import { Connection } from 'typeorm';
+
+import { EscolhaDeDesistencia } from 'src/modules/partida/dto/partida.dto';
+import { PontosPartida } from 'src/modules/partida/enums/pontos-partida.enum';
 import { IRegistraDesistenciaDto } from '../dtos/desistencia.dto';
-import { PontuacaoViewRepository } from '../repositories/pontuacao-view.repository';
+import { RegistraResultadoPartidaFacade } from '../facades';
+import { PontuacaoService } from './pontuacao.service';
 
 @Injectable()
 export class RegistraDesistenciaService {
   constructor(
-    private readonly pontuacaoRepository: PontuacaoViewRepository,
+    private readonly registraResultadoPartida: RegistraResultadoPartidaFacade,
+    private readonly pontuacaoService: PontuacaoService,
     private readonly connection: Connection,
   ) {}
   async executar({ partida, desistente }: IRegistraDesistenciaDto) {
     const mandanteEhDesistente = desistente === EscolhaDeDesistencia.MANDANTE;
 
-    partida.status = StatusPartida.WO;
+    const resultado = mandanteEhDesistente
+      ? {
+          pontuacaoMandante: PontosPartida.WO,
+          pontuacaoVisitante: PontosPartida.VITORIA_PERFEITA,
+          setsGanhosMandante: 0,
+          setsGanhosVisitante: 3,
+          setsMandante: [0, 0, 0],
+          setsVisitante: [25, 25, 25],
+        }
+      : {
+          pontuacaoMandante: PontosPartida.VITORIA_PERFEITA,
+          pontuacaoVisitante: PontosPartida.WO,
+          setsGanhosMandante: 3,
+          setsGanhosVisitante: 0,
+          setsMandante: [25, 25, 25],
+          setsVisitante: [0, 0, 0],
+        };
 
-    const ganhadora = mandanteEhDesistente
-      ? partida.visitante
-      : partida.mandante;
-    const perdedora = mandanteEhDesistente
-      ? partida.mandante
-      : partida.visitante;
-
-    partida.idGanhadora = ganhadora.id;
-    partida.ganhadora = ganhadora;
-
-    ganhadora.pontosNosSets = EquipePartida.unmarshallPontosDoSet([25, 25, 25]);
-    ganhadora.pontuacao = PontosPartida.VITORIA_PERFEITA;
-    ganhadora.setsGanhos = ganhadora.pontosNosSets.length;
-    ganhadora.ganhou = true;
-
-    perdedora.pontosNosSets = EquipePartida.unmarshallPontosDoSet([0, 0, 0]);
-    perdedora.pontuacao = PontosPartida.WO;
-
-    // TODO: refatorar para unificar a logica de finalização de partida em um facade
-    partida.dataFinalizacao =
-      partida.mandante.resultadoCadastradoEm =
-      partida.visitante.resultadoCadastradoEm =
-        new Date();
+    this.registraResultadoPartida.executa({
+      ...resultado,
+      partida,
+      wo: true,
+    });
 
     const {
       mandante,
@@ -59,7 +58,7 @@ export class RegistraDesistenciaService {
       };
     });
 
-    await this.pontuacaoRepository.refreshMaterializedView();
+    await this.pontuacaoService.atualizaPontuacoes(partida);
 
     return { partida: partidaAtualizada, mandante, visitante };
   }

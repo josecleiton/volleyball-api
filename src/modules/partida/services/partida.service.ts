@@ -10,7 +10,8 @@ import {
 import { groupBy } from 'lodash';
 import { LigaService } from 'src/modules/liga/services/liga.service';
 import { AtletaRespostaDto } from 'src/modules/pessoa/dto/atleta.dto';
-import { PontuacaoViewRepository } from 'src/modules/pontuacao/repositories/pontuacao-view.repository';
+import { RegistraResultadoPartidaFacade } from 'src/modules/pontuacao/facades';
+import { PontuacaoService } from 'src/modules/pontuacao/services';
 import { RegistraDesistenciaService } from 'src/modules/pontuacao/services/registra-desistencia.service';
 import { Connection, EntityManager } from 'typeorm';
 import { Posicao, TipoArbitro } from '../../pessoa/enums';
@@ -26,7 +27,6 @@ import {
   PartidaRespostaDto,
   RemarcarPartidaDto,
 } from '../dto/partida.dto';
-import { EquipePartida } from '../entities/equipe-partida.entity';
 import { Partida } from '../entities/partida.entity';
 import { PontosPartida } from '../enums/pontos-partida.enum';
 import { StatusPartida } from '../enums/status-partida.enum';
@@ -55,10 +55,11 @@ export class PartidaService {
     private readonly atletaService: AtletaService,
     private readonly arbitroService: ArbitroService,
     private readonly registraDesistenciaService: RegistraDesistenciaService,
+    private readonly registraResultadoPartida: RegistraResultadoPartidaFacade,
     @Inject(forwardRef(() => LigaService))
     private readonly ligaService: LigaService,
     private readonly connection: Connection,
-    private readonly pontuacaoViewRepository: PontuacaoViewRepository,
+    private readonly pontuacaoService: PontuacaoService,
   ) {}
 
   async listaPartidasOrdenadas(
@@ -330,28 +331,15 @@ export class PartidaService {
         setsGanhosVisitante,
       });
 
-    partida.idGanhadora =
-      pontuacaoMandante > pontuacaoVisitante
-        ? partida.idMandante
-        : partida.idVisitante;
-    partida.status = StatusPartida.CONCLUIDA;
-
-    partida.mandante.pontuacao = pontuacaoMandante;
-    partida.mandante.setsGanhos = setsGanhosMandante;
-    partida.mandante.pontosNosSets =
-      EquipePartida.unmarshallPontosDoSet(setsMandante);
-    partida.mandante.ganhou = partida.idGanhadora === partida.idMandante;
-
-    partida.visitante.pontuacao = pontuacaoVisitante;
-    partida.visitante.setsGanhos = setsGanhosVisitante;
-    partida.visitante.pontosNosSets =
-      EquipePartida.unmarshallPontosDoSet(setsVisitante);
-    partida.visitante.ganhou = partida.idGanhadora === partida.idVisitante;
-
-    partida.dataFinalizacao =
-      partida.mandante.resultadoCadastradoEm =
-      partida.visitante.resultadoCadastradoEm =
-        new Date();
+    this.registraResultadoPartida.executa({
+      partida,
+      pontuacaoMandante,
+      pontuacaoVisitante,
+      setsGanhosMandante,
+      setsGanhosVisitante,
+      setsMandante,
+      setsVisitante,
+    });
 
     const partidaAtualizada = await this.connection.transaction(
       async (manager) => {
@@ -363,7 +351,7 @@ export class PartidaService {
       },
     );
 
-    await this.pontuacaoViewRepository.refreshMaterializedView();
+    await this.pontuacaoService.atualizaPontuacoes(partidaAtualizada);
 
     return new PartidaRespostaDto(partidaAtualizada);
   }

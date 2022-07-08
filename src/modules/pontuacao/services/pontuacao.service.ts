@@ -1,11 +1,17 @@
 import { Injectable } from '@nestjs/common';
 import { Liga } from 'src/modules/liga/entities/liga.entity';
+import {
+  TipoRodada,
+  tiposDeRodadaClassificatoria,
+} from 'src/modules/partida/types/tipo-rodada.type';
 import { PontuacaoRespostaDto } from '../dtos/pontuacao.dto';
 import { PontuacaoViewRepository } from '../repositories/pontuacao-view.repository';
 import { AplicaRegraDesempateService } from './aplica-regra-desempate.service';
 
 @Injectable()
 export class PontuacaoService {
+  private static readonly conjuntoDeRodadasClassificatórias: ReadonlySet<string> =
+    new Set(tiposDeRodadaClassificatoria);
   constructor(
     private readonly pontuacaoRepository: PontuacaoViewRepository,
     private readonly aplicaRegraDesempateService: AplicaRegraDesempateService,
@@ -33,5 +39,17 @@ export class PontuacaoService {
       });
 
     return classificacoes.slice(0, limite);
+  }
+
+  async atualizaPontuacoes(partida: { tipoDaRodada: TipoRodada }) {
+    if (
+      !PontuacaoService.conjuntoDeRodadasClassificatórias.has(
+        partida.tipoDaRodada,
+      )
+    ) {
+      return;
+    }
+
+    await this.pontuacaoRepository.refreshMaterializedView();
   }
 }

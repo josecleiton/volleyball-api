@@ -1,6 +1,7 @@
 import { forwardRef, Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { PartidaModule } from '../partida/partida.module';
+import { RegistraResultadoPartidaFacade } from './facades';
 import { PontuacaoController } from './pontuacao.controller';
 import { PontuacaoViewRepository } from './repositories/pontuacao-view.repository';
 import {
@@ -19,7 +20,12 @@ import {
     PontuacaoService,
     AplicaRegraDesempateService,
     RegistraDesistenciaService,
+    RegistraResultadoPartidaFacade,
   ],
-  exports: [PontuacaoService, RegistraDesistenciaService],
+  exports: [
+    PontuacaoService,
+    RegistraDesistenciaService,
+    RegistraResultadoPartidaFacade,
+  ],
 })
 export class PontuacaoModule {}

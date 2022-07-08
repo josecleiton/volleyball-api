@@ -35,6 +35,7 @@ const estadosFinaisPartidaJoin = arrayToInClause(Partida.estadosFinais);
       ON
         p.id = ep.id_partida
         AND p.status IN (${estadosFinaisPartidaJoin})
+        AND p.tipo_da_rodada IN (${tiposDeRodadaClassificatoriaJoin})
       GROUP BY ep.id_equipe
     )
     
