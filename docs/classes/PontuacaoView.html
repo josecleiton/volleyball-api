@@ -162,7 +162,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/modules/pontuacao/entities/pontuacao-view.entity.ts:97</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">src/modules/pontuacao/entities/pontuacao-view.entity.ts:98</a></div>
                         </td>
                     </tr>
 
@@ -197,7 +197,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/modules/pontuacao/entities/pontuacao-view.entity.ts:65</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/modules/pontuacao/entities/pontuacao-view.entity.ts:66</a></div>
                         </td>
                     </tr>
 
@@ -232,7 +232,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/modules/pontuacao/entities/pontuacao-view.entity.ts:93</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/modules/pontuacao/entities/pontuacao-view.entity.ts:94</a></div>
                         </td>
                     </tr>
 
@@ -267,7 +267,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/modules/pontuacao/entities/pontuacao-view.entity.ts:87</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/modules/pontuacao/entities/pontuacao-view.entity.ts:88</a></div>
                         </td>
                     </tr>
 
@@ -302,7 +302,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/modules/pontuacao/entities/pontuacao-view.entity.ts:90</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/modules/pontuacao/entities/pontuacao-view.entity.ts:91</a></div>
                         </td>
                     </tr>
 
@@ -337,7 +337,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/modules/pontuacao/entities/pontuacao-view.entity.ts:81</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/modules/pontuacao/entities/pontuacao-view.entity.ts:82</a></div>
                         </td>
                     </tr>
 
@@ -372,7 +372,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/modules/pontuacao/entities/pontuacao-view.entity.ts:69</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/modules/pontuacao/entities/pontuacao-view.entity.ts:70</a></div>
                         </td>
                     </tr>
 
@@ -407,7 +407,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/modules/pontuacao/entities/pontuacao-view.entity.ts:84</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/modules/pontuacao/entities/pontuacao-view.entity.ts:85</a></div>
                         </td>
                     </tr>
 
@@ -442,7 +442,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/modules/pontuacao/entities/pontuacao-view.entity.ts:75</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/modules/pontuacao/entities/pontuacao-view.entity.ts:76</a></div>
                         </td>
                     </tr>
 
@@ -477,7 +477,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/modules/pontuacao/entities/pontuacao-view.entity.ts:72</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/modules/pontuacao/entities/pontuacao-view.entity.ts:73</a></div>
                         </td>
                     </tr>
 
@@ -512,7 +512,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/modules/pontuacao/entities/pontuacao-view.entity.ts:78</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/modules/pontuacao/entities/pontuacao-view.entity.ts:79</a></div>
                         </td>
                     </tr>
 
@@ -568,6 +568,7 @@ const estadosFinaisPartidaJoin &#x3D; arrayToInClause(Partida.estadosFinais);
       ON
         p.id &#x3D; ep.id_partida
         AND p.status IN (${estadosFinaisPartidaJoin})
+        AND p.tipo_da_rodada IN (${tiposDeRodadaClassificatoriaJoin})
       GROUP BY ep.id_equipe
     )
     

@@ -100,7 +100,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(pontuacaoRepository: <a href="../classes/PontuacaoViewRepository.html" target="_self">PontuacaoViewRepository</a>, connection: Connection)</code>
+<code>constructor(registraResultadoPartida: <a href="../injectables/RegistraResultadoPartidaFacade.html" target="_self">RegistraResultadoPartidaFacade</a>, pontuacaoService: <a href="../injectables/PontuacaoService.html" target="_self">PontuacaoService</a>, connection: Connection)</code>
                     </td>
                 </tr>
                         <tr>
@@ -123,10 +123,22 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>pontuacaoRepository</td>
+                                                        <td>registraResultadoPartida</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../classes/PontuacaoViewRepository.html" target="_self" >PontuacaoViewRepository</a></code>
+                                                                        <code><a href="../injectables/RegistraResultadoPartidaFacade.html" target="_self" >RegistraResultadoPartidaFacade</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>pontuacaoService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/PontuacaoService.html" target="_self" >PontuacaoService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -182,8 +194,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="16"
-                            class="link-to-prism">src/modules/pontuacao/services/registra-desistencia.service.ts:16</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="17"
+                            class="link-to-prism">src/modules/pontuacao/services/registra-desistencia.service.ts:17</a></div>
                 </td>
             </tr>
 
@@ -237,48 +249,47 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@nestjs/common&#x27;;
-import { EscolhaDeDesistencia } from &#x27;src/modules/partida/dto/partida.dto&#x27;;
-import { EquipePartida } from &#x27;src/modules/partida/entities/equipe-partida.entity&#x27;;
-import { PontosPartida } from &#x27;src/modules/partida/enums/pontos-partida.enum&#x27;;
-import { StatusPartida } from &#x27;src/modules/partida/enums/status-partida.enum&#x27;;
 import { Connection } from &#x27;typeorm&#x27;;
+
+import { EscolhaDeDesistencia } from &#x27;src/modules/partida/dto/partida.dto&#x27;;
+import { PontosPartida } from &#x27;src/modules/partida/enums/pontos-partida.enum&#x27;;
 import { IRegistraDesistenciaDto } from &#x27;../dtos/desistencia.dto&#x27;;
-import { PontuacaoViewRepository } from &#x27;../repositories/pontuacao-view.repository&#x27;;
+import { RegistraResultadoPartidaFacade } from &#x27;../facades&#x27;;
+import { PontuacaoService } from &#x27;./pontuacao.service&#x27;;
 
 @Injectable()
 export class RegistraDesistenciaService {
   constructor(
-    private readonly pontuacaoRepository: PontuacaoViewRepository,
+    private readonly registraResultadoPartida: RegistraResultadoPartidaFacade,
+    private readonly pontuacaoService: PontuacaoService,
     private readonly connection: Connection,
   ) {}
   async executar({ partida, desistente }: IRegistraDesistenciaDto) {
     const mandanteEhDesistente &#x3D; desistente &#x3D;&#x3D;&#x3D; EscolhaDeDesistencia.MANDANTE;
 
-    partida.status &#x3D; StatusPartida.WO;
+    const resultado &#x3D; mandanteEhDesistente
+      ? {
+          pontuacaoMandante: PontosPartida.WO,
+          pontuacaoVisitante: PontosPartida.VITORIA_PERFEITA,
+          setsGanhosMandante: 0,
+          setsGanhosVisitante: 3,
+          setsMandante: [0, 0, 0],
+          setsVisitante: [25, 25, 25],
+        }
+      : {
+          pontuacaoMandante: PontosPartida.VITORIA_PERFEITA,
+          pontuacaoVisitante: PontosPartida.WO,
+          setsGanhosMandante: 3,
+          setsGanhosVisitante: 0,
+          setsMandante: [25, 25, 25],
+          setsVisitante: [0, 0, 0],
+        };
 
-    const ganhadora &#x3D; mandanteEhDesistente
-      ? partida.visitante
-      : partida.mandante;
-    const perdedora &#x3D; mandanteEhDesistente
-      ? partida.mandante
-      : partida.visitante;
-
-    partida.idGanhadora &#x3D; ganhadora.id;
-    partida.ganhadora &#x3D; ganhadora;
-
-    ganhadora.pontosNosSets &#x3D; EquipePartida.unmarshallPontosDoSet([25, 25, 25]);
-    ganhadora.pontuacao &#x3D; PontosPartida.VITORIA_PERFEITA;
-    ganhadora.setsGanhos &#x3D; ganhadora.pontosNosSets.length;
-    ganhadora.ganhou &#x3D; true;
-
-    perdedora.pontosNosSets &#x3D; EquipePartida.unmarshallPontosDoSet([0, 0, 0]);
-    perdedora.pontuacao &#x3D; PontosPartida.WO;
-
-    // TODO: refatorar para unificar a logica de finalização de partida em um facade
-    partida.dataFinalizacao &#x3D;
-      partida.mandante.resultadoCadastradoEm &#x3D;
-      partida.visitante.resultadoCadastradoEm &#x3D;
-        new Date();
+    this.registraResultadoPartida.executa({
+      ...resultado,
+      partida,
+      wo: true,
+    });
 
     const {
       mandante,
@@ -297,7 +308,7 @@ export class RegistraDesistenciaService {
       };
     });
 
-    await this.pontuacaoRepository.refreshMaterializedView();
+    await this.pontuacaoService.atualizaPontuacoes(partida);
 
     return { partida: partidaAtualizada, mandante, visitante };
   }

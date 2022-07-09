@@ -357,13 +357,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/PontuacaoModule.html" data-type="entity-link" >PontuacaoModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                            'data-target="#controllers-links-module-PontuacaoModule-e21f72c8f230c164cfc7137344c6b66cd5286319573ca19e20eeb44e7526fbf2219d36e16609d950307eb9add6d8caaae700db672162806d00fc60ba66a67502"' : 'data-target="#xs-controllers-links-module-PontuacaoModule-e21f72c8f230c164cfc7137344c6b66cd5286319573ca19e20eeb44e7526fbf2219d36e16609d950307eb9add6d8caaae700db672162806d00fc60ba66a67502"' }>
+                                            'data-target="#controllers-links-module-PontuacaoModule-d9a08c8734fc5653283cd8f2ee5680e1838b9db74fc4b72631b7a6c0bf016f16af906f2f499c0bb97b2ac2f889843de8baa05d1985d1f42dc3a1724084be570a"' : 'data-target="#xs-controllers-links-module-PontuacaoModule-d9a08c8734fc5653283cd8f2ee5680e1838b9db74fc4b72631b7a6c0bf016f16af906f2f499c0bb97b2ac2f889843de8baa05d1985d1f42dc3a1724084be570a"' }>
                                             <span class="icon ion-md-swap"></span>
                                             <span>Controllers</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-PontuacaoModule-e21f72c8f230c164cfc7137344c6b66cd5286319573ca19e20eeb44e7526fbf2219d36e16609d950307eb9add6d8caaae700db672162806d00fc60ba66a67502"' :
-                                            'id="xs-controllers-links-module-PontuacaoModule-e21f72c8f230c164cfc7137344c6b66cd5286319573ca19e20eeb44e7526fbf2219d36e16609d950307eb9add6d8caaae700db672162806d00fc60ba66a67502"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-PontuacaoModule-d9a08c8734fc5653283cd8f2ee5680e1838b9db74fc4b72631b7a6c0bf016f16af906f2f499c0bb97b2ac2f889843de8baa05d1985d1f42dc3a1724084be570a"' :
+                                            'id="xs-controllers-links-module-PontuacaoModule-d9a08c8734fc5653283cd8f2ee5680e1838b9db74fc4b72631b7a6c0bf016f16af906f2f499c0bb97b2ac2f889843de8baa05d1985d1f42dc3a1724084be570a"' }>
                                             <li class="link">
                                                 <a href="controllers/PontuacaoController.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >PontuacaoController</a>
                                             </li>
@@ -371,13 +371,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     </li>
                                 <li class="chapter inner">
                                     <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                        'data-target="#injectables-links-module-PontuacaoModule-e21f72c8f230c164cfc7137344c6b66cd5286319573ca19e20eeb44e7526fbf2219d36e16609d950307eb9add6d8caaae700db672162806d00fc60ba66a67502"' : 'data-target="#xs-injectables-links-module-PontuacaoModule-e21f72c8f230c164cfc7137344c6b66cd5286319573ca19e20eeb44e7526fbf2219d36e16609d950307eb9add6d8caaae700db672162806d00fc60ba66a67502"' }>
+                                        'data-target="#injectables-links-module-PontuacaoModule-d9a08c8734fc5653283cd8f2ee5680e1838b9db74fc4b72631b7a6c0bf016f16af906f2f499c0bb97b2ac2f889843de8baa05d1985d1f42dc3a1724084be570a"' : 'data-target="#xs-injectables-links-module-PontuacaoModule-d9a08c8734fc5653283cd8f2ee5680e1838b9db74fc4b72631b7a6c0bf016f16af906f2f499c0bb97b2ac2f889843de8baa05d1985d1f42dc3a1724084be570a"' }>
                                         <span class="icon ion-md-arrow-round-down"></span>
                                         <span>Injectables</span>
                                         <span class="icon ion-ios-arrow-down"></span>
                                     </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-PontuacaoModule-e21f72c8f230c164cfc7137344c6b66cd5286319573ca19e20eeb44e7526fbf2219d36e16609d950307eb9add6d8caaae700db672162806d00fc60ba66a67502"' :
-                                        'id="xs-injectables-links-module-PontuacaoModule-e21f72c8f230c164cfc7137344c6b66cd5286319573ca19e20eeb44e7526fbf2219d36e16609d950307eb9add6d8caaae700db672162806d00fc60ba66a67502"' }>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-PontuacaoModule-d9a08c8734fc5653283cd8f2ee5680e1838b9db74fc4b72631b7a6c0bf016f16af906f2f499c0bb97b2ac2f889843de8baa05d1985d1f42dc3a1724084be570a"' :
+                                        'id="xs-injectables-links-module-PontuacaoModule-d9a08c8734fc5653283cd8f2ee5680e1838b9db74fc4b72631b7a6c0bf016f16af906f2f499c0bb97b2ac2f889843de8baa05d1985d1f42dc3a1724084be570a"' }>
                                         <li class="link">
                                             <a href="injectables/AplicaRegraDesempateService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >AplicaRegraDesempateService</a>
                                         </li>
@@ -386,6 +386,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                         </li>
                                         <li class="link">
                                             <a href="injectables/RegistraDesistenciaService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >RegistraDesistenciaService</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="injectables/RegistraResultadoPartidaFacade.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >RegistraResultadoPartidaFacade</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -1005,6 +1008,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/PontuacaoViewAjustaQuery1655760085847.html" data-type="entity-link" >PontuacaoViewAjustaQuery1655760085847</a>
                             </li>
                             <li class="link">
+                                <a href="classes/PontuacaoViewApenasClassificatoria1657305148173.html" data-type="entity-link" >PontuacaoViewApenasClassificatoria1657305148173</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/PontuacaoViewRepository.html" data-type="entity-link" >PontuacaoViewRepository</a>
                             </li>
                             <li class="link">
@@ -1123,6 +1129,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="injectables/RegistraDesistenciaService.html" data-type="entity-link" >RegistraDesistenciaService</a>
                                 </li>
                                 <li class="link">
+                                    <a href="injectables/RegistraResultadoPartidaFacade.html" data-type="entity-link" >RegistraResultadoPartidaFacade</a>
+                                </li>
+                                <li class="link">
                                     <a href="injectables/SalvaPartidaFacade.html" data-type="entity-link" >SalvaPartidaFacade</a>
                                 </li>
                                 <li class="link">
@@ -1221,6 +1230,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/IRegistraDesistenciaDto.html" data-type="entity-link" >IRegistraDesistenciaDto</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/IRegistraEquipeGanhadoraDto.html" data-type="entity-link" >IRegistraEquipeGanhadoraDto</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/ITypeORMFilterRequest.html" data-type="entity-link" >ITypeORMFilterRequest</a>
