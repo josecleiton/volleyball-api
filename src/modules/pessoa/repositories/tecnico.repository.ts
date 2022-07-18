@@ -1,5 +1,6 @@
-import { EntityRepository, Repository } from 'typeorm';
+import { CustomRepository } from 'src/modules/core/typeorm-ex';
+import { Repository } from 'typeorm';
 import { Tecnico } from '../entities/tecnico.entity';
 
-@EntityRepository(Tecnico)
+@CustomRepository(Tecnico)
 export class TecnicoRepository extends Repository<Tecnico> {}

@@ -120,7 +120,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(votoDaGaleraRepository: <a href="../classes/VotoDaGaleraRepository.html" target="_self">VotoDaGaleraRepository</a>, craqueDaGaleraRepository: <a href="../classes/CraqueDaGaleraViewRepository.html" target="_self">CraqueDaGaleraViewRepository</a>, enviaVerificacaoSmsService: <a href="../injectables/EnviaVerificacaoSmsService.html" target="_self">EnviaVerificacaoSmsService</a>, verificaCodigoSmsService: <a href="../injectables/VerificaCodigoSmsService.html" target="_self">VerificaCodigoSmsService</a>, atletaService: <a href="../injectables/AtletaService.html" target="_self">AtletaService</a>, ligaService: <a href="../injectables/LigaService.html" target="_self">LigaService</a>, connection: Connection)</code>
+<code>constructor(votoDaGaleraRepository: <a href="../classes/VotoDaGaleraRepository.html" target="_self">VotoDaGaleraRepository</a>, craqueDaGaleraRepository: <a href="../classes/CraqueDaGaleraViewRepository.html" target="_self">CraqueDaGaleraViewRepository</a>, enviaVerificacaoSmsService: <a href="../injectables/EnviaVerificacaoSmsService.html" target="_self">EnviaVerificacaoSmsService</a>, verificaCodigoSmsService: <a href="../injectables/VerificaCodigoSmsService.html" target="_self">VerificaCodigoSmsService</a>, atletaService: <a href="../injectables/AtletaService.html" target="_self">AtletaService</a>, ligaService: <a href="../injectables/LigaService.html" target="_self">LigaService</a>, dataSource: DataSource)</code>
                     </td>
                 </tr>
                         <tr>
@@ -215,10 +215,10 @@
                                                     
                                                 </tr>
                                                 <tr>
-                                                        <td>connection</td>
+                                                        <td>dataSource</td>
                                                   
                                                         <td>
-                                                                    <code>Connection</code>
+                                                                    <code>DataSource</code>
                                                         </td>
                                                   
                                                     <td>
@@ -445,7 +445,7 @@ import {
   EnviaVerificacaoSmsService,
   VerificaCodigoSmsService,
 } from &#x27;src/modules/sms/services&#x27;;
-import { Connection, IsNull } from &#x27;typeorm&#x27;;
+import { DataSource, IsNull } from &#x27;typeorm&#x27;;
 import {
   ConfirmarVotoDto,
   IniciarVotoDto,
@@ -467,7 +467,7 @@ export class VotoDaGaleraService {
     private readonly verificaCodigoSmsService: VerificaCodigoSmsService,
     private readonly atletaService: AtletaService,
     private readonly ligaService: LigaService,
-    private readonly connection: Connection,
+    private readonly dataSource: DataSource,
   ) {}
 
   async iniciarVoto(requisicao: IniciarVotoDto) {
@@ -492,7 +492,7 @@ export class VotoDaGaleraService {
       requisicao.telefone,
     );
 
-    const voto &#x3D; await this.connection.transaction(async (manager) &#x3D;&gt; {
+    const voto &#x3D; await this.dataSource.transaction(async (manager) &#x3D;&gt; {
       await manager.delete(VotoDaGalera, {
         telefone: requisicao.telefone,
         verificadoEm: IsNull(),
@@ -514,7 +514,7 @@ export class VotoDaGaleraService {
   async confirmaVoto(id: string, { token }: ConfirmarVotoDto) {
     const voto &#x3D; await this.votoDaGaleraRepository.findOne({
       where: { id },
-      select: [&#x27;id&#x27;, &#x27;idVerificacao&#x27;, &#x27;verificacaoExpiraEm&#x27;],
+      select: { id: true, idVerificacao: true, verificacaoExpiraEm: true },
     });
     if (!voto || isPast(voto.verificacaoExpiraEm)) {
       if (voto) {

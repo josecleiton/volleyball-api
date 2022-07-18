@@ -1,11 +1,12 @@
-import { EntityRepository, Repository } from 'typeorm';
+import { CustomRepository } from 'src/modules/core/typeorm-ex';
+import { Repository } from 'typeorm';
 import {
   IFundamentoAtletaLiga,
   ListaFundamentoNaLigaDto,
 } from '../dto/fundamento-atleta.dto';
 import { FundamentoAtleta } from '../entities/fundamento-atleta.entity';
 
-@EntityRepository(FundamentoAtleta)
+@CustomRepository(FundamentoAtleta)
 export class FundamentoAtletaRepository extends Repository<FundamentoAtleta> {
   async listaFundamentoDeAtleta(idAtleta: string) {
     const qb = this.createQueryBuilder('f');

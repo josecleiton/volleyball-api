@@ -89,10 +89,11 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { EntityRepository, Repository } from &#x27;typeorm&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Repository } from &#x27;typeorm&#x27;;
+import { CustomRepository } from &#x27;../core/typeorm-ex&#x27;;
 import { Equipe } from &#x27;./entities/equipe.entity&#x27;;
 
-@EntityRepository(Equipe)
+@CustomRepository(Equipe)
 export class EquipeRepository extends Repository&lt;Equipe&gt; {}
 </code></pre>
     </div>

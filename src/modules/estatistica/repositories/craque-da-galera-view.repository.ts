@@ -1,9 +1,9 @@
 import { MaterializedViewRepository } from 'src/modules/core/repositories/materialized-view.repository';
-import { EntityRepository } from 'typeorm';
+import { CustomRepository } from 'src/modules/core/typeorm-ex';
 import { CraqueDaGaleraView } from '../entities/craque-da-galera-view.entity';
 import { nomeCraqueDaGaleraView } from '../estatistica.constants';
 
-@EntityRepository(CraqueDaGaleraView)
+@CustomRepository(CraqueDaGaleraView)
 export class CraqueDaGaleraViewRepository extends MaterializedViewRepository<CraqueDaGaleraView> {
   protected readonly name = nomeCraqueDaGaleraView;
   protected readonly concurrently = true;

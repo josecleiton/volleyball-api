@@ -9,7 +9,7 @@ import { StatusPartida } from 'src/modules/partida/enums/status-partida.enum';
 import { SalvaPartidaFacade } from 'src/modules/partida/facades/salva-partida.facade';
 import { PartidaRepository } from 'src/modules/partida/repositories/partida.repository';
 import { tiposDeRodadaClassificatoria } from 'src/modules/partida/types/tipo-rodada.type';
-import { Connection } from 'typeorm';
+import { DataSource, FindOptionsRelations } from 'typeorm';
 import { TypeORMFilterService } from '../../core/services/typeorm-filter.service';
 import { EquipeService } from '../../equipe/equipe.service';
 import {
@@ -50,7 +50,7 @@ export class LigaService {
     private readonly semisService: SemifinalGeneratorService,
     private readonly finalService: FinalGeneratorService,
     private readonly typeormFilterService: TypeORMFilterService,
-    private readonly connection: Connection,
+    private readonly dataSource: DataSource,
   ) {}
 
   async criaLiga(requisicao: CriaLigaDto) {
@@ -118,7 +118,7 @@ export class LigaService {
 
     liga.status = StatusLiga.CLASSIFICATORIA;
 
-    const [ligaAtualizada, partidasSalvas] = await this.connection.transaction(
+    const [ligaAtualizada, partidasSalvas] = await this.dataSource.transaction(
       async (manager) => {
         const partidasSalvas = await this.salvaPartidas.executa(
           partidas,
@@ -165,7 +165,7 @@ export class LigaService {
     liga.status = StatusLiga.QUARTAS;
 
     const [ligaAtualizada, partidasAgendadas] =
-      await this.connection.transaction(async (manager) => [
+      await this.dataSource.transaction(async (manager) => [
         await manager.save(liga),
         await this.salvaPartidas.executa(partidas, manager),
       ]);
@@ -188,7 +188,7 @@ export class LigaService {
 
     liga.status = StatusLiga.SEMIS;
     const [ligaAtualizada, partidasAgendadas] =
-      await this.connection.transaction(async (manager) => {
+      await this.dataSource.transaction(async (manager) => {
         await this.partidaRepository.removePartidasNaoDisputadas(id, manager);
 
         return [
@@ -217,7 +217,7 @@ export class LigaService {
     liga.status = StatusLiga.FINAL;
 
     const [ligaAtualizada, partidasAgendadas] =
-      await this.connection.transaction(async (manager) => {
+      await this.dataSource.transaction(async (manager) => {
         await this.partidaRepository.removePartidasNaoDisputadas(id, manager);
 
         return [
@@ -255,7 +255,7 @@ export class LigaService {
 
     liga.status = StatusLiga.PREMIACAO;
 
-    return this.connection
+    return this.dataSource
       .transaction(async (manager) => {
         await this.partidaRepository.removePartidasNaoDisputadas(id, manager);
 
@@ -267,7 +267,7 @@ export class LigaService {
   private async getLigaIniciadaEm(id: string) {
     return this.ligaRepository.findOne({
       where: { id },
-      select: ['id', 'dataComeco'],
+      select: { id: true, dataComeco: true },
     });
   }
 
@@ -290,11 +290,10 @@ export class LigaService {
   }
 
   async excecaoSeALigaStatus(id: string, status: StatusLiga) {
-    const resultado: LigaIdStatus | undefined =
-      await this.ligaRepository.findOne({
-        where: { id },
-        select: ['id', 'status'],
-      });
+    const resultado: LigaIdStatus | null = await this.ligaRepository.findOne({
+      where: { id },
+      select: { id: true, status: true },
+    });
 
     if (resultado?.status === status) {
       throw new NotFoundException(
@@ -310,8 +309,14 @@ export class LigaService {
     return list.map((x) => new LigaRespostaDto(x));
   }
 
-  private async devePegarEntidade(id: string, relations?: string[]) {
-    const liga = await this.ligaRepository.findOne(id, { relations });
+  private async devePegarEntidade(
+    id: string,
+    relations?: FindOptionsRelations<Liga>,
+  ) {
+    const liga = await this.ligaRepository.findOne({
+      where: { id },
+      relations,
+    });
     if (!liga) {
       throw new NotFoundException(`Liga ${id} não encontrada`);
     }

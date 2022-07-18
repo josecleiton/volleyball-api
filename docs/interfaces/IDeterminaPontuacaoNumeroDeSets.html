@@ -191,7 +191,7 @@ import { AtletaRespostaDto } from &#x27;src/modules/pessoa/dto/atleta.dto&#x27;;
 import { RegistraResultadoPartidaFacade } from &#x27;src/modules/pontuacao/facades&#x27;;
 import { PontuacaoService } from &#x27;src/modules/pontuacao/services&#x27;;
 import { RegistraDesistenciaService } from &#x27;src/modules/pontuacao/services/registra-desistencia.service&#x27;;
-import { Connection, EntityManager } from &#x27;typeorm&#x27;;
+import { DataSource, EntityManager } from &#x27;typeorm&#x27;;
 import { Posicao, TipoArbitro } from &#x27;../../pessoa/enums&#x27;;
 import { ArbitroService } from &#x27;../../pessoa/services/arbitro.service&#x27;;
 import { AtletaService } from &#x27;../../pessoa/services/atleta.service&#x27;;
@@ -236,7 +236,7 @@ export class PartidaService {
     private readonly registraResultadoPartida: RegistraResultadoPartidaFacade,
     @Inject(forwardRef(() &#x3D;&gt; LigaService))
     private readonly ligaService: LigaService,
-    private readonly connection: Connection,
+    private readonly dataSource: DataSource,
     private readonly pontuacaoService: PontuacaoService,
   ) {}
 
@@ -380,7 +380,7 @@ export class PartidaService {
     partida.status &#x3D; StatusPartida.PARTICIPANTES_CADASTRADOS;
     partida.idDelegado &#x3D; delegado.id;
 
-    await this.connection.transaction(async (manager) &#x3D;&gt; {
+    await this.dataSource.transaction(async (manager) &#x3D;&gt; {
       const partidaSalva &#x3D; await manager.save(partida);
 
       partidaSalva.mandante.atletas &#x3D; await manager.save(escalacaoMandante);
@@ -395,7 +395,7 @@ export class PartidaService {
 
   private async deveEncontrarEntidade(id: string, manager?: EntityManager) {
     const repository &#x3D;
-      manager?.getCustomRepository(PartidaRepository) ?? this.partidaRepository;
+      manager?.withRepository(this.partidaRepository) ?? this.partidaRepository;
     const partida &#x3D; await repository.encontraPartidaCompleta(id);
     if (!partida) {
       throw new NotFoundException(&#x60;Partida ${id} não encontrada&#x60;);
@@ -519,7 +519,7 @@ export class PartidaService {
       setsVisitante,
     });
 
-    const partidaAtualizada &#x3D; await this.connection.transaction(
+    const partidaAtualizada &#x3D; await this.dataSource.transaction(
       async (manager) &#x3D;&gt; {
         await manager.save([partida.mandante, partida.visitante]);
 

@@ -11,7 +11,7 @@ import {
   EnviaVerificacaoSmsService,
   VerificaCodigoSmsService,
 } from 'src/modules/sms/services';
-import { Connection, IsNull } from 'typeorm';
+import { DataSource, IsNull } from 'typeorm';
 import {
   ConfirmarVotoDto,
   IniciarVotoDto,
@@ -33,7 +33,7 @@ export class VotoDaGaleraService {
     private readonly verificaCodigoSmsService: VerificaCodigoSmsService,
     private readonly atletaService: AtletaService,
     private readonly ligaService: LigaService,
-    private readonly connection: Connection,
+    private readonly dataSource: DataSource,
   ) {}
 
   async iniciarVoto(requisicao: IniciarVotoDto) {
@@ -58,7 +58,7 @@ export class VotoDaGaleraService {
       requisicao.telefone,
     );
 
-    const voto = await this.connection.transaction(async (manager) => {
+    const voto = await this.dataSource.transaction(async (manager) => {
       await manager.delete(VotoDaGalera, {
         telefone: requisicao.telefone,
         verificadoEm: IsNull(),
@@ -80,7 +80,7 @@ export class VotoDaGaleraService {
   async confirmaVoto(id: string, { token }: ConfirmarVotoDto) {
     const voto = await this.votoDaGaleraRepository.findOne({
       where: { id },
-      select: ['id', 'idVerificacao', 'verificacaoExpiraEm'],
+      select: { id: true, idVerificacao: true, verificacaoExpiraEm: true },
     });
     if (!voto || isPast(voto.verificacaoExpiraEm)) {
       if (voto) {

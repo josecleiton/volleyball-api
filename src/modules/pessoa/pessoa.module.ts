@@ -1,5 +1,4 @@
 import { forwardRef, Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { LigaModule } from '../liga/liga.module';
 import { CoreModule } from '../core/core.module';
 import { EquipeModule } from '../equipe/equipe.module';
@@ -18,10 +17,11 @@ import { TecnicoService } from './services/tecnico.service';
 import { AuxiliarRepository } from './repositories/auxiliar.repository';
 import { AuxiliarController } from './controllers/auxiliar.controller';
 import { AuxiliarService } from './services/auxiliar.service';
+import { TypeOrmExModule } from '../core/typeorm-ex/typeorm-ex.module';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([
+    TypeOrmExModule.forCustomRepository([
       TecnicoRepository,
       AtletaRepository,
       ArbitroRepository,

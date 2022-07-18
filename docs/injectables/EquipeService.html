@@ -978,7 +978,7 @@ export class EquipeService {
     const equipes &#x3D; await this.equipeRepository.find({
       where: request,
       order: { dataCriacao: &#x27;ASC&#x27; },
-      relations: [&#x27;atletas&#x27;, &#x27;auxiliares&#x27;, &#x27;tecnico&#x27;],
+      relations: { atletas: true, auxiliares: true, tecnico: true },
     });
     return equipes.map((x) &#x3D;&gt; new EquipeRespostaDto(x));
   }
@@ -986,7 +986,7 @@ export class EquipeService {
   async deveEncontrarEntidade(id: string) {
     const equipe &#x3D; await this.equipeRepository.findOne({
       where: { id },
-      relations: [&#x27;atletas&#x27;, &#x27;auxiliares&#x27;, &#x27;tecnico&#x27;],
+      relations: { atletas: true, auxiliares: true, tecnico: true },
     });
     if (!equipe) {
       throw new NotFoundException(&#x60;Equipe ${id} não encontrada&#x60;);
@@ -1004,8 +1004,8 @@ export class EquipeService {
   ): Promise&lt;EquipeSimplificadaRespostaDto&gt; {
     const equipe &#x3D; await this.equipeRepository.findOne({
       where: { id },
-      relations: [&#x27;atletas&#x27;],
-      select: [&#x27;id&#x27;, &#x27;idLiga&#x27;, &#x27;idGinasio&#x27;, &#x27;nome&#x27;],
+      relations: { atletas: true },
+      select: { id: true, idLiga: true, idGinasio: true, nome: true },
     });
     if (!equipe) {
       throw new NotFoundException(&#x60;Equipe ${id} não encontrada&#x60;);
@@ -1054,10 +1054,10 @@ export class EquipeService {
   }
 
   async remove(id: string) {
-    const resultado: { id: string; idLiga: string } | undefined &#x3D;
+    const resultado: { id: string; idLiga: string } | null &#x3D;
       await this.equipeRepository.findOne({
         where: { id },
-        select: [&#x27;id&#x27;, &#x27;idLiga&#x27;],
+        select: { id: true, idLiga: true },
       });
     if (!resultado) {
       throw new NotFoundException({ id }, &#x60;Equipe ${id} não encontrada&#x60;);

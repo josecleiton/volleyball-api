@@ -154,7 +154,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(ligaRepository: <a href="../classes/LigaRepository.html" target="_self">LigaRepository</a>, partidaRepository: <a href="../classes/PartidaRepository.html" target="_self">PartidaRepository</a>, equipeService: <a href="../injectables/EquipeService.html" target="_self">EquipeService</a>, classificacaoService: <a href="../injectables/ClassificacaoGeneratorService.html" target="_self">ClassificacaoGeneratorService</a>, salvaPartidas: <a href="../injectables/SalvaPartidaFacade.html" target="_self">SalvaPartidaFacade</a>, quartasService: <a href="../injectables/QuartaDeFinalGeneratorService.html" target="_self">QuartaDeFinalGeneratorService</a>, semisService: <a href="../injectables/SemifinalGeneratorService.html" target="_self">SemifinalGeneratorService</a>, finalService: <a href="../injectables/FinalGeneratorService.html" target="_self">FinalGeneratorService</a>, typeormFilterService: <a href="../injectables/TypeORMFilterService.html" target="_self">TypeORMFilterService</a>, connection: Connection)</code>
+<code>constructor(ligaRepository: <a href="../classes/LigaRepository.html" target="_self">LigaRepository</a>, partidaRepository: <a href="../classes/PartidaRepository.html" target="_self">PartidaRepository</a>, equipeService: <a href="../injectables/EquipeService.html" target="_self">EquipeService</a>, classificacaoService: <a href="../injectables/ClassificacaoGeneratorService.html" target="_self">ClassificacaoGeneratorService</a>, salvaPartidas: <a href="../injectables/SalvaPartidaFacade.html" target="_self">SalvaPartidaFacade</a>, quartasService: <a href="../injectables/QuartaDeFinalGeneratorService.html" target="_self">QuartaDeFinalGeneratorService</a>, semisService: <a href="../injectables/SemifinalGeneratorService.html" target="_self">SemifinalGeneratorService</a>, finalService: <a href="../injectables/FinalGeneratorService.html" target="_self">FinalGeneratorService</a>, typeormFilterService: <a href="../injectables/TypeORMFilterService.html" target="_self">TypeORMFilterService</a>, dataSource: DataSource)</code>
                     </td>
                 </tr>
                         <tr>
@@ -285,10 +285,10 @@
                                                     
                                                 </tr>
                                                 <tr>
-                                                        <td>connection</td>
+                                                        <td>dataSource</td>
                                                   
                                                         <td>
-                                                                    <code>Connection</code>
+                                                                    <code>DataSource</code>
                                                         </td>
                                                   
                                                     <td>
@@ -474,8 +474,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="322"
-                            class="link-to-prism">src/modules/liga/services/liga.service.ts:322</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="327"
+                            class="link-to-prism">src/modules/liga/services/liga.service.ts:327</a></div>
                 </td>
             </tr>
 
@@ -539,15 +539,15 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>devePegarEntidade(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, relations?: string[])</code>
+                    <code>devePegarEntidade(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, relations?: <a href="../entitys/Liga.html" target="_self">FindOptionsRelations&lt;Liga&gt;</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="313"
-                            class="link-to-prism">src/modules/liga/services/liga.service.ts:313</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="312"
+                            class="link-to-prism">src/modules/liga/services/liga.service.ts:312</a></div>
                 </td>
             </tr>
 
@@ -582,7 +582,7 @@
                                 <tr>
                                     <td>relations</td>
                                     <td>
-                                            <code>string[]</code>
+                                                <code><a href="../entitys/Liga.html" target="_self" >FindOptionsRelations&lt;Liga&gt;</a></code>
                                     </td>
 
                                     <td>
@@ -1187,8 +1187,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="306"
-                            class="link-to-prism">src/modules/liga/services/liga.service.ts:306</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="305"
+                            class="link-to-prism">src/modules/liga/services/liga.service.ts:305</a></div>
                 </td>
             </tr>
 
@@ -1297,8 +1297,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="326"
-                            class="link-to-prism">src/modules/liga/services/liga.service.ts:326</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="331"
+                            class="link-to-prism">src/modules/liga/services/liga.service.ts:331</a></div>
                 </td>
             </tr>
 
@@ -1363,7 +1363,7 @@ import { StatusPartida } from &#x27;src/modules/partida/enums/status-partida.enu
 import { SalvaPartidaFacade } from &#x27;src/modules/partida/facades/salva-partida.facade&#x27;;
 import { PartidaRepository } from &#x27;src/modules/partida/repositories/partida.repository&#x27;;
 import { tiposDeRodadaClassificatoria } from &#x27;src/modules/partida/types/tipo-rodada.type&#x27;;
-import { Connection } from &#x27;typeorm&#x27;;
+import { DataSource, FindOptionsRelations } from &#x27;typeorm&#x27;;
 import { TypeORMFilterService } from &#x27;../../core/services/typeorm-filter.service&#x27;;
 import { EquipeService } from &#x27;../../equipe/equipe.service&#x27;;
 import {
@@ -1404,7 +1404,7 @@ export class LigaService {
     private readonly semisService: SemifinalGeneratorService,
     private readonly finalService: FinalGeneratorService,
     private readonly typeormFilterService: TypeORMFilterService,
-    private readonly connection: Connection,
+    private readonly dataSource: DataSource,
   ) {}
 
   async criaLiga(requisicao: CriaLigaDto) {
@@ -1472,7 +1472,7 @@ export class LigaService {
 
     liga.status &#x3D; StatusLiga.CLASSIFICATORIA;
 
-    const [ligaAtualizada, partidasSalvas] &#x3D; await this.connection.transaction(
+    const [ligaAtualizada, partidasSalvas] &#x3D; await this.dataSource.transaction(
       async (manager) &#x3D;&gt; {
         const partidasSalvas &#x3D; await this.salvaPartidas.executa(
           partidas,
@@ -1519,7 +1519,7 @@ export class LigaService {
     liga.status &#x3D; StatusLiga.QUARTAS;
 
     const [ligaAtualizada, partidasAgendadas] &#x3D;
-      await this.connection.transaction(async (manager) &#x3D;&gt; [
+      await this.dataSource.transaction(async (manager) &#x3D;&gt; [
         await manager.save(liga),
         await this.salvaPartidas.executa(partidas, manager),
       ]);
@@ -1542,7 +1542,7 @@ export class LigaService {
 
     liga.status &#x3D; StatusLiga.SEMIS;
     const [ligaAtualizada, partidasAgendadas] &#x3D;
-      await this.connection.transaction(async (manager) &#x3D;&gt; {
+      await this.dataSource.transaction(async (manager) &#x3D;&gt; {
         await this.partidaRepository.removePartidasNaoDisputadas(id, manager);
 
         return [
@@ -1571,7 +1571,7 @@ export class LigaService {
     liga.status &#x3D; StatusLiga.FINAL;
 
     const [ligaAtualizada, partidasAgendadas] &#x3D;
-      await this.connection.transaction(async (manager) &#x3D;&gt; {
+      await this.dataSource.transaction(async (manager) &#x3D;&gt; {
         await this.partidaRepository.removePartidasNaoDisputadas(id, manager);
 
         return [
@@ -1609,7 +1609,7 @@ export class LigaService {
 
     liga.status &#x3D; StatusLiga.PREMIACAO;
 
-    return this.connection
+    return this.dataSource
       .transaction(async (manager) &#x3D;&gt; {
         await this.partidaRepository.removePartidasNaoDisputadas(id, manager);
 
@@ -1621,7 +1621,7 @@ export class LigaService {
   private async getLigaIniciadaEm(id: string) {
     return this.ligaRepository.findOne({
       where: { id },
-      select: [&#x27;id&#x27;, &#x27;dataComeco&#x27;],
+      select: { id: true, dataComeco: true },
     });
   }
 
@@ -1644,11 +1644,10 @@ export class LigaService {
   }
 
   async excecaoSeALigaStatus(id: string, status: StatusLiga) {
-    const resultado: LigaIdStatus | undefined &#x3D;
-      await this.ligaRepository.findOne({
-        where: { id },
-        select: [&#x27;id&#x27;, &#x27;status&#x27;],
-      });
+    const resultado: LigaIdStatus | null &#x3D; await this.ligaRepository.findOne({
+      where: { id },
+      select: { id: true, status: true },
+    });
 
     if (resultado?.status &#x3D;&#x3D;&#x3D; status) {
       throw new NotFoundException(
@@ -1664,8 +1663,14 @@ export class LigaService {
     return list.map((x) &#x3D;&gt; new LigaRespostaDto(x));
   }
 
-  private async devePegarEntidade(id: string, relations?: string[]) {
-    const liga &#x3D; await this.ligaRepository.findOne(id, { relations });
+  private async devePegarEntidade(
+    id: string,
+    relations?: FindOptionsRelations&lt;Liga&gt;,
+  ) {
+    const liga &#x3D; await this.ligaRepository.findOne({
+      where: { id },
+      relations,
+    });
     if (!liga) {
       throw new NotFoundException(&#x60;Liga ${id} não encontrada&#x60;);
     }

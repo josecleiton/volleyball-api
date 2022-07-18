@@ -100,7 +100,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(registraResultadoPartida: <a href="../injectables/RegistraResultadoPartidaFacade.html" target="_self">RegistraResultadoPartidaFacade</a>, pontuacaoService: <a href="../injectables/PontuacaoService.html" target="_self">PontuacaoService</a>, connection: Connection)</code>
+<code>constructor(registraResultadoPartida: <a href="../injectables/RegistraResultadoPartidaFacade.html" target="_self">RegistraResultadoPartidaFacade</a>, pontuacaoService: <a href="../injectables/PontuacaoService.html" target="_self">PontuacaoService</a>, dataSource: DataSource)</code>
                     </td>
                 </tr>
                         <tr>
@@ -147,10 +147,10 @@
                                                     
                                                 </tr>
                                                 <tr>
-                                                        <td>connection</td>
+                                                        <td>dataSource</td>
                                                   
                                                         <td>
-                                                                    <code>Connection</code>
+                                                                    <code>DataSource</code>
                                                         </td>
                                                   
                                                     <td>
@@ -249,7 +249,7 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@nestjs/common&#x27;;
-import { Connection } from &#x27;typeorm&#x27;;
+import { DataSource } from &#x27;typeorm&#x27;;
 
 import { EscolhaDeDesistencia } from &#x27;src/modules/partida/dto/partida.dto&#x27;;
 import { PontosPartida } from &#x27;src/modules/partida/enums/pontos-partida.enum&#x27;;
@@ -262,7 +262,7 @@ export class RegistraDesistenciaService {
   constructor(
     private readonly registraResultadoPartida: RegistraResultadoPartidaFacade,
     private readonly pontuacaoService: PontuacaoService,
-    private readonly connection: Connection,
+    private readonly dataSource: DataSource,
   ) {}
   async executar({ partida, desistente }: IRegistraDesistenciaDto) {
     const mandanteEhDesistente &#x3D; desistente &#x3D;&#x3D;&#x3D; EscolhaDeDesistencia.MANDANTE;
@@ -295,7 +295,7 @@ export class RegistraDesistenciaService {
       mandante,
       visitante,
       partida: partidaAtualizada,
-    } &#x3D; await this.connection.transaction(async (manager) &#x3D;&gt; {
+    } &#x3D; await this.dataSource.transaction(async (manager) &#x3D;&gt; {
       const [mandante, visitante] &#x3D; await manager.save([
         partida.mandante,
         partida.visitante,

@@ -1,7 +1,7 @@
 import { TestingModuleBuilder } from '@nestjs/testing';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { randomUUID } from 'crypto';
-import { createConnection } from 'typeorm';
+import { DataSource } from 'typeorm';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 require('dotenv/config');
 
@@ -12,20 +12,20 @@ export async function stubDatabaseConnection(
     return builder;
   }
 
-  const connection = await createConnection({
+  const dataSource = await new DataSource({
     type: 'postgres',
     url: process.env.DATABASE_URL,
     logging: false,
     name: randomUUID(),
-  });
+  }).initialize();
 
   const urlObj = new URL(process.env.DATABASE_URL as string);
   urlObj.pathname = randomUUID().replace(/-/g, '_');
 
   try {
-    await connection.query(`CREATE DATABASE "${urlObj.pathname.slice(1)}"`);
+    await dataSource.query(`CREATE DATABASE "${urlObj.pathname.slice(1)}"`);
   } finally {
-    await connection.close();
+    await dataSource.destroy();
   }
 
   if (process.env.LOG_DB) {

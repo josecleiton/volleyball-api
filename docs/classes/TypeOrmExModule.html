@@ -44,7 +44,7 @@
 
 <ol class="breadcrumb">
   <li>Classes</li>
-  <li >LigaRepository</li>
+  <li >TypeOrmExModule</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -62,17 +62,11 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/modules/liga/repositories/liga.repository.ts</code>
+            <code>src/modules/core/typeorm-ex/typeorm-ex.module.ts</code>
         </p>
 
 
 
-            <p class="comment">
-                <h3>Extends</h3>
-            </p>
-            <p class="comment">
-                    <code>Repository</code>
-            </p>
 
 
 
@@ -90,8 +84,8 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier">Async</span>
-                                <a href="#encontraUmComEquipesCompletas" >encontraUmComEquipesCompletas</a>
+                                    <span class="modifier">Static</span>
+                                <a href="#forCustomRepository" >forCustomRepository</a>
                             </li>
                         </ul>
                     </td>
@@ -116,29 +110,37 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="encontraUmComEquipesCompletas"></a>
+                    <a name="forCustomRepository"></a>
                     <span class="name">
-                        <span class="modifier">Async</span>
-                        <span ><b>encontraUmComEquipesCompletas</b></span>
-                        <a href="#encontraUmComEquipesCompletas"><span class="icon ion-ios-link"></span></a>
+                        <span class="modifier">Static</span>
+                        <span ><b>forCustomRepository</b></span>
+                        <a href="#forCustomRepository"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>encontraUmComEquipesCompletas(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>forCustomRepository(repositories: T[])</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="7"
-                            class="link-to-prism">src/modules/liga/repositories/liga.repository.ts:7</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="8"
+                            class="link-to-prism">src/modules/core/typeorm-ex/typeorm-ex.module.ts:8</a></div>
                 </td>
             </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <b>Type parameters :</b>
+                    <ul class="type-parameters">
+                        <li>T</li>
+                    </ul>
+                </td>
+            </tr>
 
             <tr>
                 <td class="col-md-4">
@@ -156,9 +158,9 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>id</td>
+                                    <td>repositories</td>
                                     <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            <code>T[]</code>
                                     </td>
 
                                     <td>
@@ -173,7 +175,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>unknown</code>
+                        <b>Returns : </b>    <code>DynamicModule</code>
 
                     </div>
                     <div class="io-description">
@@ -193,26 +195,46 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CustomRepository } from &#x27;src/modules/core/typeorm-ex&#x27;;
-import { Repository } from &#x27;typeorm&#x27;;
-import { Liga } from &#x27;../entities/liga.entity&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { DynamicModule, Provider } from &#x27;@nestjs/common&#x27;;
+import { getDataSourceToken } from &#x27;@nestjs/typeorm&#x27;;
+import { DataSource } from &#x27;typeorm&#x27;;
+import { TYPEORM_EX_CUSTOM_REPOSITORY } from &#x27;./decorators&#x27;;
 
-@CustomRepository(Liga)
-export class LigaRepository extends Repository&lt;Liga&gt; {
-  async encontraUmComEquipesCompletas(id: string) {
-    const qb &#x3D; this.createQueryBuilder(&#x27;l&#x27;);
-    qb.leftJoinAndSelect(&#x27;l.equipes&#x27;, &#x27;equipes&#x27;)
-      .leftJoinAndSelect(&#x27;l.arbitros&#x27;, &#x27;arbitros&#x27;)
-      .innerJoinAndSelect(&#x27;arbitros.pessoa&#x27;, &#x27;arbitroPessoa&#x27;)
-      .leftJoinAndSelect(&#x27;l.delegados&#x27;, &#x27;delegados&#x27;)
-      .innerJoinAndSelect(&#x27;delegados.pessoa&#x27;, &#x27;delegadoPessoa&#x27;)
-      .leftJoinAndSelect(&#x27;equipes.atletas&#x27;, &#x27;atletas&#x27;)
-      .leftJoinAndSelect(&#x27;equipes.tecnico&#x27;, &#x27;tecnicos&#x27;)
-      .leftJoinAndSelect(&#x27;equipes.auxiliares&#x27;, &#x27;auxiliares&#x27;)
-      .where(&#x27;l.id &#x3D; :id&#x27;, { id })
-      .orderBy(&#x27;equipes.dataCriacao&#x27;, &#x27;ASC&#x27;);
+export class TypeOrmExModule {
+  public static forCustomRepository&lt;T extends new (...args: any[]) &#x3D;&gt; any&gt;(
+    repositories: T[],
+  ): DynamicModule {
+    const providers: Provider[] &#x3D; [];
 
-    return qb.getOne();
+    for (const repository of repositories) {
+      const entity &#x3D; Reflect.getMetadata(
+        TYPEORM_EX_CUSTOM_REPOSITORY,
+        repository,
+      );
+
+      if (!entity) {
+        continue;
+      }
+
+      providers.push({
+        inject: [getDataSourceToken()],
+        provide: repository,
+        useFactory: (dataSource: DataSource): typeof repository &#x3D;&gt; {
+          const baseRepository &#x3D; dataSource.getRepository&lt;any&gt;(entity);
+          return new repository(
+            baseRepository.target,
+            baseRepository.manager,
+            baseRepository.queryRunner,
+          );
+        },
+      });
+    }
+
+    return {
+      exports: providers,
+      module: TypeOrmExModule,
+      providers,
+    };
   }
 }
 </code></pre>
@@ -253,7 +275,7 @@ export class LigaRepository extends Repository&lt;Liga&gt; {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
-            var COMPODOC_CURRENT_PAGE_URL = 'LigaRepository.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'TypeOrmExModule.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

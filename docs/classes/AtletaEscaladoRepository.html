@@ -134,8 +134,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="7"
-                            class="link-to-prism">src/modules/partida/repositories/atleta-escalado.repository.ts:7</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="8"
+                            class="link-to-prism">src/modules/partida/repositories/atleta-escalado.repository.ts:8</a></div>
                 </td>
             </tr>
 
@@ -192,11 +192,12 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { EntityRepository, Repository } from &#x27;typeorm&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CustomRepository } from &#x27;src/modules/core/typeorm-ex&#x27;;
+import { Repository } from &#x27;typeorm&#x27;;
 import { IBuscaAtletaEscalado } from &#x27;../dto/atleta-escalado.dto&#x27;;
 import { AtletaEscalado } from &#x27;../entities/atleta-escalado.entity&#x27;;
 
-@EntityRepository(AtletaEscalado)
+@CustomRepository(AtletaEscalado)
 export class AtletaEscaladoRepository extends Repository&lt;AtletaEscalado&gt; {
   async encontraParticipacaoComEquipe({
     idAtleta,

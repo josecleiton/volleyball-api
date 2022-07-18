@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Connection } from 'typeorm';
+import { DataSource } from 'typeorm';
 
 import { EscolhaDeDesistencia } from 'src/modules/partida/dto/partida.dto';
 import { PontosPartida } from 'src/modules/partida/enums/pontos-partida.enum';
@@ -12,7 +12,7 @@ export class RegistraDesistenciaService {
   constructor(
     private readonly registraResultadoPartida: RegistraResultadoPartidaFacade,
     private readonly pontuacaoService: PontuacaoService,
-    private readonly connection: Connection,
+    private readonly dataSource: DataSource,
   ) {}
   async executar({ partida, desistente }: IRegistraDesistenciaDto) {
     const mandanteEhDesistente = desistente === EscolhaDeDesistencia.MANDANTE;
@@ -45,7 +45,7 @@ export class RegistraDesistenciaService {
       mandante,
       visitante,
       partida: partidaAtualizada,
-    } = await this.connection.transaction(async (manager) => {
+    } = await this.dataSource.transaction(async (manager) => {
       const [mandante, visitante] = await manager.save([
         partida.mandante,
         partida.visitante,

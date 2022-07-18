@@ -1,9 +1,10 @@
-import { EntityRepository, SelectQueryBuilder } from 'typeorm';
+import { SelectQueryBuilder } from 'typeorm';
 import { MelhorPosicaoViewRepository } from './melhor-posicao-view.repository';
 import { nomeMelhorOpostoView } from '../estatistica.constants';
 import { MelhorOpostoView } from '../entities/melhor-oposto-view.entity';
+import { CustomRepository } from 'src/modules/core/typeorm-ex';
 
-@EntityRepository(MelhorOpostoView)
+@CustomRepository(MelhorOpostoView)
 export class MelhorOpostoViewRepository extends MelhorPosicaoViewRepository<MelhorOpostoView> {
   protected readonly name = nomeMelhorOpostoView;
   protected readonly concurrently = true;

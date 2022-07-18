@@ -155,7 +155,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(partidaRepository: <a href="../classes/PartidaRepository.html" target="_self">PartidaRepository</a>, atletaEscaladoRepository: <a href="../classes/AtletaEscaladoRepository.html" target="_self">AtletaEscaladoRepository</a>, arbitroPartidaRepository: <a href="../classes/ArbitroPartidaRepository.html" target="_self">ArbitroPartidaRepository</a>, delegadoService: <a href="../injectables/DelegadoService.html" target="_self">DelegadoService</a>, atletaService: <a href="../injectables/AtletaService.html" target="_self">AtletaService</a>, arbitroService: <a href="../injectables/ArbitroService.html" target="_self">ArbitroService</a>, registraDesistenciaService: <a href="../injectables/RegistraDesistenciaService.html" target="_self">RegistraDesistenciaService</a>, registraResultadoPartida: <a href="../injectables/RegistraResultadoPartidaFacade.html" target="_self">RegistraResultadoPartidaFacade</a>, ligaService: <a href="../injectables/LigaService.html" target="_self">LigaService</a>, connection: Connection, pontuacaoService: <a href="../injectables/PontuacaoService.html" target="_self">PontuacaoService</a>)</code>
+<code>constructor(partidaRepository: <a href="../classes/PartidaRepository.html" target="_self">PartidaRepository</a>, atletaEscaladoRepository: <a href="../classes/AtletaEscaladoRepository.html" target="_self">AtletaEscaladoRepository</a>, arbitroPartidaRepository: <a href="../classes/ArbitroPartidaRepository.html" target="_self">ArbitroPartidaRepository</a>, delegadoService: <a href="../injectables/DelegadoService.html" target="_self">DelegadoService</a>, atletaService: <a href="../injectables/AtletaService.html" target="_self">AtletaService</a>, arbitroService: <a href="../injectables/ArbitroService.html" target="_self">ArbitroService</a>, registraDesistenciaService: <a href="../injectables/RegistraDesistenciaService.html" target="_self">RegistraDesistenciaService</a>, registraResultadoPartida: <a href="../injectables/RegistraResultadoPartidaFacade.html" target="_self">RegistraResultadoPartidaFacade</a>, ligaService: <a href="../injectables/LigaService.html" target="_self">LigaService</a>, dataSource: DataSource, pontuacaoService: <a href="../injectables/PontuacaoService.html" target="_self">PontuacaoService</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -286,10 +286,10 @@
                                                     
                                                 </tr>
                                                 <tr>
-                                                        <td>connection</td>
+                                                        <td>dataSource</td>
                                                   
                                                         <td>
-                                                                    <code>Connection</code>
+                                                                    <code>DataSource</code>
                                                         </td>
                                                   
                                                     <td>
@@ -1068,7 +1068,7 @@ import { AtletaRespostaDto } from &#x27;src/modules/pessoa/dto/atleta.dto&#x27;;
 import { RegistraResultadoPartidaFacade } from &#x27;src/modules/pontuacao/facades&#x27;;
 import { PontuacaoService } from &#x27;src/modules/pontuacao/services&#x27;;
 import { RegistraDesistenciaService } from &#x27;src/modules/pontuacao/services/registra-desistencia.service&#x27;;
-import { Connection, EntityManager } from &#x27;typeorm&#x27;;
+import { DataSource, EntityManager } from &#x27;typeorm&#x27;;
 import { Posicao, TipoArbitro } from &#x27;../../pessoa/enums&#x27;;
 import { ArbitroService } from &#x27;../../pessoa/services/arbitro.service&#x27;;
 import { AtletaService } from &#x27;../../pessoa/services/atleta.service&#x27;;
@@ -1113,7 +1113,7 @@ export class PartidaService {
     private readonly registraResultadoPartida: RegistraResultadoPartidaFacade,
     @Inject(forwardRef(() &#x3D;&gt; LigaService))
     private readonly ligaService: LigaService,
-    private readonly connection: Connection,
+    private readonly dataSource: DataSource,
     private readonly pontuacaoService: PontuacaoService,
   ) {}
 
@@ -1257,7 +1257,7 @@ export class PartidaService {
     partida.status &#x3D; StatusPartida.PARTICIPANTES_CADASTRADOS;
     partida.idDelegado &#x3D; delegado.id;
 
-    await this.connection.transaction(async (manager) &#x3D;&gt; {
+    await this.dataSource.transaction(async (manager) &#x3D;&gt; {
       const partidaSalva &#x3D; await manager.save(partida);
 
       partidaSalva.mandante.atletas &#x3D; await manager.save(escalacaoMandante);
@@ -1272,7 +1272,7 @@ export class PartidaService {
 
   private async deveEncontrarEntidade(id: string, manager?: EntityManager) {
     const repository &#x3D;
-      manager?.getCustomRepository(PartidaRepository) ?? this.partidaRepository;
+      manager?.withRepository(this.partidaRepository) ?? this.partidaRepository;
     const partida &#x3D; await repository.encontraPartidaCompleta(id);
     if (!partida) {
       throw new NotFoundException(&#x60;Partida ${id} não encontrada&#x60;);
@@ -1396,7 +1396,7 @@ export class PartidaService {
       setsVisitante,
     });
 
-    const partidaAtualizada &#x3D; await this.connection.transaction(
+    const partidaAtualizada &#x3D; await this.dataSource.transaction(
       async (manager) &#x3D;&gt; {
         await manager.save([partida.mandante, partida.visitante]);
 

@@ -1,8 +1,9 @@
-import { EntityRepository, Repository } from 'typeorm';
+import { CustomRepository } from 'src/modules/core/typeorm-ex';
+import { Repository } from 'typeorm';
 import { IBuscaAtletaEscalado } from '../dto/atleta-escalado.dto';
 import { AtletaEscalado } from '../entities/atleta-escalado.entity';
 
-@EntityRepository(AtletaEscalado)
+@CustomRepository(AtletaEscalado)
 export class AtletaEscaladoRepository extends Repository<AtletaEscalado> {
   async encontraParticipacaoComEquipe({
     idAtleta,

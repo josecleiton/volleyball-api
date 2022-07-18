@@ -124,6 +124,9 @@
                             <a href="#criaTecnicoDto" title="test/__MOCKS__/pessoa/tecnico.mock.ts" ><b>criaTecnicoDto</b>&nbsp;&nbsp;&nbsp;(test/.../tecnico.mock.ts)</a>
                         </li>
                         <li>
+                            <a href="#CustomRepository" title="src/modules/core/typeorm-ex/decorators/custom-repository.decorator.ts" ><b>CustomRepository</b>&nbsp;&nbsp;&nbsp;(src/.../custom-repository.decorator.ts)</a>
+                        </li>
+                        <li>
                             <a href="#dtoParaPessoa" title="src/modules/pessoa/mapper/cria-pessoa-dto.mapper.ts" ><b>dtoParaPessoa</b>&nbsp;&nbsp;&nbsp;(src/.../cria-pessoa-dto.mapper.ts)</a>
                         </li>
                         <li>
@@ -178,10 +181,10 @@
                             <a href="#stubDatabaseConnection" title="test/modules/helpers/stub-database-connection.helper.ts" ><b>stubDatabaseConnection</b>&nbsp;&nbsp;&nbsp;(test/.../stub-database-connection.helper.ts)</a>
                         </li>
                         <li>
-                            <a href="#validate" title="src/modules/core/validations/is-valid-date.validation.ts" ><b>validate</b>&nbsp;&nbsp;&nbsp;(src/.../is-valid-date.validation.ts)</a>
+                            <a href="#validate" title="src/modules/core/validations/is-time-string.validation.ts" ><b>validate</b>&nbsp;&nbsp;&nbsp;(src/.../is-time-string.validation.ts)</a>
                         </li>
                         <li>
-                            <a href="#validate" title="src/modules/core/validations/is-time-string.validation.ts" ><b>validate</b>&nbsp;&nbsp;&nbsp;(src/.../is-time-string.validation.ts)</a>
+                            <a href="#validate" title="src/modules/core/validations/is-valid-date.validation.ts" ><b>validate</b>&nbsp;&nbsp;&nbsp;(src/.../is-valid-date.validation.ts)</a>
                         </li>
                         <li>
                             <a href="#validTimeStringToDate" title="src/modules/core/validations/is-time-string.validation.ts" ><b>validTimeStringToDate</b>&nbsp;&nbsp;&nbsp;(src/.../is-time-string.validation.ts)</a>
@@ -2357,6 +2360,71 @@
             </tr>
         </tbody>
     </table>
+</section>    <h3>src/modules/core/typeorm-ex/decorators/custom-repository.decorator.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="CustomRepository"></a>
+                    <span class="name">
+                        <span ><b>CustomRepository</b></span>
+                        <a href="#CustomRepository"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>CustomRepository(entity: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" target="_blank">Function</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>entity</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" target="_blank" >Function</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>ClassDecorator</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>    <h3>src/modules/pessoa/mapper/cria-pessoa-dto.mapper.ts</h3>
     <section>
     <h3></h3>    <table class="table table-sm table-bordered">
@@ -2942,64 +3010,6 @@
             </tr>
         </tbody>
     </table>
-</section>    <h3>src/modules/core/validations/is-valid-date.validation.ts</h3>
-    <section>
-    <h3></h3>    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="validate"></a>
-                    <span class="name">
-                        <span ><b>validate</b></span>
-                        <a href="#validate"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>validate(value: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
-                </td>
-            </tr>
-
-
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>value</td>
-                                    <td>
-                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
 </section>    <h3>src/modules/core/validations/is-time-string.validation.ts</h3>
     <section>
     <h3></h3>    <table class="table table-sm table-bordered">
@@ -3097,6 +3107,64 @@
                                     <td>value</td>
                                     <td>
                                                 <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>src/modules/core/validations/is-valid-date.validation.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="validate"></a>
+                    <span class="name">
+                        <span ><b>validate</b></span>
+                        <a href="#validate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>validate(value: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>value</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
                                     </td>
 
                                     <td>

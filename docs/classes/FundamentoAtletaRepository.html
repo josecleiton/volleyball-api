@@ -138,8 +138,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="10"
-                            class="link-to-prism">src/modules/estatistica/repositories/fundamento-atleta.repository.ts:10</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="11"
+                            class="link-to-prism">src/modules/estatistica/repositories/fundamento-atleta.repository.ts:11</a></div>
                 </td>
             </tr>
 
@@ -209,8 +209,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="23"
-                            class="link-to-prism">src/modules/estatistica/repositories/fundamento-atleta.repository.ts:23</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="24"
+                            class="link-to-prism">src/modules/estatistica/repositories/fundamento-atleta.repository.ts:24</a></div>
                 </td>
             </tr>
 
@@ -267,14 +267,15 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { EntityRepository, Repository } from &#x27;typeorm&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CustomRepository } from &#x27;src/modules/core/typeorm-ex&#x27;;
+import { Repository } from &#x27;typeorm&#x27;;
 import {
   IFundamentoAtletaLiga,
   ListaFundamentoNaLigaDto,
 } from &#x27;../dto/fundamento-atleta.dto&#x27;;
 import { FundamentoAtleta } from &#x27;../entities/fundamento-atleta.entity&#x27;;
 
-@EntityRepository(FundamentoAtleta)
+@CustomRepository(FundamentoAtleta)
 export class FundamentoAtletaRepository extends Repository&lt;FundamentoAtleta&gt; {
   async listaFundamentoDeAtleta(idAtleta: string) {
     const qb &#x3D; this.createQueryBuilder(&#x27;f&#x27;);

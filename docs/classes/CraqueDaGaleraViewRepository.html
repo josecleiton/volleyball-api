@@ -388,11 +388,11 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { MaterializedViewRepository } from &#x27;src/modules/core/repositories/materialized-view.repository&#x27;;
-import { EntityRepository } from &#x27;typeorm&#x27;;
+import { CustomRepository } from &#x27;src/modules/core/typeorm-ex&#x27;;
 import { CraqueDaGaleraView } from &#x27;../entities/craque-da-galera-view.entity&#x27;;
 import { nomeCraqueDaGaleraView } from &#x27;../estatistica.constants&#x27;;
 
-@EntityRepository(CraqueDaGaleraView)
+@CustomRepository(CraqueDaGaleraView)
 export class CraqueDaGaleraViewRepository extends MaterializedViewRepository&lt;CraqueDaGaleraView&gt; {
   protected readonly name &#x3D; nomeCraqueDaGaleraView;
   protected readonly concurrently &#x3D; true;

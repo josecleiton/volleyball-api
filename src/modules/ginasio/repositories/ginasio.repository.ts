@@ -1,8 +1,9 @@
-import { EntityRepository, Repository } from 'typeorm';
+import { CustomRepository } from 'src/modules/core/typeorm-ex';
+import { Repository } from 'typeorm';
 import { ListaGinasiosDto } from '../dto/ginasio.dto';
 import { Ginasio } from '../entities/ginasio.entity';
 
-@EntityRepository(Ginasio)
+@CustomRepository(Ginasio)
 export class GinasioRepository extends Repository<Ginasio> {
   async listaFiltrando({ cidade, estado, ...requisicao }: ListaGinasiosDto) {
     const qb = this.createQueryBuilder('ginasio');

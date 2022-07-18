@@ -117,7 +117,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(fundamentoAtletaRepository: <a href="../classes/FundamentoAtletaRepository.html" target="_self">FundamentoAtletaRepository</a>, melhorLiberoRepository: <a href="../classes/MelhorLiberoViewRepository.html" target="_self">MelhorLiberoViewRepository</a>, melhorCentralRepository: <a href="../classes/MelhorCentralViewRepository.html" target="_self">MelhorCentralViewRepository</a>, melhorPontaRepository: <a href="../classes/MelhorOpostoViewRepository.html" target="_self">MelhorOpostoViewRepository</a>, atletaEscaladoService: <a href="../injectables/AtletaEscaladoService.html" target="_self">AtletaEscaladoService</a>, ligaService: <a href="../injectables/LigaService.html" target="_self">LigaService</a>, typeormFilterService: <a href="../injectables/TypeORMFilterService.html" target="_self">TypeORMFilterService</a>, connection: Connection)</code>
+<code>constructor(fundamentoAtletaRepository: <a href="../classes/FundamentoAtletaRepository.html" target="_self">FundamentoAtletaRepository</a>, melhorLiberoRepository: <a href="../classes/MelhorLiberoViewRepository.html" target="_self">MelhorLiberoViewRepository</a>, melhorCentralRepository: <a href="../classes/MelhorCentralViewRepository.html" target="_self">MelhorCentralViewRepository</a>, melhorPontaRepository: <a href="../classes/MelhorOpostoViewRepository.html" target="_self">MelhorOpostoViewRepository</a>, atletaEscaladoService: <a href="../injectables/AtletaEscaladoService.html" target="_self">AtletaEscaladoService</a>, ligaService: <a href="../injectables/LigaService.html" target="_self">LigaService</a>, typeormFilterService: <a href="../injectables/TypeORMFilterService.html" target="_self">TypeORMFilterService</a>, connection: DataSource)</code>
                     </td>
                 </tr>
                         <tr>
@@ -227,7 +227,7 @@
                                                         <td>connection</td>
                                                   
                                                         <td>
-                                                                    <code>Connection</code>
+                                                                    <code>DataSource</code>
                                                         </td>
                                                   
                                                     <td>
@@ -272,8 +272,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="105"
-                            class="link-to-prism">src/modules/estatistica/services/fundamento-atleta.service.ts:105</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="107"
+                            class="link-to-prism">src/modules/estatistica/services/fundamento-atleta.service.ts:107</a></div>
                 </td>
             </tr>
 
@@ -585,7 +585,7 @@ import { TypeORMFilterService } from &#x27;src/modules/core/services/typeorm-fil
 import { StatusLiga } from &#x27;src/modules/liga/enums/status-liga.enum&#x27;;
 import { LigaService } from &#x27;src/modules/liga/services/liga.service&#x27;;
 import { AtletaEscaladoService } from &#x27;src/modules/partida/services&#x27;;
-import { Connection } from &#x27;typeorm&#x27;;
+import { DataSource } from &#x27;typeorm&#x27;;
 import {
   CriaFundamentoAtletaDto,
   FundamentoAgregadoAtletaRespostaDto,
@@ -609,7 +609,7 @@ export class FundamentoAtletaService {
     private readonly atletaEscaladoService: AtletaEscaladoService,
     private readonly ligaService: LigaService,
     private readonly typeormFilterService: TypeORMFilterService,
-    private readonly connection: Connection,
+    private readonly connection: DataSource,
   ) {}
 
   async criaFundamento(requisicao: CriaFundamentoAtletaDto) {
@@ -662,11 +662,13 @@ export class FundamentoAtletaService {
   async removeFundamento(id: string) {
     const fundamento &#x3D; await this.fundamentoAtletaRepository.findOne({
       where: { id },
-      relations: [
-        &#x27;atleta&#x27;,
-        &#x27;atleta.participacao&#x27;,
-        &#x27;atleta.participacao.equipe&#x27;,
-      ],
+      relations: {
+        atleta: {
+          participacao: {
+            equipe: true,
+          },
+        },
+      },
     });
 
     if (!fundamento) {

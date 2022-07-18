@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { LigaService } from './services/liga.service';
 import { LigaController } from './liga.controller';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { LigaRepository } from './repositories/liga.repository';
 import { CoreModule } from '../core/core.module';
 import { EquipeModule } from '../equipe/equipe.module';
@@ -13,10 +12,11 @@ import {
   SemifinalGeneratorService,
 } from './tabela';
 import { PontuacaoModule } from '../pontuacao/pontuacao.module';
+import { TypeOrmExModule } from '../core/typeorm-ex/typeorm-ex.module';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([LigaRepository]),
+    TypeOrmExModule.forCustomRepository([LigaRepository]),
     CoreModule,
     EquipeModule,
     PartidaModule,

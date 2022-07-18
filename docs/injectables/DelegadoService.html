@@ -455,7 +455,7 @@ export class DelegadoService {
   }
 
   async deveEncontrarUm(id: string) {
-    const delegado &#x3D; await this.delegadoRepository.findOne(id);
+    const delegado &#x3D; await this.delegadoRepository.findOne({ where: { id } });
     if (!delegado) {
       throw new NotFoundException(&#x60;Delegado ${id} não encontrado&#x60;);
     }

@@ -113,7 +113,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/modules/pessoa/services/arbitro.service.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/modules/pessoa/services/arbitro.service.ts:20</a></div>
                             </td>
                         </tr>
 
@@ -202,8 +202,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="27"
-                            class="link-to-prism">src/modules/pessoa/services/arbitro.service.ts:27</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="28"
+                            class="link-to-prism">src/modules/pessoa/services/arbitro.service.ts:28</a></div>
                 </td>
             </tr>
 
@@ -273,8 +273,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="54"
-                            class="link-to-prism">src/modules/pessoa/services/arbitro.service.ts:54</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="55"
+                            class="link-to-prism">src/modules/pessoa/services/arbitro.service.ts:55</a></div>
                 </td>
             </tr>
 
@@ -344,8 +344,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="46"
-                            class="link-to-prism">src/modules/pessoa/services/arbitro.service.ts:46</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="47"
+                            class="link-to-prism">src/modules/pessoa/services/arbitro.service.ts:47</a></div>
                 </td>
             </tr>
 
@@ -415,6 +415,7 @@ import {
 import { ArbitroRepository } from &#x27;../repositories/arbitro.repository&#x27;;
 import { TipoPessoa } from &#x27;../enums&#x27;;
 import { dtoParaPessoa } from &#x27;../mapper&#x27;;
+import { In } from &#x27;typeorm&#x27;;
 
 @Injectable()
 export class ArbitroService {
@@ -453,7 +454,7 @@ export class ArbitroService {
   }
 
   async deveListarEstritatemente(ids: string[]) {
-    const arbitros &#x3D; await this.arbitroRepository.findByIds(ids);
+    const arbitros &#x3D; await this.arbitroRepository.findBy({ id: In(ids) });
     const setId &#x3D; new Set(ids);
 
     const naoEncontrados &#x3D; arbitros.filter((x) &#x3D;&gt; !setId.has(x.id));

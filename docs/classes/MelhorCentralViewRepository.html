@@ -166,7 +166,7 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../classes/MaterializedViewRepository.html#source" target="_self" >MaterializedViewRepository:9</a></code>
+                                <div class="io-line">Defined in         <code><a href="../classes/MaterializedViewRepository.html#source" target="_self" >MaterializedViewRepository:10</a></code>
 </div>
                         </td>
                     </tr>
@@ -200,7 +200,7 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../classes/MaterializedViewRepository.html#source" target="_self" >MaterializedViewRepository:8</a></code>
+                                <div class="io-line">Defined in         <code><a href="../classes/MaterializedViewRepository.html#source" target="_self" >MaterializedViewRepository:9</a></code>
 </div>
                         </td>
                     </tr>
@@ -243,7 +243,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../classes/MelhorPosicaoViewRepository.html#source" target="_self" >MelhorPosicaoViewRepository:11</a></code>
+                        <div class="io-line">Defined in         <code><a href="../classes/MelhorPosicaoViewRepository.html#source" target="_self" >MelhorPosicaoViewRepository:12</a></code>
 </div>
                 </td>
             </tr>
@@ -474,12 +474,13 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { EntityRepository, SelectQueryBuilder } from &#x27;typeorm&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { SelectQueryBuilder } from &#x27;typeorm&#x27;;
 import { MelhorCentralView } from &#x27;../entities/melhor-central-view.entity&#x27;;
 import { MelhorPosicaoViewRepository } from &#x27;./melhor-posicao-view.repository&#x27;;
 import { nomeMelhorCentralView } from &#x27;../estatistica.constants&#x27;;
+import { CustomRepository } from &#x27;src/modules/core/typeorm-ex&#x27;;
 
-@EntityRepository(MelhorCentralView)
+@CustomRepository(MelhorCentralView)
 export class MelhorCentralViewRepository extends MelhorPosicaoViewRepository&lt;MelhorCentralView&gt; {
   protected readonly name &#x3D; nomeMelhorCentralView;
   protected readonly concurrently &#x3D; true;

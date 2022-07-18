@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { CoreModule } from '../core/core.module';
+import { TypeOrmExModule } from '../core/typeorm-ex/typeorm-ex.module';
 import { LigaModule } from '../liga/liga.module';
 import { PartidaModule } from '../partida/partida.module';
 import { PessoaModule } from '../pessoa/pessoa.module';
@@ -32,7 +32,7 @@ import {
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([
+    TypeOrmExModule.forCustomRepository([
       FundamentoAtletaRepository,
       MelhorLiberoViewRepository,
       MelhorCentralViewRepository,
