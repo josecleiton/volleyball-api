@@ -15,9 +15,6 @@ export const databaseConfig = registerAs(
     synchronize: false,
     migrationsRun: true,
     logging: true,
-    cli: {
-      migrationsDir: 'src/database/migrations',
-    },
     namingStrategy: new SnakeNamingStrategy(),
     ssl:
       process.env.NODE_ENV === 'production'

@@ -1,5 +1,5 @@
 import { forwardRef, Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { TypeOrmExModule } from '../core/typeorm-ex/typeorm-ex.module';
 import { PartidaModule } from '../partida/partida.module';
 import { RegistraResultadoPartidaFacade } from './facades';
 import { PontuacaoController } from './pontuacao.controller';
@@ -12,7 +12,7 @@ import {
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([PontuacaoViewRepository]),
+    TypeOrmExModule.forCustomRepository([PontuacaoViewRepository]),
     forwardRef(() => PartidaModule),
   ],
   controllers: [PontuacaoController],

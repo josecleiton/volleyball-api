@@ -4,7 +4,7 @@ import { TypeORMFilterService } from 'src/modules/core/services/typeorm-filter.s
 import { StatusLiga } from 'src/modules/liga/enums/status-liga.enum';
 import { LigaService } from 'src/modules/liga/services/liga.service';
 import { AtletaEscaladoService } from 'src/modules/partida/services';
-import { Connection } from 'typeorm';
+import { DataSource } from 'typeorm';
 import {
   CriaFundamentoAtletaDto,
   FundamentoAgregadoAtletaRespostaDto,
@@ -28,7 +28,7 @@ export class FundamentoAtletaService {
     private readonly atletaEscaladoService: AtletaEscaladoService,
     private readonly ligaService: LigaService,
     private readonly typeormFilterService: TypeORMFilterService,
-    private readonly connection: Connection,
+    private readonly connection: DataSource,
   ) {}
 
   async criaFundamento(requisicao: CriaFundamentoAtletaDto) {
@@ -81,11 +81,13 @@ export class FundamentoAtletaService {
   async removeFundamento(id: string) {
     const fundamento = await this.fundamentoAtletaRepository.findOne({
       where: { id },
-      relations: [
-        'atleta',
-        'atleta.participacao',
-        'atleta.participacao.equipe',
-      ],
+      relations: {
+        atleta: {
+          participacao: {
+            equipe: true,
+          },
+        },
+      },
     });
 
     if (!fundamento) {

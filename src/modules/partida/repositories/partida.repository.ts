@@ -1,10 +1,6 @@
+import { CustomRepository } from 'src/modules/core/typeorm-ex';
 import { nomePontuacaoView } from 'src/modules/pontuacao/pontuacao.constant';
-import {
-  EntityManager,
-  EntityRepository,
-  Repository,
-  SelectQueryBuilder,
-} from 'typeorm';
+import { EntityManager, Repository, SelectQueryBuilder } from 'typeorm';
 import { IBuscarConfrontoEquipesEmpatadas } from '../dto/partida-pontuacao.dto';
 import {
   IBuscaQuantidadePartidasPorTipoEStatus,
@@ -13,7 +9,7 @@ import {
 import { Partida } from '../entities/partida.entity';
 import { StatusPartida } from '../enums/status-partida.enum';
 
-@EntityRepository(Partida)
+@CustomRepository(Partida)
 export class PartidaRepository extends Repository<Partida> {
   private aplicaRelacoesDeUmaPartidaCompleta(
     qb: SelectQueryBuilder<Partida>,

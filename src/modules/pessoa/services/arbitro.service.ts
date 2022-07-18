@@ -14,6 +14,7 @@ import {
 import { ArbitroRepository } from '../repositories/arbitro.repository';
 import { TipoPessoa } from '../enums';
 import { dtoParaPessoa } from '../mapper';
+import { In } from 'typeorm';
 
 @Injectable()
 export class ArbitroService {
@@ -52,7 +53,7 @@ export class ArbitroService {
   }
 
   async deveListarEstritatemente(ids: string[]) {
-    const arbitros = await this.arbitroRepository.findByIds(ids);
+    const arbitros = await this.arbitroRepository.findBy({ id: In(ids) });
     const setId = new Set(ids);
 
     const naoEncontrados = arbitros.filter((x) => !setId.has(x.id));

@@ -32,7 +32,7 @@ export class GinasioService {
   }
 
   async devePegarUm(id: string) {
-    const ginasio = await this.ginasioRepository.findOne(id);
+    const ginasio = await this.ginasioRepository.findOne({ where: { id } });
     if (!ginasio) {
       throw new NotFoundException(`Ginásio ${id} não encontrado`);
     }

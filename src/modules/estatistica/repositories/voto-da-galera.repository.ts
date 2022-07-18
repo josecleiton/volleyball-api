@@ -1,7 +1,8 @@
-import { EntityRepository, Repository } from 'typeorm';
+import { CustomRepository } from 'src/modules/core/typeorm-ex';
+import { Repository } from 'typeorm';
 import { VotoDaGalera } from '../entities/voto-da-galera.entity';
 
-@EntityRepository(VotoDaGalera)
+@CustomRepository(VotoDaGalera)
 export class VotoDaGaleraRepository extends Repository<VotoDaGalera> {
   async jaVotouNaLiga(telefone: string, idLiga: string) {
     const qb = this.createQueryBuilder('voto');

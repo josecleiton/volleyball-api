@@ -13,7 +13,7 @@ import { AtletaRespostaDto } from 'src/modules/pessoa/dto/atleta.dto';
 import { RegistraResultadoPartidaFacade } from 'src/modules/pontuacao/facades';
 import { PontuacaoService } from 'src/modules/pontuacao/services';
 import { RegistraDesistenciaService } from 'src/modules/pontuacao/services/registra-desistencia.service';
-import { Connection, EntityManager } from 'typeorm';
+import { DataSource, EntityManager } from 'typeorm';
 import { Posicao, TipoArbitro } from '../../pessoa/enums';
 import { ArbitroService } from '../../pessoa/services/arbitro.service';
 import { AtletaService } from '../../pessoa/services/atleta.service';
@@ -58,7 +58,7 @@ export class PartidaService {
     private readonly registraResultadoPartida: RegistraResultadoPartidaFacade,
     @Inject(forwardRef(() => LigaService))
     private readonly ligaService: LigaService,
-    private readonly connection: Connection,
+    private readonly dataSource: DataSource,
     private readonly pontuacaoService: PontuacaoService,
   ) {}
 
@@ -202,7 +202,7 @@ export class PartidaService {
     partida.status = StatusPartida.PARTICIPANTES_CADASTRADOS;
     partida.idDelegado = delegado.id;
 
-    await this.connection.transaction(async (manager) => {
+    await this.dataSource.transaction(async (manager) => {
       const partidaSalva = await manager.save(partida);
 
       partidaSalva.mandante.atletas = await manager.save(escalacaoMandante);
@@ -217,7 +217,7 @@ export class PartidaService {
 
   private async deveEncontrarEntidade(id: string, manager?: EntityManager) {
     const repository =
-      manager?.getCustomRepository(PartidaRepository) ?? this.partidaRepository;
+      manager?.withRepository(this.partidaRepository) ?? this.partidaRepository;
     const partida = await repository.encontraPartidaCompleta(id);
     if (!partida) {
       throw new NotFoundException(`Partida ${id} não encontrada`);
@@ -341,7 +341,7 @@ export class PartidaService {
       setsVisitante,
     });
 
-    const partidaAtualizada = await this.connection.transaction(
+    const partidaAtualizada = await this.dataSource.transaction(
       async (manager) => {
         await manager.save([partida.mandante, partida.visitante]);
 

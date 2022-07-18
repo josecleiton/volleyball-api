@@ -1,5 +1,4 @@
 import { forwardRef, Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { PartidaController } from './partida.controller';
 import { PessoaModule } from '../pessoa/pessoa.module';
@@ -15,10 +14,11 @@ import {
 import { PontuacaoViewRepository } from '../pontuacao/repositories/pontuacao-view.repository';
 import { PartidaFactory } from './factories/partida.factory';
 import { SalvaPartidaFacade } from './facades/salva-partida.facade';
+import { TypeOrmExModule } from '../core/typeorm-ex/typeorm-ex.module';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([
+    TypeOrmExModule.forCustomRepository([
       PartidaRepository,
       ArbitroPartidaRepository,
       AtletaEscaladoRepository,
@@ -37,7 +37,7 @@ import { SalvaPartidaFacade } from './facades/salva-partida.facade';
     SalvaPartidaFacade,
   ],
   exports: [
-    TypeOrmModule,
+    TypeOrmExModule,
     PartidaService,
     AtletaEscaladoService,
     PartidaFactory,

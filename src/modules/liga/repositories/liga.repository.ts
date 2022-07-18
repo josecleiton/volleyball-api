@@ -1,7 +1,8 @@
-import { EntityRepository, Repository } from 'typeorm';
+import { CustomRepository } from 'src/modules/core/typeorm-ex';
+import { Repository } from 'typeorm';
 import { Liga } from '../entities/liga.entity';
 
-@EntityRepository(Liga)
+@CustomRepository(Liga)
 export class LigaRepository extends Repository<Liga> {
   async encontraUmComEquipesCompletas(id: string) {
     const qb = this.createQueryBuilder('l');

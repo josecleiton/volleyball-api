@@ -1,8 +1,6 @@
-import { EntityRepository, Repository } from 'typeorm';
+import { CustomRepository } from 'src/modules/core/typeorm-ex';
+import { Repository } from 'typeorm';
 import { EquipePartida } from '../entities/equipe-partida.entity';
 
-@EntityRepository(EquipePartida)
-export class EquipePartidaRepository extends Repository<EquipePartida> {
-
-    
-}
+@CustomRepository(EquipePartida)
+export class EquipePartidaRepository extends Repository<EquipePartida> {}
