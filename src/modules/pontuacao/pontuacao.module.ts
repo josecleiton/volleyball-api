@@ -1,12 +1,12 @@
-import { forwardRef, Module } from '@nestjs/common';
-import { TypeOrmExModule } from '../core/typeorm-ex/typeorm-ex.module';
-import { PartidaModule } from '../partida/partida.module';
+import { Module, forwardRef } from '@nestjs/common';
+import { TypeOrmExModule } from '../core';
+import { PartidaModule } from '../partida';
 import { RegistraResultadoPartidaFacade } from './facades';
 import { PontuacaoController } from './pontuacao.controller';
-import { PontuacaoViewRepository } from './repositories/pontuacao-view.repository';
+import { PontuacaoViewRepository } from './repositories';
 import {
-  AplicaRegraDesempateService,
   PontuacaoService,
+  AplicaRegraDesempateService,
   RegistraDesistenciaService,
 } from './services';
 

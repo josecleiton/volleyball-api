@@ -1,20 +1,16 @@
 import {
   Controller,
-  Get,
   Post,
   Body,
-  Param,
-  Delete,
+  Get,
   Query,
+  Param,
   ParseUUIDPipe,
   Patch,
+  Delete,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import {
-  AtualizaEquipeDto,
-  CriaEquipeDto,
-  ListaEquipesDto,
-} from './dto/equipe.dto';
+import { CriaEquipeDto, ListaEquipesDto, AtualizaEquipeDto } from './dto';
 import { EquipeService } from './equipe.service';
 
 @Controller('equipe')

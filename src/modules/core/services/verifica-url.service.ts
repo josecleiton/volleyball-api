@@ -1,6 +1,6 @@
 import { HttpService } from '@nestjs/axios';
-import { ConflictException, Injectable } from '@nestjs/common';
-import { catchError, firstValueFrom, map, of } from 'rxjs';
+import { Injectable, ConflictException } from '@nestjs/common';
+import { firstValueFrom, map, catchError, of } from 'rxjs';
 
 @Injectable()
 export class VerificaUrlService {

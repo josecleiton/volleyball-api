@@ -1,5 +1,5 @@
 import { Module, Scope } from '@nestjs/common';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ConfigService } from '@nestjs/config';
 import {
   EnviaVerificacaoSmsService,
   VerificaCodigoSmsService,
@@ -7,7 +7,6 @@ import {
 import { MESSAGEBIRD } from './sms.constant';
 
 @Module({
-  imports: [ConfigModule],
   providers: [
     {
       provide: MESSAGEBIRD,

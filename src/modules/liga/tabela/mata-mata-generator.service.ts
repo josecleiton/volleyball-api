@@ -1,9 +1,10 @@
 import { chunk } from 'lodash';
-import { Partida } from 'src/modules/partida/entities/partida.entity';
-import { PartidaFactory } from 'src/modules/partida/factories/partida.factory';
-import type { TipoRodadaMataMata } from 'src/modules/partida/types/tipo-rodada.type';
-import { IClassificados } from '../dto/mata-mata.dto';
-import { IMataMataDto } from '../dto/tabela.dto';
+import {
+  PartidaFactory,
+  TipoRodadaMataMata,
+  Partida,
+} from 'src/modules/partida';
+import { IClassificados, IMataMataDto } from '../dto';
 import { EscolhaDeMando } from '../enums';
 
 export abstract class MataMataGeneratorService {

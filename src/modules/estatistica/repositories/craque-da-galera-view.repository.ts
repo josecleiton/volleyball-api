@@ -1,6 +1,5 @@
-import { MaterializedViewRepository } from 'src/modules/core/repositories/materialized-view.repository';
-import { CustomRepository } from 'src/modules/core/typeorm-ex';
-import { CraqueDaGaleraView } from '../entities/craque-da-galera-view.entity';
+import { CustomRepository, MaterializedViewRepository } from 'src/modules/core';
+import { CraqueDaGaleraView } from '../entities';
 import { nomeCraqueDaGaleraView } from '../estatistica.constants';
 
 @CustomRepository(CraqueDaGaleraView)

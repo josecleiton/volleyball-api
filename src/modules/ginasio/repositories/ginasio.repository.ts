@@ -1,7 +1,7 @@
-import { CustomRepository } from 'src/modules/core/typeorm-ex';
+import { CustomRepository } from 'src/modules/core';
 import { Repository } from 'typeorm';
-import { ListaGinasiosDto } from '../dto/ginasio.dto';
-import { Ginasio } from '../entities/ginasio.entity';
+import { ListaGinasiosDto } from '../dto';
+import { Ginasio } from '../entities';
 
 @CustomRepository(Ginasio)
 export class GinasioRepository extends Repository<Ginasio> {

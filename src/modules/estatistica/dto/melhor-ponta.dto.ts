@@ -1,4 +1,4 @@
-import { MelhorOpostoView } from '../entities/melhor-oposto-view.entity';
+import { MelhorOpostoView } from '../entities';
 import { MelhorPosicaoRespostaDto } from './melhor-posicao.dto';
 
 export class MelhorPontaRespostaDto extends MelhorPosicaoRespostaDto {

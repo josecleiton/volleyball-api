@@ -1,5 +1,5 @@
-import { Equipe } from 'src/modules/equipe/entities/equipe.entity';
-import { TipoRodada } from '../types/tipo-rodada.type';
+import { Equipe } from 'src/modules/equipe';
+import { TipoRodada } from '../types';
 
 export interface IPartidaFactoryDto {
   dataComeco: Date;

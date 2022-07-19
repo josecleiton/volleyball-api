@@ -1,12 +1,10 @@
 import { Injectable, UnprocessableEntityException } from '@nestjs/common';
-import { addBusinessDays, nextDay, setMinutes } from 'date-fns';
-import { DiaDaSemana } from 'src/modules/core/enums/dia-da-semana.enum';
-import { Equipe } from 'src/modules/equipe/entities/equipe.entity';
-import { Partida } from 'src/modules/partida/entities/partida.entity';
 import { DoublyLinkedList } from 'datastructures-js';
+import { nextDay, setMinutes, addBusinessDays } from 'date-fns';
+import { DiaDaSemana } from 'src/modules/core';
+import { Equipe } from 'src/modules/equipe';
+import { PartidaFactory, Partida, TipoRodada } from 'src/modules/partida';
 import { createGroup } from 'tournament_creator';
-import { TipoRodada } from 'src/modules/partida/types/tipo-rodada.type';
-import { PartidaFactory } from 'src/modules/partida/factories/partida.factory';
 
 interface IClassificacaoGeneratorRequest {
   equipes: Equipe[];

@@ -1,6 +1,6 @@
-import { EntidadeBase } from 'src/modules/core/entities/base.entity';
-import { Atleta } from 'src/modules/pessoa/entities/atleta.entity';
-import { Column, Entity, Index, JoinColumn, ManyToOne, Unique } from 'typeorm';
+import { EntidadeBase } from 'src/modules/core';
+import { Atleta } from 'src/modules/pessoa';
+import { Entity, Unique, Index, Column, ManyToOne, JoinColumn } from 'typeorm';
 
 @Entity('votos_da_galera')
 @Unique(['idAtleta', 'telefone'])

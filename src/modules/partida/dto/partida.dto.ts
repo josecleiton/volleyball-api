@@ -1,22 +1,22 @@
 import { Type } from 'class-transformer';
 import {
-  ArrayMaxSize,
-  ArrayMinSize,
-  IsArray,
   IsEnum,
-  IsIn,
-  IsOptional,
-  IsPositive,
   IsUUID,
-  Max,
+  IsArray,
+  ArrayMinSize,
+  ArrayMaxSize,
   ValidateNested,
+  IsOptional,
+  IsIn,
+  IsPositive,
+  Max,
 } from 'class-validator';
-import { IsValidDate } from 'src/modules/core/validations';
-import { Liga } from 'src/modules/liga/entities/liga.entity';
-import { Posicao, TipoArbitro } from 'src/modules/pessoa/enums';
-import { Partida } from '../entities/partida.entity';
-import { StatusPartida } from '../enums/status-partida.enum';
-import { TipoRodada, tiposDeRodada } from '../types/tipo-rodada.type';
+import { IsValidDate } from 'src/modules/core';
+import { Liga } from 'src/modules/liga';
+import { Posicao, TipoArbitro } from 'src/modules/pessoa';
+import { Partida } from '../entities';
+import { StatusPartida } from '../enums';
+import { tiposDeRodada, TipoRodada } from '../types';
 import { EquipePartidaRespostaDto } from './equipe-partida.dto';
 
 export class AtualizaPartidaStatusDto {
@@ -146,5 +146,3 @@ export class PartidaRespostaDto {
     this.finalizada = partida.finalizada;
   }
 }
-
-

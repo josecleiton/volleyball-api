@@ -1,4 +1,4 @@
-import { Controller, Get, ParseUUIDPipe, Query } from '@nestjs/common';
+import { Controller, Get, Query, ParseUUIDPipe } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { MelhorCentralService } from '../services';
 

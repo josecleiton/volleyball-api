@@ -1,7 +1,6 @@
-import { MaterializedViewRepository } from 'src/modules/core/repositories/materialized-view.repository';
-import { CustomRepository } from 'src/modules/core/typeorm-ex';
-import { PontuacaoDto } from '../dtos/pontuacao.dto';
-import { PontuacaoView } from '../entities/pontuacao-view.entity';
+import { CustomRepository, MaterializedViewRepository } from 'src/modules/core';
+import { PontuacaoDto } from '../dtos';
+import { PontuacaoView } from '../entities';
 import { nomePontuacaoView } from '../pontuacao.constant';
 
 @CustomRepository(PontuacaoView)

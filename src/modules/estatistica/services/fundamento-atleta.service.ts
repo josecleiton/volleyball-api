@@ -1,20 +1,19 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import pLimit = require('p-limit');
-import { TypeORMFilterService } from 'src/modules/core/services/typeorm-filter.service';
-import { StatusLiga } from 'src/modules/liga/enums/status-liga.enum';
-import { LigaService } from 'src/modules/liga/services/liga.service';
-import { AtletaEscaladoService } from 'src/modules/partida/services';
+import { TypeORMFilterService } from 'src/modules/core';
+import { LigaService, StatusLiga } from 'src/modules/liga';
+import { AtletaEscaladoService } from 'src/modules/partida';
 import { DataSource } from 'typeorm';
 import {
   CriaFundamentoAtletaDto,
-  FundamentoAgregadoAtletaRespostaDto,
   FundamentoAtletaRespostaDto,
   ListaFundamentoNaLigaDto,
-} from '../dto/fundamento-atleta.dto';
+  FundamentoAgregadoAtletaRespostaDto,
+} from '../dto';
 import {
   FundamentoAtletaRepository,
-  MelhorCentralViewRepository,
   MelhorLiberoViewRepository,
+  MelhorCentralViewRepository,
   MelhorOpostoViewRepository,
 } from '../repositories';
 

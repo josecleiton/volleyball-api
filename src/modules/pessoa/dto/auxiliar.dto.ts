@@ -1,5 +1,5 @@
-import { IsEnum, IsString, IsUUID, Length } from 'class-validator';
-import { Auxiliar } from '../entities/auxiliar.entity';
+import { IsString, Length, IsUUID, IsEnum } from 'class-validator';
+import { Auxiliar } from '../entities';
 import { TipoAuxiliar } from '../enums';
 import { CriaPessoaDto, PessoaRespostaDto } from './pessoa.dto';
 

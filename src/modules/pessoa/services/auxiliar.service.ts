@@ -1,15 +1,11 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { TypeORMFilterService } from 'src/modules/core/services/typeorm-filter.service';
-import { EquipeService } from 'src/modules/equipe/equipe.service';
-import { LigaService } from 'src/modules/liga/services/liga.service';
-import {
-  AuxiliarRespostaDto,
-  CriaAuxiliarDto,
-  ListaAuxiliarDto,
-} from '../dto/auxiliar.dto';
+import { TypeORMFilterService } from 'src/modules/core';
+import { EquipeService } from 'src/modules/equipe';
+import { LigaService } from 'src/modules/liga';
+import { CriaAuxiliarDto, AuxiliarRespostaDto, ListaAuxiliarDto } from '../dto';
 import { TipoPessoa } from '../enums';
 import { dtoParaPessoa } from '../mapper';
-import { AuxiliarRepository } from '../repositories/auxiliar.repository';
+import { AuxiliarRepository } from '../repositories';
 
 @Injectable()
 export class AuxiliarService {

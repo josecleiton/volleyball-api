@@ -1,8 +1,8 @@
 import { Type } from 'class-transformer';
-import { IsEnum, IsOptional, IsString, Length, MaxDate } from 'class-validator';
-import { startOfYear, subYears } from 'date-fns';
-import { Genero } from 'src/modules/core/enums';
-import { Pessoa } from '../entities/pessoa.entity';
+import { IsString, Length, IsEnum, MaxDate, IsOptional } from 'class-validator';
+import { subYears, startOfYear } from 'date-fns';
+import { Genero } from 'src/modules/core';
+import { Pessoa } from '../entities';
 
 export class CriaPessoaDto {
   @IsString()

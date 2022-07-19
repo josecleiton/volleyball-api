@@ -1,5 +1,5 @@
-import { EntidadeBase } from 'src/modules/core/entities/base.entity';
-import { Column, JoinColumn, OneToOne } from 'typeorm';
+import { EntidadeBase } from 'src/modules/core';
+import { OneToOne, JoinColumn, Column } from 'typeorm';
 import { Pessoa } from './pessoa.entity';
 
 export abstract class TemPessoa extends EntidadeBase {

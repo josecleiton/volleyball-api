@@ -1,11 +1,10 @@
-import { forwardRef, Module } from '@nestjs/common';
-import { EquipeService } from './equipe.service';
+import { Module, forwardRef } from '@nestjs/common';
+import { TypeOrmExModule, CoreModule } from '../core';
+import { GinasioModule } from '../ginasio';
+import { LigaModule } from '../liga';
 import { EquipeController } from './equipe.controller';
 import { EquipeRepository } from './equipe.repository';
-import { CoreModule } from '../core/core.module';
-import { GinasioModule } from '../ginasio/ginasio.module';
-import { LigaModule } from '../liga/liga.module';
-import { TypeOrmExModule } from '../core/typeorm-ex/typeorm-ex.module';
+import { EquipeService } from './equipe.service';
 
 @Module({
   imports: [

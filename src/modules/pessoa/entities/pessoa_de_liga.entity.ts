@@ -1,5 +1,5 @@
-import { Liga } from 'src/modules/liga/entities/liga.entity';
-import { Column, Index, JoinColumn, ManyToOne } from 'typeorm';
+import { Liga } from 'src/modules/liga';
+import { Column, Index, ManyToOne, JoinColumn } from 'typeorm';
 import { TemPessoa } from './tem_pessoa.entity';
 
 export abstract class PessoaDeLiga extends TemPessoa {

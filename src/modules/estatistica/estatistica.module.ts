@@ -1,33 +1,32 @@
 import { Module } from '@nestjs/common';
-import { CoreModule } from '../core/core.module';
-import { TypeOrmExModule } from '../core/typeorm-ex/typeorm-ex.module';
-import { LigaModule } from '../liga/liga.module';
-import { PartidaModule } from '../partida/partida.module';
-import { PessoaModule } from '../pessoa/pessoa.module';
-import { SmsModule } from '../sms/sms.module';
+import { TypeOrmExModule, CoreModule } from '../core';
+import { LigaModule } from '../liga';
+import { PartidaModule } from '../partida';
+import { PessoaModule } from '../pessoa';
+import { SmsModule } from '../sms';
 import {
-  CraqueDaGaleraController,
   FundamentoAtletaController,
-  MelhorCentralController,
   MelhorLiberoController,
+  MelhorCentralController,
+  MelhorOpostoController,
+  VotoDaGaleraController,
+  CraqueDaGaleraController,
 } from './controllers';
-import { MelhorOpostoController } from './controllers/melhor-oposto.controller';
-import { VotoDaGaleraController } from './controllers/voto-da-galera.controller';
 import {
-  CraqueDaGaleraViewRepository,
   FundamentoAtletaRepository,
-  MelhorCentralViewRepository,
   MelhorLiberoViewRepository,
+  MelhorCentralViewRepository,
   MelhorOpostoViewRepository,
   VotoDaGaleraRepository,
+  CraqueDaGaleraViewRepository,
 } from './repositories';
 import {
-  CraqueDaGaleraService,
   FundamentoAtletaService,
-  MelhorCentralService,
   MelhorLiberoService,
+  MelhorCentralService,
   MelhorOpostoService,
   VotoDaGaleraService,
+  CraqueDaGaleraService,
 } from './services';
 
 @Module({

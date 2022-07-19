@@ -1,7 +1,6 @@
 import { differenceInYears } from 'date-fns';
-import { EntidadeBase } from 'src/modules/core/entities/base.entity';
-import { Genero } from 'src/modules/core/enums';
-import { AfterInsert, AfterLoad, Column, Entity } from 'typeorm';
+import { EntidadeBase, Genero } from 'src/modules/core';
+import { Entity, Column, AfterLoad, AfterInsert } from 'typeorm';
 import { TipoPessoa } from '../enums';
 
 @Entity('pessoas')

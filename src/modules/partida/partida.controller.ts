@@ -1,22 +1,22 @@
 import {
-  Body,
   Controller,
   Get,
+  Query,
   Param,
   ParseUUIDPipe,
   Patch,
+  Body,
   Post,
-  Query,
   HttpCode,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { CadastrarResultadoPartidaDto } from './dto/partida-cadastro-resultado.dto';
 import {
-  CadastrarParticipantesPartidaDto,
   ListaPartidasDto,
   RemarcarPartidaDto,
-} from './dto/partida.dto';
-import { PartidaService } from './services/partida.service';
+  CadastrarParticipantesPartidaDto,
+  CadastrarResultadoPartidaDto,
+} from './dto';
+import { PartidaService } from './services';
 
 @Controller('partida')
 @ApiTags('partida')

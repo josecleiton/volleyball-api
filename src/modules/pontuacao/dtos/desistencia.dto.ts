@@ -1,5 +1,4 @@
-import { EscolhaDeDesistencia } from 'src/modules/partida/dto/partida.dto';
-import { Partida } from 'src/modules/partida/entities/partida.entity';
+import { Partida, EscolhaDeDesistencia } from 'src/modules/partida';
 
 export interface IRegistraDesistenciaDto {
   partida: Partida;

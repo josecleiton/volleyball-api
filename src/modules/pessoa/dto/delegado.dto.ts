@@ -1,5 +1,5 @@
 import { IsUUID } from 'class-validator';
-import { Delegado } from '../entities/delegado.entity';
+import { Delegado } from '../entities';
 import { CriaPessoaDto, PessoaRespostaDto } from './pessoa.dto';
 
 export class ListaDelegadoDto {

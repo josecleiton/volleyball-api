@@ -1,4 +1,4 @@
-import { ConflictException, Injectable } from '@nestjs/common';
+import { Injectable, ConflictException } from '@nestjs/common';
 import { QueryFailedError } from 'typeorm';
 
 interface ITypeORMFilterRequest {

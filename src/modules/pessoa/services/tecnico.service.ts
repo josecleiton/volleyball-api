@@ -1,11 +1,11 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { LigaService } from 'src/modules/liga/services/liga.service';
-import { TypeORMFilterService } from 'src/modules/core/services/typeorm-filter.service';
-import { EquipeService } from 'src/modules/equipe/equipe.service';
-import { CriaTecnicoDto, TecnicoRespostaDto } from '../dto/tecnico.dto';
-import { TecnicoRepository } from '../repositories/tecnico.repository';
+import { TypeORMFilterService } from 'src/modules/core';
+import { EquipeService } from 'src/modules/equipe';
+import { LigaService } from 'src/modules/liga';
+import { CriaTecnicoDto, TecnicoRespostaDto } from '../dto';
 import { TipoPessoa } from '../enums';
 import { dtoParaPessoa } from '../mapper';
+import { TecnicoRepository } from '../repositories';
 
 @Injectable()
 export class TecnicoService {

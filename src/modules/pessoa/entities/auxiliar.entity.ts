@@ -1,5 +1,5 @@
-import { Equipe } from 'src/modules/equipe/entities/equipe.entity';
-import { Column, Entity, Index, JoinColumn, ManyToOne } from 'typeorm';
+import { Equipe } from 'src/modules/equipe';
+import { Entity, Column, Index, ManyToOne, JoinColumn } from 'typeorm';
 import { TipoAuxiliar } from '../enums';
 import { PessoaDeEquipe } from './pessoa_de_equipe.entity';
 

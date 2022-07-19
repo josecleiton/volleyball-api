@@ -1,15 +1,15 @@
 import {
-  Body,
   Controller,
+  Post,
+  Body,
   Get,
+  Query,
   Param,
   ParseUUIDPipe,
-  Post,
-  Query,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { CriaArbitroDto, ListaArbitroDto } from '../dto/arbitro.dto';
-import { DelegadoService } from '../services/delegado.service';
+import { CriaArbitroDto, ListaArbitroDto } from '../dto';
+import { DelegadoService } from '../services';
 
 @Controller('pessoa/delegado')
 @ApiTags('delegado')

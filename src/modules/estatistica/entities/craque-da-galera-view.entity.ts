@@ -1,5 +1,5 @@
-import { Atleta } from 'src/modules/pessoa/entities/atleta.entity';
-import { Index, JoinColumn, ManyToOne, ViewColumn, ViewEntity } from 'typeorm';
+import { Atleta } from 'src/modules/pessoa';
+import { ViewEntity, ViewColumn, Index, ManyToOne, JoinColumn } from 'typeorm';
 import { nomeCraqueDaGaleraView } from '../estatistica.constants';
 import { VotoDaGalera } from './voto-da-galera.entity';
 

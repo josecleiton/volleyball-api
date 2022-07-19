@@ -1,5 +1,5 @@
 import { isValid } from 'date-fns';
-import { createDecorator } from './helpers/create-decoration.helper';
+import { createDecorator } from './helpers';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function validate(value: any) {

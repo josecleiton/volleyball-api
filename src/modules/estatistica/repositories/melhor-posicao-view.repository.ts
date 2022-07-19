@@ -1,4 +1,4 @@
-import { MaterializedViewRepository } from 'src/modules/core/repositories/materialized-view.repository';
+import { MaterializedViewRepository } from 'src/modules/core';
 import { SelectQueryBuilder } from 'typeorm';
 
 export abstract class MelhorPosicaoViewRepository<

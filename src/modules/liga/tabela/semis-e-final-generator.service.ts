@@ -4,15 +4,16 @@ import {
 } from '@nestjs/common';
 import { isUUID } from 'class-validator';
 import { groupBy } from 'lodash';
-import { Equipe } from 'src/modules/equipe/entities/equipe.entity';
-import { PartidaRespostaDto } from 'src/modules/partida/dto/partida.dto';
-import { PartidaFactory } from 'src/modules/partida/factories/partida.factory';
-import { PartidaService } from 'src/modules/partida/services/partida.service';
-import { TipoRodadaMataMata } from 'src/modules/partida/types/tipo-rodada.type';
-import { PontuacaoDto } from 'src/modules/pontuacao/dtos/pontuacao.dto';
-import { PontuacaoService } from 'src/modules/pontuacao/services';
-import { IClassificados } from '../dto/mata-mata.dto';
-import { Liga } from '../entities/liga.entity';
+import { Equipe } from 'src/modules/equipe';
+import {
+  TipoRodadaMataMata,
+  PartidaService,
+  PartidaFactory,
+  PartidaRespostaDto,
+} from 'src/modules/partida';
+import { PontuacaoService, PontuacaoDto } from 'src/modules/pontuacao';
+import { IClassificados } from '../dto';
+import { Liga } from '../entities';
 import { MataMataGeneratorService } from './mata-mata-generator.service';
 
 interface IInfoRodada {

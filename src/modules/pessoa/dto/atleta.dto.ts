@@ -1,16 +1,16 @@
 import {
-  IsArray,
-  IsNotEmpty,
-  IsOptional,
   IsPositive,
-  IsUUID,
   Max,
+  IsUUID,
+  IsOptional,
+  IsNotEmpty,
+  IsArray,
 } from 'class-validator';
-import { EquipeRespostaDto } from 'src/modules/equipe/dto/equipe.dto';
-import { Atleta } from '../entities/atleta.entity';
+import { EquipeRespostaDto } from 'src/modules/equipe';
+import { Atleta } from '../entities';
 import {
-  AtualizaPessoaDto,
   CriaPessoaDto,
+  AtualizaPessoaDto,
   PessoaRespostaDto,
 } from './pessoa.dto';
 

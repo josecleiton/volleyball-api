@@ -1,6 +1,6 @@
-import { CustomRepository } from 'src/modules/core/typeorm-ex';
+import { CustomRepository } from 'src/modules/core';
 import { Repository } from 'typeorm';
-import { Arbitro } from '../entities/arbitro.entity';
+import { Arbitro } from '../entities';
 
 @CustomRepository(Arbitro)
 export class ArbitroRepository extends Repository<Arbitro> {}

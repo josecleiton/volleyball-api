@@ -1,11 +1,11 @@
 import {
-  IsNotEmpty,
-  IsPhoneNumber,
-  IsString,
   IsUUID,
+  IsPhoneNumber,
+  IsNotEmpty,
+  IsString,
   Length,
 } from 'class-validator';
-import { VotoDaGalera } from '../entities/voto-da-galera.entity';
+import { VotoDaGalera } from '../entities';
 
 export class IniciarVotoDto {
   @IsUUID()

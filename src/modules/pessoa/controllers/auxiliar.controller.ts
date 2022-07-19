@@ -1,15 +1,15 @@
 import {
-  Body,
   Controller,
+  Post,
+  Body,
   Get,
+  Query,
   Param,
   ParseUUIDPipe,
-  Post,
-  Query,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { CriaAuxiliarDto, ListaAuxiliarDto } from '../dto/auxiliar.dto';
-import { AuxiliarService } from '../services/auxiliar.service';
+import { CriaAuxiliarDto, ListaAuxiliarDto } from '../dto';
+import { AuxiliarService } from '../services';
 
 @Controller('pessoa/auxiliar')
 @ApiTags('auxiliar')

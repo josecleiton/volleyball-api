@@ -1,9 +1,8 @@
 import { Module } from '@nestjs/common';
-import { GinasioService } from './ginasio.service';
+import { TypeOrmExModule, CoreModule } from '../core';
 import { GinasioController } from './ginasio.controller';
-import { GinasioRepository } from './repositories/ginasio.repository';
-import { CoreModule } from '../core/core.module';
-import { TypeOrmExModule } from '../core/typeorm-ex/typeorm-ex.module';
+import { GinasioService } from './ginasio.service';
+import { GinasioRepository } from './repositories';
 
 @Module({
   imports: [

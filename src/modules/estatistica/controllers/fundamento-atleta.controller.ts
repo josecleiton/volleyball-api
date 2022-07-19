@@ -1,20 +1,17 @@
 import {
-  Body,
   Controller,
-  Delete,
+  Post,
+  Body,
   Get,
+  Query,
   Param,
   ParseUUIDPipe,
-  Post,
-  Query,
+  Delete,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { SkipThrottle, Throttle } from '@nestjs/throttler';
-import {
-  CriaFundamentoAtletaDto,
-  ListaFundamentoNaLigaDto,
-} from '../dto/fundamento-atleta.dto';
-import { FundamentoAtletaService } from '../services/fundamento-atleta.service';
+import { Throttle, SkipThrottle } from '@nestjs/throttler';
+import { CriaFundamentoAtletaDto, ListaFundamentoNaLigaDto } from '../dto';
+import { FundamentoAtletaService } from '../services';
 
 @Controller('estatistica/atleta')
 @ApiTags('estatistica')

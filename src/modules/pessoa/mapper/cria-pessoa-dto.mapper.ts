@@ -1,5 +1,5 @@
-import { CriaPessoaDto } from '../dto/pessoa.dto';
-import { Pessoa } from '../entities/pessoa.entity';
+import { CriaPessoaDto } from '../dto';
+import { Pessoa } from '../entities';
 import { TipoPessoa } from '../enums';
 
 export function dtoParaPessoa(dto: CriaPessoaDto, tipo: TipoPessoa): Pessoa {

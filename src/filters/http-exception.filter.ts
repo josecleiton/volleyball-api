@@ -1,10 +1,9 @@
 import {
-  ExceptionFilter,
   Catch,
-  ArgumentsHost,
   HttpException,
+  ExceptionFilter,
+  ArgumentsHost,
 } from '@nestjs/common';
-
 import { ConfigService } from '@nestjs/config';
 
 interface IException {

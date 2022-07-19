@@ -1,6 +1,6 @@
-require('dotenv/config');
-
 import { DataSource, DataSourceOptions } from 'typeorm';
-import { databaseConfig } from '../configs/database.config';
+import { databaseConfig } from './database.config';
+
+require('dotenv/config');
 
 export const dataSource = new DataSource(databaseConfig() as DataSourceOptions);

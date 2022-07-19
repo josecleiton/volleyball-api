@@ -1,23 +1,22 @@
 import {
-  forwardRef,
-  Inject,
   Injectable,
+  Inject,
+  forwardRef,
   NotFoundException,
 } from '@nestjs/common';
 import { In } from 'typeorm';
-import { LigaService } from '../liga/services/liga.service';
-import { TypeORMFilterService } from '../core/services/typeorm-filter.service';
-import { GinasioService } from '../ginasio/ginasio.service';
+import { TypeORMFilterService, VerificaUrlService } from '../core';
+import { GinasioService } from '../ginasio';
+import { LigaService } from '../liga';
 import {
-  AtualizaEquipeDto,
   CriaEquipeDto,
   EquipeRespostaDto,
-  EquipeSimplificadaRespostaDto,
   ListaEquipesDto,
-} from './dto/equipe.dto';
-import { Equipe } from './entities/equipe.entity';
+  EquipeSimplificadaRespostaDto,
+  AtualizaEquipeDto,
+} from './dto';
+import { Equipe } from './entities';
 import { EquipeRepository } from './equipe.repository';
-import { VerificaUrlService } from '../core/services/verifica-url.service';
 
 @Injectable()
 export class EquipeService {

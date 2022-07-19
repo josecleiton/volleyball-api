@@ -1,18 +1,17 @@
 import { Module } from '@nestjs/common';
-import { LigaService } from './services/liga.service';
+import { TypeOrmExModule, CoreModule } from '../core';
+import { EquipeModule } from '../equipe';
+import { PartidaModule } from '../partida';
+import { PontuacaoModule } from '../pontuacao';
 import { LigaController } from './liga.controller';
-import { LigaRepository } from './repositories/liga.repository';
-import { CoreModule } from '../core/core.module';
-import { EquipeModule } from '../equipe/equipe.module';
-import { PartidaModule } from '../partida/partida.module';
+import { LigaRepository } from './repositories';
+import { LigaService } from './services';
 import {
   ClassificacaoGeneratorService,
-  FinalGeneratorService,
   QuartaDeFinalGeneratorService,
   SemifinalGeneratorService,
+  FinalGeneratorService,
 } from './tabela';
-import { PontuacaoModule } from '../pontuacao/pontuacao.module';
-import { TypeOrmExModule } from '../core/typeorm-ex/typeorm-ex.module';
 
 @Module({
   imports: [

@@ -1,15 +1,15 @@
 import {
-  Body,
   Controller,
-  Delete,
+  Post,
+  Body,
   Get,
+  Query,
+  Delete,
   Param,
   ParseUUIDPipe,
-  Post,
-  Query,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { CriaGinasioDto, ListaGinasiosDto } from './dto/ginasio.dto';
+import { CriaGinasioDto, ListaGinasiosDto } from './dto';
 import { GinasioService } from './ginasio.service';
 
 @Controller('ginasio')

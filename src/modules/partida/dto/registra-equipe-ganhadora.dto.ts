@@ -1,4 +1,4 @@
-import { Partida } from '../entities/partida.entity';
+import { Partida } from '../entities';
 
 export interface IRegistraEquipeGanhadoraDto {
   partida: Partida;

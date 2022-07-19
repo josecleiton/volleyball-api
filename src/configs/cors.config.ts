@@ -1,5 +1,5 @@
-import { CorsOptions } from '@nestjs/common/interfaces/external/cors-options.interface';
 import { ForbiddenException } from '@nestjs/common';
+import { CorsOptions } from '@nestjs/common/interfaces/external/cors-options.interface';
 import { registerAs } from '@nestjs/config';
 
 type Callback = (err: Error | null, stat?: boolean) => void;

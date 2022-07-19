@@ -1,6 +1,6 @@
-import { Controller, Get, ParseUUIDPipe, Query } from '@nestjs/common';
+import { Controller, Get, Query, ParseUUIDPipe } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { MelhorLiberoService } from '../services/melhor-libero.service';
+import { MelhorLiberoService } from '../services';
 
 @Controller('/estatistica/ranking/libero')
 @ApiTags('estatistica')

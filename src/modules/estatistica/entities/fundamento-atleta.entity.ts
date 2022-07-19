@@ -1,6 +1,6 @@
-import { EntidadeBase } from 'src/modules/core/entities/base.entity';
-import { AtletaEscalado } from 'src/modules/partida/entities/atleta-escalado.entity';
-import { Column, Entity, Index, JoinColumn, ManyToOne } from 'typeorm';
+import { EntidadeBase } from 'src/modules/core';
+import { AtletaEscalado } from 'src/modules/partida';
+import { Entity, Column, Index, ManyToOne, JoinColumn } from 'typeorm';
 
 @Entity('fundamentos_atletas')
 export class FundamentoAtleta extends EntidadeBase {

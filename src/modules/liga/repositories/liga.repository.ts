@@ -1,6 +1,6 @@
-import { CustomRepository } from 'src/modules/core/typeorm-ex';
+import { CustomRepository } from 'src/modules/core';
 import { Repository } from 'typeorm';
-import { Liga } from '../entities/liga.entity';
+import { Liga } from '../entities';
 
 @CustomRepository(Liga)
 export class LigaRepository extends Repository<Liga> {
@@ -8,6 +8,7 @@ export class LigaRepository extends Repository<Liga> {
     const qb = this.createQueryBuilder('l');
     qb.leftJoinAndSelect('l.equipes', 'equipes')
       .leftJoinAndSelect('l.arbitros', 'arbitros')
+
       .innerJoinAndSelect('arbitros.pessoa', 'arbitroPessoa')
       .leftJoinAndSelect('l.delegados', 'delegados')
       .innerJoinAndSelect('delegados.pessoa', 'delegadoPessoa')

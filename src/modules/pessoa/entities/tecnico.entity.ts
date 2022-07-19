@@ -1,5 +1,5 @@
-import { Equipe } from 'src/modules/equipe/entities/equipe.entity';
-import { Column, Entity, JoinColumn, OneToOne } from 'typeorm';
+import { Equipe } from 'src/modules/equipe';
+import { Entity, Column, OneToOne, JoinColumn } from 'typeorm';
 import { PessoaDeEquipe } from './pessoa_de_equipe.entity';
 
 @Entity('tecnicos')

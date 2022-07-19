@@ -1,19 +1,15 @@
 import {
-  forwardRef,
-  Inject,
   Injectable,
+  Inject,
+  forwardRef,
   NotFoundException,
 } from '@nestjs/common';
-import { LigaService } from 'src/modules/liga/services/liga.service';
-import { TypeORMFilterService } from 'src/modules/core/services/typeorm-filter.service';
-import {
-  CriaDelegadoDto,
-  DelegadoRespostaDto,
-  ListaDelegadoDto,
-} from '../dto/delegado.dto';
-import { DelegadoRepository } from '../repositories/delegado.repository';
+import { TypeORMFilterService } from 'src/modules/core';
+import { LigaService } from 'src/modules/liga';
+import { CriaDelegadoDto, DelegadoRespostaDto, ListaDelegadoDto } from '../dto';
 import { TipoPessoa } from '../enums';
 import { dtoParaPessoa } from '../mapper';
+import { DelegadoRepository } from '../repositories';
 
 @Injectable()
 export class DelegadoService {

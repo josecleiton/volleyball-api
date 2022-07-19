@@ -1,26 +1,26 @@
 import {
-  ConflictException,
-  ForbiddenException,
   Injectable,
   Logger,
+  ConflictException,
+  ForbiddenException,
 } from '@nestjs/common';
 import { isPast } from 'date-fns';
-import { LigaService } from 'src/modules/liga/services/liga.service';
-import { AtletaService } from 'src/modules/pessoa/services/atleta.service';
+import { LigaService } from 'src/modules/liga';
+import { AtletaService } from 'src/modules/pessoa';
 import {
   EnviaVerificacaoSmsService,
   VerificaCodigoSmsService,
-} from 'src/modules/sms/services';
+} from 'src/modules/sms';
 import { DataSource, IsNull } from 'typeorm';
 import {
-  ConfirmarVotoDto,
   IniciarVotoDto,
   IniciarVotoRespostaDto,
-} from '../dto/voto-da-galera.dto';
-import { VotoDaGalera } from '../entities/voto-da-galera.entity';
+  ConfirmarVotoDto,
+} from '../dto';
+import { VotoDaGalera } from '../entities';
 import {
-  CraqueDaGaleraViewRepository,
   VotoDaGaleraRepository,
+  CraqueDaGaleraViewRepository,
 } from '../repositories';
 
 @Injectable()

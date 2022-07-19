@@ -1,20 +1,18 @@
-import { Liga } from 'src/modules/liga/entities/liga.entity';
-import { EntidadeBase } from 'src/modules/core/entities/base.entity';
-import { Ginasio } from 'src/modules/ginasio/entities/ginasio.entity';
-import { Atleta } from 'src/modules/pessoa/entities/atleta.entity';
-import { Tecnico } from 'src/modules/pessoa/entities/tecnico.entity';
+import { Logger } from '@nestjs/common';
+import { EntidadeBase } from 'src/modules/core';
+import { Ginasio } from 'src/modules/ginasio';
+import { Liga } from 'src/modules/liga';
+import { EquipePartida } from 'src/modules/partida';
+import { Tecnico, Atleta, Auxiliar } from 'src/modules/pessoa';
 import {
-  Column,
   Entity,
   Index,
-  JoinColumn,
-  ManyToOne,
-  OneToMany,
+  Column,
   OneToOne,
+  OneToMany,
+  ManyToOne,
+  JoinColumn,
 } from 'typeorm';
-import { Auxiliar } from 'src/modules/pessoa/entities/auxiliar.entity';
-import { EquipePartida } from 'src/modules/partida/entities/equipe-partida.entity';
-import { Logger } from '@nestjs/common';
 
 @Entity('equipes')
 @Index('IX_equipes_cidade_estado', ['cidade', 'estado'])

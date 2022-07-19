@@ -1,8 +1,7 @@
-import { arrayToInClause } from 'src/modules/core/database/helpers';
-import { Equipe } from 'src/modules/equipe/entities/equipe.entity';
-import { Partida } from 'src/modules/partida/entities/partida.entity';
-import { tiposDeRodadaClassificatoria } from 'src/modules/partida/types/tipo-rodada.type';
-import { Index, JoinColumn, ManyToOne, ViewColumn, ViewEntity } from 'typeorm';
+import { arrayToInClause } from 'src/modules/core';
+import { Equipe } from 'src/modules/equipe';
+import { tiposDeRodadaClassificatoria, Partida } from 'src/modules/partida';
+import { ViewEntity, ViewColumn, Index, ManyToOne, JoinColumn } from 'typeorm';
 import { nomePontuacaoView } from '../pontuacao.constant';
 
 const tiposDeRodadaClassificatoriaJoin = arrayToInClause(

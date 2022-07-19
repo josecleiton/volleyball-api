@@ -1,42 +1,41 @@
 import {
-  ConflictException,
   Injectable,
   NotFoundException,
+  ConflictException,
 } from '@nestjs/common';
 import { getHours, getMinutes } from 'date-fns';
-import { validTimeStringToDate } from 'src/modules/core/validations';
-import { StatusPartida } from 'src/modules/partida/enums/status-partida.enum';
-import { SalvaPartidaFacade } from 'src/modules/partida/facades/salva-partida.facade';
-import { PartidaRepository } from 'src/modules/partida/repositories/partida.repository';
-import { tiposDeRodadaClassificatoria } from 'src/modules/partida/types/tipo-rodada.type';
+import { TypeORMFilterService, validTimeStringToDate } from 'src/modules/core';
+import { EquipeService } from 'src/modules/equipe';
+import {
+  PartidaRepository,
+  SalvaPartidaFacade,
+  tiposDeRodadaClassificatoria,
+  StatusPartida,
+} from 'src/modules/partida';
 import { DataSource, FindOptionsRelations } from 'typeorm';
-import { TypeORMFilterService } from '../../core/services/typeorm-filter.service';
-import { EquipeService } from '../../equipe/equipe.service';
 import {
   CriaLigaDto,
-  FinalLigaRespostaDto,
+  LigaRespostaDto,
   InicializaLigaDto,
   InicializaLigaRespostaDto,
-  LigaRespostaDto,
-  QuartasLigaRespostaDto,
-  SemisLigaRespostaDto,
-} from '../dto/liga.dto';
-import {
-  InicializaFinalDto,
   InicializaQuartaDeFinalDto,
+  QuartasLigaRespostaDto,
   InicializaSemifinalDto,
-} from '../dto/tabela.dto';
-import { Liga } from '../entities/liga.entity';
-import { StatusLiga } from '../enums/status-liga.enum';
-import { LigaRepository } from '../repositories/liga.repository';
+  SemisLigaRespostaDto,
+  InicializaFinalDto,
+  FinalLigaRespostaDto,
+} from '../dto';
+import { Liga } from '../entities';
+import { StatusLiga } from '../enums';
+import { LigaRepository } from '../repositories';
 import {
   ClassificacaoGeneratorService,
-  FinalGeneratorService,
   QuartaDeFinalGeneratorService,
   SemifinalGeneratorService,
+  FinalGeneratorService,
+  MataMataGeneratorService,
 } from '../tabela';
-import { MataMataGeneratorService } from '../tabela/mata-mata-generator.service';
-import { LigaIdStatus } from '../types/liga-id-status.type';
+import { LigaIdStatus } from '../types';
 
 @Injectable()
 export class LigaService {

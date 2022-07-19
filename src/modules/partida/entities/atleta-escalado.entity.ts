@@ -1,7 +1,6 @@
-import { EntidadeBase } from 'src/modules/core/entities/base.entity';
-import { Atleta } from 'src/modules/pessoa/entities/atleta.entity';
-import { Posicao } from 'src/modules/pessoa/enums';
-import { Column, Entity, Index, JoinColumn, ManyToOne, Unique } from 'typeorm';
+import { EntidadeBase } from 'src/modules/core';
+import { Posicao, Atleta } from 'src/modules/pessoa';
+import { Entity, Unique, Column, Index, ManyToOne, JoinColumn } from 'typeorm';
 import { EquipePartida } from './equipe-partida.entity';
 
 @Entity('atletas_escalados')

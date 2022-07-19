@@ -1,5 +1,5 @@
 import { IsUUID } from 'class-validator';
-import { Arbitro } from '../entities/arbitro.entity';
+import { Arbitro } from '../entities';
 import { CriaPessoaDto, PessoaRespostaDto } from './pessoa.dto';
 
 export class CriaArbitroDto extends CriaPessoaDto {

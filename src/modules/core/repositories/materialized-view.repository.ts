@@ -1,4 +1,4 @@
-import { EntityManager, Repository } from 'typeorm';
+import { Repository, EntityManager } from 'typeorm';
 
 export abstract class MaterializedViewRepository<T> extends Repository<T> {
   protected abstract readonly name: string;

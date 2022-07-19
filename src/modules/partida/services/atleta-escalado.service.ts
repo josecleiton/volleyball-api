@@ -1,9 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import {
-  AtletaEscaladoRespostaDto,
-  IBuscaAtletaEscalado,
-} from '../dto/atleta-escalado.dto';
-import { AtletaEscaladoRepository } from '../repositories/atleta-escalado.repository';
+import { IBuscaAtletaEscalado, AtletaEscaladoRespostaDto } from '../dto';
+import { AtletaEscaladoRepository } from '../repositories';
 
 @Injectable()
 export class AtletaEscaladoService {

@@ -1,20 +1,16 @@
 import {
-  forwardRef,
-  Inject,
   Injectable,
+  Inject,
+  forwardRef,
   NotFoundException,
 } from '@nestjs/common';
-import { LigaService } from 'src/modules/liga/services/liga.service';
-import { TypeORMFilterService } from 'src/modules/core/services/typeorm-filter.service';
-import {
-  ArbitroRespostaDto,
-  CriaArbitroDto,
-  ListaArbitroDto,
-} from '../dto/arbitro.dto';
-import { ArbitroRepository } from '../repositories/arbitro.repository';
+import { TypeORMFilterService } from 'src/modules/core';
+import { LigaService } from 'src/modules/liga';
+import { In } from 'typeorm';
+import { CriaArbitroDto, ArbitroRespostaDto, ListaArbitroDto } from '../dto';
 import { TipoPessoa } from '../enums';
 import { dtoParaPessoa } from '../mapper';
-import { In } from 'typeorm';
+import { ArbitroRepository } from '../repositories';
 
 @Injectable()
 export class ArbitroService {

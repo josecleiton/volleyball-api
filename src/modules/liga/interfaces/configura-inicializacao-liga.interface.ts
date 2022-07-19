@@ -1,4 +1,4 @@
-import { DiaDaSemana } from 'src/modules/core/enums/dia-da-semana.enum';
+import { DiaDaSemana } from 'src/modules/core';
 
 export interface IConfiguraInicializaoLiga {
   horarios: number[];

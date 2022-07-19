@@ -1,9 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { DirectedGraph } from 'datastructures-js';
 import { compareAsc } from 'date-fns';
-import { IBuscarConfrontoEquipesEmpatadas } from '../../partida/dto/partida-pontuacao.dto';
-import { PartidaRepository } from '../../partida/repositories';
-import { IAplicaRegraDesempateDto } from '../dtos/desempate.dto';
+import {
+  PartidaRepository,
+  IBuscarConfrontoEquipesEmpatadas,
+} from 'src/modules/partida';
+import { IAplicaRegraDesempateDto } from '../dtos';
 
 @Injectable()
 export class AplicaRegraDesempateService {

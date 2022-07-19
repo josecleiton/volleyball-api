@@ -1,10 +1,7 @@
-import { CustomRepository } from 'src/modules/core/typeorm-ex';
+import { CustomRepository } from 'src/modules/core';
 import { Repository } from 'typeorm';
-import {
-  IFundamentoAtletaLiga,
-  ListaFundamentoNaLigaDto,
-} from '../dto/fundamento-atleta.dto';
-import { FundamentoAtleta } from '../entities/fundamento-atleta.entity';
+import { ListaFundamentoNaLigaDto, IFundamentoAtletaLiga } from '../dto';
+import { FundamentoAtleta } from '../entities';
 
 @CustomRepository(FundamentoAtleta)
 export class FundamentoAtletaRepository extends Repository<FundamentoAtleta> {

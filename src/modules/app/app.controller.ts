@@ -1,8 +1,8 @@
-import { Response } from 'express';
-
 import { Controller, Get, Res } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { ApiTags } from '@nestjs/swagger';
+
+import type { Response } from 'express';
 
 @Controller()
 @ApiTags('/')

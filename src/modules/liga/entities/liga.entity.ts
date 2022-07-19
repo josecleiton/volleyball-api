@@ -1,12 +1,10 @@
-import { Column, Entity, OneToMany } from 'typeorm';
 import { getYear } from 'date-fns';
-import { EntidadeBase } from 'src/modules/core/entities/base.entity';
-import { Genero } from 'src/modules/core/enums';
-import { Equipe } from 'src/modules/equipe/entities/equipe.entity';
-import { Arbitro } from 'src/modules/pessoa/entities/arbitro.entity';
-import { Delegado } from 'src/modules/pessoa/entities/delegado.entity';
-import { IConfiguraInicializaoLiga } from '../interfaces/configura-inicializacao-liga.interface';
-import { StatusLiga } from '../enums/status-liga.enum';
+import { EntidadeBase, Genero } from 'src/modules/core';
+import { Equipe } from 'src/modules/equipe';
+import { Arbitro, Delegado } from 'src/modules/pessoa';
+import { Entity, Column, OneToMany } from 'typeorm';
+import { StatusLiga } from '../enums';
+import { IConfiguraInicializaoLiga } from '../interfaces';
 
 @Entity('ligas')
 export class Liga extends EntidadeBase {

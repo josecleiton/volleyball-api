@@ -1,12 +1,12 @@
 import { Type } from 'class-transformer';
 import {
-  ArrayMaxSize,
-  ArrayMinSize,
   IsArray,
+  ArrayMinSize,
+  ArrayMaxSize,
   IsEnum,
   IsUUID,
 } from 'class-validator';
-import { IsValidDate } from 'src/modules/core/validations';
+import { IsValidDate } from 'src/modules/core';
 import { EscolhaDeMando } from '../enums';
 
 export interface IMataMataDto {

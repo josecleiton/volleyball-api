@@ -1,6 +1,5 @@
-import { EquipeRespostaDto } from 'src/modules/equipe/dto/equipe.dto';
-import { Equipe } from 'src/modules/equipe/entities/equipe.entity';
-import { PontuacaoView } from '../entities/pontuacao-view.entity';
+import { Equipe, EquipeRespostaDto } from 'src/modules/equipe';
+import { PontuacaoView } from '../entities';
 
 export class PontuacaoDto {
   idEquipe: string;

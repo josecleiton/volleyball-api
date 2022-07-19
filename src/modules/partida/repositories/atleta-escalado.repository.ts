@@ -1,7 +1,7 @@
-import { CustomRepository } from 'src/modules/core/typeorm-ex';
+import { CustomRepository } from 'src/modules/core';
 import { Repository } from 'typeorm';
-import { IBuscaAtletaEscalado } from '../dto/atleta-escalado.dto';
-import { AtletaEscalado } from '../entities/atleta-escalado.entity';
+import { IBuscaAtletaEscalado } from '../dto';
+import { AtletaEscalado } from '../entities';
 
 @CustomRepository(AtletaEscalado)
 export class AtletaEscaladoRepository extends Repository<AtletaEscalado> {

@@ -1,12 +1,12 @@
-import { Equipe } from 'src/modules/equipe/entities/equipe.entity';
-import { AtletaEscalado } from 'src/modules/partida/entities/atleta-escalado.entity';
+import { Equipe } from 'src/modules/equipe';
+import { AtletaEscalado } from 'src/modules/partida';
 import {
-  Column,
   Entity,
-  JoinColumn,
-  ManyToOne,
-  OneToMany,
   Unique,
+  Column,
+  ManyToOne,
+  JoinColumn,
+  OneToMany,
 } from 'typeorm';
 import { PessoaDeEquipe } from './pessoa_de_equipe.entity';
 

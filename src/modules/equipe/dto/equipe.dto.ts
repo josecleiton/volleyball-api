@@ -1,8 +1,10 @@
-import { IsOptional, IsString, IsUrl, IsUUID, Length } from 'class-validator';
-import { AtletaRespostaDto } from 'src/modules/pessoa/dto/atleta.dto';
-import { AuxiliarRespostaDto } from 'src/modules/pessoa/dto/auxiliar.dto';
-import { TecnicoRespostaDto } from 'src/modules/pessoa/dto/tecnico.dto';
-import { Equipe } from '../entities/equipe.entity';
+import { IsUUID, IsString, Length, IsUrl, IsOptional } from 'class-validator';
+import {
+  TecnicoRespostaDto,
+  AtletaRespostaDto,
+  AuxiliarRespostaDto,
+} from 'src/modules/pessoa';
+import { Equipe } from '../entities';
 
 export class CriaEquipeDto {
   @IsUUID()

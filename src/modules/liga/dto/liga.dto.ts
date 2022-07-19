@@ -1,28 +1,24 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import {
-  ArrayMaxSize,
-  ArrayMinSize,
-  ArrayUnique,
-  IsArray,
   IsEnum,
   IsOptional,
-  IsPositive,
   IsString,
   Length,
-  Max,
   MinDate,
+  IsArray,
+  ArrayMinSize,
+  ArrayMaxSize,
+  ArrayUnique,
+  IsPositive,
+  Max,
 } from 'class-validator';
-import { compareAsc, startOfYear } from 'date-fns';
-import { Genero } from 'src/modules/core/enums';
-import { DiaDaSemana } from 'src/modules/core/enums/dia-da-semana.enum';
-import { IsTimeString } from 'src/modules/core/validations';
-import { PartidaRespostaDto } from 'src/modules/partida/dto/partida.dto';
-import { Partida } from 'src/modules/partida/entities/partida.entity';
-import { ArbitroRespostaDto } from 'src/modules/pessoa/dto/arbitro.dto';
-import { DelegadoRespostaDto } from 'src/modules/pessoa/dto/delegado.dto';
-import { Liga } from '../entities/liga.entity';
-import { StatusLiga } from '../enums/status-liga.enum';
+import { startOfYear, compareAsc } from 'date-fns';
+import { Genero, DiaDaSemana, IsTimeString } from 'src/modules/core';
+import { PartidaRespostaDto, Partida } from 'src/modules/partida';
+import { ArbitroRespostaDto, DelegadoRespostaDto } from 'src/modules/pessoa';
+import { Liga } from '../entities';
+import { StatusLiga } from '../enums';
 
 export class CriaLigaDto {
   @IsEnum(Genero)

@@ -1,6 +1,5 @@
-import { EquipeSimplificadaRespostaDto } from 'src/modules/equipe/dto/equipe.dto';
-import { AtletaRespostaDto } from 'src/modules/pessoa/dto/atleta.dto';
-import { Atleta } from 'src/modules/pessoa/entities/atleta.entity';
+import { EquipeSimplificadaRespostaDto } from 'src/modules/equipe';
+import { AtletaRespostaDto, Atleta } from 'src/modules/pessoa';
 
 export abstract class MelhorPosicaoRespostaDto {
   idAtleta: string;

@@ -1,11 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { Liga } from 'src/modules/liga/entities/liga.entity';
-import {
-  TipoRodada,
-  tiposDeRodadaClassificatoria,
-} from 'src/modules/partida/types/tipo-rodada.type';
-import { PontuacaoRespostaDto } from '../dtos/pontuacao.dto';
-import { PontuacaoViewRepository } from '../repositories/pontuacao-view.repository';
+import { Liga } from 'src/modules/liga';
+import { tiposDeRodadaClassificatoria, TipoRodada } from 'src/modules/partida';
+import { PontuacaoRespostaDto } from '../dtos';
+import { PontuacaoViewRepository } from '../repositories';
 import { AplicaRegraDesempateService } from './aplica-regra-desempate.service';
 
 @Injectable()

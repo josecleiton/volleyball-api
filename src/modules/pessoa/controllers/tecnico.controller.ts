@@ -1,14 +1,14 @@
 import {
-  Body,
   Controller,
+  Post,
+  Body,
   Get,
   Param,
   ParseUUIDPipe,
-  Post,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { CriaTecnicoDto } from '../dto/tecnico.dto';
-import { TecnicoService } from '../services/tecnico.service';
+import { CriaTecnicoDto } from '../dto';
+import { TecnicoService } from '../services';
 
 @Controller('pessoa/tecnico')
 @ApiTags('tecnico')

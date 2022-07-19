@@ -1,17 +1,17 @@
 import { differenceInMinutes } from 'date-fns';
-import { EntidadeBase } from 'src/modules/core/entities/base.entity';
-import { Ginasio } from 'src/modules/ginasio/entities/ginasio.entity';
-import { Delegado } from 'src/modules/pessoa/entities/delegado.entity';
+import { EntidadeBase } from 'src/modules/core';
+import { Ginasio } from 'src/modules/ginasio';
+import { Delegado } from 'src/modules/pessoa';
 import {
-  Column,
   Entity,
   Index,
-  JoinColumn,
+  Column,
   ManyToOne,
+  JoinColumn,
   OneToMany,
 } from 'typeorm';
-import { StatusPartida } from '../enums/status-partida.enum';
-import { TipoRodada, tiposDeRodada } from '../types/tipo-rodada.type';
+import { StatusPartida } from '../enums';
+import { tiposDeRodada, TipoRodada } from '../types';
 import { ArbitroPartida } from './arbitro-partida.entity';
 import { EquipePartida } from './equipe-partida.entity';
 

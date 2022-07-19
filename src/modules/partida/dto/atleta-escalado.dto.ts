@@ -1,6 +1,5 @@
-import { AtletaRespostaDto } from 'src/modules/pessoa/dto/atleta.dto';
-import { Posicao } from 'src/modules/pessoa/enums';
-import { AtletaEscalado } from '../entities/atleta-escalado.entity';
+import { Posicao, AtletaRespostaDto } from 'src/modules/pessoa';
+import { AtletaEscalado } from '../entities';
 import { EquipePartidaRespostaDto } from './equipe-partida.dto';
 
 export interface IBuscaAtletaEscalado {

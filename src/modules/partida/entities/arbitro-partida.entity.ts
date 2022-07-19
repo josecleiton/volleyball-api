@@ -1,7 +1,6 @@
-import { EntidadeBase } from 'src/modules/core/entities/base.entity';
-import { Arbitro } from 'src/modules/pessoa/entities/arbitro.entity';
-import { TipoArbitro } from 'src/modules/pessoa/enums';
-import { Column, Entity, Index, JoinColumn, ManyToOne, Unique } from 'typeorm';
+import { EntidadeBase } from 'src/modules/core';
+import { TipoArbitro, Arbitro } from 'src/modules/pessoa';
+import { Entity, Unique, Column, Index, ManyToOne, JoinColumn } from 'typeorm';
 import { Partida } from './partida.entity';
 
 @Entity('arbitros_partida')

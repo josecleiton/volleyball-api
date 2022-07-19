@@ -1,6 +1,6 @@
 import { Expose } from 'class-transformer';
-import { IsOptional, IsUUID, Max, Min } from 'class-validator';
-import { FundamentoAtleta } from '../entities/fundamento-atleta.entity';
+import { IsUUID, Min, Max, IsOptional } from 'class-validator';
+import { FundamentoAtleta } from '../entities';
 
 export class CriaFundamentoAtletaDto {
   @IsUUID()

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { MelhorCentralRespostaDto } from '../dto/melhor-central.dto';
-import { IMelhorEstatisticaService } from '../interfaces/melhor-estatistica-service.interface';
+import { MelhorCentralRespostaDto } from '../dto';
+import { IMelhorEstatisticaService } from '../interfaces';
 import { MelhorCentralViewRepository } from '../repositories';
 
 @Injectable()

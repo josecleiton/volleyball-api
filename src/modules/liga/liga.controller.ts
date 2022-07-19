@@ -1,22 +1,23 @@
 import {
   Controller,
-  Get,
   Post,
   Body,
-  Param,
-  Delete,
-  ParseUUIDPipe,
   HttpCode,
+  Param,
+  ParseUUIDPipe,
   Patch,
+  Get,
+  Delete,
 } from '@nestjs/common';
-import { LigaService } from './services/liga.service';
-import { CriaLigaDto, InicializaLigaDto } from './dto/liga.dto';
+import { ApiTags } from '@nestjs/swagger';
 import {
-  InicializaFinalDto,
+  CriaLigaDto,
+  InicializaLigaDto,
   InicializaQuartaDeFinalDto,
   InicializaSemifinalDto,
-} from './dto/tabela.dto';
-import { ApiTags } from '@nestjs/swagger';
+  InicializaFinalDto,
+} from './dto';
+import { LigaService } from './services';
 
 @Controller('liga')
 @ApiTags('liga')

@@ -1,5 +1,5 @@
-import { Inject, Injectable } from '@nestjs/common';
-import type { MessageBird } from 'messagebird/types';
+import { Injectable, Inject } from '@nestjs/common';
+import { MessageBird } from 'messagebird/types';
 import { MESSAGEBIRD } from '../sms.constant';
 
 @Injectable()

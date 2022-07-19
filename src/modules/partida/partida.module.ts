@@ -1,20 +1,18 @@
-import { forwardRef, Module } from '@nestjs/common';
-
+import { Module, forwardRef } from '@nestjs/common';
+import { TypeOrmExModule } from '../core';
+import { LigaModule } from '../liga';
+import { PessoaModule } from '../pessoa';
+import { PontuacaoViewRepository, PontuacaoModule } from '../pontuacao';
+import { SalvaPartidaFacade } from './facades';
+import { PartidaFactory } from './factories';
 import { PartidaController } from './partida.controller';
-import { PessoaModule } from '../pessoa/pessoa.module';
-import { LigaModule } from '../liga/liga.module';
-import { AtletaEscaladoService, PartidaService } from './services';
-import { PontuacaoModule } from '../pontuacao/pontuacao.module';
 import {
+  PartidaRepository,
   ArbitroPartidaRepository,
   AtletaEscaladoRepository,
   EquipePartidaRepository,
-  PartidaRepository,
 } from './repositories';
-import { PontuacaoViewRepository } from '../pontuacao/repositories/pontuacao-view.repository';
-import { PartidaFactory } from './factories/partida.factory';
-import { SalvaPartidaFacade } from './facades/salva-partida.facade';
-import { TypeOrmExModule } from '../core/typeorm-ex/typeorm-ex.module';
+import { PartidaService, AtletaEscaladoService } from './services';
 
 @Module({
   imports: [

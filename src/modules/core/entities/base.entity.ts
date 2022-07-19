@@ -1,8 +1,8 @@
 import {
-  CreateDateColumn,
-  Index,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
+  CreateDateColumn,
+  Index,
 } from 'typeorm';
 
 export abstract class EntidadeBase {

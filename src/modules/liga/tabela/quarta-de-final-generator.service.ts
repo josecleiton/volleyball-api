@@ -1,9 +1,9 @@
-import { ConflictException, Injectable } from '@nestjs/common';
+import { Injectable, ConflictException } from '@nestjs/common';
+import { PartidaFactory } from 'src/modules/partida';
+import { PontuacaoService } from 'src/modules/pontuacao';
+import { IClassificados } from '../dto';
+import { Liga } from '../entities';
 import { MataMataGeneratorService } from './mata-mata-generator.service';
-import { IClassificados } from '../dto/mata-mata.dto';
-import { Liga } from '../entities/liga.entity';
-import { PontuacaoService } from 'src/modules/pontuacao/services';
-import { PartidaFactory } from 'src/modules/partida/factories/partida.factory';
 
 @Injectable()
 export class QuartaDeFinalGeneratorService extends MataMataGeneratorService {

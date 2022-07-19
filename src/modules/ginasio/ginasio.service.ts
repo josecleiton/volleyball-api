@@ -1,11 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { TypeORMFilterService } from '../core/services/typeorm-filter.service';
-import {
-  CriaGinasioDto,
-  GinasioRespostaDto,
-  ListaGinasiosDto,
-} from './dto/ginasio.dto';
-import { GinasioRepository } from './repositories/ginasio.repository';
+import { TypeORMFilterService } from '../core';
+import { CriaGinasioDto, ListaGinasiosDto, GinasioRespostaDto } from './dto';
+import { GinasioRepository } from './repositories';
 
 @Injectable()
 export class GinasioService {

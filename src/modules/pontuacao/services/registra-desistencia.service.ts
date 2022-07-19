@@ -1,9 +1,7 @@
 import { Injectable } from '@nestjs/common';
+import { EscolhaDeDesistencia, PontosPartida } from 'src/modules/partida';
 import { DataSource } from 'typeorm';
-
-import { EscolhaDeDesistencia } from 'src/modules/partida/dto/partida.dto';
-import { PontosPartida } from 'src/modules/partida/enums/pontos-partida.enum';
-import { IRegistraDesistenciaDto } from '../dtos/desistencia.dto';
+import { IRegistraDesistenciaDto } from '../dtos';
 import { RegistraResultadoPartidaFacade } from '../facades';
 import { PontuacaoService } from './pontuacao.service';
 

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { CraqueDaGaleraRespostaDto } from '../dto/craque-da-galera.dto';
-import { IMelhorEstatisticaService } from '../interfaces/melhor-estatistica-service.interface';
+import { CraqueDaGaleraRespostaDto } from '../dto';
+import { IMelhorEstatisticaService } from '../interfaces';
 import { CraqueDaGaleraViewRepository } from '../repositories';
 
 @Injectable()

@@ -1,5 +1,5 @@
-import { IsString, IsUUID, Length } from 'class-validator';
-import { Tecnico } from '../entities/tecnico.entity';
+import { IsString, Length, IsUUID } from 'class-validator';
+import { Tecnico } from '../entities';
 import { CriaPessoaDto, PessoaRespostaDto } from './pessoa.dto';
 
 export class CriaTecnicoDto extends CriaPessoaDto {

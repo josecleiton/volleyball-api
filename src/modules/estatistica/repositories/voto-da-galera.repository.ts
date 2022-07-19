@@ -1,6 +1,6 @@
-import { CustomRepository } from 'src/modules/core/typeorm-ex';
+import { CustomRepository } from 'src/modules/core';
 import { Repository } from 'typeorm';
-import { VotoDaGalera } from '../entities/voto-da-galera.entity';
+import { VotoDaGalera } from '../entities';
 
 @CustomRepository(VotoDaGalera)
 export class VotoDaGaleraRepository extends Repository<VotoDaGalera> {
@@ -8,6 +8,7 @@ export class VotoDaGaleraRepository extends Repository<VotoDaGalera> {
     const qb = this.createQueryBuilder('voto');
 
     qb.select('voto.id', 'id')
+
       .innerJoin('voto.atleta', 'a')
       .innerJoin('a.equipe', 'e')
       .where('voto.telefone = :telefone', { telefone })

@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { randomUUID } from 'crypto';
-import { IPartidaFactoryDto } from '../dto/partida-factory.dto';
-import { EquipePartida } from '../entities/equipe-partida.entity';
+import { IPartidaFactoryDto } from '../dto';
+import { EquipePartida } from '../entities';
 import { PartidaRepository } from '../repositories';
 
 @Injectable()

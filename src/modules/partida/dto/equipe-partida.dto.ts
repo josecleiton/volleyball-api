@@ -1,5 +1,6 @@
-import { EquipeSimplificadaRespostaDto } from 'src/modules/equipe/dto/equipe.dto';
-import { EquipePartida } from '../entities/equipe-partida.entity';
+import { EquipeSimplificadaRespostaDto } from 'src/modules/equipe';
+import { EquipePartida } from '../entities';
+import { IPontoNoSet } from '../interfaces';
 import { AtletaEscaladoComPerfilAtletaRespostaDto } from './atleta-escalado.dto';
 
 export class EquipePartidaRespostaDto {
@@ -31,5 +32,27 @@ export class EquipePartidaRespostaDto {
     this.atletas =
       e.atletas?.map((x) => new AtletaEscaladoComPerfilAtletaRespostaDto(x)) ??
       [];
+  }
+}
+
+export class EquipePartidaRespostaSimplificadoDto {
+  idEquipe: string;
+  idPartida?: string;
+  pontuacao: number;
+  setsGanhos: number;
+  pontosNosSets: IPontoNoSet[];
+  setsDisputados: number;
+  ganhou: boolean;
+  resultadoCadastradoEm?: Date;
+
+  constructor(e: EquipePartida) {
+    this.idEquipe = e.idEquipe;
+    this.idPartida = e.idPartida;
+    this.setsDisputados = e.setsDisputados;
+    this.pontuacao = e.pontuacao;
+    this.setsGanhos = e.setsGanhos;
+    this.pontosNosSets = e.pontosNosSets;
+    this.ganhou = e.ganhou;
+    this.resultadoCadastradoEm = e.resultadoCadastradoEm;
   }
 }

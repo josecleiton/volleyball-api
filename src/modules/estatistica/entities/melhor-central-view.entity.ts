@@ -1,6 +1,5 @@
-import { Atleta } from 'src/modules/pessoa/entities/atleta.entity';
-import { Posicao } from 'src/modules/pessoa/enums';
-import { Index, JoinColumn, ManyToOne, ViewColumn, ViewEntity } from 'typeorm';
+import { Posicao, Atleta } from 'src/modules/pessoa';
+import { ViewEntity, ViewColumn, Index, ManyToOne, JoinColumn } from 'typeorm';
 import { nomeMelhorCentralView } from '../estatistica.constants';
 
 @ViewEntity({

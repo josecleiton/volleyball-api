@@ -1,8 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { IRegistraEquipeGanhadoraDto } from '../../partida/dto/registra-equipe-ganhadora.dto';
-import { EquipePartida } from '../../partida/entities/equipe-partida.entity';
-import { Partida } from '../../partida/entities/partida.entity';
-import { StatusPartida } from '../../partida/enums/status-partida.enum';
+import {
+  IRegistraEquipeGanhadoraDto,
+  Partida,
+  StatusPartida,
+  EquipePartida,
+} from 'src/modules/partida';
 
 @Injectable()
 export class RegistraResultadoPartidaFacade {

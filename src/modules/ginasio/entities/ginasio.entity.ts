@@ -1,5 +1,5 @@
-import { EntidadeBase } from 'src/modules/core/entities/base.entity';
-import { Partida } from 'src/modules/partida/entities/partida.entity';
+import { EntidadeBase } from 'src/modules/core';
+import { Partida } from 'src/modules/partida';
 import { Column, Entity, Index, OneToMany, Unique } from 'typeorm';
 
 @Entity('ginasios')

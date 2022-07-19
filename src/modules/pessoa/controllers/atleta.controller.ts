@@ -1,21 +1,17 @@
 import {
-  Body,
   Controller,
-  Delete,
+  Post,
+  Body,
   Get,
   Param,
   ParseUUIDPipe,
-  Patch,
-  Post,
   Query,
+  Patch,
+  Delete,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import {
-  AtualizaAtletaDto,
-  CriaAtletaDto,
-  ListaAtletaDto,
-} from '../dto/atleta.dto';
-import { AtletaService } from '../services/atleta.service';
+import { CriaAtletaDto, ListaAtletaDto, AtualizaAtletaDto } from '../dto';
+import { AtletaService } from '../services';
 
 @Controller('pessoa/atleta')
 @ApiTags('atleta')

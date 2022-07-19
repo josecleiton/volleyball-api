@@ -1,8 +1,8 @@
+import { CustomRepository } from 'src/modules/core';
 import { SelectQueryBuilder } from 'typeorm';
-import { MelhorPosicaoViewRepository } from './melhor-posicao-view.repository';
+import { MelhorOpostoView } from '../entities';
 import { nomeMelhorOpostoView } from '../estatistica.constants';
-import { MelhorOpostoView } from '../entities/melhor-oposto-view.entity';
-import { CustomRepository } from 'src/modules/core/typeorm-ex';
+import { MelhorPosicaoViewRepository } from './melhor-posicao-view.repository';
 
 @CustomRepository(MelhorOpostoView)
 export class MelhorOpostoViewRepository extends MelhorPosicaoViewRepository<MelhorOpostoView> {

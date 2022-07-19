@@ -1,7 +1,7 @@
-import { Body, Controller, Get, Post, Query } from '@nestjs/common';
+import { Controller, Post, Body, Get, Query } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { CriaArbitroDto, ListaArbitroDto } from '../dto/arbitro.dto';
-import { ArbitroService } from '../services/arbitro.service';
+import { CriaArbitroDto, ListaArbitroDto } from '../dto';
+import { ArbitroService } from '../services';
 
 @Controller('pessoa/arbitro')
 @ApiTags('arbitro')

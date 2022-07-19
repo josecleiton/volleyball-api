@@ -1,7 +1,7 @@
-import { EntidadeBase } from 'src/modules/core/entities/base.entity';
-import { Equipe } from 'src/modules/equipe/entities/equipe.entity';
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
-import { IPontoNoSet } from '../interfaces/ponto_no_set.interface';
+import { EntidadeBase } from 'src/modules/core';
+import { Equipe } from 'src/modules/equipe';
+import { Entity, Column, ManyToOne, JoinColumn, OneToMany } from 'typeorm';
+import { IPontoNoSet } from '../interfaces';
 import { AtletaEscalado } from './atleta-escalado.entity';
 import { Partida } from './partida.entity';
 

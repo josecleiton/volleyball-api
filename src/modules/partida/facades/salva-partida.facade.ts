@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { EntityManager } from 'typeorm';
-import { EquipePartida } from '../entities/equipe-partida.entity';
-import { Partida } from '../entities/partida.entity';
+import { Partida, EquipePartida } from '../entities';
 
 @Injectable()
 export class SalvaPartidaFacade {

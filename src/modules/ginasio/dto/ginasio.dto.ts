@@ -1,5 +1,5 @@
-import { IsOptional, IsPositive, IsString, Length } from 'class-validator';
-import { Ginasio } from '../entities/ginasio.entity';
+import { IsString, Length, IsPositive, IsOptional } from 'class-validator';
+import { Ginasio } from '../entities';
 
 export class CriaGinasioDto {
   @IsString()

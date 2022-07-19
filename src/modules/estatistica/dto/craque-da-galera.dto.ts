@@ -1,4 +1,4 @@
-import { CraqueDaGaleraView } from '../entities/craque-da-galera-view.entity';
+import { CraqueDaGaleraView } from '../entities';
 import { MelhorPosicaoRespostaDto } from './melhor-posicao.dto';
 
 export class CraqueDaGaleraRespostaDto extends MelhorPosicaoRespostaDto {

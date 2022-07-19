@@ -1,28 +1,27 @@
 import {
-  ConflictException,
-  forwardRef,
-  Inject,
   Injectable,
+  Inject,
+  forwardRef,
+  ConflictException,
   NotFoundException,
 } from '@nestjs/common';
-import { TypeORMFilterService } from 'src/modules/core/services/typeorm-filter.service';
-import { Equipe } from 'src/modules/equipe/entities/equipe.entity';
-import { EquipeService } from 'src/modules/equipe/equipe.service';
-import { LigaService } from 'src/modules/liga/services/liga.service';
+import { TypeORMFilterService } from 'src/modules/core';
+import { EquipeService, Equipe } from 'src/modules/equipe';
+import { LigaService } from 'src/modules/liga';
 import { FindOptionsRelations } from 'typeorm';
 import {
-  AtletaComEquipeRespostaDto,
-  AtletaRespostaDto,
-  AtualizaAtletaDto,
-  CriaAtletaDto,
-  DeveListarAtletasDto,
   IValidaNumeroEquipeDto,
+  CriaAtletaDto,
+  AtletaRespostaDto,
+  AtletaComEquipeRespostaDto,
   ListaAtletaDto,
-} from '../dto/atleta.dto';
-import { Atleta } from '../entities/atleta.entity';
+  DeveListarAtletasDto,
+  AtualizaAtletaDto,
+} from '../dto';
+import { Atleta } from '../entities';
 import { TipoPessoa } from '../enums';
 import { dtoParaPessoa } from '../mapper';
-import { AtletaRepository } from '../repositories/atleta.repository';
+import { AtletaRepository } from '../repositories';
 
 @Injectable()
 export class AtletaService {

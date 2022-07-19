@@ -1,39 +1,41 @@
-/* eslint-disable no-empty */
 import {
-  ConflictException,
-  forwardRef,
-  Inject,
   Injectable,
-  NotFoundException,
+  Inject,
+  forwardRef,
+  ConflictException,
   UnprocessableEntityException,
+  NotFoundException,
 } from '@nestjs/common';
 import { groupBy } from 'lodash';
-import { LigaService } from 'src/modules/liga/services/liga.service';
-import { AtletaRespostaDto } from 'src/modules/pessoa/dto/atleta.dto';
-import { RegistraResultadoPartidaFacade } from 'src/modules/pontuacao/facades';
-import { PontuacaoService } from 'src/modules/pontuacao/services';
-import { RegistraDesistenciaService } from 'src/modules/pontuacao/services/registra-desistencia.service';
-import { DataSource, EntityManager } from 'typeorm';
-import { Posicao, TipoArbitro } from '../../pessoa/enums';
-import { ArbitroService } from '../../pessoa/services/arbitro.service';
-import { AtletaService } from '../../pessoa/services/atleta.service';
-import { DelegadoService } from '../../pessoa/services/delegado.service';
-import { CadastrarResultadoPartidaDto } from '../dto/partida-cadastro-resultado.dto';
-
+import { LigaService } from 'src/modules/liga';
 import {
-  AtletaParticipacaoDto,
-  CadastrarParticipantesPartidaDto,
+  DelegadoService,
+  AtletaService,
+  ArbitroService,
+  TipoArbitro,
+  AtletaRespostaDto,
+  Posicao,
+} from 'src/modules/pessoa';
+import {
+  RegistraDesistenciaService,
+  RegistraResultadoPartidaFacade,
+  PontuacaoService,
+} from 'src/modules/pontuacao';
+import { DataSource, EntityManager } from 'typeorm';
+import {
   ListaPartidasDto,
   PartidaRespostaDto,
   RemarcarPartidaDto,
-} from '../dto/partida.dto';
-import { Partida } from '../entities/partida.entity';
-import { PontosPartida } from '../enums/pontos-partida.enum';
-import { StatusPartida } from '../enums/status-partida.enum';
+  CadastrarParticipantesPartidaDto,
+  AtletaParticipacaoDto,
+  CadastrarResultadoPartidaDto,
+} from '../dto';
+import { Partida } from '../entities';
+import { StatusPartida, PontosPartida } from '../enums';
 import {
-  ArbitroPartidaRepository,
-  AtletaEscaladoRepository,
   PartidaRepository,
+  AtletaEscaladoRepository,
+  ArbitroPartidaRepository,
 } from '../repositories';
 
 interface IDeterminaPontuacaoNumeroDeSets {
